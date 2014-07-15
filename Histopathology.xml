@@ -1,0 +1,484 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xf:xforms xmlns:xf="http://www.w3.org/2002/xforms" xmlns:h="http://www.w3.org/1999/xhtml"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:jr="http://openrosa.org/javarosa">
+	<xf:head>
+		<xf:title>CCSP Histopathology Form</xf:title>
+		<xf:model id="openmrs_model">
+			<xf:instance id="openmrs_model_instance">
+				<form id="426" name="Histopathology Form" version="1.0"
+					xmlns:openmrs="https://amrs.ampath.or.ke/amrs/moduleServlet/formentry/forms/schema/401-32"
+					xmlns:xd="http://schemas.microsoft.com/office/infopath/2003">
+					<header>
+						<enterer/>
+						<date_entered/>
+						<session/>
+						<uid/>
+					</header>
+					<patient>
+						<patient.patient_id openmrs_table="patient" openmrs_attribute="patient_id"/>
+						<patient_identifier.identifier_type_id openmrs_table="patient_identifier" openmrs_attribute="identifier_type_id"/>
+						<patient.medical_record_number openmrs_table="patient_identifier" openmrs_attribute="identifier"/>
+						<patient.birthdate openmrs_table="patient" openmrs_attribute="birthdate"/>
+						<patient.birthdate_estimated openmrs_table="patient" openmrs_attribute="birthdate_estimated"/>
+						<patient.family_name openmrs_table="patient_name" openmrs_attribute="family_name"/>
+						<patient.given_name openmrs_table="patient_name" openmrs_attribute="given_name"/>
+                        <patient.uuid openmrs_table="patient" openmrs_attribute="uuid"/>
+                        <patient.middle_name openmrs_table="patient_name" openmrs_attribute="middle_name"/>
+						<patient.sex openmrs_table="patient" openmrs_attribute="gender"/>
+						<no_male/>
+					</patient>
+					<encounter>
+						<encounter.encounter_datetime openmrs_table="encounter" openmrs_attribute="encounter_datetime"/>
+						<encounter.location_id openmrs_table="encounter" openmrs_attribute="location_id"/>
+						<encounter.provider_id openmrs_table="encounter" openmrs_attribute="provider_id"/>
+                        <tmp>
+							<provider_id_select/>
+							<provider_id_text/>
+						</tmp>
+					</encounter>
+					<obs openmrs_concept="1238^MEDICAL RECORD OBSERVATIONS^99DCT" openmrs_datatype="ZZ">
+						<temporary.registration.uuid openmrs_concept="9000^TEMPORARY REGISTRATION UUID^99DCT" openmrs_datatype="CWE"/>
+						<start_time openmrs_concept="1693^START TIME^99DCT" openmrs_datatype="TM">
+							<value/>
+						</start_time>
+						<end_time openmrs_concept="1694^END TIME^99DCT" openmrs_datatype="TM">
+							<value/>
+						</end_time>
+						<return_visit_date openmrs_concept="5096^RETURN VISIT DATE^99DCT" openmrs_datatype="DT">
+							<date/>
+							<time/>
+							<value/>
+						</return_visit_date>
+						<current_visit_type openmrs_concept="1839^CURRENT VISIT TYPE^99DCT" openmrs_datatype="CWE">
+							<value/>
+						</current_visit_type>
+						<freetext_general openmrs_concept="1915^FREETEXT GENERAL^99DCT" openmrs_datatype="ST">
+							<date></date>
+							<time></time>
+							<value></value>
+						</freetext_general>
+						<procedures_done_this_visit_detailed openmrs_concept="7480^PROCEDURES DONE THIS VISIT, DETAILED^99DCT" openmrs_datatype="ZZ">
+							<number_of_specimen_collected openmrs_concept="7482^NUMBER OF SPECIMEN COLLECTED^99DCT" openmrs_datatype="NM">
+								<date/>
+								<time/>
+								<value/>
+							</number_of_specimen_collected>
+							<body_part openmrs_concept="8265^BODY PART^99DCT" openmrs_datatype="CWE" multiple="0">
+								<date/>
+								<time/>
+								<value/>
+							</body_part>
+							<procedures_done_this_visit openmrs_concept="7479^PROCEDURES DONE THIS VISIT^99DCT" openmrs_datatype="CWE" multiple="0">
+								<date/>
+								<time/>
+								<value/>
+							</procedures_done_this_visit>
+							<anatomic_location_description openmrs_concept="8268^ANATOMIC LOCATION DESCRIPTION^99DCT" openmrs_datatype="CWE" multiple="0">
+								<date/>
+								<time/>
+								<value/>
+							</anatomic_location_description>
+							<clock_face_cervical_biopsy_location openmrs_concept="7481^CLOCK FACE CERVICAL BIOPSY LOCATION ^99DCT" openmrs_datatype="NM">
+								<date/>
+								<time/>
+								<value/>
+							</clock_face_cervical_biopsy_location>
+							<pathological_diagnosis_added openmrs_concept="8278^PATHOLOGICAL DIAGNOSIS ADDED^99DCT" openmrs_datatype="CWE" multiple="0">
+								<date/>
+								<time/>
+								<value/>
+							</pathological_diagnosis_added>
+							<pathological_diagnosis_added_cervix/>
+							<pathological_diagnosis_added_vagina/>
+							<pathological_diagnosis_added_vulva/>
+						</procedures_done_this_visit_detailed>
+						<ccsp_pathology_cervix openmrs_concept="7645^Cervix^99DCT" openmrs_datatype="CWE">
+							<date/>
+							<time/>
+							<value/>
+						</ccsp_pathology_cervix>
+						<ccsp_pathology_vulva openmrs_concept="7646^Vulva^99DCT" openmrs_datatype="CWE">
+							<date/>
+							<time/>
+							<value/>
+						</ccsp_pathology_vulva>
+						<ccsp_pathology_vagina openmrs_concept="7647^Vagina^99DCT" openmrs_datatype="CWE">
+							<date/>
+							<time/>
+							<value/>
+						</ccsp_pathology_vagina>
+					</obs>
+				</form>
+			</xf:instance>
+			<bind id="start_time" nodeset="/form/obs/start_time/value" jr:preload="time" jr:preloadParams="start" type="time"/>
+			<bind id="end_time" nodeset="/form/obs/end_time/value" jr:preload="time" jr:preloadParams="end" type="time"/>
+			<bind id="current_visit_type" nodeset="/form/obs/current_visit_type/value" required="true()" type="string"/>
+			<bind id="encounter.encounter_datetime" nodeset="/form/encounter/encounter.encounter_datetime" required="true()" type="date"
+                  constraint=". &lt; (today() + 1)" jr:constraintMsg="Encounter date cannot be in the future"/>
+			<bind id="encounter.location_id" nodeset="/form/encounter/encounter.location_id" type="string" required="true()"/>
+			<bind id="provider_id_select" nodeset="/form/encounter/tmp/provider_id_select" type="select1"/>
+            <bind id="provider_id_text" nodeset="/form/encounter/tmp/provider_id_text" type="string" required="true()"
+            relevant="../provider_id_select = ''" constraint="regex(., '^\w+[-]?\d{1}') and (checkdigit(.))"
+            jr:constraintMsg="Invalid ID format and/or CheckDigit. Please Re-enter your ID."/>
+			<bind id="encounter.provider_id" nodeset="/form/encounter/encounter.provider_id" type="string"
+            calculate="if(../tmp/provider_id_select != '',../tmp/provider_id_select,../tmp/provider_id_text)"/>
+			<bind id="encounter" nodeset="/form/encounter" relevant="../patient/patient.sex= 'F'"/>
+			<bind id="patient" nodeset="/form/patient"/>
+			<bind id="patient.patient_id" nodeset="/form/patient/patient.patient_id" type="int" required="true()"/>
+			<bind id="patient_identifier.identifier_type_id" nodeset="/form/patient/patient_identifier.identifier_type_id" calculate="1" type="integer"/>
+			<bind id="patient.medical_record_number" nodeset="/form/patient/patient.medical_record_number" type="string"/>
+			<bind id="patient.birthdate" nodeset="/form/patient/patient.birthdate" type="date"
+                  constraint=". &lt; (today() + 1)" jr:constraintMsg="Birth date cannot be in the future"/>
+			<bind id="patient.birthdate_estimated" nodeset="/form/patient/patient.birthdate_estimated" type="string"/>
+			<bind id="patient.family_name" nodeset="/form/patient/patient.family_name" type="string" required="true()"/>
+			<bind id="patient.given_name" nodeset="/form/patient/patient.given_name" type="string" required="true()"/>
+			<bind id="patient.middle_name" nodeset="/form/patient/patient.middle_name" type="string"/>
+			<bind id="patient.sex" nodeset="/form/patient/patient.sex" type="string" required="true()"/>
+			<bind id="no_male" nodeset="/form/patient/no_male" type="string" readonly="true()" relevant="../patient/patient.sex= 'M'"/>
+			<bind id="obs" nodeset="/form/obs" relevant="../patient/patient.sex= 'F'"/>
+			<bind id="ccsp_pathology_cervix" nodeset="/form/obs/ccsp_pathology_cervix/value" type="string" required="true()"/>
+			<bind id="ccsp_pathology_vulva" nodeset="/form/obs/ccsp_pathology_vulva/value" type="string" required="true()"/>
+			<bind id="ccsp_pathology_vagina" nodeset="/form/obs/ccsp_pathology_vagina/value" type="string" required="true()"/>
+			<bind id="procedures_done_this_visit_detailed" nodeset="/form/obs/procedures_done_this_visit_detailed"/>
+			<bind id="number_of_specimen_collected" nodeset="/form/obs/procedures_done_this_visit_detailed/number_of_specimen_collected/value" type="int" required="true()"/>
+			<bind id="body_part" nodeset="/form/obs/procedures_done_this_visit_detailed/body_part/value" type="string" required="true()"/>
+			<bind id="procedures_done_this_visit" nodeset="/form/obs/procedures_done_this_visit_detailed/procedures_done_this_visit/value" type="string" required="true()"/>
+			<bind id="anatomic_location_description" nodeset="/form/obs/procedures_done_this_visit_detailed/anatomic_location_description/value" type="string"
+				relevant="../../procedures_done_this_visit/value = '7147^LOOP ELECTROSURGICAL EXCISION PROCEDURE^99DCT'"/>
+			<bind id="clock_face_cervical_biopsy_location" nodeset="/form/obs/procedures_done_this_visit_detailed/clock_face_cervical_biopsy_location/value" type="int"
+				relevant="../../procedures_done_this_visit/value != '7147^LOOP ELECTROSURGICAL EXCISION PROCEDURE^99DCT'"
+				constraint=". &gt;= 1 and . &lt;= 12" jr:constraintMsg="Values should be between 1 and 12 inclusive"/>
+			<bind id="pathological_diagnosis_added_cervix" nodeset="/form/obs/procedures_done_this_visit_detailed/pathological_diagnosis_added_cervix" type="string" required="true()" relevant="../body_part/value='8279^CERVIX^99DCT'"/>
+            <bind id="patient.uuid" nodeset="/form/patient/patient.uuid" type="string"/>
+            <bind id="pathological_diagnosis_added_vagina" nodeset="/form/obs/procedures_done_this_visit_detailed/pathological_diagnosis_added_vagina" type="string" required="true()" relevant="../body_part/value='8280^VAGINA^99DCT'"/>
+			<bind id="pathological_diagnosis_added_vulva" nodeset="/form/obs/procedures_done_this_visit_detailed/pathological_diagnosis_added_vulva" type="string" required="true()" relevant="../body_part/value='8281^VULVA^99DCT'"/>
+			<bind id="pathological_diagnosis_added" nodeset="/form/obs/procedures_done_this_visit_detailed/pathological_diagnosis_added/value" type="string"
+				calculate="if(../../body_part/value='8279^CERVIX^99DCT',../../pathological_diagnosis_added_cervix,
+    					if(../../body_part/value='8280^VAGINA^99DCT',../../pathological_diagnosis_added_vagina,../../pathological_diagnosis_added_vulva))"/>
+			<bind id="return_visit_date" nodeset="/form/obs/return_visit_date/value" required="true()" type="date" 
+				constraint=". &gt; today()" jr:constraintMsg="Return visit date must be in the future"/>
+			<bind id="freetext_general" nodeset="/form/obs/freetext_general/value" type="string"/>
+		</xf:model>
+	</xf:head>
+	<xf:body>
+		<group>
+			<label>Cervical Cancer Screening</label>
+			<group appearance="field-list" bind="patient">
+				<label>Patient Demographics</label>
+				<input bind="patient.given_name">
+					<label>Given Name</label>
+				</input>
+				<input bind="patient.family_name">
+					<label>Family Name</label>
+				</input>
+				<input bind="patient.middle_name">
+					<label>Middle Name</label>
+				</input>
+				<input bind="patient.medical_record_number">
+					<label>AMRS ID Number</label>
+				</input>
+				<select1 bind="patient.sex">
+					<label>Gender</label>
+					<item>
+						<label>Male</label>
+						<value>M</value>
+					</item>
+					<item>
+						<label>Female</label>
+						<value>F</value>
+					</item>
+				</select1>
+				<input bind="patient.birthdate">
+					<label>Date Of Birth</label>
+				</input>
+			</group>
+			<input bind="no_male">
+				<label>Cervical cancer screening cannot be done on a male. This form will be closed</label>
+			</input>
+			<group appearance="field-list" bind="encounter">
+				<label>Encounter Details</label>
+				<input bind="encounter.encounter_datetime">
+					<label>Date Pathology Sample Was Taken</label>
+				</input>
+				<select1 bind="encounter.location_id">
+					<label>Clinic Location Where Sample Was Taken</label>
+					<item>
+				    <label>Chulaimbo</label>
+				    <value>7</value>
+				  </item>
+				  <item>
+				    <label>Turbo</label>
+				    <value>3</value>
+				  </item>
+				  <item>
+				    <label>Iten</label>
+				    <value>17</value>
+				  </item>
+				  <item>
+				    <label>Mosoriot</label>
+				    <value>2</value>
+				  </item>
+				  <item>
+				    <label>Webuye</label>
+				    <value>8</value>
+				  </item>
+				  <item>
+				    <label>AMPATH MTRH</label>
+				    <value>9</value>
+				  </item>
+				</select1>
+				<select1 bind="provider_id_select">
+					<label>Provider For This Encounter</label>
+					 <item>
+				    <label>Daurine Achieng Agumba</label>
+				    <value>3-4</value>
+				  </item>
+				  <item>
+				    <label>Irene Chepkosgei	Kurgat</label>
+				    <value>3420-7</value>
+				  </item>
+				  <item>
+				    <label>Rose	Cheruto	Toroitich</label>
+				    <value>3-4</value>
+				  </item>
+				  <item>
+				    <label>Mary	Kipkurui Kimosop</label>
+				    <value>3422-3</value>
+				  </item>
+				  <item>
+				    <label>Jacqueline Chemom Ndiema</label>
+				    <value>3423-1</value>
+				  </item>
+				  <item>
+				    <label>Grace Wanjiru Mwangi </label>
+				    <value>3424-9</value>
+				  </item>
+				  <item>
+				    <label>Collette	Mabia Palapala</label>
+				    <value>3425-6</value>
+				  </item>
+				  <item>
+				    <label>Dorice Erima	Wekesa	Female </label>
+				    <value>3426-4</value>
+				  </item>
+				  <item>
+				    <label>Agnes Kagure	Boen</label>
+				    <value>120-6</value>
+				  </item>
+				  <item>
+				    <label>Linet Kerubo	Onyancha</label>
+				    <value>3427-2</value>
+				  </item>
+				  <item>
+				    <label>Delinah Muchai Tanui</label>
+				    <value>1208-8</value>
+				  </item>
+				  <item>
+				    <label>Hellen Mushimbi Indumbwe	</label>
+				    <value>1208-8</value>
+				  </item>
+				  <item>
+				    <label>Lydia Cherugut Samoei </label>
+				    <value>1525-5</value>
+				  </item>
+				  <item>
+				    <label>Ruth	Kalunda	Nzili</label>
+				    <value>1529-7</value>
+				  </item>
+				  <item>
+				    <label>Lucy	Cheruto	Birgen</label>
+				    <value>3428-0</value>
+				  </item>
+				  <item>
+				    <label>Gratiah Nafuna Khaemba</label>
+				    <value>1409-2</value>
+				  </item>
+				  <item>
+				    <label>Leonida Chemutai	Mengich</label>
+				    <value>1357-3</value>
+				  </item>
+				  <item>
+				    <label>Ann Wangoi Maina	</label>
+				    <value>1412-6</value>
+				  </item>
+				  <item>
+				    <label>Elkanah Omenge Orango</label>
+				    <value>1474-6</value>
+				  </item>
+				  
+				  <item>
+				    <label>Peter Mukhanadale Istura	</label>
+				    <value>1478-7</value>
+				  </item>
+				  <item>
+				    <label>Hillary Mabeya</label>
+				    <value>1476-1</value>
+				  </item>
+				  <item>
+				    <label>Astrid Christoffersen Deb </label>
+				    <value>1237-7</value>
+				  </item>
+				  <item>
+				    <label>Philip Kipkirui Tonui
+				    </label>
+				    <value>1485-7</value>
+				  </item>
+				</select1>
+                <input bind="provider_id_text">
+                    <label>Enter provider's system-id</label>
+                </input>
+			</group>
+			<group appearance="field-list">
+				<label>Procedures Done This Visit</label>
+				<repeat bind="procedures_done_this_visit_detailed">
+					<select1 bind="body_part">
+						<label>Body Part Where Specimen Was Collected?</label>
+						<item>
+							<label>Cervix</label>
+							<value>8279^CERVIX^99DCT</value>
+						</item>
+						<item>
+							<label>Vagina</label>
+							<value>8280^VAGINA^99DCT</value>
+						</item>
+						<item>
+							<label>Vulva</label>
+							<value>8281^VULVA^99DCT</value>
+						</item>
+					</select1>
+					<select1 bind="procedures_done_this_visit">
+						<label>How Was Specimen Collected?</label>
+						<item>
+							<label>LEEP</label>
+							<value>7147^LOOP ELECTROSURGICAL EXCISION PROCEDURE^99DCT</value>
+						</item>
+						<item>
+							<label>Cervical punch/excisional Biopsy</label>
+							<value>6511^EXCISIONAL OR SURGICAL BIOPSY^99DCT</value>
+						</item>
+						<item>
+							<label>Endocervical curretage (ECC)</label>
+							<value>7478^ENDOCERVICAL CURETTAGE ^99DCT</value>
+						</item>
+					</select1>
+					<select1 bind="anatomic_location_description">
+						<label>Provide Location Of Specimen</label>
+						<item>
+							<label>Superficial</label>
+							<value>8266^SUPERFICIAL^99DCT</value>
+						</item>
+						<item>
+							<label>Deep</label>
+							<value>8267^DEEP^99DCT</value>
+						</item>
+						<item>
+							<label>Other non-coded</label>
+							<value>5622^OTHER NON-CODED^99DCT</value>
+						</item>
+					</select1>
+					<input bind="clock_face_cervical_biopsy_location">
+						<label>Provide location where biopsy for specimen was done: __O’clock</label>
+					</input>
+					<group appearance="field-list">
+						<select1 bind="pathological_diagnosis_added_cervix">
+							<label>Pathological Diagnosis for Cervical Specimen</label>
+							<item>
+								<label>Normal</label>
+								<value>1115^NORMAL^99DCT</value>
+							</item>
+							<item>
+								<label>Cervicitis</label>
+								<value>149^CERVICITIS^99DCT</value>
+							</item>
+							<item>
+								<label>Cervical squamous metaplasia</label>
+								<value>8282^CERVICAL SQUAMOUS METAPLASIA^99DCT</value>
+							</item>
+							<item>
+								<label>Mild cervical intraepithelial neoplasia (CIN 1)</label>
+								<value>7424^CERVICAL INTRAEPITHELIAL NEOPLASIA GRADE 1^99DCT</value>
+							</item>
+							<item>
+								<label>Moderate cervical intraepithelial neoplasia (CIN 2)</label>
+								<value>7425^CERVICAL INTRAEPITHELIAL NEOPLASIA GRADE 2^99DCT</value>
+							</item>
+							<item>
+								<label>Severe cervical intraepithelial neoplasia (CIN 3)</label>
+								<value>7216^CERVICAL INTRAEPITHELIAL NEOPLASIA GRADE 3^99DCT</value>
+							</item>
+							<item>
+								<label>Cervical adenocarcinoma</label>
+								<value>8275^CERVICAL ADENOCARCINOMA^99DCT</value>
+							</item>
+							<item>
+								<label>Cervical squamous cell carcinoma</label>
+								<value>8275^CERVICAL ADENOCARCINOMA^99DCT</value>
+							</item>
+							<item>
+								<label>Other non-coded</label>
+								<value>5622^OTHER NON-CODED^99DCT</value>
+							</item>
+						</select1>
+					</group>
+					<select1 bind="pathological_diagnosis_added_vagina">
+						<label>Pathological Diagnosis for Vaginal Specimen</label>
+						<item>
+							<label>Normal</label>
+							<value>1115^NORMAL^99DCT</value>
+						</item>
+						<item>
+							<label>Mild vaginal intraepithelial neoplasia (VAIN1)</label>
+							<value>7492^VAGINAL INTRAEPITHELIAL NEOPLASIA GRADE 1^99DCT</value>
+						</item>
+						<item>
+							<label>Moderate vaginal intraepithelial neoplasia (VAIN 2)</label>
+							<value>7491^VAGINAL INTRAEPITHELIAL NEOPLASIA GRADE 2 ^99DCT</value>
+						</item>
+						<item>
+							<label>Severe vaginal intraepithelial neoplasia (VAIN 3)</label>
+							<value>7435^VAGINAL INTRAEPITHELIAL NEOPLASIA GRADE 3^99DCT</value>
+						</item>
+						<item>
+							<label>Other non-coded</label>
+							<value>5622^OTHER NON-CODED^99DCT</value>
+						</item>
+					</select1>
+					<select1 bind="pathological_diagnosis_added_vulva">
+						<label>Pathological Diagnosis for Vulval Specimen</label>
+						<item>
+							<label>Normal</label>
+							<value>1115^NORMAL^99DCT</value>
+						</item>
+						<item>
+							<label>Condyloma / Mild vulva intraepithelial neoplasia (VIN1)</label>
+							<value>7489^CONDYLOMA OR VULVAR INTRAEPITHELIAL NEOPLASIA GRADE 1^99DCT</value>
+						</item>
+						<item>
+							<label>Moderate vulva intraepithelial neoplasia (VIN 2)</label>
+							<value>7488^VULVAR INTRAEPITHELIAL NEOPLASIA GRADE 2^99DCT</value>
+						</item>
+						<item>
+							<label>Severe vulva intraepithelial neoplasia (VIN 3)</label>
+							<value>7483^VULVAR INTRAEPITHELIAL NEOPLASIA GRADE 3^99DCT</value>
+						</item>
+						<item>
+							<label>Other non-coded</label>
+							<value>5622^OTHER NON-CODED^99DCT</value>
+						</item>
+					</select1>
+				</repeat>
+			</group>
+			<group appearance="field-list">
+				<input bind="freetext_general">
+					<label>Comments</label>
+					<hint>Provider notes/comments.</hint>
+				</input>
+				<input bind="return_visit_date">
+					<label>Return Visit Date</label>
+					<hint>Patient is to return on this date</hint>
+				</input>
+			</group>
+		</group>
+	</xf:body>
+</xf:xforms>

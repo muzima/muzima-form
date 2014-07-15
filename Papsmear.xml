@@ -1,0 +1,476 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xf:xforms xmlns:xf="http://www.w3.org/2002/xforms" xmlns:h="http://www.w3.org/1999/xhtml"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:jr="http://openrosa.org/javarosa">
+	<xf:head>
+		<xf:title>CCSP PAP Smear Form</xf:title>
+		<xf:model id="openmrs_model">
+			<xf:instance id="openmrs_model_instance">
+				<form id="427" name="Papsmear Form" version="1.0"
+					xmlns:openmrs="https://amrs.ampath.or.ke/amrs/moduleServlet/formentry/forms/schema/400-32"
+					xmlns:xd="http://schemas.microsoft.com/office/infopath/2003">
+					<header>
+						<enterer/>
+						<date_entered/>
+						<session/>
+						<uid/>
+					</header>
+					<patient>
+						<patient.patient_id openmrs_table="patient" openmrs_attribute="patient_id"/>
+						<patient_identifier.identifier_type_id openmrs_table="patient_identifier" openmrs_attribute="identifier_type_id"/>
+						<patient.medical_record_number openmrs_table="patient_identifier" openmrs_attribute="identifier"/>
+						<patient.birthdate openmrs_table="patient" openmrs_attribute="birthdate"/>
+						<patient.birthdate_estimated openmrs_table="patient" openmrs_attribute="birthdate_estimated"/>
+						<patient.family_name openmrs_table="patient_name" openmrs_attribute="family_name"/>
+						<patient.given_name openmrs_table="patient_name" openmrs_attribute="given_name"/>
+						<patient.middle_name openmrs_table="patient_name" openmrs_attribute="middle_name"/>
+						<patient.sex openmrs_table="patient" openmrs_attribute="gender"/>
+                        <patient.uuid openmrs_table="patient" openmrs_attribute="uuid"/>
+                        <no_male/>
+					</patient>
+					<encounter>
+						<encounter.encounter_datetime openmrs_table="encounter" openmrs_attribute="encounter_datetime"/>
+						<encounter.location_id openmrs_table="encounter" openmrs_attribute="location_id"/>
+						<encounter.provider_id openmrs_table="encounter" openmrs_attribute="provider_id"/>
+                        <tmp>
+							<provider_id_select/>
+							<provider_id_text/>
+						</tmp>
+					</encounter>
+					<obs openmrs_concept="1238^MEDICAL RECORD OBSERVATIONS^99DCT" openmrs_datatype="ZZ">
+						<temporary.registration.uuid openmrs_concept="9000^TEMPORARY REGISTRATION UUID^99DCT" openmrs_datatype="CWE"/>
+						<start_time openmrs_concept="1693^START TIME^99DCT" openmrs_datatype="TM">
+							<value/>
+						</start_time>
+						<start_now/>
+						<end_time openmrs_concept="1694^END TIME^99DCT" openmrs_datatype="TM">
+							<value/>
+						</end_time>
+						<current_sit_type openmrs_concept="1839^CURRENT VISIT TYPE^99DCT" openmrs_datatype="CWE">
+							<value/>
+						</current_sit_type>
+						<last_menstrual_period_date openmrs_concept="1836^LAST MENSTRUAL PERIOD DATE^99DCT" openmrs_datatype="DT">
+							<date/>
+							<time/>
+							<value/>
+						</last_menstrual_period_date>
+						<chief_complaint openmrs_concept="5219^CHIEF COMPLAINT^99DCT" openmrs_datatype="CWE" multiple="1">
+							<date/>
+							<time/>
+							<symptomatic openmrs_concept="1068^SYMPTOMATIC^99DCT">false</symptomatic>
+							<asymptomatic openmrs_concept="5006^ASYMPTOMATIC^99DCT">false</asymptomatic>
+							<having_hypoglycemia_symptoms_in_past_month openmrs_concept="8008^HAVING HYPOGLYCEMIA SYMPTOMS IN PAST MONTH^99DCT">false</having_hypoglycemia_symptoms_in_past_month>
+							<none openmrs_concept="1107^NONE^99DCT">false</none>
+							<vaginal_discharge openmrs_concept="5993^VAGINAL DISCHARGE^99DCT">false</vaginal_discharge>
+							<vaginal_bleeding openmrs_concept="1489^VAGINAL BLEEDING^99DCT">false</vaginal_bleeding>
+							<dysfunctional_uterine_bleeding openmrs_concept="6497^DYSFUNCTIONAL UTERINE BLEEDING^99DCT">false</dysfunctional_uterine_bleeding>
+							<menorrhagia openmrs_concept="1461^MENORRHAGIA^99DCT">false</menorrhagia>
+							
+							<postmenopausal_bleeding openmrs_concept="8274^POSTMENOPAUSAL BLEEDING^99DCT">false</postmenopausal_bleeding>
+							<other_non-coded openmrs_concept="5622^OTHER NON-CODED^99DCT">false</other_non-coded>
+							<postcoital_bleeding openmrs_concept="8273^POSTCOITAL BLEEDING^99DCT">false</postcoital_bleeding>
+							<xforms_value/>
+						</chief_complaint>
+						<method_of_family_planning openmrs_concept="374^METHOD OF FAMILY PLANNING^99DCT" openmrs_datatype="CWE" multiple="1">
+							<date/>
+							<time/>
+							<injectable_contraceptives openmrs_concept="5279^INJECTABLE CONTRACEPTIVES^99DCT">false</injectable_contraceptives>
+							<diaphragm openmrs_concept="5278^DIAPHRAGM^99DCT">false</diaphragm>
+							<intrauterine_device openmrs_concept="5275^INTRAUTERINE DEVICE^99DCT">false</intrauterine_device>
+							<other_non-coded openmrs_concept="5622^OTHER NON-CODED^99DCT">false</other_non-coded>
+							<female_sterilization openmrs_concept="5276^FEMALE STERILIZATION^99DCT">false</female_sterilization>
+							<condoms openmrs_concept="190^CONDOMS^99DCT">false</condoms>
+							<oral_contraception openmrs_concept="780^ORAL CONTRACEPTION^99DCT">false</oral_contraception>
+							<natural_family_planning openmrs_concept="5277^NATURAL FAMILY PLANNING^99DCT">false</natural_family_planning>
+							<medroxyprogesterone_acetate openmrs_concept="907^MEDROXYPROGESTERONE ACETATE^99DCT">false</medroxyprogesterone_acetate>
+							<none openmrs_concept="1107^NONE^99DCT">false</none>
+							<contraceptive_implant openmrs_concept="6220^CONTRACEPTIVE IMPLANT^99DCT">false</contraceptive_implant>
+							<combined_hormone_oral_contraceptive_pill openmrs_concept="6218^COMBINED HORMONE ORAL CONTRACEPTIVE PILL^99DCT">false</combined_hormone_oral_contraceptive_pill>
+							<abstinence openmrs_concept="6219^ABSTINENCE^99DCT">false</abstinence>
+							<progestin_pills openmrs_concept="6217^PROGESTIN PILLS^99DCT">false</progestin_pills>
+							<tubal_ligation openmrs_concept="6700^TUBAL LIGATION^99DCT">false</tubal_ligation>
+							<vasectomy openmrs_concept="6701^VASECTOMY^99DCT">false</vasectomy>
+							<herbal_traditional_medications openmrs_concept="5841^HERBAL TRADITIONAL MEDICATIONS^99DCT">false</herbal_traditional_medications>
+							<female_condoms openmrs_concept="6717^FEMALE CONDOMS^99DCT">false</female_condoms>
+							<male_condoms openmrs_concept="6718^MALE CONDOMS^99DCT">false</male_condoms>
+							<emergency_contraceptive_pills openmrs_concept="6725^EMERGENCY CONTRACEPTIVE PILLS^99DCT">false</emergency_contraceptive_pills>
+							<contraceptive_sponge openmrs_concept="8134^CONTRACEPTIVE SPONGE^99DCT">false</contraceptive_sponge>
+							<family_planning_via_oral_contraceptive_pills openmrs_concept="5274^FAMILY PLANNING VIA ORAL CONTRACEPTIVE PILLS^99DCT">false</family_planning_via_oral_contraceptive_pills>
+							<do_not_know openmrs_concept="1624^DO NOT KNOW^99DCT">false</do_not_know>
+							<xforms_value/>
+						</method_of_family_planning>
+						<most_recent_papanicolaou_smear_result openmrs_concept="7423^MOST RECENT PAPANICOLAOU SMEAR RESULT^99DCT" openmrs_datatype="CWE" multiple="1">
+							<date/>
+							<time/>
+							<normal openmrs_concept="1115^NORMAL^99DCT">false</normal>
+							<atypical_squamous_cells_of_undetermined_significance openmrs_concept="7417^ATYPICAL SQUAMOUS CELLS OF UNDETERMINED SIGNIFICANCE ^99DCT">false</atypical_squamous_cells_of_undetermined_significance>
+							<atypical_glandular_cells_of_undetermined_significance openmrs_concept="7418^ATYPICAL GLANDULAR CELLS OF UNDETERMINED SIGNIFICANCE ^99DCT">false</atypical_glandular_cells_of_undetermined_significance>
+							<low_grade_squamous_intraepithelial_lesion openmrs_concept="7419^LOW GRADE SQUAMOUS INTRAEPITHELIAL LESION^99DCT">false</low_grade_squamous_intraepithelial_lesion>
+							<high_grade_squamous_intraepithelial_lesion openmrs_concept="7420^HIGH GRADE SQUAMOUS INTRAEPITHELIAL LESION^99DCT">false</high_grade_squamous_intraepithelial_lesion>
+							<squamous_cell_carcinoma_not_otherwise_specified openmrs_concept="7421^SQUAMOUS CELL CARCINOMA, NOT OTHERWISE SPECIFIED ^99DCT">false</squamous_cell_carcinoma_not_otherwise_specified>
+							<adenocarcinoma openmrs_concept="7422^ADENOCARCINOMA ^99DCT">false</adenocarcinoma>
+							<xforms_value/>
+						</most_recent_papanicolaou_smear_result>
+						<date_most_recent_papanicolaou_smear_performed openmrs_concept="6727^DATE MOST RECENT PAPANICOLAOU SMEAR PERFORMED^99DCT" openmrs_datatype="DT">
+							<date/>
+							<time/>
+							<value/>
+						</date_most_recent_papanicolaou_smear_performed>
+						<freetext_general openmrs_concept="1915^FREETEXT GENERAL^99DCT" openmrs_datatype="ST">
+							<date/>
+							<time/>
+							<value/>
+						</freetext_general>
+					</obs>
+				</form>
+			</xf:instance>
+			<bind id="start_now" nodeset="/form/obs/start_now" calculate="now()" type="time"/>
+			<bind id="start_time" nodeset="/form/obs/start_time/value" jr:preload="time" jr:preloadParams="start" type="time"/>
+			<bind id="end_time" nodeset="/form/obs/end_time/value" jr:preload="time" jr:preloadParams="end" type="time"/>
+			<bind id="current_sit_type" nodeset="/form/obs/current_sit_type/value" required="true()" type="string"/>
+			<bind id="encounter.encounter_datetime" nodeset="/form/encounter/encounter.encounter_datetime" type="date" required="true()"
+                  constraint=". &lt; (today() + 1)" jr:constraintMsg="Encounter date cannot be in the future"/>
+			<bind id="encounter.location_id" nodeset="/form/encounter/encounter.location_id" type="string" required="true()"/>
+			<bind id="provider_id_select" nodeset="/form/encounter/tmp/provider_id_select" type="select1"/>
+            <bind id="provider_id_text" nodeset="/form/encounter/tmp/provider_id_text" type="string" required="true()"
+            relevant="../provider_id_select = ''" constraint="regex(., '^\w+[-]?\d{1}') and (checkdigit(.))"
+            jr:constraintMsg="Invalid ID format and/or CheckDigit. Please Re-enter your ID."/>
+			<bind id="encounter.provider_id" nodeset="/form/encounter/encounter.provider_id" type="string"
+            calculate="if(../tmp/provider_id_select != '',../tmp/provider_id_select,../tmp/provider_id_text)"/>
+			<bind id="encounter" nodeset="/form/encounter" relevant="../patient/patient.sex= 'F'"/>
+			<bind id="patient" nodeset="/form/patient"/>
+			<bind id="patient.patient_id" nodeset="/form/patient/patient.patient_id" type="int" required="true()"/>
+			<bind id="patient_identifier.identifier_type_id" nodeset="/form/patient/patient_identifier.identifier_type_id" calculate="1" type="integer"/>
+			<bind id="patient.medical_record_number" nodeset="/form/patient/patient.medical_record_number" type="string"/>
+			<bind id="patient.birthdate" nodeset="/form/patient/patient.birthdate" type="date"
+                  constraint=". &lt; (today() + 1)" jr:constraintMsg="Birth date cannot be in the future"/>
+			<bind id="patient.birthdate_estimated" nodeset="/form/patient/patient.birthdate_estimated" type="string"/>
+			<bind id="patient.family_name" nodeset="/form/patient/patient.family_name" type="string" required="true()"/>
+			<bind id="patient.given_name" nodeset="/form/patient/patient.given_name" type="string" required="true()"/>
+			<bind id="patient.middle_name" nodeset="/form/patient/patient.middle_name" type="string"/>
+			<bind id="patient.sex" nodeset="/form/patient/patient.sex" type="string" required="true()"/>
+            <bind id="patient.uuid" nodeset="/form/patient/patient.uuid" type="string"/>
+            <bind id="no_male" nodeset="/form/patient/no_male" type="string" readonly="true()" relevant="../patient/patient.sex= 'M'"/>
+			<bind id="obs" nodeset="/form/obs" relevant="../patient/patient.sex= 'F'"/>
+			<bind id="last_menstrual_period_date" nodeset="/form/obs/last_menstrual_period_date/value" type="date"
+                  constraint=". &lt; (today() + 1)" jr:constraintMsg="LMP date cannot be in the future"/>
+			<bind id="chief_complaint" nodeset="/form/obs/chief_complaint/xforms_value" type="string" required="true()"
+				constraint="not(selected(., 'none') and count-selected(.)>1)"
+				jr:constraintMsg="If None, is selected, it should be the only option"/>
+			<bind id="method_of_family_planning" nodeset="/form/obs/method_of_family_planning/xforms_value" type="string" required="true()"
+				constraint="not(selected(., 'none') and count-selected(.)>1)" jr:constraintMsg="If None, is selected, it should be the only option"/>
+			<bind id="most_recent_papanicolaou_smear_result" nodeset="/form/obs/most_recent_papanicolaou_smear_result/xforms_value" type="string" required="true()"
+				constraint="not((selected(., 'normal') or selected(., 'do_not_know') or selected(., 'not_applicable'))and count-selected(.) > 1)"
+				jr:constraintMsg="If normal, not applicable or don't know is selected, it should be the only option"/>
+			<bind id="date_most_recent_papanicolaou_smear_performed" nodeset="/form/obs/date_most_recent_papanicolaou_smear_performed/value" type="date"
+				relevant="not(selected(../../most_recent_papanicolaou_smear_result/xforms_value,'do_not_know'))"
+                constraint=". &lt; (today() + 1)" jr:constraintMsg="The date result was read cannot be in the future"/>
+			<bind id="freetext_general" nodeset="/form/obs/freetext_general/value" type="string"/>
+		</xf:model>
+	</xf:head>
+	<xf:body>
+		<group>
+			<label>Cervical Cancer Screening</label>
+			<group appearance="field-list" bind="patient">
+				<label>Patient Demographics</label>
+				<input bind="patient.given_name">
+					<label>Given Name</label>
+				</input>
+				<input bind="patient.family_name">
+					<label>Family Name</label>
+				</input>
+				<input bind="patient.middle_name">
+					<label>Middle Name</label>
+				</input>
+				<input bind="patient.medical_record_number">
+					<label>AMRS ID Number</label>
+				</input>
+				<select1 bind="patient.sex">
+					<label>Gender</label>
+					<item>
+						<label>Male</label>
+						<value>M</value>
+					</item>
+					<item>
+						<label>Female</label>
+						<value>F</value>
+					</item>
+				</select1>
+				<input bind="patient.birthdate">
+					<label>Date Of Birth</label>
+				</input>
+			</group>
+			<group appearance="field-list" bind="encounter">
+				<label>Encounter Details</label>
+				<input bind="encounter.encounter_datetime">
+					<label>Encounter Date</label>
+				</input>
+				<select1 bind="encounter.location_id">
+					<label>Screening Site</label>
+				  <item>
+				    <label>Chulaimbo</label>
+				    <value>7</value>
+				  </item>
+				  <item>
+				    <label>Turbo</label>
+				    <value>3</value>
+				  </item>
+				  <item>
+				    <label>Iten</label>
+				    <value>17</value>
+				  </item>
+				  <item>
+				    <label>Mosoriot</label>
+				    <value>2</value>
+				  </item>
+				  <item>
+				    <label>Webuye</label>
+				    <value>8</value>
+				  </item>
+				  <item>
+				    <label>AMPATH MTRH</label>
+				    <value>9</value>
+				  </item>
+				</select1>
+				<select1 appearance="autocomplete" bind="provider_id_select">
+					<label>Provider For This Encounter</label>
+					 <item>
+				    <label>Daurine Achieng Agumba</label>
+				    <value>3419-9</value>
+				  </item>
+				  <item>
+				    <label>Irene Chepkosgei	Kurgat</label>
+				    <value>3420-7</value>
+				  </item>
+				  <item>
+				    <label>Rose	Cheruto	Toroitich</label>
+				    <value>3-4</value>
+				  </item>
+				  <item>
+				    <label>Mary	Kipkurui Kimosop</label>
+				    <value>3422-3</value>
+				  </item>
+				  <item>
+				    <label>Jacqueline Chemom Ndiema</label>
+				    <value>3423-1</value>
+				  </item>
+				  <item>
+				    <label>Grace Wanjiru Mwangi </label>
+				    <value>3424-9</value>
+				  </item>
+				  <item>
+				    <label>Collette	Mabia Palapala</label>
+				    <value>3425-6</value>
+				  </item>
+				  <item>
+				    <label>Dorice Erima	Wekesa	Female </label>
+				    <value>3426-4</value>
+				  </item>
+				  <item>
+				    <label>Agnes Kagure	Boen</label>
+				    <value>120-6</value>
+				  </item>
+				  <item>
+				    <label>Linet Kerubo	Onyancha</label>
+				    <value>3427-2</value>
+				  </item>
+				  <item>
+				    <label>Delinah Muchai Tanui</label>
+				    <value>1208-8</value>
+				  </item>
+				  <item>
+				    <label>Hellen Mushimbi Indumbwe	</label>
+				    <value>1208-8</value>
+				  </item>
+				  <item>
+				    <label>Lydia Cherugut Samoei </label>
+				    <value>1525-5</value>
+				  </item>
+				  <item>
+				    <label>Ruth	Kalunda	Nzili</label>
+				    <value>1529-7</value>
+				  </item>
+				  <item>
+				    <label>Lucy	Cheruto	Birgen</label>
+				    <value>3428-0</value>
+				  </item>
+				  <item>
+				    <label>Gratiah Nafuna Khaemba</label>
+				    <value>1409-2</value>
+				  </item>
+				  <item>
+				    <label>Leonida Chemutai	Mengich</label>
+				    <value>1357-3</value>
+				  </item>
+				  <item>
+				    <label>Ann Wangoi Maina	</label>
+				    <value>1412-6</value>
+				  </item>
+				  <item>
+				    <label>Elkanah Omenge Orango</label>
+				    <value>1474-6</value>
+				  </item>
+				  
+				  <item>
+				    <label>Peter Mukhanadale Istura	</label>
+				    <value>1478-7</value>
+				  </item>
+				  <item>
+				    <label>Hillary Mabeya</label>
+				    <value>1476-1</value>
+				  </item>
+				  <item>
+				    <label>Astrid Christoffersen Deb </label>
+				    <value>1237-7</value>
+				  </item>
+				  <item>
+				    <label>Philip Kipkirui Tonui
+				    </label>
+				    <value>1485-7</value>
+				  </item>
+				</select1>
+                <input bind="provider_id_text">
+                    <label>Enter provider's system-id</label>
+                </input>
+			</group>
+			<input bind="last_menstrual_period_date">
+				<label>First Day Of Your Last Period (LMP)</label>
+			</input>
+			<select bind="chief_complaint">
+				<label>Complaints (Select all symptoms that best describe complaints)</label>
+				<item>
+					<label>Symptomatic</label>
+					<value>symptomatic</value>
+				</item>
+				<item>
+					<label>Asymptomatic</label>
+					<value>asymptomatic</value>
+				</item>
+				<item>
+					<label>Having hypoglycemia symptoms in past month</label>
+					<value>having_hypoglycemia_symptoms_in_past_month</value>
+				</item>
+				<item>
+					<label>Vaginal discharge</label>
+					<value>vaginal_discharge</value>
+				</item>
+				<item>
+					<label>Vaginal bleeding</label>
+					<value>vaginal_bleeding</value>
+				</item>
+				<item>
+					<label>Dysfunctional uterine bleeding</label>
+					<value>dysfunctional_uterine_bleeding</value>
+				</item>
+				<item>
+					<label>Menorrhagia</label>
+					<value>menorrhagia</value>
+				</item>
+				<item>
+					<label>Postmenopausal bleeding</label>
+					<value>postmenopausal_bleeding</value>
+				</item>
+				<item>
+					<label>Dysparunia</label>
+					<value>dysparunia</value>
+				</item>
+				<item>
+					<label>Postcoital bleeding</label>
+					<value>postcoital_bleeding</value>
+				</item>
+				<item>
+					<label>Other non-coded</label>
+					<value>other_non-coded</value>
+				</item>
+				<item>
+					<label>None</label>
+					<value>none</value>
+				</item>
+			</select>
+			<select bind="method_of_family_planning">
+				<label>Current Family Planning Method</label>
+				<item>
+					<label>Condoms</label>
+					<value>Condoms</value>
+				</item>
+				<item>
+					<label>Sterilization/Hysterectomy</label>
+					<value>Female_sterilization</value>
+				</item>
+				<item>
+					<label>Intrauterine device</label>
+					<value>Intrauterine_device</value>
+				</item>
+				<item>
+					<label>Diaphragm/Cervical cap</label>
+					<value>Diaphragm</value>
+				</item>
+				<item>
+					<label>Oral contraceptive pills</label>
+					<value>Family_planning_via_oral_contraceptive_pills</value>
+				</item>
+				<item>
+					<label>Natural family planning</label>
+					<value>Natural_family_planning</value>
+				</item>
+				<item>
+					<label>Injectable hormones</label>
+					<value>injectable_contraceptives</value>
+				</item>
+				<item>
+					<label>Other non-coded</label>
+					<value>Other_non-coded</value>
+				</item>
+				<item>
+					<label>None</label>
+					<value>none</value>
+				</item>
+			</select>
+
+			<select bind="most_recent_papanicolaou_smear_result">
+				<label>Most Recent Papacicolaou Smear Result</label>
+				<hint>A question to ask the results of the patient's most recent pap smear exam.</hint>
+				<item>
+					<label>Normal</label>
+					<value>normal</value>
+				</item>
+				<item>
+					<label>Atypical squamous cells of undetermined significance</label>
+					<value>atypical_squamous_cells_of_undetermined_significance</value>
+				</item>
+				<item>
+					<label>Atypical glandular cells of undetermined significance</label>
+					<value>atypical_glandular_cells_of_undetermined_significance</value>
+				</item>
+				<item>
+					<label>Low grade squamous intraepithelial lesion</label>
+					<value>low_grade_squamous_intraepithelial_lesion</value>
+				</item>
+				<item>
+					<label>High grade squamous intraepithelial lesion</label>
+					<value>high_grade_squamous_intraepithelial_lesion</value>
+				</item>
+				<item>
+					<label>Squamous cell carcinoma</label>
+					<value>squamous_cell_carcinoma_not_otherwise_specified</value>
+				</item>
+				<item>
+					<label>Adenocarcinoma</label>
+					<value>adenocarcinoma</value>
+				</item>
+				<item>
+					<label>Don't know</label>
+					<value>do_not_know</value>
+				</item>
+			</select>
+			<input bind="date_most_recent_papanicolaou_smear_performed">
+				<label>Date Of Most Recent PAP Result</label>
+				<hint>What is the date of last PAP Smear performed?</hint>
+			</input>
+			<input bind="freetext_general">
+				<label>Comments</label>
+				<hint>Provider notes/comments.</hint>
+			</input>
+		</group>
+	</xf:body>
+</xf:xforms>

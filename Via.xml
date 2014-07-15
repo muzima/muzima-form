@@ -1,0 +1,1168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xf:xforms xmlns:xf="http://www.w3.org/2002/xforms" xmlns:h="http://www.w3.org/1999/xhtml"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:jr="http://openrosa.org/javarosa">
+	<xf:head>
+		<xf:title>CCSP VIA Form</xf:title>
+		<xf:model id="openmrs_model">
+			<xf:instance id="openmrs_model_instance">
+				<form id="428" name="VIA Form" version="1.0"
+					xmlns:openmrs="https://amrs.ampath.or.ke/amrs/moduleServlet/formentry/forms/schema/400-32"
+					xmlns:xd="http://schemas.microsoft.com/office/infopath/2003">
+					<header>
+						<enterer/>
+						<date_entered/>
+						<session/>
+						<uid/>
+					</header>
+					<patient>
+						<patient.patient_id openmrs_table="patient" openmrs_attribute="patient_id"/>
+						<patient_identifier.identifier_type_id openmrs_table="patient_identifier" openmrs_attribute="identifier_type_id"/>
+						<patient.medical_record_number openmrs_table="patient_identifier" openmrs_attribute="identifier"/>
+						<patient.birthdate openmrs_table="patient" openmrs_attribute="birthdate"/>
+						<patient.birthdate_estimated openmrs_table="patient" openmrs_attribute="birthdate_estimated"/>
+						<patient.family_name openmrs_table="patient_name" openmrs_attribute="family_name"/>
+						<patient.given_name openmrs_table="patient_name" openmrs_attribute="given_name"/>
+						<patient.middle_name openmrs_table="patient_name" openmrs_attribute="middle_name"/>
+						<patient.sex openmrs_table="patient" openmrs_attribute="gender"/>
+                        <patient.uuid openmrs_table="patient" openmrs_attribute="uuid"/>
+                    </patient>
+					<encounter>
+						<encounter.encounter_datetime openmrs_table="encounter" openmrs_attribute="encounter_datetime"/>
+						<encounter.location_id openmrs_table="encounter" openmrs_attribute="location_id"/>
+						<encounter.provider_id openmrs_table="encounter" openmrs_attribute="provider_id"/>
+                        <tmp>
+							<provider_id_select/>
+							<provider_id_text/>
+						</tmp>
+					</encounter>
+					<obs openmrs_concept="1238^MEDICAL RECORD OBSERVATIONS^99DCT" openmrs_datatype="ZZ">
+						<temporary.registration.uuid openmrs_concept="9000^TEMPORARY REGISTRATION UUID^99DCT" openmrs_datatype="CWE"/>
+						<start_time openmrs_concept="1693^START TIME^99DCT" openmrs_datatype="TM">
+							<value/>
+						</start_time>
+						<start_now></start_now>
+						<end_time openmrs_concept="1694^END TIME^99DCT" openmrs_datatype="TM">
+							<value/>
+						</end_time>
+						<current_visit_type openmrs_concept="1839^CURRENT VISIT TYPE^99DCT" openmrs_datatype="CWE">
+							<value></value>
+						</current_visit_type>
+						<menstruation_status openmrs_concept="2061^MENSTRUATION STATUS^99DCT" openmrs_datatype="CWE" multiple="0">
+							<date/>
+							<time/>
+							<value/>
+						</menstruation_status>
+						<last_menstrual_period_date openmrs_concept="1836^LAST MENSTRUAL PERIOD DATE^99DCT" openmrs_datatype="DT">
+							<date/>
+							<time/>
+							<value/>
+						</last_menstrual_period_date>
+						<urine_pregnancy_test_qualitative openmrs_concept="45^URINE PREGNANCY TEST, QUALITATIVE^99DCT" openmrs_datatype="CWE" multiple="0">
+							<date/>
+							<time/>
+							<value/>
+						</urine_pregnancy_test_qualitative>
+						<reason_for_lack_of_period openmrs_concept="8252^REASON FOR LACK OF PERIOD^99DCT" openmrs_datatype="CWE" multiple="0">
+							<date/>
+							<time/>
+							<value/>
+						</reason_for_lack_of_period>
+						<gravida openmrs_concept="5624^GRAVIDA^99DCT" openmrs_datatype="NM">
+							<date/>
+							<time/>
+							<value/>
+						</gravida>
+						<parity openmrs_concept="1053^PARITY^99DCT" openmrs_datatype="NM">
+							<date/>
+							<time/>
+							<value/>
+						</parity>
+						<hiv_status openmrs_concept="6709^HIV STATUS^99DCT" openmrs_datatype="CWE" multiple="0">
+							<date></date>
+							<time></time>
+							<value></value>
+						</hiv_status>
+						<last_cd4_by_facs openmrs_concept="1871^MOST RECENT CD4^99DCT" openmrs_datatype="NM">
+							<date></date>
+							<time></time>
+							<value></value>
+						</last_cd4_by_facs>
+						<most_recent_visual_inspection_with_acetic_acid_result openmrs_concept="7381^MOST RECENT VISUAL INSPECTION WITH ACETIC ACID RESULT^99DCT" openmrs_datatype="CWE" multiple="0">
+							<date></date>
+							<time></time>
+							<value></value>
+						</most_recent_visual_inspection_with_acetic_acid_result>
+						<chief_complaint openmrs_concept="5219^CHIEF COMPLAINT^99DCT" openmrs_datatype="CWE" multiple="1">
+							<date/>
+							<time/>
+							<symptomatic openmrs_concept="1068^SYMPTOMATIC^99DCT">false</symptomatic>
+							<asymptomatic openmrs_concept="5006^ASYMPTOMATIC^99DCT">false</asymptomatic>
+							<having_hypoglycemia_symptoms_in_past_month openmrs_concept="8008^HAVING HYPOGLYCEMIA SYMPTOMS IN PAST MONTH^99DCT">false</having_hypoglycemia_symptoms_in_past_month>
+							<none openmrs_concept="1107^NONE^99DCT">false</none>
+							<vaginal_discharge openmrs_concept="5993^VAGINAL DISCHARGE^99DCT">false</vaginal_discharge>
+							<vaginal_bleeding openmrs_concept="1489^VAGINAL BLEEDING^99DCT">false</vaginal_bleeding>
+							<dysfunctional_uterine_bleeding openmrs_concept="6497^DYSFUNCTIONAL UTERINE BLEEDING^99DCT">false</dysfunctional_uterine_bleeding>
+							<menorrhagia openmrs_concept="1461^MENORRHAGIA^99DCT">false</menorrhagia>
+							<postmenopausal_bleeding openmrs_concept="8274^POSTMENOPAUSAL BLEEDING^99DCT">false</postmenopausal_bleeding>
+							<other_non-coded openmrs_concept="5622^OTHER NON-CODED^99DCT">false</other_non-coded>
+							<postcoital_bleeding openmrs_concept="8273^POSTCOITAL BLEEDING^99DCT">false</postcoital_bleeding>
+							<xforms_value/>
+						</chief_complaint>
+						<method_of_family_planning openmrs_concept="374^METHOD OF FAMILY PLANNING^99DCT" openmrs_datatype="CWE" multiple="1">
+							<date/>
+							<time/>
+							<injectable_contraceptives openmrs_concept="5279^INJECTABLE CONTRACEPTIVES^99DCT">false</injectable_contraceptives>
+							<diaphragm openmrs_concept="5278^DIAPHRAGM^99DCT">false</diaphragm>
+							<intrauterine_device openmrs_concept="5275^INTRAUTERINE DEVICE^99DCT">false</intrauterine_device>
+							<other_non-coded openmrs_concept="5622^OTHER NON-CODED^99DCT">false</other_non-coded>
+							<female_sterilization openmrs_concept="5276^FEMALE STERILIZATION^99DCT">false</female_sterilization>
+							<condoms openmrs_concept="190^CONDOMS^99DCT">false</condoms>
+							<oral_contraception openmrs_concept="780^ORAL CONTRACEPTION^99DCT">false</oral_contraception>
+							<natural_family_planning openmrs_concept="5277^NATURAL FAMILY PLANNING^99DCT">false</natural_family_planning>
+							<medroxyprogesterone_acetate openmrs_concept="907^MEDROXYPROGESTERONE ACETATE^99DCT">false</medroxyprogesterone_acetate>
+							<none openmrs_concept="1107^NONE^99DCT">false</none>
+							<contraceptive_implant openmrs_concept="6220^CONTRACEPTIVE IMPLANT^99DCT">false</contraceptive_implant>
+							<combined_hormone_oral_contraceptive_pill openmrs_concept="6218^COMBINED HORMONE ORAL CONTRACEPTIVE PILL^99DCT">false</combined_hormone_oral_contraceptive_pill>
+							<abstinence openmrs_concept="6219^ABSTINENCE^99DCT">false</abstinence>
+							<progestin_pills openmrs_concept="6217^PROGESTIN PILLS^99DCT">false</progestin_pills>
+							<tubal_ligation openmrs_concept="6700^TUBAL LIGATION^99DCT">false</tubal_ligation>
+							<vasectomy openmrs_concept="6701^VASECTOMY^99DCT">false</vasectomy>
+							<herbal_traditional_medications openmrs_concept="5841^HERBAL TRADITIONAL MEDICATIONS^99DCT">false</herbal_traditional_medications>
+							<female_condoms openmrs_concept="6717^FEMALE CONDOMS^99DCT">false</female_condoms>
+							<male_condoms openmrs_concept="6718^MALE CONDOMS^99DCT">false</male_condoms>
+							<emergency_contraceptive_pills openmrs_concept="6725^EMERGENCY CONTRACEPTIVE PILLS^99DCT">false</emergency_contraceptive_pills>
+							<contraceptive_sponge openmrs_concept="8134^CONTRACEPTIVE SPONGE^99DCT">false</contraceptive_sponge>
+							<family_planning_via_oral_contraceptive_pills openmrs_concept="5274^FAMILY PLANNING VIA ORAL CONTRACEPTIVE PILLS^99DCT">false</family_planning_via_oral_contraceptive_pills>
+							<do_not_know openmrs_concept="1624^DO NOT KNOW^99DCT">false</do_not_know>
+							<xforms_value/>
+						</method_of_family_planning>
+						<visual_cervical_exam_findings openmrs_concept="7484^VISUAL CERVICAL EXAM FINDINGS^99DCT" openmrs_datatype="CWE" multiple="1">
+							<date/>
+							<time/>
+							<normal openmrs_concept="1115^NORMAL^99DCT">false</normal>
+							<cervical_intraepithelial_neoplasia_grade_1 openmrs_concept="7424^CERVICAL INTRAEPITHELIAL NEOPLASIA GRADE 1^99DCT">false</cervical_intraepithelial_neoplasia_grade_1>
+							<cervical_intraepithelial_neoplasia_grade_2 openmrs_concept="7425^CERVICAL INTRAEPITHELIAL NEOPLASIA GRADE 2^99DCT">false</cervical_intraepithelial_neoplasia_grade_2>
+							<cervical_intraepithelial_neoplasia_grade_3 openmrs_concept="7216^CERVICAL INTRAEPITHELIAL NEOPLASIA GRADE 3 ^99DCT">false</cervical_intraepithelial_neoplasia_grade_3>
+							<cervical_cancer openmrs_concept="6537^CERVICAL CANCER^99DCT">false</cervical_cancer>
+							<other_non-coded openmrs_concept="5622^OTHER NON-CODED^99DCT">false</other_non-coded>
+							<positive_visual_inspection_with_acetic_acid_with_aceto_white_area openmrs_concept="7507^POSITIVE VISUAL INSPECTION WITH ACETIC ACID WITH ACETO WHITE AREA^99DCT">false</positive_visual_inspection_with_acetic_acid_with_aceto_white_area>
+							<positive_visual_inspection_with_acetic_acid_with_suspicious_lesion openmrs_concept="7508^POSITIVE VISUAL INSPECTION WITH ACETIC ACID WITH SUSPICIOUS LESION^99DCT">false</positive_visual_inspection_with_acetic_acid_with_suspicious_lesion>
+							<xforms_value/>
+						</visual_cervical_exam_findings>
+						<visual_vaginal_exam_findings openmrs_concept="7490^VISUAL VAGINAL EXAM FINDINGS ^99DCT" openmrs_datatype="CWE" multiple="1">
+							<date/>
+							<time/>
+							<normal openmrs_concept="1115^NORMAL^99DCT">false</normal>
+							<vaginal_intraepithelial_neoplasia_grade_1 openmrs_concept="7492^VAGINAL INTRAEPITHELIAL NEOPLASIA GRADE 1^99DCT">false</vaginal_intraepithelial_neoplasia_grade_1>
+							<vaginal_intraepithelial_neoplasia_grade_2 openmrs_concept="7491^VAGINAL INTRAEPITHELIAL NEOPLASIA GRADE 2 ^99DCT">false</vaginal_intraepithelial_neoplasia_grade_2>
+							<vaginal_intraepithelial_neoplasia_grade_3 openmrs_concept="7435^VAGINAL INTRAEPITHELIAL NEOPLASIA GRADE 3^99DCT">false</vaginal_intraepithelial_neoplasia_grade_3>
+							<other_non-coded openmrs_concept="5622^OTHER NON-CODED^99DCT">false</other_non-coded>
+							<xforms_value/>
+						</visual_vaginal_exam_findings>
+						<visual_vulval_exam_findings openmrs_concept="7487^VISUAL VULVAL EXAM FINDINGS ^99DCT" openmrs_datatype="CWE" multiple="1">
+							<date/>
+							<time/>
+							<normal openmrs_concept="1115^NORMAL^99DCT">false</normal>
+							<condyloma_or_vulvar_intraepithelial_neoplasia_grade_1 openmrs_concept="7489^CONDYLOMA OR VULVAR INTRAEPITHELIAL NEOPLASIA GRADE 1^99DCT">false</condyloma_or_vulvar_intraepithelial_neoplasia_grade_1>
+							<vulvar_intraepithelial_neoplasia_grade_2 openmrs_concept="7488^VULVAR INTRAEPITHELIAL NEOPLASIA GRADE 2^99DCT">false</vulvar_intraepithelial_neoplasia_grade_2>
+							<vulvar_intraepithelial_neoplasia_grade_3 openmrs_concept="7483^VULVAR INTRAEPITHELIAL NEOPLASIA GRADE 3^99DCT">false</vulvar_intraepithelial_neoplasia_grade_3>
+							<other_non-coded openmrs_concept="5622^OTHER NON-CODED^99DCT">false</other_non-coded>
+							<xforms_value/>
+						</visual_vulval_exam_findings>
+						<procedures_done_this_visit_detailed openmrs_concept="7480^PROCEDURES DONE THIS VISIT, DETAILED^99DCT" openmrs_datatype="ZZ">
+							<number_of_specimen_collected openmrs_concept="7482^NUMBER OF SPECIMEN COLLECTED^99DCT" openmrs_datatype="NM">
+								<date/>
+								<time/>
+								<value/>
+							</number_of_specimen_collected>
+							<body_part openmrs_concept="8265^BODY PART^99DCT" openmrs_datatype="CWE" multiple="0">
+								<date/>
+								<time/>
+								<value/>
+							</body_part>
+							<procedures_done_this_visit openmrs_concept="7479^PROCEDURES DONE THIS VISIT^99DCT" openmrs_datatype="CWE" multiple="0">
+								<date/>
+								<time/>
+								<value/>
+							</procedures_done_this_visit>
+							<anatomic_location_description openmrs_concept="8268^ANATOMIC LOCATION DESCRIPTION^99DCT" openmrs_datatype="CWE" multiple="0">
+								<date/>
+								<time/>
+								<value/>
+							</anatomic_location_description>
+							<clock_face_cervical_biopsy_location openmrs_concept="7481^CLOCK FACE CERVICAL BIOPSY LOCATION ^99DCT" openmrs_datatype="NM">
+								<date/>
+								<time/>
+								<value/>
+							</clock_face_cervical_biopsy_location>
+							<pathological_diagnosis_added openmrs_concept="8278^PATHOLOGICAL DIAGNOSIS ADDED^99DCT" openmrs_datatype="CWE" multiple="0">
+								<date/>
+								<time/>
+								<value/>
+							</pathological_diagnosis_added>
+							<pathological_diagnosis_added_cervix/>
+							<pathological_diagnosis_added_vagina/>
+							<pathological_diagnosis_added_vulva/>
+						</procedures_done_this_visit_detailed>
+						<ccsp_plan openmrs_concept="7500^GYNECOLOGIC ONCOLOGY PLAN^99DCT" openmrs_datatype="CWE" multiple="0">
+							<date/>
+							<time/>
+							<value/>
+						</ccsp_plan>
+						<ccsp_directive_fp openmrs_concept="6681^FAMILY PLANNING COUNSELING PERFORMED^99DCT" openmrs_datatype="CWE" multiple="0">
+							<date/>
+							<time/>
+							<value/>
+						</ccsp_directive_fp>
+						<ccsp_refill_dispense openmrs_concept="7495^FAMILY PLANNING REFILL PROVIDED^99DCT" openmrs_datatype="CWE" multiple="1">
+							<date/>
+							<time/>
+							<injectable_contraceptives openmrs_concept="5279^INJECTABLE CONTRACEPTIVES^99DCT">false</injectable_contraceptives>
+							<diaphragm openmrs_concept="5278^DIAPHRAGM^99DCT">false</diaphragm>
+							<intrauterine_device openmrs_concept="5275^INTRAUTERINE DEVICE^99DCT">false</intrauterine_device>
+							<other_non-coded openmrs_concept="5622^OTHER NON-CODED^99DCT">false</other_non-coded>
+							<female_sterilization openmrs_concept="5276^FEMALE STERILIZATION^99DCT">false</female_sterilization>
+							<condoms openmrs_concept="190^CONDOMS^99DCT">false</condoms>
+							<oral_contraception openmrs_concept="780^ORAL CONTRACEPTION^99DCT">false</oral_contraception>
+							<natural_family_planning openmrs_concept="5277^NATURAL FAMILY PLANNING^99DCT">false</natural_family_planning>
+							<medroxyprogesterone_acetate openmrs_concept="907^MEDROXYPROGESTERONE ACETATE^99DCT">false</medroxyprogesterone_acetate>
+							<none openmrs_concept="1107^NONE^99DCT">false</none>
+							<contraceptive_implant openmrs_concept="6220^CONTRACEPTIVE IMPLANT^99DCT">false</contraceptive_implant>
+							<combined_hormone_oral_contraceptive_pill openmrs_concept="6218^COMBINED HORMONE ORAL CONTRACEPTIVE PILL^99DCT">false</combined_hormone_oral_contraceptive_pill>
+							<abstinence openmrs_concept="6219^ABSTINENCE^99DCT">false</abstinence>
+							<progestin_pills openmrs_concept="6217^PROGESTIN PILLS^99DCT">false</progestin_pills>
+							<tubal_ligation openmrs_concept="6700^TUBAL LIGATION^99DCT">false</tubal_ligation>
+							<vasectomy openmrs_concept="6701^VASECTOMY^99DCT">false</vasectomy>
+							<herbal_traditional_medications openmrs_concept="5841^HERBAL TRADITIONAL MEDICATIONS^99DCT">false</herbal_traditional_medications>
+							<female_condoms openmrs_concept="6717^FEMALE CONDOMS^99DCT">false</female_condoms>
+							<male_condoms openmrs_concept="6718^MALE CONDOMS^99DCT">false</male_condoms>
+							<emergency_contraceptive_pills openmrs_concept="6725^EMERGENCY CONTRACEPTIVE PILLS^99DCT">false</emergency_contraceptive_pills>
+							<contraceptive_sponge openmrs_concept="8134^CONTRACEPTIVE SPONGE^99DCT">false</contraceptive_sponge>
+							<family_planning_via_oral_contraceptive_pills openmrs_concept="5274^FAMILY PLANNING VIA ORAL CONTRACEPTIVE PILLS^99DCT">false</family_planning_via_oral_contraceptive_pills>
+							<do_not_know openmrs_concept="1624^DO NOT KNOW^99DCT">false</do_not_know>
+							<xforms_value/>
+						</ccsp_refill_dispense>
+						<ccsp_new_method openmrs_concept="7240^FAMILY PLANNING METHOD CHOSEN^99DCT" openmrs_datatype="CWE" multiple="1">
+							<date/>
+							<time/>
+							<injectable_contraceptives openmrs_concept="5279^INJECTABLE CONTRACEPTIVES^99DCT">false</injectable_contraceptives>
+							<diaphragm openmrs_concept="5278^DIAPHRAGM^99DCT">false</diaphragm>
+							<intrauterine_device openmrs_concept="5275^INTRAUTERINE DEVICE^99DCT">false</intrauterine_device>
+							<other_non-coded openmrs_concept="5622^OTHER NON-CODED^99DCT">false</other_non-coded>
+							<female_sterilization openmrs_concept="5276^FEMALE STERILIZATION^99DCT">false</female_sterilization>
+							<condoms openmrs_concept="190^CONDOMS^99DCT">false</condoms>
+							<oral_contraception openmrs_concept="780^ORAL CONTRACEPTION^99DCT">false</oral_contraception>
+							<natural_family_planning openmrs_concept="5277^NATURAL FAMILY PLANNING^99DCT">false</natural_family_planning>
+							<medroxyprogesterone_acetate openmrs_concept="907^MEDROXYPROGESTERONE ACETATE^99DCT">false</medroxyprogesterone_acetate>
+							<none openmrs_concept="1107^NONE^99DCT">false</none>
+							<contraceptive_implant openmrs_concept="6220^CONTRACEPTIVE IMPLANT^99DCT">false</contraceptive_implant>
+							<combined_hormone_oral_contraceptive_pill openmrs_concept="6218^COMBINED HORMONE ORAL CONTRACEPTIVE PILL^99DCT">false</combined_hormone_oral_contraceptive_pill>
+							<abstinence openmrs_concept="6219^ABSTINENCE^99DCT">false</abstinence>
+							<progestin_pills openmrs_concept="6217^PROGESTIN PILLS^99DCT">false</progestin_pills>
+							<tubal_ligation openmrs_concept="6700^TUBAL LIGATION^99DCT">false</tubal_ligation>
+							<vasectomy openmrs_concept="6701^VASECTOMY^99DCT">false</vasectomy>
+							<herbal_traditional_medications openmrs_concept="5841^HERBAL TRADITIONAL MEDICATIONS^99DCT">false</herbal_traditional_medications>
+							<female_condoms openmrs_concept="6717^FEMALE CONDOMS^99DCT">false</female_condoms>
+							<male_condoms openmrs_concept="6718^MALE CONDOMS^99DCT">false</male_condoms>
+							<emergency_contraceptive_pills openmrs_concept="6725^EMERGENCY CONTRACEPTIVE PILLS^99DCT">false</emergency_contraceptive_pills>
+							<contraceptive_sponge openmrs_concept="8134^CONTRACEPTIVE SPONGE^99DCT">false</contraceptive_sponge>
+							<family_planning_via_oral_contraceptive_pills openmrs_concept="5274^FAMILY PLANNING VIA ORAL CONTRACEPTIVE PILLS^99DCT">false</family_planning_via_oral_contraceptive_pills>
+							<do_not_know openmrs_concept="1624^DO NOT KNOW^99DCT">false</do_not_know>
+							<xforms_value/>
+						</ccsp_new_method>
+						<return_visit_date openmrs_concept="5096^RETURN VISIT DATE^99DCT" openmrs_datatype="DT">
+							<date/>
+							<time/>
+							<value/>
+						</return_visit_date>
+					</obs>
+				</form>
+			</xf:instance>
+			<bind id="start_now" nodeset="/form/obs/start_now" calculate="now()" type="time"/>
+			<bind id="start_time" nodeset="/form/obs/start_time/value" jr:preload="time" jr:preloadParams="start" type="time"/>
+			<bind id="end_time" nodeset="/form/obs/end_time/value" jr:preload="time" jr:preloadParams="end" type="time"/>
+
+			<bind id="current_visit_type" nodeset="/form/obs/current_visit_type/value" required="true()" type="string"/>
+			<bind id="encounter.encounter_datetime" nodeset="/form/encounter/encounter.encounter_datetime" type="date" required="true()" constraint=". &lt; (today() + 1)"
+				jr:constraintMsg="Encounter date cannot be in the future"/>
+			<bind id="encounter.location_id" nodeset="/form/encounter/encounter.location_id" type="string" required="true()"/>
+			<bind id="provider_id_select" nodeset="/form/encounter/tmp/provider_id_select" type="select1"/>
+            <bind id="provider_id_text" nodeset="/form/encounter/tmp/provider_id_text" type="string" required="true()"
+            relevant="../provider_id_select = ''" constraint="regex(., '^\w+[-]?\d{1}') and (checkdigit(.))"
+            jr:constraintMsg="Invalid ID format and/or CheckDigit. Please Re-enter your ID."/>
+			<bind id="encounter.provider_id" nodeset="/form/encounter/encounter.provider_id" type="string"
+            calculate="if(../tmp/provider_id_select != '',../tmp/provider_id_select,../tmp/provider_id_text)"/>
+			<bind id="encounter" nodeset="/form/encounter" relevant="../patient/patient.sex= 'F'"/>
+
+			<bind id="patient" nodeset="/form/patient"/>
+			<bind id="patient.patient_id" nodeset="/form/patient/patient.patient_id" type="int" required="true()"/>
+			<bind id="patient_identifier.identifier_type_id" nodeset="/form/patient/patient_identifier.identifier_type_id" calculate="1" type="integer"/>
+			<bind id="patient.medical_record_number" nodeset="/form/patient/patient.medical_record_number" type="string"/>
+			<bind id="patient.birthdate" nodeset="/form/patient/patient.birthdate" type="date"
+                  constraint=". &lt; (today() + 1)" jr:constraintMsg="Birth date cannot be in the future"/>
+			<bind id="patient.birthdate_estimated" nodeset="/form/patient/patient.birthdate_estimated" type="string"/>
+            <bind id="patient.uuid" nodeset="/form/patient/patient.uuid" type="string"/>
+            <bind id="patient.family_name" nodeset="/form/patient/patient.family_name" type="string" required="true()"/>
+			<bind id="patient.given_name" nodeset="/form/patient/patient.given_name" type="string" required="true()"/>
+			<bind id="patient.middle_name" nodeset="/form/patient/patient.middle_name" type="string"/>
+			<bind id="patient.sex" nodeset="/form/patient/patient.sex" type="string" required="true()"/>
+
+			<bind id="obs" nodeset="/form/obs" relevant="../patient/patient.sex= 'F'"/>
+			<bind id="gravida" nodeset="/form/obs/gravida/value" required="true()" type="int"
+				constraint="not(. &lt;=-1)" jr:constraintMsg="Value cannot be negative"/>
+			<bind id="parity" nodeset="/form/obs/parity/value" required="true()" type="int" 
+				constraint=". &lt;=../../gravida/value and not(. &lt;=0)" jr:constraintMsg="Deliveries cannot be negative or more than number of pregnancies"
+				relevant="../../gravida/value &gt;0"/>
+			<bind id="menstruation_status" nodeset="/form/obs/menstruation_status/value" type="string" required="true()"/>
+			<bind id="last_menstrual_period_date" nodeset="/form/obs/last_menstrual_period_date/value" type="date" required="true()"
+                  constraint=". &lt; (today() + 1)" jr:constraintMsg="LMP cannot be in the future"
+				relevant="not(selected(../../menstruation_status/value,'2060^AMENORRHEA^99DCT')) and
+					  not(selected(../../menstruation_status/value,'6496^POST-MENOPAUSAL^99DCT')) and
+					  not(selected(../../menstruation_status/value,'5990^MENOPAUSAL^99DCT'))"/>
+			<bind id="urine_pregnancy_test_qualitative" nodeset="/form/obs/urine_pregnancy_test_qualitative/value" type="string" required="true()"
+				relevant="(today()-../../last_menstrual_period_date/value &gt;35)"/>
+			<bind id="reason_for_lack_of_period" nodeset="/form/obs/reason_for_lack_of_period/value" type="string" required="true()"
+				relevant="(selected(../../menstruation_status/value,'6496^POST-MENOPAUSAL^99DCT')) or
+				  (selected(../../menstruation_status/value,'2060^AMENORRHEA^99DCT'))"/>
+			<bind id="hiv_status" nodeset="/form/obs/hiv_status/value" type="string"/>
+			<bind id="last_cd4_by_facs" nodeset="/form/obs/last_cd4_by_facs/value" type="xsd:decimal" 
+				relevant="(selected(../../hiv_status/value,'703^POSITIVE^99DCT'))"/>
+			<bind id="date_of_last_cd4_by_facs" nodeset="/form/obs/last_cd4_by_facs/date" type="date" required="true()" 
+				relevant="(selected(../../hiv_status/value,'703^POSITIVE^99DCT'))"
+                constraint=". &lt; (today() + 1)" jr:constraintMsg="Test date cannot be in the future"/>
+			<bind id="most_recent_visual_inspection_with_acetic_acid_result" nodeset="/form/obs/most_recent_visual_inspection_with_acetic_acid_result/value" type="string"
+				relevant="not(../../current_visit_type/value ='7850^INITIAL VISIT ^99DCT')"/>
+			<bind id="chief_complaint" nodeset="/form/obs/chief_complaint/xforms_value" type="string" constraint="not(selected(., 'none') and count-selected(.)>1)"
+				jr:constraintMsg="If None, is selected, it should be the only option"/>
+			<bind id="method_of_family_planning" nodeset="/form/obs/method_of_family_planning/xforms_value" type="string"
+				constraint="not((selected(., 'none') or selected(., 'do_not_know'))and count-selected(.) > 1)"
+				jr:constraintMsg="If none or don't know is selected, it should be the only option"/>
+			<bind id="visual_cervical_exam_findings" nodeset="/form/obs/visual_cervical_exam_findings/xforms_value" type="string" required="true()"
+				constraint="not((selected(., 'normal') or selected(., 'do_not_know'))and count-selected(.) > 1)"
+				jr:constraintMsg="If Normal,don't know is selected, it should be the only option"/>
+			<bind id="visual_vaginal_exam_findings" nodeset="/form/obs/visual_vaginal_exam_findings/xforms_value" type="string" required="true()"
+				constraint="not((selected(., 'normal') or selected(., 'do_not_know'))and count-selected(.) > 1)"
+				jr:constraintMsg="If Normal,don't know is selected, it should be the only option"/>
+			<bind id="visual_vulval_exam_findings" nodeset="/form/obs/visual_vulval_exam_findings/xforms_value" type="string" required="true()"
+				constraint="not((selected(., 'normal') or selected(., 'do_not_know'))and count-selected(.) > 1)"
+				jr:constraintMsg="If Normal,don't know is selected, it should be the only option"/>
+			<bind id="procedures_done_this_visit_detailed" nodeset="/form/obs/procedures_done_this_visit_detailed"/>
+			<bind id="number_of_specimen_collected" nodeset="/form/obs/procedures_done_this_visit_detailed/number_of_specimen_collected/value" type="int" required="true()"
+				relevant="../../procedures_done_this_visit/value = '7147^Loop electrosurgical excision procedure^99DCT'"/>
+			<bind id="body_part" nodeset="/form/obs/procedures_done_this_visit_detailed/body_part/value" type="string" required="true()"/>
+			<bind id="procedures_done_this_visit" nodeset="/form/obs/procedures_done_this_visit_detailed/procedures_done_this_visit/value" type="string" required="true()"
+				constraint="not(selected(., '1107^None^99DCT') and count-selected(.)>1)"
+				jr:constraintMsg="If None, is selected, it should be the only option"/>
+			<bind id="anatomic_location_description" nodeset="/form/obs/procedures_done_this_visit_detailed/anatomic_location_description/value" type="string"
+				relevant="../../procedures_done_this_visit/value = '7147^LOOP ELECTROSURGICAL EXCISION PROCEDURE^99DCT'"/>
+			<bind id="clock_face_cervical_biopsy_location" nodeset="/form/obs/procedures_done_this_visit_detailed/clock_face_cervical_biopsy_location/value" type="int"
+				relevant="../../procedures_done_this_visit/value = '6511^Biopsies^99DCT'"
+				constraint=". &gt;= 1 and . &lt;= 12" jr:constraintMsg="Values should be between 1 and 12 inclusive"/>
+			<bind id="pathological_diagnosis_added_cervix" nodeset="/form/obs/procedures_done_this_visit_detailed/pathological_diagnosis_added_cervix" type="string" required="true()" 
+				relevant="../body_part/value='8279^CERVIX^99DCT'"/>
+			<bind id="pathological_diagnosis_added_vagina" nodeset="/form/obs/procedures_done_this_visit_detailed/pathological_diagnosis_added_vagina" type="string" required="true()" 
+				relevant="../body_part/value='8280^VAGINA^99DCT'"/>
+			<bind id="pathological_diagnosis_added_vulva" nodeset="/form/obs/procedures_done_this_visit_detailed/pathological_diagnosis_added_vulva" type="string" required="true()" 
+				relevant="../body_part/value='8281^VULVA^99DCT'"/>
+			<bind id="pathological_diagnosis_added" nodeset="/form/obs/procedures_done_this_visit_detailed/pathological_diagnosis_added/value" type="string"
+				calculate="if(../../body_part/value='8279^CERVIX^99DCT',../../pathological_diagnosis_added_cervix,
+	   					if(../../body_part/value='8280^VAGINA^99DCT',../../pathological_diagnosis_added_vagina,../../pathological_diagnosis_added_vulva))"/>
+			<bind id="ccsp_plan" nodeset="/form/obs/ccsp_plan/value" type="string" required="true()"/>
+			<bind id="ccsp_directive_fp" nodeset="/form/obs/ccsp_directive_fp/value" type="string" required="true()"/>
+			<bind id="ccsp_refill_dispense" nodeset="/form/obs/ccsp_refill_dispense/xforms_value" type="string" required="true()"
+				relevant="not(selected(../../method_of_family_planning/xforms_value, 'none') or
+								selected(../../method_of_family_planning/xforms_value,'do_not_know'))"
+				constraint="not((selected(., 'condoms') and not(selected(../../ccsp_currentfp/xforms_value,'condoms'))) or 
+								(selected(., 'female_sterilization') and not(selected(../../ccsp_currentfp/xforms_value,'female_sterilization'))) or
+								(selected(., 'intrauterine_device') and not(selected(../../ccsp_currentfp/xforms_value,'intrauterine_device'))) or
+								(selected(., 'diaphragm') and not(selected(../../ccsp_currentfp/xforms_value,'diaphragm'))) or
+								(selected(., 'family_planning_via_oral_contraceptive_pills') and not(selected(../../ccsp_currentfp/xforms_value,'family_planning_via_oral_contraceptive_pills'))) or
+								(selected(., 'natural_family_planning') and not(selected(../../ccsp_currentfp/xforms_value,'natural_family_planning'))) or
+								(selected(., 'injectable_contraceptives') and not(selected(../../ccsp_currentfp/xforms_value,'injectable_contraceptives'))) or
+								(selected(., 'other_non-coded') and not(selected(../../ccsp_currentfp/xforms_value,'other_non-coded'))) or
+								(selected(., 'none') or selected(., 'do_not_know') and count-selected(.)>1 ))"
+								
+				jr:constraintMsg="You can only refill a current family planning method and cannot select normal or don't know with any other choice"/>
+				
+			<bind id="ccsp_new_method" nodeset="/form/obs/ccsp_new_method/xforms_value" type="string" required="true()"
+				constraint="not((selected(., 'condoms') and selected(../../ccsp_currentfp/xforms_value,'condoms')) or 
+								(selected(., 'female_sterilization') and selected(../../ccsp_currentfp/xforms_value,'female_sterilization')) or
+								(selected(., 'intrauterine_device') and selected(../../ccsp_currentfp/xforms_value,'intrauterine_device')) or
+								(selected(., 'diaphragm') and selected(../../ccsp_currentfp/xforms_value,'diaphragm')) or
+								(selected(., 'family_planning_via_oral_contraceptive_pills') and selected(../../ccsp_currentfp/xforms_value,'family_planning_via_oral_contraceptive_pills')) or
+								(selected(., 'natural_family_planning') and selected(../../ccsp_currentfp/xforms_value,'natural_family_planning')) or
+								(selected(., 'injectable_contraceptives') and selected(../../ccsp_currentfp/xforms_value,'injectable_contraceptives')) or
+								(selected(., 'none') or selected(., 'do_not_know') and count-selected(.)>1 ))"
+				jr:constraintMsg="Patient is already using one of selected family planning method or don't or none selected in combination"/>
+			<bind id="return_visit_date" nodeset="/form/obs/return_visit_date/value" required="true()" type="date" constraint=". &gt;=today()+1"
+				jr:constraintMsg="Return visit date cannot be in the past"/>
+		</xf:model>
+	</xf:head>
+	<xf:body>
+		<group>
+			<label>Cervical Cancer Screening</label>
+			<group appearance="field-list" bind="patient">
+				<label>Patient Demographics</label>
+				<input bind="patient.given_name">
+					<label>Given Name</label>
+				</input>
+				<input bind="patient.family_name">
+					<label>Family Name</label>
+				</input>
+				<input bind="patient.middle_name">
+					<label>Middle Name</label>
+				</input>
+				<input bind="patient.medical_record_number">
+					<label>AMRS ID Number</label>
+				</input>
+				<select1 bind="patient.sex">
+					<label>Gender</label>
+					<item>
+						<label>Male</label>
+						<value>M</value>
+					</item>
+					<item>
+						<label>Female</label>
+						<value>F</value>
+					</item>
+				</select1>
+				<input bind="patient.birthdate">
+					<label>Date Of Birth</label>
+				</input>
+			</group>
+			<group appearance="field-list" bind="encounter">
+				<label>Encounter Details</label>
+				<input bind="encounter.encounter_datetime">
+					<label>Encounter Date</label>
+				</input>
+				<select1 bind="encounter.location_id">
+					<label>Screening Site</label>
+					 <item>
+				    <label>Chulaimbo</label>
+				    <value>7</value>
+				  </item>
+				  <item>
+				    <label>Turbo</label>
+				    <value>3</value>
+				  </item>
+				  <item>
+				    <label>Iten</label>
+				    <value>17</value>
+				  </item>
+				  <item>
+				    <label>Mosoriot</label>
+				    <value>2</value>
+				  </item>
+				  <item>
+				    <label>Webuye</label>
+				    <value>8</value>
+				  </item>
+				  <item>
+				    <label>AMPATH MTRH</label>
+				    <value>9</value>
+				  </item>
+				</select1>
+				<select1 appearance="autocomplete" bind="provider_id_select">
+					<label>Provider For This Encounter</label>
+					 <item>
+				    <label>Daurine Achieng Agumba</label>
+				    <value>3419-9</value>
+				  </item>
+				  <item>
+				    <label>Irene Chepkosgei	Kurgat</label>
+				    <value>3420-7</value>
+				  </item>
+				  <item>
+				    <label>Rose	Cheruto	Toroitich</label>
+				    <value>3-4</value>
+				  </item>
+				  <item>
+				    <label>Mary	Kipkurui Kimosop</label>
+				    <value>3422-3</value>
+				  </item>
+				  <item>
+				    <label>Jacqueline Chemom Ndiema</label>
+				    <value>3423-1</value>
+				  </item>
+				  <item>
+				    <label>Grace Wanjiru Mwangi </label>
+				    <value>3424-9</value>
+				  </item>
+				  <item>
+				    <label>Collette	Mabia Palapala</label>
+				    <value>3425-6</value>
+				  </item>
+				  <item>
+				    <label>Dorice Erima	Wekesa	Female </label>
+				    <value>3426-4</value>
+				  </item>
+				  <item>
+				    <label>Agnes Kagure	Boen</label>
+				    <value>120-6</value>
+				  </item>
+				  <item>
+				    <label>Linet Kerubo	Onyancha</label>
+				    <value>3427-2</value>
+				  </item>
+				  <item>
+				    <label>Delinah Muchai Tanui</label>
+				    <value>1208-8</value>
+				  </item>
+				  <item>
+				    <label>Hellen Mushimbi Indumbwe	</label>
+				    <value>1208-8</value>
+				  </item>
+				  <item>
+				    <label>Lydia Cherugut Samoei </label>
+				    <value>1525-5</value>
+				  </item>
+				  <item>
+				    <label>Ruth	Kalunda	Nzili</label>
+				    <value>1529-7</value>
+				  </item>
+				  <item>
+				    <label>Lucy	Cheruto	Birgen</label>
+				    <value>3428-0</value>
+				  </item>
+				  <item>
+				    <label>Gratiah Nafuna Khaemba</label>
+				    <value>1409-2</value>
+				  </item>
+				  <item>
+				    <label>Leonida Chemutai	Mengich</label>
+				    <value>1357-3</value>
+				  </item>
+				  <item>
+				    <label>Ann Wangoi Maina	</label>
+				    <value>1412-6</value>
+				  </item>
+				  <item>
+				    <label>Elkanah Omenge Orango</label>
+				    <value>1474-6</value>
+				  </item>
+				  
+				  <item>
+				    <label>Peter Mukhanadale Istura	</label>
+				    <value>1478-7</value>
+				  </item>
+				  <item>
+				    <label>Hillary Mabeya</label>
+				    <value>1476-1</value>
+				  </item>
+				  <item>
+				    <label>Astrid Christoffersen Deb </label>
+				    <value>1237-7</value>
+				  </item>
+				  <item>
+				    <label>Philip Kipkirui Tonui
+				    </label>
+				    <value>1485-7</value>
+				  </item>
+				</select1>
+                <input bind="provider_id_text">
+                    <label>Enter provider's system-id</label>
+                </input>
+			</group>
+			<select1 bind="current_visit_type">
+				<label>Current Visit Type</label>
+				<hint>What is the current visit type?</hint>
+				<item>
+					<label>New visit</label>
+					<value>7850^INITIAL VISIT ^99DCT</value>
+				</item>
+				<item>
+					<label>Revisit</label>
+					<value>2345^FOLLOW-UP^99DCT</value>
+				</item>
+			</select1>
+			<select1 appearance="minimal" bind="menstruation_status">
+				<label>How are Your Menstrual Periods?</label>
+				<hint>(Screener to select one best option)</hint>
+				<item>
+					<label>Normal</label>
+					<value>1115^NORMAL^99DCT</value>
+				</item>
+				<item>
+					<label>Abnormal periods</label>
+					<value>1116^ABNORMAL^99DCT</value>
+				</item>
+				<item>
+					<label>Completely absent</label>
+					<value>2060^AMENORRHEA^99DCT</value>
+				</item>
+				<item>
+					<label>Pre-menopausal</label>
+					<value>7023^PRE-MENOPAUSAL^99DCT</value>
+				</item>
+				<item>
+					<label>Menopausal</label>
+					<value>5990^MENOPAUSAL^99DCT</value>
+				</item>
+				<item>
+					<label>Post-menopausal</label>
+					<value>6496^POST-MENOPAUSAL^99DCT</value>
+				</item>
+				<item>
+					<label>Abnormal bleeding not related to periods</label>
+					<value>6497^DYSFUNCTIONAL UTERINE BLEEDING^99DCT</value>
+				</item>
+			</select1>
+			<input bind="last_menstrual_period_date">
+				<label>First Day Of Your Last Period (LMP)</label>
+			</input>
+			<select1 bind="urine_pregnancy_test_qualitative">
+				<label>Urine Pregnancy Test</label>
+				<hint>Test that determines pregnancy status through measure of hormone content in urine.</hint>
+				<item>
+					<label>Negative</label>
+					<value>664^NEGATIVE^99DCT</value>
+				</item>
+				<item>
+					<label>Positive</label>
+					<value>703^POSITIVE^99DCT</value>
+				</item>
+				<item>
+					<label>Indeterminate</label>
+					<value>1138^INDETERMINATE^99DCT</value>
+				</item>
+				<item>
+					<label>Poor sample quality</label>
+					<value>1304^POOR SAMPLE QUALITY^99DCT</value>
+				</item>
+				<item>
+					<label>Not done</label>
+					<value>1118^NOT DONE^99DCT</value>
+				</item>
+				<item>
+					<label>Refusal</label>
+					<value>1958^REFUSAL^99DCT</value>
+				</item>
+			</select1>
+			<select1 bind="reason_for_lack_of_period">
+				<label>Do You Know Why You Are Not Having Your Period?</label>
+				<item>
+					<label>Pregnant</label>
+					<value>1484^PREGNANT^99DCT</value>
+				</item>
+				<item>
+					<label>Breastfeeding</label>
+					<value>1402^BREASTFED^99DCT</value>
+				</item>
+				<item>
+					<label>Due to age</label>
+					<value>6496^POST-MENOPAUSAL^99DCT</value>
+				</item>
+				<item>
+					<label>Do not know</label>
+					<value>1624^DO NOT KNOW^99DCT</value>
+				</item>
+				<item>
+					<label>Other</label>
+					<value>5622^OTHER NON-CODED^99DCT</value>
+				</item>
+			</select1>
+			<input bind="gravida">
+				<label>Number of previous pregnancies</label>
+				<hint>If client has never been pregnant, Enter '0'</hint>
+			</input>
+			<input bind="parity">
+				<label>Number Of Previous Deliveries</label>
+				<hint>The number of children a woman has delivered.</hint>
+			</input>
+			<select1 bind="hiv_status">
+				<label>HIV Status</label>
+				<hint>What is the patient's HIV Status?</hint>
+				<item>
+					<label>Negative</label>
+					<value>664^NEGATIVE^99DCT</value>
+				</item>
+				<item>
+					<label>Positive</label>
+					<value>703^POSITIVE^99DCT</value>
+				</item>
+				<item>
+					<label>Unknown</label>
+					<value>1067^UNKNOWN^99DCT</value>
+				</item>
+			</select1>
+			<input bind="last_cd4_by_facs">
+				<label>Latest CD4 Count</label>
+				<hint>The most recent CD4 count (CD4 by FACS)</hint>
+			</input>
+			<input bind="date_of_last_cd4_by_facs">
+				<label>Date of Latest CD4 Count</label>
+				<hint>The date of most recent CD4 count (CD4 by FACS)</hint>
+			</input>
+			<select1 bind="most_recent_visual_inspection_with_acetic_acid_result">
+				<label>Prior Visual Inspection With Acetic Acid (VIA)</label>
+				<hint>Patient's most recent Visual Inspection with Acetic Acid (VIA) screening.</hint>
+				<item>
+					<label>Positive</label>
+					<value>703^POSITIVE^99DCT</value>
+				</item>
+				<item>
+					<label>Negative</label>
+					<value>664^NEGATIVE^99DCT</value>
+				</item>
+				<item>
+					<label>Not Applicable</label>
+					<value>1175^NOT APPLICABLE^99DCT</value>
+				</item>
+			</select1>
+			<!-- Complaints -->
+			<select bind="chief_complaint">
+				<label>Complaints (Select all symptoms that best describe complaints)</label>
+				<hint>Patient's chief complaint</hint>
+				<item>
+					<label>Symptomatic</label>
+					<value>symptomatic</value>
+				</item>
+				<item>
+					<label>Asymptomatic</label>
+					<value>asymptomatic</value>
+				</item>
+				<item>
+					<label>Having hypoglycemia symptoms in past month</label>
+					<value>having_hypoglycemia_symptoms_in_past_month</value>
+				</item>
+				<item>
+					<label>Vaginal discharge</label>
+					<value>vaginal_discharge</value>
+				</item>
+				<item>
+					<label>Vaginal bleeding</label>
+					<value>vaginal_bleeding</value>
+				</item>
+				<item>
+					<label>Dysfunctional uterine bleeding</label>
+					<value>dysfunctional_uterine_bleeding</value>
+				</item>
+				<item>
+					<label>Menorrhagia</label>
+					<value>menorrhagia</value>
+				</item>
+				<item>
+					<label>Postmenopausal bleeding</label>
+					<value>postmenopausal_bleeding</value>
+				</item>
+				<item>
+					<label>Postcoital bleeding</label>
+					<value>postcoital_bleeding</value>
+				</item>
+				<item>
+					<label>Other non-coded</label>
+					<value>other_non-coded</value>
+				</item>
+				<item>
+					<label>None</label>
+					<value>none</value>
+				</item>
+			</select>
+			<select bind="method_of_family_planning">
+				<label>Current Family Planning Method</label>
+				<item>
+					<label>Condoms</label>
+					<value>Condoms</value>
+				</item>
+				<item>
+					<label>Sterilization/Hysterectomy</label>
+					<value>Female_sterilization</value>
+				</item>
+				<item>
+					<label>Intrauterine device</label>
+					<value>Intrauterine_device</value>
+				</item>
+				<item>
+					<label>Diaphragm/Cervical cap</label>
+					<value>Diaphragm</value>
+				</item>
+				<item>
+					<label>Oral contraceptive pills</label>
+					<value>Family_planning_via_oral_contraceptive_pills</value>
+				</item>
+				<item>
+					<label>Natural family planning</label>
+					<value>Natural_family_planning</value>
+				</item>
+				<item>
+					<label>Injectable hormones</label>
+					<value>injectable_contraceptives</value>
+				</item>
+				<item>
+					<label>Other non-coded</label>
+					<value>Other_non-coded</value>
+				</item>
+				<item>
+					<label>None</label>
+					<value>none</value>
+				</item>
+				<item>
+					<label>Do not know</label>
+					<value>do_not_know</value>
+				</item>
+			</select>
+			<select bind="visual_cervical_exam_findings">
+				<label>Visual Cervical Exam Findings</label>
+				<hint>Findings on the cervix based on a performed exam.</hint>
+				<item>
+					<label>Normal</label>
+					<value>normal</value>
+				</item>
+				<item>
+					<label>Cervical intraepithelial neoplasia grade 1</label>
+					<value>cervical_intraepithelial_neoplasia_grade_1</value>
+				</item>
+				<item>
+					<label>Cervical intraepithelial neoplasia grade 2</label>
+					<value>cervical_intraepithelial_neoplasia_grade_2</value>
+				</item>
+				<item>
+					<label>Cervical intraepithelial neoplasia grade 3</label>
+					<value>cervical_intraepithelial_neoplasia_grade_3</value>
+				</item>
+				<item>
+					<label>Cervical cancer</label>
+					<value>cervical_cancer</value>
+				</item>
+				<item>
+					<label>Positive visual inspection with acetic acid with aceto white area</label>
+					<value>positive_visual_inspection_with_acetic_acid_with_aceto_white_area</value>
+				</item>
+				<item>
+					<label>Positive visual inspection with acetic acid with suspicious lesion</label>
+					<value>positive_visual_inspection_with_acetic_acid_with_suspicious_lesion</value>
+				</item>
+				<item>
+					<label>Other non-coded</label>
+					<value>other_non-coded</value>
+				</item>
+			</select>
+			<select bind="visual_vaginal_exam_findings">
+				<label>Visual Vaginal Exam Findings</label>
+				<hint>Findings on the vagina based on a performed exam.</hint>
+				<item>
+					<label>Normal</label>
+					<value>normal</value>
+				</item>
+				<item>
+					<label>Vaginal intraepithelial neoplasia grade 1</label>
+					<value>vaginal_intraepithelial_neoplasia_grade_1</value>
+				</item>
+				<item>
+					<label>Vaginal intraepithelial neoplasia grade 2</label>
+					<value>vaginal_intraepithelial_neoplasia_grade_2</value>
+				</item>
+				<item>
+					<label>Vaginal intraepithelial neoplasia grade 3</label>
+					<value>vaginal_intraepithelial_neoplasia_grade_3</value>
+				</item>
+				<item>
+					<label>Other non-coded</label>
+					<value>other_non-coded</value>
+				</item>
+			</select>
+			<select bind="visual_vulval_exam_findings">
+				<label>Visual Vulval Exam Findings</label>
+				<hint>Findings on the vulva based on a performed exam.</hint>
+				<item>
+					<label>Normal</label>
+					<value>normal</value>
+				</item>
+				<item>
+					<label>Condyloma or vulvar intraepithelial neoplasia grade 1</label>
+					<value>condyloma_or_vulvar_intraepithelial_neoplasia_grade_1</value>
+				</item>
+				<item>
+					<label>Vulvar intraepithelial neoplasia grade 2</label>
+					<value>vulvar_intraepithelial_neoplasia_grade_2</value>
+				</item>
+				<item>
+					<label>Vulvar intraepithelial neoplasia grade 3</label>
+					<value>vulvar_intraepithelial_neoplasia_grade_3</value>
+				</item>
+				<item>
+					<label>Other non-coded</label>
+					<value>other_non-coded</value>
+				</item>
+			</select>
+			<repeat bind="procedures_done_this_visit_detailed">
+<!--				<group appearance="field-list">-->
+<!--					<label>Procedures Done This Visit</label>-->
+<!--					<select1 bind="body_part">-->
+<!--						<label>From What Part Of The Body Was Specimen Collected?</label>-->
+<!--						<item>-->
+<!--							<label>Cervix</label>-->
+<!--							<value>8279^CERVIX^99DCT</value>-->
+<!--						</item>-->
+<!--						<item>-->
+<!--							<label>Vagina</label>-->
+<!--							<value>8280^VAGINA^99DCT</value>-->
+<!--						</item>-->
+<!--						<item>-->
+<!--							<label>Vulva</label>-->
+<!--							<value>8281^VULVA^99DCT</value>-->
+<!--						</item>-->
+<!--					</select1>-->
+<!--				</group>-->
+				<select bind="procedures_done_this_visit">
+					<label>Procedure Done This Visit </label>
+					<item>
+						<label>Biopsies</label>
+						<value>6511^Biopsies^99DCT</value>
+					</item>
+					<item>
+						<label>Endocervical curettage(ECC)</label>
+						<value>7487^Endocervical curettage(ECC)^99DCT</value>
+					</item>
+					<item>
+						<label>Cryotherapy</label>
+						<value>7466^Cryotherapy^99DCT</value>
+					</item>
+					<item>
+						<label>Loop Electrosurgical Excision Procedure (LEEP)</label>
+						<value>7147^Loop electrosurgical excision procedure^99DCT</value>
+					</item>
+					<item>
+						<label>None</label>
+						<value>1107^None^99DCT</value>
+					</item>
+				</select>
+				<select1 bind="anatomic_location_description">
+					<label>Provide Location Of Specimen</label>
+					<item>
+						<label>Superficial</label>
+						<value>8266^SUPERFICIAL^99DCT</value>
+					</item>
+					<item>
+						<label>Deep</label>
+						<value>8267^DEEP^99DCT</value>
+					</item>
+					<item>
+						<label>Other non-coded</label>
+						<value>5622^OTHER NON-CODED^99DCT</value>
+					</item>
+				</select1>
+				<input bind="clock_face_cervical_biopsy_location">
+					<label>Provide location where biopsy for specimen was done: __O’clock</label>
+				</input>
+				<input bind="number_of_specimen_collected">
+					<label>Number Of Speciment Collected</label>
+				</input>
+				<select1 bind="pathological_diagnosis_added_cervix">
+					<label>Pathological Diagnosis for Cervical Specimen</label>
+					<item>
+						<label>Normal</label>
+						<value>1115^NORMAL^99DCT</value>
+					</item>
+					<item>
+						<label>Cervicitis</label>
+						<value>149^CERVICITIS^99DCT</value>
+					</item>
+					<item>
+						<label>Cervical squamous metaplasia</label>
+						<value>8282^CERVICAL SQUAMOUS METAPLASIA^99DCT</value>
+					</item>
+					<item>
+						<label>Mild cervical intraepithelial neoplasia (CIN 1)</label>
+						<value>7424^CERVICAL INTRAEPITHELIAL NEOPLASIA GRADE 1^99DCT</value>
+					</item>
+					<item>
+						<label>Moderate cervical intraepithelial neoplasia (CIN 2)</label>
+						<value>7425^CERVICAL INTRAEPITHELIAL NEOPLASIA GRADE 2^99DCT</value>
+					</item>
+					<item>
+						<label>Severe cervical intraepithelial neoplasia (CIN 3)</label>
+						<value>7216^CERVICAL INTRAEPITHELIAL NEOPLASIA GRADE 3^99DCT</value>
+					</item>
+					<item>
+						<label>Cervical adenocarcinoma</label>
+						<value>8275^CERVICAL ADENOCARCINOMA^99DCT</value>
+					</item>
+					<item>
+						<label>Cervical squamous cell carcinoma</label>
+						<value>8275^CERVICAL ADENOCARCINOMA^99DCT</value>
+					</item>
+					<item>
+						<label>Other non-coded</label>
+						<value>5622^OTHER NON-CODED^99DCT</value>
+					</item>
+				</select1>
+				<select1 bind="pathological_diagnosis_added_vagina">
+					<label>Pathological Diagnosis for Vaginal Specimen</label>
+					<item>
+						<label>Normal</label>
+						<value>1115^NORMAL^99DCT</value>
+					</item>
+					<item>
+						<label>Mild vaginal intraepithelial neoplasia (VAIN1)</label>
+						<value>7492^VAGINAL INTRAEPITHELIAL NEOPLASIA GRADE 1^99DCT</value>
+					</item>
+					<item>
+						<label>Moderate vaginal intraepithelial neoplasia (VAIN 2)</label>
+						<value>7491^VAGINAL INTRAEPITHELIAL NEOPLASIA GRADE 2 ^99DCT</value>
+					</item>
+					<item>
+						<label>Severe vaginal intraepithelial neoplasia (VAIN 3)</label>
+						<value>7435^VAGINAL INTRAEPITHELIAL NEOPLASIA GRADE 3^99DCT</value>
+					</item>
+					<item>
+						<label>Other non-coded</label>
+						<value>5622^OTHER NON-CODED^99DCT</value>
+					</item>
+				</select1>
+				<select1 bind="pathological_diagnosis_added_vulva">
+					<label>Pathological Diagnosis for Vulval Specimen</label>
+					<item>
+						<label>Normal</label>
+						<value>1115^NORMAL^99DCT</value>
+					</item>
+					<item>
+						<label>Condyloma / Mild vulva intraepithelial neoplasia (VIN1)</label>
+						<value>7489^CONDYLOMA OR VULVAR INTRAEPITHELIAL NEOPLASIA GRADE 1^99DCT</value>
+					</item>
+					<item>
+						<label>Moderate vulva intraepithelial neoplasia (VIN 2)</label>
+						<value>7488^VULVAR INTRAEPITHELIAL NEOPLASIA GRADE 2^99DCT</value>
+					</item>
+					<item>
+						<label>Severe vulva intraepithelial neoplasia (VIN 3)</label>
+						<value>7483^VULVAR INTRAEPITHELIAL NEOPLASIA GRADE 3^99DCT</value>
+					</item>
+					<item>
+						<label>Other non-coded</label>
+						<value>5622^OTHER NON-CODED^99DCT</value>
+					</item>
+				</select1>
+			</repeat>
+
+			<!-- Plan -->
+			<select1 appearance="full" bind="ccsp_plan">
+				<label>Management Plan</label>
+				<item>
+					<label>Routine VIA in 1-year</label>
+					<value>7496^Routine VIA in 1-year^99DCT</value>
+				</item>
+				<item>
+					<label>Routine VIA in 3-years</label>
+					<value>7497^Routine VIA in 3-years^99DCT</value>
+				</item>
+				<item>
+					<label>Referral for Colposcopy</label>
+					<value>7383^Referral for Colposcopy^99DCT</value>
+				</item>
+				<item>
+					<label>Referral to Gynae-Oncology</label>
+					<value>7499^Referral to Gynae-Oncology^99DCT</value>
+				</item>
+				<item>
+					<label>Other non-coded</label>
+					<value>5622^Other^99DCT</value>
+				</item>
+			</select1>
+
+			<!-- FP Plan -->
+			<select1 appearance="full" bind="ccsp_directive_fp">
+				<label>Directive Family Planning Counseling Performed</label>
+				<item>
+					<label>Yes</label>
+					<value>1065^Yes^99DCT</value>
+				</item>
+				<item>
+					<label>No</label>
+					<value>1066^No^99DCT</value>
+				</item>
+			</select1>
+			<select bind="ccsp_refill_dispense">
+				<label>Family Planning Refills Dispensed</label>
+				<item>
+					<label>Condoms</label>
+					<value>Condoms</value>
+				</item>
+				<item>
+					<label>Sterilization/Hysterectomy</label>
+					<value>Female_sterilization</value>
+				</item>
+				<item>
+					<label>Intrauterine device</label>
+					<value>Intrauterine_device</value>
+				</item>
+				<item>
+					<label>Diaphragm/Cervical cap</label>
+					<value>Diaphragm</value>
+				</item>
+				<item>
+					<label>Oral contraceptive pills</label>
+					<value>Family_planning_via_oral_contraceptive_pills</value>
+				</item>
+				<item>
+					<label>Natural family planning</label>
+					<value>Natural_family_planning</value>
+				</item>
+				<item>
+					<label>Injectable hormones</label>
+					<value>injectable_contraceptives</value>
+				</item>
+				<item>
+					<label>Other non-coded</label>
+					<value>Other_non-coded</value>
+				</item>
+				<item>
+					<label>None</label>
+					<value>none</value>
+				</item>
+				<item>
+					<label>Do not know</label>
+					<value>do_not_know</value>
+				</item>
+			</select>
+			<select bind="ccsp_new_method">
+				<label>New Family Planning Method Initiated</label>
+				<item>
+					<label>Condoms</label>
+					<value>Condoms</value>
+				</item>
+				<item>
+					<label>Sterilization/Hysterectomy</label>
+					<value>Female_sterilization</value>
+				</item>
+				<item>
+					<label>Intrauterine device</label>
+					<value>Intrauterine_device</value>
+				</item>
+				<item>
+					<label>Diaphragm/Cervical cap</label>
+					<value>Diaphragm</value>
+				</item>
+				<item>
+					<label>Oral contraceptive pills</label>
+					<value>Family_planning_via_oral_contraceptive_pills</value>
+				</item>
+				<item>
+					<label>Natural family planning</label>
+					<value>Natural_family_planning</value>
+				</item>
+				<item>
+					<label>Injectable hormones</label>
+					<value>injectable_contraceptives</value>
+				</item>
+				<item>
+					<label>Other non-coded</label>
+					<value>Other_non-coded</value>
+				</item>
+				<item>
+					<label>None</label>
+					<value>none</value>
+				</item>
+				<item>
+					<label>Do not know</label>
+					<value>do_not_know</value>
+				</item>
+			</select>
+			<input bind="return_visit_date">
+				<label>Return Visit Date</label>
+				<hint>Patient is to return on this date</hint>
+			</input>
+		</group>
+	</xf:body>
+</xf:xforms>

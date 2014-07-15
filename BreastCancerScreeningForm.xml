@@ -1,0 +1,1327 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xf:xforms xmlns:xf="http://www.w3.org/2002/xforms" xmlns:h="http://www.w3.org/1999/xhtml"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:jr="http://openrosa.org/javarosa">
+	<xf:head>
+		<xf:title>Breast Cancer Screening Form</xf:title>
+		<xf:model id="openmrs_model">
+			<xf:instance id="openmrs_model_instance">
+				<form id="424" name="Breast Cancer Screening Form" version="1.0" xmlns:openmrs="/moduleServlet/formentry/forms/schema/2-1" xmlns:xd="http://schemas.microsoft.com/office/infopath/2003">
+					<header>
+					  <enterer/>
+					  <date_entered/>
+					  <session/>
+					  <uid/>
+					</header>
+					<patient>
+					  <patient.family_name openmrs_table="patient_name" openmrs_attribute="family_name"/>
+					  <patient.given_name openmrs_table="patient_name" openmrs_attribute="given_name"/>
+					  <patient.medical_record_number openmrs_table="patient_identifier" openmrs_attribute="identifier"/>
+					  <patient.middle_name openmrs_table="patient_name" openmrs_attribute="middle_name"/>
+					  <patient.patient_id openmrs_table="patient" openmrs_attribute="patient_id"/>
+					  <patient.birthdate openmrs_table="patient" openmrs_attribute="birthdate"/>
+					  <patient.sex openmrs_table="patient" openmrs_attribute="gender"/>
+                      <patient.uuid openmrs_table="patient" openmrs_attribute="uuid"/>
+                    </patient>
+					<encounter>
+					  <encounter.encounter_datetime openmrs_table="encounter" openmrs_attribute="encounter_datetime"/>
+					  <encounter.location_id openmrs_table="encounter" openmrs_attribute="location_id"/>
+					  <encounter.provider_id openmrs_table="encounter" openmrs_attribute="provider_id"/>
+                      <tmp>
+                        <provider_id_select/>
+                        <provider_id_text/>
+                      </tmp>
+					</encounter>
+					<obs openmrs_concept="1238^MEDICAL RECORD OBSERVATIONS^99DCT" openmrs_datatype="ZZ">
+						<communication_channel_of_knowing_the_program_or_service openmrs_concept="8250^COMMUNICATION CHANNEL OF KNOWING THE PROGRAM OR SERVICE^99DCT" openmrs_datatype="CWE" multiple="1">
+					        <date /><time />
+					        <radio_audio_device openmrs_concept="6391^RADIO, AUDIO DEVICE^99DCT">false</radio_audio_device>
+					        <newspaper openmrs_concept="8249^NEWSPAPER^99DCT">false</newspaper>
+					        <word_of_mouth openmrs_concept="8248^WORD OF MOUTH^99DCT">false</word_of_mouth>
+					        <patient_refusal openmrs_concept="1504^PATIENT REFUSAL^99DCT">false</patient_refusal>
+					        <ampath openmrs_concept="1286^AMPATH^99DCT">false</ampath>
+					        <moi_teaching_and_referral_hospital openmrs_concept="1274^MOI TEACHING AND REFERRAL HOSPITAL^99DCT">false</moi_teaching_and_referral_hospital>
+					        <non-mtrh_consultant openmrs_concept="6479^NON-MTRH CONSULTANT^99DCT">false</non-mtrh_consultant>
+					        <other_non-coded openmrs_concept="5622^OTHER NON-CODED^99DCT">false</other_non-coded>
+					    	<xforms_value />
+					    </communication_channel_of_knowing_the_program_or_service>
+						<review_of_medical_history openmrs_concept="6245^REVIEW OF MEDICAL HISTORY^99DCT" openmrs_datatype="CWE" multiple="1">
+					        <date/><time/>
+					        <anemia openmrs_concept="3^ANEMIA^99DCT">false</anemia>
+					        <hypertension openmrs_concept="903^HYPERTENSION^99DCT">false</hypertension>
+					        <icteric_sclera openmrs_concept="5192^ICTERIC SCLERA^99DCT">false</icteric_sclera>
+					        <heart_disease openmrs_concept="6237^HEART DISEASE^99DCT">false</heart_disease>
+					        <urinary_tract_infection openmrs_concept="55^URINARY TRACT INFECTION^99DCT">false</urinary_tract_infection>
+					        <breast_disorders openmrs_concept="6243^BREAST DISORDERS^99DCT">false</breast_disorders>
+					        <history_of_blood_transfusion openmrs_concept="6241^HISTORY OF BLOOD TRANSFUSION^99DCT">false</history_of_blood_transfusion>
+					        <allergy_reaction_from_drugs openmrs_concept="2085^ALLERGY REACTION FROM DRUGS^99DCT">false</allergy_reaction_from_drugs>
+					        <asthma openmrs_concept="5^ASTHMA^99DCT">false</asthma>
+					        <history_of_multiple_births_in_maternal_family openmrs_concept="6240^HISTORY OF MULTIPLE BIRTHS IN MATERNAL FAMILY^99DCT">false</history_of_multiple_births_in_maternal_family>
+					        <congenital_anomaly_in_newborn openmrs_concept="6242^CONGENITAL ANOMALY IN NEWBORN^99DCT">false</congenital_anomaly_in_newborn>
+					        <thyroid_nodule openmrs_concept="5200^THYROID NODULE^99DCT">false</thyroid_nodule>
+					        <problems_with_anesthesia openmrs_concept="6239^PROBLEMS WITH ANESTHESIA^99DCT">false</problems_with_anesthesia>
+					        <diabetes_mellitus openmrs_concept="175^DIABETES MELLITUS^99DCT">false</diabetes_mellitus>
+					        <history_of_hospitalization openmrs_concept="6244^HISTORY OF HOSPITALIZATION^99DCT">false</history_of_hospitalization>
+					        <thrombus openmrs_concept="6238^THROMBUS^99DCT">false</thrombus>
+					        <seizure openmrs_concept="206^SEIZURE^99DCT">false</seizure>
+					        <sexually_transmitted_infection openmrs_concept="174^SEXUALLY TRANSMITTED INFECTION^99DCT">false</sexually_transmitted_infection>
+					        <cervicitis openmrs_concept="149^CERVICITIS^99DCT">false</cervicitis>
+					        <herpes_simplex_nos openmrs_concept="1449^HERPES SIMPLEX, NOS^99DCT">false</herpes_simplex_nos>
+					        <syphilis openmrs_concept="223^SYPHILIS^99DCT">false</syphilis>
+					        <warts_genital openmrs_concept="1447^WARTS, GENITAL^99DCT">false</warts_genital>
+					        <gonorrhea openmrs_concept="893^GONORRHEA^99DCT">false</gonorrhea>
+					        <chlamydia_trachomatis openmrs_concept="6247^CHLAMYDIA TRACHOMATIS^99DCT">false</chlamydia_trachomatis>
+					        <pelvic_inflammatory_disease openmrs_concept="902^PELVIC INFLAMMATORY DISEASE^99DCT">false</pelvic_inflammatory_disease>
+					        <genital_sores openmrs_concept="864^GENITAL SORES^99DCT">false</genital_sores>
+					        <tuberculosis openmrs_concept="58^TUBERCULOSIS^99DCT">false</tuberculosis>
+					        <human_immunodeficiency_virus openmrs_concept="884^HUMAN IMMUNODEFICIENCY VIRUS^99DCT">false</human_immunodeficiency_virus>
+					        <trichomonas openmrs_concept="684^TRICHOMONAS^99DCT">false</trichomonas>
+					        <abnormal_pap_smear openmrs_concept="6418^ABNORMAL PAP SMEAR^99DCT">false</abnormal_pap_smear>
+					        <venous_thrombosis openmrs_concept="6661^VENOUS THROMBOSIS^99DCT">false</venous_thrombosis>
+					        <sepsis openmrs_concept="1473^SEPSIS^99DCT">false</sepsis>
+					        <none openmrs_concept="1107^NONE^99DCT">false</none>
+					        <deep_venous_thrombosis openmrs_concept="1292^DEEP VENOUS THROMBOSIS^99DCT">false</deep_venous_thrombosis>
+					        <renal_disease openmrs_concept="6033^RENAL DISEASE^99DCT">false</renal_disease>
+					        <jaundice openmrs_concept="215^JAUNDICE^99DCT">false</jaundice>
+					        <breast_cancer openmrs_concept="6544^BREAST CANCER^99DCT">false</breast_cancer>
+					        <depression openmrs_concept="207^DEPRESSION^99DCT">false</depression>
+					        <breastfed openmrs_concept="1402^BREASTFED^99DCT">false</breastfed>
+					        <medication_allergy openmrs_concept="7111^MEDICATION ALLERGY^99DCT">false</medication_allergy>
+					        <osteoarthrosis openmrs_concept="7972^OSTEOARTHROSIS^99DCT">false</osteoarthrosis>
+					        <chronic_obstructive_pulmonary_disease openmrs_concept="1295^CHRONIC OBSTRUCTIVE PULMONARY DISEASE^99DCT">false</chronic_obstructive_pulmonary_disease>
+					        <rheumatoid_arthritis openmrs_concept="202^RHEUMATOID ARTHRITIS^99DCT">false</rheumatoid_arthritis>
+					        <high_blood_cholesterol openmrs_concept="7994^HIGH BLOOD CHOLESTEROL ^99DCT">false</high_blood_cholesterol>
+					        <unexpected_sudden_death openmrs_concept="7995^UNEXPECTED SUDDEN DEATH ^99DCT">false</unexpected_sudden_death>
+					        <atrial_fibrillation openmrs_concept="1531^ATRIAL FIBRILLATION^99DCT">false</atrial_fibrillation>
+					        <stroke openmrs_concept="1878^STROKE^99DCT">false</stroke>
+					        <rheumatic_heart_disease openmrs_concept="221^RHEUMATIC HEART DISEASE^99DCT">false</rheumatic_heart_disease>
+					        <rheumatic_fever openmrs_concept="7888^RHEUMATIC FEVER ^99DCT">false</rheumatic_fever>
+					        <cardiac_murmur openmrs_concept="562^CARDIAC MURMUR^99DCT">false</cardiac_murmur>
+					        <cardiovascular_surgery openmrs_concept="8002^CARDIOVASCULAR SURGERY ^99DCT">false</cardiovascular_surgery>
+					        <coronary_artery_bypass_surgery openmrs_concept="8003^CORONARY ARTERY BYPASS SURGERY^99DCT">false</coronary_artery_bypass_surgery>
+					        <endocarditis openmrs_concept="8004^ENDOCARDITIS^99DCT">false</endocarditis>
+					        <disorder_of_thyroid openmrs_concept="8007^DISORDER OF THYROID^99DCT">false</disorder_of_thyroid>
+					        <other_non-coded openmrs_concept="5622^OTHER NON-CODED^99DCT">false</other_non-coded>
+					        <stented_coronary_artery openmrs_concept="8140^STENTED CORONARY ARTERY ^99DCT">false</stented_coronary_artery>
+					        <acute_myocardial_infarction openmrs_concept="1535^ACUTE MYOCARDIAL INFARCTION^99DCT">false</acute_myocardial_infarction>
+					    	<xforms_value/>
+				  		</review_of_medical_history>
+				  		<tmp_review_of_medical_history/>
+				  		<tmp_medical_history/>
+			  		    <previous_radiation_location openmrs_concept="8263^PREVIOUS RADIATION LOCATION^99DCT" openmrs_datatype="CWE" multiple="1">
+					        <date/><time/>
+					        <chest openmrs_concept="1349^CHEST^99DCT">false</chest>
+					        <none openmrs_concept="1107^NONE^99DCT">false</none>
+					        <upper_extremities openmrs_concept="1237^UPPER EXTREMITIES^99DCT">false</upper_extremities>
+					        <lower_extremities openmrs_concept="1236^LOWER EXTREMITIES^99DCT">false</lower_extremities>
+					        <left_lower_extremity openmrs_concept="1234^LEFT LOWER EXTREMITY^99DCT">false</left_lower_extremity>
+					        <hands openmrs_concept="8193^HANDS^99DCT">false</hands>
+					    	<xforms_value/>
+					    </previous_radiation_location>
+					    <tmp_previous_radiation_location/>
+						<ever_smoked_cigarettes openmrs_concept="6473^EVER SMOKED CIGARETTES^99DCT" openmrs_datatype="CWE" multiple="0">
+							<date/><time/><value/>
+						</ever_smoked_cigarettes>
+						<have_you_ever_drunk_alcohol openmrs_concept="6474^HAVE YOU EVER DRUNK ALCOHOL^99DCT" openmrs_datatype="CWE" multiple="0">
+						<date/><time/><value/>
+						</have_you_ever_drunk_alcohol>
+						<diagnosis_based_on_biopsy openmrs_concept="6509^DIAGNOSIS BASED ON BIOPSY TYPE^99DCT" openmrs_datatype="CWE" multiple="1">
+					        <date/><time/>
+					        <core_needle_biopsy openmrs_concept="6510^CORE NEEDLE BIOPSY^99DCT">false</core_needle_biopsy>
+					        <excisional_or_surgical_biopsy openmrs_concept="6511^EXCISIONAL OR SURGICAL BIOPSY^99DCT">false</excisional_or_surgical_biopsy>
+					        <skin_punch_biopsy openmrs_concept="6512^SKIN PUNCH BIOPSY^99DCT">false</skin_punch_biopsy>
+					        <bone_marrow_biopsy openmrs_concept="6513^BONE MARROW BIOPSY^99DCT">false</bone_marrow_biopsy>
+					        <fine_needle_aspiration_nos openmrs_concept="7190^FINE NEEDLE ASPIRATION, NOS^99DCT">false</fine_needle_aspiration_nos>
+					        <breast_biopsy openmrs_concept="8184^BREAST BIOPSY^99DCT">false</breast_biopsy>
+					    	<xforms_value />
+					    </diagnosis_based_on_biopsy>
+					    <tmp_diagnosis_based_on_biopsy/>
+						<history_of_surgeries openmrs_concept="6478^HISTORY OF SURGERIES^99DCT" openmrs_datatype="CWE" multiple="1">
+					        <date/><time/>
+					        <breast openmrs_concept="8251^BREAST^99DCT">false</breast>
+					    	<xforms_value />
+					    </history_of_surgeries>
+					    <tmp_history_of_surgeries/>
+						<tmp_female_group/>
+						<age_of_menarche openmrs_concept="8185^AGE OF MENARCHE^99DCT" openmrs_datatype="NM">
+							<date/><time/><value/>
+						</age_of_menarche>
+						<gravida openmrs_concept="5624^GRAVIDA^99DCT" openmrs_datatype="NM">
+							<date/><time/><value/>
+						</gravida>
+						<parity openmrs_concept="1053^PARITY^99DCT" openmrs_datatype="NM">
+							<date/><time/><value/>
+						</parity>
+						<age_of_first_pregnancy openmrs_concept="8186^AGE OF FIRST PREGNANCY^99DCT" openmrs_datatype="NM">
+							<date/><time/><value/>
+						</age_of_first_pregnancy>
+						<mother_apos_s_breast_feeding_history openmrs_concept="8187^MOTHER'S BREAST FEEDING HISTORY^99DCT" openmrs_datatype="CWE" multiple="0">
+							<date/><time/><value/>
+						</mother_apos_s_breast_feeding_history>
+						<menstruation_status openmrs_concept="2061^MENSTRUATION STATUS^99DCT" openmrs_datatype="CWE" multiple="0">
+							<date/><time/><value/>
+						</menstruation_status>
+						<last_menstrual_period_date openmrs_concept="1836^LAST MENSTRUAL PERIOD DATE^99DCT" openmrs_datatype="DT">
+							<date/><time/><value/>
+						</last_menstrual_period_date>
+						<reason_for_lack_of_period openmrs_concept="8252^REASON FOR LACK OF PERIOD^99DCT" openmrs_datatype="CWE" multiple="0">
+					        <date/><time/><value/>
+					    </reason_for_lack_of_period>
+					    <family_planning_method_ever_used openmrs_concept="8253^FAMILY PLANNING METHOD EVER USED^99DCT" openmrs_datatype="CWE" multiple="1">
+					        <date/><time/>
+					        <condoms openmrs_concept="190^CONDOMS^99DCT">false</condoms>
+					        <female_sterilization openmrs_concept="5276^FEMALE STERILIZATION^99DCT">false</female_sterilization>
+					        <intrauterine_device openmrs_concept="5275^INTRAUTERINE DEVICE^99DCT">false</intrauterine_device>
+					        <diaphragm openmrs_concept="5278^DIAPHRAGM^99DCT">false</diaphragm>
+					        <family_planning_via_oral_contraceptive_pills openmrs_concept="5274^FAMILY PLANNING VIA ORAL CONTRACEPTIVE PILLS^99DCT">false</family_planning_via_oral_contraceptive_pills>
+					        <natural_family_planning openmrs_concept="5277^NATURAL FAMILY PLANNING^99DCT">false</natural_family_planning>
+					        <injectable_contraceptives openmrs_concept="5279^INJECTABLE CONTRACEPTIVES^99DCT">false</injectable_contraceptives>
+					        <other_non-coded openmrs_concept="5622^OTHER NON-CODED^99DCT">false</other_non-coded>
+					        <night openmrs_concept="1642^NIGHT^99DCT">false</night>
+							<do_not_know openmrs_concept="1624^DO NOT KNOW^99DCT">false</do_not_know>
+					        <none openmrs_concept="1107^NONE^99DCT">false</none>
+					    <xforms_value/>
+					    </family_planning_method_ever_used>
+						<family_chronic_illnessness_history_detailed openmrs_concept="6805^FAMILY CHRONIC ILLNESSNESS HISTORY, DETAILED^99DCT" openmrs_datatype="ZZ">
+					      <family_chronic_illnesses_history openmrs_concept="6802^FAMILY CHRONIC ILLNESSES HISTORY^99DCT" openmrs_datatype="CWE" multiple="0">
+					            <date/><time/><value/>
+					      </family_chronic_illnesses_history>
+					      <tmp_family_chronic_illnesses_history/>
+					      <freetext_general openmrs_concept="1915^FREETEXT GENERAL^99DCT" openmrs_datatype="ST">
+					            <date/><time/><value/>
+					      </freetext_general>
+					      <number_of_family_members_with_chronic_illnesses_history openmrs_concept="8255^NUMBER OF FAMILY MEMBERS WITH CHRONIC ILLNESSES HISTORY^99DCT" openmrs_datatype="NM">
+					            <date/><time/><value/>
+					      </number_of_family_members_with_chronic_illnesses_history>
+					      <family_member_with_chronic_illnesses_history openmrs_concept="8254^FAMILY MEMBER WITH CHRONIC ILLNESSES HISTORY^99DCT" openmrs_datatype="CWE" multiple="1">
+					            <date/>
+					            <time/>
+					            <sibling openmrs_concept="972^SIBLING^99DCT">false</sibling>
+					            <mother openmrs_concept="970^MOTHER^99DCT">false</mother>
+					            <maternal_aunt openmrs_concept="2037^MATERNAL AUNT^99DCT">false</maternal_aunt>
+					            <paternal_aunt openmrs_concept="2038^PATERNAL AUNT^99DCT">false</paternal_aunt>
+					            <other_non-coded openmrs_concept="5622^OTHER NON-CODED^99DCT">false</other_non-coded>
+					      <xforms_value /></family_member_with_chronic_illnesses_history>
+					    </family_chronic_illnessness_history_detailed>
+						<review_of_systems_-_breast openmrs_concept="6492^REVIEW OF SYSTEMS - BREAST^99DCT" openmrs_datatype="CWE" multiple="1">
+					        <date/><time/>
+					        <negative openmrs_concept="664^NEGATIVE^99DCT">false</negative>
+					        <mass_other openmrs_concept="582^MASS, OTHER^99DCT">false</mass_other>
+					        <nipple_discharge openmrs_concept="6493^NIPPLE DISCHARGE^99DCT">false</nipple_discharge>
+					        <pain_-_breast openmrs_concept="6667^Pain - Breast^99DCT">false</pain_-_breast>
+					        <breast_lumps openmrs_concept="6250^BREAST LUMPS^99DCT">false</breast_lumps>
+					        <breast_skin_changes openmrs_concept="6499^BREAST SKIN CHANGES^99DCT">false</breast_skin_changes>
+					        <mastitis openmrs_concept="115^MASTITIS^99DCT">false</mastitis>
+					    	<xforms_value/>
+					    </review_of_systems_-_breast>
+				        <breast_pain_duration openmrs_concept="8256^BREAST PAIN DURATION^99DCT" openmrs_datatype="CWE" multiple="0">
+						    <date/><time/><value/>
+						</breast_pain_duration>
+						<breast_inflammation_duration openmrs_concept="8259^BREAST INFLAMMATION DURATION^99DCT" openmrs_datatype="CWE" multiple="0">
+						    <date/><time/><value/>
+						</breast_inflammation_duration>
+						<breast_mass_duration openmrs_concept="8257^BREAST MASS DURATION^99DCT" openmrs_datatype="CWE" multiple="0">
+						    <date/><time/><value/>
+						</breast_mass_duration>
+						<nipple_discharge_duration openmrs_concept="8258^NIPPLE DISCHARGE DURATION^99DCT" openmrs_datatype="CWE" multiple="0">
+						    <date/><time/><value/>
+						</nipple_discharge_duration>
+						<breast_skin_changes_duration openmrs_concept="8260^BREAST SKIN CHANGES DURATION^99DCT" openmrs_datatype="CWE" multiple="0">
+						    <date/><time/><value/>
+						</breast_skin_changes_duration>
+					  	<vital_signs openmrs_concept="1114^VITAL SIGNS^99DCT" openmrs_datatype="ZZ">
+							<diastolic_blood_pressure openmrs_concept="5086^DIASTOLIC BLOOD PRESSURE^99DCT" openmrs_datatype="NM">
+								<date/><time/><value/>
+							</diastolic_blood_pressure>
+							<height_cm openmrs_concept="5090^HEIGHT (CM)^99DCT" openmrs_datatype="NM">
+								<date/><time/><value/>
+							</height_cm>
+							<pulse openmrs_concept="5087^PULSE^99DCT" openmrs_datatype="NM">
+								<date/><time/><value/>
+							</pulse>
+							<respiratory_rate openmrs_concept="5242^RESPIRATORY RATE^99DCT" openmrs_datatype="NM">
+								<date/><time/><value/>
+							</respiratory_rate>
+							<systolic_blood_pressure openmrs_concept="5085^SYSTOLIC BLOOD PRESSURE^99DCT" openmrs_datatype="NM">
+								<date/><time/><value/>
+							</systolic_blood_pressure>
+							<temperature_c openmrs_concept="5088^TEMPERATURE (C)^99DCT" openmrs_datatype="NM">
+								<date/><time/><value/>
+							</temperature_c>
+							<weight_kg openmrs_concept="5089^WEIGHT (KG)^99DCT" openmrs_datatype="NM">
+								<date/><time/><value/>
+							</weight_kg>
+							<body_surface_area openmrs_concept="980^BODY SURFACE AREA^99DCT" openmrs_datatype="NM">
+								<date/><time/><value/>
+							</body_surface_area>
+						 </vital_signs>
+						<breast_exam_findings_detailed openmrs_concept="8269^BREAST EXAM FINDINGS, DETAILED^99DCT" openmrs_datatype="ZZ">
+						     <breast_exam_findings openmrs_concept="6251^BREAST EXAM FINDINGS^99DCT" openmrs_datatype="CWE" multiple="0">
+					           <date/><time/><value/>
+						     </breast_exam_findings>
+						     <laterality openmrs_concept="8264^LATERALITY^99DCT" openmrs_datatype="CWE" multiple="0">
+						           <date/><time/><value/>
+						     </laterality>
+						     <body_part openmrs_concept="8265^BODY PART^99DCT" openmrs_datatype="CWE" multiple="0">
+						           <date/><time/><value/>
+						     </body_part>
+						     <anatomic_location_description openmrs_concept="8268^ANATOMIC LOCATION DESCRIPTION^99DCT" openmrs_datatype="CWE" multiple="0">
+						           <date/><time/><value/>
+						     </anatomic_location_description>
+						</breast_exam_findings_detailed>
+						<lymph_node_exam_findings openmrs_concept="1121^LYMPH NODE EXAM FINDINGS^99DCT" openmrs_datatype="CWE" multiple="1">
+							<date/><time/>
+							<submandibular openmrs_concept="504^SUBMANDIBULAR^99DCT">false</submandibular>
+							<supraclavicular openmrs_concept="505^SUPRACLAVICULAR^99DCT">false</supraclavicular>
+							<inguinal openmrs_concept="506^INGUINAL^99DCT">false</inguinal>
+							<cervical openmrs_concept="643^CERVICAL^99DCT">false</cervical>
+							<normal openmrs_concept="1115^NORMAL^99DCT">false</normal>
+							<abnormal openmrs_concept="1116^ABNORMAL^99DCT">false</abnormal>
+							<axillary openmrs_concept="5112^AXILLARY^99DCT">false</axillary>
+							<not_done openmrs_concept="1118^NOT DONE^99DCT">false</not_done>
+							<lymphadenopathy openmrs_concept="161^LYMPHADENOPATHY^99DCT">false</lymphadenopathy>
+							<other_non-coded openmrs_concept="5622^OTHER NON-CODED^99DCT">false</other_non-coded>
+							<xforms_value/>
+						</lymph_node_exam_findings>
+						<skin_exam_findings_detailed openmrs_concept="8272^SKIN EXAM FINDINGS, DETAILED^99DCT" openmrs_datatype="ZZ">
+							<skin_exam_findings openmrs_concept="1120^SKIN EXAM FINDINGS^99DCT" openmrs_datatype="CWE" multiple="0">
+								<date/><time/><value/>
+							</skin_exam_findings>
+							<laterality openmrs_concept="8264^LATERALITY^99DCT" openmrs_datatype="CWE" multiple="0">
+								<date/><time/><value/>
+							</laterality>
+							<body_part openmrs_concept="8265^BODY PART^99DCT" openmrs_datatype="CWE" multiple="0">
+								<date/><time/><value/>
+							</body_part>
+							<mass_measurement_in_cm_first_direction openmrs_concept="8270^MASS MEASUREMENT IN CM, FIRST DIRECTION^99DCT" openmrs_datatype="NM">
+								<date/><time/><value/>
+							</mass_measurement_in_cm_first_direction>
+							<mass_measurement_in_cm_second_direction openmrs_concept="8271^MASS MEASUREMENT IN CM, SECOND DIRECTION^99DCT" openmrs_datatype="NM">
+								<date/><time/><value/>
+							</mass_measurement_in_cm_second_direction>
+						</skin_exam_findings_detailed>
+						<return_visit_date openmrs_concept="5096^RETURN VISIT DATE^99DCT" openmrs_datatype="DT">
+							<date/><time/><value/>
+						</return_visit_date>
+						 <referrals_ordered openmrs_concept="1272^REFERRALS ORDERED^99DCT" openmrs_datatype="CWE" multiple="1">
+					        <date/><time/>
+					        <none openmrs_concept="1107^NONE^99DCT">false</none>
+					        <referral_to_pathology openmrs_concept="6573^REFERRAL TO PATHOLOGY^99DCT">false</referral_to_pathology>
+					        <referral_to_surgery openmrs_concept="6571^REFERRAL TO SURGERY^99DCT">false</referral_to_surgery>
+					        <radiology openmrs_concept="6572^RADIOLOGY^99DCT">false</radiology>
+					        <oncology_services openmrs_concept="8053^ONCOLOGY SERVICES^99DCT">false</oncology_services>
+					        <moi_teaching_and_referral_hospital openmrs_concept="1274^MOI TEACHING AND REFERRAL HOSPITAL^99DCT">false</moi_teaching_and_referral_hospital>
+					        <other_non-coded openmrs_concept="5622^OTHER NON-CODED^99DCT">false</other_non-coded>
+					    	<xforms_value/>
+					    </referrals_ordered>
+						<reasons_for_referral openmrs_concept="2327^REASONS FOR REFERRAL^99DCT" openmrs_datatype="CWE" multiple="1">
+						     <date/><time/>
+						     <fine_needle_aspiration_nos openmrs_concept="7190^FINE NEEDLE ASPIRATION, NOS^99DCT">false</fine_needle_aspiration_nos>
+						     <core_needle_biopsy openmrs_concept="6510^CORE NEEDLE BIOPSY^99DCT">false</core_needle_biopsy>
+						     <excisional_or_surgical_biopsy openmrs_concept="6511^EXCISIONAL OR SURGICAL BIOPSY^99DCT">false</excisional_or_surgical_biopsy>
+						     <surgery openmrs_concept="7465^SURGERY^99DCT">false</surgery>
+						     <debridement openmrs_concept="8262^DEBRIDEMENT^99DCT">false</debridement>
+						     <ultrasound openmrs_concept="6502^ULTRASOUND^99DCT">false</ultrasound>
+						     <other_non-coded openmrs_concept="5622^OTHER NON-CODED^99DCT">false</other_non-coded>
+						     <health_issues openmrs_concept="1548^HEALTH ISSUES^99DCT">false</health_issues>
+						     <acute openmrs_concept="2329^ACUTE^99DCT">false</acute>
+						     <chronic openmrs_concept="2330^CHRONIC^99DCT">false</chronic>
+						     <nutritional_support openmrs_concept="5484^NUTRITIONAL SUPPORT^99DCT">false</nutritional_support>
+						 	<xforms_value/>
+						</reasons_for_referral>
+					</obs>
+				</form>
+			</xf:instance>
+			<bind id="patient" nodeset="/form/patient"/>
+			<bind id="patient.family_name" nodeset="/form/patient/patient.family_name" type="string" required="true()"/>
+			<bind id="patient.given_name" nodeset="/form/patient/patient.given_name" type="string" required="true()"/>
+			<bind id="patient.medical_record_number" nodeset="/form/patient/patient.medical_record_number" type="string" required="true()"/>
+			<bind id="patient.middle_name" nodeset="/form/patient/patient.middle_name" type="string"/>
+			<bind id="patient.patient_id" nodeset="/form/patient/patient.patient_id" type="int" required="true()"/>
+            <bind id="patient.uuid" nodeset="/form/patient/patient.uuid" type="string"/>
+            <bind id="patient.birthdate" nodeset="/form/patient/patient.birthdate" type="date"
+                  constraint=". &lt; (today() + 1)" jr:constraintMsg="Date of birth cannot be in the future"/>
+			<bind id="patient.sex" nodeset="/form/patient/patient.sex" type="string" required="true()"/>
+			<bind id="encounter.encounter_datetime" nodeset="/form/encounter/encounter.encounter_datetime" type="date"
+                  constraint=". &lt; (today() + 1)" jr:constraintMsg="Encounter date cannot be after today" required="true()"/>
+			<bind id="encounter" nodeset="/form/encounter"/>
+			<bind id="encounter.location_id" nodeset="/form/encounter/encounter.location_id" type="string" required="true()"/>
+            <bind id="provider_id_select" nodeset="/form/encounter/tmp/provider_id_select" type="select1"/>
+            <bind id="provider_id_text" nodeset="/form/encounter/tmp/provider_id_text" type="string" required="true()"
+                  relevant="../provider_id_select = ''" constraint="regex(., '^\w+[-]?\d{1}') and (checkdigit(.))"
+                  jr:constraintMsg="Invalid ID format and/or CheckDigit. Please Re-enter your ID."/>
+            <bind id="encounter.provider_id" nodeset="/form/encounter/encounter.provider_id" type="string"
+                  calculate="if(../tmp/provider_id_select != '',../tmp/provider_id_select,../tmp/provider_id_text)"/>
+            <bind id="communication_channel_of_knowing_the_program_or_service" nodeset="/form/obs/communication_channel_of_knowing_the_program_or_service/xforms_value" type="string"/>
+			<bind id="tmp_review_of_medical_history" nodeset="/form/obs/tmp_review_of_medical_history" type="string" required="true()"/>
+			<bind id="review_of_medical_history" nodeset="/form/obs/review_of_medical_history/xforms_value" type="string"
+					calculate="if(../../tmp_review_of_medical_history='yes','breast_cancer','')" required="true()"/>
+			<bind id="tmp_medical_history" nodeset="/form/obs/tmp_medical_history"/>
+			<bind id="previous_radiation_location" nodeset="/form/obs/previous_radiation_location/xforms_value" type="string"
+					calculate="if(../../tmp_previous_radiation_location='yes','chest','')" required="true()"/>
+			<bind id="tmp_previous_radiation_location" nodeset="/form/obs/tmp_previous_radiation_location" type="string" required="true()"/>
+			<bind id="ever_smoked_cigarettes" nodeset="/form/obs/ever_smoked_cigarettes/value" type="string" required="true()"/>
+			<bind id="have_you_ever_drunk_alcohol" nodeset="/form/obs/have_you_ever_drunk_alcohol/value" type="string" required="true()"/>
+			<bind id="diagnosis_based_on_biopsy" nodeset="/form/obs/diagnosis_based_on_biopsy/xforms_value" type="string"
+					calculate="if(../../tmp_diagnosis_based_on_biopsy='yes','breast_biopsy','')"/>
+			<bind id="tmp_diagnosis_based_on_biopsy" nodeset="/form/obs/tmp_diagnosis_based_on_biopsy" type="string"/>
+ 			<bind id="history_of_surgeries" nodeset="/form/obs/history_of_surgeries/xforms_value" type="string"
+ 					calculate="if(../../tmp_history_of_surgeries='yes','breast','')"/>			
+ 			<bind id="tmp_history_of_surgeries" nodeset="/form/obs/tmp_history_of_surgeries" type="string" required="true()"/>
+ 			<bind id="tmp_female_group" nodeset="/form/obs/tmp_female_group"
+					relevant="../../patient/patient.sex='F'"/>
+			<bind id="age_of_menarche" nodeset="/form/obs/age_of_menarche/value" 
+					constraint=". &gt;= 8 and . &lt;= 23" jr:constraintMsg="Value should be between 8 and 20 inclusive" type="decimal"/>
+			<bind id="gravida" nodeset="/form/obs/gravida/value" required="true()" type="int"
+					constraint="not(. &lt;=-1)" jr:constraintMsg="Value cannot be negative"/>
+			<bind id="parity" nodeset="/form/obs/parity/value" required="true()" type="int"
+					constraint=". &lt;=../../gravida/value and not(. &lt;=0)" jr:constraintMsg="Deliveries cannot be negative or more than number of pregnancies"
+					relevant="../../gravida/value &gt;0"/>
+			<bind id="age_of_first_pregnancy" nodeset="/form/obs/age_of_first_pregnancy/value" type="decimal" required="true()"
+					constraint=". &gt;= 8 and . &lt;= 50" jr:constraintMsg="Value should be between 8 and 50 inclusive"
+					relevant="../../gravida/value &gt;0"/>
+			<bind id="mother_apos_s_breast_feeding_history" nodeset="/form/obs/mother_apos_s_breast_feeding_history/value" type="string"
+					relevant="../../parity/value &gt;0"/>
+			<bind id="menstruation_status" nodeset="/form/obs/menstruation_status/value" type="string" required="true()"/>
+			<bind id="last_menstrual_period_date" nodeset="/form/obs/last_menstrual_period_date/value" type="date" required="true()"
+                  constraint=". &lt; (today() + 1)" jr:constraintMsg="LMP cannot be in the future"
+					relevant="not(selected(../../menstruation_status/value,'2060^AMENORRHEA^99DCT')) and
+							  not(selected(../../menstruation_status/value,'6496^POST-MENOPAUSAL^99DCT'))"/> 
+			<bind id="reason_for_lack_of_period" nodeset="/form/obs/reason_for_lack_of_period/value" type="string" required="true()"
+					relevant="(selected(../../menstruation_status/value,'6496^POST-MENOPAUSAL^99DCT')) or
+							  (selected(../../menstruation_status/value,'2060^AMENORRHEA^99DCT'))"/>
+			<bind id="family_planning_method_ever_used" nodeset="/form/obs/family_planning_method_ever_used/xforms_value" type="string" required="true()"
+					constraint="not((selected(., 'none' ) or selected(., 'Do_not_know')) and 
+					count-selected(.) > 1)" jr:constraintMsg="If None or Don't know is selected, it should be the only option"/>
+
+			<!-- FAMILY ILLNESS HISTORY COMPLEX-->
+		    <bind id="family_chronic_illnessness_history_detailed" nodeset="/form/obs/family_chronic_illnessness_history_detailed" />
+		    <bind id="tmp_family_chronic_illnesses_history" nodeset="/form/obs/family_chronic_illnessness_history_detailed/tmp_family_chronic_illnesses_history" type="string" required="true()"/>
+		    <bind id="family_chronic_illnesses_history" nodeset="/form/obs/family_chronic_illnessness_history_detailed/family_chronic_illnesses_history/value" type="string"
+		    		calculate="if(../../tmp_family_chronic_illnesses_history='yes','6544^BREAST CANCER^99DCT','')" readonly="true()"/>
+		    <bind id="family_chronic_illnessness_history_detailed_freetext_general" nodeset="/form/obs/family_chronic_illnessness_history_detailed/freetext_general/value" type="string"
+		    		relevant="../../tmp_family_chronic_illnesses_history='yes'" required="true()"/>
+		    <bind id="number_of_family_members_with_chronic_illnesses_history" nodeset="/form/obs/family_chronic_illnessness_history_detailed/number_of_family_members_with_chronic_illnesses_history/value" type="int"
+		    		relevant="../../tmp_family_chronic_illnesses_history='yes'" required="true()"
+		    		constraint=". &gt;= count-selected(../../family_member_with_chronic_illnesses_history/xforms_value)
+		    					and not(. &gt;1 and selected(../../family_member_with_chronic_illnesses_history/xforms_value,'mother')
+		    							and count-selected(../../family_member_with_chronic_illnesses_history/xforms_value)=1)" 
+		    		jr:constraintMsg="This number does not tally with relatives selected above."/>
+		    <bind id="family_member_with_chronic_illnesses_history" nodeset="/form/obs/family_chronic_illnessness_history_detailed/family_member_with_chronic_illnesses_history/xforms_value" type="string"
+		    		relevant="../../tmp_family_chronic_illnesses_history='yes'" required="true()"/>
+			<bind id="review_of_systems_-_breast" nodeset="/form/obs/review_of_systems_-_breast/xforms_value" required="true()" type="string"
+					constraint="not(selected(., 'negative') and count-selected(.) > 1)" jr:constraintMsg="If No Complaints is selected, it should be the only option"/>
+			<bind id="breast_pain_duration" nodeset="/form/obs/breast_pain_duration/value" type="string" required="true()"
+					relevant="selected(../../review_of_systems_-_breast/xforms_value,'pain_-_breast')"/>
+			<bind id="breast_inflammation_duration" nodeset="/form/obs/breast_inflammation_duration/value" type="string" required="true()"
+					relevant="selected(../../review_of_systems_-_breast/xforms_value,'mastitis')"/>
+			<bind id="breast_mass_duration" nodeset="/form/obs/breast_mass_duration/value" type="string" required="true()"
+					relevant="selected(../../review_of_systems_-_breast/xforms_value,'breast_lumps')"/>
+			<bind id="nipple_discharge_duration" nodeset="/form/obs/nipple_discharge_duration/value" type="string" required="true()"
+					relevant="selected(../../review_of_systems_-_breast/xforms_value,'nipple_discharge')"/>
+			<bind id="breast_skin_changes_duration" nodeset="/form/obs/breast_skin_changes_duration/value" type="string" required="true()"
+					relevant="selected(../../review_of_systems_-_breast/xforms_value,'breast_skin_changes')"/>
+			<bind id="vital_signs" nodeset="/form/obs/vital_signs"/>
+			<bind id="systolic_blood_pressure" nodeset="/form/obs/vital_signs/systolic_blood_pressure/value" type="decimal"
+					constraint=". &gt;= 0 and . &lt;= 250" jr:constraintMsg="Value should be between 0 and 250 inclusive"/>
+			<bind id="diastolic_blood_pressure" nodeset="/form/obs/vital_signs/diastolic_blood_pressure/value" type="decimal"
+					constraint=". &gt;= 20 and . &lt;= 150 and . &lt;= ../../systolic_blood_pressure/value" 
+					jr:constraintMsg="Diastolic value should be between 20 and 150 inclusive and cannot be more than Systolic Blood Pressure"/>
+			<bind id="height_cm" nodeset="/form/obs/vital_signs/height_cm/value" type="decimal" required="true()"
+					constraint=". &gt;= 10.0 and . &lt;= 228.0" jr:constraintMsg="Value should be between 10.0 and 228.0 inclusive"/>
+			<bind id="pulse" nodeset="/form/obs/vital_signs/pulse/value"  type="decimal"
+					constraint=". &gt;= 0 and . &lt;= 230" jr:constraintMsg="Value should be between 0 and 230 inclusive"/>
+			<bind id="respiratory_rate" nodeset="/form/obs/vital_signs/respiratory_rate/value" type="int"/>
+			<bind id="temperature_c" nodeset="/form/obs/vital_signs/temperature_c/value" type="decimal"
+					constraint=". &gt;= 25.0 and . &lt;= 43.0" jr:constraintMsg="Temperature Value should be between 25.0 and 43.0 inclusive"/>
+			<bind id="weight_kg" nodeset="/form/obs/vital_signs/weight_kg/value" required="true()"  type="decimal"
+					constraint=". &gt;= 0.0 and . &lt;= 250.0" jr:constraintMsg="Value should be between 0.0 and 250.0 inclusive"/>
+			
+			<!-- BSA (m²) = ([Height(cm) x Weight(kg)]/ 3600)½ e.g. BSA = SQRT((cm*kg)/3600) -->
+			<bind id="body_surface_area" nodeset="/form/obs/vital_signs/body_surface_area/value" type="decimal" readonly="true()"
+					calculate="if(../../weight_kg/value='' or ../../height_cm/value='','',((../../weight_kg/value * ../../height_cm/value) div 3600) pow 0.5)"/>
+					
+			<bind id="breast_exam_findings_detailed" nodeset="/form/obs/breast_exam_findings_detailed"/>
+		    <bind id="breast_exam_findings" nodeset="/form/obs/breast_exam_findings_detailed/breast_exam_findings/value" type="string" required="true()"/>
+		    <bind id="laterality" nodeset="/form/obs/breast_exam_findings_detailed/laterality/value" type="string" required="true()"
+		    		relevant="../../breast_exam_findings/value != '1118^NOT DONE^99DCT' and ../../breast_exam_findings/value != '1115^NORMAL^99DCT'"/>
+		    <bind id="body_part" nodeset="/form/obs/breast_exam_findings_detailed/body_part/value" type="string" required="true()"/>
+		    <bind id="anatomic_location_description" nodeset="/form/obs/breast_exam_findings_detailed/anatomic_location_description/value" type="string" required="true()"
+		    		relevant="../../breast_exam_findings/value != '1118^NOT DONE^99DCT' and ../../breast_exam_findings/value != '1115^NORMAL^99DCT'"/>
+			<bind id="lymph_node_exam_findings" nodeset="/form/obs/lymph_node_exam_findings/xforms_value" type="string" required="true()"
+					constraint="not((selected(., 'normal') or selected(., 'lymphadenopathy') or selected(., 'not_done'))and count-selected(.) > 1)" 
+					jr:constraintMsg="If Normal, Not Done or Generalized lympadenopathy is selected, it should be the only option"/>
+		    <bind id="skin_exam_findings_detailed" nodeset="/form/obs/skin_exam_findings_detailed" />
+		    <bind id="skin_exam_findings" nodeset="/form/obs/skin_exam_findings_detailed/skin_exam_findings/value" type="string" required="true()"/>
+		    <bind id="skin_exam_findings_detailed_body_part" nodeset="/form/obs/skin_exam_findings_detailed/body_part/value" type="string"  required="true()"
+		    		relevant="../../skin_exam_findings/value='582^MASS, OTHER^99DCT' or ../../skin_exam_findings/value='8188^CALOR^99DCT'"/>
+		    <bind id="skin_exam_findings_detailed_laterality" nodeset="/form/obs/skin_exam_findings_detailed/laterality/value" type="string" required="true()"
+		    		relevant="../../skin_exam_findings/value='582^MASS, OTHER^99DCT' or ../../skin_exam_findings/value='8188^CALOR^99DCT'"/>
+		    <bind id="mass_measurement_in_cm_first_direction" nodeset="/form/obs/skin_exam_findings_detailed/mass_measurement_in_cm_first_direction/value" type="decimal" required="true()"
+		    		relevant="../../skin_exam_findings/value='582^MASS, OTHER^99DCT'"
+		    		constraint="not(. &lt;=0)" jr:constraintMsg="Value must be greater than 0"/>
+		    <bind id="mass_measurement_in_cm_second_direction" nodeset="/form/obs/skin_exam_findings_detailed/mass_measurement_in_cm_second_direction/value" type="decimal" required="true()"
+		    		relevant="../../skin_exam_findings/value='582^MASS, OTHER^99DCT'"
+		    		constraint="not(. &lt;=0)" jr:constraintMsg="Value must be greater than 0"/>
+			<bind id="return_visit_date" nodeset="/form/obs/return_visit_date/value" required="true()" type="date"
+					constraint=".&gt;=today()" jr:constraintMsg="Return visit date cannot be in the past"/>
+			<bind id="referrals_ordered" nodeset="/form/obs/referrals_ordered/xforms_value" type="string"
+					constraint="not(selected(., 'none') and count-selected(.) > 1)" jr:constraintMsg="If None is selected, it should be the only option"/>
+			<bind id="reasons_for_referral" nodeset="/form/obs/reasons_for_referral/xforms_value" type="string" required="true()"
+					relevant="count-selected(../../referrals_ordered/xforms_value) >=1 and not(selected(../../referrals_ordered/xforms_value,'none'))"
+					constraint="not(selected(., 'none') and count-selected(.) > 1)" jr:constraintMsg="If None is selected, it should be the only option"/>
+		</xf:model>
+	</xf:head>
+	<xf:body>
+		<group>
+			<label>Breast Cancer Screening</label>
+			<group appearance="field-list" bind="patient">
+				<label>Patient Demographics</label>
+				<input bind="patient.given_name">
+				  <label>Given Name</label>
+				</input>
+				<input bind="patient.family_name">
+				  <label>Family Name</label>
+				</input>
+				<input bind="patient.middle_name">
+				  <label>Middle Name</label>
+				</input>
+				<input bind="patient.medical_record_number">
+				  <label>AMRS ID Number</label>
+				</input>
+				<select1 bind="patient.sex">
+				  <label>Gender</label>
+				  <item>
+				    <label>Male</label>
+				    <value>M</value>
+				  </item>
+				  <item>
+				    <label>Female</label>
+				    <value>F</value>
+				  </item>
+				</select1>
+				<input bind="patient.birthdate">
+					<label>Date Of Birth</label>
+				</input>
+			</group>
+			<group appearance="field-list" bind="encounter">
+				<label>Encounter Details</label>
+				<input bind="encounter.encounter_datetime">
+				  <label>Encounter Date</label>
+				</input>
+				<select1 bind="encounter.location_id">
+				  <label>Breast Screening Site</label>
+				   <item>
+				    <label>Chulaimbo</label>
+				    <value>7</value>
+				  </item>
+				  <item>
+				    <label>Turbo</label>
+				    <value>3</value>
+				  </item>
+				  <item>
+				    <label>Iten</label>
+				    <value>17</value>
+				  </item>
+				  <item>
+				    <label>Mosoriot</label>
+				    <value>2</value>
+				  </item>
+				  <item>
+				    <label>Webuye</label>
+				    <value>8</value>
+				  </item>
+				  <item>
+				    <label>AMPATH MTRH</label>
+				    <value>9</value>
+				  </item>
+				</select1>
+				<select1 bind="provider_id_select">
+				  <label>Provider For This Encounter</label>
+				  <item>
+				    <label>Daurine Achieng Agumba</label>
+				    <value>3419-9</value>
+				  </item>
+				  <item>
+				    <label>Irene Chepkosgei	Kurgat</label>
+				    <value>3420-7</value>
+				  </item>
+				  <item>
+				    <label>Rose	Cheruto	Toroitich</label>
+				    <value>3421-5</value>
+				  </item>
+				  <item>
+				    <label>Mary	Kipkurui Kimosop</label>
+				    <value>3422-3</value>
+				  </item>
+				  <item>
+				    <label>Jacqueline Chemom Ndiema</label>
+				    <value>3423-1</value>
+				  </item>
+				  <item>
+				    <label>Grace Wanjiru Mwangi </label>
+				    <value>3424-9</value>
+				  </item>
+				  <item>
+				    <label>Collette	Mabia Palapala</label>
+				    <value>3425-6</value>
+				  </item>
+				  <item>
+				    <label>Dorice Erima	Wekesa	Female </label>
+				    <value>3426-4</value>
+				  </item>
+				  <item>
+				    <label>Agnes Kagure	Boen</label>
+				    <value>120-6</value>
+				  </item>
+				  <item>
+				    <label>Linet Kerubo	Onyancha</label>
+				    <value>3427-2</value>
+				  </item>
+				  <item>
+				    <label>Delinah Muchai Tanui</label>
+				    <value>1208-8</value>
+				  </item>
+				  <item>
+				    <label>Hellen Mushimbi Indumbwe	</label>
+				    <value>1208-8</value>
+				  </item>
+				  <item>
+				    <label>Lydia Cherugut Samoei </label>
+				    <value>1525-5</value>
+				  </item>
+				  <item>
+				    <label>Ruth	Kalunda	Nzili</label>
+				    <value>1529-7</value>
+				  </item>
+				  <item>
+				    <label>Lucy	Cheruto	Birgen</label>
+				    <value>3428-0</value>
+				  </item>
+				  <item>
+				    <label>Gratiah Nafuna Khaemba</label>
+				    <value>1409-2</value>
+				  </item>
+				  <item>
+				    <label>Leonida Chemutai	Mengich</label>
+				    <value>1357-3</value>
+				  </item>
+				  <item>
+				    <label>Ann Wangoi Maina	</label>
+				    <value>1412-6</value>
+				  </item>
+				  <item>
+				    <label>Elkanah Omenge Orango</label>
+				    <value>1474-6</value>
+				  </item>
+				  
+				  <item>
+				    <label>Peter Mukhanadale Istura	</label>
+				    <value>1478-7</value>
+				  </item>
+				  <item>
+				    <label>Hillary Mabeya</label>
+				    <value>1476-1</value>
+				  </item>
+				  <item>
+				    <label>Astrid Christoffersen Deb </label>
+				    <value>1237-7</value>
+				  </item>
+				  <item>
+				    <label>Philip Kipkirui Tonui
+				    </label>
+				    <value>1485-7</value>
+				  </item>
+				  
+				</select1>
+                <input bind="provider_id_text">
+                    <label>Enter provider's system-id</label>
+                </input>
+			</group>
+			<select bind="communication_channel_of_knowing_the_program_or_service">
+				<label>How Did You Learn About This Service (check all that apply)?</label>
+				<item>
+				  <label>Radio</label>
+				  <value>radio_audio_device</value>
+				</item>
+				<item>
+				  <label>Newspaper</label>
+				  <value>newspaper</value>
+				</item>
+				<item>
+				  <label>Word of mouth</label>
+				  <value>word_of_mouth</value>
+				</item>
+				<item>
+				  <label>AMPATH</label>
+				  <value>ampath</value>
+				</item>
+				<item>
+				  <label>Moi teaching and referral hospital</label>
+				  <value>moi_teaching_and_referral_hospital</value>
+				</item>
+				<item>
+				  <label>Non-MTRH consultant</label>
+				  <value>non-mtrh_consultant</value>
+				</item>
+				<item>
+				  <label>Patient refusal</label>
+				  <value>patient_refusal</value>
+				</item>
+				<item>
+				  <label>Other</label>
+				  <value>other_non-coded</value>
+				</item>
+	   		</select>
+			<group appearance="field-list" id="tmp_medical_history">
+				<label>Past Medical History</label>
+				<select1 appearance="list" bind="tmp_review_of_medical_history">
+					<label>Prior History Of Breast Cancer?</label>
+					<item>
+					  <label>Yes</label>
+					  <value>yes</value>
+					</item>
+					<item>
+					  <label>No</label>
+					  <value>no</value>
+					</item>
+					<item>
+					  <label>Don't know</label>
+					  <value>do_not_know</value>
+					</item>
+				</select1>
+				<select1 appearance="list-nolabel" bind="tmp_previous_radiation_location">
+					<label>Previous History Of Radiation To The Chest?</label>
+					<item>
+					  <label>Yes</label>
+					  <value>yes</value>
+					</item>
+					<item>
+					  <label>No</label>
+					  <value>no</value>
+					</item>
+				</select1>
+				<select1 appearance="list-nolabel" bind="ever_smoked_cigarettes">
+					<label>Do You Presently, Or Have You In The Past Smoked Cigarettes?</label>
+					<item>
+					  <label>Yes</label>
+					  <value>1065^YES^99DCT</value>
+					</item>
+					<item>
+					  <label>No</label>
+					  <value>1066^NO^99DCT</value>
+					</item>
+				</select1>
+				<select1 appearance="list-nolabel" bind="have_you_ever_drunk_alcohol">
+					<label>Do You Presently, or Have You In The Past Consumed Alcohol? </label>
+					<item>
+					  <label>Yes</label>
+					  <value>1065^YES^99DCT</value>
+					</item>
+					<item>
+					  <label>No</label>
+					  <value>1066^NO^99DCT</value>
+					</item>
+				</select1>
+				<select1 appearance="list-nolabel" bind="tmp_diagnosis_based_on_biopsy">
+					<label>Have You Ever Had a Breast Biopsy?</label>
+					<item>
+					  <label>Yes</label>
+					  <value>yes</value>
+					</item>
+					<item>
+					  <label>No</label>
+					  <value>no</value>
+					</item>
+				</select1>
+				<select1 appearance="list-nolabel" bind="tmp_history_of_surgeries">
+					<label>Have You Ever Had Breast Surgery?</label>
+					<item>
+					  <label>Yes</label>
+					  <value>yes</value>
+					</item>
+					<item>
+					  <label>No</label>
+					  <value>no</value>
+					</item>
+				</select1>
+			</group>
+			<group bind="tmp_female_group">
+				<label>Gynecologic History</label>
+				<input bind="age_of_menarche">
+				  <label>Age Of Menarche (first period)?</label>
+				  <hint>Menarche is the first menstrual cycle, or first menstrual bleeding, in female humans.</hint>
+				</input>
+				<input bind="gravida">
+				  <label>Number Of Previous Pregnancies</label>
+				  <hint>If client has never been pregnant, Enter '0'</hint>
+				</input>
+				<input bind="age_of_first_pregnancy">
+				  <label>Age At First Pregnancy </label>
+				  <hint>What is the age of first pregnancy?</hint>
+				</input>
+				<input bind="parity">
+				  <label>Number Of Previous Deliveries</label>
+				  <hint>The number of children a woman has delivered.</hint>
+				</input>
+				<select1 appearance="minimal" bind="mother_apos_s_breast_feeding_history">
+				  <label>Did You Breastfeed Your Children?</label>
+				  <item>
+				    <label>Yes</label>
+				    <value>1065^YES^99DCT</value>
+				  </item>
+				  <item>
+				    <label>No</label>
+				    <value>1066^NO^99DCT</value>
+				  </item>
+				</select1>
+				<select1 appearance="minimal" bind="menstruation_status">
+				  <label>How are Your Menstrual Periods?</label>
+				  <hint>(Screener to select one best option)</hint>
+				  <item>
+				    <label>Normal</label>
+				    <value>1115^NORMAL^99DCT</value>
+				  </item>
+				  <item>
+				    <label>Abnormal periods</label>
+				    <value>1116^ABNORMAL^99DCT</value>
+				  </item>
+				  <item>
+				    <label>Completely absent</label>
+				    <value>2060^AMENORRHEA^99DCT</value>
+				  </item>
+				  <item>
+				    <label>Pre-menopausal</label>
+				    <value>7023^PRE-MENOPAUSAL^99DCT</value>
+				  </item>
+				  <item>
+				    <label>Menopausal</label>
+				    <value>5990^MENOPAUSAL^99DCT</value>
+				  </item>
+				  <item>
+				    <label>Post-menopausal</label>
+				    <value>6496^POST-MENOPAUSAL^99DCT</value>
+				  </item>
+				  <item>
+				    <label>Abnormal bleeding not related to periods</label>
+				    <value>6497^DYSFUNCTIONAL UTERINE BLEEDING^99DCT</value>
+				  </item>
+				</select1>
+				<input bind="last_menstrual_period_date">
+				  <label>First Day Of Your Last Period (LMP)</label>
+				</input>
+				<select1 bind="reason_for_lack_of_period">
+			      <label>Do You Know Why You Are Not Having Your Period?</label>
+			      <item>
+			        <label>Pregnant</label>
+			        <value>1484^PREGNANT^99DCT</value>
+			      </item>
+			      <item>
+			        <label>Breastfeeding</label>
+			        <value>1402^BREASTFED^99DCT</value>
+			      </item>
+			      <item>
+			        <label>Due to age</label>
+			        <value>6496^POST-MENOPAUSAL^99DCT</value>
+			      </item>
+			      <item>
+			        <label>Do not know</label>
+			        <value>1624^DO NOT KNOW^99DCT</value>
+			      </item>
+			      <item>
+			        <label>Other</label>
+			        <value>5622^OTHER NON-CODED^99DCT</value>
+			      </item>
+			    </select1>
+			    <select bind="family_planning_method_ever_used">
+			      <label>Select All Family Planning Methods The Patient Has Ever Used</label>
+			      <item>
+			        <label>Condoms</label>
+			        <value>condoms</value>
+			      </item>
+			      <item>
+			        <label>Sterilization/Hysterectomy</label>
+			        <value>female_sterilization</value>
+			      </item>
+			      <item>
+			        <label>Intrauterine device</label>
+			        <value>intrauterine_device</value>
+			      </item>
+			      <item>
+			        <label>Diaphragm/Cervical Cap</label>
+			        <value>diaphragm</value>
+			      </item>
+			      <item>
+			        <label>Oral contraceptive pills</label>
+			        <value>family_planning_via_oral_contraceptive_pills</value>
+			      </item>
+			      <item>
+			        <label>Natural family planning</label>
+			        <value>natural_family_planning</value>
+			      </item>
+			      <item>
+			        <label>Injectable hormones</label>
+			        <value>injectable_contraceptives</value>
+			      </item>
+			      <item>
+			        <label>Other</label>
+			        <value>other_non-coded</value>
+			      </item>
+			      <item>
+			        <label>None</label>
+			        <value>none</value>
+			      </item>
+			      <item>
+			        <label>Don't know</label>
+			        <value>Do_not_know</value>
+			      </item>
+			    </select>
+			</group>
+			<select1 appearance="minimal" bind="tmp_family_chronic_illnesses_history">
+				<label>Any History Of Breast Cancer In The Family?</label>
+				<item>
+				  <label>Yes</label>
+				  <value>yes</value>
+				</item>
+				<item>
+				  <label>No</label>
+				  <value>no</value>
+				</item>
+			</select1>
+			<group appearance="field-list" id="family_chronic_illnessness_history_detailed">
+				<label>Family Breast Cancer History</label>
+				<select bind="family_member_with_chronic_illnesses_history">
+					<label>Relative(s) in the Family With History of Breast Cancer</label>
+					<item>
+					  <label>Sibling(s)</label>
+					  <value>sibling</value>
+					</item>
+					<item>
+					  <label>Mother</label>
+					  <value>mother</value>
+					</item>
+					<item>
+					  <label>Maternal aunt(s)</label>
+					  <value>maternal_aunt</value>
+					</item>
+					<item>
+					  <label>Paternal aunt(s)</label>
+					  <value>paternal_aunt</value>
+					</item>
+					<item>
+					  <label>Other</label>
+					  <value>other_non-coded</value>
+					</item>
+				</select>
+				<input bind="number_of_family_members_with_chronic_illnesses_history">
+					<label>Number Of Family Members With History Of Breast Cancer</label>
+				</input>
+			</group>
+			<select bind="review_of_systems_-_breast">
+				<label>Symptoms Related To Breast</label>
+				<item>
+				  <label>No complaints</label>
+				  <value>negative</value>
+				</item>
+				<item>
+				  <label>Breast pain</label>
+				  <value>pain_-_breast</value>
+				</item>
+				<item>
+				  <label>Breast mass</label>
+				  <value>breast_lumps</value>
+				</item>
+				<item>
+				  <label>Nipple discharge</label>
+				  <value>nipple_discharge</value>
+				</item>
+				<item>
+				  <label>Breast skin changes</label>
+				  <value>breast_skin_changes</value>
+				</item>
+				<item>
+				  <label>Breast skin inflammation/abscess</label>
+				  <value>mastitis</value>
+				</item>
+	    	</select>
+			<select1 bind="breast_pain_duration">
+				<label>Breast pain duration</label>
+				<item>
+				  <label>Days</label>
+				  <value>1072^DAYS^99DCT</value>
+				</item>
+				<item>
+				  <label>Weeks</label>
+				  <value>1073^WEEKS^99DCT</value>
+				</item>
+				<item>
+				  <label>Months</label>
+				  <value>1074^MONTHS^99DCT</value>
+				</item>
+				<item>
+				  <label>Continous</label>
+				  <value>1079^CONTINUOUS^99DCT</value>
+				</item>
+			</select1>
+		    <select1 bind="breast_inflammation_duration">
+		      	<label>Breast Skin Inflammation/Abscess Duration</label>
+		      	<item>
+				  <label>Days</label>
+				  <value>1072^DAYS^99DCT</value>
+				</item>
+				<item>
+				  <label>Weeks</label>
+				  <value>1073^WEEKS^99DCT</value>
+				</item>
+				<item>
+				  <label>Months</label>
+				  <value>1074^MONTHS^99DCT</value>
+				</item>
+				<item>
+				  <label>Continous</label>
+				  <value>1079^CONTINUOUS^99DCT</value>
+				</item>
+	    	</select1>
+			<select1 bind="breast_mass_duration">
+				<label>Breast Mass Duration</label>
+				<item>
+				  <label>Days</label>
+				  <value>1072^DAYS^99DCT</value>
+				</item>
+				<item>
+				  <label>Weeks</label>
+				  <value>1073^WEEKS^99DCT</value>
+				</item>
+				<item>
+				  <label>Months</label>
+				  <value>1074^MONTHS^99DCT</value>
+				</item>
+				<item>
+				  <label>Continous</label>
+				  <value>1079^CONTINUOUS^99DCT</value>
+				</item>
+			</select1>
+			<select1 bind="nipple_discharge_duration">
+				<label>Nipple Discharge Duration</label>
+				<item>
+				  <label>Days</label>
+				  <value>1072^DAYS^99DCT</value>
+				</item>
+				<item>
+				  <label>Weeks</label>
+				  <value>1073^WEEKS^99DCT</value>
+				</item>
+				<item>
+				  <label>Months</label>
+				  <value>1074^MONTHS^99DCT</value>
+				</item>
+				<item>
+				  <label>Continous</label>
+				  <value>1079^CONTINUOUS^99DCT</value>
+				</item>
+			</select1>
+			<select1 bind="breast_skin_changes_duration">
+				<label>Breast Skin Changes Duration</label>
+				<item>
+				  <label>Days</label>
+				  <value>1072^DAYS^99DCT</value>
+				</item>
+				<item>
+				  <label>Weeks</label>
+				  <value>1073^WEEKS^99DCT</value>
+				</item>
+				<item>
+				  <label>Months</label>
+				  <value>1074^MONTHS^99DCT</value>
+				</item>
+				<item>
+				  <label>Continous</label>
+				  <value>1079^CONTINUOUS^99DCT</value>
+				</item>
+			</select1>
+			<group appearance="field-list" id="obs/vital_signs">
+			  	<label>Physical Examination</label>
+			    <input bind="systolic_blood_pressure">
+			      <label>Systolic Blood Pressure</label>
+			    </input>
+			    <input bind="diastolic_blood_pressure">
+			      <label>Diastolic Blood Pressure</label>
+			    </input>
+			    <input bind="pulse">
+			      <label>Pulse (in beats/min)</label>
+			    </input>
+			    <input bind="respiratory_rate">
+			      <label>Respiratory Rate</label>
+			      <hint>Measured respiratory rate in breaths per minute</hint>
+			    </input>
+			    <input bind="temperature_c">
+			      <label>Temperature (C)</label>
+			      <hint>Patient's temperature in degrees centigrade.</hint>
+			    </input>
+			    <input bind="weight_kg">
+			      <label>Weight (KG)</label>
+			      <hint>Patient's weight in kilograms.</hint>
+			    </input>
+			    <input bind="height_cm">
+			      <label>Height (CM)</label>
+			      <hint>Patient's height in centimeters.</hint>
+			    </input>
+			</group>
+		    <input bind="body_surface_area">
+		      <label>Body Surface Area (m^2)</label>
+		      <hint>Vital measurement that assists in drug calculations.</hint>
+		    </input>
+			<group>
+				<label>Breast Exam Findings</label>
+				<repeat bind="breast_exam_findings_detailed">
+					<select1 bind="breast_exam_findings">
+						<label>Breast Exam Findings</label>
+						<item>
+							<label>Not done</label>
+							<value>1118^NOT DONE^99DCT</value>
+						</item>
+						<item>
+							<label>Normal</label>
+							<value>1115^NORMAL^99DCT</value>
+						</item>
+						<item>
+							<label>Breast mass</label>
+							<value>6250^BREAST LUMPS^99DCT</value>
+						</item>
+						<item>
+							<label>Breast skin changes</label>
+							<value>6499^BREAST SKIN CHANGES^99DCT</value>
+						</item>
+						<item>
+							<label>Breast skin inflammation/abscess</label>
+							<value>115^MASTITIS^99DCT</value>
+						</item>
+						<item>
+							<label>Abnormally warm</label>
+							<value>8188^CALOR^99DCT</value>
+						</item>
+						<item>
+							<label>Peau D’Orange</label>
+							<value>8189^PEAU DORANGE^99DCT</value>
+						</item>
+					</select1>
+					<group appearance="field-list">
+						<select1 bind="laterality">
+							<label>Which Breast Has Finding?</label>
+							<item>
+								<label>Right</label>
+								<value>5141^RIGHT^99DCT</value>
+							</item>
+							<item>
+								<label>Left</label>
+								<value>5139^LEFT^99DCT</value>
+							</item>
+						</select1>
+						<select1 bind="anatomic_location_description">
+							<label>Specific Location</label>
+							<item>
+								<label>Upper inner quadrant</label>
+								<value>6589^UPPER INNER QUADRANT^99DCT</value>
+							</item>
+							<item>
+								<label>Upper outer quadrant</label>
+								<value>6591^UPPER OUTER QUADRANT^99DCT</value>
+							</item>
+							<item>
+								<label>Lower inner quadrant</label>
+								<value>6590^LOWER INNER QUADRANT^99DCT</value>
+							</item>
+							<item>
+								<label>Lower outer quadrant</label>
+								<value>6592^LOWER OUTER QUADRANT^99DCT</value>
+							</item>
+						</select1>
+					</group>
+				</repeat>
+			</group>
+			<select bind="lymph_node_exam_findings">
+				<label>Lymph Node Exam Findings</label>
+				<item>
+					<label>Submandibular</label>
+					<value>submandibular</value>
+				</item>
+				<item>
+					<label>Supraclavicular</label>
+					<value>supraclavicular</value>
+				</item>
+				<item>
+					<label>Cervical</label>
+					<value>cervical</value>
+				</item>
+				<item>
+					<label>Axillary</label>
+					<value>axillary</value>
+				</item>
+				<item>
+					<label>Generalized lympadenopathy</label>
+					<value>lymphadenopathy</value>
+				</item>
+				<item>
+					<label>Normal</label>
+					<value>normal</value>
+				</item>
+				<item>
+					<label>Not done</label>
+					<value>not_done</value>
+				</item>
+			</select>
+			<group>
+				<label>Skin Exam Findings</label>
+				<repeat bind="skin_exam_findings_detailed">
+					<select1 bind="skin_exam_findings">
+						<label>Skin Exam Findings</label>
+						<item>
+							<label>Not done</label>
+							<value>1118^NOT DONE^99DCT</value>
+						</item>
+						<item>
+							<label>Normal</label>
+							<value>1115^NORMAL^99DCT</value>
+						</item>
+						<item>
+							<label>Mass</label>
+							<value>582^MASS, OTHER^99DCT</value>
+						</item>
+						<item>
+							<label>Abnormally warm</label>
+							<value>8188^CALOR^99DCT</value>
+						</item>
+					</select1>
+					<group appearance="field-list">
+						<select1 appearance="minimal" bind="skin_exam_findings_detailed_body_part">
+							<label>Body Part With Finding</label>
+							<item>
+								<label>Face</label>
+								<value>6599^FACE^99DCT</value>
+							</item>
+							<item>
+								<label>Neck</label>
+								<value>6598^NECK^99DCT</value>
+							</item>
+							<item>
+								<label>Arm</label>
+								<value>1237^UPPER EXTREMITIES^99DCT</value>
+							</item>
+							<item>
+								<label>Leg</label>
+								<value>1236^LOWER EXTREMITIES^99DCT</value>
+							</item>
+							<item>
+								<label>Chest</label>
+								<value>1349^CHEST^99DCT</value>
+							</item>
+							<item>
+								<label>Back</label>
+								<value>6601^BACK^99DCT</value>
+							</item>
+							<item>
+								<label>Abdomen</label>
+								<value>1350^ABDOMINAL^99DCT</value>
+							</item>
+							<item>
+								<label>Genitals</label>
+								<value>6600^GENITALS^99DCT</value>
+							</item>
+							<item>
+								<label>Buttocks</label>
+								<value>6597^BUTTOCKS^99DCT</value>
+							</item>
+						</select1>
+						<select1 bind="skin_exam_findings_detailed_laterality">
+							<label>Side of Body (Laterality)</label>
+							<item>
+								<label>Left</label>
+								<value>5139^LEFT^99DCT</value>
+							</item>
+							<item>
+								<label>Right</label>
+								<value>5141^RIGHT^99DCT</value>
+							</item>
+							<item>
+								<label>Not applicable</label>
+								<value>1175^NOT APPLICABLE^99DCT</value>
+							</item>
+						</select1>
+						<input bind="mass_measurement_in_cm_first_direction">
+							<label>Mass Measurement In CM, First Direction</label>
+						</input>
+						<input bind="mass_measurement_in_cm_second_direction">
+							<label>Mass Measurement In CM, Second Direction</label>
+						</input>
+					</group>
+				</repeat>
+			</group>
+			<input bind="return_visit_date">
+				<label>Return Visit Date</label>
+				<hint>Patient is to return on this date</hint>
+			</input>
+			<select bind="referrals_ordered">
+				<label>Referrals ordered</label>
+				<item>
+					<label>None</label>
+					<value>none</value>
+				</item>
+				<item>
+					<label>Pathology</label>
+					<value>referral_to_pathology</value>
+				</item>
+				<item>
+					<label>Surgery</label>
+					<value>referral_to_surgery</value>
+				</item>
+				<item>
+					<label>Radiology</label>
+					<value>radiology</value>
+				</item>
+				<item>
+					<label>Oncology</label>
+					<value>oncology_services</value>
+				</item>
+				<item>
+					<label>MTRH</label>
+					<value>moi_teaching_and_referral_hospital</value>
+				</item>
+				<item>
+					<label>Other</label>
+					<value>other_non-coded</value>
+				</item>
+			</select>
+			<select bind="reasons_for_referral">
+				<label>Reasons For Referral</label>
+				<item>
+					<label>Fine needle aspiration (FNA)</label>
+					<value>fine_needle_aspiration_nos</value>
+				</item>
+				<item>
+					<label>Core needle biopsy</label>
+					<value>core_needle_biopsy</value>
+				</item>
+				<item>
+					<label>Excisional or surgical biopsy</label>
+					<value>excisional_or_surgical_biopsy</value>
+				</item>
+				<item>
+					<label>Surgery</label>
+					<value>surgery</value>
+				</item>
+				<item>
+					<label>Wound debridement</label>
+					<value>debridement</value>
+				</item>
+				<item>
+					<label>Ultrasound</label>
+					<value>ultrasound</value>
+				</item>
+				<item>
+					<label>Other</label>
+					<value>other_non-coded</value>
+				</item>
+			</select>
+		</group>
+	</xf:body>
+</xf:xforms>
