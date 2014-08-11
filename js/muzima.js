@@ -471,7 +471,13 @@ $(document).ready(function () {
     var jsonifyConcepts = function ($allConcepts) {
         var o = {};
         $.each($allConcepts, function (i, element) {
-            o = pushIntoArray(o, $(element).attr('data-concept'), $(element).val());
+            if ($(element).is(':checkbox')) {
+                if ($(element).is(':checked')) {
+                    o = pushIntoArray(o, $(element).attr('data-concept'), $(element).val());
+                }
+            } else {
+                o = pushIntoArray(o, $(element).attr('data-concept'), $(element).val());
+            }
         });
         return o;
     };
