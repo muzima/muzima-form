@@ -310,8 +310,8 @@ $(document).ready(function () {
         $clonedSection.attr("data-name", parentName);
 
         /* clear values on cloned fields */
-        $clonedSection.find('input:not(:button)').val('');
-
+        $clonedSection.find(':input:not(:button)').val('');
+        $clonedSection.find(':input:not(:button)').trigger('change');
     });
 
     $(document.body).on('click', '.remove_section', function () {
