@@ -492,16 +492,24 @@
                     data-concept="5088^TEMPERATURE (C)^99DCT">
                 </div>
                 <div class="form-group">
-                    <label for="weight_kg">Weight (KG):</label>
+                    <label for="weight_kg">Weight (kg):</label>
                     <input class="form-control" id="weight_kg" name="weight_kg" type="number"
                     placeholder="Please record today's weight"
                     data-concept="5089^WEIGHT (KG)^99DCT">
                 </div>
                 <div class="form-group">
-                    <label for="height_cm">Height (CM):</label>
+                    <label for="height_cm">Height (cm):</label>
                     <input class="form-control" id="height_cm" name="height_cm" type="number"
                     placeholder="Please record today's height"
                     data-concept="5090^HEIGHT (CM)^99DCT">
+                </div>
+
+                <div class="section">
+                    <div class="form-group">
+                        <label for="body_surface_area">Body surface area (m^2)</label>
+                        <input class="form-control" id="body_surface_area" name="body_surface_area" type="number" disabled="disabled"
+                        data-concept="980^BODY SURFACE AREA^99DCT">
+                    </div>
                 </div>
             </div>
 
@@ -1050,29 +1058,46 @@ $(document).ready(function () {
         if ($fieldset.prop('tagName') != 'FIELDSET') {
             return true;
         }
+        var result = true;
         var totalSelected = $fieldset.find('input:checkbox:checked').length;
         if (totalSelected > 1) {
             $.each($fieldset.find('input:checkbox:checked'), function (i, cBoxElement) {
-                $.each(singleValues, function(i, single_value) {
-                    if ($(cBoxElement).val() == single_value) {
-                        return false;
+                $.each(singleValues, function(i, singleValue) {
+                    if ($(cBoxElement).val() == singleValue) {
+                        result = false;
                     }
                 });
             })
         };
-        return true;
+        return result;
     };
     /* End - Ensuring some selection are selected alone */
 
     /* Start - Example of calling above validation */
-    var nameArray = [
-    'obs\\.tmp_drugs', '1069^REVIEW OF SYSTEMS, GENERAL^99DCT', 'drugs_dispensed',
-    '6327^PATIENT EDUCATION RECEIVED THIS VISIT^99DCT', '1272^REFERRALS ORDERED^99DCT'];
-    var singleValues = [];
-    var message = "";
+    // none for the referrals ordered
+    var referralOrderedName = ['1272^REFERRALS ORDERED^99DCT'];
+    var referralOrderedSingleValues = ['1107^NONE^99DCT'];
+    var referralOrderedMessage = "If None is selected, it should be the only option.";
 
-    $.fn.checkSelectedAlone = function(){
-        return $.fn.checkSelectedAlone(nameArray, singleValues, message);
+    // none and don't know for the family planning
+    var familyPlanningName = ['8253^FAMILY PLANNING METHOD EVER USED^99DCT'];
+    var familyPlanningSingleValues = ['1624^DO NOT KNOW^99DCT', '1107^NONE^99DCT'];
+    var familyPlanningMessage = "If None or Don't know is selected, it should be the only option.";
+
+    // no complaint for breast
+    var reviewBreastName = ['6492^REVIEW OF SYSTEMS - BREAST^99DCT'];
+    var reviewBreastSingleValues = ['664^NEGATIVE^99DCT'];
+    var reviewBreastMessage = "If No Complaints is selected, it should be the only option.";
+
+    var lymphNodeName = ['1121^LYMPH NODE EXAM FINDINGS^99DCT'];
+    var lymphNodeSingleValues = ['1118^NOT DONE^99DCT', '1115^NORMAL^99DCT', '161^LYMPHADENOPATHY^99DCT'];
+    var lymphNodeMessage = "If Normal, Not Done or Generalized lympadenopathy is selected, it should be the only option";
+
+    $.fn.customValidationCheck = function(){
+        return $.fn.checkSelectedAlone(referralOrderedName, referralOrderedSingleValues, referralOrderedMessage)
+        && $.fn.checkSelectedAlone(familyPlanningName, familyPlanningSingleValues, familyPlanningMessage)
+        && $.fn.checkSelectedAlone(reviewBreastName, reviewBreastSingleValues, reviewBreastMessage)
+        && $.fn.checkSelectedAlone(lymphNodeName, lymphNodeSingleValues, lymphNodeMessage);
     };
     /* End - Example of calling above validation */
 
@@ -1094,7 +1119,6 @@ $(document).ready(function () {
     var $skinExamFindings = $('#skin_exam_findings');
     $skinExamFindings.change(function() {
         var skinExamValue = $skinExamFindings.val();
-        console.log(skinExamValue);
         var $skinExamFindingsRelevant = $('.relevant_skin_exam_findings');
         var $skinExamFindingsRelevantMass = $('.relevant_skin_exam_findings_mass');
         if (skinExamValue == '582^MASS, OTHER^99DCT') {
@@ -1110,6 +1134,61 @@ $(document).ready(function () {
     });
     $skinExamFindings.trigger('change');
     /* End - Skin exam findings */
+
+    /* Start - Referral NONE */
+    var $referralNone = $('#referrals_ordered\\.none');
+    var $referralOrdered = $("input[name='1272^REFERRALS ORDERED^99DCT']").not("[value='1107^NONE^99DCT']");
+    // affected element
+    var $relevantReferralsOrdered = $('.relevant_referral_ordered');
+    $referralNone.change(function() {
+        if ($referralNone.is(":checked")) {
+            $relevantReferralsOrdered.hide();
+        } else {
+            if ($referralOrdered.is(":checked")) {
+                $relevantReferralsOrdered.show();
+            }
+        }
+    });
+    $referralNone.trigger("change");
+
+    $referralOrdered.change(function() {
+        if ($referralNone.is(":unchecked")) {
+            if ($referralOrdered.is(":checked")) {
+                $relevantReferralsOrdered.show();
+            } else {
+                $relevantReferralsOrdered.hide();
+            }
+        }
+    });
+    $referralOrdered.trigger("change");
+    /* End - Referral NONE */
+
+    /* Start - BSA calculation */
+    // we will bind this process to the change of weight and height
+    var $weight = $("#weight_kg");
+    var $height = $("#height_cm");
+    var $bodySurface = $('#body_surface_area');
+    $weight.change(function() {
+        var weightValue = parseFloat($weight.val());
+        var heightValue = parseFloat($height.val());
+        if (weightValue !== 'NaN' && heightValue !== 'NaN') {
+            var value = Math.sqrt((weightValue * heightValue) / 3600);
+            $bodySurface.val(value);
+        }
+    });
+    $weight.trigger("change");
+    $height.change(function() {
+        var weightValue = parseFloat($weight.val());
+        var heightValue = parseFloat($height.val());
+        if (weightValue !== 'NaN' && heightValue !== 'NaN') {
+            var value = Math.sqrt((weightValue * heightValue) / 3600);
+            $bodySurface.val(value);
+        }
+    });
+    $height.trigger("change");
+
+    /* End - BSA calculation */
+
 });
 </script>
 </html>
