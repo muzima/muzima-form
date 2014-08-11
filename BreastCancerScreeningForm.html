@@ -76,7 +76,8 @@
             </div>
             <div class="form-group">
                 <label for="encounter.encounter_datetime">Encounter Date:<span class="required">*</span></label>
-                <input class="form-control datepicker nonFutureDate" id="encounter.encounter_datetime" name="encounter.encounter_datetime" type="text" readonly="readonly" encounter.encounter_datetime required="required">
+                <input class="form-control datepicker nonFutureDate" id="encounter.encounter_datetime" name="encounter.encounter_datetime"
+                 type="text" readonly="readonly" encounter.encounter_datetime required="required">
             </div>
             <div class="form-group">
                 <input class="form-control" id="encounter.form_uuid" name="encounter.form_uuid" type="hidden" required="required">
@@ -89,35 +90,43 @@
 
             <div class="form-group">
                 <fieldset name="8250^COMMUNICATION CHANNEL OF KNOWING THE PROGRAM OR SERVICE^99DCT" data-concept="8250^COMMUNICATION CHANNEL OF KNOWING THE PROGRAM OR SERVICE^99DCT">
-                    <input id="service_referrals.radio" type="checkbox" name="8250^COMMUNICATION CHANNEL OF KNOWING THE PROGRAM OR SERVICE^99DCT" value="6391^RADIO, AUDIO DEVICE^99DCT" />
+                    <input id="service_referrals.radio" type="checkbox"
+                     name="8250^COMMUNICATION CHANNEL OF KNOWING THE PROGRAM OR SERVICE^99DCT" value="6391^RADIO, AUDIO DEVICE^99DCT" />
                     <label for="service_referrals.radio">Radio</label>
                     <br>
 
-                    <input id="service_referrals.newspaper" type="checkbox" name="8250^COMMUNICATION CHANNEL OF KNOWING THE PROGRAM OR SERVICE^99DCT" value="8249^NEWSPAPER^99DCT" />
+                    <input id="service_referrals.newspaper" type="checkbox"
+                     name="8250^COMMUNICATION CHANNEL OF KNOWING THE PROGRAM OR SERVICE^99DCT" value="8249^NEWSPAPER^99DCT" />
                     <label for="service_referrals.newspaper">Newspaper</label>
                     <br>
 
-                    <input id="service_referrals.word_of_mouth" type="checkbox" name="8250^COMMUNICATION CHANNEL OF KNOWING THE PROGRAM OR SERVICE^99DCT" value="8248^WORD OF MOUTH^99DCT" />
+                    <input id="service_referrals.word_of_mouth" type="checkbox"
+                     name="8250^COMMUNICATION CHANNEL OF KNOWING THE PROGRAM OR SERVICE^99DCT" value="8248^WORD OF MOUTH^99DCT" />
                     <label for="service_referrals.word_of_mouth">Word of mouth</label>
                     <br>
 
-                    <input id="service_referrals.ampath" type="checkbox" name="8250^COMMUNICATION CHANNEL OF KNOWING THE PROGRAM OR SERVICE^99DCT" value="1286^AMPATH^99DCT" />
+                    <input id="service_referrals.ampath" type="checkbox"
+                     name="8250^COMMUNICATION CHANNEL OF KNOWING THE PROGRAM OR SERVICE^99DCT" value="1286^AMPATH^99DCT" />
                     <label for="service_referrals.ampath">AMPATH</label>
                     <br>
 
-                    <input id="service_referrals.mtrh" type="checkbox" name="8250^COMMUNICATION CHANNEL OF KNOWING THE PROGRAM OR SERVICE^99DCT" value="1274^MOI TEACHING AND REFERRAL HOSPITAL^99DCT" />
+                    <input id="service_referrals.mtrh" type="checkbox"
+                     name="8250^COMMUNICATION CHANNEL OF KNOWING THE PROGRAM OR SERVICE^99DCT" value="1274^MOI TEACHING AND REFERRAL HOSPITAL^99DCT" />
                     <label for="service_referrals.mtrh">Moi teaching and referral hospital</label>
                     <br>
 
-                    <input id="service_referrals.non_mtrh" type="checkbox" name="8250^COMMUNICATION CHANNEL OF KNOWING THE PROGRAM OR SERVICE^99DCT" value="6479^NON-MTRH CONSULTANT^99DCT" />
+                    <input id="service_referrals.non_mtrh" type="checkbox"
+                     name="8250^COMMUNICATION CHANNEL OF KNOWING THE PROGRAM OR SERVICE^99DCT" value="6479^NON-MTRH CONSULTANT^99DCT" />
                     <label for="service_referrals.non_mtrh">Non-MTRH consultant</label>
                     <br>
 
-                    <input id="service_referrals.patient_refusal" type="checkbox" name="8250^COMMUNICATION CHANNEL OF KNOWING THE PROGRAM OR SERVICE^99DCT" value="1504^PATIENT REFUSAL^99DCT" />
+                    <input id="service_referrals.patient_refusal" type="checkbox"
+                     name="8250^COMMUNICATION CHANNEL OF KNOWING THE PROGRAM OR SERVICE^99DCT" value="1504^PATIENT REFUSAL^99DCT" />
                     <label for="service_referrals.patient_refusal">Patient refusal</label>
                     <br>
 
-                    <input id="service_referrals.other" type="checkbox" name="8250^COMMUNICATION CHANNEL OF KNOWING THE PROGRAM OR SERVICE^99DCT" value="5622^OTHER NON-CODED^99DCT" />
+                    <input id="service_referrals.other" type="checkbox"
+                     name="8250^COMMUNICATION CHANNEL OF KNOWING THE PROGRAM OR SERVICE^99DCT" value="5622^OTHER NON-CODED^99DCT" />
                     <label for="service_referrals.other">Other</label>
                     <br>
                 </fieldset>
@@ -127,54 +136,60 @@
         <div class="section">
             <h3>Past Medical History</h3>
 
-            <label>Prior history of breast cancer?<span class="required">*</span></label>
             <div class="form-group">
-                <select class="form-control" id="review_of_medical_history" name="review_of_medical_history" required="required" data-concept="6245^REVIEW OF MEDICAL HISTORY^99DCT">
+                <label>Prior history of breast cancer?<span class="required">*</span></label>
+                <select class="form-control" id="review_of_medical_history" name="review_of_medical_history"
+                 required="required" data-concept="6245^REVIEW OF MEDICAL HISTORY^99DCT">
                     <option value="">...</option>
                     <option value="6544^BREAST CANCER^99DCT">Yes</option>
                     <option value="">No</option>
                 </select>
             </div>
 
-            <label>Previous history of radiation to the chest?<span class="required">*</span></label>
             <div class="form-group">
-                <select class="form-control" id="previous_radiation_location" name="previous_radiation_location" required="required" data-concept="8263^PREVIOUS RADIATION LOCATION^99DCT">
+                <label>Previous history of radiation to the chest?<span class="required">*</span></label>
+                <select class="form-control" id="previous_radiation_location" name="previous_radiation_location"
+                 required="required" data-concept="8263^PREVIOUS RADIATION LOCATION^99DCT">
                     <option value="">...</option>
                     <option value="1349^CHEST^99DCT">Yes</option>
                     <option value="">No</option>
                 </select>
             </div>
 
-            <label>Do you presently, or have you in the past smoked cigarettes?<span class="required">*</span></label>
             <div class="form-group">
-                <select class="form-control" id="ever_smoked_cigarettes" name="ever_smoked_cigarettes" required="required" data-concept="6473^EVER SMOKED CIGARETTES^99DCT">
+                <label>Do you presently, or have you in the past smoked cigarettes?<span class="required">*</span></label>
+                <select class="form-control" id="ever_smoked_cigarettes" name="ever_smoked_cigarettes"
+                 required="required" data-concept="6473^EVER SMOKED CIGARETTES^99DCT">
                     <option value="">...</option>
                     <option value="1065^YES^99DCT">Yes</option>
                     <option value="1066^NO^99DCT">No</option>
                 </select>
             </div>
 
-            <label>Do you presently, or have you in the past consumed alcohol?<span class="required">*</span></label>
             <div class="form-group">
-                <select class="form-control" id="have_you_ever_drunk_alcohol" name="have_you_ever_drunk_alcohol" required="required" data-concept="6474^HAVE YOU EVER DRUNK ALCOHOL^99DCT">
+                <label>Do you presently, or have you in the past consumed alcohol?<span class="required">*</span></label>
+                <select class="form-control" id="have_you_ever_drunk_alcohol" name="have_you_ever_drunk_alcohol"
+                 required="required" data-concept="6474^HAVE YOU EVER DRUNK ALCOHOL^99DCT">
                     <option value="">...</option>
                     <option value="1065^YES^99DCT">Yes</option>
                     <option value="1066^NO^99DCT">No</option>
                 </select>
             </div>
 
-            <label>Have you ever had a breast biopsy?<span class="required">*</span></label>
             <div class="form-group">
-                <select class="form-control" id="diagnosis_based_on_biopsy" name="diagnosis_based_on_biopsy" required="required" data-concept="6509^DIAGNOSIS BASED ON BIOPSY TYPE^99DCT">
+                <label>Have you ever had a breast biopsy?<span class="required">*</span></label>
+                <select class="form-control" id="diagnosis_based_on_biopsy" name="diagnosis_based_on_biopsy"
+                 required="required" data-concept="6509^DIAGNOSIS BASED ON BIOPSY TYPE^99DCT">
                     <option value="">...</option>
                     <option value="8184^BREAST BIOPSY^99DCT">Yes</option>
                     <option value="">No</option>
                 </select>
             </div>
 
-            <label>Have you ever had breast surgery?<span class="required">*</span></label>
             <div class="form-group">
-                <select class="form-control" id="history_of_surgeries" name="history_of_surgeries" required="required" data-concept="6478^HISTORY OF SURGERIES^99DCT">
+                <label>Have you ever had breast surgery?<span class="required">*</span></label>
+                <select class="form-control" id="history_of_surgeries" name="history_of_surgeries"
+                 required="required" data-concept="6478^HISTORY OF SURGERIES^99DCT">
                     <option value="">...</option>
                     <option value="8251^BREAST^99DCT">Yes</option>
                     <option value="">No</option>
@@ -188,30 +203,35 @@
             <div class="form-group" title="Menarche is the first menstrual cycle, or first menstrual bleeding, in female humans.">
                 <label for="age_of_menarche">Age of menarche (first period)?<span class="required">*</span></label><br/>
                 <label class="alert alert-info">Menarche is the first menstrual cycle, or first menstrual bleeding, in female humans.</label>
-                <input class="form-control isDecimal" id="age_of_menarche" name="age_of_menarche" type="number" required="required" data-concept="8185^AGE OF MENARCHE^99DCT">
+                <input class="form-control isDecimal" id="age_of_menarche" name="age_of_menarche" type="number"
+                 required="required" data-concept="8185^AGE OF MENARCHE^99DCT">
             </div>
 
             <div class="form-group" title="If client has never been pregnant, enter '0'">
                 <label for="gravida">Number of previous pregnancies?<span class="required">*</span></label><br/>
                 <label class="alert alert-info">If client has never been pregnant, enter '0'"</label>
-                <input class="form-control isDecimal gravida" id="gravida" name="gravida" type="number" required="required" data-concept="5624^GRAVIDA^99DCT">
+                <input class="form-control isDecimal gravida" id="gravida" name="gravida" type="number"
+                 required="required" data-concept="5624^GRAVIDA^99DCT">
             </div>
 
             <div class="form-group relevant_gravida" title="What is the age of first pregnancy?">
                 <label for="age_of_first_pregnancy">Age at first pregnancy?<span class="required">*</span></label><br/>
                 <label class="alert alert-info">What is the age of first pregnancy?</label>
-                <input class="form-control isDecimal" id="age_of_first_pregnancy" name="age_of_first_pregnancy" type="number" required="required" data-concept="8186^AGE OF FIRST PREGNANCY^99DCT">
+                <input class="form-control isDecimal" id="age_of_first_pregnancy" name="age_of_first_pregnancy" type="number"
+                 required="required" data-concept="8186^AGE OF FIRST PREGNANCY^99DCT">
             </div>
 
             <div class="form-group relevant_gravida" title="The number of children a woman has delivered?">
                 <label for="parity">Number of previous deliveries?<span class="required">*</span></label><br/>
-                <label class="alert alert-info">The number of children a woman has delivered?.</label>
-                <input class="form-control isDecimal lessThanGravida" id="parity" name="parity" type="number" required="required" data-concept="1053^PARITY^99DCT">
+                <label class="alert alert-info">The number of children a woman has delivered?</label>
+                <input class="form-control isDecimal lessThanGravida" id="parity" name="parity" type="number"
+                 required="required" data-concept="1053^PARITY^99DCT">
             </div>
 
             <div class="form-group relevant_parity">
                 <label>Did you breastfeed your children?</label>
-                <select class="form-control" id="mother_apos_s_breast_feeding_history" name="mother_apos_s_breast_feeding_history" required="required" data-concept="8187^MOTHER'S BREAST FEEDING HISTORY^99DCT">
+                <select class="form-control" id="mother_apos_s_breast_feeding_history" name="mother_apos_s_breast_feeding_history"
+                 required="required" data-concept="8187^MOTHER'S BREAST FEEDING HISTORY^99DCT">
                     <option value="">...</option>
                     <option value="1065^YES^99DCT">Yes</option>
                     <option value="1066^NO^99DCT">No</option>
@@ -221,7 +241,8 @@
             <div class="form-group" title="(Screener to select one best option)">
                 <label>How are your menstrual periods?<span class="required">*</span></label><br />
                 <label class="alert alert-info">Screener to select one best option.</label>
-                <select class="form-control" id="menstruation_status" name="menstruation_status" required="required" data-concept="2061^MENSTRUATION STATUS^99DCT">
+                <select class="form-control" id="menstruation_status" name="menstruation_status"
+                 required="required" data-concept="2061^MENSTRUATION STATUS^99DCT">
                     <option value="">...</option>
                     <option value="1115^NORMAL^99DCT">Normal</option>
                     <option value="1116^ABNORMAL^99DCT">Abnormal periods</option>
@@ -237,12 +258,14 @@
                 <label for="last_menstrual_period_date">
                     First day of your last period (LMP)?<span class="required">*</span>
                 </label>
-                <input class="form-control datepicker nonFutureDate" id="last_menstrual_period_date" name="last_menstrual_period_date" type="text" required="required" data-concept="1836^LAST MENSTRUAL PERIOD DATE^99DCT">
+                <input class="form-control datepicker nonFutureDate" id="last_menstrual_period_date" name="last_menstrual_period_date"
+                 type="text" required="required" data-concept="1836^LAST MENSTRUAL PERIOD DATE^99DCT">
             </div>
 
             <div class="form-group reason_for_lack_of_period">
-            <label>Do you know why you are not having your period?</label>
-                <select class="form-control" id="reason_for_lack_of_period" name="reason_for_lack_of_period" required="required" data-concept="8252^REASON FOR LACK OF PERIOD^99DCT">
+                <label>Do you know why you are not having your period?</label>
+                <select class="form-control" id="reason_for_lack_of_period" name="reason_for_lack_of_period"
+                 required="required" data-concept="8252^REASON FOR LACK OF PERIOD^99DCT">
                     <option value="">...</option>
                     <option value="1484^PREGNANT^99DCT">Pregnant</option>
                     <option value="1402^BREASTFED^99DCT">Breastfeeding</option>
@@ -317,7 +340,8 @@
 
                 <label>Any history of breast cancer in the family?</label>
                 <div class="form-group">
-                    <select class="form-control" id="family_chronic_illnesses_history" name="family_chronic_illnesses_history" required="required" data-concept="6802^FAMILY CHRONIC ILLNESSES HISTORY^99DCT">
+                    <select class="form-control" id="family_chronic_illnesses_history" name="family_chronic_illnesses_history"
+                     required="required" data-concept="6802^FAMILY CHRONIC ILLNESSES HISTORY^99DCT">
                         <option value="">...</option>
                         <option value="6544^BREAST CANCER^99DCT">Yes</option>
                         <option value="">No</option>
@@ -347,9 +371,9 @@
                         <label for="family_member_with_chronic_illnesses_history.paternal_aunt">Paternal aunt(s)</label>
                         <br>
 
-                        <input id="family_planning_method_ever_used.other_non_coded" type="checkbox"
+                        <input id="family_member_with_chronic_illnesses_history.other_non_coded" type="checkbox"
                          data-concept="8254^FAMILY MEMBER WITH CHRONIC ILLNESSES HISTORY^99DCT" value="5622^OTHER NON-CODED^99DCT" />
-                        <label for="family_planning_method_ever_used.other_non_coded">Other</label>
+                        <label for="family_member_with_chronic_illnesses_history.other_non_coded">Other</label>
                         <br>
                     </fieldset>
                 </div>
@@ -358,7 +382,8 @@
                     <label for="number_of_family_members_with_chronic_illnesses_history">
                         Number of family members with history of breast cancer?<span class="required">*</span>
                     </label>
-                    <input class="form-control isDecimal" id="number_of_family_members_with_chronic_illnesses_history" name="number_of_family_members_with_chronic_illnesses_history" type="number" required="required" data-concept="8255^NUMBER OF FAMILY MEMBERS WITH CHRONIC ILLNESSES HISTORY^99DCT">
+                    <input class="form-control isDecimal" id="number_of_family_members_with_chronic_illnesses_history" name="number_of_family_members_with_chronic_illnesses_history"
+                     type="number" required="required" data-concept="8255^NUMBER OF FAMILY MEMBERS WITH CHRONIC ILLNESSES HISTORY^99DCT">
                 </div>
             </div>
         </div>
@@ -402,7 +427,8 @@
 
             <div class="form-group breast_pain_duration">
                 <label>Breast pain duration?</label>
-                <select class="form-control" id="breast_pain_duration" name="breast_pain_duration" required="required" data-concept="8256^BREAST PAIN DURATION^99DCT">
+                <select class="form-control" id="breast_pain_duration" name="breast_pain_duration"
+                 required="required" data-concept="8256^BREAST PAIN DURATION^99DCT">
                     <option value="">...</option>
                     <option value="1072^DAYS^99DCT">Days</option>
                     <option value="1073^WEEKS^99DCT">Weeks</option>
@@ -413,7 +439,8 @@
 
             <div class="form-group breast_mass_duration">
                 <label>Breast mass duration?</label>
-                <select class="form-control" id="breast_mass_duration" name="breast_mass_duration" required="required" data-concept="8257^BREAST MASS DURATION^99DCT">
+                <select class="form-control" id="breast_mass_duration" name="breast_mass_duration"
+                 required="required" data-concept="8257^BREAST MASS DURATION^99DCT">
                     <option value="">...</option>
                     <option value="1072^DAYS^99DCT">Days</option>
                     <option value="1073^WEEKS^99DCT">Weeks</option>
@@ -424,7 +451,8 @@
 
             <div class="form-group nipple_discharge_duration">
                 <label>Nipple discharge duration?</label>
-                <select class="form-control" id="nipple_discharge_duration" name="nipple_discharge_duration" required="required" data-concept="8258^NIPPLE DISCHARGE DURATION^99DCT">
+                <select class="form-control" id="nipple_discharge_duration" name="nipple_discharge_duration"
+                 required="required" data-concept="8258^NIPPLE DISCHARGE DURATION^99DCT">
                     <option value="">...</option>
                     <option value="1072^DAYS^99DCT">Days</option>
                     <option value="1073^WEEKS^99DCT">Weeks</option>
@@ -435,7 +463,8 @@
 
             <div class="form-group breast_skin_changes_duration">
                 <label>Breast sking changes duration?</label>
-                <select class="form-control" id="breast_skin_changes_duration" name="breast_skin_changes_duration" required="required" data-concept="8260^BREAST SKIN CHANGES DURATION^99DCT">
+                <select class="form-control" id="breast_skin_changes_duration" name="breast_skin_changes_duration"
+                 required="required" data-concept="8260^BREAST SKIN CHANGES DURATION^99DCT">
                     <option value="">...</option>
                     <option value="1072^DAYS^99DCT">Days</option>
                     <option value="1073^WEEKS^99DCT">Weeks</option>
@@ -446,7 +475,8 @@
 
             <div class="form-group breast_inflammation_duration">
                 <label>Breast skin inflammation / abscess duration?</label>
-                <select class="form-control" id="breast_inflammation_duration" name="breast_inflammation_duration" required="required" data-concept="8259^BREAST INFLAMMATION DURATION^99DCT">
+                <select class="form-control" id="breast_inflammation_duration" name="breast_inflammation_duration"
+                 required="required" data-concept="8259^BREAST INFLAMMATION DURATION^99DCT">
                     <option value="">...</option>
                     <option value="1072^DAYS^99DCT">Days</option>
                     <option value="1073^WEEKS^99DCT">Weeks</option>
@@ -516,12 +546,15 @@
             <div class="section">
                 <h3>Breast Exam Findings</h3>
 
-                <div class="section repeat breast_exam_findings_detailed" id="breast_exam_findings_detailed" data-counter="1" data-concept="8269^BREAST EXAM FINDINGS, DETAILED^99DCT">
+                <div class="section repeat breast_exam_findings_detailed" id="breast_exam_findings_detailed"
+                 data-counter="1" data-concept="8269^BREAST EXAM FINDINGS, DETAILED^99DCT"
+                 data-name="breast_exam_findings_detailed">
                     <div class="form-group">
                         <label for="breast_exam_findings">
                             Breast exam findings?<span class="required">*</span>
                         </label>
-                        <select class="form-control" id="breast_exam_findings" required="required" name="breast_exam_findings" data-concept="6251^BREAST EXAM FINDINGS^99DCT">
+                        <select class="form-control" id="breast_exam_findings" required="required"
+                         name="breast_exam_findings" data-concept="6251^BREAST EXAM FINDINGS^99DCT">
                             <option value="">...</option>
                             <option value="1118^NOT DONE^99DCT">Not done</option>
                             <option value="1115^NORMAL^99DCT">Normal</option>
@@ -529,14 +562,15 @@
                             <option value="6499^BREAST SKIN CHANGES^99DCT">Breast skin changes</option>
                             <option value="115^MASTITIS^99DCT">Breast skin inflammation / abscess</option>
                             <option value="8188^CALOR^99DCT">Abnormally warm</option>
-                            <option value="8189^PEAU DORANGE^99DC">Peau D’Orange</option>
+                            <option value="8189^PEAU DORANGE^99DC">Peau D'Orange</option>
                         </select>
                     </div>
                     <div class="form-group relevant_breast_exam_findings">
                         <label for="laterality">
                             Which breast has finding?:<span class="required">*</span>
                         </label>
-                        <select class="form-control" id="laterality" required="required" name="laterality" data-concept="8264^LATERALITY^99DCT">
+                        <select class="form-control" id="laterality" required="required"
+                         name="laterality" data-concept="8264^LATERALITY^99DCT">
                             <option value="">...</option>
                             <option value="5141^RIGHT^99DCT">Right</option>
                             <option value="5139^LEFT^99DCT">Left</option>
@@ -546,7 +580,8 @@
                         <label for="anatomic_location_description">
                             Specific location?<span class="required">*</span>
                         </label>
-                        <select class="form-control" id="anatomic_location_description" required="required" name="anatomic_location_description" data-concept="8268^ANATOMIC LOCATION DESCRIPTION^99DCT">
+                        <select class="form-control" id="anatomic_location_description" required="required"
+                         name="anatomic_location_description" data-concept="8268^ANATOMIC LOCATION DESCRIPTION^99DCT">
                             <option value="">...</option>
                             <option value="6589^UPPER INNER QUADRANT^99DCT">Upper inner quadrant</option>
                             <option value="6591^UPPER OUTER QUADRANT^99DCT">Upper outer quadrant</option>
@@ -602,13 +637,15 @@
             <div class="section">
                 <h3>Skin Exams Findings</h3>
 
-
-                <div class="section repeat skin_exam_findings_detailed" id="skin_exam_findings_detailed" data-counter="1" data-concept="8272^SKIN EXAM FINDINGS, DETAILED^99DCT">
+                <div class="section repeat skin_exam_findings_detailed" id="skin_exam_findings_detailed"
+                 data-counter="1" data-concept="8272^SKIN EXAM FINDINGS, DETAILED^99DCT"
+                 data-name="skin_exam_findings_detailed">
                     <div class="form-group">
                         <label for="skin_exam_findings">
                             Skin exam findings?<span class="required">*</span>
                         </label>
-                        <select class="form-control" id="skin_exam_findings" required="required" name="skin_exam_findings" data-concept="1120^SKIN EXAM FINDINGS^99DCT">
+                        <select class="form-control" id="skin_exam_findings" required="required"
+                         name="skin_exam_findings" data-concept="1120^SKIN EXAM FINDINGS^99DCT">
                             <option value="">...</option>
                             <option value="1118^NOT DONE^99DCT">Not done</option>
                             <option value="1115^NORMAL^99DCT">Normal</option>
@@ -620,7 +657,8 @@
                         <label for="skin_exam_findings_detailed_body_part">
                             Body part with finding?:<span class="required">*</span>
                         </label>
-                        <select class="form-control" id="skin_exam_findings_detailed_body_part" required="required" name="skin_exam_findings_detailed_body_part" data-concept="8265^BODY PART^99DCT">
+                        <select class="form-control" id="skin_exam_findings_detailed_body_part" required="required"
+                         name="skin_exam_findings_detailed_body_part" data-concept="8265^BODY PART^99DCT">
                             <option value="">...</option>
                             <option value="6599^FACE^99DCT">Face</option>
                             <option value="6598^NECK^99DCT">Neck</option>
@@ -637,7 +675,8 @@
                         <label for="skin_exam_findings_detailed_laterality">
                             Specific location?<span class="required">*</span>
                         </label>
-                        <select class="form-control" id="skin_exam_findings_detailed_laterality" required="required" name="skin_exam_findings_detailed_laterality" data-concept="8264^LATERALITY^99DCT">
+                        <select class="form-control" id="skin_exam_findings_detailed_laterality" required="required"
+                         name="skin_exam_findings_detailed_laterality" data-concept="8264^LATERALITY^99DCT">
                             <option value="">...</option>
                             <option value="5139^LEFT^99DCT">Left</option>
                             <option value="5141^RIGHT^99DCT">Right</option>
@@ -646,11 +685,13 @@
                     </div>
                     <div class="form-group relevant_skin_exam_findings_mass">
                         <label for="mass_measurement_in_cm_first_direction">Mass measurement in cm, first direction:</label>
-                        <input class="form-control" id="mass_measurement_in_cm_first_direction" name="mass_measurement_in_cm_first_direction" type="number" data-concept="8270^MASS MEASUREMENT IN CM, FIRST DIRECTION^99DCT">
+                        <input class="form-control" id="mass_measurement_in_cm_first_direction"
+                         name="mass_measurement_in_cm_first_direction" type="number" data-concept="8270^MASS MEASUREMENT IN CM, FIRST DIRECTION^99DCT">
                     </div>
                     <div class="form-group relevant_skin_exam_findings_mass">
                         <label for="mass_measurement_in_cm_second_direction">Mass measurement in cm, second direction:</label>
-                        <input class="form-control" id="mass_measurement_in_cm_second_direction" name="mass_measurement_in_cm_second_direction" type="number" data-concept="8271^MASS MEASUREMENT IN CM, SECOND DIRECTION^99DCT">
+                        <input class="form-control" id="mass_measurement_in_cm_second_direction"
+                         name="mass_measurement_in_cm_second_direction" type="number" data-concept="8271^MASS MEASUREMENT IN CM, SECOND DIRECTION^99DCT">
                     </div>
                 </div>
             </div>
@@ -1012,15 +1053,15 @@ $(document).ready(function () {
     /* End - Toggle family illness detailed */
 
     /*  Start - Based on breast review show duration fields */
-    var selectCorrespondingCurrentMedication = function (selectedElement) {
-        var drugsArray = {
+    var breastReviewChange = function (selectedElement) {
+        var breastDuration = {
             "#review_of_systems_breast\\.breast_pain": ".breast_pain_duration",
             "#review_of_systems_breast\\.mastitis": ".breast_inflammation_duration",
             "#review_of_systems_breast\\.breast_lumps": ".breast_mass_duration",
             "#review_of_systems_breast\\.nipple_discharge": ".nipple_discharge_duration",
             "#review_of_systems_breast\\.breast_skin_changes": ".breast_skin_changes_duration"
         };
-        $.each(drugsArray, function (k, v) {
+        $.each(breastDuration, function (k, v) {
             $(k).change(function () {
                 if ($(k).is(':checked')) {
                     $(v).show();
@@ -1031,7 +1072,7 @@ $(document).ready(function () {
             $(k).trigger('change');
         });
     };
-    selectCorrespondingCurrentMedication();
+    breastReviewChange();
     /*  End - Based on breast review show duration fields */
 
     /* Start - Ensuring some selection are selected alone */
@@ -1102,38 +1143,62 @@ $(document).ready(function () {
     /* End - Example of calling above validation */
 
     /* Start - Breast exam findings */
-    var $breastExamFindings = $('#breast_exam_findings');
-    $breastExamFindings.change(function() {
-        var breastExamValue = $breastExamFindings.val();
-        var $breastExamFindingsRelevant = $('.relevant_breast_exam_findings');
-        if (breastExamValue === '' || breastExamValue == '1118^NOT DONE^99DCT' || breastExamValue == '1115^NORMAL^99DCT') {
-            $breastExamFindingsRelevant.hide();
-        } else {
-            $breastExamFindingsRelevant.show();
-        }
-    });
-    $breastExamFindings.trigger('change');
+    var breastExamFindingDetailed = function (selectedElement) {
+        var allBreastExamFindings = $("select[name='breast_exam_findings']");
+        $.each(allBreastExamFindings, function (index, object) {
+            $(object).change(function () {
+                var breastExamValue = $(this).val();
+                var $breastExamFindingsRelevant = $(this).closest('.section').find('.relevant_breast_exam_findings');
+                if (breastExamValue === '' || breastExamValue == '1118^NOT DONE^99DCT' || breastExamValue == '1115^NORMAL^99DCT') {
+                    $breastExamFindingsRelevant.hide();
+                } else {
+                    $breastExamFindingsRelevant.show();
+                }
+            });
+            $(object).trigger('change');
+        });
+    };
+    breastExamFindingDetailed();
     /* End - Breast exam findings */
 
+    /* Start - Disable adding section if not done is selected */
+    // TODO: Need to add validation to prevent "NOT DONE" being selected when there are multiple repeat
+    // Create something similar to the systole!
+    // Get all select element and check if there's value that should be selected alone
+    // Return message like the systole
+    /* End - Disable adding section if not done is selected */
+
     /* Start - Skin exam findings */
-    var $skinExamFindings = $('#skin_exam_findings');
-    $skinExamFindings.change(function() {
-        var skinExamValue = $skinExamFindings.val();
-        var $skinExamFindingsRelevant = $('.relevant_skin_exam_findings');
-        var $skinExamFindingsRelevantMass = $('.relevant_skin_exam_findings_mass');
-        if (skinExamValue == '582^MASS, OTHER^99DCT') {
-            $skinExamFindingsRelevant.show();
-            $skinExamFindingsRelevantMass.show();
-        } else if (skinExamValue == '8188^CALOR^99DCT') {
-            $skinExamFindingsRelevant.show();
-            $skinExamFindingsRelevantMass.hide();
-        } else {
-            $skinExamFindingsRelevant.hide();
-            $skinExamFindingsRelevantMass.hide();
-        }
-    });
-    $skinExamFindings.trigger('change');
+    var skinExamFindingsDetailed = function(selectedElement) {
+        var allSkinExamFindings = $("select[name='skin_exam_findings']");
+        $.each(allSkinExamFindings, function (index, object) {
+            $(object).change(function () {
+                var skinExamValue = $(this).val();
+                var $skinExamFindingsRelevant = $(this).closest('.section').find('.relevant_skin_exam_findings');
+                var $skinExamFindingsRelevantMass = $(this).closest('.section').find('.relevant_skin_exam_findings_mass');
+                if (skinExamValue == '582^MASS, OTHER^99DCT') {
+                    $skinExamFindingsRelevant.show();
+                    $skinExamFindingsRelevantMass.show();
+                } else if (skinExamValue == '8188^CALOR^99DCT') {
+                    $skinExamFindingsRelevant.show();
+                    $skinExamFindingsRelevantMass.hide();
+                } else {
+                    $skinExamFindingsRelevant.hide();
+                    $skinExamFindingsRelevantMass.hide();
+                }
+            });
+            $(object).trigger('change');
+        });
+    };
+    skinExamFindingsDetailed();
     /* End - Skin exam findings */
+
+    /* Start - Disable adding section if not done is selected */
+    // TODO: Need to add validation to prevent "NOT DONE" being selected when there are multiple repeat
+    // Create something similar to the systole!
+    // Get all select element and check if there's value that should be selected alone
+    // Return message like the systole
+    /* End - Disable adding section if not done is selected */
 
     /* Start - Referral NONE */
     var $referralNone = $('#referrals_ordered\\.none');
@@ -1186,7 +1251,6 @@ $(document).ready(function () {
         }
     });
     $height.trigger("change");
-
     /* End - BSA calculation */
 
 });
