@@ -1146,7 +1146,6 @@ $(document).ready(function () {
                 });
             })
         }
-        ;
         return result;
     };
     /* End - Ensuring some selection are selected alone */
@@ -1185,6 +1184,7 @@ $(document).ready(function () {
         $.each(allBreastExamFindings, function (index, object) {
             $(object).change(function () {
                 var breastExamValue = $(this).val();
+                console.log(breastExamValue);
                 var $breastExamFindingsRelevant = $(this).closest('.section').find('.relevant_breast_exam_findings');
                 if (breastExamValue === '' || breastExamValue == '1118^NOT DONE^99DCT' || breastExamValue == '1115^NORMAL^99DCT') {
                     $breastExamFindingsRelevant.hide();
@@ -1211,6 +1211,7 @@ $(document).ready(function () {
         $.each(allSkinExamFindings, function (index, object) {
             $(object).change(function () {
                 var skinExamValue = $(this).val();
+                console.log(skinExamValue);
                 var $skinExamFindingsRelevant = $(this).closest('.section').find('.relevant_skin_exam_findings');
                 var $skinExamFindingsRelevantMass = $(this).closest('.section').find('.relevant_skin_exam_findings_mass');
                 if (skinExamValue == '582^MASS, OTHER^99DCT') {
