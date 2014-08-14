@@ -150,7 +150,7 @@
     <h3>Past Medical History</h3>
 
     <div class="form-group">
-        <label>Prior history of breast cancer?<span class="required">*</span></label>
+        <label for="review_of_medical_history">Prior history of breast cancer?<span class="required">*</span></label>
         <select class="form-control" id="review_of_medical_history" name="review_of_medical_history"
                 required="required" data-concept="6245^REVIEW OF MEDICAL HISTORY^99DCT">
             <option value="">...</option>
@@ -160,7 +160,9 @@
     </div>
 
     <div class="form-group">
-        <label>Previous history of radiation to the chest?<span class="required">*</span></label>
+        <label for="previous_radiation_location">
+            Previous history of radiation to the chest?<span class="required">*</span>
+        </label>
         <select class="form-control" id="previous_radiation_location" name="previous_radiation_location"
                 required="required" data-concept="8263^PREVIOUS RADIATION LOCATION^99DCT">
             <option value="">...</option>
@@ -170,7 +172,9 @@
     </div>
 
     <div class="form-group">
-        <label>Do you presently, or have you in the past smoked cigarettes?<span class="required">*</span></label>
+        <label for="ever_smoked_cigarettes">
+            Do you presently, or have you in the past smoked cigarettes?<span class="required">*</span>
+        </label>
         <select class="form-control" id="ever_smoked_cigarettes" name="ever_smoked_cigarettes"
                 required="required" data-concept="6473^EVER SMOKED CIGARETTES^99DCT">
             <option value="">...</option>
@@ -180,7 +184,9 @@
     </div>
 
     <div class="form-group">
-        <label>Do you presently, or have you in the past consumed alcohol?<span class="required">*</span></label>
+        <label for="have_you_ever_drunk_alcohol">
+            Do you presently, or have you in the past consumed alcohol?<span class="required">*</span>
+        </label>
         <select class="form-control" id="have_you_ever_drunk_alcohol" name="have_you_ever_drunk_alcohol"
                 required="required" data-concept="6474^HAVE YOU EVER DRUNK ALCOHOL^99DCT">
             <option value="">...</option>
@@ -190,7 +196,7 @@
     </div>
 
     <div class="form-group">
-        <label>Have you ever had a breast biopsy?<span class="required">*</span></label>
+        <label for="diagnosis_based_on_biopsy">Have you ever had a breast biopsy?<span class="required">*</span></label>
         <select class="form-control" id="diagnosis_based_on_biopsy" name="diagnosis_based_on_biopsy"
                 required="required" data-concept="6509^DIAGNOSIS BASED ON BIOPSY TYPE^99DCT">
             <option value="">...</option>
@@ -200,7 +206,7 @@
     </div>
 
     <div class="form-group">
-        <label>Have you ever had breast surgery?<span class="required">*</span></label>
+        <label for="history_of_surgeries">Have you ever had breast surgery?<span class="required">*</span></label>
         <select class="form-control" id="history_of_surgeries" name="history_of_surgeries"
                 required="required" data-concept="6478^HISTORY OF SURGERIES^99DCT">
             <option value="">...</option>
@@ -216,8 +222,9 @@
     <div class="form-group"
          title="Menarche is the first menstrual cycle, or first menstrual bleeding, in female humans.">
         <label for="age_of_menarche">Age of menarche (first period)?<span class="required">*</span></label><br/>
-        <label class="alert alert-info">Menarche is the first menstrual cycle, or first menstrual bleeding, in female
-            humans.</label>
+        <label class="alert alert-info">
+            Menarche is the first menstrual cycle, or first menstrual bleeding, in female humans.
+        </label>
         <input class="form-control isDecimal" id="age_of_menarche" name="age_of_menarche" type="number"
                required="required" data-concept="8185^AGE OF MENARCHE^99DCT">
     </div>
@@ -244,9 +251,9 @@
     </div>
 
     <div class="form-group relevant_parity">
-        <label>Did you breastfeed your children?</label>
-        <select class="form-control" id="mother_apos_s_breast_feeding_history"
-                name="mother_apos_s_breast_feeding_history"
+        <label for="mother_breast_feeding_history">Did you breastfeed your children?</label>
+        <select class="form-control" id="mother_breast_feeding_history"
+                name="mother_breast_feeding_history"
                 required="required" data-concept="8187^MOTHER'S BREAST FEEDING HISTORY^99DCT">
             <option value="">...</option>
             <option value="1065^YES^99DCT">Yes</option>
@@ -255,7 +262,7 @@
     </div>
 
     <div class="form-group" title="(Screener to select one best option)">
-        <label>How are your menstrual periods?<span class="required">*</span></label><br/>
+        <label for="menstruation_status">How are your menstrual periods?<span class="required">*</span></label><br/>
         <label class="alert alert-info">Screener to select one best option.</label>
         <select class="form-control" id="menstruation_status" name="menstruation_status"
                 required="required" data-concept="2061^MENSTRUATION STATUS^99DCT">
@@ -280,7 +287,7 @@
     </div>
 
     <div class="form-group reason_for_lack_of_period">
-        <label>Do you know why you are not having your period?</label>
+        <label for="reason_for_lack_of_period">Do you know why you are not having your period?</label>
         <select class="form-control" id="reason_for_lack_of_period" name="reason_for_lack_of_period"
                 required="required" data-concept="8252^REASON FOR LACK OF PERIOD^99DCT">
             <option value="">...</option>
@@ -319,11 +326,11 @@
                 <br>
 
                 <input id="family_planning_method_ever_used.family_planning_via_oral_contraceptive_pills"
-                       type="checkbox"
-                       name="8253^FAMILY PLANNING METHOD EVER USED^99DCT"
+                       type="checkbox" name="8253^FAMILY PLANNING METHOD EVER USED^99DCT"
                        value="5274^FAMILY PLANNING VIA ORAL CONTRACEPTIVE PILLS^99DCT"/>
-                <label for="family_planning_method_ever_used.family_planning_via_oral_contraceptive_pills">Oral
-                    contraceptive pills</label>
+                <label for="family_planning_method_ever_used.family_planning_via_oral_contraceptive_pills">
+                    Oral contraceptive pills
+                </label>
                 <br>
 
                 <input id="family_planning_method_ever_used.natural_family_planning" type="checkbox"
@@ -360,9 +367,8 @@
 
     <div class="section" data-concept="6805^FAMILY CHRONIC ILLNESSNESS HISTORY, DETAILED^99DCT">
 
-        <label>Any history of breast cancer in the family?</label>
-
         <div class="form-group">
+            <label for="family_chronic_illnesses_history">Any history of breast cancer in the family?</label>
             <select class="form-control" id="family_chronic_illnesses_history" name="family_chronic_illnesses_history"
                     required="required" data-concept="6802^FAMILY CHRONIC ILLNESSES HISTORY^99DCT">
                 <option value="">...</option>
@@ -456,7 +462,7 @@
     </div>
 
     <div class="form-group breast_pain_duration">
-        <label>Breast pain duration?</label>
+        <label for="breast_pain_duration">Breast pain duration?</label>
         <select class="form-control" id="breast_pain_duration" name="breast_pain_duration"
                 required="required" data-concept="8256^BREAST PAIN DURATION^99DCT">
             <option value="">...</option>
@@ -468,7 +474,7 @@
     </div>
 
     <div class="form-group breast_mass_duration">
-        <label>Breast mass duration?</label>
+        <label for="breast_mass_duration">Breast mass duration?</label>
         <select class="form-control" id="breast_mass_duration" name="breast_mass_duration"
                 required="required" data-concept="8257^BREAST MASS DURATION^99DCT">
             <option value="">...</option>
@@ -480,7 +486,7 @@
     </div>
 
     <div class="form-group nipple_discharge_duration">
-        <label>Nipple discharge duration?</label>
+        <label for="nipple_discharge_duration">Nipple discharge duration?</label>
         <select class="form-control" id="nipple_discharge_duration" name="nipple_discharge_duration"
                 required="required" data-concept="8258^NIPPLE DISCHARGE DURATION^99DCT">
             <option value="">...</option>
@@ -492,7 +498,7 @@
     </div>
 
     <div class="form-group breast_skin_changes_duration">
-        <label>Breast sking changes duration?</label>
+        <label for="breast_skin_changes_duration">Breast sking changes duration?</label>
         <select class="form-control" id="breast_skin_changes_duration" name="breast_skin_changes_duration"
                 required="required" data-concept="8260^BREAST SKIN CHANGES DURATION^99DCT">
             <option value="">...</option>
@@ -504,7 +510,7 @@
     </div>
 
     <div class="form-group breast_inflammation_duration">
-        <label>Breast skin inflammation / abscess duration?</label>
+        <label for="breast_inflammation_duration">Breast skin inflammation / abscess duration?</label>
         <select class="form-control" id="breast_inflammation_duration" name="breast_inflammation_duration"
                 required="required" data-concept="8259^BREAST INFLAMMATION DURATION^99DCT">
             <option value="">...</option>

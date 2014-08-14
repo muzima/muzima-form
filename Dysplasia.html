@@ -1,0 +1,796 @@
+<html>
+
+<head>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/muzima.css" rel="stylesheet">
+    <link href="css/ui-darkness/jquery-ui-1.10.4.custom.min.css" rel="stylesheet">
+    <script src="js/jquery.min.js"></script>
+    <script src="js/jquery-ui-1.10.4.custom.min.js"></script>
+    <script src="js/jquery.validate.min.js"></script>
+    <script src="js/additional-methods.min.js"></script>
+    <script src="js/muzima.js"></script>
+
+    <title>Dysplasia Form</title>
+</head>
+
+<body class="col-md-8 col-md-offset-2">
+<div id="pre_populate_data"></div>
+<form id="via_form" name="via_form">
+<h2 class="text-center">Dysplasia Form</h2>
+
+<div class="section">
+    <h3>Demographics</h3>
+
+    <div class="form-group">
+        <input class="form-control" id="patient.uuid" name="patient.uuid" type="hidden" readonly="readonly">
+    </div>
+    <div class="form-group">
+        <label for="patient.medical_record_number">AMRS ID Number:</label>
+        <input class="form-control" id="patient.medical_record_number" name="patient.medical_record_number" type="text"
+               readonly="readonly">
+    </div>
+    <div class="form-group">
+        <label for="patient.family_name">Family Name:</label>
+        <input class="form-control" id="patient.family_name" name="patient.family_name" type="text" readonly="readonly">
+    </div>
+    <div class="form-group">
+        <label for="patient.given_name">Given Name:</label>
+        <input class="form-control" id="patient.given_name" name="patient.given_name" type="text" readonly="readonly">
+    </div>
+    <div class="form-group">
+        <label for="patient.middle_name">Middle Name:</label>
+        <input class="form-control" id="patient.middle_name" name="patient.middle_name" type="text" readonly="readonly">
+    </div>
+    <div class="form-group">
+        <label for="patient.sex">Gender:</label>
+        <select class="form-control" id="patient.sex" name="patient.sex" readonly="readonly">
+            <option value="">...</option>
+            <option value="M">Male</option>
+            <option value="F">Female</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="patient.birthdate">Date Of Birth:</label>
+        <input class="form-control datepicker nonFutureDate" id="patient.birthdate" name="patient.birthdate" type="date"
+               readonly="readonly">
+    </div>
+    <div class="form-group">
+        <label for="patient.phone">Phone:</label>
+        <input class="form-control phoneNumber" id="patient.phone" name="patient.phone" type="tel">
+    </div>
+</div>
+<div class="section">
+    <h3>Encounter Details</h3>
+
+    <div class="form-group">
+        <label for="encounter.location_id">
+            Screening Site:<span class="required">*</span>
+        </label>
+        <input class="form-control" id="encounter.location_id" type="text" placeholder="Start typing something...">
+        <input class="form-control" name="encounter.location_id" type="hidden">
+    </div>
+
+    <div class="form-group">
+        <label for="encounter.provider_id_select">Provider ID:</label>
+        <input class="form-control" id="encounter.provider_id_select" type="text"
+               placeholder="Start typing something...">
+        <input class="form-control" name="encounter.provider_id_select" type="hidden">
+    </div>
+
+    <div class="form-group show_provider_id_text">
+        <label for="encounter.provider_id">Enter provider's system-id:<span class="required">*</span>
+        </label>
+        <input class="form-control checkDigit" id="encounter.provider_id" name="encounter.provider_id" type="text"
+               required="required">
+    </div>
+    <div class="form-group">
+        <label for="encounter.encounter_datetime">Encounter Date:<span class="required">*</span>
+        </label>
+        <input class="form-control datepicker nonFutureDate" id="encounter.encounter_datetime"
+               name="encounter.encounter_datetime" type="text" readonly="readonly" encounter.encounter_datetime
+               required="required">
+    </div>
+    <div class="form-group">
+        <input class="form-control" id="encounter.form_uuid" name="encounter.form_uuid" type="hidden"
+               required="required">
+    </div>
+</div>
+
+<div class="section">
+<h3>Observation Details </h3>
+
+<div class="section">
+    <div class="form-group">
+        <label for="current_visit_type">Visit Type:<span class="required">*</span>
+        </label>
+        <select class="form-control" id="current_visit_type" name="current_visit_type"
+                data-concept="1839^CURRENT VISIT TYPE^99DCT" required="required">
+            <option value="">...</option>
+            <option value="7850^INITIAL VISIT ^99DCT">New Visit</option>
+            <option value="2345^FOLLOW-UP^99DCT">Revisit</option>
+            <option value="7588^REVIEW OF PATHOLOGY RESULTS^99DCT">Review of pathology results</option>
+        </select>
+    </div>
+
+    <div class="form-group" title="Screener to select one best option.">
+        <label for="menstruation_status">How are your menstrual periods?</label><br/>
+        <label class="alert alert-info">Screener to select one best option.</label>
+        <select class="form-control" id="menstruation_status" name="menstruation_status"
+                data-concept="2061^MENSTRUATION STATUS^99DCT" required="required">
+            <option value="">...</option>
+            <option value="1115^NORMAL^99DCT">Normal</option>
+            <option value="1116^ABNORMAL^99DCT">Abnormal periods</option>
+            <option value="2060^AMENORRHEA^99DCT">Completely absent</option>
+            <option vlaue="7023^PRE-MENOPAUSAL^99DCT">Pre-menopausal</option>
+            <option value="5990^MENOPAUSAL^99DCT">Menopausal</option>
+            <option value="6496^POST-MENOPAUSAL^99DCT">Post-menopausal</option>
+            <option value="6497^DYSFUNCTIONAL UTERINE BLEEDING^99DCT">Abnormal bleeding not related to periods</option>
+        </select>
+    </div>
+
+    <div class="form-group last_menstrual_period_date">
+        <label for="last_menstrual_period_date">First day of your last period (LMP)</label>
+        <input class="form-control datepicker nonFutureDate" id="last_menstrual_period_date"
+               name="last_menstrual_period_date" type="date" data-concept="1836^LAST MENSTRUAL PERIOD DATE^99DCT"
+               required="required">
+    </div>
+
+    <div class="form-group urine_pregnancy_test_qualitative"
+         title="Test that determines pregnancy status through measure of hormone content in urine.">
+        <label for="urine_pregnancy_test_qualitative">Urine pregnancy test</label><br/>
+        <label class="alert alert-info">
+            Test that determines pregnancy status through measure of hormone content in urine.
+        </label>
+        <select class="form-control" id="urine_pregnancy_test_qualitative" name="urine_pregnancy_test_qualitative"
+                data-concept="45^URINE PREGNANCY TEST, QUALITATIVE^99DCT" required="required">
+            <option value="">...</option>
+            <option value="664^NEGATIVE^99DCT">Negative</option>
+            <option value="703^POSITIVE^99DCT">Positive</option>
+            <option value="1138^INDETERMINATE^99DCT">Indeterminate</option>
+            <option value="1304^POOR SAMPLE QUALITY^99DCT">Poor sample quality</option>
+            <option value="1118^NOT DONE^99DCT">Not Done</option>
+            <option value="1958^REFUSAL^99DCT">Refusal</option>
+        </select>
+    </div>
+
+    <div class="form-group reason_for_lack_of_period">
+        <label for="reason_for_lack_of_period">Do you know why you are not having your period?</label>
+        <select class="form-control" id="reason_for_lack_of_period" name="reason_for_lack_of_period"
+                data-concept="8252^REASON FOR LACK OF PERIOD^99DCT" required="required">
+            <option value="">...</option>
+            <option value="1484^PREGNANT^99DCT">Pregnant</option>
+            <option value="1402^BREASTFED^99DCT">Breastfeeding</option>
+            <option value="6496^POST-MENOPAUSAL^99DCT">Due to age</option>
+            <option value="1624^DO NOT KNOW^99DCT">Do not know</option>
+            <option value="5622^OTHER NON-CODED^99DCT">Other</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="gravida">Number of previous pregnancies</label><br/>
+        <label class="alert alert-info">If client has never been pregnant, enter '0'"</label>
+        <input class="form-control" id="gravida" name="gravida" type="number" data-concept="5624^GRAVIDA^99DCT"
+               required="required">
+    </div>
+
+    <div class="form-group relevant_gravida">
+        <label for="parity">Number of previous deliveries</label><br/>
+        <label class="alert alert-info">The number of children a woman has delivered?</label>
+        <input class="form-control lessThanGravida" id="parity" name="parity" type="number"
+               data-concept="1053^PARITY^99DCT" required="required">
+    </div>
+
+    <div class="form-group">
+        <label for="hiv_status">HIV status</label>
+        <select class="form-control" id="hiv_status" name="hiv_status" type="text"
+                data-concept="8252^REASON FOR LACK OF PERIOD^99DCT">
+            <option value="">...</option>
+            <option value="664^NEGATIVE^99DCT">Negative</option>
+            <option value="703^POSITIVE^99DCT">Positive</option>
+            <option value="1067^UNKNOWN^99DCT">Unknown</option>
+        </select>
+    </div>
+
+</div>
+<div class="section">
+    <h3>Most Recent Observations</h3>
+
+    <div class="form-group relevant_hiv_status">
+        <label for="last_cd4_by_facs">Latest CD4 count</label>
+        <input class="form-control" id="last_cd4_by_facs" name="last_cd4_by_facs" type="number"
+               data-concept="1871^LAST CD4, BY FACS^99DCT">
+    </div>
+
+    <div class="form-group relevant_hiv_status">
+        <label for="date_of_last_cd4_by_facs">Date of latest CD4 count</label>
+        <input class="form-control datepicker nonFutureDate" id="date_of_last_cd4_by_facs"
+               name="date_last_cd4_by_facs" type="date" data-concept="1871^LAST CD4, BY FACS^99DCT"
+               required="required">
+    </div>
+
+    <div class="form-group">
+        <label for="history_of_dysplasia">History of Dysplasia</label>
+        <select class="form-control" id="history_of_dysplasia" name="history_of_dysplasia"
+                data-concept="7379^HISTORY OF DYSPLASIA ^99DCT">
+            <option value="">...</option>
+            <option value="1065^YES^99DCT">Yes</option>
+            <option value="1066^NO^99DCT">No</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="recent_visual_inspection_with_acetic_acid_result">
+            Prior Visual Inspection with Acetic Acid (VIA)
+        </label>
+        <select class="form-control" id="recent_visual_inspection_with_acetic_acid_result"
+                name="recent_visual_inspection_with_acetic_acid_result"
+                data-concept="7381^MOST RECENT VISUAL INSPECTION WITH ACETIC ACID RESULT^99DCT">
+            <option value="">...</option>
+            <option value="703^POSITIVE^99DCT">Positive</option>
+            <option value="664^NEGATIVE^99DCT">Negative</option>
+            <option value="1624^DO NOT KNOW^99DCT">Do not know</option>
+            <option value="1175^NOT APPLICABLE^99DCT">Not Applicable</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="recent_visual_inspection_with_acetic_acid_result_date">
+            Date of most recent VIA result
+        </label>
+        <input class="form-control datepicker nonFutureDate"
+               id="recent_visual_inspection_with_acetic_acid_result_date"
+               name="recent_visual_inspection_with_acetic_acid_result_date" type="date"
+               data-concept="7381^MOST RECENT VISUAL INSPECTION WITH ACETIC ACID RESULT^99DCT">
+    </div>
+
+    <div class="form-group">
+        <label>Prior PAP results</label><br/>
+        <label class="alert alert-info">
+            A question to ask the results of the patient's most recent pap smear exam.
+        </label>
+        <fieldset name="7423^MOST RECENT PAPANICOLAOU SMEAR RESULT^99DCT"
+                  data-concept="7423^MOST RECENT PAPANICOLAOU SMEAR RESULT^99DCT">
+            <input id="recent_papanicolaou_result.normal" type="checkbox"
+                   name="7423^MOST RECENT PAPANICOLAOU SMEAR RESULT^99DCT" value="1115^NORMAL^99DCT">
+            <label for="recent_papanicolaou_result.normal">Normal</label><br/>
+
+            <input id="recent_papanicolaou_result.atypical_squamous_cells_of_undetermined_significance"
+                   type="checkbox"
+                   name="7423^MOST RECENT PAPANICOLAOU SMEAR RESULT^99DCT"
+                   value="7417^ATYPICAL SQUAMOUS CELLS OF UNDETERMINED SIGNIFICANCE ^99DCT">
+            <label for="recent_papanicolaou_result.atypical_squamous_cells_of_undetermined_significance">
+                Atypical squamous cells of undetermined significance
+            </label><br/>
+
+            <input id="recent_papanicolaou_result.atypical_glandular_cells_of_undetermined_significance"
+                   type="checkbox"
+                   name="7423^MOST RECENT PAPANICOLAOU SMEAR RESULT^99DCT"
+                   value="7418^ATYPICAL GLANDULAR CELLS OF UNDETERMINED SIGNIFICANCE ^99DCT">
+            <label for="recent_papanicolaou_result.atypical_glandular_cells_of_undetermined_significance">
+                Atypical glandular cells of undetermined significance
+            </label><br/>
+
+            <input id="recent_papanicolaou_result.low_grade_squamous_intraepithelial_lesion" type="checkbox"
+                   name="7423^MOST RECENT PAPANICOLAOU SMEAR RESULT^99DCT"
+                   value="7419^LOW GRADE SQUAMOUS INTRAEPITHELIAL LESION^99DCT">
+            <label for="recent_papanicolaou_result.low_grade_squamous_intraepithelial_lesion">
+                Low grade squamous intraepithelial lesion
+            </label><br/>
+
+            <input id="recent_papanicolaou_result.high_grade_squamous_intraepithelial_lesion" type="checkbox"
+                   name="7423^MOST RECENT PAPANICOLAOU SMEAR RESULT^99DCT"
+                   value="7420^HIGH GRADE SQUAMOUS INTRAEPITHELIAL LESION^99DCT">
+            <label for="recent_papanicolaou_result.high_grade_squamous_intraepithelial_lesion">
+                High grade squamous intraepithelial lesion
+            </label><br/>
+
+            <input id="recent_papanicolaou_result.squamous_cell_carcinoma_not_otherwise_specified" type="checkbox"
+                   name="7423^MOST RECENT PAPANICOLAOU SMEAR RESULT^99DCT"
+                   value="7421^SQUAMOUS CELL CARCINOMA, NOT OTHERWISE SPECIFIED ^99DCT">
+            <label for="recent_papanicolaou_result.squamous_cell_carcinoma_not_otherwise_specified">
+                Squamous cell carcinoma
+            </label><br/>
+
+            <input id="recent_papanicolaou_result.adenocarcinoma" type="checkbox"
+                   name="7423^MOST RECENT PAPANICOLAOU SMEAR RESULT^99DCT" value="7422^ADENOCARCINOMA ^99DCT">
+            <label for="recent_papanicolaou_result.adenocarcinoma">Adenocarcinoma</label><br/>
+
+            <input id="recent_papanicolaou_result.do_not_know" type="checkbox"
+                   name="7423^MOST RECENT PAPANICOLAOU SMEAR RESULT^99DCT" value="1624^DO NOT KNOW^99DCT">
+            <label for="recent_papanicolaou_result.do_not_know">Do not know</label><br/>
+        </fieldset>
+    </div>
+    <div class="form-group">
+        <label for="date_most_recent_papanicolaou_smear_performed">Date of most recent PAP result</label>
+        <input class="form-control datepicker nonFutureDate" id="date_most_recent_papanicolaou_smear_performed"
+               name="date_most_recent_papanicolaou_smear_performed" type="date"
+               data-concept="6727^DATE MOST RECENT PAPANICOLAOU SMEAR PERFORMED^99DCT">
+    </div>
+
+    <div class="form-group">
+        <label>Prior colposcopy results</label><br/>
+        <fieldset name="7426^MOST RECENT COLPOSCOPY RESULT^99DCT"
+                  data-concept="7426^MOST RECENT COLPOSCOPY RESULT^99DCT">
+            <input id="most_recent_colposcopy_result.normal" type="checkbox"
+                   name="7426^MOST RECENT COLPOSCOPY RESULT^99DCT"
+                   value="1115^NORMAL^99DCT">
+            <label for="most_recent_colposcopy_result.normal">Normal</label><br/>
+
+            <input id="most_recent_colposcopy_result.cervical_intraepithelial_neoplasia_grade_1" type="checkbox"
+                   name="7426^MOST RECENT COLPOSCOPY RESULT^99DCT"
+                   value="7424^CERVICAL INTRAEPITHELIAL NEOPLASIA GRADE 1^99DCT">
+            <label for="most_recent_colposcopy_result.cervical_intraepithelial_neoplasia_grade_1">
+                Cervical intraepithelial neoplasia grade 1
+            </label><br/>
+
+            <input id="most_recent_colposcopy_result.cervical_intraepithelial_neoplasia_grade_2" type="checkbox"
+                   name="7426^MOST RECENT COLPOSCOPY RESULT^99DCT"
+                   value="7425^CERVICAL INTRAEPITHELIAL NEOPLASIA GRADE 2^99DCT">
+            <label for="most_recent_colposcopy_result.cervical_intraepithelial_neoplasia_grade_2">
+                Cervical intraepithelial neoplasia grade 2
+            </label><br/>
+
+            <input id="most_recent_colposcopy_result.cervical_intraepithelial_neoplasia_grade_3" type="checkbox"
+                   name="7426^MOST RECENT COLPOSCOPY RESULT^99DCT"
+                   value="7216^CERVICAL INTRAEPITHELIAL NEOPLASIA GRADE 3 ^99DCT">
+            <label for="most_recent_colposcopy_result.cervical_intraepithelial_neoplasia_grade_3">
+                Cervical intraepithelial neoplasia grade 3
+            </label><br/>
+
+            <input id="most_recent_colposcopy_result.cervical_cancer" type="checkbox"
+                   name="7426^MOST RECENT COLPOSCOPY RESULT^99DCT"
+                   value="6537^CERVICAL CANCER^99DCT">
+            <label for="most_recent_colposcopy_result.cervical_cancer">Cervical cancer</label><br/>
+
+            <input id="most_recent_colposcopy_result.not_applicable" type="checkbox"
+                   name="7426^MOST RECENT COLPOSCOPY RESULT^99DCT"
+                   value="1175^NOT APPLICABLE^99DCT">
+            <label for="most_recent_colposcopy_result.not_applicable">Not Applicable</label><br/>
+
+            <input id="most_recent_colposcopy_result.do_not_know" type="checkbox"
+                   name="7426^MOST RECENT COLPOSCOPY RESULT^99DCT"
+                   value="1624^DO NOT KNOW^99DCT">
+            <label for="most_recent_colposcopy_result.do_not_know">Do not know</label><br/>
+        </fieldset>
+    </div>
+
+    <div class="form-group">
+        <label for="date_of_most_recent_colposcopy_result">Date of most recent colposcopy result</label>
+        <input class="form-control datepicker nonFutureDate" id="date_of_most_recent_colposcopy_result"
+               name="date_of_most_recent_colposcopy_result" type="date"
+               data-concept="7426^MOST RECENT COLPOSCOPY RESULT^99DCT" required="required">
+    </div>
+
+    <div class="form-group">
+        <label for="most_recent_biopsy_result">Other biopsy results</label>
+        <input class="form-control" id="most_recent_biopsy_result" name="most_recent_biopsy_result" type="text"
+               data-concept="7400^MOST RECENT BIOPSY RESULT^99DCT">
+    </div>
+
+    <div class="form-group">
+        <label for="date_of_most_recent_biopsy_result">Date of most recent biopsy result</label>
+        <input class="form-control datepicker nonFutureDate" id="date_of_most_recent_biopsy_result"
+               name="date_of_most_recent_biopsy_result" type="date" data-concept="7400^MOST RECENT BIOPSY RESULT^99DCT">
+    </div>
+</div>
+
+<div class="section repeat past_treatment_of_dysplasia_detailed" id="past_treatment_of_dysplasia_detailed"
+     data-concept="7580^PAST TREATMENT OF DYSPLASIA, DETAILED^99DCT">
+    <h3>Past Dysplasia Treatment</h3>
+    <label class="alert alert-info">
+        A question set to ask what past treatments the patient has received for Dysplasia, the date of that treatment,
+        and the pathology of the treatment.
+    </label>
+
+    <div class="form-group">
+        <label for="past_treatment_of_dysplasia">
+            Past treatment of dysplasia
+        </label>
+        <select class="form-control" id="past_treatment_of_dysplasia" name="past_treatment_of_dysplasia"
+                data-concept="7467^PAST TREATMENT OF DYSPLASIA^99DCT" required="required">
+            <option value="">...</option>
+            <option value="7147^LOOP ELECTROSURGICAL EXCISION PROCEDURE^99DCT">
+                Loop electrosurgical excision procedure
+            </option>
+            <option value="5276^HYSTERECTOMY^99DCT">Hysterectomy</option>
+            <option value="7466^CRYOTHERAPY^99DCT">Cryotherapy</option>
+            <option value="5622^OTHER NON-CODED^99DCT">Other non-coded</option>
+            <option value="1107^NONE^99DCT">None</option>
+            <option value="1175^NOT APPLICABLE^99DCT">Not Applicable</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="pathological_diagnosis_added_cervix">
+            Pathological diagnosis for cervical specimen
+        </label>
+        <select class="form-control" id="pathological_diagnosis_added_cervix"
+                name="pathological_diagnosis_added_cervix" type="text"
+                data-concept="8278^PATHOLOGICAL DIAGNOSIS ADDED^99DCT" required="required">
+            <option value="">...</option>
+            <option value="1115^NORMAL^99DCT">Normal</option>
+            <option value="7424^CERVICAL INTRAEPITHELIAL NEOPLASIA GRADE 1^99DCT">
+                Mild cervical intraepithelial neoplasia (CIN 1)
+            </option>
+            <option value="7425^CERVICAL INTRAEPITHELIAL NEOPLASIA GRADE 2^99DCT">
+                Moderate cervical intraepithelial neoplasia (CIN 2)
+            </option>
+            <option value="7216^CERVICAL INTRAEPITHELIAL NEOPLASIA GRADE 3^99DCT">
+                Severe cervical intraepithelial neoplasia (CIN 3)
+            </option>
+            <option value="8275^CERVICAL ADENOCARCINOMA^99DCT">Cervical adenocarcinoma</option>
+            <option value="7421^SQUAMOUS CELL CARCINOMA, NOT OTHERWISE SPECIFIED ^99DCT">
+                Cervical squamous cell carcinoma
+            </option>
+            <option value="5622^OTHER NON-CODED^99DCT">Other</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label>Visual cervical exam findings</label><br/>
+        <label class="alert alert-info">Findings on the cervix based on a performed exam.</label>
+        <fieldset name="7484^VISUAL CERVICAL EXAM FINDINGS^99DCT"
+                  data-concept="7484^VISUAL CERVICAL EXAM FINDINGS^99DCT">
+            <input id="visual_cervical_exam_findings.normal" type="checkbox"
+                   name="7484^VISUAL CERVICAL EXAM FINDINGS^99DCT" value="1115^NORMAL^99DCT">
+            <label for="visual_cervical_exam_findings.normal">Normal</label><br/>
+
+            <input id="visual_cervical_exam_findings.cervical_intraepithelial_neoplasia_grade_1" type="checkbox"
+                   name="7484^VISUAL CERVICAL EXAM FINDINGS^99DCT"
+                   value="7424^CERVICAL INTRAEPITHELIAL NEOPLASIA GRADE 1^99DCT">
+            <label for="visual_cervical_exam_findings.cervical_intraepithelial_neoplasia_grade_1">
+                Cervical intraepithelial neoplasia grade 1
+            </label><br/>
+
+            <input id="visual_cervical_exam_findings.cervical_intraepithelial_neoplasia_grade_2" type="checkbox"
+                   name="7484^VISUAL CERVICAL EXAM FINDINGS^99DCT"
+                   value="7425^CERVICAL INTRAEPITHELIAL NEOPLASIA GRADE 2^99DCT">
+            <label for="visual_cervical_exam_findings.cervical_intraepithelial_neoplasia_grade_2">
+                Cervical intraepithelial neoplasia grade 2
+            </label><br/>
+
+            <input id="visual_cervical_exam_findings.cervical_intraepithelial_neoplasia_grade_3" type="checkbox"
+                   name="7484^VISUAL CERVICAL EXAM FINDINGS^99DCT"
+                   value="7216^CERVICAL INTRAEPITHELIAL NEOPLASIA GRADE 3 ^99DCT">
+            <label for="visual_cervical_exam_findings.cervical_intraepithelial_neoplasia_grade_3">
+                Cervical intraepithelial neoplasia grade 3
+            </label><br/>
+
+            <input id="visual_cervical_exam_findings.cervical_cancer" type="checkbox"
+                   name="7484^VISUAL CERVICAL EXAM FINDINGS^99DCT" value="6537^CERVICAL CANCER^99DCT">
+            <label for="visual_cervical_exam_findings.cervical_cancer">Cervical cancer</label><br/>
+
+            <input id="visual_cervical_exam_findings.positive_visual_inspection_with_acetic_acid_with_aceto_white_area"
+                   type="checkbox" name="7484^VISUAL CERVICAL EXAM FINDINGS^99DCT"
+                   value="7507^POSITIVE VISUAL INSPECTION WITH ACETIC ACID WITH ACETO WHITE AREA^99DCT">
+            <label for="visual_cervical_exam_findings.positive_visual_inspection_with_acetic_acid_with_aceto_white_area">
+                Positive visual inspection with acetic acid with aceto white area
+            </label><br/>
+
+            <input id="visual_cervical_exam_findings.positive_visual_inspection_with_acetic_acid_with_suspicious_lesion"
+                   type="checkbox" name="7484^VISUAL CERVICAL EXAM FINDINGS^99DCT"
+                   value="7508^POSITIVE VISUAL INSPECTION WITH ACETIC ACID WITH SUSPICIOUS LESION^99DCT">
+            <label for="visual_cervical_exam_findings.positive_visual_inspection_with_acetic_acid_with_suspicious_lesion">
+                Positive visual inspection with acetic acid with suspicious lesion
+            </label><br/>
+
+            <input id="visual_cervical_exam_findings.other_non_coded" type="checkbox"
+                   name="7484^VISUAL CERVICAL EXAM FINDINGS^99DCT" value="5622^OTHER NON-CODED^99DCT">
+            <label for="visual_cervical_exam_findings.other_non_coded">Other</label><br/>
+        </fieldset>
+    </div>
+    <div class="form-group">
+        <label>Visual vaginal exam findings</label><br/>
+        <label class="alert alert-info">Findings on the vagina based on a performed exam.</label>
+        <fieldset name="7490^VISUAL VAGINAL EXAM FINDINGS ^99DCT"
+                  data-concept="7490^VISUAL VAGINAL EXAM FINDINGS ^99DCT">
+            <input id="visual_vaginal_exam_findings.normal" type="checkbox"
+                   name="7490^VISUAL VAGINAL EXAM FINDINGS ^99DCT" value="1115^NORMAL^99DCT">
+            <label for="visual_vaginal_exam_findings.normal">Normal</label><br/>
+
+            <input id="visual_vaginal_exam_findings.vaginal_intraepithelial_neoplasia_grade_1" type="checkbox"
+                   name="7490^VISUAL VAGINAL EXAM FINDINGS ^99DCT"
+                   value="7492^VAGINAL INTRAEPITHELIAL NEOPLASIA GRADE 1^99DCT">
+            <label for="visual_vaginal_exam_findings.vaginal_intraepithelial_neoplasia_grade_1">
+                Vaginal intraepithelial neoplasia grade 1
+            </label><br/>
+
+            <input id="visual_vaginal_exam_findings.vaginal_intraepithelial_neoplasia_grade_2" type="checkbox"
+                   name="7490^VISUAL VAGINAL EXAM FINDINGS ^99DCT"
+                   value="7491^VAGINAL INTRAEPITHELIAL NEOPLASIA GRADE 2 ^99DCT">
+            <label for="visual_vaginal_exam_findings.vaginal_intraepithelial_neoplasia_grade_2">
+                Vaginal intraepithelial neoplasia grade 2
+            </label><br/>
+
+            <input id="visual_vaginal_exam_findings.vaginal_intraepithelial_neoplasia_grade_3" type="checkbox"
+                   name="7490^VISUAL VAGINAL EXAM FINDINGS ^99DCT"
+                   value="7435^VAGINAL INTRAEPITHELIAL NEOPLASIA GRADE 3^99DCT">
+            <label for="visual_vaginal_exam_findings.vaginal_intraepithelial_neoplasia_grade_3">
+                Vaginal intraepithelial neoplasia grade 3
+            </label><br/>
+
+            <input id="visual_vaginal_exam_findings.other_non_coded" type="checkbox"
+                   name="7490^VISUAL VAGINAL EXAM FINDINGS ^99DCT" value="5622^OTHER NON-CODED^99DCT">
+            <label for="visual_vaginal_exam_findings.other_non_coded">Other</label><br/>
+        </fieldset>
+    </div>
+    <div class="form-group">
+        <label>Visual vulval exam findings</label><br/>
+        <label class="alert alert-info">Findings on the vulva based on a performed exam.</label>
+        <fieldset name="7487^VISUAL VULVAL EXAM FINDINGS ^99DCT" data-concept="7487^VISUAL VULVAL EXAM FINDINGS ^99DCT">
+            <input id="visual_vulval_exam_findings.normal" type="checkbox"
+                   name="7487^VISUAL VULVAL EXAM FINDINGS ^99DCT" value="1115^NORMAL^99DCT">
+            <label for="visual_vulval_exam_findings.normal">Normal</label><br/>
+
+            <input id="visual_vulval_exam_findings.condyloma_or_vulvar_intraepithelial_neoplasia_grade_1"
+                   type="checkbox" name="7487^VISUAL VULVAL EXAM FINDINGS ^99DCT"
+                   value="7489^CONDYLOMA OR VULVAR INTRAEPITHELIAL NEOPLASIA GRADE 1^99DCT">
+            <label for="visual_vulval_exam_findings.condyloma_or_vulvar_intraepithelial_neoplasia_grade_1">
+                Condyloma or vulvar intraepithelial neoplasia grade 1
+            </label><br/>
+
+            <input id="visual_vulval_exam_findings.vulvar_intraepithelial_neoplasia_grade_2" type="checkbox"
+                   name="7487^VISUAL VULVAL EXAM FINDINGS ^99DCT"
+                   value="7488^VULVAR INTRAEPITHELIAL NEOPLASIA GRADE 2^99DCT">
+            <label for="visual_vulval_exam_findings.vulvar_intraepithelial_neoplasia_grade_2">
+                Vulvar intraepithelial neoplasia grade 2
+            </label><br/>
+
+            <input id="visual_vulval_exam_findings.vulvar_intraepithelial_neoplasia_grade_3" type="checkbox"
+                   name="7487^VISUAL VULVAL EXAM FINDINGS ^99DCT"
+                   value="7483^VULVAR INTRAEPITHELIAL NEOPLASIA GRADE 3^99DCT">
+            <label for="visual_vulval_exam_findings.vulvar_intraepithelial_neoplasia_grade_3">
+                Vulvar intraepithelial neoplasia grade 3
+            </label><br/>
+
+            <input id="visual_vulval_exam_findings.other_non_coded" type="checkbox"
+                   name="7487^VISUAL VULVAL EXAM FINDINGS ^99DCT" value="5622^OTHER NON-CODED^99DCT">
+            <label for="visual_vulval_exam_findings.other_non_coded">Other</label><br/>
+        </fieldset>
+    </div>
+</div>
+
+<div class="section">
+    <div class="form-group">
+        <label for="ccsp_satisfactory_colpo">Is Provider Satisfied With Quality of Colposcopy Done During Today's
+            Visit?</label>
+        <select class="form-control" id="ccsp_satisfactory_colpo" name="ccsp_satisfactory_colpo" type="text"
+                data-concept="7428^Satisfactory Colposcopy^99DCT" required="required">
+            <option value="">...</option>
+            <option value="1065^Yes^99DCT">Yes</option>
+            <option value="1066^No^99DCT">No, entire squamocolumnar junction (SCJ)not seen</option>
+            <option value="1118^Colposcopy not done today^99DCT">Colposcopy not done today</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="ccsp_lesion">Extent of Visualized Lesion</label>
+        <select class="form-control" id="ccsp_lesion" name="ccsp_lesion" type="text"
+                data-concept="7477^Lesion^99DCT" required="required">
+            <option value="">...</option>
+            <option value="7474^&lt;50% of cervix^99DCT">&lt;50% of cervix</option>
+            <option value="7475^&gt;50% of cervix^99DCT">&gt;50% of cervix</option>
+            <option value="7476^Extends into canal^99DCT">Extends into canal</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="ccsp_findings">Findings:</label>
+        <select class="form-control" id="ccsp_findings" name="ccsp_findings" type="text"
+                data-concept="7477^Lesion^99DCT" required="required">
+            <option value="">...</option>
+            <option value="1115^NORMAL^99DCT">Normal</option>
+            <option value="7470^Punctuation^99DCT">Punctuation</option>
+            <option value="7469^Acetowhite lesion^99DCT">Acetowhite lesion</option>
+            <option value="7471^Mosaicism^99DCT">Mosaicism</option>
+
+            <option value="7472^Atypical Vessels^99DCT">Atypical Vessels</option>
+            <option value="7473^Internal borders (variegated)^99DCT">Internal borders (variegated)</option>
+            <option value="5622^OTHER NON-CODED^99DCT">Other non-coded</option>
+            <option value="1624^DO NOT KNOW^99DCT">Do not know</option>
+        </select>
+    </div>
+</div>
+
+<div class="section repeat procedures_detailed" id="procedures_detailed"
+     data-name="procedures_detailed"
+     data-concept="7480^PROCEDURES DONE THIS VISIT, DETAILED^99DCT">
+    <h3>Procedures Done</h3>
+
+    <div class="form-group">
+        <label for="procedures_done_this_visit">Procedure done this visit</label>
+        <select class="form-control" id="procedures_done_this_visit"
+                name="procedures_done_this_visit"
+                data-concept="7479^PROCEDURES DONE THIS VISIT^99DCT" required="required">
+            <option value="">...</option>
+            <option value="6511^EXCISIONAL OR SURGICAL BIOPSY^99DCT">Biopsies</option>
+            <option value="7478^ENDOCERVICAL CURETTAGE^99DCT">Endocervical curettage (ECC)</option>
+            <option value="7466^CRYOTHERAPY^99DCT">Cryotherapy</option>
+            <option value="7147^LOOP ELECTROSURGICAL EXCISION PROCEDURE^99DCT">
+                Loop Electrosurgical Excision Procedure (LEEP)
+            </option>
+            <option value="1107^NONE^99DCT">None</option>
+        </select>
+    </div>
+
+    <div class="form-group relevant_procedures_done_this_visit_leep">
+        <label for="anatomic_location_description">Provide Location of specimen</label>
+        <select class="form-control" id="anatomic_location_description"
+                name="anatomic_location_description" type="text"
+                data-concept="8268^ANATOMIC LOCATION DESCRIPTION^99DCT">
+            <option value="">...</option>
+            <option value="8266^SUPERFICIAL^99DCT">Superficial</option>
+            <option value="8267^DEEP^99DCT">Deep</option>
+            <option value="5622^OTHER NON-CODED^99DCT">Other</option>
+        </select>
+    </div>
+
+    <div class="form-group relevant_procedures_done_this_visit_biopsies">
+        <label for="clock_face_cervical_biopsy_location">Provide location where biopsy for
+            specimen was done: __O'clock</label>
+        <input class="form-control" id="clock_face_cervical_biopsy_location"
+               name="clock_face_cervical_biopsy_location" type="number"
+               data-concept="7481^CLOCK FACE CERVICAL BIOPSY LOCATION ^99DCT">
+    </div>
+
+    <div class="form-group relevant_procedures_done_this_visit_leep">
+        <label for="number_of_specimen_collected">Number of speciment collected</label>
+        <input class="form-control" id="number_of_specimen_collected"
+               name="number_of_specimen_collected" type="number"
+               data-concept="7481^CLOCK FACE CERVICAL BIOPSY LOCATION ^99DCT">
+    </div>
+
+    <div class="form-group">
+        <label for="ccsp_plan">Management Plan</label>
+        <select class="form-control" id="ccsp_plan" name="ccsp_plan" type="text"
+                data-concept="7500^GYNECOLOGIC ONCOLOGY PLAN^99DCT" required="required">
+            <option value="">...</option>
+            <option value="7498^ROUTINE VIA IN 6-MONTHS^99DCT">VIA 6 Months follow up</option>
+            <option value="7496^ROUTINE VIA IN 1-YEAR^99DCT">Routine VIA in 1-year</option>
+            <option value="7497^ROUTINE VIA IN 3-YEARS^99DCT">Routine VIA in 3-years</option>
+            <option value="7383^REFERRAL FOR COLPOSCOPY^99DCT">Referral for Colposcopy</option>
+            <option value="7499^REFERRAL TO GYNAE-ONCOLOGY^99DCT">Referral to Gynae-Oncology</option>
+            <option value="5622^OTHER NON-CODED^99DCT"></option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="ccsp_directive_fp">Directive family planning counseling performed</label>
+        <select class="form-control" id="ccsp_directive_fp" name="ccsp_directive_fp" type="text"
+                data-concept="6681^FAMILY PLANNING COUNSELING PERFORMED^99DCT" required="required">
+            <option value="">...</option>
+            <option value="1065^YES^99DCT">Yes</option>
+            <option value="1066^NO^99DCT">No</option>
+        </select>
+    </div>
+</div>
+<div class="section">
+    <div class="form-group">
+        <label>Family planning refills dispensed</label>
+        <fieldset name="7495^FAMILY PLANNING REFILL PROVIDED^99DCT"
+                  data-concept="7495^FAMILY PLANNING REFILL PROVIDED^99DCT">
+            <input id="ccsp_refill_dispense.condoms" type="checkbox" name="7495^FAMILY PLANNING REFILL PROVIDED^99DCT"
+                   value="190^CONDOMS^99DCT">
+            <label for="ccsp_refill_dispense.condoms">Condoms</label><br/>
+
+            <input id="ccsp_refill_dispense.female_sterilization" type="checkbox"
+                   name="7495^FAMILY PLANNING REFILL PROVIDED^99DCT" value="5276^FEMALE STERILIZATION^99DCT">
+            <label for="ccsp_refill_dispense.female_sterilization">Sterilization / Hysterectomy</label><br/>
+
+            <input id="ccsp_refill_dispense.intrauterine_device" type="checkbox"
+                   name="7495^FAMILY PLANNING REFILL PROVIDED^99DCT" value="5275^INTRAUTERINE DEVICE^99DCT">
+            <label for="ccsp_refill_dispense.intrauterine_device">Intrauterine device</label><br/>
+
+            <input id="ccsp_refill_dispense.diaphragm" type="checkbox" name="7495^FAMILY PLANNING REFILL PROVIDED^99DCT"
+                   value="5278^DIAPHRAGM^99DCT">
+            <label for="ccsp_refill_dispense.diaphragm">Diaphragm / Cervical cap</label><br/>
+
+            <input id="ccsp_refill_dispense.family_planning_via_oral_contraceptive_pills" type="checkbox"
+                   name="7495^FAMILY PLANNING REFILL PROVIDED^99DCT" value="780^ORAL CONTRACEPTION^99DCT">
+            <label for="ccsp_refill_dispense.family_planning_via_oral_contraceptive_pills">Oral contraceptive
+                pills</label><br/>
+
+            <input id="ccsp_refill_dispense.natural_family_planning" type="checkbox"
+                   name="7495^FAMILY PLANNING REFILL PROVIDED^99DCT" value="5277^NATURAL FAMILY PLANNING^99DCT">
+            <label for="ccsp_refill_dispense.natural_family_planning">Natural family planning</label><br/>
+
+            <input id="ccsp_refill_dispense.injectable_contraceptives" type="checkbox"
+                   name="7495^FAMILY PLANNING REFILL PROVIDED^99DCT" value="5279^INJECTABLE CONTRACEPTIVES^99DCT">
+            <label for="ccsp_refill_dispense.injectable_contraceptives">Injectable hormonesa</label><br/>
+
+            <input id="ccsp_refill_dispense.contraceptive_implant" type="checkbox"
+                   name="7495^FAMILY PLANNING REFILL PROVIDED^99DCT" value="6220^CONTRACEPTIVE IMPLANT^99DCT">
+            <label for="ccsp_refill_dispense.contraceptive_implant">Implant / Patching</label><br/>
+
+            <input id="ccsp_refill_dispense.other_non_coded" type="checkbox"
+                   name="7495^FAMILY PLANNING REFILL PROVIDED^99DCT" value="5622^OTHER NON-CODED^99DCT">
+            <label for="ccsp_refill_dispense.other_non_coded">Other</label><br/>
+
+            <input id="ccsp_refill_dispense.none" type="checkbox" name="7495^FAMILY PLANNING REFILL PROVIDED^99DCT"
+                   value="1107^NONE^99DCT">
+            <label for="ccsp_refill_dispense.none">None</label><br/>
+
+            <input id="ccsp_refill_dispense.do_not_know" type="checkbox"
+                   name="7495^FAMILY PLANNING REFILL PROVIDED^99DCT" value="1624^DO NOT KNOW^99DCT">
+            <label for="ccsp_refill_dispense.do_not_know">Do not know</label><br/>
+        </fieldset>
+    </div>
+</div>
+
+<div class="section">
+    <div class="form-group">
+        <label>New family planning method initiated</label>
+        <fieldset name="7240^FAMILY PLANNING METHOD CHOSEN^99DCT"
+                  data-concept="7240^FAMILY PLANNING METHOD CHOSEN^99DCT">
+            <input id="ccsp_new_method.condoms" type="checkbox" name="7240^FAMILY PLANNING METHOD CHOSEN^99DCT"
+                   value="190^CONDOMS^99DCT">
+            <label for="ccsp_new_method.condoms">Condoms</label><br/>
+
+            <input id="ccsp_new_method.female_sterilization" type="checkbox"
+                   name="7240^FAMILY PLANNING METHOD CHOSEN^99DCT" value="5276^FEMALE STERILIZATION^99DCT">
+            <label for="ccsp_new_method.female_sterilization">Sterilization / Hysterectomy</label><br/>
+
+            <input id="ccsp_new_method.intrauterine_device" type="checkbox"
+                   name="7240^FAMILY PLANNING METHOD CHOSEN^99DCT" value="5275^INTRAUTERINE DEVICE^99DCT">
+            <label for="ccsp_new_method.intrauterine_device">Intrauterine device</label><br/>
+
+            <input id="ccsp_new_method.diaphragm" type="checkbox" name="7240^FAMILY PLANNING METHOD CHOSEN^99DCT"
+                   value="5278^DIAPHRAGM^99DCT">
+            <label for="ccsp_new_method.diaphragm">Diaphragm / Cervical cap</label><br/>
+
+            <input id="ccsp_new_method.family_planning_via_oral_contraceptive_pills" type="checkbox"
+                   name="7240^FAMILY PLANNING METHOD CHOSEN^99DCT" value="780^ORAL CONTRACEPTION^99DCT">
+            <label for="ccsp_new_method.family_planning_via_oral_contraceptive_pills">Oral contraceptive
+                pills</label><br/>
+
+            <input id="ccsp_new_method.natural_family_planning" type="checkbox"
+                   name="7240^FAMILY PLANNING METHOD CHOSEN^99DCT" value="5277^NATURAL FAMILY PLANNING^99DCT">
+            <label for="ccsp_new_method.natural_family_planning">Natural family planning</label><br/>
+
+            <input id="ccsp_new_method.injectable_contraceptives" type="checkbox"
+                   name="7240^FAMILY PLANNING METHOD CHOSEN^99DCT" value="5279^INJECTABLE CONTRACEPTIVES^99DCT">
+            <label for="ccsp_new_method.injectable_contraceptives">Injectable hormonesa</label><br/>
+
+            <input id="ccsp_new_method.contraceptive_implant" type="checkbox"
+                   name="7240^FAMILY PLANNING METHOD CHOSEN^99DCT" value="6220^CONTRACEPTIVE IMPLANT^99DCT">
+            <label for="ccsp_new_method.contraceptive_implant">Implant / Patching</label><br/>
+
+            <input id="ccsp_new_method.other_non_coded" type="checkbox" name="7240^FAMILY PLANNING METHOD CHOSEN^99DCT"
+                   value="5622^OTHER NON-CODED^99DCT">
+            <label for="ccsp_new_method.other_non_coded">Other</label><br/>
+
+            <input id="ccsp_new_method.none" type="checkbox" name="7240^FAMILY PLANNING METHOD CHOSEN^99DCT"
+                   value="1107^NONE^99DCT">
+            <label for="ccsp_new_method.none">None</label><br/>
+
+            <input id="ccsp_new_method.do_not_know" type="checkbox" name="7240^FAMILY PLANNING METHOD CHOSEN^99DCT"
+                   value="1624^DO NOT KNOW^99DCT">
+            <label for="ccsp_new_method.do_not_know">Do not know</label><br/>
+        </fieldset>
+    </div>
+</div>
+
+<div class="section">
+    <div class="form-group">
+        <label for="freetext_general">Comments</label>
+        <input class="form-control" id="freetext_general" name="freetext_general" type="text"
+               data-concept="1915^FREETEXT GENERAL^99DCT">
+    </div>
+
+    <div class="form-group">
+        <label for="return_visit_date">Return visit date:</label>
+        <input class="form-control datepicker checkFutureDate" data-concept="5096^RETURN VISIT DATE^99DCT"
+               id="return_visit_date" name="return_visit_date" type="text"
+               readonly="readonly">
+    </div>
+
+    <div class="form-group text-center">
+        <input class="btn btn-primary" id="save_draft" type="button" value="Save"/>
+        <input class="btn btn-primary" id="submit_form" type="button" value="Submit"/>
+    </div>
+</div>
+</div>
+</form>
+</body>
+
+</html>
