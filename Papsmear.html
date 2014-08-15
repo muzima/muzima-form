@@ -444,6 +444,68 @@
                 $('.show_provider_id_text').show();
             }
         });
+
+        /* Start - Ensuring some selection are selected alone */
+        $.fn.checkSelectedAlone = function (nameArray, singleValues, message) {
+            var $validator = $('form').validate();
+            var errors = {};
+            var final_result = true;
+            $.each(nameArray, function (i, elem) {
+                var filedSetElem = $('fieldset[name="' + elem + '"]');
+                var result = isValidForSelection(filedSetElem, singleValues);
+                if (!result) {
+                    errors[elem] = message;
+                    final_result = false;
+                }
+            });
+            if (!final_result) {
+                $validator.showErrors(errors);
+            }
+            return final_result;
+        };
+
+        var isValidForSelection = function (element, singleValues) {
+            var $fieldset = $(element);
+            if ($fieldset.prop('tagName') != 'FIELDSET') {
+                return true;
+            }
+            var result = true;
+            var totalSelected = $fieldset.find('input:checkbox:checked').length;
+            if (totalSelected > 1) {
+                $.each($fieldset.find('input:checkbox:checked'), function (i, cBoxElement) {
+                    $.each(singleValues, function (i, singleValue) {
+                        if ($(cBoxElement).val() == singleValue) {
+                            result = false;
+                        }
+                    });
+                })
+            }
+            return result;
+        };
+        /* End - Ensuring some selection are selected alone */
+
+        /* Start - Example of calling above validation */
+        // none for complaints
+        var complaintsName = ['5219^CHIEF COMPLAINT^99DCT'];
+        var complaintsSingleValues = ['1107^NONE^99DCT'];
+        var complaintsMessage = "If None is selected, it should be the only option.";
+
+        // none and don't know for the family planning
+        var familyPlanningName = ['8253^FAMILY PLANNING METHOD EVER USED^99DCT'];
+        var familyPlanningSingleValues = ['1624^DO NOT KNOW^99DCT', '1107^NONE^99DCT'];
+        var familyPlanningMessage = "If None or Don't know is selected, it should be the only option.";
+
+        // normal for papanicolaou exam
+        var papanicolaouName = ['7423^MOST RECENT PAPANICOLAOU SMEAR RESULT^99DCT'];
+        var papanicolaouSingleValues = ['1115^NORMAL^99DCT', '1624^DO NOT KNOW^99DCT'];
+        var papanicolaouMessage = "If Normal or Don't Know is selected, it should be the only option.";
+
+        $.fn.customValidationCheck = function () {
+            return $.fn.checkSelectedAlone(complaintsName, complaintsSingleValues, complaintsMessage)
+                    && $.fn.checkSelectedAlone(familyPlanningName, familyPlanningSingleValues, familyPlanningMessage)
+                    && $.fn.checkSelectedAlone(papanicolaouName, papanicolaouSingleValues, papanicolaouMessage)
+        };
+        /* End - Example of calling above validation */
     });
 </script>
 

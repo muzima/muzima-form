@@ -1023,30 +1023,36 @@
     /* End - Ensuring some selection are selected alone */
 
     /* Start - Example of calling above validation */
-    // none for the referrals ordered
-    var referralOrderedName = ['1272^REFERRALS ORDERED^99DCT'];
-    var referralOrderedSingleValues = ['1107^NONE^99DCT'];
-    var referralOrderedMessage = "If None is selected, it should be the only option.";
+    // none for complaints
+    var complaintsName = ['5219^CHIEF COMPLAINT^99DCT'];
+    var complaintsSingleValues = ['1107^NONE^99DCT'];
+    var complaintsMessage = "If None is selected, it should be the only option.";
 
     // none and don't know for the family planning
     var familyPlanningName = ['8253^FAMILY PLANNING METHOD EVER USED^99DCT'];
     var familyPlanningSingleValues = ['1624^DO NOT KNOW^99DCT', '1107^NONE^99DCT'];
     var familyPlanningMessage = "If None or Don't know is selected, it should be the only option.";
 
-    // no complaint for breast
-    var reviewBreastName = ['6492^REVIEW OF SYSTEMS - BREAST^99DCT'];
-    var reviewBreastSingleValues = ['664^NEGATIVE^99DCT'];
-    var reviewBreastMessage = "If No Complaints is selected, it should be the only option.";
+    // normal for vaginal exam
+    var vaginalExamName = ['7490^VISUAL VAGINAL EXAM FINDINGS ^99DCT'];
+    var vaginalExamSingleValues = ['1115^NORMAL^99DCT', ];
+    var vaginalExamMessage = "If Normal is selected, it should be the only option.";
 
-    var lymphNodeName = ['1121^LYMPH NODE EXAM FINDINGS^99DCT'];
-    var lymphNodeSingleValues = ['1118^NOT DONE^99DCT', '1115^NORMAL^99DCT', '161^LYMPHADENOPATHY^99DCT'];
-    var lymphNodeMessage = "If Normal, Not Done or Generalized lympadenopathy is selected, it should be the only option";
+    // normal for cervical
+    var cervicalExamName = ['7484^VISUAL CERVICAL EXAM FINDINGS^99DCT'];
+    var cervicalExamSingleValues = ['1115^NORMAL^99DCT', ];
+    var cervicalExamMessage = "If Normal is selected, it should be the only option.";
+
+    var vulvalExamName = ['7487^VISUAL VULVAL EXAM FINDINGS ^99DCT'];
+    var vulvalExamSingleValues = ['1115^NORMAL^99DCT'];
+    var vulvalExamMessage = "If Normal is selected, it should be the only option";
 
     $.fn.customValidationCheck = function () {
-        return $.fn.checkSelectedAlone(referralOrderedName, referralOrderedSingleValues, referralOrderedMessage)
+        return $.fn.checkSelectedAlone(complaintsName, complaintsSingleValues, complaintsMessage)
                 && $.fn.checkSelectedAlone(familyPlanningName, familyPlanningSingleValues, familyPlanningMessage)
-                && $.fn.checkSelectedAlone(reviewBreastName, reviewBreastSingleValues, reviewBreastMessage)
-                && $.fn.checkSelectedAlone(lymphNodeName, lymphNodeSingleValues, lymphNodeMessage);
+                && $.fn.checkSelectedAlone(vaginalExamName, vaginalExamSingleValues, vaginalExamMessage)
+                && $.fn.checkSelectedAlone(cervicalExamName, cervicalExamSingleValues, cervicalExamMessage)
+                && $.fn.checkSelectedAlone(vulvalExamName, vulvalExamSingleValues, vulvalExamMessage);
     };
     /* End - Example of calling above validation */
 
