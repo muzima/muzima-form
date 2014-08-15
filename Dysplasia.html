@@ -792,5 +792,338 @@
 </div>
 </form>
 </body>
+<script type="text/javascript">$(document).ready(function () {
+
+    /* Start - Function to save the form */
+    document.submit = function () {
+        var validForm = $("form").valid();
+        if (typeof $.fn.customValidationCheck !== 'undefined' && typeof $.fn.customValidationCheck === 'function') {
+            validForm = validForm && $.fn.customValidationCheck();
+        }
+        if (validForm) {
+            save("complete");
+        }
+    };
+
+    document.saveDraft = function () {
+        save("incomplete");
+        return false;
+    };
+
+    var save = function (status) {
+        var jsonData = JSON.stringify($('form').serializeEncounterForm());
+        console.log(jsonData);
+    };
+    /* End - Function to save the form */
+
+    $('#save_draft').click(function () {
+        document.saveDraft();
+    });
+
+    $('#submit_form').click(function () {
+        document.submit();
+    });
+
+    $('#breastcancer_form').validate({
+        rules: {
+            gravida: {
+                number: true,
+                min: 0
+            },
+            parity: {
+                number: true,
+                min: 0
+            },
+            age_of_first_pregnancy: {
+                number: true,
+                range: [8, 50]
+            }
+        },
+        submitHandler: function (form) {
+            $('#result').html(JSON.stringify($('form').serializeEncounterForm(), undefined, 2));
+        }
+    });
+
+    var locationName = [
+        {"val": "7", "label": "Chulaimbo"},
+        {"val": "3", "label": "Turbo"},
+        {"val": "17", "label": "Iten"},
+        {"val": "2", "label": "Mosoriot"},
+        {"val": "8", "label": "Webuye"},
+        {"val": "9", "label": "Ampath MTRH"}
+    ];
+    $('#encounter\\.location_id').autocomplete({
+        source: locationName,
+        create: function (event, ui) {
+            var location_val = $('input[name="encounter\\.location_id"]').val();
+            $.each(locationName, function (i, elem) {
+                if (elem.val == location_val) {
+                    $('#encounter\\.location_id').val(elem.label)
+                }
+                ;
+            });
+        },
+        select: function (event, ui) {
+            $('input[name="encounter\\.location_id"]').val(ui.item.val);
+            $('#encounter\\.location_id').val(ui.item.label);
+            return false;
+        }
+    });
+
+    var provider = [
+        {"label": "Daurine Achieng Agumba", "val": "3419-9"},
+        {"label": "Irene Chepkosgei	Kurgat", "val": "3420-7"},
+        {"label": "Rose	Cheruto	Toroitich", "val": "3421-5"},
+        {"label": "Mary	Kipkurui Kimosop", "val": "3422-3"},
+        {"label": "Jacqueline Chemom Ndiema", "val": "3423-1"},
+        {"label": "Grace Wanjiru Mwangi", "val": "3424-9"},
+        {"label": "Collette	Mabia Palapala", "val": "3425-6"},
+        {"label": "Dorice Erima	Wekesa	Female", "val": "3426-4"},
+        {"label": "Agnes Kagure	Boen", "val": "120-6"},
+        {"label": "Linet Kerubo	Onyancha", "val": "3427-2"},
+        {"label": "Delinah Muchai Tanui", "val": "1208-8"},
+        {"label": "Hellen Mushimbi Indumbwe", "val": "1208-8"},
+        {"label": "Lydia Cherugut Samoei", "val": "1525-5"},
+        {"label": "Ruth	Kalunda	Nzili", "val": "1529-7"},
+        {"label": "Lucy	Cheruto	Birgen", "val": "3428-0"},
+        {"label": "Gratiah Nafuna Khaemba", "val": "1409-2"},
+        {"label": "Leonida Chemutai	Mengich", "val": "1357-3"},
+        {"label": "Ann Wangoi Maina", "val": "1412-6"},
+        {"label": "Elkanah Omenge Orango", "val": "1474-6"},
+        {"label": "Peter Mukhanadale Istura", "val": "1478-7"},
+        {"label": "Hillary Mabeya", "val": "1476-1"},
+        {"label": "Astrid Christoffersen Deb", "val": "1237-7"},
+        {"label": "Philip Kipkirui Tonui", "val": "1485-7"}
+    ];
+
+    $('#encounter\\.provider_id_select').autocomplete({
+        source: provider,
+        create: function (event, ui) {
+            var provider_val = $('input[name="encounter\\.provider_id_select"]').val();
+            $.each(provider, function (i, elem) {
+                if (elem.val == provider_val) {
+                    $('#encounter\\.provider_id_select').val(elem.label)
+                }
+            });
+        },
+        select: function (event, ui) {
+            $('input[name="encounter\\.provider_id_select"]').val(ui.item.val);
+            $('#encounter\\.provider_id_select').val(ui.item.label);
+            $('#encounter\\.provider_id').val(ui.item.val);
+            $('.show_provider_id_text').hide();
+            return false;
+        }
+    });
+    $('#encounter\\.provider_id_select').change(function () {
+        if ($('#encounter\\.provider_id_select').val() === '') {
+            $('#encounter\\.provider_id').val('');
+            $('.show_provider_id_text').show();
+        }
+    });
+
+    /* Start - Checking that parity is less than gravida */
+    $.validator.addMethod("lessThanGravida", function (value, element) {
+                if ($.fn.isNotRequiredAndEmpty(value, element)) return true;
+                var gravida = parseInt($(element).closest('.section').find('.gravida').val());
+                return (parseInt(value) <= gravida);
+            }, "Number of deliveries can't be more than number of pregnancies."
+    );
+
+    // attach 'lessThanGravida' class to perform validation.
+    jQuery.validator.addClassRules({
+        lessThanGravida: { lessThanGravida: true }
+    });
+    /* End - lessThanGravida*/
+
+    /* Start - Female only breast cancer history */
+    var $patientSex = $('#patient\\.sex');
+    $patientSex.change(function () {
+        var $womenOnly = $('.relevant_female');
+        if ($patientSex.val() != 'F') {
+            $womenOnly.hide();
+        } else {
+            $womenOnly.show();
+        }
+    });
+    $patientSex.trigger('change');
+    /* End - Female only breast cancer history */
+
+    /* Start - Toggle based on HIV status */
+    var $hivStatus = $('#hiv_status');
+    $hivStatus.change(function () {
+        var hivStatusValue = $hivStatus.val();
+        var $hivStatusRelevant = $('.relevant_hiv_status');
+        if (hivStatusValue == '703^POSITIVE^99DCT') {
+            $hivStatusRelevant.show();
+        } else {
+            $hivStatusRelevant.hide();
+        }
+    });
+    $hivStatus.trigger('change');
+    /* End - Toggle based on HIV status */
+
+    /* Start - Toggle based on visit type */
+    var $visitType = $('#current_visit_type');
+    $visitType.change(function () {
+        var visitTypeValue = $visitType.val();
+        var $visitTypeRelevant = $('.relevant_current_visit_type');
+        if (visitTypeValue === '' || visitTypeValue == '7850^INITIAL VISIT ^99DCT') {
+            $visitTypeRelevant.hide();
+        } else {
+            $visitTypeRelevant.show();
+        }
+    });
+    $visitType.trigger('change');
+    /* Start - Toggle based on visit type */
+
+    /* Start - Toggle for gravida and parity based on gravida value */
+    var $gravida = $('#gravida');
+    $gravida.change(function () {
+        var gravidaValue = parseInt($gravida.val());
+        var $gravidaRelevant = $('.relevant_gravida');
+        if (gravidaValue > 0) {
+            $gravidaRelevant.show();
+        } else {
+            $gravidaRelevant.hide();
+        }
+    });
+    $gravida.trigger('change');
+    /* End - Toggle for gravida and parity based on gravida value */
+
+    /* Start - Menstruation status skip logic */
+    var $menstruationStatus = $('#menstruation_status');
+    $menstruationStatus.change(function () {
+        var menstruationStatusValue = $menstruationStatus.val();
+        var $lackPeriod = $('.reason_for_lack_of_period');
+        var $lastMenstruation = $('.last_menstrual_period_date');
+        if (menstruationStatusValue == '6496^POST-MENOPAUSAL^99DCT'
+                || menstruationStatusValue == '2060^AMENORRHEA^99DCT'
+                || menstruationStatusValue == '5990^MENOPAUSAL^99DCT') {
+            $lastMenstruation.hide();
+        } else {
+            $lastMenstruation.show();
+        }
+        if (menstruationStatusValue == '6496^POST-MENOPAUSAL^99DCT'
+                || menstruationStatusValue == '2060^AMENORRHEA^99DCT') {
+            $lackPeriod.show();
+        } else {
+            $lackPeriod.hide();
+        }
+    });
+    $menstruationStatus.trigger('change');
+    /* End - Menstruation status skip logic */
+
+    /* Start - Last menstruation date */
+    var $lastMenstruationDate = $('#last_menstrual_period_date');
+    $lastMenstruationDate.change(function () {
+        var dateString = $lastMenstruationDate.val();
+        var date = new Date(dateString);
+        var today = new Date();
+        var timeDiff = today.getTime() - date.getTime();
+        var maxDiff = 35 * 24 * 60 * 60 * 1000;
+        var $urinePregnancy = $('.urine_pregnancy_test_qualitative');
+        if (timeDiff > maxDiff) {
+            $urinePregnancy.show();
+        } else {
+            $urinePregnancy.hide();
+        }
+    });
+    $lastMenstruationDate.trigger('change');
+    /* End - Last menstruation date */
+
+    /* Start - Procedure done this visit */
+    var procedureDoneDetailed = function (selectedElement) {
+        var allProcedureDone = $("select[name='procedures_done_this_visit']");
+        $.each(allProcedureDone, function (index, object) {
+            $(object).change(function () {
+                var procedureDoneValue = $(this).val();
+                var $procedureDoneRelevantBiopsies = $(this).closest('.section').find('.relevant_procedures_done_this_visit_biopsies');
+                var $procedureDoneRelevantLeep = $(this).closest('.section').find('.relevant_procedures_done_this_visit_leep');
+                if (procedureDoneValue == '7147^LOOP ELECTROSURGICAL EXCISION PROCEDURE^99DCT') {
+                    $procedureDoneRelevantBiopsies.hide();
+                    $procedureDoneRelevantLeep.show();
+                } else if (procedureDoneValue == '6511^EXCISIONAL OR SURGICAL BIOPSY^99DCT') {
+                    $procedureDoneRelevantBiopsies.show();
+                    $procedureDoneRelevantLeep.hide();
+                } else {
+                    $procedureDoneRelevantBiopsies.hide();
+                    $procedureDoneRelevantLeep.hide();
+                }
+            });
+            $(object).trigger('change');
+        });
+    };
+    procedureDoneDetailed();
+    /* End - Procedure done this visit */
+
+    /* Start - Ensuring some selection are selected alone */
+    $.fn.checkSelectedAlone = function (nameArray, singleValues, message) {
+        var $validator = $('form').validate();
+        var errors = {};
+        var final_result = true;
+        $.each(nameArray, function (i, elem) {
+            var filedSetElem = $('fieldset[name="' + elem + '"]');
+            var result = isValidForSelection(filedSetElem, singleValues);
+            if (!result) {
+                errors[elem] = message;
+                final_result = false;
+            }
+        });
+        if (!final_result) {
+            $validator.showErrors(errors);
+        }
+        return final_result;
+    };
+
+    var isValidForSelection = function (element, singleValues) {
+        var $fieldset = $(element);
+        if ($fieldset.prop('tagName') != 'FIELDSET') {
+            return true;
+        }
+        var result = true;
+        var totalSelected = $fieldset.find('input:checkbox:checked').length;
+        if (totalSelected > 1) {
+            $.each($fieldset.find('input:checkbox:checked'), function (i, cBoxElement) {
+                $.each(singleValues, function (i, singleValue) {
+                    if ($(cBoxElement).val() == singleValue) {
+                        result = false;
+                    }
+                });
+            })
+        }
+        return result;
+    };
+    /* End - Ensuring some selection are selected alone */
+
+    /* Start - Example of calling above validation */
+    // none for the referrals ordered
+    var referralOrderedName = ['1272^REFERRALS ORDERED^99DCT'];
+    var referralOrderedSingleValues = ['1107^NONE^99DCT'];
+    var referralOrderedMessage = "If None is selected, it should be the only option.";
+
+    // none and don't know for the family planning
+    var familyPlanningName = ['8253^FAMILY PLANNING METHOD EVER USED^99DCT'];
+    var familyPlanningSingleValues = ['1624^DO NOT KNOW^99DCT', '1107^NONE^99DCT'];
+    var familyPlanningMessage = "If None or Don't know is selected, it should be the only option.";
+
+    // no complaint for breast
+    var reviewBreastName = ['6492^REVIEW OF SYSTEMS - BREAST^99DCT'];
+    var reviewBreastSingleValues = ['664^NEGATIVE^99DCT'];
+    var reviewBreastMessage = "If No Complaints is selected, it should be the only option.";
+
+    var lymphNodeName = ['1121^LYMPH NODE EXAM FINDINGS^99DCT'];
+    var lymphNodeSingleValues = ['1118^NOT DONE^99DCT', '1115^NORMAL^99DCT', '161^LYMPHADENOPATHY^99DCT'];
+    var lymphNodeMessage = "If Normal, Not Done or Generalized lympadenopathy is selected, it should be the only option";
+
+    $.fn.customValidationCheck = function () {
+        return $.fn.checkSelectedAlone(referralOrderedName, referralOrderedSingleValues, referralOrderedMessage)
+                && $.fn.checkSelectedAlone(familyPlanningName, familyPlanningSingleValues, familyPlanningMessage)
+                && $.fn.checkSelectedAlone(reviewBreastName, reviewBreastSingleValues, reviewBreastMessage)
+                && $.fn.checkSelectedAlone(lymphNodeName, lymphNodeSingleValues, lymphNodeMessage);
+    };
+    /* End - Example of calling above validation */
+
+});
+</script>
 
 </html>
