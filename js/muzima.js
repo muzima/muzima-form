@@ -27,8 +27,16 @@ $(document).ready(function () {
     };
 
     var save = function (status) {
-        var jsonData = JSON.stringify($('form').serializeEncounterForm());
-        htmlDataStore.saveHTML(jsonData, status);
+        var jsonData = JSON.stringify($('form').serializeEncounterForm(), null, '\t');
+        var pre = $("#json-output");
+        if (pre.length == 0) {
+            pre = document.createElement("pre");
+            pre.id = "json-output";
+            pre.innerHTML = jsonData;
+            $('body').append(pre);
+        } else {
+            pre.html(jsonData);
+        }
     };
     /* End - Function to save the form */
 

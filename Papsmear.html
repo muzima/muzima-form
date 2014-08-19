@@ -290,28 +290,6 @@
 <script type="text/javascript">
     $(document).ready(function () {
 
-        /* Start - Function to save the form */
-        document.submit = function () {
-            var validForm = $("form").valid();
-            if (typeof $.fn.customValidationCheck !== 'undefined' && typeof $.fn.customValidationCheck === 'function') {
-                validForm = validForm && $.fn.customValidationCheck();
-            }
-            if (validForm) {
-                save("complete");
-            }
-        };
-
-        document.saveDraft = function () {
-            save("incomplete");
-            return false;
-        };
-
-        var save = function (status) {
-            var jsonData = JSON.stringify($('form').serializeEncounterForm());
-            console.log(jsonData);
-        };
-        /* End - Function to save the form */
-
         $('#save_draft').click(function () {
             document.saveDraft();
         });
