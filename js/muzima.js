@@ -16,7 +16,7 @@ $(document).ready(function () {
         if(typeof $.fn.customValidationCheck !== 'undefined' && typeof $.fn.customValidationCheck === 'function'){
             validForm = validForm && $.fn.customValidationCheck();
         }
-        if ( validForm) {
+        if (validForm) {
             save("complete");
         }
     };
@@ -31,8 +31,8 @@ $(document).ready(function () {
         var pre = $("#json-output");
         if (pre.length == 0) {
             pre = document.createElement("pre");
-            pre.id = "json-output";
-            pre.innerHTML = jsonData;
+            $(pre).attr("id", "json-output");
+            $(pre).append(jsonData);
             $('body').append(pre);
         } else {
             pre.html(jsonData);

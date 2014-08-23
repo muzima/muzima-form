@@ -155,7 +155,7 @@
                 required="required" data-concept="6245^REVIEW OF MEDICAL HISTORY^99DCT">
             <option value="">...</option>
             <option value="6544^BREAST CANCER^99DCT">Yes</option>
-            <option value="">No</option>
+            <option value="obs_temp.NO">No</option>
         </select>
     </div>
 
@@ -167,7 +167,7 @@
                 required="required" data-concept="8263^PREVIOUS RADIATION LOCATION^99DCT">
             <option value="">...</option>
             <option value="1349^CHEST^99DCT">Yes</option>
-            <option value="">No</option>
+            <option value="obs_temp.NO">No</option>
         </select>
     </div>
 
@@ -201,7 +201,7 @@
                 required="required" data-concept="6509^DIAGNOSIS BASED ON BIOPSY TYPE^99DCT">
             <option value="">...</option>
             <option value="8184^BREAST BIOPSY^99DCT">Yes</option>
-            <option value="">No</option>
+            <option value="obs_temp.NO">No</option>
         </select>
     </div>
 
@@ -211,7 +211,7 @@
                 required="required" data-concept="6478^HISTORY OF SURGERIES^99DCT">
             <option value="">...</option>
             <option value="8251^BREAST^99DCT">Yes</option>
-            <option value="">No</option>
+            <option value="obs_temp.NO">No</option>
         </select>
     </div>
 </div>
@@ -373,7 +373,7 @@
                     required="required" data-concept="6802^FAMILY CHRONIC ILLNESSES HISTORY^99DCT">
                 <option value="">...</option>
                 <option value="6544^BREAST CANCER^99DCT">Yes</option>
-                <option value="">No</option>
+                <option value="obs_temp.NO">No</option>
             </select>
         </div>
 
@@ -1095,6 +1095,19 @@ $(document).ready(function () {
     breastReviewChange();
     /*  End - Based on breast review show duration fields */
 
+    /* Start - Remove temporary information */
+    $.fn.removeTemporaryData = function (idList) {
+        $.each(idList, function(i, id) {
+            var $element = $('#' + id);
+            var elementValue = $element.val();
+            if (elementValue == "obs_temp.NO") {
+                $element.removeAttr('data-concept');
+            }
+        });
+        return true;
+    };
+    /* End - Remove temporary information */
+
     /* Start - Ensuring some selection are selected alone */
     $.fn.checkSelectedAlone = function (nameArray, singleValues, message) {
         var $validator = $('form').validate();
@@ -1154,11 +1167,15 @@ $(document).ready(function () {
     var lymphNodeSingleValues = ['1118^NOT DONE^99DCT', '1115^NORMAL^99DCT', '161^LYMPHADENOPATHY^99DCT'];
     var lymphNodeMessage = "If Normal, Not Done or Generalized lympadenopathy is selected, it should be the only option";
 
+    var idList = ['diagnosis_based_on_biopsy', 'history_of_surgeries', 'previous_radiation_location',
+        'review_of_medical_history', 'family_chronic_illnesses_history'];
+
     $.fn.customValidationCheck = function () {
         return $.fn.checkSelectedAlone(referralOrderedName, referralOrderedSingleValues, referralOrderedMessage)
                 && $.fn.checkSelectedAlone(familyPlanningName, familyPlanningSingleValues, familyPlanningMessage)
                 && $.fn.checkSelectedAlone(reviewBreastName, reviewBreastSingleValues, reviewBreastMessage)
-                && $.fn.checkSelectedAlone(lymphNodeName, lymphNodeSingleValues, lymphNodeMessage);
+                && $.fn.checkSelectedAlone(lymphNodeName, lymphNodeSingleValues, lymphNodeMessage)
+                && $.fn.removeTemporaryData(idList);
     };
     /* End - Example of calling above validation */
 
@@ -1168,7 +1185,6 @@ $(document).ready(function () {
         $.each(allBreastExamFindings, function (index, object) {
             $(object).change(function () {
                 var breastExamValue = $(this).val();
-                console.log(breastExamValue);
                 var $breastExamFindingsRelevant = $(this).closest('.section').find('.relevant_breast_exam_findings');
                 if (breastExamValue === '' || breastExamValue == '1118^NOT DONE^99DCT' || breastExamValue == '1115^NORMAL^99DCT') {
                     $breastExamFindingsRelevant.hide();
@@ -1195,7 +1211,6 @@ $(document).ready(function () {
         $.each(allSkinExamFindings, function (index, object) {
             $(object).change(function () {
                 var skinExamValue = $(this).val();
-                console.log(skinExamValue);
                 var $skinExamFindingsRelevant = $(this).closest('.section').find('.relevant_skin_exam_findings');
                 var $skinExamFindingsRelevantMass = $(this).closest('.section').find('.relevant_skin_exam_findings_mass');
                 if (skinExamValue == '582^MASS, OTHER^99DCT') {

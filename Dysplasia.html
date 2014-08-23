@@ -169,7 +169,7 @@
     <div class="form-group">
         <label for="gravida">Number of previous pregnancies</label><br/>
         <label class="alert alert-info">If client has never been pregnant, enter '0'"</label>
-        <input class="form-control" id="gravida" name="gravida" type="number" data-concept="5624^GRAVIDA^99DCT"
+        <input class="form-control gravida" id="gravida" name="gravida" type="number" data-concept="5624^GRAVIDA^99DCT"
                required="required">
     </div>
 
@@ -178,6 +178,52 @@
         <label class="alert alert-info">The number of children a woman has delivered?</label>
         <input class="form-control lessThanGravida" id="parity" name="parity" type="number"
                data-concept="1053^PARITY^99DCT" required="required">
+    </div>
+
+    <div class="form-group">
+        <label>Current family planning method</label>
+        <fieldset name="374^METHOD OF FAMILY PLANNING^99DCT" data-concept="374^METHOD OF FAMILY PLANNING^99DCT">
+            <input id="method_of_family_planning.condoms" type="checkbox" name="374^METHOD OF FAMILY PLANNING^99DCT"
+                   value="190^CONDOMS^99DCT">
+            <label for="method_of_family_planning.condoms">Condoms</label><br/>
+
+            <input id="method_of_family_planning.female_sterilization" type="checkbox"
+                   name="374^METHOD OF FAMILY PLANNING^99DCT" value="5276^FEMALE STERILIZATION^99DCT">
+            <label for="method_of_family_planning.female_sterilization">Sterilization / Hysterectomy</label><br/>
+
+            <input id="method_of_family_planning.intrauterine_device" type="checkbox"
+                   name="374^METHOD OF FAMILY PLANNING^99DCT" value="5275^INTRAUTERINE DEVICE^99DCT">
+            <label for="method_of_family_planning.intrauterine_device">Intrauterine device</label><br/>
+
+            <input id="method_of_family_planning.diaphragm" type="checkbox"
+                   name="374^METHOD OF FAMILY PLANNING^99DCT"
+                   value="5278^DIAPHRAGM^99DCT">
+            <label for="method_of_family_planning.diaphragm">Diaphragm / Cervical cap</label><br/>
+
+            <input id="method_of_family_planning.oral_contraceptive_pills" type="checkbox"
+                   name="374^METHOD OF FAMILY PLANNING^99DCT" value="780^ORAL CONTRACEPTION^99DCT">
+            <label for="method_of_family_planning.oral_contraceptive_pills">Oral contraceptive pills</label><br/>
+
+            <input id="method_of_family_planning.natural_family_planning" type="checkbox"
+                   name="374^METHOD OF FAMILY PLANNING^99DCT" value="5277^NATURAL FAMILY PLANNING^99DCT">
+            <label for="method_of_family_planning.natural_family_planning">Natural family planning</label><br/>
+
+            <input id="method_of_family_planning.injectable_contraceptives" type="checkbox"
+                   name="374^METHOD OF FAMILY PLANNING^99DCT" value="5279^INJECTABLE CONTRACEPTIVES^99DCT">
+            <label for="method_of_family_planning.injectable_contraceptives">Injectable hormonesa</label><br/>
+
+            <input id="method_of_family_planning.contraceptive_implant" type="checkbox"
+                   name="374^METHOD OF FAMILY PLANNING^99DCT" value="6220^CONTRACEPTIVE IMPLANT^99DCT">
+            <label for="method_of_family_planning.contraceptive_implant">Implant / Patching</label><br/>
+
+            <input id="method_of_family_planning.none" type="checkbox" name="374^METHOD OF FAMILY PLANNING^99DCT"
+                   value="1107^NONE^99DCT">
+            <label for="method_of_family_planning.none">None</label><br/>
+
+            <input id="method_of_family_planning.do_not_know" type="checkbox"
+                   name="374^METHOD OF FAMILY PLANNING^99DCT" value="1624^DO NOT KNOW^99DCT">
+            <label for="method_of_family_planning.do_not_know">Do not know</label><br/>
+        </fieldset>
     </div>
 
     <div class="form-group">
@@ -1034,6 +1080,44 @@
     procedureDoneDetailed();
     /* End - Procedure done this visit */
 
+    /* Start - Validation for selected element given another element is selected */
+    $.fn.checkAlsoSelected = function(element, anotherElement, excludedValues, message) {
+        var $validator = $('form').validate();
+        var errors = {};
+        var result = true;
+
+        var $fieldSet = $('fieldset[name="' + element + '"]');
+        var $inputs = $fieldSet.find('input:checkbox:checked');
+
+        var $anotherFieldSet = $('fieldset[name="' + anotherElement + '"]');
+        var anotherInputs = $anotherFieldSet.find('input:checkbox:checked');
+
+        var match = false;
+        $.each($inputs, function(i, element) {
+            var value = $(element).val();
+            $.each(anotherInputs, function(i, anotherElement) {
+                var anotherValue = $(anotherElement).val();
+                if (value == anotherValue) {
+                    match = true;
+                }
+                $.each(excludedValues, function(i, excludedValue) {
+                    if (value == excludedValue || anotherValue == excludedValue) {
+                        match = true;
+                    }
+                });
+            });
+            if (!match) {
+                errors[anotherElement] = message;
+                result = false;
+            }
+        });
+        if (!result) {
+            $validator.showErrors(errors);
+        }
+        return result;
+    };
+    /* End - Validation for selected element given another element is selected */
+
     /* Start - Ensuring some selection are selected alone */
     $.fn.checkSelectedAlone = function (nameArray, singleValues, message) {
         var $validator = $('form').validate();
@@ -1103,13 +1187,26 @@
     var papanicolaouSingleValues = ['1115^NORMAL^99DCT', '1624^DO NOT KNOW^99DCT'];
     var papanicolaouMessage = "If Normal or Don't Know is selected, it should be the only option.";
 
+    // check current family planning and family planning refill
+    var familyPlanningExcludedValues = ["1624^DO NOT KNOW^99DCT", "1107^NONE^99DCT"];
+    var currentFamilyPlanning = "374^METHOD OF FAMILY PLANNING^99DCT";
+    var refillFamilyPlanning = "7495^FAMILY PLANNING REFILL PROVIDED^99DCT";
+    var refillFamilyPlanningMessage = "You can only refill a current family planning method and cannot select none or don't know with any other choice";
+
+    // check current family planning and family planning refill
+    var chosenFamilyPlanning = "7240^FAMILY PLANNING METHOD CHOSEN^99DCT";
+    var chosenFamilyPlanningMessage = "Patient is already using one of selected family planning method or don't or none selected in combination";
+
     $.fn.customValidationCheck = function () {
         return $.fn.checkSelectedAlone(complaintsName, complaintsSingleValues, complaintsMessage)
                 && $.fn.checkSelectedAlone(familyPlanningName, familyPlanningSingleValues, familyPlanningMessage)
                 && $.fn.checkSelectedAlone(vaginalExamName, vaginalExamSingleValues, vaginalExamMessage)
                 && $.fn.checkSelectedAlone(cervicalExamName, cervicalExamSingleValues, cervicalExamMessage)
                 && $.fn.checkSelectedAlone(vulvalExamName, vulvalExamSingleValues, vulvalExamMessage)
-                && $.fn.checkSelectedAlone(papanicolaouName, papanicolaouSingleValues, papanicolaouMessage);
+                && $.fn.checkSelectedAlone(papanicolaouName, papanicolaouSingleValues, papanicolaouMessage)
+                && $.fn.checkSelectedAlone([currentFamilyPlanning, refillFamilyPlanning, chosenFamilyPlanning], familyPlanningExcludedValues, familyPlanningMessage)
+                && $.fn.checkAlsoSelected(currentFamilyPlanning, refillFamilyPlanning, familyPlanningExcludedValues, refillFamilyPlanningMessage)
+                && $.fn.checkAlsoSelected(currentFamilyPlanning, chosenFamilyPlanning, familyPlanningExcludedValues, chosenFamilyPlanningMessage);
     };
     /* End - Example of calling above validation */
 
