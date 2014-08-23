@@ -167,6 +167,12 @@
             <label for="obs.tmp_drugs.None">None</label>
         </fieldset>
     </div>
+    <label class="alert alert-info" id="obs.on_enalapril">
+        Patient on enalapril please assess  creatinine
+    </label>
+    <label class="alert alert-info" id="obs.on_losartan">
+        Patient on Losartan please assess  creatinine
+    </label>
 </div>
 <div class="section" id="medication_metformin" data-concept="1919^PATIENT REPORTED CURRENT OTHER TREATMENT^99DCT^2">
     <h3>Metformin</h3>
@@ -603,6 +609,15 @@
                    name="1069^REVIEW OF SYSTEMS, GENERAL^99DCT"
                    value="996^CONSTIPATION^99DCT">
             <label for="obs.review_of_systems_general.constipation">Constipation</label><br>
+
+            <input id="obs.review_of_systems_general.confusion" type="checkbox"
+                   name="1069^REVIEW OF SYSTEMS, GENERAL^99DCT"
+                   value="6006^CONFUSION^99DCT">
+            <label for="obs.review_of_systems_general.confusion">Confusion</label><br>
+            <input id="obs.review_of_systems_general.convulsions" type="checkbox"
+                   name="1069^REVIEW OF SYSTEMS, GENERAL^99DCT"
+                   value="206^CONVULSIONS^99DCT">
+            <label for="obs.review_of_systems_general.convulsions">Convulsions</label><br>
             <input id="obs.review_of_systems_general.chronic_cough" type="checkbox"
                    name="1069^REVIEW OF SYSTEMS, GENERAL^99DCT"
                    value="1470^CHRONIC COUGH^99DCT">
@@ -615,6 +630,16 @@
                    value="1107^NONE^99DCT">
             <label for="obs.review_of_systems_general.none">None of the above</label><br>
         </fieldset>
+        <label class="alert alert-info" id="obs.symptomReminders_breath">Shortness of breath please consult on phone immediately</label>
+        <label class="alert alert-info" id="obs.symptomReminders_heart_racing">Heart racing please Consult on phone immediately</label>
+        <label class="alert alert-info" id="obs.symptomReminders_leg_swelling">Leg swelling please Consult on phone immediately</label>
+        <label class="alert alert-info" id="obs.symptomReminders_confusion">Confusion symptoms, Consult on phone immediately</label>
+        <label class="alert alert-info" id="obs.symptomReminders_weakness">Weakness symptoms, Consult on phone immediately</label>
+        <label class="alert alert-info" id="obs.symptomReminders_consciousness">Loss of consciousness, Consult on phone immediately</label>
+        <label class="alert alert-info" id="obs.symptomReminders_dizziness">Recurrent dizziness, Consult on phone immediately</label>
+        <label class="alert alert-info" id="obs.symptomReminders_vision">vision difficulties, Consult on phone immediately</label>
+        <label class="alert alert-info" id="obs.symptomReminders_convulsions">Convulsions symptoms, Consult on phone immediately</label>
+        <label class="alert alert-info" id="obs.symptomReminders_enalapril_and_cough">Change enalapril to losartan and rule out TB</label>
     </div>
 </div>
 <div class="section">
@@ -647,6 +672,10 @@
                placeholder="Please record today's DBP" data-concept="5086^DIASTOLIC BLOOD PRESSURE^99DCT"
                required="required">
     </div>
+    <label class="alert alert-info" id="htnReminders_1">
+        BP High Kindly call Consultant: 0718980323
+    </label>
+
     <div class="form-group">
         <label for="pulse">Pulse Rate (per minute):</label>
         <input class="form-control" id="pulse" name="pulse" type="number" placeholder="Please record today's pulse"
@@ -676,10 +705,11 @@
                data-concept="1342^BODY MASS INDEX^99DCT">
     </div>
     <div class="form-group">
-        <label for="serum_glucose_fasting">Fasting Blood Sugar (FBS):</label>
-        <input class="form-control glucose" id="serum_glucose_fasting" name="serum_glucose_fasting" type="number"
+        <label for="obs.serum_glucose_fasting">Fasting Blood Sugar (FBS):</label>
+        <input class="form-control glucose" id="obs.serum_glucose_fasting" name="obs.serum_glucose_fasting" type="number"
                placeholder="Please record today's FBS" data-concept="6252^SERUM GLUCOSE, FASTING^99DCT">
     </div>
+
     <div class="form-group">
         <label for="obs.serum_glucose">Random Blood Sugar (RBS):</label>
         <input class="form-control glucose" id="obs.serum_glucose" name="obs.serum_glucose" type="number"
@@ -690,6 +720,18 @@
         <input class="form-control" id="glycosylated_hemoglobin" name="glycosylated_hemoglobin" type="number"
                placeholder="Please record today's A1C" data-concept="6126^GLYCOSYLATED HEMOGLOBIN^99DCT">
     </div>
+    <label style="display: none ;" class="alert alert-info validate_glucose_fasting">
+        confirm diagnosis of diabetes
+    </label>
+
+    <label class="alert alert-info" id="validate_glucose_fasting_2">
+        Diabetes Refer to CO
+    </label>
+
+    <label class="alert alert-info" id="diabetes_mellitus">
+        Diabetes mellitus Refer to CO
+    </label>
+
     <div class="form-group urinePregnancyTestQualitative">
         <label for="obs.urine_pregnancy_test_qualitative">Urine Pregnancy Test:<span class="required">*</span></label>
         <select class="form-control" id="obs.urine_pregnancy_test_qualitative" required="required"
@@ -702,7 +744,7 @@
         </select>
     </div>
 </div>
-<div class="section">
+<!--<div class="section">
     <h3>Hypertension Reminders</h3>
     <label class="alert alert-info" id="htn_reminder_1">
         Good BP. Advise on Salt reduction, Weight reduction if BMI >30, Exercise, Smoking cessation and Alcohol
@@ -745,6 +787,9 @@
         if BMI >30, Exercise, Smoking cessation and Alcohol reduction (if applicable)
     </label>
     <label class="alert alert-info" id="obs.htn_reminder_10">BP low. REFER patient to CO/Health Center</label>
+
+
+
 </div>
 <div class="section">
     <h3>Diabetes Reminders</h3>
@@ -781,7 +826,7 @@
     <label class="alert alert-info" id="obs.diabetes_reminder_10">
         Suboptimal BS control on 1000 mg (1 gram) metformin. REFER to CO immediately
     </label>
-</div>
+</div>-->
 <div class="section">
     <h3>Medications Prescribed</h3>
     <label class="alert alert-info">
@@ -811,6 +856,14 @@
             <label for="obs.drugs_dispensed.None">None</label>
         </fieldset>
     </div>
+    <label class="alert alert-info" id="obs.new_enalapril">
+        Prescribed enalapril please assess creatinine
+    </label>
+    <label class="alert alert-info" id="obs.new_losartan">
+        Prescribed Losartan please assess creatinine
+    </label>
+
+
 </div>
 <div class="section repeat metformin_dispense" id="metformin_dispense" data-counter="1" data-concept="1901^OTHER MEDICATION ORDER^99DCT^2">
     <h3>Metformin Dispense</h3>
@@ -1416,6 +1469,7 @@ $(document).ready(function () {
         })
     };
 
+
     var $obs_drugs_dispensed = $('input[name="obs.drugs_dispensed"]');
     $obs_drugs_dispensed.change(function () {
         selectCorrespondingDrugsDispensed();
@@ -1445,6 +1499,108 @@ $(document).ready(function () {
         })
     };
     selectCorrespondingCurrentMedication();
+
+    var symptomsAndDrugReminders = function (selectedElement) {
+        var objectArray = {
+            "#obs\\.review_of_systems_general\\.shortness_of_breath_with_exertion": "#obs\\.symptomReminders_breath",
+            "#obs\\.review_of_systems_general\\.heart_racing": "#obs\\.symptomReminders_heart_racing",
+            "#obs\\.review_of_systems_general\\.edema_legs": "#obs\\.symptomReminders_leg_swelling",
+            "#obs\\.review_of_systems_general\\.confusion": "#obs\\.symptomReminders_confusion",
+            "#obs\\.review_of_systems_general\\.focal_weakness": "#obs\\.symptomReminders_weakness",
+            "#obs\\.review_of_systems_general\\.unconscious": "#obs\\.symptomReminders_consciousness",
+            "#obs\\.review_of_systems_general\\.dizziness": "#obs\\.symptomReminders_dizziness",
+            "#obs\\.review_of_systems_general\\.vision_difficulties": "#obs\\.symptomReminders_vision",
+            "#obs\\.review_of_systems_general\\.convulsions": "#obs\\.symptomReminders_convulsions",
+            "#obs\\.tmp_drugs\\.Enalapril": "#obs\\.on_enalapril",
+            "#obs\\.tmp_drugs\\.Losartan": "#obs\\.on_losartan",
+            "#obs\\.drugs_dispensed\\.Enalapril": "#obs\\.new_enalapril",
+            "#obs\\.drugs_dispensed\\.Losartan": "#obs\\.new_losartan"
+        };
+        $.each(objectArray, function (k, v) {
+            $(k).change(function () {
+                if ($(k).is(':checked')) {
+                    $(v).show();
+                } else {
+                    $(v).hide();
+                }
+            });
+            $(k).trigger('change');
+        })
+    };
+    symptomsAndDrugReminders();
+    var enalaprilRecurrentCough = function (selectedElement) {
+        var newDrugArray = {
+            "#obs\\.review_of_systems_general\\.chronic_cough": "#obs\\.symptomReminders_enalapril_and_cough",
+            "#obs\\.tmp_drugs\\.Enalapril": "#obs\\.symptomReminders_enalapril_and_cough"
+        };
+        $.each(newDrugArray, function (k, v) {
+            $(k).change(function () {
+                if ($(k).is(':checked')) {
+                    var enalpril = "#obs\\.tmp_drugs\\.Enalapril"
+                    var recurrent_cough = "#obs\\.review_of_systems_general\\.chronic_cough"
+                    if ($(enalpril).is(':checked') && $(recurrent_cough).is(':checked')) {
+                        $(v).show();
+                    }
+                } else {
+                    $(v).hide();
+                }
+            });
+            $(k).trigger('change');
+        })
+    };
+    enalaprilRecurrentCough();
+
+    var fastingRandom = function (selectedElement) {
+        var fastingRandomArray = {
+            "#obs\\.serum_glucose_fasting": "#validate_glucose_fasting_2",
+            "#obs\\.serum_glucose": "#validate_glucose_fasting_2"
+        };
+        $.each(fastingRandomArray, function (k, v) {
+            $(k).change(function () {
+                if ((parseFloat($('#obs\\.serum_glucose_fasting').val()) > 10.0) || (parseFloat($('#obs\\.serum_glucose').val()) > 15.0) ) {
+                    $(v).show();
+                } else {
+                    $(v).hide();
+                }
+            });
+            $(k).trigger('change');
+        })
+    };
+    fastingRandom();
+
+    var diabetesMellitus = function (selectedElement) {
+        var diabetesMellitusArray = {
+            "#obs\\.serum_glucose": "#diabetes_mellitus",
+            "#obs\\.review_of_systems_general\\.nausea": "#diabetes_mellitus",
+            "#obs\\.review_of_systems_general\\.vomiting": "#diabetes_mellitus",
+            "#obs\\.review_of_systems_general\\.abdominal_pain": "#diabetes_mellitus"
+        };
+        $.each(diabetesMellitusArray, function (k, v) {
+            $(k).change(function () {
+                var nausea = "#obs\\.review_of_systems_general\\.nausea"
+                var vomiting = "#obs\\.review_of_systems_general\\.vomiting"
+                var abdominal_pain = "#obs\\.review_of_systems_general\\.abdominal_pain"
+                var fainting = "#obs\\.review_of_systems_general\\.fainting"
+                if ((parseFloat($('#obs\\.serum_glucose').val()) > 13.0 && (nausea).is(':checked')&& ((vomiting).is(':checked') || (fainting).is(':checked') )) ) {
+                    $(v).show();
+                } else {
+                    $(v).hide();
+                }
+            });
+            $(k).trigger('change');
+        })
+    };
+    diabetesMellitus();
+
+
+    $('#obs\\.serum_glucose_fasting').change(function () {
+        var $validate_glucose_fasting = $('.validate_glucose_fasting');
+        if(parseFloat($('#obs\\.serum_glucose_fasting').val()) > 7.0 && parseFloat($('#obs\\.serum_glucose_fasting').val()) < 10.0 )
+            $validate_glucose_fasting.show();
+        else
+            $validate_glucose_fasting.hide();
+    });
+
     /*  End - Based on Current medication prescribed show dosage fields */
 
     /*  Start - If some medication dose was missed, ask for reason */
@@ -1645,23 +1801,19 @@ $(document).ready(function () {
 
     /* Start - Conditional display of HTN reminders */
 
-    var displayHTNReminder1 = function () {
-        var $htn_reminder_1 = $('#htn_reminder_1');
-        var selectedVisitType = $currentVisitType.val();
+
+
+    var htnReminders1 = function () {
+        var $htn_reminder_1 = $('#htnReminders_1');
         var systolicBloodValue = parseFloat($systolicBloodPressure.val());
         var diastolicBloodValue = parseFloat($diastolicBloodPressure.val());
-        var currentMedication = getCurrentMedicationValues();
-        if ((selectedVisitType == '7034^FIRST DISPENSARY VISIT AFTER HCT^99DCT' || selectedVisitType == '7035^SECOND DISPENSARY VISIT AFTER HCT ^99DCT') &&
-                (systolicBloodValue >= 100 && systolicBloodValue <= 140) && (diastolicBloodValue >= 50 && diastolicBloodValue <= 90) &&
-                currentMedication.indexOf("enalapril") < 0 && currentMedication.indexOf("hctz") < 0 && currentMedication.indexOf("losartan") < 0
-                && currentMedication.indexOf("nifedipine") < 0 && checkReviewOfSystemsGeneralForDisplay()
-                ) {
+        if ((systolicBloodValue > 180 && diastolicBloodValue > 110) ) {
             $htn_reminder_1.show();
         } else {
             $htn_reminder_1.hide();
         }
     };
-    displayHTNReminder1();
+    htnReminders1();
 
     var $urinePregnancyTestQualitative = $('#obs\\.urine_pregnancy_test_qualitative');
     var $birthdate = $('#patient\\.birthdate');
@@ -1678,8 +1830,8 @@ $(document).ready(function () {
     };
     var displayHTNReminder2 = function () {
         var $htn_reminder_2 = $('#htn_reminder_2');
-        var birthdate = $birthdate.val();
-        var ageInYears = $.fn.getAgeInYears(birthdate);
+//        var birthdate = $birthdate.val();
+//        var ageInYears = $.fn.getAgeInYears(birthdate);
         if (conditionToDisplayHTNReminder2() && ageInYears <= 35) {
             $htn_reminder_2.show();
         } else {
@@ -1885,7 +2037,7 @@ $(document).ready(function () {
         displayHTNReminder9();
     });
 
-    var displayHTNReminder10 = function () {
+    var htnReminders10 = function () {
         var $htn_reminder_10 = $('#obs\\.htn_reminder_10');
         var systolicBloodValue = parseFloat($systolicBloodPressure.val());
         var diastolicBloodValue = parseFloat($diastolicBloodPressure.val());
@@ -1895,7 +2047,7 @@ $(document).ready(function () {
             $htn_reminder_10.hide();
         }
     };
-    displayHTNReminder10();
+    htnReminders10();
     /* End - Conditional display of HTN reminders */
 
     /* Start - Conditional display of Diabetes reminders */
@@ -2187,7 +2339,7 @@ $(document).ready(function () {
     });
     $currentVisitType.change(function () {
         displayPHCTReview();
-        displayHTNReminder1();
+        htnReminders1();
         displayHTNReminder2();
         displayHTNReminder3a();
         displayHTNReminder3b();
@@ -2252,7 +2404,7 @@ $(document).ready(function () {
         displayDiabetesReminder5();
     });
     $systolicBloodPressure.change(function () {
-        displayHTNReminder1();
+        htnReminders1();
         displayHTNReminder2();
         displayHTNReminder3a();
         displayHTNReminder3b();
@@ -2264,12 +2416,12 @@ $(document).ready(function () {
         displayHTNReminder7();
         displayHTNReminder8();
         displayHTNReminder9();
-        displayHTNReminder10();
+        htnReminders10();
         displayDiabetesReminder3();
         displayDiabetesReminder4();
     });
     $('input[name="obs.tmp_drugs"]').change(function () {
-        displayHTNReminder1();
+        htnReminders1();
         displayHTNReminder3b();
         displayHTNReminder6();
         displayHTNReminder6b();
@@ -2284,7 +2436,7 @@ $(document).ready(function () {
         displayDiabetesReminder10();
     });
     $('input[name="1069^REVIEW OF SYSTEMS, GENERAL^99DCT"]').change(function () {
-        displayHTNReminder1();
+        htnReminders1();
         displayHTNReminder2();
         displayHTNReminder3a();
         displayHTNReminder3b();
@@ -2301,7 +2453,7 @@ $(document).ready(function () {
         displayDiabetesReminder10();
     });
     $diastolicBloodPressure.change(function () {
-        displayHTNReminder1();
+        htnReminders1();
         displayHTNReminder2();
         displayHTNReminder3a();
         displayHTNReminder3b();
@@ -2313,7 +2465,7 @@ $(document).ready(function () {
         displayHTNReminder7();
         displayHTNReminder8();
         displayHTNReminder9();
-        displayHTNReminder10();
+        htnReminders10();
         displayDiabetesReminder3();
         displayDiabetesReminder4();
     });
