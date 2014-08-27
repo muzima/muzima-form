@@ -207,8 +207,8 @@
         </select>
     </div>
 
-    <div data-concept="9169^REASON FOR LACK OF PERIOD, DETAILED^99DCT">
-        <div class="form-group reason_for_lack_of_period">
+    <div class="section reason_for_lack_of_period" data-concept="9169^REASON FOR LACK OF PERIOD, DETAILED^99DCT">
+        <div class="form-group">
             <label for="reason_for_lack_of_period">
                 Do you know why you are not having your period?<span class="required">*</span>
             </label>
@@ -221,6 +221,12 @@
                 <option value="1624^DO NOT KNOW^99DCT">Do not know</option>
                 <option value="5622^OTHER NON-CODED^99DCT">Other</option>
             </select>
+        </div>
+
+        <div class="form-group">
+            <label for="freetext_general_1">Specify</label>
+            <input class="form-control" id="freetext_general_1" name="freetext_general" type="text"
+                   data-concept="1915^FREETEXT GENERAL^99DCT">
         </div>
     </div>
 
@@ -352,17 +358,22 @@
     </div>
     <div class="form-group">
         <label class="font-normal">
+            <input id="chief_complaint.none" type="checkbox"
+                   data-concept="5219^CHIEF COMPLAINT^99DCT" value="1107^NONE^99DCT">
+            None
+        </label>
+    </div>
+    <div class="form-group">
+        <label class="font-normal">
             <input id="chief_complaint.other_non_coded" type="checkbox"
                    data-concept="5219^CHIEF COMPLAINT^99DCT" value="5622^OTHER NON-CODED^99DCT">
             Other
         </label>
     </div>
     <div class="form-group">
-        <label class="font-normal">
-            <input id="chief_complaint.none" type="checkbox"
-                   data-concept="5219^CHIEF COMPLAINT^99DCT" value="1107^NONE^99DCT">
-            None
-        </label>
+        <label for="freetext_general_2">Specify</label>
+        <input class="form-control" id="freetext_general_2" name="freetext_general" type="text"
+               data-concept="1915^FREETEXT GENERAL^99DCT">
     </div>
 </div>
 
@@ -560,6 +571,11 @@
                 Other
             </label>
         </div>
+        <div class="form-group">
+            <label for="freetext_general_3">Specify</label>
+            <input class="form-control" id="freetext_general_3" name="freetext_general" type="text"
+                   data-concept="1915^FREETEXT GENERAL^99DCT">
+        </div>
     </fieldset>
 </div>
 <div class="section" data-concept="9172^VISUAL VULVAL EXAM FINDINGS, DETAILED^99DCT">
@@ -607,6 +623,11 @@
                            data-concept="7487^VISUAL VULVAL EXAM FINDINGS ^99DCT" value="5622^OTHER NON-CODED^99DCT">
                     Other
                 </label>
+            </div>
+            <div class="form-group">
+                <label for="freetext_general_4">Specify</label>
+                <input class="form-control" id="freetext_general_4" name="freetext_general" type="text"
+                       data-concept="1915^FREETEXT GENERAL^99DCT">
             </div>
         </fieldset>
     </div>
@@ -833,6 +854,14 @@
     </div>
     <div class="form-group">
         <label class="font-normal">
+            <input id="ccsp_refill_dispense.none" type="checkbox"
+                   data-concept="7495^FAMILY PLANNING REFILL PROVIDED^99DCT"
+                   value="1107^NONE^99DCT">
+            None
+        </label>
+    </div>
+    <div class="form-group">
+        <label class="font-normal">
             <input id="ccsp_refill_dispense.other_non_coded" type="checkbox"
                    data-concept="7495^FAMILY PLANNING REFILL PROVIDED^99DCT"
                    value="5622^OTHER NON-CODED^99DCT">
@@ -840,12 +869,9 @@
         </label>
     </div>
     <div class="form-group">
-        <label class="font-normal">
-            <input id="ccsp_refill_dispense.none" type="checkbox"
-                   data-concept="7495^FAMILY PLANNING REFILL PROVIDED^99DCT"
-                   value="1107^NONE^99DCT">
-            None
-        </label>
+        <label for="freetext_general_6">Specify</label>
+        <input class="form-control" id="freetext_general_6" name="freetext_general" type="text"
+               data-concept="1915^FREETEXT GENERAL^99DCT">
     </div>
 </div>
 
@@ -918,6 +944,14 @@
     </div>
     <div class="form-group">
         <label class="font-normal">
+            <input id="ccsp_new_method.none" type="checkbox"
+                   data-concept="7240^FAMILY PLANNING METHOD CHOSEN^99DCT"
+                   value="1107^NONE^99DCT">
+            None
+        </label>
+    </div>
+    <div class="form-group">
+        <label class="font-normal">
             <input id="ccsp_new_method.other_non_coded" type="checkbox"
                    data-concept="7240^FAMILY PLANNING METHOD CHOSEN^99DCT"
                    value="5622^OTHER NON-CODED^99DCT">
@@ -925,12 +959,9 @@
         </label>
     </div>
     <div class="form-group">
-        <label class="font-normal">
-            <input id="ccsp_new_method.none" type="checkbox"
-                   data-concept="7240^FAMILY PLANNING METHOD CHOSEN^99DCT"
-                   value="1107^NONE^99DCT">
-            None
-        </label>
+        <label for="freetext_general_5">Specify</label>
+        <input class="form-control" id="freetext_general_5" name="freetext_general" type="text"
+               data-concept="1915^FREETEXT GENERAL^99DCT">
     </div>
 </div>
 
