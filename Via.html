@@ -13,7 +13,7 @@
     <title>CCSP VIA Form</title>
 </head>
 
-<body class="col-md-8 col-md-offset-2">
+<body class="col-md-10 col-md-offset-1">
 <div id="pre_populate_data"></div>
 <form id="via_form" name="via_form">
 <h2 class="text-center">CCSP VIA Form</h2>
@@ -27,23 +27,26 @@
     <div class="form-group">
         <label for="patient.medical_record_number">AMRS ID Number:</label>
         <input class="form-control" id="patient.medical_record_number" name="patient.medical_record_number" type="text"
-               readonly="readonly">
+               readonly="readonly" disabled="disabled">
     </div>
     <div class="form-group">
         <label for="patient.family_name">Family Name:</label>
-        <input class="form-control" id="patient.family_name" name="patient.family_name" type="text" readonly="readonly">
+        <input class="form-control" id="patient.family_name" name="patient.family_name" type="text" readonly="readonly"
+               disabled="disabled">
     </div>
     <div class="form-group">
         <label for="patient.given_name">Given Name:</label>
-        <input class="form-control" id="patient.given_name" name="patient.given_name" type="text" readonly="readonly">
+        <input class="form-control" id="patient.given_name" name="patient.given_name" type="text" readonly="readonly"
+               disabled="disabled">
     </div>
     <div class="form-group">
         <label for="patient.middle_name">Middle Name:</label>
-        <input class="form-control" id="patient.middle_name" name="patient.middle_name" type="text" readonly="readonly">
+        <input class="form-control" id="patient.middle_name" name="patient.middle_name" type="text" readonly="readonly"
+               disabled="disabled">
     </div>
     <div class="form-group">
         <label for="patient.sex">Gender:</label>
-        <select class="form-control" id="patient.sex" name="patient.sex" readonly="readonly">
+        <select class="form-control" id="patient.sex" name="patient.sex" readonly="readonly" disabled="disabled">
             <option value="">...</option>
             <option value="M">Male</option>
             <option value="F">Female</option>
@@ -52,32 +55,17 @@
     <div class="form-group">
         <label for="patient.birthdate">Date Of Birth:</label>
         <input class="form-control datepicker nonFutureDate" id="patient.birthdate" name="patient.birthdate" type="date"
-               readonly="readonly">
+               readonly="readonly" disabled="disabled">
     </div>
 </div>
 <div class="section">
-    <h3>Encounter Details</h3>
-
     <div class="form-group">
-        <label for="encounter.location_id">Screening Site:<span class="required">*</span>
-        </label>
-        <input class="form-control" id="encounter.location_id" type="text" placeholder="Start typing something...">
+        <label for="encounter.location_id">Screening Site:<span class="required">*</span></label>
+        <input class="form-control" id="encounter.location_id" type="text"
+               placeholder="Start typing screening site name ...">
         <input class="form-control" name="encounter.location_id" type="hidden">
     </div>
 
-    <div class="form-group">
-        <label for="encounter.provider_id_select">Provider ID:</label>
-        <input class="form-control" id="encounter.provider_id_select" type="text"
-               placeholder="Start typing something...">
-        <input class="form-control" name="encounter.provider_id_select" type="hidden">
-    </div>
-
-    <div class="form-group show_provider_id_text">
-        <label for="encounter.provider_id">Enter provider's system-id:<span class="required">*</span>
-        </label>
-        <input class="form-control checkDigit" id="encounter.provider_id" name="encounter.provider_id" type="text"
-               required="required">
-    </div>
     <div class="form-group">
         <label for="encounter.encounter_datetime">Encounter Date:<span class="required">*</span>
         </label>
@@ -91,11 +79,10 @@
     </div>
 </div>
 <div class="section relevant_female">
-    <h3>Observation Details </h3>
-
     <div class="form-group" title="What is the current visit type?">
-        <label for="current_visit_type">Current visit type:<span class="required">*</span></label><br/>
-        <label class="alert alert-info">What is the current visit type?</label>
+        <label for="current_visit_type">
+            What is the current visit type?<span class="required">*</span>
+        </label>
         <select class="form-control" id="current_visit_type" name="current_visit_type"
                 data-concept="1839^CURRENT VISIT TYPE^99DCT" required="required">
             <option value="">...</option>
@@ -105,8 +92,10 @@
     </div>
 
     <div class="form-group" title="Screener to select one best option.">
-        <label for="menstruation_status">How are your menstrual periods?</label><br/>
-        <label class="alert alert-info">Screener to select one best option.</label>
+        <label for="menstruation_status">
+            How are your menstrual periods?
+            <small><i>( Screener to select one best option )</i></small>
+        </label>
         <select class="form-control" id="menstruation_status" name="menstruation_status"
                 data-concept="2061^MENSTRUATION STATUS^99DCT" required="required">
             <option value="">...</option>
@@ -129,9 +118,9 @@
 
     <div class="form-group urine_pregnancy_test_qualitative"
          title="Test that determines pregnancy status through measure of hormone content in urine.">
-        <label for="urine_pregnancy_test_qualitative">Urine pregnancy test</label><br/>
-        <label class="alert alert-info">
-            Test that determines pregnancy status through measure of hormone content in urine.
+        <label for="urine_pregnancy_test_qualitative">
+            Urine pregnancy test
+            <small><i>( Test that determines pregnancy status through measure of hormone content in urine )</i></small>
         </label>
         <select class="form-control" id="urine_pregnancy_test_qualitative" name="urine_pregnancy_test_qualitative"
                 data-concept="45^URINE PREGNANCY TEST, QUALITATIVE^99DCT" required="required">
@@ -159,15 +148,18 @@
     </div>
 
     <div class="form-group">
-        <label for="gravida">Number of previous pregnancies</label><br/>
-        <label class="alert alert-info">If client has never been pregnant, enter '0'"</label>
+        <label for="gravida">Number of previous pregnancies
+            <small><i>( If client has never been pregnant, enter '0' )</i></small>
+        </label>
         <input class="form-control gravida" id="gravida" name="gravida" type="number" data-concept="5624^GRAVIDA^99DCT"
                required="required">
     </div>
 
     <div class="form-group relevant_gravida">
-        <label for="parity">Number of previous deliveries</label><br/>
-        <label class="alert alert-info">The number of children a woman has delivered?</label>
+        <label for="parity">
+            Number of previous deliveries
+            <small><i>( The number of children a woman has delivered? )</i></small>
+        </label>
         <input class="form-control lessThanGravida" id="parity" name="parity" type="number"
                data-concept="1053^PARITY^99DCT" required="required">
     </div>
@@ -182,8 +174,6 @@
             <option value="1067^UNKNOWN^99DCT">Unknown</option>
         </select>
     </div>
-
-    /* couldn't found a data-concept for date_of_last_cd4_by_facs */
 
     <div class="form-group relevant_hiv_status">
         <label for="last_cd4_by_facs">Latest CD4 count</label>
@@ -201,9 +191,7 @@
          title="Patient's most recent Visual Inspection with Acetic Acid (VIA) screening.">
         <label for="most_recent_visual_inspection_with_acetic_acid_result">
             Prior Visual Inspection with Acetic Acid (VIA)
-        </label><br/>
-        <label class="alert alert-info">
-            Patient's most recent Visual Inspection with Acetic Acid (VIA) screening.
+            <small><i>( Patient's most recent Visual Inspection with Acetic Acid (VIA) screening.</i></small>
         </label>
         <select class="form-control" id="most_recent_visual_inspection_with_acetic_acid_result"
                 name="most_recent_visual_inspection_with_acetic_acid_result" type="text"
@@ -217,8 +205,6 @@
 </div>
 
 <div class="section">
-    <h3>Complaints</h3>
-
     <div class="form-group">
         <label>Select all symptoms that best describe complaints</label>
         <fieldset name="5219^CHIEF COMPLAINT^99DCT" data-concept="5219^CHIEF COMPLAINT^99DCT">
@@ -232,8 +218,9 @@
 
             <input id="chief_complaint.having_hypoglycemia_symptoms_in_past_month" type="checkbox"
                    name="5219^CHIEF COMPLAINT^99DCT" value="8008^HAVING HYPOGLYCEMIA SYMPTOMS IN PAST MONTH^99DCT">
-            <label for="chief_complaint.having_hypoglycemia_symptoms_in_past_month">Having hypoglycemia symptoms in past
-                month</label><br/>
+            <label for="chief_complaint.having_hypoglycemia_symptoms_in_past_month">
+                Hypoglycemia symptoms in past month
+            </label><br/>
 
             <input id="chief_complaint.vaginal_discharge" type="checkbox" name="5219^CHIEF COMPLAINT^99DCT"
                    value="5993^VAGINAL DISCHARGE^99DCT">
@@ -270,8 +257,6 @@
 </div>
 
 <div class="section">
-    <h3>Family Planning</h3>
-
     <div class="form-group">
         <label>Current family planning method</label>
         <fieldset name="374^METHOD OF FAMILY PLANNING^99DCT" data-concept="374^METHOD OF FAMILY PLANNING^99DCT">
@@ -452,7 +437,6 @@
     <div class="section repeat procedures_detailed" id="procedures_detailed"
          data-name="procedures_detailed"
          data-concept="7480^PROCEDURES DONE THIS VISIT, DETAILED^99DCT">
-        <h3>Procedures Done</h3>
 
         <div class="form-group">
             <label for="procedures_done_this_visit">Procedure done this visit</label>
@@ -491,7 +475,7 @@
         </div>
 
         <div class="form-group relevant_procedures_done_this_visit_leep">
-            <label for="number_of_specimen_collected">Number of speciment collected</label>
+            <label for="number_of_specimen_collected">Number of specimen collected</label>
             <input class="form-control" id="number_of_specimen_collected"
                    name="number_of_specimen_collected" type="number"
                    data-concept="7481^CLOCK FACE CERVICAL BIOPSY LOCATION ^99DCT">
@@ -601,15 +585,22 @@
 <div class="section">
     <div class="form-group">
         <label>Family planning refills dispensed</label>
-        <fieldset name="7495^FAMILY PLANNING REFILL PROVIDED^99DCT"
-                  data-concept="7495^FAMILY PLANNING REFILL PROVIDED^99DCT">
-            <input id="ccsp_refill_dispense.condoms" type="checkbox" name="7495^FAMILY PLANNING REFILL PROVIDED^99DCT"
-                   value="190^CONDOMS^99DCT">
-            <label for="ccsp_refill_dispense.condoms">Condoms</label><br/>
+        <fieldset>
+            <div class="checkbox">
+                <label>
+                    <input id="ccsp_refill_dispense.condoms" type="checkbox"
+                           data-concept="7495^FAMILY PLANNING REFILL PROVIDED^99DCT" value="190^CONDOMS^99DCT">
+                    Condoms
+                </label>
+            </div>
 
-            <input id="ccsp_refill_dispense.female_sterilization" type="checkbox"
-                   name="7495^FAMILY PLANNING REFILL PROVIDED^99DCT" value="5276^FEMALE STERILIZATION^99DCT">
-            <label for="ccsp_refill_dispense.female_sterilization">Sterilization / Hysterectomy</label><br/>
+            <div class="checkbox">
+                <label>
+                    <input id="ccsp_refill_dispense.female_sterilization" type="checkbox"
+                           data-concept="7495^FAMILY PLANNING REFILL PROVIDED^99DCT" value="5276^FEMALE STERILIZATION^99DCT">
+                    Sterilization / Hysterectomy
+                </label>
+            </div>
 
             <input id="ccsp_refill_dispense.intrauterine_device" type="checkbox"
                    name="7495^FAMILY PLANNING REFILL PROVIDED^99DCT" value="5275^INTRAUTERINE DEVICE^99DCT">
@@ -706,6 +697,19 @@
 
 <div class="section">
     <div class="form-group">
+        <label for="encounter.provider_id_select">Provider Name:</label>
+        <input class="form-control" id="encounter.provider_id_select" type="text"
+               placeholder="Start typing provider name here ...">
+        <input class="form-control" name="encounter.provider_id_select" type="hidden">
+    </div>
+
+    <div class="form-group show_provider_id_text">
+        <label for="encounter.provider_id">Enter provider's system-id:<span class="required">*</span></label>
+        <input class="form-control checkDigit" id="encounter.provider_id" name="encounter.provider_id" type="text"
+               placeholder="Or enter the provider system id here ..." required="required">
+    </div>
+
+    <div class="form-group">
         <label for="return_visit_date">Return visit date:</label>
         <input class="form-control datepicker checkFutureDate" data-concept="5096^RETURN VISIT DATE^99DCT"
                id="return_visit_date" name="return_visit_date" type="text"
@@ -719,7 +723,17 @@
 </div>
 </form>
 </body>
-<script type="text/javascript">$(document).ready(function () {
+<script type="text/javascript">
+
+Date.prototype.toDateInputValue = (function() {
+    var local = new Date(this);
+    local.setMinutes(this.getMinutes() - this.getTimezoneOffset());
+    return local.toJSON().slice(0,10);
+});
+
+$(document).ready(function () {
+
+    $('#encounter\\.encounter_datetime').val(new Date().toDateInputValue());
 
     $('#save_draft').click(function () {
         document.saveDraft();
@@ -1001,7 +1015,7 @@
     /* End - Ensuring some selection are selected alone */
 
     /* Start - Validation for selected element given another element is selected */
-    $.fn.checkAlsoSelected = function(element, anotherElement, excludedValues, message) {
+    $.fn.checkAlsoSelected = function (element, anotherElement, excludedValues, message) {
         var $validator = $('form').validate();
         var errors = {};
         var result = true;
@@ -1013,14 +1027,14 @@
         var anotherInputs = $anotherFieldSet.find('input:checkbox:checked');
 
         var match = false;
-        $.each($inputs, function(i, element) {
+        $.each($inputs, function (i, element) {
             var value = $(element).val();
-            $.each(anotherInputs, function(i, anotherElement) {
+            $.each(anotherInputs, function (i, anotherElement) {
                 var anotherValue = $(anotherElement).val();
                 if (value == anotherValue) {
                     match = true;
                 }
-                $.each(excludedValues, function(i, excludedValue) {
+                $.each(excludedValues, function (i, excludedValue) {
                     if (value == excludedValue || anotherValue == excludedValue) {
                         match = true;
                     }

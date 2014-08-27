@@ -439,7 +439,7 @@ $(document).ready(function () {
         var $input_elements = $form.find('[name]').not('[data-concept]');
         $.each($input_elements, function (i, element) {
             if (isCheckBoxAndChecked($(element))) {
-                o = pushIntoArray(o, $(element).parent().attr('name'), $(element).val());
+                o = pushIntoArray(o, $(element).attr('name'), $(element).val());
             } else if (notACheckBoxOrFieldSet($(element))) {
                 o = pushIntoArray(o, $(element).attr('name'), $(element).val());
             }
