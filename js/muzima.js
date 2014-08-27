@@ -439,7 +439,7 @@ $(document).ready(function () {
         var $input_elements = $form.find('[name]').not('[data-concept]');
         $.each($input_elements, function (i, element) {
             if (isCheckBoxAndChecked($(element))) {
-                o = pushIntoArray(o, $(element).attr('name'), $(element).val());
+                o = pushIntoArray(o, $(element).parent().attr('name'), $(element).val());
             } else if (notACheckBoxOrFieldSet($(element))) {
                 o = pushIntoArray(o, $(element).attr('name'), $(element).val());
             }
@@ -470,7 +470,19 @@ $(document).ready(function () {
         var allConcepts = $form.find('*[data-concept]');
         $.each(allConcepts, function (i, element) {
             if ($(element).closest('.section').attr('data-concept') == undefined) {
-                $.extend(o, jsonifyConcepts($(element)));
+                var jsonifiedConcepts = jsonifyConcepts($(element));
+                if (JSON.stringify(jsonifiedConcepts) != '{}' && jsonifiedConcepts != "") {
+                    $.each(jsonifiedConcepts, function(key, value) {
+                        if (o[key] !== undefined) {
+                            if (!o[key].push) {
+                                o[key] = [o[key]];
+                            }
+                            o[key].push(value || '');
+                        } else {
+                            o[key] = value || '';
+                        }
+                    });
+                }
             }
         });
         return o;
