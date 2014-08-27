@@ -459,7 +459,7 @@ $(document).ready(function () {
         var result = {};
         var parent_divs = $form.find('div[data-concept]');
         $.each(parent_divs, function (i, element) {
-            var $allConcepts = $(element).find('*[data-concept]');
+            var $allConcepts = $(element).find('*[data-concept]:visible');
             result = pushIntoArray(result, $(element).attr('data-concept'), jsonifyConcepts($allConcepts));
         });
         return result;
@@ -467,7 +467,7 @@ $(document).ready(function () {
 
     var serializeConcepts = function ($form) {
         var o = {};
-        var allConcepts = $form.find('*[data-concept]');
+        var allConcepts = $form.find('*[data-concept]:visible');
         $.each(allConcepts, function (i, element) {
             if ($(element).closest('.section').attr('data-concept') == undefined) {
                 var jsonifiedConcepts = jsonifyConcepts($(element));
