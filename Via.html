@@ -1268,19 +1268,19 @@ $(document).ready(function () {
     $.fn.checkSelectedAlone = function (nameArray, singleValues, message) {
         var $validator = $('form').validate();
         var errors = {};
-        var final_result = true;
+        var formValid = true;
         $.each(nameArray, function (i, element) {
             var filedSetElem = $('fieldset[name="' + element + '"]');
             var result = isValidForSelection(filedSetElem, singleValues);
             if (!result) {
                 errors[element] = message;
-                final_result = false;
+                formValid = false;
             }
         });
-        if (!final_result) {
+        if (!formValid) {
             $validator.showErrors(errors);
         }
-        return final_result;
+        return formValid;
     };
 
     var isValidForSelection = function (element, singleValues) {
