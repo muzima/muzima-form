@@ -61,9 +61,15 @@
 <div class="section">
     <div class="form-group">
         <label for="encounter.location_id">Screening Site:<span class="required">*</span></label>
-        <input class="form-control" id="encounter.location_id" type="text"
-               placeholder="Start typing screening site name ...">
-        <input class="form-control" name="encounter.location_id" type="hidden">
+        <select class="form-control" name="encounter.location_id" id="encounter.location_id" required="required">
+            <option value="">...</option>
+            <option value="3">Turbo</option>
+            <option value="2">Mosoriot</option>
+            <option value="7">Chulaimbo</option>
+            <option value="8">Webuye</option>
+            <option value="9">Ampath MTRH</option>
+            <option value="17">Iten</option>
+        </select>
     </div>
 
     <div class="form-group">
@@ -173,7 +179,7 @@
         <label for="parity">Number of previous deliveries<span class="required">*</span></label>
 
         <div>
-            <small><i>( The number of children a woman has delivered? )</i></small>
+            <small><i>The number of children a woman has delivered?</i></small>
         </div>
         <input class="form-control lessThanGravida" id="parity" name="parity" type="number"
                data-concept="1053^PARITY^99DCT" required="required">
@@ -300,9 +306,9 @@
     <fieldset name="8916^CHIEF COMPLAINT, DETAILED^99DCT">
         <div class="form-group">
             <label class="font-normal">
-                <input id="chief_complaint.symptomatic" type="checkbox"
-                       data-concept="5219^CHIEF COMPLAINT^99DCT" value="1068^SYMPTOMATIC^99DCT">
-                Symptomatic
+                <input id="chief_complaint.pain" type="checkbox"
+                       data-concept="5219^CHIEF COMPLAINT^99DCT" value="6613^PAIN^99DCT">
+                Pain
             </label>
         </div>
         <div class="form-group">
@@ -470,6 +476,14 @@
         </div>
         <div class="form-group">
             <label class="font-normal">
+                <input id="vaginal_exam.suspicion_of_cancer_vaginal_lesion" type="checkbox"
+                       data-concept="7490^VISUAL VAGINAL EXAM FINDINGS ^99DCT"
+                       value="9177^SUSPICIOUS OF CANCER, VULVA LESION^99DCT">
+                Vaginal lesion suspicious for cancer
+            </label>
+        </div>
+        <div class="form-group">
+            <label class="font-normal">
                 <input id="vaginal_exam.vaginal_intraepithelial_neoplasia_grade_1" type="checkbox"
                        data-concept="7490^VISUAL VAGINAL EXAM FINDINGS ^99DCT"
                        value="7492^VAGINAL INTRAEPITHELIAL NEOPLASIA GRADE 1^99DCT">
@@ -518,6 +532,14 @@
                 <input id="vulval_exam.normal" type="checkbox"
                        data-concept="7487^VISUAL VULVAL EXAM FINDINGS ^99DCT" value="1115^NORMAL^99DCT">
                 Normal
+            </label>
+        </div>
+        <div class="form-group">
+            <label class="font-normal">
+                <input id="vaginal_exam.suspicion_of_cancer_vulva_lesion" type="checkbox"
+                       data-concept="7490^VISUAL VAGINAL EXAM FINDINGS ^99DCT"
+                       value="9177^SUSPICIOUS OF CANCER, VULVA LESION^99DCT">
+                Vulva lesion suspicious for cancer
             </label>
         </div>
         <div class="form-group">
@@ -692,23 +714,38 @@
         <select class="form-control" id="ccsp_plan" name="ccsp_plan"
                 data-concept="7500^GYNECOLOGIC ONCOLOGY PLAN^99DCT" required="required">
             <option value="">...</option>
-            <option value="7498^ROUTINE VIA IN 6-MONTHS^99DCT">VIA 6 Months follow up</option>
+            <option value="9178^VIA FOLLOW-UP IN THREE MONTHS^99DCT">VIA 3 months follow up</option>
+            <option value="7498^ROUTINE VIA IN 6-MONTHS^99DCT">VIA 6 months follow up</option>
             <option value="7496^ROUTINE VIA IN 1-YEAR^99DCT">Routine VIA in 1-year</option>
             <option value="7497^ROUTINE VIA IN 3-YEARS^99DCT">Routine VIA in 3-years</option>
             <option value="7383^REFERRAL FOR COLPOSCOPY^99DCT">Referral for Colposcopy</option>
             <option value="7499^REFERRAL TO GYNAE-ONCOLOGY^99DCT">Referral to Gynae-Oncology</option>
+            <option value="7466^CRYOTHERAPY^99DCT">Referral for Cryotherapy</option>
+            <option value="1496^CLINICIAN^99DCT">Referral to Clinician</option>
             <option value="5622^OTHER NON-CODED^99DCT"></option>
         </select>
     </div>
 
     <div class="form-group">
-        <label for="ccsp_directive_fp">Directive family planning counseling performed</label>
-        <select class="form-control" id="ccsp_directive_fp" name="ccsp_directive_fp"
-                data-concept="6681^FAMILY PLANNING COUNSELING PERFORMED^99DCT" required="required">
-            <option value="">...</option>
-            <option value="1065^YES^99DCT">Yes</option>
-            <option value="1066^NO^99DCT">No</option>
-        </select>
+        <div class="form-group">
+            <span><strong>Directive family planning counseling performed</strong></span>
+            <div class="radio">
+                <label>
+                    <input name="ccsp_directive_fp" type="radio"
+                           data-concept="6681^FAMILY PLANNING COUNSELING PERFORMED^99DCT"
+                           value="1065^YES^99DCT">
+                    Yes
+                </label>
+            </div>
+            <div class="radio">
+                <label>
+                    <input name="ccsp_directive_fp" type="radio"
+                           data-concept="6681^FAMILY PLANNING COUNSELING PERFORMED^99DCT"
+                           value="1066^NO^99DCT">
+                    No
+                </label>
+            </div>
+        </div>
     </div>
 </div>
 <div class="section" data-concept="9175^FAMILY PLANNING REFILL PROVIDED, DETAILED^99DCT">
@@ -1198,6 +1235,34 @@ $(document).ready(function () {
     };
     procedureDoneDetailed();
     /* End - Procedure done this visit */
+
+    /* Start - Hiding refill and new based on current value */
+    var $fpCheckboxes = $(':checkbox[data-concept="374^METHOD OF FAMILY PLANNING^99DCT"]');
+    $fpCheckboxes.change(function() {
+        var value = $(this).val();
+        if (value != "5622^OTHER NON-CODED^99DCT" && value != "1107^NONE^99DCT") {
+            var $chosen = $(':checkbox[data-concept="7240^FAMILY PLANNING METHOD CHOSEN^99DCT"][value="' + value + '"]');
+            var $refilled = $(':checkbox[data-concept="7495^FAMILY PLANNING REFILL PROVIDED^99DCT"][value="' + value + '"]');
+            if ($(this).is(':checked')) {
+                $chosen.closest('.form-group').hide();
+                $refilled.closest('.form-group').show();
+            } else {
+                $chosen.closest('.form-group').show();
+                $refilled.closest('.form-group').hide();
+            }
+        }
+    });
+    $fpCheckboxes.trigger('change');
+    /* End - Hiding refill and new based on current value */
+
+    /* Start - Removing error class after the following validation */
+    $('fieldset').find(':checkbox').change(function () {
+        if ($(this).closest('fieldset').hasClass('error')) {
+            $(this).closest('fieldset').removeClass('error');
+            $(this).closest('.section').find('label.error').hide();
+        }
+    });
+    /* End - Removing error class after the following validation */
 
     /* Start - Ensuring some selection are selected alone */
     $.fn.checkSelectedAlone = function (nameArray, singleValues, message) {

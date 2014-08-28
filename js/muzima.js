@@ -491,7 +491,7 @@ $(document).ready(function () {
     var jsonifyConcepts = function ($allConcepts) {
         var o = {};
         $.each($allConcepts, function (i, element) {
-            if ($(element).is(':checkbox')) {
+            if ($(element).is(':checkbox') || $(element).is(':radio')) {
                 if ($(element).is(':checked')) {
                     o = pushIntoArray(o, $(element).attr('data-concept'), $(element).val());
                 }
