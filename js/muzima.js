@@ -381,7 +381,6 @@ $(document).ready(function () {
                 if ($div.length > 0) {
                     // we are dealing with grouping
                     if (value instanceof Array) {
-                        console.log('0', key, value);
                         $.each(value, function (i, element) {
                             if (i == 0) {
                                 populateDataConcepts($div, element);
@@ -392,7 +391,6 @@ $(document).ready(function () {
                             }
                         });
                     } else {
-                        console.log('1', key, value);
                         populateDataConcepts($div, value);
                     }
                 } else {
@@ -400,7 +398,6 @@ $(document).ready(function () {
                     if (value instanceof Array) {
                         var elements = $('[data-concept="' + key + '"]');
                         if (elements.length < value.length) {
-                            console.log('7', key, value);
                             $.each(value, function (i, valueElement) {
                                 if (i == 0) {
                                     $.each(elements, function(i, element) {
@@ -417,7 +414,6 @@ $(document).ready(function () {
                                 }
                             });
                         } else {
-                            console.log('3', key, value);
                             $.each(value, function (i, valueElement) {
                                 $.each(elements, function(i, element) {
                                     applyValue(element, valueElement);
@@ -425,13 +421,11 @@ $(document).ready(function () {
                             });
                         }
                     } else {
-                        console.log('4', key, value);
                         populateDataConcepts($div, value);
                     }
                 }
             }
             else {
-                console.log('5', key, value);
                 var $elements = $('[data-concept="' + key + '"]');
                 $.each($elements, function (i, element) {
                     applyValue(element, value);
@@ -445,11 +439,13 @@ $(document).ready(function () {
     if (prePopulateData != '') {
         console.time("Starting population");
         var prePopulateJSON = JSON.parse(prePopulateData);
-        populateNonConceptFields(prePopulateJSON['patient'] || {});
-        populateNonConceptFields(prePopulateJSON['encounter'] || {});
-        populateNonConceptFields(prePopulateJSON['consultation'] || {});
-        populateNonConceptFields(prePopulateJSON['observation'] || {});
-        populateObservations(prePopulateJSON['observation'] || {});
+        $.each(prePopulateJSON, function(key, value) {
+            if (key === 'observation') {
+                populateObservations(value);
+            } else {
+                populateNonConceptFields(value);
+            }
+        });
         console.timeEnd("Starting population");
     }
 
@@ -458,28 +454,24 @@ $(document).ready(function () {
 
     /* Start - Code to Serialize form along with Data-Concepts */
     $.fn.serializeEncounterForm = function () {
-        var jsonResult = $.extend({}, serializeNonConceptElements(this), serializeConcepts(this), serializeNestedConcepts(this));
-        var patient = {};
-        var encounter = {};
-        var consultation = {};
-        var observation = {};
+        var jsonResult = $.extend({}, serializeNonConceptElements(this),
+            serializeConcepts(this), serializeNestedConcepts(this));
+        var completeObject = {};
+        var defaultKey = "observation";
         $.each(jsonResult, function (k, v) {
-            if (k.indexOf('patient') === 0) {
-                patient[k] = v;
-            } else if (k.indexOf('encounter') === 0) {
-                encounter[k] = v;
-            } else if (k.indexOf('consultation') === 0) {
-                consultation[k] = v;
-            } else {
-                observation[k] = v;
+            var key = defaultKey;
+            var dotIndex = k.indexOf(".");
+            if (dotIndex >= 0) {
+                key = k.substr(0, k.indexOf("."));
             }
+            var objects = completeObject[key];
+            if (objects === undefined) {
+                objects = {};
+                completeObject[key] = objects;
+            }
+            objects[k] = v;
         });
-        var finalResult = {};
-        finalResult['patient'] = patient;
-        finalResult['encounter'] = encounter;
-        finalResult['consultation'] = consultation;
-        finalResult['observation'] = observation;
-        return  finalResult;
+        return completeObject;
     };
 
     var serializeNonConceptElements = function ($form) {
