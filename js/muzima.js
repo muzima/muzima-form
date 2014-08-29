@@ -347,58 +347,79 @@ $(document).ready(function () {
             $div.find('[data-concept="' + k + '"]').val(v);
         });
     };
-    var populateNonConceptFields = function (prePopulateJSON) {
-        $.each(prePopulateJSON, function (key, value) {
-            var $elementWithNameAttr = $('[name="' + key + '"]');
-            $elementWithNameAttr.val(value);
-        });
 
-    };
-    var populateObservations = function (prePopulateJSON) {
-        $.each(prePopulateJSON, function (key, value) {
-            if (value instanceof Object) {
-                var $div = $('div[data-concept="' + key + '"]');
-                if ($div.length > 1) {
-                    return;
-                }
-                var $dataElement = $($('[name="' + key + '"]')[0]);
-                if ($dataElement.prop('tagName') == 'FIELDSET') {
-                    $.each(value, function (i, val) {
-                        if (val instanceof Array) {
-                            $.each(val, function (i, v) {
-                                $dataElement.find($("input[type=checkbox][value='" + v + "']")).attr('checked', 'true');
-                            });
-                        } else {
-                            $dataElement.find($("input[type=checkbox][value='" + val + "']")).attr('checked', 'true');
-                        }
-                    });
-                } else if (value instanceof Array) {
-                    $.each(value, function (i, elem) {
-                        if (i == 0) {
-                            populateDataConcepts($div, elem);
-                        } else {
-                            var $newDiv = $div.clone(true);
-                            populateDataConcepts($newDiv, elem);
-                            $div.after($newDiv);
-                        }
-                    });
+    var populateNonConceptFields = function (prePopulateJson) {
+        $.each(prePopulateJson, function (key, value) {
+            var $elements = $('[name="' + key + '"]');
+            $.each($elements, function (i, element) {
+                if ($(element).is(':checkbox') || $(element).is(':radio')) {
+                    if ($(element).val() == value) {
+                        $(element).prop('checked', true);
+                    }
                 } else {
-                    populateDataConcepts($div, value);
+                    $(element).val(value);
+                }
+            });
+        });
+    };
+
+    var populateObservations = function (prePopulateJson) {
+        $.each(prePopulateJson, function (key, value) {
+            if (value instanceof Object) {
+                // check if this is a grouping observation.
+                var $div = $('div[data-concept="' + key + '"]');
+                if ($div.length > 0) {
+                    // we are dealing with grouping
+                    if (value instanceof Array) {
+                        console.log('0', key, value);
+                        $.each(value, function (i, element) {
+                            if (i == 0) {
+                                populateDataConcepts($div, element);
+                            } else {
+                                var $clonedDiv = $div.clone(true);
+                                populateDataConcepts($clonedDiv, element);
+                                $div.after($clonedDiv);
+                            }
+                        });
+                    } else {
+                        console.log('1', key, value);
+                        populateDataConcepts($div, value);
+                    }
+                } else {
+                    // we are dealing with repeating
+                    if (value instanceof Array) {
+                        console.log('3', key, value);
+                        $.each(value, function (i, valueElement) {
+                            var elements = $('[data-concept="' + key + '"]');
+                            $.each(elements, function(i, element) {
+                                if ($(element).is(':checkbox') || $(element).is(':radio')) {
+                                    if ($(element).val() == valueElement) {
+                                        $(element).prop('checked', true);
+                                    }
+                                } else {
+                                    $(element).val(valueElement);
+                                }
+                            });
+                        });
+                    } else {
+                        console.log('4', key, value);
+                        populateDataConcepts($div, value);
+                    }
                 }
             }
             else {
-                var $dataConceptElement = $('[data-concept="' + key + '"]');
-                if ($dataConceptElement.prop('tagName') == 'FIELDSET') {
-                    $dataConceptElement.find($("input[type=checkbox][value='" + value + "']")).attr('checked', 'true');
-                } else {
-                    if ($dataConceptElement.is(':checkbox') || $dataConceptElement.is(':radio')) {
-                        if ($dataConceptElement.val() == value) {
-                            $dataConceptElement.find($("input[value='" + value + "']")).prop('checked', true);
+                console.log('5', key, value);
+                // gagal untuk simple object
+                var $elements = $('[data-concept="' + key + '"]');
+                $.each($elements, function (i, element) {
+                    if ($(element).is(':checkbox') || $(element).is(':radio')) {
+                        if ($(element).val() == value) {
+                            $(element).prop('checked', true);
                         }
                     } else {
-                        $dataConceptElement.val(value);
+                        $(element).val(value);
                     }
-                }
+                });
             }
         });
     };
@@ -448,28 +469,16 @@ $(document).ready(function () {
     var serializeNonConceptElements = function ($form) {
         var object = {};
         var $inputElements = $form.find('[name]').not('[data-concept]');
-        // TODO: Need to refactor this to make it more robust.
-        // * Check the type of input
-        // * Get the value of the checked element if it's radio
-        // * Get the values of the checked elements if it's checkboxes
-        // * Get the value if others
-        // * Create a map of name to the value
         $.each($inputElements, function (i, element) {
-            if (isCheckBoxAndChecked($(element))) {
-                object = pushIntoArray(object, $(element).parent().attr('name'), $(element).val());
-            } else if (notACheckBoxOrFieldSet($(element))) {
+            if ($(element).is(':checkbox') || $(element).is(':radio')) {
+                if ($(element).is(':checked')) {
+                    object = pushIntoArray(object, $(element).attr('name'), $(element).val());
+                }
+            } else {
                 object = pushIntoArray(object, $(element).attr('name'), $(element).val());
             }
         });
         return object;
-    };
-
-    var isCheckBoxAndChecked = function ($element) {
-        return $element.attr('type') == 'checkbox' && $element.is(':checked');
-    };
-
-    var notACheckBoxOrFieldSet = function ($element) {
-        return $element.attr('type') != 'checkbox' && $element.prop('tagName') != 'FIELDSET';
     };
 
     var serializeNestedConcepts = function ($form) {
