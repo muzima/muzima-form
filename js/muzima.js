@@ -13,7 +13,7 @@ $(document).ready(function () {
     /* Start - Function to save the form */
     document.submit = function () {
         var validForm = $("form").valid();
-        if(typeof $.fn.customValidationCheck !== 'undefined' && typeof $.fn.customValidationCheck === 'function'){
+        if (typeof $.fn.customValidationCheck !== 'undefined' && typeof $.fn.customValidationCheck === 'function') {
             validForm = validForm && $.fn.customValidationCheck();
         }
         if (validForm) {
@@ -177,8 +177,8 @@ $(document).ready(function () {
 
     /* End - CheckDigit Algorithm */
 
-    $.fn.isNotRequiredAndEmpty = function(value,element){
-        if(!$(element).attr('required') && value == '') return true;
+    $.fn.isNotRequiredAndEmpty = function (value, element) {
+        if (!$(element).attr('required') && value == '') return true;
     };
 
     // attach 'checkDigit' class to perform validation.
@@ -189,7 +189,7 @@ $(document).ready(function () {
     /* Start - Checking that the current date is not in the future */
 
     $.validator.addMethod("nonFutureDate", function (value, element) {
-            if($.fn.isNotRequiredAndEmpty(value,element)) return true;
+            if ($.fn.isNotRequiredAndEmpty(value, element)) return true;
             var enteredDate = new Date(value);
             var today = new Date();
             return enteredDate <= today;
@@ -207,7 +207,7 @@ $(document).ready(function () {
     /* Start - Checking that the current date is in the future */
 
     $.validator.addMethod("checkFutureDate", function (value, element) {
-            if($.fn.isNotRequiredAndEmpty(value,element)) return true;
+            if ($.fn.isNotRequiredAndEmpty(value, element)) return true;
             var enteredDate = new Date(value);
             var today = new Date();
             return enteredDate > today;
@@ -225,7 +225,7 @@ $(document).ready(function () {
     /* Start - Checking that the entered value is a valid phone number */
 
     $.validator.addMethod("phoneNumber", function (value, element) {
-            if($.fn.isNotRequiredAndEmpty(value,element)) return true;
+            if ($.fn.isNotRequiredAndEmpty(value, element)) return true;
             var inputLength = value.length;
             return inputLength >= 8 && inputLength <= 12;
         }, "Invalid Phone Number. Please check and re-enter."
@@ -240,22 +240,21 @@ $(document).ready(function () {
 
     /* Start - checkNoneSelectedAlone*/
 
-    $.fn.checkNoneSelectedAlone = function(name_array){
+    $.fn.checkNoneSelectedAlone = function (nameArray) {
         var $validator = $('form').validate();
         var errors = {};
-        var final_result = true;
-        $.each(name_array, function (i, elem) {
-            var fieldSetElem = $('fieldset[name="' + elem + '"]');
-            var result = isValidForNoneSelection(fieldSetElem);
+        var result = true;
+        $.each(nameArray, function (i, element) {
+            var fieldSetElem = $('fieldset[name="' + element + '"]');
+            result = isValidForNoneSelection(fieldSetElem);
             if (!result) {
-                errors[elem] = "If 'None' is selected, no other options can be selected.";
-                final_result = false;
+                errors[element] = "If 'None' is selected, no other options can be selected.";
             }
         });
-        if (!final_result) {
+        if (!result) {
             $validator.showErrors(errors);
         }
-        return final_result;
+        return result;
     };
 
     var isValidForNoneSelection = function (element) {
@@ -303,17 +302,17 @@ $(document).ready(function () {
         /* Get largest suffix so far */
         var _id = $(this).parent().attr('id');
         var $repeatedSections = $("." + _id);
-        var suffixInt=0;
+        var suffixInt = 0;
         $.each($repeatedSections, function (i, repeatedSection) {
             var idnr = $(repeatedSection).attr("data-name").match(/\d+$/);
-            if (parseInt(idnr) > parseInt(suffixInt)){
-                suffixInt= idnr;
+            if (parseInt(idnr) > parseInt(suffixInt)) {
+                suffixInt = idnr;
             }
         });
-        if ( parseInt(suffixInt) == 0){
+        if (parseInt(suffixInt) == 0) {
             parentName += "1";
         } else {
-            parentName +=  parseInt(suffixInt)+1;
+            parentName += parseInt(suffixInt) + 1;
         }
         $clonedSection.attr("data-name", parentName);
 
@@ -365,7 +364,13 @@ $(document).ready(function () {
                 var $dataElement = $($('[name="' + key + '"]')[0]);
                 if ($dataElement.prop('tagName') == 'FIELDSET') {
                     $.each(value, function (i, val) {
-                        $dataElement.find($("input[type=checkbox][value='" + val + "']")).attr('checked', 'true');
+                        if (val instanceof Array) {
+                            $.each(val, function (i, v) {
+                                $dataElement.find($("input[type=checkbox][value='" + v + "']")).attr('checked', 'true');
+                            });
+                        } else {
+                            $dataElement.find($("input[type=checkbox][value='" + val + "']")).attr('checked', 'true');
+                        }
                     });
                 } else if (value instanceof Array) {
                     $.each(value, function (i, elem) {
@@ -383,10 +388,16 @@ $(document).ready(function () {
             }
             else {
                 var $dataConceptElement = $('[data-concept="' + key + '"]');
-                if ( $dataConceptElement.prop('tagName') == 'FIELDSET') {
+                if ($dataConceptElement.prop('tagName') == 'FIELDSET') {
                     $dataConceptElement.find($("input[type=checkbox][value='" + value + "']")).attr('checked', 'true');
-                }else{
-                    $dataConceptElement.val(value);
+                } else {
+                    if ($dataConceptElement.is(':checkbox') || $dataConceptElement.is(':radio')) {
+                        if ($dataConceptElement.val() == value) {
+                            $dataConceptElement.find($("input[value='" + value + "']")).prop('checked', true);
+                        }
+                    } else {
+                        $dataConceptElement.val(value);
+                    }
                 }
             }
         });
@@ -435,16 +446,22 @@ $(document).ready(function () {
     };
 
     var serializeNonConceptElements = function ($form) {
-        var o = {};
-        var $input_elements = $form.find('[name]').not('[data-concept]');
-        $.each($input_elements, function (i, element) {
+        var object = {};
+        var $inputElements = $form.find('[name]').not('[data-concept]');
+        // TODO: Need to refactor this to make it more robust.
+        // * Check the type of input
+        // * Get the value of the checked element if it's radio
+        // * Get the values of the checked elements if it's checkboxes
+        // * Get the value if others
+        // * Create a map of name to the value
+        $.each($inputElements, function (i, element) {
             if (isCheckBoxAndChecked($(element))) {
-                o = pushIntoArray(o, $(element).parent().attr('name'), $(element).val());
+                object = pushIntoArray(object, $(element).parent().attr('name'), $(element).val());
             } else if (notACheckBoxOrFieldSet($(element))) {
-                o = pushIntoArray(o, $(element).attr('name'), $(element).val());
+                object = pushIntoArray(object, $(element).attr('name'), $(element).val());
             }
         });
-        return o;
+        return object;
     };
 
     var isCheckBoxAndChecked = function ($element) {
@@ -457,8 +474,8 @@ $(document).ready(function () {
 
     var serializeNestedConcepts = function ($form) {
         var result = {};
-        var parent_divs = $form.find('div[data-concept]');
-        $.each(parent_divs, function (i, element) {
+        var parentDivs = $form.find('div[data-concept]');
+        $.each(parentDivs, function (i, element) {
             var $allConcepts = $(element).find('*[data-concept]:visible');
             result = pushIntoArray(result, $(element).attr('data-concept'), jsonifyConcepts($allConcepts));
         });
@@ -466,26 +483,26 @@ $(document).ready(function () {
     };
 
     var serializeConcepts = function ($form) {
-        var o = {};
+        var object = {};
         var allConcepts = $form.find('*[data-concept]:visible');
         $.each(allConcepts, function (i, element) {
             if ($(element).closest('.section').attr('data-concept') == undefined) {
                 var jsonifiedConcepts = jsonifyConcepts($(element));
                 if (JSON.stringify(jsonifiedConcepts) != '{}' && jsonifiedConcepts != "") {
-                    $.each(jsonifiedConcepts, function(key, value) {
-                        if (o[key] !== undefined) {
-                            if (!o[key].push) {
-                                o[key] = [o[key]];
+                    $.each(jsonifiedConcepts, function (key, value) {
+                        if (object[key] !== undefined) {
+                            if (!object[key].push) {
+                                object[key] = [object[key]];
                             }
-                            o[key].push(value || '');
+                            object[key].push(value || '');
                         } else {
-                            o[key] = value || '';
+                            object[key] = value || '';
                         }
                     });
                 }
             }
         });
-        return o;
+        return object;
     };
 
     var jsonifyConcepts = function ($allConcepts) {
@@ -502,19 +519,19 @@ $(document).ready(function () {
         return o;
     };
 
-    var pushIntoArray = function (obj, key, value) {
+    var pushIntoArray = function (object, key, value) {
         if (JSON.stringify(value) == '{}' || value == "") {
-            return obj;
+            return object;
         }
-        if (obj[key] !== undefined) {
-            if (!obj[key].push) {
-                obj[key] = [obj[key]];
+        if (object[key] !== undefined) {
+            if (!object[key].push) {
+                object[key] = [object[key]];
             }
-            obj[key].push(value || '');
+            object[key].push(value || '');
         } else {
-            obj[key] = value || '';
+            object[key] = value || '';
         }
-        return obj;
+        return object;
     };
 
     /* End - Code to Serialize form along with Data-Concepts */
