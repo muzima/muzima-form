@@ -363,6 +363,16 @@ $(document).ready(function () {
         });
     };
 
+    var applyValue = function (element, value) {
+        if ($(element).is(':checkbox') || $(element).is(':radio')) {
+            if ($(element).val() == value) {
+                $(element).prop('checked', true);
+            }
+        } else {
+            $(element).val(value);
+        }
+    };
+
     var populateObservations = function (prePopulateJson) {
         $.each(prePopulateJson, function (key, value) {
             if (value instanceof Object) {
@@ -388,19 +398,32 @@ $(document).ready(function () {
                 } else {
                     // we are dealing with repeating
                     if (value instanceof Array) {
-                        console.log('3', key, value);
-                        $.each(value, function (i, valueElement) {
-                            var elements = $('[data-concept="' + key + '"]');
-                            $.each(elements, function(i, element) {
-                                if ($(element).is(':checkbox') || $(element).is(':radio')) {
-                                    if ($(element).val() == valueElement) {
-                                        $(element).prop('checked', true);
-                                    }
+                        var elements = $('[data-concept="' + key + '"]');
+                        if (elements.length < value.length) {
+                            console.log('7', key, value);
+                            $.each(value, function (i, valueElement) {
+                                if (i == 0) {
+                                    $.each(elements, function(i, element) {
+                                        applyValue(element, valueElement);
+                                    });
                                 } else {
-                                    $(element).val(valueElement);
+                                    var $div = $(elements).closest('.repeat');
+                                    var $clonedDiv = $div.clone(true);
+                                    $div.after($clonedDiv);
+                                    elements = $clonedDiv.find('[data-concept="' + key + '"]');
+                                    $.each(elements, function(i, element) {
+                                        applyValue(element, valueElement);
+                                    });
                                 }
                             });
-                        });
+                        } else {
+                            console.log('3', key, value);
+                            $.each(value, function (i, valueElement) {
+                                $.each(elements, function(i, element) {
+                                    applyValue(element, valueElement);
+                                });
+                            });
+                        }
                     } else {
                         console.log('4', key, value);
                         populateDataConcepts($div, value);
@@ -409,16 +432,9 @@ $(document).ready(function () {
             }
             else {
                 console.log('5', key, value);
-                // gagal untuk simple object
                 var $elements = $('[data-concept="' + key + '"]');
                 $.each($elements, function (i, element) {
-                    if ($(element).is(':checkbox') || $(element).is(':radio')) {
-                        if ($(element).val() == value) {
-                            $(element).prop('checked', true);
-                        }
-                    } else {
-                        $(element).val(value);
-                    }
+                    applyValue(element, value);
                 });
             }
         });
