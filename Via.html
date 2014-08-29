@@ -971,11 +971,15 @@ $(document).ready(function () {
     $('#encounter\\.encounter_datetime').val(new Date().toDateInputValue());
 
     $('#save_draft').click(function () {
-        document.saveDraft();
+        $(this).prop('disabled', true);
+        document.saveDraft(this);
+        $(this).prop('disabled', false);
     });
 
     $('#submit_form').click(function () {
+        $(this).prop('disabled', true);
         document.submit();
+        $(this).prop('disabled', false);
     });
 
     $('#via_form').validate({
@@ -996,9 +1000,6 @@ $(document).ready(function () {
                 number: true,
                 range: [1, 12]
             }
-        },
-        submitHandler: function (form) {
-            $('#result').html(JSON.stringify($('form').serializeEncounterForm(), undefined, 2));
         }
     });
 
