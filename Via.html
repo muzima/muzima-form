@@ -727,24 +727,22 @@
     </div>
 
     <div class="form-group">
+        <h5><strong>Directive family planning counseling performed</strong></h5>
         <div class="form-group">
-            <span><strong>Directive family planning counseling performed</strong></span>
-            <div class="radio">
-                <label>
-                    <input name="ccsp_directive_fp" type="radio"
-                           data-concept="6681^FAMILY PLANNING COUNSELING PERFORMED^99DCT"
-                           value="1065^YES^99DCT">
-                    Yes
-                </label>
-            </div>
-            <div class="radio">
-                <label>
-                    <input name="ccsp_directive_fp" type="radio"
-                           data-concept="6681^FAMILY PLANNING COUNSELING PERFORMED^99DCT"
-                           value="1066^NO^99DCT">
-                    No
-                </label>
-            </div>
+            <label class="font-normal">
+                <input name="ccsp_directive_fp" type="radio"
+                       data-concept="6681^FAMILY PLANNING COUNSELING PERFORMED^99DCT"
+                       value="1065^YES^99DCT">
+                Yes
+            </label>
+        </div>
+        <div class="form-group">
+            <label class="font-normal">
+                <input name="ccsp_directive_fp" type="radio"
+                       data-concept="6681^FAMILY PLANNING COUNSELING PERFORMED^99DCT"
+                       value="1066^NO^99DCT">
+                No
+            </label>
         </div>
     </div>
 </div>
@@ -1241,14 +1239,22 @@ $(document).ready(function () {
     var $fpCheckboxes = $(':checkbox[data-concept="374^METHOD OF FAMILY PLANNING^99DCT"]');
     $fpCheckboxes.change(function() {
         var value = $(this).val();
+        var $chosen = $(':checkbox[data-concept="7240^FAMILY PLANNING METHOD CHOSEN^99DCT"][value="' + value + '"]');
+        var $refilled = $(':checkbox[data-concept="7495^FAMILY PLANNING REFILL PROVIDED^99DCT"][value="' + value + '"]');
         if (value != "5622^OTHER NON-CODED^99DCT" && value != "1107^NONE^99DCT") {
-            var $chosen = $(':checkbox[data-concept="7240^FAMILY PLANNING METHOD CHOSEN^99DCT"][value="' + value + '"]');
-            var $refilled = $(':checkbox[data-concept="7495^FAMILY PLANNING REFILL PROVIDED^99DCT"][value="' + value + '"]');
             if ($(this).is(':checked')) {
                 $chosen.closest('.form-group').hide();
                 $refilled.closest('.form-group').show();
             } else {
                 $chosen.closest('.form-group').show();
+                $refilled.closest('.form-group').hide();
+            }
+        } else if (value == "1107^NONE^99DCT") {
+            if ($(this).is(':checked')) {
+                $chosen.closest('.form-group').show();
+                $refilled.closest('.form-group').show();
+            } else {
+                $chosen.closest('.form-group').hide();
                 $refilled.closest('.form-group').hide();
             }
         }

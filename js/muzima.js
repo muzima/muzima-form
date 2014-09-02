@@ -394,7 +394,7 @@ $(document).ready(function () {
                         populateDataConcepts($div, value);
                     }
                 } else {
-                    // we are dealing with repeating
+                    // we are not dealing with repeating
                     if (value instanceof Array) {
                         var elements = $('[data-concept="' + key + '"]');
                         if (elements.length < value.length) {
@@ -448,8 +448,6 @@ $(document).ready(function () {
         });
         console.timeEnd("Starting population");
     }
-
-
     /* End - JS to Prepopulate Data in the Form */
 
     /* Start - Code to Serialize form along with Data-Concepts */
@@ -491,9 +489,9 @@ $(document).ready(function () {
 
     var serializeNestedConcepts = function ($form) {
         var result = {};
-        var parentDivs = $form.find('div[data-concept]');
+        var parentDivs = $form.find('div[data-concept]').filter(':visible');
         $.each(parentDivs, function (i, element) {
-            var $allConcepts = $(element).find('*[data-concept]:visible');
+            var $allConcepts = $(element).find('*[data-concept]');
             result = pushIntoArray(result, $(element).attr('data-concept'), jsonifyConcepts($allConcepts));
         });
         return result;
@@ -501,7 +499,7 @@ $(document).ready(function () {
 
     var serializeConcepts = function ($form) {
         var object = {};
-        var allConcepts = $form.find('*[data-concept]:visible');
+        var allConcepts = $form.find('*[data-concept]').filter(':visible');
         $.each(allConcepts, function (i, element) {
             if ($(element).closest('.section').attr('data-concept') == undefined) {
                 var jsonifiedConcepts = jsonifyConcepts($(element));
