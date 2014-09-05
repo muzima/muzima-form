@@ -1,0 +1,586 @@
+<!--
+  ~ Copyright (c) 2014. The Trustees of Indiana University.
+  ~
+  ~ This version of the code is licensed under the MPL 2.0 Open Source license with additional healthcare disclaimer. If the user is an entity intending to commercialize any application that uses this code in a for-profit venture, please contact the copyright holder.
+  -->
+
+<html>
+
+<head>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/muzima.css" rel="stylesheet">
+    <link href="css/ui-darkness/jquery-ui-1.10.4.custom.min.css" rel="stylesheet">
+    <script src="js/jquery.min.js"></script>
+    <script src="js/jquery-ui-1.10.4.custom.min.js"></script>
+    <script src="js/jquery.validate.min.js"></script>
+    <script src="js/additional-methods.min.js"></script>
+    <script src="js/muzima.js"></script>
+
+    <title>CDM CHW Form</title>
+</head>
+
+<body class="col-md-10 col-md-offset-1">
+<form id="via_form" name="via_form">
+<h2 class="text-center">CDM CHW Form</h2>
+
+<div class="section">
+    <h3>Demographics</h3>
+
+    <div class="form-group">
+        <input class="form-control" id="patient.uuid" name="patient.uuid" type="hidden" readonly="readonly">
+    </div>
+    <div class="form-group">
+        <label for="patient.medical_record_number">AMRS ID Number:</label>
+        <input class="form-control" id="patient.medical_record_number" name="patient.medical_record_number" type="text"
+               readonly="readonly" disabled="disabled">
+    </div>
+    <div class="form-group">
+        <label for="patient.family_name">Family Name:</label>
+        <input class="form-control" id="patient.family_name" name="patient.family_name" type="text" readonly="readonly"
+               disabled="disabled">
+    </div>
+    <div class="form-group">
+        <label for="patient.given_name">Given Name:</label>
+        <input class="form-control" id="patient.given_name" name="patient.given_name" type="text" readonly="readonly"
+               disabled="disabled">
+    </div>
+    <div class="form-group">
+        <label for="patient.middle_name">Middle Name:</label>
+        <input class="form-control" id="patient.middle_name" name="patient.middle_name" type="text" readonly="readonly"
+               disabled="disabled">
+    </div>
+    <div class="form-group">
+        <label for="patient.sex">Gender:</label>
+        <select class="form-control" id="patient.sex" name="patient.sex">
+            <option value="">...</option>
+            <option value="M">Male</option>
+            <option value="F">Female</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="patient.birthdate">Date Of Birth:</label>
+        <input class="form-control datepicker nonFutureDate" id="patient.birthdate" name="patient.birthdate" type="date"
+               readonly="readonly" disabled="disabled">
+    </div>
+</div>
+
+<div class="section">
+    <div class="form-group">
+        <label for="encounter.location_id">Screening Site:<span class="required">*</span></label>
+        <select class="form-control" name="encounter.location_id" id="encounter.location_id" required="required">
+            <option value="">...</option>
+            <option value="3">Turbo</option>
+            <option value="2">Mosoriot</option>
+            <option value="7">Chulaimbo</option>
+            <option value="8">Webuye</option>
+            <option value="9">Ampath MTRH</option>
+            <option value="17">Iten</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="encounter.encounter_datetime">
+            Encounter Date:<span class="required">*</span>
+        </label>
+        <input class="form-control datepicker nonFutureDate" id="encounter.encounter_datetime"
+               name="encounter.encounter_datetime" type="text" readonly="readonly" encounter.encounter_datetime
+               required="required">
+    </div>
+    <div class="form-group">
+        <input class="form-control" id="encounter.form_uuid" name="encounter.form_uuid" type="hidden"
+               required="required">
+    </div>
+</div>
+
+<div class="section">
+    <div class="form-group">
+        <label for="previous_follow_up">Previous date this form was filled:</label>
+        <input class="form-control datepicker nonFutureDate" id="previous_follow_up"
+               name="previous_follow_up" type="text"
+               data-concept="9167^DATE OF LAST FOLLOW-UP^99DCT">
+    </div>
+    <div class="form-group">
+        <label for="missed_appointment_date">Missed appointment date:</label>
+        <input class="form-control datepicker nonFutureDate" id="missed_appointment_date"
+               name="missed_appointment_date" type="text"
+               data-concept="1592^MISSED APPOINTMENT DATE^99DCT">
+    </div>
+</div>
+
+<div class="section">
+    <h4>PHCT Blood Sugar Readings</h4>
+
+    <div class="form-group">
+        <label for="random_blood_sugar">Random blood sugar (RBS):</label>
+        <div class="input-group">
+            <input class="form-control" id="random_blood_sugar"
+                   name="random_blood_sugar" type="number"
+                   data-concept="887^SERUM GLUCOSE^99DCT">
+            <span class="input-group-addon">mmol/L</span>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="random_blood_sugar">Fasting blood sugar (FBS):</label>
+        <div class="input-group">
+            <input class="form-control" id="fasting_blood_sugar"
+                   name="fasting_blood_sugar" type="number"
+                   data-concept="6252^SERUM GLUCOSE, FASTING^99DCT">
+            <span class="input-group-addon">mmol/L</span>
+        </div>
+    </div>
+</div>
+
+<div class="section">
+    <h4>PHCT Blood Pressure Readings</h4>
+
+    <div class="form-group">
+        <label for="random_blood_sugar">Systolic blood pressure:</label>
+        <div class="input-group">
+            <input class="form-control" id="systolic_blood_pressure"
+                   name="systolic_blood_pressure" type="number"
+                   data-concept="5085^SYSTOLIC BLOOD PRESSURE^99DCT">
+            <span class="input-group-addon">mmHg</span>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="diastolic_blood_pressure">Diastolic blood pressure:</label>
+        <div class="input-group">
+            <input class="form-control" id="diastolic_blood_pressure"
+                   name="diastolic_blood_pressure" type="number"
+                   data-concept="5086^DIASTOLIC BLOOD PRESSURE^99DCT">
+            <span class="input-group-addon">mmHg</span>
+        </div>
+    </div>
+</div>
+
+<div class="section" data-concept="1932^REFERRALS ORDERED, DETAILED^99DCT">
+    <div class="form-group">
+        <label for="referrals_ordered">Name of facility client was referred to:</label>
+        <input class="form-control" id="referrals_ordered"
+               name="referrals_ordered" type="text"
+               data-concept="1272^REFERRALS ORDERED^99DCT">
+    </div>
+    <div class="form-group">
+        <label for="date_referred">Date referred:</label>
+        <input class="form-control datepicker nonFutureDate" id="date_referred"
+               name="date_referred" type="text"
+               data-concept="9158^DATE REFERRED^99DCT">
+    </div>
+</div>
+
+<div class="section" data-concept="6750^REFERRED BY, DETAILED^99DCT">
+    <h4>Client referred from:</h4>
+    <div class="form-group">
+        <label class="font-normal">
+            <input id="referred_by.phct" type="checkbox"
+                   data-concept="6749^REFERRED BY^99DCT"
+                   value="8227^PHCT^99DCT">
+            PHCT
+        </label>
+    </div>
+    <div class="form-group">
+        <label class="font-normal">
+            <input id="referred_by.mch" type="checkbox"
+                   data-concept="6749^REFERRED BY^99DCT"
+                   value="2050^MATERNAL CHILD HEALTH PROGRAM^99DCT">
+            MCH
+        </label>
+    </div>
+    <div class="form-group">
+        <label class="font-normal">
+            <input id="referred_by.clinic" type="checkbox"
+                   data-concept="6749^REFERRED BY^99DCT"
+                   value="7037^REFERRED FROM CLINIC^99DCT">
+            Clinic
+        </label>
+    </div>
+    <div class="form-group">
+        <label class="font-normal">
+            <input class="has-other" id="referred_by.other_non_coded" type="checkbox"
+                   data-concept="6749^REFERRED BY^99DCT"
+                   value="5622^OTHER NON-CODED^99DCT">
+            Other
+        </label>
+    </div>
+    <div class="form-group freetext">
+        <label for="referred_by.freetext_general">Specify</label>
+        <input class="form-control" id="referred_by.freetext_general"
+               name="referred_by.freetext_general" type="text"
+               data-concept="1915^FREETEXT GENERAL^99DCT">
+    </div>
+</div>
+
+<div class="section" data-concept="9168^TYPE OF FOLLOW-UP, DETAILED^99DCT">
+    <h4>Type of CHW follow up:</h4>
+    <div class="form-group">
+        <label class="font-normal">
+            <input id="follow_up_type.hypertension" type="checkbox"
+                   data-concept="2332^TYPE OF FOLLOW-UP^99DCT"
+                   value="7286^KNOWN HYPERTENSIVE PATIENT^99DCT">
+            Hypertension
+        </label>
+    </div>
+    <div class="form-group">
+        <label class="font-normal">
+            <input id="follow_up_type.diabetic" type="checkbox"
+                   data-concept="2332^TYPE OF FOLLOW-UP^99DCT"
+                   value="7282^KNOWN DIABETIC PATIENT^99DCT">
+            Diabetic
+        </label>
+    </div>
+    <div class="form-group">
+        <label class="font-normal">
+            <input class="has-other" id="follow_up_type.other_non_coded" type="checkbox"
+                   data-concept="2332^TYPE OF FOLLOW-UP^99DCT"
+                   value="5622^OTHER NON-CODED^99DCT">
+            Other
+        </label>
+    </div>
+    <div class="form-group freetext">
+        <label for="follow_up_type.freetext_general">Specify</label>
+        <input class="form-control" id="follow_up_type.freetext_general"
+               name="follow_up_type.freetext_general" type="text"
+               data-concept="1915^FREETEXT GENERAL^99DCT">
+    </div>
+</div>
+
+<div class="section" data-concept="6114^REASON FOR ATTEMPTED CONTACT, DETAILED^99DCT">
+    <h4>Reason for follow up:</h4>
+    <div class="form-group">
+        <label class="font-normal">
+            <input id="follow_up_category.not_linked_to_care" type="checkbox"
+                   data-concept="9081^PATIENT ON OUTREACH FOLLOW-UP CATEGORY^99DCT"
+                   value="9160^NOT LINKED TO CARE^99DCT">
+            Not linked to care
+        </label>
+    </div>
+    <div class="form-group">
+        <label class="font-normal">
+            <input id="follow_up_category.lost_to_follow_up" type="checkbox"
+                   data-concept="9081^PATIENT ON OUTREACH FOLLOW-UP CATEGORY^99DCT"
+                   value="9159^LOST TO FOLLOW-UP, NOS^99DCT">
+            Lost to follow up
+        </label>
+    </div>
+    <div class="form-group">
+        <label class="font-normal">
+            <input class="has-other" id="follow_up_category.other_non_coded" type="checkbox"
+                   data-concept="9081^PATIENT ON OUTREACH FOLLOW-UP CATEGORY^99DCT"
+                   value="5622^OTHER NON-CODED^99DCT">
+            Other
+        </label>
+    </div>
+    <div class="form-group freetext">
+        <label for="follow_up_category.freetext_general">Specify</label>
+        <input class="form-control" id="follow_up_category.freetext_general"
+               name="follow_up_category.freetext_general" type="text"
+               data-concept="1915^FREETEXT GENERAL^99DCT">
+    </div>
+</div>
+
+<div class="section" data-concept="6187^REASON FOR MISSED VISIT, DETAILED^99DCT">
+    <h4>Reason for missed appointment:</h4>
+    <div class="form-group">
+        <label class="font-normal">
+            <input id="missed_visit_reason.lack_of_time" type="checkbox"
+                   data-concept="1733^REASON FOR MISSED VISIT^99DCT"
+                   value="9148^COMMITMENTS^99DCT">
+            Lack of time
+        </label>
+    </div>
+    <div class="form-group">
+        <label class="font-normal">
+            <input id="missed_visit_reason.lack_of_money" type="checkbox"
+                   data-concept="1733^REASON FOR MISSED VISIT^99DCT"
+                   value="6295^FINANCIAL BARRIER^99DCT">
+            Lack of money
+        </label>
+    </div>
+    <div class="form-group">
+        <label class="font-normal">
+            <input id="missed_visit_reason.lack_of_confidence" type="checkbox"
+                   data-concept="1733^REASON FOR MISSED VISIT^99DCT"
+                   value="9161^LACK OF CONFIDENCE^99DCT">
+            Lack of confidence in health care worker(s)
+        </label>
+    </div>
+    <div class="form-group">
+        <label class="font-normal">
+            <input id="missed_visit_reason.lack_of_transport" type="checkbox"
+                   data-concept="1733^REASON FOR MISSED VISIT^99DCT"
+                   value="820^TRANSPORT PROBLEMS^99DCT">
+            Lack of transport
+        </label>
+    </div>
+    <div class="form-group">
+        <label class="font-normal">
+            <input id="missed_visit_reason.asymptomatic" type="checkbox"
+                   data-concept="1733^REASON FOR MISSED VISIT^99DCT"
+                   value="5006^ASYMPTOMATIC^99DCT">
+            No symptoms of illness
+        </label>
+    </div>
+    <div class="form-group">
+        <label class="font-normal">
+            <input id="missed_visit_reason.visited_not_seen" type="checkbox"
+                   data-concept="1733^REASON FOR MISSED VISIT^99DCT"
+                   value="9162^VISITED HEALTH CARE FACILITY, NOT SEEN^99DCT">
+            Visited not seen
+        </label>
+    </div>
+    <div class="form-group">
+        <label class="font-normal">
+            <input id="missed_visit_reason.visited_dispensary_closed" type="checkbox"
+                   data-concept="1733^REASON FOR MISSED VISIT^99DCT"
+                   value="9163^VISITED HEALTH CARE FACILITY, CLOSED^99DCT">
+            Visited dispensary closed
+        </label>
+    </div>
+    <div class="form-group">
+        <label class="font-normal">
+            <input id="missed_visit_reason.distance_too_far" type="checkbox"
+                   data-concept="1733^REASON FOR MISSED VISIT^99DCT"
+                   value="1551^DISTANCE TOO FAR^99DCT">
+            Distance (too far)
+        </label>
+    </div>
+    <div class="form-group">
+        <label class="font-normal">
+            <input id="missed_visit_reason.sought_care_elsewhere" type="checkbox"
+                   data-concept="1733^REASON FOR MISSED VISIT^99DCT"
+                   value="8352^CONTINUE TO RECEIVE MEDICATIONS FROM ANOTHER LOCATION^99DCT">
+            Sought care elsewhere
+        </label>
+    </div>
+    <div class="form-group">
+        <label class="font-normal">
+            <input class="has-other" id="missed_visit_reason.other_non_coded" type="checkbox"
+                   data-concept="1733^REASON FOR MISSED VISIT^99DCT"
+                   value="5622^OTHER NON-CODED^99DCT">
+            Other
+        </label>
+    </div>
+    <div class="form-group freetext">
+        <label for="missed_visit_reason.freetext_general">Specify</label>
+        <input class="form-control" id="missed_visit_reason.freetext_general"
+               name="missed_visit_reason.freetext_general" type="text"
+               data-concept="1915^FREETEXT GENERAL^99DCT">
+    </div>
+</div>
+
+<div class="section">
+    <h4>Patient Facility Visit Plans Detailed</h4>
+
+    <div class="form-group">
+        <span><strong>Does patient plan to show up to facility?</strong></span>
+        <div class="radio">
+            <label>
+                <input name="visit_plan" type="radio"
+                       data-concept="6140^PLAN TO RETURN TO CLINIC^99DCT"
+                       value="1065^YES^99DCT">
+                Yes
+            </label>
+        </div>
+        <div class="radio">
+            <label>
+                <input name="visit_plan" type="radio"
+                       data-concept="6140^PLAN TO RETURN TO CLINIC^99DCT"
+                       value="1066^NO^99DCT">
+                No
+            </label>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="visit_plan_date">Date of planned facility visit?</label>
+        <input class="form-control datepicker nonFutureDate" id="visit_plan_date"
+               name="visit_plan_date" type="text"
+               data-concept="7348^RETURN VISIT DATE, DISPENSARY^99DCT">
+    </div>
+    <div class="form-group" data-concept="9087^FACILITY TYPE, DETAILED^99DCT">
+        <label for="visit_plan_facility">Facility name?</label>
+        <input class="form-control" id="visit_plan_facility"
+               name="visit_plan_facility" type="text"
+               data-concept="1915^FREETEXT GENERAL^99DCT">
+    </div>
+    <div class="form-group">
+        <label for="planned_follow_up_date">Planned CHW follow up date?</label>
+        <input class="form-control datepicker nonFutureDate" id="planned_follow_up_date"
+               name="planned_follow_up_date" type="text"
+               data-concept="9166^PLANNED FOLLOW-UP DATE^99DCT">
+    </div>
+</div>
+
+<div class="section">
+    <div class="form-group">
+        <label for="encounter.provider_id_select">Provider Name:</label>
+        <input class="form-control" id="encounter.provider_id_select" type="text"
+               placeholder="Start typing provider name here ...">
+        <input class="form-control" name="encounter.provider_id_select" type="hidden">
+    </div>
+    <div class="form-group show_provider_id_text">
+        <label for="encounter.provider_id">Enter provider's system-id:<span class="required">*</span></label>
+        <input class="form-control checkDigit" id="encounter.provider_id" name="encounter.provider_id" type="text"
+               placeholder="Or enter the provider system id here ..." required="required">
+    </div>
+    <div class="form-group">
+        <label for="return_visit_date">Return visit date:</label>
+        <input class="form-control datepicker checkFutureDate" data-concept="5096^RETURN VISIT DATE^99DCT"
+               id="return_visit_date" name="return_visit_date" type="text"
+               readonly="readonly">
+    </div>
+</div>
+
+<div class="form-group text-center">
+    <input class="btn btn-primary" id="save_draft" type="button" value="Save"/>
+    <input class="btn btn-primary" id="submit_form" type="button" value="Submit"/>
+</div>
+</form>
+</body>
+<script type="text/javascript">
+
+Date.prototype.toDateInputValue = (function () {
+    var local = new Date(this);
+    local.setMinutes(this.getMinutes() - this.getTimezoneOffset());
+    return local.toJSON().slice(0, 10);
+});
+
+$(document).ready(function () {
+
+    $('#encounter\\.encounter_datetime').val(new Date().toDateInputValue());
+
+    $('#save_draft').click(function () {
+        $(this).prop('disabled', true);
+        document.saveDraft(this);
+        $(this).prop('disabled', false);
+    });
+
+    $('#submit_form').click(function () {
+        $(this).prop('disabled', true);
+        document.submit();
+        $(this).prop('disabled', false);
+    });
+
+    $('#via_form').validate({
+        rules: {
+            gravida: {
+                number: true,
+                min: 0
+            },
+            parity: {
+                number: true,
+                min: 0
+            },
+            last_cd4_by_facs: {
+                number: true,
+                range: [0, 1500]
+            },
+            clock_face_cervical_biopsy_location: {
+                number: true,
+                range: [1, 12]
+            }
+        }
+    });
+
+    var locationName = [
+        {"val": "7", "label": "Chulaimbo"},
+        {"val": "3", "label": "Turbo"},
+        {"val": "17", "label": "Iten"},
+        {"val": "2", "label": "Mosoriot"},
+        {"val": "8", "label": "Webuye"},
+        {"val": "9", "label": "Ampath MTRH"}
+    ];
+    $('#encounter\\.location_id').autocomplete({
+        source: locationName,
+        create: function (event, ui) {
+            var location_val = $('input[name="encounter\\.location_id"]').val();
+            $.each(locationName, function (i, elem) {
+                if (elem.val == location_val) {
+                    $('#encounter\\.location_id').val(elem.label)
+                }
+                ;
+            });
+        },
+        select: function (event, ui) {
+            $('input[name="encounter\\.location_id"]').val(ui.item.val);
+            $('#encounter\\.location_id').val(ui.item.label);
+            return false;
+        }
+    });
+
+    var provider = [
+        {"label": "Daurine Achieng Agumba", "val": "3419-9"},
+        {"label": "Irene Chepkosgei	Kurgat", "val": "3420-7"},
+        {"label": "Rose	Cheruto	Toroitich", "val": "3421-5"},
+        {"label": "Mary	Kipkurui Kimosop", "val": "3422-3"},
+        {"label": "Jacqueline Chemom Ndiema", "val": "3423-1"},
+        {"label": "Grace Wanjiru Mwangi", "val": "3424-9"},
+        {"label": "Collette	Mabia Palapala", "val": "3425-6"},
+        {"label": "Dorice Erima	Wekesa	Female", "val": "3426-4"},
+        {"label": "Agnes Kagure	Boen", "val": "120-6"},
+        {"label": "Linet Kerubo	Onyancha", "val": "3427-2"},
+        {"label": "Delinah Muchai Tanui", "val": "1208-8"},
+        {"label": "Hellen Mushimbi Indumbwe", "val": "1208-8"},
+        {"label": "Lydia Cherugut Samoei", "val": "1525-5"},
+        {"label": "Ruth	Kalunda	Nzili", "val": "1529-7"},
+        {"label": "Lucy	Cheruto	Birgen", "val": "3428-0"},
+        {"label": "Gratiah Nafuna Khaemba", "val": "1409-2"},
+        {"label": "Leonida Chemutai	Mengich", "val": "1357-3"},
+        {"label": "Ann Wangoi Maina", "val": "1412-6"},
+        {"label": "Elkanah Omenge Orango", "val": "1474-6"},
+        {"label": "Peter Mukhanadale Istura", "val": "1478-7"},
+        {"label": "Hillary Mabeya", "val": "1476-1"},
+        {"label": "Astrid Christoffersen Deb", "val": "1237-7"},
+        {"label": "Philip Kipkirui Tonui", "val": "1485-7"}
+    ];
+
+    $('#encounter\\.provider_id_select').autocomplete({
+        source: provider,
+        create: function (event, ui) {
+            var provider_val = $('input[name="encounter\\.provider_id_select"]').val();
+            $.each(provider, function (i, elem) {
+                if (elem.val == provider_val) {
+                    $('#encounter\\.provider_id_select').val(elem.label)
+                }
+            });
+        },
+        select: function (event, ui) {
+            $('input[name="encounter\\.provider_id_select"]').val(ui.item.val);
+            $('#encounter\\.provider_id_select').val(ui.item.label);
+            $('#encounter\\.provider_id').val(ui.item.val);
+            $('.show_provider_id_text').hide();
+            return false;
+        }
+    });
+    $('#encounter\\.provider_id_select').change(function () {
+        if ($('#encounter\\.provider_id_select').val() === '') {
+            $('#encounter\\.provider_id').val('');
+            $('.show_provider_id_text').show();
+        }
+    });
+
+    /* Start - Toggle free text element */
+    var $hasOther = $('.has-other');
+    $hasOther.change(function () {
+        var hasOtherValue = $(this).val();
+        var $freetext = $(this).closest('.section').find('.freetext');
+        if ($(this).is(':checkbox')) {
+            if ($hasOther.is(':checked')) {
+                $freetext.show();
+            } else {
+                $freetext.hide();
+            }
+        } else {
+            if (hasOtherValue === '5622^OTHER NON-CODED^99DCT') {
+                $freetext.show();
+            } else {
+                $freetext.hide();
+            }
+        }
+    });
+    $hasOther.trigger('change');
+    /* End - Toggle free text element */
+
+});
+</script>
+
+</html>
