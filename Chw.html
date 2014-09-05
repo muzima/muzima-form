@@ -57,6 +57,7 @@
                readonly="readonly" disabled="disabled">
     </div>
 </div>
+
 <div class="section">
     <div class="form-group">
         <label for="encounter.location_id">Screening Site:<span class="required">*</span></label>
@@ -390,6 +391,7 @@
         </div>
     </div>
 </div>
+
 <div class="section">
     <div class="form-group">
         <span><strong>Are you enrolled to care in another facility?</strong></span>
@@ -697,11 +699,11 @@ $(document).ready(function () {
         var $enrolledFacility = $('input[data-concept="' + FACILITY_ENROLLED_CONCEPT + '"]').closest('.form-group');
         if ($(this).is(':checked')) {
             if (enrolledValue == '1065^YES^99DCT') {
-                $resumeCare.find(":radio").prop("checked", false);
+                $resumeCare.find(":radio").prop("checked", false).trigger('change');
                 $resumeCare.hide();
-                $resumeCare.trigger('change');
                 $enrolledFacility.show();
             } else if (enrolledValue == '1066^NO^99DCT') {
+                $resumeCare.find(":radio").prop("checked", false).trigger('change');
                 $resumeCare.show();
                 $enrolledFacility.hide();
             }
