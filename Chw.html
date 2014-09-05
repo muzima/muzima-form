@@ -712,6 +712,88 @@ $(document).ready(function () {
     $enrolled.trigger('change');
     /* End - Toggle facility */
 
+    var medications = [
+        {"label": "DAPSONE", "value": 92},
+        {"label": "STREPTOMYCIN", "value": 438},
+        {"label": "MULTIVITAMIN", "value": 461},
+        {"label": "ISONIAZID", "value": 656},
+        {"label": "ETHAMBUTOL", "value": 745},
+        {"label": "FLUCONAZOLE", "value": 747},
+        {"label": "RIFAMPICIN ISONIAZID AND PYRAZINAMIDE", "value": 768},
+        {"label": "TRIMETHOPRIM AND SULFAMETHOXAZOLE", "value": 916},
+        {"label": "NYSTATIN", "value": 919},
+        {"label": "UNKNOWN", "value": 1067},
+        {"label": "RIFAMPICIN ISONIAZID PYRAZINAMIDE AND ETHAMBUTOL", "value": 1131},
+        {"label": "RIFAMPICIN AND ISONIAZID", "value": 1194},
+        {"label": "ANTIBIOTICS", "value": 1195},
+        {"label": "OTHER NON-CODED", "value": 5622},
+        {"label": "ANTIMALARIAL MEDICATIONS", "value": 5839},
+        {"label": "HERBAL TRADITIONAL MEDICATIONS", "value": 5841},
+        {"label": "MINERALS IRON SUPPLEMENTS", "value": 5843},
+        {"label": "NONE", "value": 1107},
+        {"label": "RIFAMPICIN ISONIAZID AND ETHAMBUTOL", "value": 2231},
+        {"label": "ETHAMBUTOL AND ISONIZAID", "value": 1108},
+        {"label": "RIFAMPICIN", "value": 767},
+        {"label": "PYRAZINAMIDE", "value": 5829},
+        {"label": "NSAIDS", "value": 6476},
+        {"label": "DIHYDROCODEINE", "value": 743},
+        {"label": "MORPHINE", "value": 6477},
+        {"label": "ZIDOVUDINE AND LAMIVUDINE", "value": 630},
+        {"label": "STAVUDINE LAMIVUDINE AND NEVIRAPINE", "value": 792},
+        {"label": "EMTRICITABINE AND TENOFOVIR", "value": 6180},
+        {"label": "NEVIRAPINE", "value": 631},
+        {"label": "LAMIVUDINE", "value": 628},
+        {"label": "ZIDOVUDINE", "value": 797},
+        {"label": "STAVUDINE", "value": 625},
+        {"label": "EFAVIRENZ", "value": 633},
+        {"label": "ABACAVIR", "value": 814},
+        {"label": "LOPINAVIR AND RITONAVIR", "value": 794},
+        {"label": "DIDANOSINE", "value": 796},
+        {"label": "TENOFOVIR", "value": 802},
+        {"label": "INDINAVIR", "value": 749},
+        {"label": "RALTEGRAVIR", "value": 6156},
+        {"label": "PEDIATRIC RIFAMPICIN ISONIAZID AND PYRAZINAMIDE", "value": 6602},
+        {"label": "PEDIATRIC RIFAMPICIN AND ISONIAZID", "value": 6603},
+        {"label": "METFORMIN", "value": 2261},
+        {"label": "GLIBENCLAMIDE", "value": 2257},
+        {"label": "ENALAPRIL", "value": 1242},
+        {"label": "HYDROCHLOROTHIAZIDE", "value": 1243},
+        {"label": "LOSARTAN", "value": 2265},
+        {"label": "NIFEDIPINE", "value": 250},
+        {"label": "FLUOXETINE", "value": 2281},
+        {"label": "OLANZAPINE", "value": 2282},
+        {"label": "ALPRAZOLAM", "value": 733},
+        {"label": "AMITRIPTYLINE", "value": 2273},
+        {"label": "BENZHEXOL", "value": 7578},
+        {"label": "CARBAMAZEPINE", "value": 920},
+        {"label": "CHLORPROMAZINE", "value": 914},
+        {"label": "FLUPHENAZINE", "value": 927},
+        {"label": "HALOPERIDOL", "value": 2283},
+        {"label": "IMIPRAMINE", "value": 748},
+        {"label": "VALPROATE SODIUM", "value": 2284},
+        {"label": "ANTIRETROVIRAL DRUGS", "value": 1085},
+        {"label": "VITAMINS", "value": 6339},
+        {"label": "MALARIA PROPHYLAXIS", "value": 6338},
+        {"label": "IRON SUPPLEMENT", "value": 2363},
+        {"label": "FOLIC ACID", "value": 257}
+    ];
+    $('#current_medication').autocomplete({
+        source: medications,
+        create: function (event, ui) {
+            var medication_value = $('input[name="current_medication"]').val();
+            $.each(locationName, function (i, element) {
+                if (element.val == medication_value) {
+                    $('#current_medication').val(element.label);
+                }
+            });
+        },
+        select: function (event, ui) {
+            $('input[name="current_medication"]').val(ui.item.value);
+            $('#current_medication').val(ui.item.label);
+            return false;
+        }
+    });
+
 });
 </script>
 
