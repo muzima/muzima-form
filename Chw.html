@@ -14,9 +14,8 @@
 </head>
 
 <body class="col-md-10 col-md-offset-1">
-<div id="pre_populate_data"></div>
 <form id="via_form" name="via_form">
-<h2 class="text-center">CCSP VIA Form</h2>
+<h2 class="text-center">CDM CHW Form</h2>
 
 <div class="section">
     <h3>Demographics</h3>
@@ -73,7 +72,8 @@
     </div>
 
     <div class="form-group">
-        <label for="encounter.encounter_datetime">Encounter Date:<span class="required">*</span>
+        <label for="encounter.encounter_datetime">
+            Encounter Date:<span class="required">*</span>
         </label>
         <input class="form-control datepicker nonFutureDate" id="encounter.encounter_datetime"
                name="encounter.encounter_datetime" type="text" readonly="readonly" encounter.encounter_datetime
@@ -83,6 +83,392 @@
         <input class="form-control" id="encounter.form_uuid" name="encounter.form_uuid" type="hidden"
                required="required">
     </div>
+</div>
+
+<div class="section">
+    <div class="form-group">
+        <label for="previous_follow_up">Previous date this form was filled:</label>
+        <input class="form-control datepicker nonFutureDate" id="previous_follow_up"
+               name="previous_follow_up" type="text"
+               data-concept="9167^DATE OF LAST FOLLOW-UP^99DCT">
+    </div>
+    <div class="form-group">
+        <label for="missed_appointment_date">Missed appointment date:</label>
+        <input class="form-control datepicker nonFutureDate" id="missed_appointment_date"
+               name="missed_appointment_date" type="text"
+               data-concept="1592^MISSED APPOINTMENT DATE^99DCT">
+    </div>
+</div>
+
+<div class="section">
+    <h4>PHCT Blood Sugar Readings</h4>
+
+    <div class="form-group">
+        <label for="random_blood_sugar">Random blood sugar (RBS):</label>
+        <div class="input-group">
+            <input class="form-control" id="random_blood_sugar"
+                   name="random_blood_sugar" type="number"
+                   data-concept="887^SERUM GLUCOSE^99DCT">
+            <span class="input-group-addon">mmol/L</span>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="random_blood_sugar">Fasting blood sugar (FBS):</label>
+        <div class="input-group">
+            <input class="form-control" id="fasting_blood_sugar"
+                   name="fasting_blood_sugar" type="number"
+                   data-concept="6252^SERUM GLUCOSE, FASTING^99DCT">
+            <span class="input-group-addon">mmol/L</span>
+        </div>
+    </div>
+</div>
+
+<div class="section">
+    <h4>PHCT Blood Pressure Readings</h4>
+
+    <div class="form-group">
+        <label for="random_blood_sugar">Systolic blood pressure:</label>
+        <div class="input-group">
+            <input class="form-control" id="systolic_blood_pressure"
+                   name="systolic_blood_pressure" type="number"
+                   data-concept="5085^SYSTOLIC BLOOD PRESSURE^99DCT">
+            <span class="input-group-addon">mmHg</span>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="diastolic_blood_pressure">Diastolic blood pressure:</label>
+        <div class="input-group">
+            <input class="form-control" id="diastolic_blood_pressure"
+                   name="diastolic_blood_pressure" type="number"
+                   data-concept="5086^DIASTOLIC BLOOD PRESSURE^99DCT">
+            <span class="input-group-addon">mmHg</span>
+        </div>
+    </div>
+</div>
+
+<div class="section" data-concept="1932^REFERRALS ORDERED, DETAILED^99DCT">
+    <div class="form-group">
+        <label for="referrals_ordered">Name of facility client was referred to:</label>
+        <input class="form-control" id="referrals_ordered"
+               name="referrals_ordered" type="text"
+               data-concept="1272^REFERRALS ORDERED^99DCT">
+    </div>
+    <div class="form-group">
+        <label for="date_referred">Date referred:</label>
+        <input class="form-control datepicker nonFutureDate" id="date_referred"
+               name="date_referred" type="text"
+               data-concept="9158^DATE REFERRED^99DCT">
+    </div>
+</div>
+
+<div class="section" data-concept="6750^REFERRED BY, DETAILED^99DCT">
+    <h4>Client referred from:</h4>
+    <div class="form-group">
+        <label class="font-normal">
+            <input id="referred_by.phct" type="checkbox"
+                   data-concept="6749^REFERRED BY^99DCT"
+                   value="8227^PHCT^99DCT">
+            PHCT
+        </label>
+    </div>
+    <div class="form-group">
+        <label class="font-normal">
+            <input id="referred_by.mch" type="checkbox"
+                   data-concept="6749^REFERRED BY^99DCT"
+                   value="2050^MATERNAL CHILD HEALTH PROGRAM^99DCT">
+            MCH
+        </label>
+    </div>
+    <div class="form-group">
+        <label class="font-normal">
+            <input id="referred_by.clinic" type="checkbox"
+                   data-concept="6749^REFERRED BY^99DCT"
+                   value="7037^REFERRED FROM CLINIC^99DCT">
+            Clinic
+        </label>
+    </div>
+    <div class="form-group">
+        <label class="font-normal">
+            <input class="has-other" id="referred_by.other_non_coded" type="checkbox"
+                   data-concept="6749^REFERRED BY^99DCT"
+                   value="5622^OTHER NON-CODED^99DCT">
+            Other
+        </label>
+    </div>
+    <div class="form-group freetext">
+        <label for="referred_by.freetext_general">Specify</label>
+        <input class="form-control" id="referred_by.freetext_general"
+               name="referred_by.freetext_general" type="text"
+               data-concept="1915^FREETEXT GENERAL^99DCT">
+    </div>
+</div>
+
+<div class="section" data-concept="9168^TYPE OF FOLLOW-UP, DETAILED^99DCT">
+    <h4>Type of CHW follow up:</h4>
+    <div class="form-group">
+        <label class="font-normal">
+            <input id="follow_up_type.hypertension" type="checkbox"
+                   data-concept="2332^TYPE OF FOLLOW-UP^99DCT"
+                   value="7286^KNOWN HYPERTENSIVE PATIENT^99DCT">
+            Hypertension
+        </label>
+    </div>
+    <div class="form-group">
+        <label class="font-normal">
+            <input id="follow_up_type.diabetic" type="checkbox"
+                   data-concept="2332^TYPE OF FOLLOW-UP^99DCT"
+                   value="7282^KNOWN DIABETIC PATIENT^99DCT">
+            Diabetic
+        </label>
+    </div>
+    <div class="form-group">
+        <label class="font-normal">
+            <input class="has-other" id="follow_up_type.other_non_coded" type="checkbox"
+                   data-concept="2332^TYPE OF FOLLOW-UP^99DCT"
+                   value="5622^OTHER NON-CODED^99DCT">
+            Other
+        </label>
+    </div>
+    <div class="form-group freetext">
+        <label for="follow_up_type.freetext_general">Specify</label>
+        <input class="form-control" id="follow_up_type.freetext_general"
+               name="follow_up_type.freetext_general" type="text"
+               data-concept="1915^FREETEXT GENERAL^99DCT">
+    </div>
+</div>
+
+<div class="section" data-concept="6114^REASON FOR ATTEMPTED CONTACT, DETAILED^99DCT">
+    <h4>Reason for follow up:</h4>
+    <div class="form-group">
+        <label class="font-normal">
+            <input id="follow_up_category.not_linked_to_care" type="checkbox"
+                   data-concept="9081^PATIENT ON OUTREACH FOLLOW-UP CATEGORY^99DCT"
+                   value="9160^NOT LINKED TO CARE^99DCT">
+            Not linked to care
+        </label>
+    </div>
+    <div class="form-group">
+        <label class="font-normal">
+            <input id="follow_up_category.lost_to_follow_up" type="checkbox"
+                   data-concept="9081^PATIENT ON OUTREACH FOLLOW-UP CATEGORY^99DCT"
+                   value="9159^LOST TO FOLLOW-UP, NOS^99DCT">
+            Lost to follow up
+        </label>
+    </div>
+    <div class="form-group">
+        <label class="font-normal">
+            <input class="has-other" id="follow_up_category.other_non_coded" type="checkbox"
+                   data-concept="9081^PATIENT ON OUTREACH FOLLOW-UP CATEGORY^99DCT"
+                   value="5622^OTHER NON-CODED^99DCT">
+            Other
+        </label>
+    </div>
+    <div class="form-group freetext">
+        <label for="follow_up_category.freetext_general">Specify</label>
+        <input class="form-control" id="follow_up_category.freetext_general"
+               name="follow_up_category.freetext_general" type="text"
+               data-concept="1915^FREETEXT GENERAL^99DCT">
+    </div>
+</div>
+
+<div class="section" data-concept="6187^REASON FOR MISSED VISIT, DETAILED^99DCT">
+    <h4>Reason for missed appointment:</h4>
+    <div class="form-group">
+        <label class="font-normal">
+            <input id="missed_visit_reason.lack_of_time" type="checkbox"
+                   data-concept="1733^REASON FOR MISSED VISIT^99DCT"
+                   value="9148^COMMITMENTS^99DCT">
+            Lack of time
+        </label>
+    </div>
+    <div class="form-group">
+        <label class="font-normal">
+            <input id="missed_visit_reason.lack_of_money" type="checkbox"
+                   data-concept="1733^REASON FOR MISSED VISIT^99DCT"
+                   value="6295^FINANCIAL BARRIER^99DCT">
+            Lack of money
+        </label>
+    </div>
+    <div class="form-group">
+        <label class="font-normal">
+            <input id="missed_visit_reason.lack_of_confidence" type="checkbox"
+                   data-concept="1733^REASON FOR MISSED VISIT^99DCT"
+                   value="9161^LACK OF CONFIDENCE^99DCT">
+            Lack of confidence in health care worker(s)
+        </label>
+    </div>
+    <div class="form-group">
+        <label class="font-normal">
+            <input id="missed_visit_reason.lack_of_transport" type="checkbox"
+                   data-concept="1733^REASON FOR MISSED VISIT^99DCT"
+                   value="820^TRANSPORT PROBLEMS^99DCT">
+            Lack of transport
+        </label>
+    </div>
+    <div class="form-group">
+        <label class="font-normal">
+            <input id="missed_visit_reason.asymptomatic" type="checkbox"
+                   data-concept="1733^REASON FOR MISSED VISIT^99DCT"
+                   value="5006^ASYMPTOMATIC^99DCT">
+            No symptoms of illness
+        </label>
+    </div>
+    <div class="form-group">
+        <label class="font-normal">
+            <input id="missed_visit_reason.visited_not_seen" type="checkbox"
+                   data-concept="1733^REASON FOR MISSED VISIT^99DCT"
+                   value="9162^VISITED HEALTH CARE FACILITY, NOT SEEN^99DCT">
+            Visited not seen
+        </label>
+    </div>
+    <div class="form-group">
+        <label class="font-normal">
+            <input id="missed_visit_reason.visited_dispensary_closed" type="checkbox"
+                   data-concept="1733^REASON FOR MISSED VISIT^99DCT"
+                   value="9163^VISITED HEALTH CARE FACILITY, CLOSED^99DCT">
+            Visited dispensary closed
+        </label>
+    </div>
+    <div class="form-group">
+        <label class="font-normal">
+            <input id="missed_visit_reason.distance_too_far" type="checkbox"
+                   data-concept="1733^REASON FOR MISSED VISIT^99DCT"
+                   value="1551^DISTANCE TOO FAR^99DCT">
+            Distance (too far)
+        </label>
+    </div>
+    <div class="form-group">
+        <label class="font-normal">
+            <input id="missed_visit_reason.sought_care_elsewhere" type="checkbox"
+                   data-concept="1733^REASON FOR MISSED VISIT^99DCT"
+                   value="8352^CONTINUE TO RECEIVE MEDICATIONS FROM ANOTHER LOCATION^99DCT">
+            Sought care elsewhere
+        </label>
+    </div>
+    <div class="form-group">
+        <label class="font-normal">
+            <input class="has-other" id="missed_visit_reason.other_non_coded" type="checkbox"
+                   data-concept="1733^REASON FOR MISSED VISIT^99DCT"
+                   value="5622^OTHER NON-CODED^99DCT">
+            Other
+        </label>
+    </div>
+    <div class="form-group freetext">
+        <label for="missed_visit_reason.freetext_general">Specify</label>
+        <input class="form-control" id="missed_visit_reason.freetext_general"
+               name="missed_visit_reason.freetext_general" type="text"
+               data-concept="1915^FREETEXT GENERAL^99DCT">
+    </div>
+</div>
+
+<div class="section">
+    <div class="form-group">
+        <span><strong>Are you currently on any treatment/ medication?</strong></span>
+        <div class="radio">
+            <label>
+                <input name="currently_on_medication" type="radio"
+                       data-concept="1193^CURRENT MEDICATIONS^99DCT"
+                       value="1065^YES^99DCT">
+                Yes
+            </label>
+        </div>
+        <div class="radio">
+            <label>
+                <input name="currently_on_medication" type="radio"
+                       data-concept="1193^CURRENT MEDICATIONS^99DCT"
+                       value="1066^NO^99DCT">
+                No
+            </label>
+        </div>
+    </div>
+    <div class="repeat">
+        <div class="form-group">
+            <label for="current_medication">Specify the medication:</label>
+            <input class="form-control" id="current_medication"
+                   name="current_medication" type="text"
+                   data-concept="1193^CURRENT MEDICATIONS^99DCT^1">
+        </div>
+    </div>
+</div>
+<div class="section">
+    <div class="form-group">
+        <span><strong>Are you enrolled to care in another facility?</strong></span>
+        <div class="radio">
+            <label>
+                <input name="enrolled_in_other" type="radio"
+                       data-concept="9164^ENROLL CARE IN ANOTHER HEALTH FACILITY^99DCT"
+                       value="1065^YES^99DCT">
+                Yes
+            </label>
+        </div>
+        <div class="radio">
+            <label>
+                <input name="enrolled_in_other" type="radio"
+                       data-concept="9164^ENROLL CARE IN ANOTHER HEALTH FACILITY^99DCT"
+                       value="1066^NO^99DCT">
+                No
+            </label>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="current_facility">If enrolled in another facility, where?</label>
+        <input class="form-control" id="current_facility"
+               name="current_facility" type="text"
+               data-concept="9165^NAME OF FACILITY TO WHICH PATIENT IS ENROLLED^99DCT">
+    </div>
+    <div class="form-group">
+        <span><strong>If No, are you planning to resume care?</strong></span>
+        <div class="radio">
+            <label>
+                <input name="planning_to_resume" type="radio"
+                       data-concept="6140^PLAN TO RETURN TO CLINIC^99DCT"
+                       value="1065^YES^99DCT">
+                Yes
+            </label>
+        </div>
+        <div class="radio">
+            <label>
+                <input name="planning_to_resume" type="radio"
+                       data-concept="6140^PLAN TO RETURN TO CLINIC^99DCT"
+                       value="1066^NO^99DCT">
+                No
+            </label>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="resume_care_date">If planning to resume care, when?</label>
+        <input class="form-control datepicker nonFutureDate" id="resume_care_date"
+               name="resume_care_date" type="text"
+               data-concept="7348^RETURN VISIT DATE, DISPENSARY^99DCT">
+    </div>
+    <div class="form-group" data-concept="9087^FACILITY TYPE, DETAILED^99DCT">
+        <label for="resume_care_facility">Which facility?</label>
+        <input class="form-control" id="resume_care_facility"
+               name="resume_care_facility" type="text"
+               data-concept="9086^FACILITY TYPE^99DCT">
+    </div>
+</div>
+
+<div class="section">
+    <div class="form-group">
+        <label for="referred_to">Referred to?</label>
+        <input class="form-control" id="referred_to"
+               name="referred_to" type="text"
+               data-concept="7637^NAME OF FACILITY TO WHICH PATIENT IS REFERRED, FREETEXT^99DCT">
+    </div>
+    <div class="form-group">
+        <label for="referred_to_date">Date:</label>
+        <input class="form-control datepicker checkFutureDate" id="referred_to_date"
+               name="referred_to_date" type="text"
+               data-concept="5096^RETURN VISIT DATE^99DCT">
+    </div>
+    <div class="form-group">
+        <label for="planned_follow_up_date">Planned CHW follow up date?</label>
+        <input class="form-control datepicker nonFutureDate" id="planned_follow_up_date"
+               name="planned_follow_up_date" type="text"
+               data-concept="9166^PLANNED FOLLOW-UP DATE^99DCT">
+    </div>
+
 </div>
 
 <div class="section">
@@ -234,6 +620,98 @@ $(document).ready(function () {
             $('.show_provider_id_text').show();
         }
     });
+
+    /* Start - Toggle free text element */
+    var $hasOther = $('.has-other');
+    $hasOther.change(function () {
+        var hasOtherValue = $(this).val();
+        var $freetext = $(this).closest('.section').find('.freetext');
+        if ($(this).is(':checkbox')) {
+            if ($hasOther.is(':checked')) {
+                $freetext.show();
+            } else {
+                $freetext.hide();
+            }
+        } else {
+            if (hasOtherValue === '5622^OTHER NON-CODED^99DCT') {
+                $freetext.show();
+            } else {
+                $freetext.hide();
+            }
+        }
+    });
+    $hasOther.trigger('change');
+    /* End - Toggle free text element */
+
+    /* Start - Toggle medications */
+    var $onMedication = $(':radio[data-concept="1193^CURRENT MEDICATIONS^99DCT"]');
+    $onMedication.change(function () {
+        var onMedicationValue = $(this).val();
+        var $currentMedication = $('input[data-concept="1193^CURRENT MEDICATIONS^99DCT^1"]').closest(".repeat");
+        if ($(this).is(':checked')) {
+            if (onMedicationValue == '1065^YES^99DCT') {
+                $currentMedication.show();
+            } else if (onMedicationValue == '1066^NO^99DCT') {
+                $currentMedication.hide();
+            }
+        } else {
+            $currentMedication.hide();
+        }
+    });
+    $onMedication.trigger('change');
+    /* End - Toggle medications */
+
+    /* Start - Toggle resume date and facility */
+    var RETURN_PLAN_CONCEPT = "6140^PLAN TO RETURN TO CLINIC^99DCT";
+    var $resumeCare = $(':radio[data-concept="' + RETURN_PLAN_CONCEPT +'"]');
+    $resumeCare.change(function () {
+        var resumeCareValue = $(this).val();
+        var FACILITY_TYPE_CONCEPT = "9086^FACILITY TYPE^99DCT";
+        var RETURN_DISPENSARY_CONCEPT = "7348^RETURN VISIT DATE, DISPENSARY^99DCT";
+        var $resumeCareDate = $('input[data-concept="' + RETURN_DISPENSARY_CONCEPT + '"]').closest('.form-group');
+        var $resumeCareFacility = $('input[data-concept="' + FACILITY_TYPE_CONCEPT + '"]').closest('.form-group');
+        if ($(this).is(':checked')) {
+            if (resumeCareValue == '1065^YES^99DCT') {
+                $resumeCareDate.show();
+                $resumeCareFacility.show();
+            } else if (resumeCareValue == '1066^NO^99DCT') {
+                $resumeCareDate.hide();
+                $resumeCareFacility.hide();
+            }
+        } else {
+            $resumeCareDate.hide();
+            $resumeCareFacility.hide();
+        }
+    });
+    $resumeCare.trigger('change');
+    /* End - Toggle resume date and facility */
+
+    /* Start - Toggle facility */
+    var OTHER_FACILITY_CONCEPT = "9164^ENROLL CARE IN ANOTHER HEALTH FACILITY^99DCT";
+    var $enrolled = $(':radio[data-concept="' + OTHER_FACILITY_CONCEPT +'"]');
+    $enrolled.change(function () {
+        var enrolledValue = $(this).val();
+        var RETURN_PLAN_CONCEPT = "6140^PLAN TO RETURN TO CLINIC^99DCT";
+        var FACILITY_ENROLLED_CONCEPT = "9165^NAME OF FACILITY TO WHICH PATIENT IS ENROLLED^99DCT";
+        var $resumeCare = $(':radio[data-concept="' + RETURN_PLAN_CONCEPT + '"]').closest('.form-group');
+        var $enrolledFacility = $('input[data-concept="' + FACILITY_ENROLLED_CONCEPT + '"]').closest('.form-group');
+        if ($(this).is(':checked')) {
+            if (enrolledValue == '1065^YES^99DCT') {
+                $resumeCare.find(":radio").prop("checked", false);
+                $resumeCare.hide();
+                $resumeCare.trigger('change');
+                $enrolledFacility.show();
+            } else if (enrolledValue == '1066^NO^99DCT') {
+                $resumeCare.show();
+                $enrolledFacility.hide();
+            }
+        } else {
+            $resumeCare.hide();
+            $enrolledFacility.hide();
+        }
+    });
+    $enrolled.trigger('change');
+    /* End - Toggle facility */
 
 });
 </script>
