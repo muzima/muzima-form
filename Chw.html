@@ -106,6 +106,7 @@
 
     <div class="form-group">
         <label for="random_blood_sugar">Random blood sugar (RBS):</label>
+
         <div class="input-group">
             <input class="form-control" id="random_blood_sugar"
                    name="random_blood_sugar" type="number"
@@ -115,6 +116,7 @@
     </div>
     <div class="form-group">
         <label for="random_blood_sugar">Fasting blood sugar (FBS):</label>
+
         <div class="input-group">
             <input class="form-control" id="fasting_blood_sugar"
                    name="fasting_blood_sugar" type="number"
@@ -129,6 +131,7 @@
 
     <div class="form-group">
         <label for="random_blood_sugar">Systolic blood pressure:</label>
+
         <div class="input-group">
             <input class="form-control" id="systolic_blood_pressure"
                    name="systolic_blood_pressure" type="number"
@@ -138,6 +141,7 @@
     </div>
     <div class="form-group">
         <label for="diastolic_blood_pressure">Diastolic blood pressure:</label>
+
         <div class="input-group">
             <input class="form-control" id="diastolic_blood_pressure"
                    name="diastolic_blood_pressure" type="number"
@@ -164,6 +168,7 @@
 
 <div class="section" data-concept="6750^REFERRED BY, DETAILED^99DCT">
     <h4>Client referred from:</h4>
+
     <div class="form-group">
         <label class="font-normal">
             <input id="referred_by.phct" type="checkbox"
@@ -206,6 +211,7 @@
 
 <div class="section" data-concept="9168^TYPE OF FOLLOW-UP, DETAILED^99DCT">
     <h4>Type of CHW follow up:</h4>
+
     <div class="form-group">
         <label class="font-normal">
             <input id="follow_up_type.hypertension" type="checkbox"
@@ -240,6 +246,7 @@
 
 <div class="section" data-concept="6114^REASON FOR ATTEMPTED CONTACT, DETAILED^99DCT">
     <h4>Reason for follow up:</h4>
+
     <div class="form-group">
         <label class="font-normal">
             <input id="follow_up_category.not_linked_to_care" type="checkbox"
@@ -274,6 +281,7 @@
 
 <div class="section" data-concept="6187^REASON FOR MISSED VISIT, DETAILED^99DCT">
     <h4>Reason for missed appointment:</h4>
+
     <div class="form-group">
         <label class="font-normal">
             <input id="missed_visit_reason.lack_of_time" type="checkbox"
@@ -365,6 +373,7 @@
 <div class="section">
     <div class="form-group">
         <span><strong>Are you currently on any treatment/ medication?</strong></span>
+
         <div class="radio">
             <label>
                 <input name="currently_on_medication" type="radio"
@@ -382,11 +391,10 @@
             </label>
         </div>
     </div>
-    <div class="repeat">
+    <div class="repeating" data-name="current_medication">
         <div class="form-group">
-            <label for="current_medication">Specify the medication:</label>
-            <input class="form-control" id="current_medication"
-                   name="current_medication" type="text"
+            <label>Specify the medication:</label>
+            <input class="form-control current_medication" name="current_medication" type="text"
                    data-concept="1193^CURRENT MEDICATIONS^99DCT^1">
         </div>
     </div>
@@ -395,6 +403,7 @@
 <div class="section">
     <div class="form-group">
         <span><strong>Are you enrolled to care in another facility?</strong></span>
+
         <div class="radio">
             <label>
                 <input name="enrolled_in_other" type="radio"
@@ -420,6 +429,7 @@
     </div>
     <div class="form-group">
         <span><strong>If No, are you planning to resume care?</strong></span>
+
         <div class="radio">
             <label>
                 <input name="planning_to_resume" type="radio"
@@ -646,7 +656,7 @@ $(document).ready(function () {
     var $onMedication = $(':radio[data-concept="1193^CURRENT MEDICATIONS^99DCT"]');
     $onMedication.change(function () {
         var onMedicationValue = $(this).val();
-        var $currentMedication = $('input[data-concept="1193^CURRENT MEDICATIONS^99DCT^1"]').closest(".repeat");
+        var $currentMedication = $('input[data-concept="1193^CURRENT MEDICATIONS^99DCT^1"]').closest(".repeating");
         if ($(this).is(':checked')) {
             if (onMedicationValue == '1065^YES^99DCT') {
                 $currentMedication.show();
@@ -662,7 +672,7 @@ $(document).ready(function () {
 
     /* Start - Toggle resume date and facility */
     var RETURN_PLAN_CONCEPT = "6140^PLAN TO RETURN TO CLINIC^99DCT";
-    var $resumeCare = $(':radio[data-concept="' + RETURN_PLAN_CONCEPT +'"]');
+    var $resumeCare = $(':radio[data-concept="' + RETURN_PLAN_CONCEPT + '"]');
     $resumeCare.change(function () {
         var resumeCareValue = $(this).val();
         var FACILITY_TYPE_CONCEPT = "9086^FACILITY TYPE^99DCT";
@@ -687,7 +697,7 @@ $(document).ready(function () {
 
     /* Start - Toggle facility */
     var OTHER_FACILITY_CONCEPT = "9164^ENROLL CARE IN ANOTHER HEALTH FACILITY^99DCT";
-    var $enrolled = $(':radio[data-concept="' + OTHER_FACILITY_CONCEPT +'"]');
+    var $enrolled = $(':radio[data-concept="' + OTHER_FACILITY_CONCEPT + '"]');
     $enrolled.change(function () {
         var enrolledValue = $(this).val();
         var RETURN_PLAN_CONCEPT = "6140^PLAN TO RETURN TO CLINIC^99DCT";
@@ -777,22 +787,60 @@ $(document).ready(function () {
         {"label": "IRON SUPPLEMENT", "value": 2363},
         {"label": "FOLIC ACID", "value": 257}
     ];
-    $('#current_medication').autocomplete({
-        source: medications,
-        create: function (event, ui) {
-            var medication_value = $('input[name="current_medication"]').val();
-            $.each(locationName, function (i, element) {
-                if (element.val == medication_value) {
-                    $('#current_medication').val(element.label);
-                }
-            });
-        },
-        select: function (event, ui) {
-            $('input[name="current_medication"]').val(ui.item.value);
-            $('#current_medication').val(ui.item.label);
-            return false;
-        }
-    });
+
+
+    /* Start - Custom repeating element */
+    $('.repeating')
+            .append("<input class='btn btn-primary add-section pull-left' type='button' value='+'/>")
+            .append("<input class='btn btn-primary remove-section pull-right' type='button' value='-'/><span class='clear'></span>");
+
+    var enableAutoComplete = function(input) {
+        $(input).autocomplete({
+            source: medications,
+            create: function (event, ui) {
+                var value = $(this).val();
+                $.each(locationName, function (i, element) {
+                    if (element.val == value) {
+                        $(this).val(element.label);
+                    }
+                });
+            },
+            select: function (event, ui) {
+                var selectedValue = ui.item.value + "^" + ui.item.label + "^99DCT";
+                $(this).val(selectedValue);
+                return false;
+            }
+        }).focus(function () {
+            $(this).find('input').select();
+            $(this).select();
+        });
+    };
+
+    var enableAddSection = function(input) {
+        $(input).click(function () {
+            var $clonedSection = $(this).parent().clone().insertAfter($(this).parent());
+            $clonedSection.find(':input:not(:button)').val('');
+            $clonedSection.find(':input:not(:button)').trigger('change');
+            enableAddSection($clonedSection.find('.add-section'));
+            enableRemoveSection($clonedSection.find('.remove-section'));
+            enableAutoComplete($clonedSection.find('.current_medication'));
+        });
+    };
+
+    var enableRemoveSection = function(input) {
+        $(input).click(function () {
+            var $parent = $(this).parent();
+            var _id = $parent.attr('id');
+            if ($("." + _id).length > 1) {
+                $parent.remove();
+            }
+        });
+    };
+
+    enableAddSection($('.add-section'));
+    enableRemoveSection('.remove-section');
+    enableAutoComplete($('.current_medication'));
+    /* End - Custom repeating element */
 
 });
 </script>
