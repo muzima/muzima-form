@@ -355,12 +355,20 @@
 <script type="text/javascript">
     $(document).ready(function () {
 
+        var dateFormat = "dd-mm-yy";
+        var currentDate = $.datepicker.formatDate(dateFormat, new Date());
+        $('#encounter\\.encounter_datetime').val(currentDate);
+
         $('#save_draft').click(function () {
-            document.saveDraft();
+            $(this).prop('disabled', true);
+            document.saveDraft(this);
+            $(this).prop('disabled', false);
         });
 
         $('#submit_form').click(function () {
+            $(this).prop('disabled', true);
             document.submit();
+            $(this).prop('disabled', false);
         });
 
         var locationName = [

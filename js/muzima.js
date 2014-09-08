@@ -8,7 +8,7 @@
 
 $(document).ready(function () {
     'use strict';
-    var dateFormat = "yy-mm-dd";
+    var dateFormat = "dd-mm-yy";
 
     /* Start - Function to save the form */
     document.submit = function () {

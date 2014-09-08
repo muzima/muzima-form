@@ -958,15 +958,11 @@
 </body>
 <script type="text/javascript">
 
-Date.prototype.toDateInputValue = (function () {
-    var local = new Date(this);
-    local.setMinutes(this.getMinutes() - this.getTimezoneOffset());
-    return local.toJSON().slice(0, 10);
-});
-
 $(document).ready(function () {
 
-    $('#encounter\\.encounter_datetime').val(new Date().toDateInputValue());
+    var dateFormat = "dd-mm-yy";
+    var currentDate = $.datepicker.formatDate(dateFormat, new Date());
+    $('#encounter\\.encounter_datetime').val(currentDate);
 
     $('#save_draft').click(function () {
         $(this).prop('disabled', true);
