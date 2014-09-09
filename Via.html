@@ -1232,8 +1232,8 @@ $(document).ready(function () {
     /* End - Procedure done this visit */
 
     /* Start - Hiding refill and new based on current value */
-    var $fpCheckboxes = $(':checkbox[data-concept="374^METHOD OF FAMILY PLANNING^99DCT"]');
-    $fpCheckboxes.change(function() {
+    var $familyPlanning = $(':checkbox[data-concept="374^METHOD OF FAMILY PLANNING^99DCT"]');
+    $familyPlanning.change(function() {
         var value = $(this).val();
         var $chosen = $(':checkbox[data-concept="7240^FAMILY PLANNING METHOD CHOSEN^99DCT"][value="' + value + '"]');
         var $refilled = $(':checkbox[data-concept="7495^FAMILY PLANNING REFILL PROVIDED^99DCT"][value="' + value + '"]');
@@ -1247,7 +1247,7 @@ $(document).ready(function () {
             }
         }
     });
-    $fpCheckboxes.trigger('change');
+    $familyPlanning.trigger('change');
     /* End - Hiding refill and new based on current value */
 
     /* Start - Removing error class after the following validation */
