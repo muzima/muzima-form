@@ -61,30 +61,22 @@
 </div>
 <div class="section">
     <h3>Encounter Details</h3>
-
     <div class="form-group">
-        <label for="encounter.location_id">Screening Site:<span class="required">*</span>
-        </label>
-        <input class="form-control" id="encounter.location_id" type="text" placeholder="Start typing something...">
-        <input class="form-control" name="encounter.location_id" type="hidden">
-    </div>
-
-    <div class="form-group">
-        <label for="encounter.provider_id_select">Provider ID:</label>
-        <input class="form-control" id="encounter.provider_id_select" type="text"
-               placeholder="Start typing something...">
-        <input class="form-control" name="encounter.provider_id_select" type="hidden">
-    </div>
-
-    <div class="form-group show_provider_id_text">
-        <label for="encounter.provider_id">Enter provider's system-id:<span class="required">*</span></label>
-        <input class="form-control checkDigit" id="encounter.provider_id" name="encounter.provider_id" type="text"
-               required="required">
+        <label for="encounter.location_id">Screening Site:<span class="required">*</span></label>
+        <select class="form-control" name="encounter.location_id" id="encounter.location_id" required="required">
+            <option value="">...</option>
+            <option value="3">Turbo</option>
+            <option value="2">Mosoriot</option>
+            <option value="7">Chulaimbo</option>
+            <option value="8">Webuye</option>
+            <option value="9">Ampath MTRH</option>
+            <option value="17">Iten</option>
+        </select>
     </div>
     <div class="form-group">
         <label for="encounter.encounter_datetime">Encounter Date:<span class="required">*</span></label>
         <input class="form-control datepicker nonFutureDate" id="encounter.encounter_datetime"
-               name="encounter.encounter_datetime" type="text" readonly="readonly" encounter.encounter_datetime
+               name="encounter.encounter_datetime" type="text" readonly="readonly"
                required="required">
     </div>
     <div class="form-group">
@@ -344,6 +336,19 @@
         <input class="form-control" id="freetext_general" name="freetext_general" type="text"
                data-concept="1915^FREETEXT GENERAL^99DCT">
     </div>
+
+    <div class="form-group">
+        <label for="encounter.provider_id_select">Provider Name:</label>
+        <input class="form-control" id="encounter.provider_id_select" type="text"
+               placeholder="Start typing provider name here ...">
+        <input class="form-control" name="encounter.provider_id_select" type="hidden">
+    </div>
+
+    <div class="form-group show_provider_id_text">
+        <label for="encounter.provider_id">Enter provider's system-id:<span class="required">*</span></label>
+        <input class="form-control checkDigit" id="encounter.provider_id" name="encounter.provider_id" type="text"
+               placeholder="Or enter the provider system id here ..." required="required">
+    </div>
 </div>
 
 <div class="form-group text-center">
@@ -449,75 +454,55 @@
             }
         });
 
-        /* Start - Removing error class after the following validation */
-        $('fieldset').find(':checkbox').change(function () {
-            if ($(this).closest('fieldset').hasClass('error')) {
-                $(this).closest('fieldset').removeClass('error');
-                $(this).closest('.section').find('label.error').hide();
-            }
-        });
-        /* End - Removing error class after the following validation */
-
-        /* Start - Ensuring some selection are selected alone */
-        $.fn.checkSelectedAlone = function (nameArray, singleValues, message) {
-            var $validator = $('form').validate();
-            var errors = {};
-            var final_result = true;
-            $.each(nameArray, function (i, elem) {
-                var filedSetElem = $('fieldset[name="' + elem + '"]');
-                var result = isValidForSelection(filedSetElem, singleValues);
-                if (!result) {
-                    errors[elem] = message;
-                    final_result = false;
-                }
-            });
-            if (!final_result) {
-                $validator.showErrors(errors);
-            }
-            return final_result;
+        $.fn.customValidationCheck = function () {
+            return true;
         };
 
-        var isValidForSelection = function (element, singleValues) {
-            var $fieldset = $(element);
-            if ($fieldset.prop('tagName') != 'FIELDSET') {
+        var validateAlone = function (source, values, message) {
+            var errors = {};
+            var validator = $('form').validate();
+
+            var fieldSet = $(source).closest('fieldset');
+            if (fieldSet === undefined) {
                 return true;
             }
-            var result = true;
-            var totalSelected = $fieldset.find('input:checkbox:checked').length;
-            if (totalSelected > 1) {
-                $.each($fieldset.find('input:checkbox:checked'), function (i, cBoxElement) {
-                    $.each(singleValues, function (i, singleValue) {
-                        if ($(cBoxElement).val() == singleValue) {
-                            result = false;
+
+            var selected = false;
+            var checkedBoxes = $(fieldSet).find('input:checkbox:checked');
+            if (checkedBoxes.length > 1) {
+                $.each(checkedBoxes, function (i, checkBox) {
+                    $.each(values, function (j, value) {
+                        if ($(checkBox).val() == value) {
+                            selected = true;
                         }
-                    });
+                    })
                 })
             }
-            return result;
+
+            if (selected) {
+                errors[$(fieldSet).attr('name')] = message;
+                validator.showErrors(errors);
+            } else {
+                $(fieldSet).removeClass('error');
+                $(fieldSet).closest('.section').find('label.error').remove();
+            }
         };
-        /* End - Ensuring some selection are selected alone */
 
-        /* Start - Example of calling above validation */
-        // none for complaints
-        var complaintsName = ['5219^CHIEF COMPLAINT^99DCT'];
-        var complaintsSingleValues = ['1107^NONE^99DCT'];
-        var complaintsMessage = "If None is selected, it should be the only option.";
+        var noneValues = ["1107^NONE^99DCT"];
+        var noneMessage = "If None is selected, it should be the only option.";
+        $(':checkbox[data-concept="374^METHOD OF FAMILY PLANNING^99DCT"]').change(function () {
+            validateAlone($(this), noneValues, noneMessage);
+        });
 
-        // none and don't know for the family planning
-        var familyPlanningName = ['8253^FAMILY PLANNING METHOD EVER USED^99DCT'];
-        var familyPlanningSingleValues = ['1624^DO NOT KNOW^99DCT', '1107^NONE^99DCT'];
-        var familyPlanningMessage = "If None or Don't know is selected, it should be the only option.";
+        $(':checkbox[data-concept="5219^CHIEF COMPLAINT^99DCT"]').change(function () {
+            validateAlone($(this), noneValues, noneMessage);
+        });
 
-        // normal for papanicolaou exam
-        var papanicolaouName = ['7423^MOST RECENT PAPANICOLAOU SMEAR RESULT^99DCT'];
-        var papanicolaouSingleValues = ['1115^NORMAL^99DCT', '1624^DO NOT KNOW^99DCT'];
+        var papanicolaouValues = ['1115^NORMAL^99DCT', '1624^DO NOT KNOW^99DCT'];
         var papanicolaouMessage = "If Normal or Don't Know is selected, it should be the only option.";
-
-        $.fn.customValidationCheck = function () {
-            return $.fn.checkSelectedAlone(complaintsName, complaintsSingleValues, complaintsMessage)
-                    && $.fn.checkSelectedAlone(familyPlanningName, familyPlanningSingleValues, familyPlanningMessage)
-                    && $.fn.checkSelectedAlone(papanicolaouName, papanicolaouSingleValues, papanicolaouMessage)
-        };
+        $(':checkbox[data-concept="7423^MOST RECENT PAPANICOLAOU SMEAR RESULT^99DCT"]').change(function () {
+            validateAlone($(this), papanicolaouValues, papanicolaouMessage);
+        });
         /* End - Example of calling above validation */
     });
 </script>
