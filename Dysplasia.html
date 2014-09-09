@@ -1404,9 +1404,39 @@ $(document).ready(function () {
     };
     /* End - Ensuring some selection are selected alone */
 
+    var validateAlone = function (source, values, message) {
+        var errors = {};
+        var validator = $('form').validate();
+
+        var fieldSet = $(source).closest('fieldset');
+        if (fieldSet === undefined) {
+            return true;
+        }
+
+        var selected = false;
+        var checkedBoxes = $(fieldSet).find('input:checkbox:checked');
+        if (checkedBoxes.length > 1) {
+            $.each(checkedBoxes, function (i, checkBox) {
+                $.each(values, function (j, value) {
+                    if ($(checkBox).val() == value) {
+                        selected = true;
+                    }
+                })
+            })
+        }
+
+        if (selected) {
+            errors[$(fieldSet).attr('name')] = message;
+            validator.showErrors(errors);
+        } else {
+            $(fieldSet).removeClass('error');
+            $(fieldSet).closest('.section').find('label.error').remove();
+        }
+    };
+
     /* Start - Hiding refill and new based on current value */
-    var $fpCheckboxes = $(':checkbox[data-concept="374^METHOD OF FAMILY PLANNING^99DCT"]');
-    $fpCheckboxes.change(function() {
+    var $familyPlanning = $(':checkbox[data-concept="374^METHOD OF FAMILY PLANNING^99DCT"]');
+    $familyPlanning.change(function() {
         var value = $(this).val();
         if (value != "5622^OTHER NON-CODED^99DCT" && value != "1107^NONE^99DCT") {
             var $chosen = $(':checkbox[data-concept="7240^FAMILY PLANNING METHOD CHOSEN^99DCT"][value="' + value + '"]');
@@ -1419,52 +1449,61 @@ $(document).ready(function () {
                 $refilled.closest('.form-group').hide();
             }
         }
+
+        var values = ["1624^DO NOT KNOW^99DCT", "1107^NONE^99DCT"];
+        var message = "If None or Don't know is selected, it should be the only option.";
+        validateAlone($(this), values, message);
     });
-    $fpCheckboxes.trigger('change');
+    $familyPlanning.trigger('change');
     /* End - Hiding refill and new based on current value */
 
-    /* Start - Example of calling above validation */
-    // none for complaints
-    var complaintsName = ['5219^CHIEF COMPLAINT^99DCT'];
-    var complaintsSingleValues = ['1107^NONE^99DCT'];
-    var complaintsMessage = "If None is selected, it should be the only option.";
-
-    // normal for vaginal exam
-    var vaginalExamName = ['7490^VISUAL VAGINAL EXAM FINDINGS ^99DCT'];
-    var vaginalExamSingleValues = ['1115^NORMAL^99DCT', ];
-    var vaginalExamMessage = "If Normal is selected, it should be the only option.";
-
-    // normal for cervical
-    var cervicalExamName = ['7484^VISUAL CERVICAL EXAM FINDINGS^99DCT'];
-    var cervicalExamSingleValues = ['1115^NORMAL^99DCT', ];
-    var cervicalExamMessage = "If Normal is selected, it should be the only option.";
-
-    var vulvalExamName = ['7487^VISUAL VULVAL EXAM FINDINGS ^99DCT'];
-    var vulvalExamSingleValues = ['1115^NORMAL^99DCT'];
-    var vulvalExamMessage = "If Normal is selected, it should be the only option";
-
-    // normal for papanicolaou exam
-    var papanicolaouName = ['7423^MOST RECENT PAPANICOLAOU SMEAR RESULT^99DCT'];
-    var papanicolaouSingleValues = ['1115^NORMAL^99DCT', '1624^DO NOT KNOW^99DCT'];
-    var papanicolaouMessage = "If Normal or Don't Know is selected, it should be the only option.";
-
-    // check current family planning and family planning refill
-    var currentFamilyPlanning = "374^METHOD OF FAMILY PLANNING^99DCT";
-    var chosenFamilyPlanning = "7240^FAMILY PLANNING METHOD CHOSEN^99DCT";
-    var refillFamilyPlanning = "7495^FAMILY PLANNING REFILL PROVIDED^99DCT";
-    var familyPlanningSingleValues = ["1624^DO NOT KNOW^99DCT", "1107^NONE^99DCT"];
-    var familyPlanningMessage = "If None or Don't know is selected, it should be the only option.";
-
     $.fn.customValidationCheck = function () {
-        return $.fn.checkSelectedAlone(complaintsName, complaintsSingleValues, complaintsMessage)
-                && $.fn.checkSelectedAlone(vaginalExamName, vaginalExamSingleValues, vaginalExamMessage)
-                && $.fn.checkSelectedAlone(cervicalExamName, cervicalExamSingleValues, cervicalExamMessage)
-                && $.fn.checkSelectedAlone(vulvalExamName, vulvalExamSingleValues, vulvalExamMessage)
-                && $.fn.checkSelectedAlone(papanicolaouName, papanicolaouSingleValues, papanicolaouMessage)
-                && $.fn.checkSelectedAlone([currentFamilyPlanning, refillFamilyPlanning, chosenFamilyPlanning], familyPlanningSingleValues, familyPlanningMessage)
+        return true;
     };
-    /* End - Example of calling above validation */
 
+    var noneValues = ["1107^NONE^99DCT"];
+    var noneMessage = "If None is selected, it should be the only option.";
+    $(':checkbox[data-concept="7495^FAMILY PLANNING REFILL PROVIDED^99DCT"]').change(function () {
+        validateAlone($(this), noneValues, noneMessage);
+    });
+
+    $(':checkbox[data-concept="7240^FAMILY PLANNING METHOD CHOSEN^99DCT"]').change(function () {
+        validateAlone($(this), noneValues, noneMessage);
+    });
+
+    $(':checkbox[data-concept="5219^CHIEF COMPLAINT^99DCT"]').change(function () {
+        validateAlone($(this), noneValues, noneMessage);
+    });
+
+    var normalValues = ['1115^NORMAL^99DCT'];
+    var normalMessage = "If Normal is selected, it should be the only option.";
+    $(':checkbox[data-concept="7484^VISUAL CERVICAL EXAM FINDINGS^99DCT"]').change(function () {
+        validateAlone($(this), normalValues, normalMessage);
+    });
+    $(':checkbox[data-concept="7490^VISUAL VAGINAL EXAM FINDINGS ^99DCT"]').change(function () {
+        validateAlone($(this), normalValues, normalMessage);
+    });
+    $(':checkbox[data-concept="7487^VISUAL VULVAL EXAM FINDINGS ^99DCT"]').change(function () {
+        validateAlone($(this), normalValues, normalMessage);
+    });
+
+    var papanicolaouValues = ['1115^NORMAL^99DCT', '1624^DO NOT KNOW^99DCT'];
+    var papanicolaouMessage = "If Normal or Don't Know is selected, it should be the only option.";
+    $(':checkbox[data-concept="7423^MOST RECENT PAPANICOLAOU SMEAR RESULT^99DCT"]').change(function () {
+        validateAlone($(this), papanicolaouValues, papanicolaouMessage);
+    });
+
+    var pastTreatmentValues = ["1175^NOT APPLICABLE^99DCT", "1107^NONE^99DCT"]
+    var pastTreatmentMessage = "If normal or don't know is selected, it should be the only option.";
+    $(':checkbox[data-concept="7467^PAST TREATMENT OF DYSPLASIA^99DCT"]').change(function () {
+        validateAlone($(this), pastTreatmentValues, pastTreatmentMessage);
+    });
+
+    var dysplasiaValues = ['1115^NORMAL^99DCT'];
+    var dysplasiaMessage = "If Normal is selected, it should be the only option.";
+    $(':checkbox[data-concept="7579^DYSPLASIA HISTOPATHOLOGICAL FINDINGS BASED ON LAST TREATMENT^99DCT"]').change(function () {
+        validateAlone($(this), dysplasiaValues, dysplasiaMessage);
+    });
 });
 </script>
 
