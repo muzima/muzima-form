@@ -409,7 +409,7 @@
             </label>
         </div>
     </div>
-    <div class="repeating" data-name="current_medication">
+    <div class="custom-repeat" data-name="current_medication">
         <div class="form-group">
             <label>Specify the medication:<span class="required">*</span></label>
             <input class="form-control current_medication" name="current_medication" type="text"
@@ -796,7 +796,7 @@ $(document).ready(function () {
     ];
 
     /* Start - Custom repeating element */
-    $('.repeating')
+    $('.custom-repeat')
             .append("<input class='btn btn-primary add-section pull-left' type='button' value='+'/>")
             .append("<input class='btn btn-primary remove-section pull-right' type='button' value='-'/><span class='clear'></span>");
 

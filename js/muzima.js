@@ -406,7 +406,7 @@ $(document).ready(function () {
                                         applyValue(element, valueElement);
                                     });
                                 } else {
-                                    var $div = $(elements).closest('.repeat');
+                                    var $div = $(elements).closest('.repeat, .custom-repeat');
                                     var $clonedDiv = $div.clone(true);
                                     $div.after($clonedDiv);
                                     elements = $clonedDiv.find('[data-concept="' + key + '"]');
