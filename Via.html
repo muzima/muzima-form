@@ -1193,7 +1193,9 @@ $(document).ready(function () {
     var $lastMenstruationDate = $('#last_menstrual_period_date');
     $lastMenstruationDate.change(function () {
         var dateString = $lastMenstruationDate.val();
-        var date = new Date(dateString);
+        var pattern = /(\d{2})-(\d{2})-(\d{4})/g;
+        var matches = pattern.exec(dateString);
+        var date = new Date(matches[3], matches[2] - 1, matches[1]);
         var today = new Date();
         var timeDiff = today.getTime() - date.getTime();
         var maxDiff = 35 * 24 * 60 * 60 * 1000;
