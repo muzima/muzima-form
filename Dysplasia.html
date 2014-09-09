@@ -1314,9 +1314,12 @@ $(document).ready(function () {
         var dateString = $lastMenstruationDate.val();
         var pattern = /(\d{2})-(\d{2})-(\d{4})/g;
         var matches = pattern.exec(dateString);
-        var date = new Date(matches[3], matches[2] - 1, matches[1]);
-        var today = new Date();
-        var timeDiff = today.getTime() - date.getTime();
+        var timeDiff = 0;
+        if (matches != null) {
+            var date = new Date(matches[3], matches[2] - 1, matches[1]);
+            var today = new Date();
+            timeDiff = today.getTime() - date.getTime();
+        }
         var maxDiff = 35 * 24 * 60 * 60 * 1000;
         var $urinePregnancy = $('.urine_pregnancy_test_qualitative');
         if (timeDiff > maxDiff) {
