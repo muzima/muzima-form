@@ -1250,15 +1250,6 @@ $(document).ready(function () {
     $familyPlanning.trigger('change');
     /* End - Hiding refill and new based on current value */
 
-    /* Start - Removing error class after the following validation */
-    $('fieldset').find(':checkbox').change(function () {
-        if ($(this).closest('fieldset').hasClass('error')) {
-            $(this).closest('fieldset').removeClass('error');
-            $(this).closest('.section').find('label.error').hide();
-        }
-    });
-    /* End - Removing error class after the following validation */
-
     /* Start - Ensuring some selection are selected alone */
     $.fn.checkSelectedAlone = function (nameArray, singleValues, message) {
         var $validator = $('form').validate();
