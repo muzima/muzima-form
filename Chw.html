@@ -15,6 +15,20 @@
 </head>
 
 <body class="col-md-10 col-md-offset-1">
+<div id="pre_populate_data">
+{
+"encounter": {
+"encounter.encounter_datetime": "09-09-2014"
+},
+"observation": {
+"1193^CURRENT MEDICATIONS^99DCT": "1065^YES^99DCT",
+"1193^CURRENT MEDICATIONS^99DCT^1": [
+"438^STREPTOMYCIN^99DCT",
+"92^DAPSONE^99DCT"
+]
+}
+}
+</div>
 <form id="via_form" name="via_form">
 <h2 class="text-center">CDM CHW Form v 0.01</h2>
 
@@ -199,7 +213,7 @@
     </div>
     <div class="form-group">
         <label class="font-normal">
-            <input class="has-other" id="referred_by.other_non_coded" type="checkbox"
+            <input class="has-freetext" id="referred_by.other_non_coded" type="checkbox"
                    data-concept="6749^REFERRED BY^99DCT"
                    value="5622^OTHER NON-CODED^99DCT">
             Other
@@ -234,7 +248,7 @@
     </div>
     <div class="form-group">
         <label class="font-normal">
-            <input class="has-other" id="follow_up_type.other_non_coded" type="checkbox"
+            <input class="has-freetext" id="follow_up_type.other_non_coded" type="checkbox"
                    data-concept="2332^TYPE OF FOLLOW-UP^99DCT"
                    value="5622^OTHER NON-CODED^99DCT">
             Other
@@ -269,7 +283,7 @@
     </div>
     <div class="form-group">
         <label class="font-normal">
-            <input class="has-other" id="follow_up_category.other_non_coded" type="checkbox"
+            <input class="has-freetext" id="follow_up_category.other_non_coded" type="checkbox"
                    data-concept="9081^PATIENT ON OUTREACH FOLLOW-UP CATEGORY^99DCT"
                    value="5622^OTHER NON-CODED^99DCT">
             Other
@@ -360,7 +374,7 @@
     </div>
     <div class="form-group">
         <label class="font-normal">
-            <input class="has-other" id="missed_visit_reason.other_non_coded" type="checkbox"
+            <input class="has-freetext" id="missed_visit_reason.other_non_coded" type="checkbox"
                    data-concept="1733^REASON FOR MISSED VISIT^99DCT"
                    value="5622^OTHER NON-CODED^99DCT">
             Other
@@ -624,7 +638,7 @@ $(document).ready(function () {
     });
 
     /* Start - Toggle free text element */
-    var $hasOther = $('.has-other');
+    var $hasOther = $('.has-freetext');
     $hasOther.change(function () {
         var hasOtherValue = $(this).val();
         var $freetext = $(this).closest('.section').find('.freetext');
