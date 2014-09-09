@@ -15,6 +15,7 @@
 </head>
 
 <body class="col-md-10 col-md-offset-1">
+<div id="pre_populate_data"></div>
 <form id="via_form" name="via_form">
 <h2 class="text-center">CDM CHEW Form v 0.01</h2>
 
@@ -388,13 +389,13 @@
             </label>
         </div>
     </div>
-    <div class="form-group">
+    <div class="form-group hidden">
         <label for="visit_plan_date">Date of planned facility visit?<span class="required">*</span></label>
         <input class="form-control datepicker checkFutureDate" id="visit_plan_date"
                name="visit_plan_date" type="text" required="required"
                data-concept="7348^RETURN VISIT DATE, DISPENSARY^99DCT">
     </div>
-    <div class="concept-set form-group" data-concept="9087^FACILITY TYPE, DETAILED^99DCT">
+    <div class="concept-set form-group hidden" data-concept="9087^FACILITY TYPE, DETAILED^99DCT">
         <label for="visit_plan_facility">Facility name?<span class="required">*</span></label>
         <input class="form-control" id="visit_plan_facility"
                name="visit_plan_facility" type="text" required="required"
@@ -485,7 +486,6 @@ $(document).ready(function () {
                 if (elem.val == location_val) {
                     $('#encounter\\.location_id').val(elem.label)
                 }
-                ;
             });
         },
         select: function (event, ui) {
@@ -567,6 +567,28 @@ $(document).ready(function () {
     });
     $hasOther.trigger('change');
     /* End - Toggle free text element */
+
+    /* Start - Toggle resume date and facility */
+    var RETURN_PLAN_CONCEPT = "6140^PLAN TO RETURN TO CLINIC^99DCT";
+    var $resumeCare = $(':radio[data-concept="' + RETURN_PLAN_CONCEPT + '"]');
+    $resumeCare.change(function () {
+        var resumeCareValue = $(this).val();
+        var FACILITY_TYPE_CONCEPT = "9087^FACILITY TYPE, DETAILED^99DCT";
+        var RETURN_DISPENSARY_CONCEPT = "7348^RETURN VISIT DATE, DISPENSARY^99DCT";
+        var $resumeCareDate = $('input[data-concept="' + RETURN_DISPENSARY_CONCEPT + '"]').closest('.form-group');
+        var $resumeCareFacility = $('[data-concept="' + FACILITY_TYPE_CONCEPT + '"]');
+        if ($(this).is(':checked')) {
+            if (resumeCareValue == '1065^YES^99DCT') {
+                $resumeCareDate.removeClass('hidden');
+                $resumeCareFacility.removeClass('hidden')
+            } else if (resumeCareValue == '1066^NO^99DCT') {
+                $resumeCareDate.addClass('hidden');
+                $resumeCareFacility.addClass('hidden');
+            }
+        }
+    });
+    $resumeCare.trigger('change');
+    /* End - Toggle resume date and facility */
 
 });
 </script>
