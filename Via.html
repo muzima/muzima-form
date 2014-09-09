@@ -1231,6 +1231,36 @@ $(document).ready(function () {
     procedureDoneDetailed();
     /* End - Procedure done this visit */
 
+    var validateAlone = function (source, values, message) {
+        var errors = {};
+        var validator = $('form').validate();
+
+        var fieldSet = $(source).closest('fieldset');
+        if (fieldSet === undefined) {
+            return true;
+        }
+
+        var selected = false;
+        var checkedBoxes = $(fieldSet).find('input:checkbox:checked');
+        if (checkedBoxes.length > 1) {
+            $.each(checkedBoxes, function (i, checkBox) {
+                $.each(values, function (j, value) {
+                    if ($(checkBox).val() == value) {
+                        selected = true;
+                    }
+                })
+            })
+        }
+
+        if (selected) {
+            errors[$(fieldSet).attr('name')] = message;
+            validator.showErrors(errors);
+        } else {
+            $(fieldSet).removeClass('error');
+            $(fieldSet).closest('.section').find('label.error').remove();
+        }
+    };
+
     /* Start - Hiding refill and new based on current value */
     var $familyPlanning = $(':checkbox[data-concept="374^METHOD OF FAMILY PLANNING^99DCT"]');
     $familyPlanning.change(function() {
@@ -1246,85 +1276,43 @@ $(document).ready(function () {
                 $refilled.closest('.form-group').hide();
             }
         }
+
+        var values = ["1624^DO NOT KNOW^99DCT", "1107^NONE^99DCT"];
+        var message = "If None or Don't know is selected, it should be the only option.";
+        validateAlone($(this), values, message);
     });
     $familyPlanning.trigger('change');
     /* End - Hiding refill and new based on current value */
 
-    /* Start - Ensuring some selection are selected alone */
-    $.fn.checkSelectedAlone = function (nameArray, singleValues, message) {
-        var $validator = $('form').validate();
-        var errors = {};
-        var formValid = true;
-        $.each(nameArray, function (i, element) {
-            var filedSetElem = $('fieldset[name="' + element + '"]');
-            var result = isValidForSelection(filedSetElem, singleValues);
-            if (!result) {
-                errors[element] = message;
-                formValid = false;
-            }
-        });
-        if (!formValid) {
-            $validator.showErrors(errors);
-        }
-        return formValid;
-    };
+    var noneValues = ["1107^NONE^99DCT"];
+    var noneMessage = "If None is selected, it should be the only option.";
+    $(':checkbox[data-concept="7495^FAMILY PLANNING REFILL PROVIDED^99DCT"]').change(function () {
+        validateAlone($(this), noneValues, noneMessage);
+    });
 
-    var isValidForSelection = function (element, singleValues) {
-        var $fieldset = $(element);
-        if ($fieldset.prop('tagName') != 'FIELDSET') {
-            return true;
-        }
-        var result = true;
-        var totalSelected = $fieldset.find('input:checkbox:checked').length;
-        if (totalSelected > 1) {
-            $.each($fieldset.find('input:checkbox:checked'), function (i, cBoxElement) {
-                $.each(singleValues, function (i, singleValue) {
-                    if ($(cBoxElement).val() == singleValue) {
-                        result = false;
-                    }
-                });
-            })
-        }
-        return result;
-    };
-    /* End - Ensuring some selection are selected alone */
+    $(':checkbox[data-concept="7240^FAMILY PLANNING METHOD CHOSEN^99DCT"]').change(function () {
+        validateAlone($(this), noneValues, noneMessage);
+    });
 
-    /* Start - Example of calling above validation */
-    // none for complaints
-    var complaintsName = ['8916^CHIEF COMPLAINT, DETAILED^99DCT'];
-    var complaintsSingleValues = ['1107^NONE^99DCT'];
-    var complaintsMessage = "If None is selected, it should be the only option.";
+    $(':checkbox[data-concept="5219^CHIEF COMPLAINT^99DCT"]').change(function () {
+        validateAlone($(this), noneValues, noneMessage);
+    });
 
-    // normal for vaginal exam
-    var vaginalExamName = ['9171^VISUAL VAGINAL EXAM FINDINGS, DETAILED^99DCT'];
-    var vaginalExamSingleValues = ['1115^NORMAL^99DCT'];
-    var vaginalExamMessage = "If Normal is selected, it should be the only option.";
-
-    // normal for cervical
-    var cervicalExamName = ['9170^VISUAL CERVICAL EXAM FINDINGS, DETAILED^99DCT'];
-    var cervicalExamSingleValues = ['1115^NORMAL^99DCT'];
-    var cervicalExamMessage = "If Normal is selected, it should be the only option.";
-
-    var vulvalExamName = ['9172^VISUAL VULVAL EXAM FINDINGS, DETAILED^99DCT'];
-    var vulvalExamSingleValues = ['1115^NORMAL^99DCT'];
-    var vulvalExamMessage = "If Normal is selected, it should be the only option";
-
-    // check current family planning and family planning refill
-    var currentFamilyPlanning = "374^METHOD OF FAMILY PLANNING^99DCT";
-    var refillFamilyPlanning = "9175^FAMILY PLANNING REFILL PROVIDED, DETAILED^99DCT";
-    var chosenFamilyPlanning = "9176^FAMILY PLANNING METHOD CHOSEN, DETAILED^99DCT";
-    var familyPlanningSingleValues = ["1624^DO NOT KNOW^99DCT", "1107^NONE^99DCT"];
-    var familyPlanningMessage = "If None or Don't know is selected, it should be the only option.";
+    var normalValues = ['1115^NORMAL^99DCT'];
+    var normalMessage = "If Normal is selected, it should be the only option.";
+    $(':checkbox[data-concept="7484^VISUAL CERVICAL EXAM FINDINGS^99DCT"]').change(function () {
+        validateAlone($(this), normalValues, normalMessage);
+    });
+    $(':checkbox[data-concept="7490^VISUAL VAGINAL EXAM FINDINGS ^99DCT"]').change(function () {
+        validateAlone($(this), normalValues, normalMessage);
+    });
+    $(':checkbox[data-concept="7487^VISUAL VULVAL EXAM FINDINGS ^99DCT"]').change(function () {
+        validateAlone($(this), normalValues, normalMessage);
+    });
 
     $.fn.customValidationCheck = function () {
-        return $.fn.checkSelectedAlone(complaintsName, complaintsSingleValues, complaintsMessage)
-                && $.fn.checkSelectedAlone(vaginalExamName, vaginalExamSingleValues, vaginalExamMessage)
-                && $.fn.checkSelectedAlone(cervicalExamName, cervicalExamSingleValues, cervicalExamMessage)
-                && $.fn.checkSelectedAlone(vulvalExamName, vulvalExamSingleValues, vulvalExamMessage)
-                && $.fn.checkSelectedAlone([currentFamilyPlanning, refillFamilyPlanning, chosenFamilyPlanning], familyPlanningSingleValues, familyPlanningMessage)
+        return true;
     };
-    /* End - Example of calling above validation */
-
 });
 </script>
 
