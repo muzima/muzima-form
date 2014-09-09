@@ -190,10 +190,11 @@ $(document).ready(function () {
 
     $.validator.addMethod("nonFutureDate", function (value, element) {
             if ($.fn.isNotRequiredAndEmpty(value, element)) return true;
-            var enteredDate = new Date(value);
+            var pattern = /(\d{2})-(\d{2})-(\d{4})/g;
+            var matches = pattern.exec(value);
+            var enteredDate = new Date(matches[3], matches[2] - 1, matches[1]);
             var today = new Date();
             return enteredDate <= today;
-
         }, "Please enter a date prior or equal to today."
     );
 
@@ -208,10 +209,11 @@ $(document).ready(function () {
 
     $.validator.addMethod("checkFutureDate", function (value, element) {
             if ($.fn.isNotRequiredAndEmpty(value, element)) return true;
-            var enteredDate = new Date(value);
+            var pattern = /(\d{2})-(\d{2})-(\d{4})/g;
+            var matches = pattern.exec(value);
+            var enteredDate = new Date(matches[3], matches[2] - 1, matches[1]);
             var today = new Date();
             return enteredDate > today;
-
         }, "Please enter a date in the future."
     );
 
