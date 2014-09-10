@@ -10,6 +10,13 @@ $(document).ready(function () {
     'use strict';
     var dateFormat = "dd-mm-yy";
 
+    $('form').append(
+        '<div class="form-group text-center">' +
+        '    <input class="btn btn-primary" id="save_draft" type="button" value="Save"/>' +
+        '    <input class="btn btn-primary" id="submit_form" type="button" value="Submit"/>' +
+        '</div>'
+    );
+
     /* Start - Function to save the form */
     document.submit = function () {
         var validForm = $("form").valid();
