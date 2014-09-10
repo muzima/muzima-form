@@ -62,7 +62,7 @@
 
 <div class="section">
     <div class="form-group">
-        <label for="encounter.location_id">Screening Site:<span class="required">*</span></label>
+        <label for="encounter.location_id">Encounter Location:<span class="required">*</span></label>
         <select class="form-control" name="encounter.location_id" id="encounter.location_id" required="required">
             <option value="">...</option>
             <option value="3">Turbo</option>
@@ -92,13 +92,13 @@
     <div class="form-group">
         <label for="previous_follow_up">Previous date this form was filled:</label>
         <input class="form-control datepicker nonFutureDate" id="previous_follow_up"
-               name="previous_follow_up" type="text"
+               name="previous_follow_up" type="text" readonly="readonly"
                data-concept="9167^DATE OF LAST FOLLOW-UP^99DCT">
     </div>
     <div class="form-group">
         <label for="missed_appointment_date">Missed appointment date:</label>
         <input class="form-control datepicker nonFutureDate" id="missed_appointment_date"
-               name="missed_appointment_date" type="text"
+               name="missed_appointment_date" type="text" readonly="readonly"
                data-concept="1592^MISSED APPOINTMENT DATE^99DCT">
     </div>
 </div>
@@ -162,7 +162,7 @@
     <div class="form-group">
         <label for="date_referred">Date referred:</label>
         <input class="form-control datepicker nonFutureDate" id="date_referred"
-               name="date_referred" type="text"
+               name="date_referred" type="text" readonly="readonly"
                data-concept="9158^DATE REFERRED^99DCT">
     </div>
 </div>
@@ -392,7 +392,7 @@
     <div class="form-group hidden">
         <label for="visit_plan_date">Date of planned facility visit?<span class="required">*</span></label>
         <input class="form-control datepicker checkFutureDate" id="visit_plan_date"
-               name="visit_plan_date" type="text" required="required"
+               name="visit_plan_date" type="text" required="required" readonly="readonly"
                data-concept="7348^RETURN VISIT DATE, DISPENSARY^99DCT">
     </div>
     <div class="concept-set form-group hidden" data-concept="9087^FACILITY TYPE, DETAILED^99DCT">
@@ -404,7 +404,7 @@
     <div class="form-group">
         <label for="planned_follow_up_date">Planned CHW follow up date?<span class="required">*</span></label>
         <input class="form-control datepicker checkFutureDate" id="planned_follow_up_date"
-               name="planned_follow_up_date" type="text" required="required"
+               name="planned_follow_up_date" type="text" required="required" readonly="readonly"
                data-concept="9166^PLANNED FOLLOW-UP DATE^99DCT">
     </div>
 </div>
