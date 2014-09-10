@@ -13,7 +13,7 @@
 </head>
 <body class="col-md-10 col-md-offset-1">
 <div id="result"></div>
-<form id="histopathology_form" name="histopathology_form">
+<form class="relevant-female" id="histopathology_form" name="histopathology_form">
     <h2 class="text-center">Histopathology Form v 0.01</h2>
 
     <div class="section">
@@ -225,7 +225,10 @@
 
         var dateFormat = "dd-mm-yy";
         var currentDate = $.datepicker.formatDate(dateFormat, new Date());
-        $('#encounter\\.encounter_datetime').val(currentDate);
+        var encounterDatetime = $('#encounter\\.encounter_datetime');
+        if ($(encounterDatetime).val() == "") {
+            $(encounterDatetime).val(currentDate);
+        }
 
         $('#save_draft').click(function () {
             $(this).prop('disabled', true);
@@ -238,6 +241,19 @@
             document.submit();
             $(this).prop('disabled', false);
         });
+
+        var $patientSex = $('#patient\\.sex');
+        $patientSex.change(function () {
+            var $womenOnly = $('.relevant-female');
+            if ($patientSex.val() != 'F') {
+                $womenOnly.hide();
+                $('body').html("<div class='section text-center'><h4>This form is only applicable to female patient. " +
+                        "Please press back to close the form.</h4></div>");
+            } else {
+                $womenOnly.show();
+            }
+        });
+        $patientSex.trigger('change');
 
         var showBodyPartSpecificDiagonosis = function (bodyPart) {
             var availableBodyParts = {'8279^CERVIX^99DCT': '#obs\\.pathological_diagnosis_added_cervix',

@@ -16,7 +16,7 @@
 
 <body class="col-md-10 col-md-offset-1">
 <div id="pre_populate_data"></div>
-<form id="via_form" name="via_form">
+<form class="relevant-female" id="via_form" name="via_form">
 <h2 class="text-center">Dysplasia Form v 0.01</h2>
 
 <div class="section">
@@ -1105,7 +1105,10 @@ $(document).ready(function () {
 
     var dateFormat = "dd-mm-yy";
     var currentDate = $.datepicker.formatDate(dateFormat, new Date());
-    $('#encounter\\.encounter_datetime').val(currentDate);
+    var encounterDatetime = $('#encounter\\.encounter_datetime');
+    if ($(encounterDatetime).val() == "") {
+        $(encounterDatetime).val(currentDate);
+    }
 
     $('#save_draft').click(function () {
         $(this).prop('disabled', true);
@@ -1233,9 +1236,11 @@ $(document).ready(function () {
     /* Start - Female only breast cancer history */
     var $patientSex = $('#patient\\.sex');
     $patientSex.change(function () {
-        var $womenOnly = $('.relevant_female');
+        var $womenOnly = $('.relevant-female');
         if ($patientSex.val() != 'F') {
             $womenOnly.hide();
+            $('body').html("<div class='section text-center'><h4>This form is only applicable to female patient. " +
+                    "Please press back to close the form.</h4></div>");
         } else {
             $womenOnly.show();
         }

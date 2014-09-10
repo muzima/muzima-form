@@ -1739,7 +1739,10 @@ $(document).ready(function () {
 
     var dateFormat = "dd-mm-yy";
     var currentDate = $.datepicker.formatDate(dateFormat, new Date());
-    $('#encounter\\.encounter_datetime').val(currentDate);
+    var encounterDatetime = $('#encounter\\.encounter_datetime');
+    if ($(encounterDatetime).val() == "") {
+        $(encounterDatetime).val(currentDate);
+    }
 
     $('#save_draft').click(function () {
         $(this).prop('disabled', true);

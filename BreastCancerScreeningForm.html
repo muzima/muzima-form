@@ -16,7 +16,7 @@
 
 <body class="col-md-10 col-md-offset-1">
 <div id="pre_populate_data"></div>
-<form id="breastcancer_form" name="breastcancer_form">
+<form class="relevant-female" id="breastcancer_form" name="breastcancer_form">
 
 <h2 class="text-center">Breast Cancer Screening Form v 0.01</h2>
 
@@ -231,7 +231,7 @@
     </div>
 </div>
 
-<div class="section relevant_female">
+<div class="section">
     <h3>Gynecologic History</h3>
 
     <div class="form-group">
@@ -957,7 +957,10 @@ $(document).ready(function () {
 
     var dateFormat = "dd-mm-yy";
     var currentDate = $.datepicker.formatDate(dateFormat, new Date());
-    $('#encounter\\.encounter_datetime').val(currentDate);
+    var encounterDatetime = $('#encounter\\.encounter_datetime');
+    if ($(encounterDatetime).val() == "") {
+        $(encounterDatetime).val(currentDate);
+    }
 
     $('#save_draft').click(function () {
         $(this).prop('disabled', true);
@@ -1124,9 +1127,11 @@ $(document).ready(function () {
     /* Start - Female only breast cancer history */
     var $patientSex = $('#patient\\.sex');
     $patientSex.change(function () {
-        var $womenOnly = $('.relevant_female');
+        var $womenOnly = $('.relevant-female');
         if ($patientSex.val() != 'F') {
             $womenOnly.hide();
+            $('body').html("<div class='section text-center'><h4>This form is only applicable to female patient. " +
+                    "Please press back to close the form.</h4></div>");
         } else {
             $womenOnly.show();
         }

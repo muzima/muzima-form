@@ -16,7 +16,7 @@
 
 <body class="col-md-10 col-md-offset-1">
 <div id="pre_populate_data"></div>
-<form id="via_form" name="via_form">
+<form class="relevant-female" id="via_form" name="via_form">
 <h2 class="text-center">CCSP VIA Form v 0.01</h2>
 
 <div class="section">
@@ -49,7 +49,7 @@
         <label for="patient.sex">Gender:</label>
         <select class="form-control" id="patient.sex" name="patient.sex" disabled="disabled">
             <option value="">...</option>
-            <option value="M">Male</option>
+            <option value="M" selected="selected">Male</option>
             <option value="F">Female</option>
         </select>
     </div>
@@ -963,7 +963,10 @@ $(document).ready(function () {
 
     var dateFormat = "dd-mm-yy";
     var currentDate = $.datepicker.formatDate(dateFormat, new Date());
-    $('#encounter\\.encounter_datetime').val(currentDate);
+    var encounterDatetime = $('#encounter\\.encounter_datetime');
+    if ($(encounterDatetime).val() == "") {
+        $(encounterDatetime).val(currentDate);
+    }
 
     $('#save_draft').click(function () {
         $(this).prop('disabled', true);
@@ -1073,6 +1076,19 @@ $(document).ready(function () {
             $('.show_provider_id_text').show();
         }
     });
+
+    var $patientSex = $('#patient\\.sex');
+    $patientSex.change(function () {
+        var $womenOnly = $('.relevant-female');
+        if ($patientSex.val() != 'F') {
+            $womenOnly.hide();
+            $('body').html("<div class='section text-center'><h4>This form is only applicable to female patient. " +
+                    "Please press back to close the form.</h4></div>");
+        } else {
+            $womenOnly.show();
+        }
+    });
+    $patientSex.trigger('change');
 
     /* Start - Checking that parity is less than gravida */
     $.validator.addMethod("lessThanGravida", function (value, element) {
