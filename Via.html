@@ -1185,16 +1185,9 @@ $(document).ready(function () {
     /* Start - Toggle free text element */
     var $hasOther = $('.has-other');
     $hasOther.change(function () {
-        var hasOtherValue = $(this).val();
         var $freetext = $(this).closest('.section').find('.freetext');
         if ($(this).is(':checkbox')) {
-            if ($hasOther.is(':checked')) {
-                $freetext.show();
-            } else {
-                $freetext.hide();
-            }
-        } else {
-            if (hasOtherValue === '5622^OTHER NON-CODED^99DCT') {
+            if ($(this).is(':checked')) {
                 $freetext.show();
             } else {
                 $freetext.hide();
