@@ -18,18 +18,18 @@ $(document).ready(function () {
     );
 
     /* Start - Toggle free text element */
-    var $hasOther = $('.has-freetext');
-    $hasOther.change(function () {
-        var $freetext = $(this).closest('.section').find('.freetext');
+    var hasFreetext = $('.has-freetext');
+    hasFreetext.change(function () {
+        var freetext = $(this).closest('.section').find('.freetext');
         if ($(this).is(':checkbox')) {
             if ($(this).is(':checked')) {
-                $freetext.show();
+                freetext.show();
             } else {
-                $freetext.hide();
+                freetext.hide();
             }
         }
     });
-    $hasOther.trigger('change');
+    hasFreetext.trigger('change');
     /* End - Toggle free text element */
 
     /* Start - Function to save the form */
