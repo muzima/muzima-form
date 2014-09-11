@@ -17,6 +17,21 @@ $(document).ready(function () {
         '</div>'
     );
 
+    /* Start - Toggle free text element */
+    var $hasOther = $('.has-freetext');
+    $hasOther.change(function () {
+        var $freetext = $(this).closest('.section').find('.freetext');
+        if ($(this).is(':checkbox')) {
+            if ($(this).is(':checked')) {
+                $freetext.show();
+            } else {
+                $freetext.hide();
+            }
+        }
+    });
+    $hasOther.trigger('change');
+    /* End - Toggle free text element */
+
     /* Start - Function to save the form */
     document.submit = function () {
         var validForm = $("form").valid();

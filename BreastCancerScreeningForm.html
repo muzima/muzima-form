@@ -150,11 +150,16 @@
         </div>
         <div class="form-group">
             <label class="font-normal">
-                <input id="service_referrals.other" type="checkbox"
+                <input class="has-freetext" id="service_referrals.other" type="checkbox"
                        data-concept="8250^COMMUNICATION CHANNEL OF KNOWING THE PROGRAM OR SERVICE^99DCT"
                        value="5622^OTHER NON-CODED^99DCT"/>
                 Other
             </label>
+        </div>
+        <div class="form-group freetext">
+            <label for="service_referrals.freetext_general">Specify:<span class="required">*</span></label>
+            <textarea class="form-control" name="service_referrals.freetext_general" id="service_referrals.freetext_general"
+                      data-concept="1915^FREETEXT GENERAL^99DCT"></textarea>
         </div>
     </fieldset>
 </div>
@@ -391,7 +396,7 @@
             </div>
             <div class="form-group">
                 <label class="font-normal">
-                    <input id="family_planning_method_ever_used.other_non_coded" type="checkbox"
+                    <input class="has-freetext" id="family_planning_method_ever_used.other_non_coded" type="checkbox"
                            data-concept="8253^FAMILY PLANNING METHOD EVER USED^99DCT"
                            value="5622^OTHER NON-CODED^99DCT"/>
                     Other
@@ -412,6 +417,14 @@
                             value="1107^NONE^99DCT"/>
                     Don't know
                 </label>
+            </div>
+            <div class="form-group freetext">
+                <label for="family_planning_method_ever_used.freetext_general">
+                    Specify:<span class="required">*</span>
+                </label>
+                <textarea class="form-control" name="family_planning_method_ever_used.freetext_general"
+                          id="family_planning_method_ever_used.freetext_general"
+                          data-concept="1915^FREETEXT GENERAL^99DCT"></textarea>
             </div>
         </fieldset>
     </div>
@@ -875,7 +888,7 @@
         </div>
         <div class="form-group">
             <label class="font-normal">
-                <input id="referrals_ordered.other_non_coded" type="checkbox"
+                <input class="has-freetext" id="referrals_ordered.other_non_coded" type="checkbox"
                        data-concept="1272^REFERRALS ORDERED^99DCT" value="5622^OTHER NON-CODED^99DCT">
                 Other
             </label>
@@ -886,6 +899,14 @@
                        data-concept="1272^REFERRALS ORDERED^99DCT" value="1107^NONE^99DCT">
                 None
             </label>
+        </div>
+        <div class="form-group freetext">
+            <label for="referrals_ordered.freetext_general">
+                Specify:<span class="required">*</span>
+            </label>
+            <textarea class="form-control" name="referrals_ordered.freetext_general"
+                      id="referrals_ordered.freetext_general"
+                      data-concept="1915^FREETEXT GENERAL^99DCT"></textarea>
         </div>
     </fieldset>
 </div>
@@ -937,10 +958,18 @@
         </div>
         <div class="form-group">
             <label class="font-normal">
-                <input id="reasons_for_referral.other_non_coded" type="checkbox"
+                <input class="has-freetext" id="reasons_for_referral.other_non_coded" type="checkbox"
                        data-concept="2327^REASONS FOR REFERRAL^99DCT" value="5622^OTHER NON-CODED^99DCT">
                 Other
             </label>
+        </div>
+        <div class="form-group freetext">
+            <label for="reasons_for_referral.freetext_general">
+                Specify:<span class="required">*</span>
+            </label>
+            <textarea class="form-control" name="reasons_for_referral.freetext_general"
+                      id="reasons_for_referral.freetext_general"
+                      data-concept="1915^FREETEXT GENERAL^99DCT"></textarea>
         </div>
     </fieldset>
 </div>
