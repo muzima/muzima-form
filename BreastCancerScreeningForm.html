@@ -48,7 +48,7 @@
         <select class="form-control" id="patient.sex" name="patient.sex" disabled="disabled">
             <option value="">...</option>
             <option value="M">Male</option>
-            <option value="F">Female</option>
+            <option value="F" selected="selected">Female</option>
         </select>
     </div>
     <div class="form-group">
@@ -1275,9 +1275,12 @@ $(document).ready(function () {
         var errors = {};
         var validator = $('form').validate();
 
-        var fieldSet = $(source).closest('fieldset');
-        if (fieldSet === undefined) {
-            return true;
+        var fieldSet = $(source);
+        if (fieldSet.prop('tagName').toLowerCase() != 'fieldset') {
+            fieldSet = $(source).closest('fieldset');
+            if (fieldSet === undefined) {
+                return true;
+            }
         }
 
         var selected = false;
@@ -1299,29 +1302,34 @@ $(document).ready(function () {
             $(fieldSet).removeClass('error');
             $(fieldSet).closest('.section').find('label.error').remove();
         }
+        return !selected;
     };
 
+    var referralName = "1272^REFERRALS ORDERED^99DCT";
     var referralValues = ['1107^NONE^99DCT'];
     var referralMessage = "If None is selected, it should be the only option.";
-    $(':checkbox[data-concept="1272^REFERRALS ORDERED^99DCT"]').change(function () {
+    $(':checkbox[data-concept="' + referralName + '"]').change(function () {
         validateAlone($(this), referralValues, referralMessage);
     });
 
+    var familyPlanningName = "8253^FAMILY PLANNING METHOD EVER USED^99DCT";
     var familyPlanningValues = ['1624^DO NOT KNOW^99DCT', '1107^NONE^99DCT'];
     var familyPlanningMessage = "If None or Don't know is selected, it should be the only option.";
-    $(':checkbox[data-concept="8253^FAMILY PLANNING METHOD EVER USED^99DCT"]').change(function () {
+    $(':checkbox[data-concept="' + familyPlanningName + '"]').change(function () {
         validateAlone($(this), familyPlanningValues, familyPlanningMessage);
     });
 
+    var breastReviewName = "6492^REVIEW OF SYSTEMS - BREAST^99DCT";
     var breastReviewValues = ['664^NEGATIVE^99DCT'];
     var breastReviewMessage = "If No Complaints is selected, it should be the only option.";
-    $(':checkbox[data-concept="6492^REVIEW OF SYSTEMS - BREAST^99DCT"]').change(function () {
+    $(':checkbox[data-concept="' + breastReviewName + '"]').change(function () {
         validateAlone($(this), breastReviewValues, breastReviewMessage);
     });
 
+    var lymphNodeName = "1121^LYMPH NODE EXAM FINDINGS^99DCT";
     var lymphNodeValues = ['1118^NOT DONE^99DCT', '1115^NORMAL^99DCT', '161^LYMPHADENOPATHY^99DCT'];
     var lymphNodeMessage = "If Normal, Not Done or Generalized lympadenopathy is selected, it should be the only option.";
-    $(':checkbox[data-concept="1121^LYMPH NODE EXAM FINDINGS^99DCT"]').change(function () {
+    $(':checkbox[data-concept="' + lymphNodeName + '"]').change(function () {
         validateAlone($(this), lymphNodeValues, lymphNodeMessage);
     });
 
@@ -1329,7 +1337,11 @@ $(document).ready(function () {
         'review_of_medical_history', 'family_chronic_illnesses_history'];
 
     $.fn.customValidationCheck = function () {
-        return $.fn.removeTemporaryData(idList);
+        return $.fn.removeTemporaryData(idList)
+                && validateAlone($('fieldset[name="' + referralName + '"]'), referralValues, referralMessage)
+                && validateAlone($('fieldset[name="' + familyPlanningName + '"]'), familyPlanningValues, familyPlanningMessage)
+                && validateAlone($('fieldset[name="' + breastReviewName + '"]'), breastReviewValues, breastReviewMessage)
+                && validateAlone($('fieldset[name="' + lymphNodeName + '"]'), lymphNodeValues, lymphNodeMessage);
     };
     /* End - Example of calling above validation */
 
