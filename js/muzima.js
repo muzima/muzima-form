@@ -6,6 +6,84 @@
  * that uses this code in a for-profit venture, please contact the copyright holder.
  */
 
+
+/* Start - Minimal one element selected
+ * Parameter:
+ * * Fieldset element where the input must be selected at least one.
+ * * Message to be displayed when none of the elements in the fieldset is selected.
+ */
+var validateSelected = function (source) {
+    var errors = {};
+    var fieldSet = $(source).filter(':visible');
+    if (fieldSet.length) {
+        var tag = fieldSet.prop('tagName');
+        // check if the source element is a field set (or other container in the future).
+        if (tag.toLowerCase() != 'fieldset') {
+            // if not, then this is an input element. And then get the closest field set.
+            fieldSet = $(source).closest('fieldset');
+            // if we can't find the fieldset container, then just return the empty validation errors.
+            if (!fieldSet.length) {
+                return errors;
+            }
+        }
+        // get the visible inputs element that are checked
+        var checkedInput = $(fieldSet).find('input:checked');
+        if (checkedInput.length == 0) {
+            errors[$(fieldSet).attr('name')] = "This question must be answered.";
+        }
+    }
+    return errors;
+};
+/* End - Minimal one element selected */
+
+/* Start - Selecting an element should be single selection
+ * * Parameter:
+ * * Fieldset element where the input should be a single selection or the collection of checkboxes elements.
+ * * Values which should be a single selection.
+ * * Message to be displayed when the element is selected with other element.
+ */
+var validateAlone = function (source, values, message) {
+    var errors = {};
+    var fieldSet = $(source).filter(':visible');
+    if (fieldSet.length) {
+        var tag = fieldSet.prop('tagName');
+        // if the tag is not fieldset, then it is an input.
+        // then get the closest fieldset for the inputs (which must be a fieldset).
+        if (tag.toLowerCase() != 'fieldset') {
+            fieldSet = $(source).closest('fieldset');
+            // if we can't find the fieldset container, then just return the empty validation errors.
+            if (!fieldSet.length) {
+                return errors;
+            }
+        }
+        var checkedBoxes = $(fieldSet).find('input:checkbox:checked');
+        if (checkedBoxes.length > 1) {
+            $.each(checkedBoxes, function (i, checkBox) {
+                $.each(values, function (j, value) {
+                    if ($(checkBox).val() == value) {
+                        errors[$(fieldSet).attr('name')] = message;
+                    }
+                })
+            })
+        }
+    }
+    return errors;
+};
+/* End - Selecting an element should be single selection */
+
+/* Start - Show and hide validation error messages */
+var toggleValidationMessages = function (errors) {
+    var validator = $('form').validate();
+    if ($.isEmptyObject(errors)){
+        // remove the error messages
+        validator.resetForm();
+    } else {
+        // show the error messages
+        validator.showErrors(errors);
+    }
+};
+/* End - Show and hide validation error messages */
+
 $(document).ready(function () {
     'use strict';
     var dateFormat = "dd-mm-yy";
@@ -32,6 +110,14 @@ $(document).ready(function () {
     hasFreetext.trigger('change');
     /* End - Toggle free text element */
 
+    /* Start - Removing error message in the container of checkbox and radio */
+    $('input:checkbox, input:radio').change(function () {
+        var container = $(this).closest('fieldset');
+        $(container).removeClass('error');
+        $(container).closest('.section').find('label.error').remove();
+    });
+    /* End - Removing error message in the container of checkbox and radio */
+
     /* Start - Function to save the form */
     document.submit = function () {
         var validForm = $("form").valid();
@@ -40,6 +126,8 @@ $(document).ready(function () {
         }
         if (validForm) {
             save("complete");
+        } else {
+            addValidationMessage();
         }
     };
 
@@ -59,6 +147,24 @@ $(document).ready(function () {
         } else {
             pre.html(jsonData);
         }
+    };
+
+    var addValidationMessage = function () {
+        var validationError = $('#validation-error');
+        if (validationError.length == 0) {
+            $('form').prepend(
+                    '<div class="error" id="validation-error">' +
+                    '    There is one or more validation check failed on this form. Please review and resubmit the form' +
+                    '</div>'
+            );
+        } else {
+            validationError.html('There is one or more validation failed on this form. Please review and resubmit the form');
+        }
+        $('html, body').animate({ scrollTop: 0 }, 'slow');
+    };
+
+    var removeValidationMessage = function () {
+        $('#validation-error').remove();
     };
     /* End - Function to save the form */
 

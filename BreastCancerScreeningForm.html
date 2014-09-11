@@ -16,9 +16,9 @@
 
 <body class="col-md-10 col-md-offset-1">
 <div id="pre_populate_data"></div>
-<form class="relevant-female" id="breastcancer_form" name="breastcancer_form">
-
 <h2 class="text-center">Breast Cancer Screening Form v 0.01</h2>
+
+<form class="relevant-female" id="breastcancer_form" name="breastcancer_form">
 
 <div class="section">
     <h3>Demographics</h3>
@@ -158,7 +158,8 @@
         </div>
         <div class="form-group freetext">
             <label for="service_referrals.freetext_general">Specify:<span class="required">*</span></label>
-            <textarea class="form-control" name="service_referrals.freetext_general" id="service_referrals.freetext_general"
+            <textarea class="form-control" name="service_referrals.freetext_general"
+                      id="service_referrals.freetext_general"
                       data-concept="1915^FREETEXT GENERAL^99DCT"></textarea>
         </div>
     </fieldset>
@@ -243,6 +244,7 @@
         <label for="age_of_menarche">
             Age of menarche (first period)?<span class="required">*</span>
         </label>
+
         <div>
             <small><i>Menarche is the first menstrual cycle, or first menstrual bleeding, in female humans.</i></small>
         </div>
@@ -252,6 +254,7 @@
 
     <div class="form-group">
         <label for="gravida">Number of previous pregnancies?<span class="required">*</span></label><br/>
+
         <div>
             <small><i>If client has never been pregnant, enter '0'.</i></small>
         </div>
@@ -263,6 +266,7 @@
         <label for="age_of_first_pregnancy">
             Age at first pregnancy?<span class="required">*</span>
         </label>
+
         <div>
             <small><i>What is the age of first pregnancy?</i></small>
         </div>
@@ -274,6 +278,7 @@
         <label for="parity">
             Number of previous deliveries?<span class="required">*</span>
         </label>
+
         <div>
             <small><i>The number of children a woman has delivered?</i></small>
         </div>
@@ -296,6 +301,7 @@
         <label for="menstruation_status">
             How are your menstrual periods?<span class="required">*</span>
         </label>
+
         <div>
             <small><i>Screener to select one best option.</i></small>
         </div>
@@ -414,7 +420,7 @@
                 <label class="font-normal">
                     <input id="family_planning_method_ever_used.do_not_know" type="checkbox"
                            data-concept="8253^FAMILY PLANNING METHOD EVER USED^99DCT"
-                            value="1107^NONE^99DCT"/>
+                           value="1107^NONE^99DCT"/>
                     Don't know
                 </label>
             </div>
@@ -437,7 +443,8 @@
 
         <div class="form-group">
             <label for="family_chronic_illnesses_history">Any history of breast cancer in the family?</label>
-            <select class="form-control" id="family_chronic_illnesses_history" name="with-temp.family_chronic_illnesses_history"
+            <select class="form-control" id="family_chronic_illnesses_history"
+                    name="with-temp.family_chronic_illnesses_history"
                     required="required" data-concept="6802^FAMILY CHRONIC ILLNESSES HISTORY^99DCT">
                 <option value="">...</option>
                 <option value="6544^BREAST CANCER^99DCT">Yes</option>
@@ -447,7 +454,7 @@
 
         <div class="form-group relevant_family_chronic_illnesses_history">
             <label>Relative(s) in the family with history of breast cancer?</label>
-            <fieldset>
+            <fieldset name="8254^FAMILY MEMBER WITH CHRONIC ILLNESSES HISTORY^99DCT">
                 <div class="form-group">
                     <label class="font-normal">
                         <input id="family_member_with_chronic_illnesses_history.sibling" type="checkbox"
@@ -882,7 +889,8 @@
         <div class="form-group">
             <label class="font-normal">
                 <input id="referrals_ordered.moi_teaching_and_referral_hospital" type="checkbox"
-                       data-concept="1272^REFERRALS ORDERED^99DCT" value="1274^MOI TEACHING AND REFERRAL HOSPITAL^99DCT">
+                       data-concept="1272^REFERRALS ORDERED^99DCT"
+                       value="1274^MOI TEACHING AND REFERRAL HOSPITAL^99DCT">
                 MTRH
             </label>
         </div>
@@ -913,7 +921,7 @@
 
 <div class="section relevant_referral_ordered">
     <h4>Reasons for referral</h4>
-    <fieldset name="2327^REASONS FOR REFERRAL^99DCT" data-concept="2327^REASONS FOR REFERRAL^99DCT">
+    <fieldset name="2327^REASONS FOR REFERRAL^99DCT">
         <div class="form-group">
             <label class="font-normal">
                 <input id="reasons_for_referral.fine_needle_aspiration_nos" type="checkbox"
@@ -1154,8 +1162,10 @@ $(document).ready(function () {
         var $womenOnly = $('.relevant-female');
         if ($patientSex.val() != 'F') {
             $womenOnly.hide();
-            $('body').html("<div class='section text-center'><h4>This form is only applicable to female patient. " +
-                    "Please press back to close the form.</h4></div>");
+            $('body').html("" +
+                    "<div class='section text-center'>" +
+                    "    <h4>This form is only applicable to female patient. Please press back to close the form.</h4>" +
+                    "</div>");
         } else {
             $womenOnly.show();
         }
@@ -1260,7 +1270,7 @@ $(document).ready(function () {
 
     /* Start - Remove temporary information */
     $.fn.removeTemporaryData = function (idList) {
-        $.each(idList, function(i, id) {
+        $.each(idList, function (i, id) {
             var $element = $('#' + id);
             var elementValue = $element.val();
             if (elementValue == "with-temp.NO") {
@@ -1271,77 +1281,55 @@ $(document).ready(function () {
     };
     /* End - Remove temporary information */
 
-    var validateAlone = function (source, values, message) {
-        var errors = {};
-        var validator = $('form').validate();
-
-        var fieldSet = $(source);
-        if (fieldSet.prop('tagName').toLowerCase() != 'fieldset') {
-            fieldSet = $(source).closest('fieldset');
-            if (fieldSet === undefined) {
-                return true;
-            }
-        }
-
-        var selected = false;
-        var checkedBoxes = $(fieldSet).find('input:checkbox:checked');
-        if (checkedBoxes.length > 1) {
-            $.each(checkedBoxes, function (i, checkBox) {
-                $.each(values, function (j, value) {
-                    if ($(checkBox).val() == value) {
-                        selected = true;
-                    }
-                })
-            })
-        }
-
-        if (selected) {
-            errors[$(fieldSet).attr('name')] = message;
-            validator.showErrors(errors);
-        } else {
-            $(fieldSet).removeClass('error');
-            $(fieldSet).closest('.section').find('label.error').remove();
-        }
-        return !selected;
-    };
-
-    var referralName = "1272^REFERRALS ORDERED^99DCT";
     var referralValues = ['1107^NONE^99DCT'];
     var referralMessage = "If None is selected, it should be the only option.";
-    $(':checkbox[data-concept="' + referralName + '"]').change(function () {
-        validateAlone($(this), referralValues, referralMessage);
+    $(':checkbox[data-concept="1272^REFERRALS ORDERED^99DCT"]').change(function () {
+        toggleValidationMessages(validateAlone($(this), referralValues, referralMessage));
     });
 
-    var familyPlanningName = "8253^FAMILY PLANNING METHOD EVER USED^99DCT";
     var familyPlanningValues = ['1624^DO NOT KNOW^99DCT', '1107^NONE^99DCT'];
     var familyPlanningMessage = "If None or Don't know is selected, it should be the only option.";
-    $(':checkbox[data-concept="' + familyPlanningName + '"]').change(function () {
-        validateAlone($(this), familyPlanningValues, familyPlanningMessage);
+    $(':checkbox[data-concept="8253^FAMILY PLANNING METHOD EVER USED^99DCT"]').change(function () {
+        toggleValidationMessages(validateAlone($(this), familyPlanningValues, familyPlanningMessage));
     });
 
-    var breastReviewName = "6492^REVIEW OF SYSTEMS - BREAST^99DCT";
     var breastReviewValues = ['664^NEGATIVE^99DCT'];
     var breastReviewMessage = "If No Complaints is selected, it should be the only option.";
-    $(':checkbox[data-concept="' + breastReviewName + '"]').change(function () {
-        validateAlone($(this), breastReviewValues, breastReviewMessage);
+    $(':checkbox[data-concept="6492^REVIEW OF SYSTEMS - BREAST^99DCT"]').change(function () {
+        toggleValidationMessages(validateAlone($(this), breastReviewValues, breastReviewMessage));
     });
 
-    var lymphNodeName = "1121^LYMPH NODE EXAM FINDINGS^99DCT";
     var lymphNodeValues = ['1118^NOT DONE^99DCT', '1115^NORMAL^99DCT', '161^LYMPHADENOPATHY^99DCT'];
     var lymphNodeMessage = "If Normal, Not Done or Generalized lympadenopathy is selected, it should be the only option.";
-    $(':checkbox[data-concept="' + lymphNodeName + '"]').change(function () {
-        validateAlone($(this), lymphNodeValues, lymphNodeMessage);
+    $(':checkbox[data-concept="1121^LYMPH NODE EXAM FINDINGS^99DCT"]').change(function () {
+        toggleValidationMessages(validateAlone($(this), lymphNodeValues, lymphNodeMessage));
     });
 
     var idList = ['diagnosis_based_on_biopsy', 'history_of_surgeries', 'previous_radiation_location',
         'review_of_medical_history', 'family_chronic_illnesses_history'];
 
     $.fn.customValidationCheck = function () {
-        return $.fn.removeTemporaryData(idList)
-                && validateAlone($('fieldset[name="' + referralName + '"]'), referralValues, referralMessage)
-                && validateAlone($('fieldset[name="' + familyPlanningName + '"]'), familyPlanningValues, familyPlanningMessage)
-                && validateAlone($('fieldset[name="' + breastReviewName + '"]'), breastReviewValues, breastReviewMessage)
-                && validateAlone($('fieldset[name="' + lymphNodeName + '"]'), lymphNodeValues, lymphNodeMessage);
+        var referral = $('fieldset[name="1272^REFERRALS ORDERED^99DCT"]');
+        var lymphNode = $('fieldset[name="1121^LYMPH NODE EXAM FINDINGS^99DCT"]');
+        var breastReview = $('fieldset[name="6492^REVIEW OF SYSTEMS - BREAST^99DCT"]');
+        var familyPlanning = $('fieldset[name="8253^FAMILY PLANNING METHOD EVER USED^99DCT"]');
+        var communication = $('fieldset[name="8250^COMMUNICATION CHANNEL OF KNOWING THE PROGRAM OR SERVICE^99DCT"]');
+        var familyHistory = $('fieldset[name="8254^FAMILY MEMBER WITH CHRONIC ILLNESSES HISTORY^99DCT"]');
+        var referredReason = $('fieldset[name="2327^REASONS FOR REFERRAL^99DCT"]');
+        var errors = $.extend({},
+                validateSelected(referral),
+                validateSelected(lymphNode),
+                validateSelected(breastReview),
+                validateSelected(familyPlanning),
+                validateSelected(communication),
+                validateSelected(familyHistory),
+                validateSelected(referredReason),
+                validateAlone(referral, referralValues, referralMessage),
+                validateAlone(lymphNode, lymphNodeValues, lymphNodeMessage),
+                validateAlone(familyPlanning, familyPlanningValues, familyPlanningMessage),
+                validateAlone(breastReview, breastReviewValues, breastReviewMessage));
+        toggleValidationMessages(errors);
+        return $.fn.removeTemporaryData(idList) && $.isEmptyObject(errors);
     };
     /* End - Example of calling above validation */
 
@@ -1404,31 +1392,31 @@ $(document).ready(function () {
     /* End - Disable adding section if not done is selected */
 
     /* Start - Referral NONE */
-    var $referralNone = $('#referrals_ordered\\.none');
-    var $referralOrdered = $("input[name='1272^REFERRALS ORDERED^99DCT']").not("[value='1107^NONE^99DCT']");
+    var referred = $("input[data-concept='1272^REFERRALS ORDERED^99DCT']");
+    var referredNone = referred.filter("[value='1107^NONE^99DCT']");
+    var referredOther = referred.not("[value='1107^NONE^99DCT']");
     // affected element
-    var $relevantReferralsOrdered = $('.relevant_referral_ordered');
-    $referralNone.change(function () {
-        if ($referralNone.is(":checked")) {
-            $relevantReferralsOrdered.hide();
+    var referredRelevant = $('.relevant_referral_ordered');
+    referredNone.change(function () {
+        if ($(this).is(':checked')) {
+            referredRelevant.hide();
         } else {
-            if ($referralOrdered.is(":checked")) {
-                $relevantReferralsOrdered.show();
+            if (referredOther.filter(":checked").length > 0) {
+                referredRelevant.show();
             }
         }
     });
-    $referralNone.trigger("change");
+    referredNone.trigger("change");
 
-    $referralOrdered.change(function () {
-        if ($referralNone.is(":unchecked")) {
-            if ($referralOrdered.is(":checked")) {
-                $relevantReferralsOrdered.show();
-            } else {
-                $relevantReferralsOrdered.hide();
-            }
+    referredOther.change(function () {
+        if (referredNone.filter(":checked").length <= 0
+                && referredOther.filter(":checked").length > 0) {
+            referredRelevant.show();
+        } else {
+            referredRelevant.hide();
         }
     });
-    $referralOrdered.trigger("change");
+    referredOther.trigger("change");
     /* End - Referral NONE */
 
     /* Start - BSA calculation */
