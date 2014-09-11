@@ -90,7 +90,7 @@
 </div>
 
 <div class="section">
-    <h4>How did you learn about this service (check all that apply)?</h4>
+    <h4>How did you learn about this service (check all that apply)?<span class="required">*</span></h4>
     <fieldset name="8250^COMMUNICATION CHANNEL OF KNOWING THE PROGRAM OR SERVICE^99DCT">
         <div class="form-group">
             <label class="font-normal">
@@ -341,7 +341,7 @@
     </div>
 
     <div class="section">
-        <h4>Select all family planning methods the patient has ever used?</h4>
+        <h4>Select all family planning methods the patient has ever used?<span class="required">*</span></h4>
 
         <fieldset name="8253^FAMILY PLANNING METHOD EVER USED^99DCT">
             <div class="form-group">
@@ -442,7 +442,9 @@
     <div class="section" data-concept="6805^FAMILY CHRONIC ILLNESSNESS HISTORY, DETAILED^99DCT">
 
         <div class="form-group">
-            <label for="family_chronic_illnesses_history">Any history of breast cancer in the family?</label>
+            <label for="family_chronic_illnesses_history">
+                Any history of breast cancer in the family?<span class="required">*</span>
+            </label>
             <select class="form-control" id="family_chronic_illnesses_history"
                     name="with-temp.family_chronic_illnesses_history"
                     required="required" data-concept="6802^FAMILY CHRONIC ILLNESSES HISTORY^99DCT">
@@ -453,7 +455,9 @@
         </div>
 
         <div class="form-group relevant_family_chronic_illnesses_history">
-            <label>Relative(s) in the family with history of breast cancer?</label>
+            <label>
+                Relative(s) in the family with history of breast cancer?<span class="required">*</span>
+            </label>
             <fieldset name="8254^FAMILY MEMBER WITH CHRONIC ILLNESSES HISTORY^99DCT">
                 <div class="form-group">
                     <label class="font-normal">
@@ -511,7 +515,7 @@
 </div>
 
 <div class="section">
-    <h4>Symptoms related to breast?</h4>
+    <h4>Symptoms related to breast?<span class="required">*</span></h4>
     <fieldset name="6492^REVIEW OF SYSTEMS - BREAST^99DCT">
         <div class="form-group">
             <label class="font-normal">
@@ -622,48 +626,51 @@
     <h3>Physical Examination</h3>
 
     <div class="form-group">
-        <label for="systolic_blood_pressure">Systolic blood pressure (mmHg):<span class="required">*</span></label>
+        <label for="systolic_blood_pressure">
+            Systolic blood pressure (mmHg):<span class="required">*</span>
+        </label>
         <input class="form-control systolicBloodPressure" id="systolic_blood_pressure"
                name="systolic_blood_pressure" type="number"
                placeholder="Please record today's SBP" data-concept="5085^SYSTOLIC BLOOD PRESSURE^99DCT"
                required="required">
     </div>
     <div class="form-group">
-        <label for="diastolic_blood_pressure">Diastolic blood pressure (mmHg):<span
-                class="required">*</span></label>
+        <label for="diastolic_blood_pressure">
+            Diastolic blood pressure (mmHg):<span class="required">*</span>
+        </label>
         <input class="form-control diastolicBloodPressure lessThanSystolic" id="diastolic_blood_pressure"
                name="diastolic_blood_pressure" type="number"
                placeholder="Please record today's DBP" data-concept="5086^DIASTOLIC BLOOD PRESSURE^99DCT"
                required="required">
     </div>
     <div class="form-group">
-        <label for="pulse">Pulse rate (per minute):</label>
+        <label for="pulse">Pulse rate (per minute):<span class="required">*</span></label>
         <input class="form-control" id="pulse" name="pulse" type="number"
-               placeholder="Please record today's pulse"
+               placeholder="Please record today's pulse" required="required"
                data-concept="5087^PULSE^99DCT">
     </div>
     <div class="form-group">
-        <label for="pulse">Respiratory rate:</label>
+        <label for="pulse">Respiratory rate:<span class="required">*</span></label>
         <input class="form-control" id="respiratory_rate" name="respiratory_rate" type="number"
-               placeholder="Please record today's respiratory rate"
+               placeholder="Please record today's respiratory rate" required="required"
                data-concept="5242^RESPIRATORY RATE^99DCT">
     </div>
     <div class="form-group">
-        <label for="temperature_c">Temperature (centigrade):</label>
+        <label for="temperature_c">Temperature (centigrade):<span class="required">*</span></label>
         <input class="form-control" id="temperature_c" name="temperature_c" type="number"
-               placeholder="Please record today's temperature"
+               placeholder="Please record today's temperature" required="required"
                data-concept="5088^TEMPERATURE (C)^99DCT">
     </div>
     <div class="form-group">
-        <label for="weight_kg">Weight (kg):</label>
+        <label for="weight_kg">Weight (kg):<span class="required">*</span></label>
         <input class="form-control" id="weight_kg" name="weight_kg" type="number"
-               placeholder="Please record today's weight"
+               placeholder="Please record today's weight" required="required"
                data-concept="5089^WEIGHT (KG)^99DCT">
     </div>
     <div class="form-group">
-        <label for="height_cm">Height (cm):</label>
+        <label for="height_cm">Height (cm):<span class="required">*</span></label>
         <input class="form-control" id="height_cm" name="height_cm" type="number"
-               placeholder="Please record today's height"
+               placeholder="Please record today's height" required="required"
                data-concept="5090^HEIGHT (CM)^99DCT">
     </div>
 
@@ -727,7 +734,7 @@
 </div>
 
 <div class="section">
-    <h4>Lymph node exam findings?</h4>
+    <h4>Lymph node exam findings?<span class="required">*</span></h4>
     <fieldset name="1121^LYMPH NODE EXAM FINDINGS^99DCT">
         <div class="form-group">
             <label class="font-normal">
@@ -856,7 +863,7 @@
 </div>
 
 <div class="section">
-    <h4>Select all referrals made during this visit:</h4>
+    <h4>Select all referrals made during this visit:<span class="required">*</span></h4>
     <fieldset name="1272^REFERRALS ORDERED^99DCT">
         <div class="form-group">
             <label class="font-normal">
@@ -920,7 +927,7 @@
 </div>
 
 <div class="section relevant_referral_ordered">
-    <h4>Reasons for referral</h4>
+    <h4>Reasons for referral<span class="required">*</span></h4>
     <fieldset name="2327^REASONS FOR REFERRAL^99DCT">
         <div class="form-group">
             <label class="font-normal">
