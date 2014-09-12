@@ -72,6 +72,13 @@ var validateAlone = function (source, values, message) {
 /* End - Selecting an element should be single selection */
 
 /* Start - Show and hide validation error messages */
+var showValidationMessages = function (errors) {
+    var validator = $('form').validate();
+    if (!$.isEmptyObject(errors)) {
+        validator.showErrors(errors);
+    }
+};
+
 var toggleValidationMessages = function (errors) {
     var validator = $('form').validate();
     if ($.isEmptyObject(errors)){
@@ -110,11 +117,29 @@ $(document).ready(function () {
     hasFreetext.trigger('change');
     /* End - Toggle free text element */
 
+    /* Start - Toggle date validation */
+    var futureDate = $('.future-date');
+    futureDate.change(function () {
+        if ($(this).is(':visible') && $(this).val() != '') {
+            var errors = {};
+            var pattern = /(\d{2})-(\d{2})-(\d{4})/g;
+            var matches = pattern.exec($(this).val());
+            var enteredDate = new Date(matches[3], matches[2] - 1, matches[1]);
+            var today = new Date();
+            if (enteredDate <= today) {
+                errors[$(this).attr('name')] = "Please enter a date in the future.";
+            }
+            toggleValidationMessages(errors);
+        }
+    });
+    futureDate.trigger('change');
+    /* End - Toggle date validation */
+
     /* Start - Removing error message in the container of checkbox and radio */
     $('input:checkbox, input:radio').change(function () {
         var container = $(this).closest('fieldset');
         $(container).removeClass('error');
-        $(container).closest('.section').find('label.error').remove();
+        $(container).parent().find('label.error').remove();
     });
     /* End - Removing error message in the container of checkbox and radio */
 

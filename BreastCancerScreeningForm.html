@@ -856,7 +856,7 @@
 <div class="section">
     <div class="form-group">
         <label for="return_visit_date">Return visit date:</label>
-        <input class="form-control datepicker checkFutureDate" data-concept="5096^RETURN VISIT DATE^99DCT"
+        <input class="form-control datepicker checkFutureDate future-date" data-concept="5096^RETURN VISIT DATE^99DCT"
                id="return_visit_date" name="return_visit_date" type="text"
                readonly="readonly">
     </div>
@@ -1291,25 +1291,25 @@ $(document).ready(function () {
     var referralValues = ['1107^NONE^99DCT'];
     var referralMessage = "If None is selected, it should be the only option.";
     $(':checkbox[data-concept="1272^REFERRALS ORDERED^99DCT"]').change(function () {
-        toggleValidationMessages(validateAlone($(this), referralValues, referralMessage));
+        showValidationMessages(validateAlone($(this), referralValues, referralMessage));
     });
 
     var familyPlanningValues = ['1624^DO NOT KNOW^99DCT', '1107^NONE^99DCT'];
     var familyPlanningMessage = "If None or Don't know is selected, it should be the only option.";
     $(':checkbox[data-concept="8253^FAMILY PLANNING METHOD EVER USED^99DCT"]').change(function () {
-        toggleValidationMessages(validateAlone($(this), familyPlanningValues, familyPlanningMessage));
+        showValidationMessages(validateAlone($(this), familyPlanningValues, familyPlanningMessage));
     });
 
     var breastReviewValues = ['664^NEGATIVE^99DCT'];
     var breastReviewMessage = "If No Complaints is selected, it should be the only option.";
     $(':checkbox[data-concept="6492^REVIEW OF SYSTEMS - BREAST^99DCT"]').change(function () {
-        toggleValidationMessages(validateAlone($(this), breastReviewValues, breastReviewMessage));
+        showValidationMessages(validateAlone($(this), breastReviewValues, breastReviewMessage));
     });
 
     var lymphNodeValues = ['1118^NOT DONE^99DCT', '1115^NORMAL^99DCT', '161^LYMPHADENOPATHY^99DCT'];
     var lymphNodeMessage = "If Normal, Not Done or Generalized lympadenopathy is selected, it should be the only option.";
     $(':checkbox[data-concept="1121^LYMPH NODE EXAM FINDINGS^99DCT"]').change(function () {
-        toggleValidationMessages(validateAlone($(this), lymphNodeValues, lymphNodeMessage));
+        showValidationMessages(validateAlone($(this), lymphNodeValues, lymphNodeMessage));
     });
 
     var idList = ['diagnosis_based_on_biopsy', 'history_of_surgeries', 'previous_radiation_location',
@@ -1335,7 +1335,7 @@ $(document).ready(function () {
                 validateAlone(lymphNode, lymphNodeValues, lymphNodeMessage),
                 validateAlone(familyPlanning, familyPlanningValues, familyPlanningMessage),
                 validateAlone(breastReview, breastReviewValues, breastReviewMessage));
-        toggleValidationMessages(errors);
+        showValidationMessages(errors);
         return $.fn.removeTemporaryData(idList) && $.isEmptyObject(errors);
     };
     /* End - Example of calling above validation */
