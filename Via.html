@@ -16,8 +16,9 @@
 
 <body class="col-md-10 col-md-offset-1">
 <div id="pre_populate_data"></div>
-<form class="relevant-female" id="via_form" name="via_form">
 <h2 class="text-center">CCSP VIA Form v 0.01</h2>
+
+<form class="relevant-female" id="via_form" name="via_form">
 
 <div class="section">
     <h3>Demographics</h3>
@@ -49,8 +50,8 @@
         <label for="patient.sex">Gender:</label>
         <select class="form-control" id="patient.sex" name="patient.sex" disabled="disabled">
             <option value="">...</option>
-            <option value="M" selected="selected">Male</option>
-            <option value="F">Female</option>
+            <option value="M">Male</option>
+            <option value="F" selected="selected">Female</option>
         </select>
     </div>
     <div class="form-group">
@@ -304,7 +305,7 @@
 
 <div class="section" data-concept="8916^CHIEF COMPLAINT, DETAILED^99DCT">
     <h4>Select all symptoms that best describe complaints</h4>
-    <fieldset name="8916^CHIEF COMPLAINT, DETAILED^99DCT">
+    <fieldset name="5219^CHIEF COMPLAINT^99DCT">
         <div class="form-group">
             <label class="font-normal">
                 <input id="chief_complaint.pain" type="checkbox"
@@ -397,7 +398,7 @@
     <div class="help-block">
         <small><i>Findings on the cervix based on a performed exam.</i></small>
     </div>
-    <fieldset name="9170^VISUAL CERVICAL EXAM FINDINGS, DETAILED^99DCT">
+    <fieldset name="7484^VISUAL CERVICAL EXAM FINDINGS^99DCT">
         <div class="form-group">
             <label class="font-normal">
                 <input id="cervical_exam.normal" type="checkbox"
@@ -467,7 +468,7 @@
     <div class="help-block">
         <small><i>Findings on the vagina based on a performed exam.</i></small>
     </div>
-    <fieldset name="9171^VISUAL VAGINAL EXAM FINDINGS, DETAILED^99DCT">
+    <fieldset name="7490^VISUAL VAGINAL EXAM FINDINGS ^99DCT">
         <div class="form-group">
             <label class="font-normal">
                 <input id="vaginal_exam.normal" type="checkbox"
@@ -527,7 +528,7 @@
     <div class="help-block">
         <small><i>Findings on the vulva based on a performed exam.</i></small>
     </div>
-    <fieldset name="9172^VISUAL VULVAL EXAM FINDINGS, DETAILED^99DCT">
+    <fieldset name="7487^VISUAL VULVAL EXAM FINDINGS ^99DCT">
         <div class="form-group">
             <label class="font-normal">
                 <input id="vulval_exam.normal" type="checkbox"
@@ -729,27 +730,29 @@
 
     <div class="form-group">
         <h5><strong>Directive family planning counseling performed</strong></h5>
-        <div class="form-group">
-            <label class="font-normal">
-                <input name="ccsp_directive_fp" type="radio"
-                       data-concept="6681^FAMILY PLANNING COUNSELING PERFORMED^99DCT"
-                       value="1065^YES^99DCT">
-                Yes
-            </label>
-        </div>
-        <div class="form-group">
-            <label class="font-normal">
-                <input name="ccsp_directive_fp" type="radio"
-                       data-concept="6681^FAMILY PLANNING COUNSELING PERFORMED^99DCT"
-                       value="1066^NO^99DCT">
-                No
-            </label>
-        </div>
+        <fieldset name="6681^FAMILY PLANNING COUNSELING PERFORMED^99DCT">
+            <div class="form-group">
+                <label class="font-normal">
+                    <input name="ccsp_directive_fp" type="radio"
+                           data-concept="6681^FAMILY PLANNING COUNSELING PERFORMED^99DCT"
+                           value="1065^YES^99DCT">
+                    Yes
+                </label>
+            </div>
+            <div class="form-group">
+                <label class="font-normal">
+                    <input name="ccsp_directive_fp" type="radio"
+                           data-concept="6681^FAMILY PLANNING COUNSELING PERFORMED^99DCT"
+                           value="1066^NO^99DCT">
+                    No
+                </label>
+            </div>
+        </fieldset>
     </div>
 </div>
 <div class="section" data-concept="9175^FAMILY PLANNING REFILL PROVIDED, DETAILED^99DCT">
     <h4>Family planning refills dispensed</h4>
-    <fieldset name="9175^FAMILY PLANNING REFILL PROVIDED, DETAILED^99DCT">
+    <fieldset name="7495^FAMILY PLANNING REFILL PROVIDED^99DCT">
         <div class="form-group">
             <label class="font-normal">
                 <input id="ccsp_refill_dispense.condoms" type="checkbox"
@@ -840,7 +843,7 @@
 
 <div class="section" data-concept="9176^FAMILY PLANNING METHOD CHOSEN, DETAILED^99DCT">
     <h4>New family planning method initiated</h4>
-    <fieldset name="9176^FAMILY PLANNING METHOD CHOSEN, DETAILED^99DCT">
+    <fieldset name="7240^FAMILY PLANNING METHOD CHOSEN^99DCT">
         <div class="form-group">
             <label class="font-normal">
                 <input id="ccsp_new_method.condoms" type="checkbox"
@@ -1240,36 +1243,6 @@ $(document).ready(function () {
     procedureDoneDetailed();
     /* End - Procedure done this visit */
 
-    var validateAlone = function (source, values, message) {
-        var errors = {};
-        var validator = $('form').validate();
-
-        var fieldSet = $(source).closest('fieldset');
-        if (fieldSet === undefined) {
-            return true;
-        }
-
-        var selected = false;
-        var checkedBoxes = $(fieldSet).find('input:checkbox:checked');
-        if (checkedBoxes.length > 1) {
-            $.each(checkedBoxes, function (i, checkBox) {
-                $.each(values, function (j, value) {
-                    if ($(checkBox).val() == value) {
-                        selected = true;
-                    }
-                })
-            })
-        }
-
-        if (selected) {
-            errors[$(fieldSet).attr('name')] = message;
-            validator.showErrors(errors);
-        } else {
-            $(fieldSet).removeClass('error');
-            $(fieldSet).closest('.section').find('label.error').remove();
-        }
-    };
-
     /* Start - Hiding refill and new based on current value */
     var $familyPlanning = $(':checkbox[data-concept="374^METHOD OF FAMILY PLANNING^99DCT"]');
     $familyPlanning.change(function() {
@@ -1288,7 +1261,7 @@ $(document).ready(function () {
 
         var values = ["1624^DO NOT KNOW^99DCT", "1107^NONE^99DCT"];
         var message = "If None or Don't know is selected, it should be the only option.";
-        validateAlone($(this), values, message);
+        showValidationMessages(validateAlone($(this), values, message));
     });
     $familyPlanning.trigger('change');
     /* End - Hiding refill and new based on current value */
@@ -1296,31 +1269,56 @@ $(document).ready(function () {
     var noneValues = ["1107^NONE^99DCT"];
     var noneMessage = "If None is selected, it should be the only option.";
     $(':checkbox[data-concept="7495^FAMILY PLANNING REFILL PROVIDED^99DCT"]').change(function () {
-        validateAlone($(this), noneValues, noneMessage);
+        showValidationMessages(validateAlone($(this), noneValues, noneMessage));
     });
 
     $(':checkbox[data-concept="7240^FAMILY PLANNING METHOD CHOSEN^99DCT"]').change(function () {
-        validateAlone($(this), noneValues, noneMessage);
+        showValidationMessages(validateAlone($(this), noneValues, noneMessage));
     });
 
     $(':checkbox[data-concept="5219^CHIEF COMPLAINT^99DCT"]').change(function () {
-        validateAlone($(this), noneValues, noneMessage);
+        showValidationMessages(validateAlone($(this), noneValues, noneMessage));
     });
 
     var normalValues = ['1115^NORMAL^99DCT'];
     var normalMessage = "If Normal is selected, it should be the only option.";
     $(':checkbox[data-concept="7484^VISUAL CERVICAL EXAM FINDINGS^99DCT"]').change(function () {
-        validateAlone($(this), normalValues, normalMessage);
+        showValidationMessages(validateAlone($(this), normalValues, normalMessage));
     });
     $(':checkbox[data-concept="7490^VISUAL VAGINAL EXAM FINDINGS ^99DCT"]').change(function () {
-        validateAlone($(this), normalValues, normalMessage);
+        showValidationMessages(validateAlone($(this), normalValues, normalMessage));
     });
     $(':checkbox[data-concept="7487^VISUAL VULVAL EXAM FINDINGS ^99DCT"]').change(function () {
-        validateAlone($(this), normalValues, normalMessage);
+        showValidationMessages(validateAlone($(this), normalValues, normalMessage));
     });
 
     $.fn.customValidationCheck = function () {
-        return true;
+        var chiefComplaint = $('fieldset[name="5219^CHIEF COMPLAINT^99DCT"]');
+        var vulvalExam = $('fieldset[name="7487^VISUAL VULVAL EXAM FINDINGS ^99DCT"]');
+        var vaginalExam = $('fieldset[name="7490^VISUAL VAGINAL EXAM FINDINGS ^99DCT"]');
+        var cervicalExam = $('fieldset[name="7484^VISUAL CERVICAL EXAM FINDINGS^99DCT"]');
+        var familyPlanning = $('fieldset[name="374^METHOD OF FAMILY PLANNING^99DCT"]');
+        var familyPlanningChosen = $('fieldset[name="7240^FAMILY PLANNING METHOD CHOSEN^99DCT"]');
+        var familyPlanningRefill = $('fieldset[name="7495^FAMILY PLANNING REFILL PROVIDED^99DCT"]');
+        var directive = $('fieldset[name="6681^FAMILY PLANNING COUNSELING PERFORMED^99DCT"]');
+        var errors = $.extend({},
+                validateSelected(chiefComplaint),
+                validateSelected(vulvalExam),
+                validateSelected(vaginalExam),
+                validateSelected(cervicalExam),
+                validateSelected(familyPlanning),
+                validateSelected(familyPlanningChosen),
+                validateSelected(familyPlanningRefill),
+                validateSelected(directive),
+                validateAlone(chiefComplaint, noneValues, noneMessage),
+                validateAlone(vulvalExam, normalValues, normalMessage),
+                validateAlone(vaginalExam, normalValues, normalMessage),
+                validateAlone(cervicalExam, normalValues, normalMessage),
+                validateAlone(familyPlanning, noneValues, noneMessage),
+                validateAlone(familyPlanningChosen, noneValues, noneMessage),
+                validateAlone(familyPlanningRefill, noneValues, noneMessage));
+        showValidationMessages(errors);
+        return $.isEmptyObject(errors);
     };
 });
 </script>
