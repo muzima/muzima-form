@@ -117,9 +117,8 @@ $(document).ready(function () {
     hasFreetext.trigger('change');
     /* End - Toggle free text element */
 
-    /* Start - Toggle date validation */
-    var futureDate = $('.future-date');
-    futureDate.change(function () {
+    /* Start - Toggle future date validation */
+    $('.future-date').change(function () {
         if ($(this).is(':visible') && $(this).val() != '') {
             var errors = {};
             var pattern = /(\d{2})-(\d{2})-(\d{4})/g;
@@ -132,8 +131,23 @@ $(document).ready(function () {
             toggleValidationMessages(errors);
         }
     });
-    futureDate.trigger('change');
-    /* End - Toggle date validation */
+    /* End - Toggle future date validation */
+
+    /* Start - Toggle past date validation */
+    $('.past-date').change(function () {
+        if ($(this).is(':visible') && $(this).val() != '') {
+            var errors = {};
+            var pattern = /(\d{2})-(\d{2})-(\d{4})/g;
+            var matches = pattern.exec($(this).val());
+            var enteredDate = new Date(matches[3], matches[2] - 1, matches[1]);
+            var today = new Date();
+            if (enteredDate > today) {
+                errors[$(this).attr('name')] = "Please enter a date prior or equal to today.";
+            }
+            toggleValidationMessages(errors);
+        }
+    });
+    /* End - Toggle past date validation */
 
     /* Start - Removing error message in the container of checkbox and radio */
     $('input:checkbox, input:radio').change(function () {
