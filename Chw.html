@@ -16,8 +16,9 @@
 
 <body class="col-md-10 col-md-offset-1">
 <div id="pre_populate_data"></div>
-<form id="via_form" name="via_form">
 <h2 class="text-center">CDM CHW Form v 0.01</h2>
+
+<form id="chw_form" name="chw_form">
 
 <div class="section">
     <h3>Demographics</h3>
@@ -31,7 +32,7 @@
                readonly="readonly" disabled="disabled">
     </div>
     <div class="form-group">
-        <label for="patient.family_name">Family Name:</label>
+    <label for="patient.family_name">Family Name:</label>
         <input class="form-control" id="patient.family_name" name="patient.family_name" type="text" readonly="readonly"
                disabled="disabled">
     </div>
@@ -172,229 +173,239 @@
 </div>
 
 <div class="section" data-concept="6750^REFERRED BY, DETAILED^99DCT">
-    <h4>Client referred from:</h4>
+    <h4>Client referred from:<span class="required">*</span></h4>
 
-    <div class="form-group">
-        <label class="font-normal">
-            <input id="referred_by.phct" type="checkbox"
-                   data-concept="6749^REFERRED BY^99DCT"
-                   value="8227^PHCT^99DCT">
-            PHCT
-        </label>
-    </div>
-    <div class="form-group">
-        <label class="font-normal">
-            <input id="referred_by.mch" type="checkbox"
-                   data-concept="6749^REFERRED BY^99DCT"
-                   value="2050^MATERNAL CHILD HEALTH PROGRAM^99DCT">
-            MCH
-        </label>
-    </div>
-    <div class="form-group">
-        <label class="font-normal">
-            <input id="referred_by.clinic" type="checkbox"
-                   data-concept="6749^REFERRED BY^99DCT"
-                   value="7037^REFERRED FROM CLINIC^99DCT">
-            Clinic
-        </label>
-    </div>
-    <div class="form-group">
-        <label class="font-normal">
-            <input class="has-freetext" id="referred_by.other_non_coded" type="checkbox"
-                   data-concept="6749^REFERRED BY^99DCT"
-                   value="5622^OTHER NON-CODED^99DCT">
-            Other
-        </label>
-    </div>
-    <div class="form-group freetext">
-        <label for="referred_by.freetext_general">Specify<span class="required">*</span></label>
-        <input class="form-control" id="referred_by.freetext_general"
-               name="referred_by.freetext_general" type="text"
-               data-concept="1915^FREETEXT GENERAL^99DCT">
-    </div>
+    <fieldset name="6749^REFERRED BY^99DCT">
+        <div class="form-group">
+            <label class="font-normal">
+                <input id="referred_by.phct" type="checkbox"
+                       data-concept="6749^REFERRED BY^99DCT"
+                       value="8227^PHCT^99DCT">
+                PHCT
+            </label>
+        </div>
+        <div class="form-group">
+            <label class="font-normal">
+                <input id="referred_by.mch" type="checkbox"
+                       data-concept="6749^REFERRED BY^99DCT"
+                       value="2050^MATERNAL CHILD HEALTH PROGRAM^99DCT">
+                MCH
+            </label>
+        </div>
+        <div class="form-group">
+            <label class="font-normal">
+                <input id="referred_by.clinic" type="checkbox"
+                       data-concept="6749^REFERRED BY^99DCT"
+                       value="7037^REFERRED FROM CLINIC^99DCT">
+                Clinic
+            </label>
+        </div>
+        <div class="form-group">
+            <label class="font-normal">
+                <input class="has-freetext" id="referred_by.other_non_coded" type="checkbox"
+                       data-concept="6749^REFERRED BY^99DCT"
+                       value="5622^OTHER NON-CODED^99DCT">
+                Other
+            </label>
+        </div>
+        <div class="form-group freetext">
+            <label for="referred_by.freetext_general">Specify<span class="required">*</span></label>
+            <input class="form-control" id="referred_by.freetext_general"
+                   name="referred_by.freetext_general" type="text"
+                   data-concept="1915^FREETEXT GENERAL^99DCT">
+        </div>
+    </fieldset>
 </div>
 
 <div class="section" data-concept="9168^TYPE OF FOLLOW-UP, DETAILED^99DCT">
-    <h4>Type of CHW follow up:</h4>
+    <h4>Type of CHW follow up:<span class="required">*</span></h4>
 
-    <div class="form-group">
-        <label class="font-normal">
-            <input id="follow_up_type.hypertension" type="checkbox"
-                   data-concept="2332^TYPE OF FOLLOW-UP^99DCT"
-                   value="7286^KNOWN HYPERTENSIVE PATIENT^99DCT">
-            Hypertension
-        </label>
-    </div>
-    <div class="form-group">
-        <label class="font-normal">
-            <input id="follow_up_type.diabetic" type="checkbox"
-                   data-concept="2332^TYPE OF FOLLOW-UP^99DCT"
-                   value="7282^KNOWN DIABETIC PATIENT^99DCT">
-            Diabetic
-        </label>
-    </div>
-    <div class="form-group">
-        <label class="font-normal">
-            <input class="has-freetext" id="follow_up_type.other_non_coded" type="checkbox"
-                   data-concept="2332^TYPE OF FOLLOW-UP^99DCT"
-                   value="5622^OTHER NON-CODED^99DCT">
-            Other
-        </label>
-    </div>
-    <div class="form-group freetext">
-        <label for="follow_up_type.freetext_general">Specify<span class="required">*</span></label>
-        <input class="form-control" id="follow_up_type.freetext_general"
-               name="follow_up_type.freetext_general" type="text" required="required"
-               data-concept="1915^FREETEXT GENERAL^99DCT">
-    </div>
+    <fieldset name="2332^TYPE OF FOLLOW-UP^99DCT">
+        <div class="form-group">
+            <label class="font-normal">
+                <input id="follow_up_type.hypertension" type="checkbox"
+                       data-concept="2332^TYPE OF FOLLOW-UP^99DCT"
+                       value="7286^KNOWN HYPERTENSIVE PATIENT^99DCT">
+                Hypertension
+            </label>
+        </div>
+        <div class="form-group">
+            <label class="font-normal">
+                <input id="follow_up_type.diabetic" type="checkbox"
+                       data-concept="2332^TYPE OF FOLLOW-UP^99DCT"
+                       value="7282^KNOWN DIABETIC PATIENT^99DCT">
+                Diabetic
+            </label>
+        </div>
+        <div class="form-group">
+            <label class="font-normal">
+                <input class="has-freetext" id="follow_up_type.other_non_coded" type="checkbox"
+                       data-concept="2332^TYPE OF FOLLOW-UP^99DCT"
+                       value="5622^OTHER NON-CODED^99DCT">
+                Other
+            </label>
+        </div>
+        <div class="form-group freetext">
+            <label for="follow_up_type.freetext_general">Specify<span class="required">*</span></label>
+            <input class="form-control" id="follow_up_type.freetext_general"
+                   name="follow_up_type.freetext_general" type="text" required="required"
+                   data-concept="1915^FREETEXT GENERAL^99DCT">
+        </div>
+    </fieldset>
 </div>
 
 <div class="section" data-concept="6114^REASON FOR ATTEMPTED CONTACT, DETAILED^99DCT">
-    <h4>Reason for follow up:</h4>
+    <h4>Reason for follow up:<span class="required">*</span></h4>
 
-    <div class="form-group">
-        <label class="font-normal">
-            <input id="follow_up_category.not_linked_to_care" type="checkbox"
-                   data-concept="9081^PATIENT ON OUTREACH FOLLOW-UP CATEGORY^99DCT"
-                   value="9160^NOT LINKED TO CARE^99DCT">
-            Not linked to care
-        </label>
-    </div>
-    <div class="form-group">
-        <label class="font-normal">
-            <input id="follow_up_category.lost_to_follow_up" type="checkbox"
-                   data-concept="9081^PATIENT ON OUTREACH FOLLOW-UP CATEGORY^99DCT"
-                   value="9159^LOST TO FOLLOW-UP, NOS^99DCT">
-            Lost to follow up
-        </label>
-    </div>
-    <div class="form-group">
-        <label class="font-normal">
-            <input class="has-freetext" id="follow_up_category.other_non_coded" type="checkbox"
-                   data-concept="9081^PATIENT ON OUTREACH FOLLOW-UP CATEGORY^99DCT"
-                   value="5622^OTHER NON-CODED^99DCT">
-            Other
-        </label>
-    </div>
-    <div class="form-group freetext">
-        <label for="follow_up_category.freetext_general">Specify<span class="required">*</span></label>
-        <input class="form-control" id="follow_up_category.freetext_general"
-               name="follow_up_category.freetext_general" type="text" required="required"
-               data-concept="1915^FREETEXT GENERAL^99DCT">
-    </div>
+    <fieldset name="9081^PATIENT ON OUTREACH FOLLOW-UP CATEGORY^99DCT">
+        <div class="form-group">
+            <label class="font-normal">
+                <input id="follow_up_category.not_linked_to_care" type="checkbox"
+                       data-concept="9081^PATIENT ON OUTREACH FOLLOW-UP CATEGORY^99DCT"
+                       value="9160^NOT LINKED TO CARE^99DCT">
+                Not linked to care
+            </label>
+        </div>
+        <div class="form-group">
+            <label class="font-normal">
+                <input id="follow_up_category.lost_to_follow_up" type="checkbox"
+                       data-concept="9081^PATIENT ON OUTREACH FOLLOW-UP CATEGORY^99DCT"
+                       value="9159^LOST TO FOLLOW-UP, NOS^99DCT">
+                Lost to follow up
+            </label>
+        </div>
+        <div class="form-group">
+            <label class="font-normal">
+                <input class="has-freetext" id="follow_up_category.other_non_coded" type="checkbox"
+                       data-concept="9081^PATIENT ON OUTREACH FOLLOW-UP CATEGORY^99DCT"
+                       value="5622^OTHER NON-CODED^99DCT">
+                Other
+            </label>
+        </div>
+        <div class="form-group freetext">
+            <label for="follow_up_category.freetext_general">Specify<span class="required">*</span></label>
+            <input class="form-control" id="follow_up_category.freetext_general"
+                   name="follow_up_category.freetext_general" type="text" required="required"
+                   data-concept="1915^FREETEXT GENERAL^99DCT">
+        </div>
+    </fieldset>
 </div>
 
 <div class="section" data-concept="6187^REASON FOR MISSED VISIT, DETAILED^99DCT">
-    <h4>Reason for missed appointment:</h4>
+    <h4>Reason for missed appointment:<span class="required">*</span></h4>
 
-    <div class="form-group">
-        <label class="font-normal">
-            <input id="missed_visit_reason.lack_of_time" type="checkbox"
-                   data-concept="1733^REASON FOR MISSED VISIT^99DCT"
-                   value="9148^COMMITMENTS^99DCT">
-            Lack of time
-        </label>
-    </div>
-    <div class="form-group">
-        <label class="font-normal">
-            <input id="missed_visit_reason.lack_of_money" type="checkbox"
-                   data-concept="1733^REASON FOR MISSED VISIT^99DCT"
-                   value="6295^FINANCIAL BARRIER^99DCT">
-            Lack of money
-        </label>
-    </div>
-    <div class="form-group">
-        <label class="font-normal">
-            <input id="missed_visit_reason.lack_of_confidence" type="checkbox"
-                   data-concept="1733^REASON FOR MISSED VISIT^99DCT"
-                   value="9161^LACK OF CONFIDENCE^99DCT">
-            Lack of confidence in health care worker(s)
-        </label>
-    </div>
-    <div class="form-group">
-        <label class="font-normal">
-            <input id="missed_visit_reason.lack_of_transport" type="checkbox"
-                   data-concept="1733^REASON FOR MISSED VISIT^99DCT"
-                   value="820^TRANSPORT PROBLEMS^99DCT">
-            Lack of transport
-        </label>
-    </div>
-    <div class="form-group">
-        <label class="font-normal">
-            <input id="missed_visit_reason.asymptomatic" type="checkbox"
-                   data-concept="1733^REASON FOR MISSED VISIT^99DCT"
-                   value="5006^ASYMPTOMATIC^99DCT">
-            No symptoms of illness
-        </label>
-    </div>
-    <div class="form-group">
-        <label class="font-normal">
-            <input id="missed_visit_reason.visited_not_seen" type="checkbox"
-                   data-concept="1733^REASON FOR MISSED VISIT^99DCT"
-                   value="9162^VISITED HEALTH CARE FACILITY, NOT SEEN^99DCT">
-            Visited not seen
-        </label>
-    </div>
-    <div class="form-group">
-        <label class="font-normal">
-            <input id="missed_visit_reason.visited_dispensary_closed" type="checkbox"
-                   data-concept="1733^REASON FOR MISSED VISIT^99DCT"
-                   value="9163^VISITED HEALTH CARE FACILITY, CLOSED^99DCT">
-            Visited dispensary closed
-        </label>
-    </div>
-    <div class="form-group">
-        <label class="font-normal">
-            <input id="missed_visit_reason.distance_too_far" type="checkbox"
-                   data-concept="1733^REASON FOR MISSED VISIT^99DCT"
-                   value="1551^DISTANCE TOO FAR^99DCT">
-            Distance (too far)
-        </label>
-    </div>
-    <div class="form-group">
-        <label class="font-normal">
-            <input id="missed_visit_reason.sought_care_elsewhere" type="checkbox"
-                   data-concept="1733^REASON FOR MISSED VISIT^99DCT"
-                   value="8352^CONTINUE TO RECEIVE MEDICATIONS FROM ANOTHER LOCATION^99DCT">
-            Sought care elsewhere
-        </label>
-    </div>
-    <div class="form-group">
-        <label class="font-normal">
-            <input class="has-freetext" id="missed_visit_reason.other_non_coded" type="checkbox"
-                   data-concept="1733^REASON FOR MISSED VISIT^99DCT"
-                   value="5622^OTHER NON-CODED^99DCT">
-            Other
-        </label>
-    </div>
-    <div class="form-group freetext">
-        <label for="missed_visit_reason.freetext_general">Specify<span class="required">*</span></label>
-        <input class="form-control" id="missed_visit_reason.freetext_general"
-               name="missed_visit_reason.freetext_general" type="text" required="required"
-               data-concept="1915^FREETEXT GENERAL^99DCT">
-    </div>
+    <fieldset name="1733^REASON FOR MISSED VISIT^99DCT">
+        <div class="form-group">
+            <label class="font-normal">
+                <input id="missed_visit_reason.lack_of_time" type="checkbox"
+                       data-concept="1733^REASON FOR MISSED VISIT^99DCT"
+                       value="9148^COMMITMENTS^99DCT">
+                Lack of time
+            </label>
+        </div>
+        <div class="form-group">
+            <label class="font-normal">
+                <input id="missed_visit_reason.lack_of_money" type="checkbox"
+                       data-concept="1733^REASON FOR MISSED VISIT^99DCT"
+                       value="6295^FINANCIAL BARRIER^99DCT">
+                Lack of money
+            </label>
+        </div>
+        <div class="form-group">
+            <label class="font-normal">
+                <input id="missed_visit_reason.lack_of_confidence" type="checkbox"
+                       data-concept="1733^REASON FOR MISSED VISIT^99DCT"
+                       value="9161^LACK OF CONFIDENCE^99DCT">
+                Lack of confidence in health care worker(s)
+            </label>
+        </div>
+        <div class="form-group">
+            <label class="font-normal">
+                <input id="missed_visit_reason.lack_of_transport" type="checkbox"
+                       data-concept="1733^REASON FOR MISSED VISIT^99DCT"
+                       value="820^TRANSPORT PROBLEMS^99DCT">
+                Lack of transport
+            </label>
+        </div>
+        <div class="form-group">
+            <label class="font-normal">
+                <input id="missed_visit_reason.asymptomatic" type="checkbox"
+                       data-concept="1733^REASON FOR MISSED VISIT^99DCT"
+                       value="5006^ASYMPTOMATIC^99DCT">
+                No symptoms of illness
+            </label>
+        </div>
+        <div class="form-group">
+            <label class="font-normal">
+                <input id="missed_visit_reason.visited_not_seen" type="checkbox"
+                       data-concept="1733^REASON FOR MISSED VISIT^99DCT"
+                       value="9162^VISITED HEALTH CARE FACILITY, NOT SEEN^99DCT">
+                Visited not seen
+            </label>
+        </div>
+        <div class="form-group">
+            <label class="font-normal">
+                <input id="missed_visit_reason.visited_dispensary_closed" type="checkbox"
+                       data-concept="1733^REASON FOR MISSED VISIT^99DCT"
+                       value="9163^VISITED HEALTH CARE FACILITY, CLOSED^99DCT">
+                Visited dispensary closed
+            </label>
+        </div>
+        <div class="form-group">
+            <label class="font-normal">
+                <input id="missed_visit_reason.distance_too_far" type="checkbox"
+                       data-concept="1733^REASON FOR MISSED VISIT^99DCT"
+                       value="1551^DISTANCE TOO FAR^99DCT">
+                Distance (too far)
+            </label>
+        </div>
+        <div class="form-group">
+            <label class="font-normal">
+                <input id="missed_visit_reason.sought_care_elsewhere" type="checkbox"
+                       data-concept="1733^REASON FOR MISSED VISIT^99DCT"
+                       value="8352^CONTINUE TO RECEIVE MEDICATIONS FROM ANOTHER LOCATION^99DCT">
+                Sought care elsewhere
+            </label>
+        </div>
+        <div class="form-group">
+            <label class="font-normal">
+                <input class="has-freetext" id="missed_visit_reason.other_non_coded" type="checkbox"
+                       data-concept="1733^REASON FOR MISSED VISIT^99DCT"
+                       value="5622^OTHER NON-CODED^99DCT">
+                Other
+            </label>
+        </div>
+        <div class="form-group freetext">
+            <label for="missed_visit_reason.freetext_general">Specify<span class="required">*</span></label>
+            <input class="form-control" id="missed_visit_reason.freetext_general"
+                   name="missed_visit_reason.freetext_general" type="text" required="required"
+                   data-concept="1915^FREETEXT GENERAL^99DCT">
+        </div>
+    </fieldset>
 </div>
 
 <div class="section">
     <div class="form-group">
         <span><strong>Are you currently on any treatment/ medication?<span class="required">*</span></strong></span>
 
-        <div class="radio">
-            <label>
-                <input name="currently_on_medication" type="radio"
-                       data-concept="1193^CURRENT MEDICATIONS^99DCT"
-                       value="1065^YES^99DCT">
-                Yes
-            </label>
-        </div>
-        <div class="radio">
-            <label>
-                <input name="currently_on_medication" type="radio"
-                       data-concept="1193^CURRENT MEDICATIONS^99DCT"
-                       value="1066^NO^99DCT">
-                No
-            </label>
-        </div>
+        <fieldset name="1193^CURRENT MEDICATIONS^99DCT">
+            <div class="form-group">
+                <label class="font-normal">
+                    <input name="currently_on_medication" type="radio"
+                           data-concept="1193^CURRENT MEDICATIONS^99DCT"
+                           value="1065^YES^99DCT">
+                    Yes
+                </label>
+            </div>
+            <div class="form-group">
+                <label class="font-normal">
+                    <input name="currently_on_medication" type="radio"
+                           data-concept="1193^CURRENT MEDICATIONS^99DCT"
+                           value="1066^NO^99DCT">
+                    No
+                </label>
+            </div>
+        </fieldset>
     </div>
     <div class="custom-repeat hidden current-medication" id="current-medication" data-name="current_medication">
         <div class="form-group">
@@ -409,22 +420,24 @@
     <div class="form-group">
         <span><strong>Are you enrolled to care in another facility?<span class="required">*</span></strong></span>
 
-        <div class="radio">
-            <label>
-                <input name="enrolled_in_other" type="radio"
-                       data-concept="9164^ENROLL CARE IN ANOTHER HEALTH FACILITY^99DCT"
-                       value="1065^YES^99DCT">
-                Yes
-            </label>
-        </div>
-        <div class="radio">
-            <label>
-                <input name="enrolled_in_other" type="radio"
-                       data-concept="9164^ENROLL CARE IN ANOTHER HEALTH FACILITY^99DCT"
-                       value="1066^NO^99DCT">
-                No
-            </label>
-        </div>
+        <fieldset name="9164^ENROLL CARE IN ANOTHER HEALTH FACILITY^99DCT">
+            <div class="form-group">
+                <label class="font-normal">
+                    <input name="enrolled_in_other" type="radio"
+                           data-concept="9164^ENROLL CARE IN ANOTHER HEALTH FACILITY^99DCT"
+                           value="1065^YES^99DCT">
+                    Yes
+                </label>
+            </div>
+            <div class="form-group">
+                <label class="font-normal">
+                    <input name="enrolled_in_other" type="radio"
+                           data-concept="9164^ENROLL CARE IN ANOTHER HEALTH FACILITY^99DCT"
+                           value="1066^NO^99DCT">
+                    No
+                </label>
+            </div>
+        </fieldset>
     </div>
     <div class="form-group hidden">
         <label for="current_facility">If enrolled in another facility, where?<span class="required">*</span></label>
@@ -435,22 +448,24 @@
     <div class="form-group hidden">
         <span><strong>If No, are you planning to resume care?<span class="required">*</span></strong></span>
 
-        <div class="radio">
-            <label>
-                <input name="planning_to_resume" type="radio"
-                       data-concept="6140^PLAN TO RETURN TO CLINIC^99DCT"
-                       value="1065^YES^99DCT">
-                Yes
-            </label>
-        </div>
-        <div class="radio">
-            <label>
-                <input name="planning_to_resume" type="radio"
-                       data-concept="6140^PLAN TO RETURN TO CLINIC^99DCT"
-                       value="1066^NO^99DCT">
-                No
-            </label>
-        </div>
+        <fieldset name="6140^PLAN TO RETURN TO CLINIC^99DCT">
+            <div class="form-group">
+                <label class="font-normal">
+                    <input name="planning_to_resume" type="radio"
+                           data-concept="6140^PLAN TO RETURN TO CLINIC^99DCT"
+                           value="1065^YES^99DCT">
+                    Yes
+                </label>
+            </div>
+            <div class="form-group">
+                <label class="font-normal">
+                    <input name="planning_to_resume" type="radio"
+                           data-concept="6140^PLAN TO RETURN TO CLINIC^99DCT"
+                           value="1066^NO^99DCT">
+                    No
+                </label>
+            </div>
+        </fieldset>
     </div>
     <div class="form-group hidden">
         <label for="resume_care_date">If planning to resume care, when?<span class="required">*</span></label>
@@ -525,27 +540,6 @@ $(document).ready(function () {
         $(this).prop('disabled', true);
         document.submit();
         $(this).prop('disabled', false);
-    });
-
-    $('#via_form').validate({
-        rules: {
-            gravida: {
-                number: true,
-                min: 0
-            },
-            parity: {
-                number: true,
-                min: 0
-            },
-            last_cd4_by_facs: {
-                number: true,
-                range: [0, 1500]
-            },
-            clock_face_cervical_biopsy_location: {
-                number: true,
-                range: [1, 12]
-            }
-        }
     });
 
     var locationName = [
@@ -819,6 +813,26 @@ $(document).ready(function () {
     enableRemoveSection('.remove-section');
     enableAutoComplete($('.current_medication'));
     /* End - Custom repeating element */
+
+    $.fn.customValidationCheck = function () {
+        var referredBy = $('fieldset[name="6749^REFERRED BY^99DCT"]');
+        var followUpType = $('fieldset[name="2332^TYPE OF FOLLOW-UP^99DCT"]');
+        var clinicVisitPlan = $('fieldset[name="6140^PLAN TO RETURN TO CLINIC^99DCT"]');
+        var followUpCategory = $('fieldset[name="9081^PATIENT ON OUTREACH FOLLOW-UP CATEGORY^99DCT"]');
+        var missedVisitReason = $('fieldset[name="1733^REASON FOR MISSED VISIT^99DCT"]');
+        var currentMedication = $('fieldset[name="1193^CURRENT MEDICATIONS^99DCT"]');
+        var enrolled = $('fieldset[name="9164^ENROLL CARE IN ANOTHER HEALTH FACILITY^99DCT"]');
+        var errors = $.extend({},
+                validateSelected(referredBy),
+                validateSelected(followUpType),
+                validateSelected(clinicVisitPlan),
+                validateSelected(followUpCategory),
+                validateSelected(missedVisitReason),
+                validateSelected(currentMedication),
+                validateSelected(enrolled));
+        showValidationMessages(errors);
+        return $.isEmptyObject(errors);
+    }
 
 });
 </script>
