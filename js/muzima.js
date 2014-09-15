@@ -163,7 +163,7 @@ $(document).ready(function () {
             validForm = validForm && $.fn.customValidationCheck();
         }
         if (validForm) {
-            save("complete");
+            save("complete", false);
         } else {
             addValidationMessage();
         }
