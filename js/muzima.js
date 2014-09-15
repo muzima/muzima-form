@@ -6,7 +6,6 @@
  * that uses this code in a for-profit venture, please contact the copyright holder.
  */
 
-
 /* Start - Minimal one element selected
  * Parameter:
  * * Fieldset element where the input must be selected at least one.
@@ -170,8 +169,12 @@ $(document).ready(function () {
         }
     };
 
+    document.autoSaveForm = function(){
+        save("incomplete", true);
+    };
+
     document.saveDraft = function () {
-        save("incomplete");
+        save("incomplete",false);
         return false;
     };
 
