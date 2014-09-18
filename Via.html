@@ -149,7 +149,7 @@
             <label for="reason_for_lack_of_period">
                 Do you know why you are not having your period?<span class="required">*</span>
             </label>
-            <select class="form-control has-other" id="reason_for_lack_of_period" name="reason_for_lack_of_period"
+            <select class="form-control has-freetext" id="reason_for_lack_of_period" name="reason_for_lack_of_period"
                     data-concept="8252^REASON FOR LACK OF PERIOD^99DCT" required="required">
                 <option value="">...</option>
                 <option value="1484^PREGNANT^99DCT">Pregnant</option>
@@ -379,7 +379,7 @@
         </div>
         <div class="form-group">
             <label class="font-normal">
-                <input class="has-other" id="chief_complaint.other_non_coded" type="checkbox"
+                <input class="has-freetext" id="chief_complaint.other_non_coded" type="checkbox"
                        data-concept="5219^CHIEF COMPLAINT^99DCT" value="5622^OTHER NON-CODED^99DCT">
                 Other
             </label>
@@ -510,7 +510,7 @@
         </div>
         <div class="form-group">
             <label class="font-normal">
-                <input class="has-other" id="vaginal_exam.other_non_coded" type="checkbox"
+                <input class="has-freetext" id="vaginal_exam.other_non_coded" type="checkbox"
                        data-concept="7490^VISUAL VAGINAL EXAM FINDINGS ^99DCT" value="5622^OTHER NON-CODED^99DCT">
                 Other
             </label>
@@ -570,7 +570,7 @@
         </div>
         <div class="form-group">
             <label class="font-normal">
-                <input class="has-other" id="vulval_exam.other_non_coded" type="checkbox"
+                <input class="has-freetext" id="vulval_exam.other_non_coded" type="checkbox"
                        data-concept="7487^VISUAL VULVAL EXAM FINDINGS ^99DCT" value="5622^OTHER NON-CODED^99DCT">
                 Other
             </label>
@@ -827,7 +827,7 @@
         </div>
         <div class="form-group">
             <label class="font-normal">
-                <input class="has-other" id="ccsp_refill_dispense.other_non_coded" type="checkbox"
+                <input class="has-freetext" id="ccsp_refill_dispense.other_non_coded" type="checkbox"
                        data-concept="7495^FAMILY PLANNING REFILL PROVIDED^99DCT"
                        value="5622^OTHER NON-CODED^99DCT">
                 Other
@@ -918,7 +918,7 @@
         </div>
         <div class="form-group">
             <label class="font-normal">
-                <input class="has-other" id="ccsp_new_method.other_non_coded" type="checkbox"
+                <input class="has-freetext" id="ccsp_new_method.other_non_coded" type="checkbox"
                        data-concept="7240^FAMILY PLANNING METHOD CHOSEN^99DCT"
                        value="5622^OTHER NON-CODED^99DCT">
                 Other
@@ -1192,18 +1192,16 @@ $(document).ready(function () {
     /* End - Menstruation status skip logic */
 
     /* Start - Toggle free text element */
-    var $hasOther = $('.has-other');
-    $hasOther.change(function () {
-        var $freetext = $(this).closest('.section').find('.freetext');
-        if ($(this).is(':checkbox')) {
-            if ($(this).is(':checked')) {
-                $freetext.show();
-            } else {
-                $freetext.hide();
-            }
+    var reasonSelect = $('select[data-concept="8252^REASON FOR LACK OF PERIOD^99DCT"]');
+    reasonSelect.change(function () {
+        var freetext = $(this).closest('.section').find('.freetext');
+        if ($(this).val() == "5622^OTHER NON-CODED^99DCT") {
+            freetext.show();
+        } else {
+            freetext.hide();
         }
     });
-    $hasOther.trigger('change');
+    reasonSelect.trigger('change');
     /* End - Toggle free text element */
 
     /* Start - Last menstruation date */
