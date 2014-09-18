@@ -96,8 +96,7 @@
                 data-concept="1839^CURRENT VISIT TYPE^99DCT" required="required">
             <option value="">...</option>
             <option value="7034^FIRST DISPENSARY VISIT AFTER HCT^99DCT">First Dispensary Visit After pHCT</option>
-            <option value="7035^SECOND DISPENSARY VISIT AFTER HCT^99DCT">Second Dispensary Visit After pHCT
-            </option>
+            <option value="7035^SECOND DISPENSARY VISIT AFTER HCT^99DCT">Second Dispensary Visit After pHCT</option>
             <option value="7036^RETURN DISPENSARY VISIT^99DCT">Return Dispensary Visit</option>
             <option value="7037^REFERRED FROM CLINIC^99DCT">Referred from Clinic</option>
             <option value="7875^WALK IN^99DCT">WALK IN</option>
@@ -189,7 +188,7 @@
             </div>
             <div class="form-group">
                 <label class="font-normal">
-                    <input id="obs.tmp_drugs.Amlodipine" type="checkbox" name="obs.tmp_drugs" value="nifedipine">
+                    <input id="obs.tmp_drugs.Amlodipine" type="checkbox" name="obs.tmp_drugs" value="amlodipine">
                     Amlodipine
                 </label>
             </div>
@@ -208,10 +207,16 @@
         </fieldset>
     </div>
     <label class="alert alert-info" id="obs.on_enalapril">
-        Patient on enalapril please assess  creatinine
+        If patient has been on <span style="text-decoration: underline;">Enalapril</span> for over a year
+        <ul>
+            <li>Check creatinine and potasium</li>
+        </ul>
     </label>
     <label class="alert alert-info" id="obs.on_losartan">
-        Patient on Losartan please assess  creatinine
+        If patient has been on <span style="text-decoration: underline;">Losartan</span> for over a year
+        <ul>
+            <li>Check creatinine and potasium</li>
+        </ul>
     </label>
 </div>
 <div class="section" id="medication_metformin" data-concept="1919^PATIENT REPORTED CURRENT OTHER TREATMENT^99DCT^2">
@@ -862,16 +867,19 @@
                 </label>
             </div>
         </fieldset>
-        <label class="alert alert-info" id="obs.symptomReminders_breath">Shortness of breath please consult on phone immediately</label>
-        <label class="alert alert-info" id="obs.symptomReminders_heart_racing">Heart racing please Consult on phone immediately</label>
-        <label class="alert alert-info" id="obs.symptomReminders_leg_swelling">Leg swelling please Consult on phone immediately</label>
-        <label class="alert alert-info" id="obs.symptomReminders_confusion">Confusion symptoms, Consult on phone immediately</label>
-        <label class="alert alert-info" id="obs.symptomReminders_weakness">Weakness symptoms, Consult on phone immediately</label>
-        <label class="alert alert-info" id="obs.symptomReminders_consciousness">Loss of consciousness, Consult on phone immediately</label>
-        <label class="alert alert-info" id="obs.symptomReminders_dizziness">Recurrent dizziness, Consult on phone immediately</label>
-        <label class="alert alert-info" id="obs.symptomReminders_vision">vision difficulties, Consult on phone immediately</label>
-        <label class="alert alert-info" id="obs.symptomReminders_convulsions">Convulsions symptoms, Consult on phone immediately</label>
-        <label class="alert alert-info" id="obs.symptomReminders_enalapril_and_cough">Change enalapril to losartan and rule out TB</label>
+        <label class="alert alert-info" id="stdColumnC">
+            <b>Patient likely with complication in cardiovascular or neurological system</b>
+            <ul>
+                <li>Call <span style="text-decoration: underline;">0718980323</span> <br> for input from consultant</li>
+            </ul>
+        </label>
+        <label class="alert alert-info" id="obs.symptomReminders_enalapril_and_cough">
+            <b>Rule out TB</b>
+            <ul>
+                <li>Change enalapril to losartan</li>
+                <li>Rule out TB</li>
+            </ul>
+        </label>
     </div>
 </div>
 <div class="section">
@@ -934,6 +942,14 @@
         <input class="form-control" id="obs.body_mass_index" name="obs.body_mass_index" type="number" readonly="readonly"
                data-concept="1342^BODY MASS INDEX^99DCT">
     </div>
+
+    <label class="alert alert-info" id="bmiReminder">
+        <b>confirmed overweight</b>
+        <ul>
+            <li>Educate on weight reduction</li>
+        </ul>
+    </label>
+
     <div class="form-group">
         <label for="obs.serum_glucose_fasting">Fasting Blood Sugar (FBS):</label>
         <input class="form-control glucose" id="obs.serum_glucose_fasting" name="obs.serum_glucose_fasting" type="number"
@@ -941,8 +957,8 @@
     </div>
 
     <div class="form-group">
-        <label for="obs.serum_glucose">Random Blood Sugar (RBS):</label>
-        <input class="form-control glucose" id="obs.serum_glucose" name="obs.serum_glucose" type="number"
+        <label for="obs.serum_glucose_random">Random Blood Sugar (RBS):</label>
+        <input class="form-control glucose" id="obs.serum_glucose_random" name="obs.serum_glucose_random" type="number"
                placeholder="Please record today's RBS" data-concept="887^SERUM GLUCOSE^99DCT">
     </div>
     <div class="form-group">
@@ -950,17 +966,6 @@
         <input class="form-control" id="glycosylated_hemoglobin" name="glycosylated_hemoglobin" type="number"
                placeholder="Please record today's A1C" data-concept="6126^GLYCOSYLATED HEMOGLOBIN^99DCT">
     </div>
-    <label style="display: none ;" class="alert alert-info validate_glucose_fasting">
-        confirm diagnosis of diabetes
-    </label>
-
-    <label class="alert alert-info" id="validate_glucose_fasting_2">
-        Diabetes Refer to CO
-    </label>
-
-    <label class="alert alert-info" id="diabetes_mellitus">
-        Diabetes mellitus Refer to CO
-    </label>
 
     <div class="form-group urinePregnancyTestQualitative">
         <label for="obs.urine_pregnancy_test_qualitative">Urine Pregnancy Test:<span class="required">*</span></label>
@@ -975,132 +980,248 @@
     </div>
 
     <label class="alert alert-info" id="htnColumnB">
-        Educate on prevention - Salt reduction, Weight reduction if BMI >25, Exercise, Smoking cessation and Alcohol reduction (if applicable) - and DISCHARGE HOME
+        Educate on prevention
+            <ol>
+                <li>Weight reduction if BMI >25</li>
+                <li>Exercise</li>
+                <li>Smoking cessation</li>
+                <li>Alcohol reduction (if applicable)</li>
+            </ol>
+        DISCHARGE HOME
     </label>
 
     <label class="alert alert-info" id="htnColumnC">
-        Pt under 35 with elevated BP. Refer to CO/Health Center Hypertension in Pregnancy REFER TO C.O/ High Risk ANC.
+       <b>Pt under 35 with elevated BP</b>
+        <ul>
+            <li>Refer to CO/Health Center</li>
+        </ul>
     </label>
 
     <label class="alert alert-info" id="htnColumnD">
-        Hypertension in Pregnancy REFER TO C.O/ High Risk ANC.
+        <b>Hypertension in Pregnancy</b> .
+        <ul>
+            <li>REFER TO C.O/ High Risk ANC.</li>
+        </ul>
     </label>
 
     <label class="alert alert-info" id="htnColumnE">
-        Advise on Salt reduction, Weight reduction if BMI >25, Exercise, Smoking cessation and Alcohol reduction (if applicable); REVIEW IN A MONTH
+        Advise on
+            <ol>
+                <li>Salt reduction</li>
+                <li>Weight reduction if BMI > 25</li>
+                <li>Exercise</li>
+                <li>Smoking cessation</li>
+                <li>Alcohol reduction (if applicable)</li>
+            </ol>
+         Review in a month
+
     </label>
     <label class="alert alert-info" id="htnColumnF">
-        Stage II Hypertension Refer to CO
+        <b>Stage II Hypertension</b>
+        <ul>
+            <li>Refer to CO</li>
+        </ul>
     </label>
     <label class="alert alert-info" id="htnColumnG">
-        START HCTZ 25mg OD and give instructions on salt reduction and review after a month
+        <ul>
+            <li>START HCTZ 25mg Once daily</li>
+            <li>Give instructions on salt reduction</li>
+            <li>Review in a month</li>
+        </ul>
     </label>
 
     <label class="alert alert-info" id="htnColumnH">
-        Confirmed Hypertension ’ Start HCTZ 25mg OD Advise on Salt reduction, Weight reduction if BMI >30, Exercise, Smoking cessation and Alcohol reduction (if applicable);’ to be seen in 33 months
+        <b>Confirmed Hypertension</b>
+        <ul>
+            <li>Start HCTZ 25mg Once daily</li>
+            <li>Advise on</li>
+            <ol>
+                <li>Salt reduction</li>
+                <li>Weight reduction if BMI > 25</li>
+                <li>Exercise</li>
+                <li>Smoking cessation</li>
+                <li>Alcohol reduction (if applicable)</li>
+            </ol>
+            <li>Review in 3 months</li>
+        </ul>
+    </label>
     </label>
     <label class="alert alert-info" id="htnColumnI">
-        Controlled Hypertension Continue on HCTZ 25mg OD review in 3 months
+        <b>Controlled Hypertension</b>
+        <ul>
+            <li>Continue on HCTZ 25mg Once daily</li>
+            <li>Review in 3 months</li>
+        </ul>
     </label>
     <label class="alert alert-info" id="htnColumnJ">
-        Continue HCTZ 25mg a day add Amlodipine 2.5mg OD and Advise on Salt reduction, Weight reduction if BMI >30, Exercise, Smoking cessation and Alcohol reduction (if applicable); to be seen in a  month. Refer to CO if this is third dispensary visit on this drug regimen
+        <ul>
+            <li>Continue HCTZ 25mg a day</li>
+            <li>Add Amlodipine 2.5mg Once daily</li>
+            <li>Advise on</li>
+            <ol>
+                <li>Salt reduction</li>
+                <li>Weight reduction if BMI > 25</li>
+                <li>Exercise</li>
+                <li>Smoking cessation</li>
+                <li>Alcohol reduction (if applicable)</li>
+            </ol>
+            <li>Review in 3 months</li>
+        </ul>
+         <b>Refer to CO if this is third dispensary visit on this drug regimen</b>
     </label>
     <label class="alert alert-info" id="htnColumnK">
-        Controlled Hypertension Continue on HCTZ 25mg OD and Amlodipine 2.5mg OD review in 3 months
+       <b>Controlled Hypertension</b>
+        <ul>
+            <li>Continue on HCTZ 25mg Once daily</li>
+            <li>Continue on Amlodipine 2.5mg Once daily</li>
+            <li>Review in 3 months</li>
+        </ul>
     </label>
     <label class="alert alert-info" id="htnColumnL">
-        Continue HCTZ 25mg a day add Increase Amlodipine to 5mg OD to be seen in a MONTH and Advise on Salt reduction, Weight reduction if BMI >30, Exercise, Smoking cessation and Alcohol reduction (if applicable); to be seen in a  month. Refer to CO if this is third dispensary visit on this drug regimen
+        <ul>
+            <li>Continue HCTZ 25mg Once daily</li>
+            <li>Increase Amlodipine to 5mg Once daily</li>
+            <li>Advise on</li>
+            <ol>
+                <li>Salt reduction</li>
+                <li>Weight reduction if BMI > 25</li>
+                <li>Exercise</li>
+                <li>Smoking cessation</li>
+                <li>Alcohol reduction (if applicable)</li>
+            </ol>
+            <li>Review in a MONTH</li>
+            <li>Refer to CO if this is third dispensary visit on this drug regimen</li>
+        </ul>
     </label>
     <label class="alert alert-info" id="htnColumnM">
-        Continue HCTZ 25mg OD and Amlodipine 5mg OD Review every 3 months.
+        <ul>
+            <li>Continue HCTZ 25mg Once daily</li>
+            <li>Continue Amlodipine 5mg Once daily</li>
+            <li>Review in 3 months</li>
+        </ul>
     </label>
     <label class="alert alert-info" id="htnColumnN">
-        UNCONTROLLED HYPERTENSION REFER TO CO Advise on Salt reduction, Weight reduction if BMI >30, Exercise, Smoking cessation and Alcohol reduction (if applicable)
+        <b>UNCONTROLLED HYPERTENSION</b>
+        <ul>
+            <li>REFER TO CO</li>
+            <li>Advise on</li>
+            <ol>
+                <li>Salt reduction</li>
+                <li>Weight reduction if BMI > 25</li>
+                <li>Exercise</li>
+                <li>Smoking cessation</li>
+                <li>Alcohol reduction (if applicable)</li>
+            </ol>
+        </ul>
     </label>
+    <label class="alert alert-info" id="dmColumnB">
+        Request patient to come for fasting blood sugar
+    </label>
+    <label class="alert alert-info" id="dmColumnC">
+        <b>Patient does not have diabetes</b>
+        <ul>
+            <li>Educate on prevention</li>
+            <li>Discharge</li>
+            <li>Followup after a year as needed</li>
+        </ul>
+    </label>
+    <label class="alert alert-info" id="dmColumnD">
+        <b>Patient with pre-diabetes</b>
+        <ul>
+            <li>Educate on lifestyle modification</li>
+            <li>Repeat FBS after 6 months</li>
+        </ul>
+    </label>
+    <label class="alert alert-info" id="dmColumnE">
+        <b>Pregnant patient with Diabetes</b>
+        <ul>
+            <li>Please Refer to High Risk ANC Clinic</li>
+        </ul>
+    </label>
+    <label class="alert alert-info" id="dmColumnF">
+        <b>Patient blood sugar is very high</b>
+        <ul>
+            <li>REFER TO CO</li>
+            <li>Educate on lifestyle modification</li>
+        </ul>
+    </label>
+    <label class="alert alert-info" id="dmColumnG">
+        <b>DM CONFIRMED </b>
+        <ul>
+            <li>Start on Metformin 500mg OD</li>
+            <li>To be seen in two (2) weeks</li>
+        </ul>
+    </label>
+    <label class="alert alert-info" id="dmColumnH">
+        <b>Possible Metformin side effects</b>
+        <ul>
+            <li>Nausea</li>
+            <li>Vomiting</li>
+            <li>Abdominal pain</li>
+            <li>Diarrhea</li>
+            <li>constipation</li>
+        </ul>
+        Refer to CO
+    </label>
+    <label class="alert alert-info" id="dmColumnI">
+        <b>Patient's diabetes controlled with current regimen</b>
+        <ul>
+            <li>Check HbA1C annually</li>
+
+        </ul>
+    </label>
+    <label class="alert alert-info" id="dmColumnJ">
+        <b>Blood sugar not optimally controlled on metformin 500 mg twice daily</b>
+        <ul>
+            <li>Increase Metformin up to 750mg twice daily (BD)</li>
+            <li>Follow up with patient after 2 weeks</li>
+            <li>Educate patient on lifestyle modification</li>
+
+        </ul>
+    </label>
+    <label class="alert alert-info" id="dmColumnK">
+        <b>Blood sugar not optimally controlled on metformin 500 mg twice daily</b>
+        <ul>
+            <li>Increase Metformin up to 750mg twice daily (BD)</li>
+            <li>Follow up with patient after 2 weeks</li>
+            <li>Educate patient on lifestyle modification</li>
+        </ul>
+    </label>
+    <label class="alert alert-info" id="dmColumnL">
+        <b>Blood sugar not optimally controlled on metformin 750 mg twice daily</b>
+        <ul>
+            <li>Titrate Metformin to 1000mg twice daily</li>
+            <li>Follow up with patient after 2 weeks</li>
+            <li>Educate patient on lifestyle modification</li>
+        </ul>
+    </label>
+    <label class="alert alert-info" id="dmColumnM">
+        <b>Diabetes not controlled with metformin 1000 mg twice daily</b>
+        <ul>
+            <li>Refer client to Clinical Officer</li>
+        </ul>
+    </label>
+    <label class="alert alert-info" id="dmColumnN">
+        <b>Patient with severely elevated blood sugar and with current concern for complications</b>
+        <ul>
+            <li>Refer to Clinical Officer</li>
+        </ul>
+    </label>
+    <label class="alert alert-info" id="dmColumnQ">
+        <b>Patient with possible DM complications</b>
+        <ul>
+            <li>Refer to Center of Excellence (COE)</li>
+        </ul>
+    </label>
+    <label class="alert alert-info" id="dmColumnR">
+        <b>Patient with Hypertension in Diabetes</b>
+        <ul>
+            <li>REFER TO CO</li>
+            <li>Advice on salt reduction</li>
+        </ul>
+    </label>
+
 </div>
-<!--<div class="section">
-    <h3>Hypertension Reminders</h3>
-    <label class="alert alert-info" id="htn_reminder_1">
-        Good BP. Advise on Salt reduction, Weight reduction if BMI >30, Exercise, Smoking cessation and Alcohol
-        reduction (if applicable). DISCHARGE HOME
-    </label>
-    <label class="alert alert-info" id="htn_reminder_2">
-        Patient under 35 with elevated BP. Refer to CO/Health Center
-    </label>
-    <label class="alert alert-info" id="htn_reminder_3a">
-        Advise on Salt reduction, Weight reduction if BMI >30, Exercise, Smoking cessation and Alcohol reduction
-        (if applicable); RETURN to DISPENSARY in 1 month
-    </label>
-    <label class="alert alert-info" id="htn_reminder_3b">
-        BP high on HTN meds. Advise on Salt reduction, Weight reduction if BMI >30, Exercise, Smoking cessation and
-        Alcohol reduction (if applicable). REFER to CO/Clinic.
-    </label>
-    <label class="alert alert-info" id="htn_reminder_3c">
-        Patient with both elevated blood pressure and blood sugar. REFER to CO/Clinic.
-    </label>
-    <label class="alert alert-info" id="htn_reminder_4">
-        BP is very high. Advise on Salt reduction, Weight reduction if BMI >30, Exercise, Smoking cessation and
-        Alcohol reduction (if applicable). REFER to CO immediately.
-    </label>
-    <label class="alert alert-info" id="htn_reminder_5">REFER TO CO/ High Risk ANC</label>
-    <label class="alert alert-info" id="htn_reminder_6a">
-        Start on HCTZ 25 mg a day. Advise on Salt reduction, Weight reduction if BMI >30, Exercise, Smoking
-        cessation and Alcohol reduction (if applicable)
-    </label>
-    <label class="alert alert-info" id="htn_reminder_6b">
-        Patient with elevated blood pressure and elevated blood sugar. REFER to CO/Clinic.
-    </label>
-    <label class="alert alert-info" id="obs.htn_reminder_7">Patient with Hypertension symptoms. REFER TO CO</label>
-    <label class="alert alert-info" id="obs.htn_reminder_8">
-        BP good. Continue HCTZ 25mg a day. Advise on Salt reduction, Weight reduction if BMI >30, Exercise,
-        Smoking cessation and Alcohol reduction (if applicable). RETURN TO DISPENSARY in 4 months
-    </label>
-    <label class="alert alert-info" id="obs.htn_reminder_9">
-        BP elevated. If today is 3rd successive monthly return visit while on HCTZ 25mg a day, REFER Pt to CO.
-        Otherwise continue HCTZ 25mg a day, and monitor monthly. Advise on Salt reduction, Weight reduction
-        if BMI >30, Exercise, Smoking cessation and Alcohol reduction (if applicable)
-    </label>
-    <label class="alert alert-info" id="obs.htn_reminder_10">BP low. REFER patient to CO/Health Center</label>
-
-
-
-</div>
-<div class="section">
-    <h3>Diabetes Reminders</h3>
-    <label class="alert alert-info" id="obs.diabetes_reminder_1">
-        NORMAL blood sugar, educate on prevention. DISCHARGE or follow-up after a year as needed
-    </label>
-    <label class="alert alert-info" id="obs.diabetes_reminder_2">
-        Pregnant with Diabetes. Refer to High Risk ANC Clinic
-    </label>
-    <label class="alert alert-info" id="obs.diabetes_reminder_3">
-        Borderline high Blood sugar. Educate on lifestyle modification, review after 6 months
-    </label>
-    <label class="alert alert-info" id="obs.diabetes_reminder_4">
-        Diabetes CONFIRMED - Start Metformin 500mg twice a day (BD). Return to Dispensary in 2 weeks
-    </label>
-    <label class="alert alert-info" id="obs.diabetes_reminder_5">
-        Blood sugar is very high. REFER TO CO immediately. Educate on lifestyle modification
-    </label>
-    <label class="alert alert-info" id="obs.diabetes_reminder_6">
-        Patient has symptoms [<label id="diabetes_reminder6_symptoms"></label>] on Metformin. Likely
-        side effect. Refer to CO immediately
-    </label>
-    <label class="alert alert-info" id="obs.diabetes_reminder_7">
-        Patient has likely hypoglycemia on Glibenclamide. Refer to CO immediately
-    </label>
-    <label class="alert alert-info" id="obs.diabetes_reminder_8">
-        Suboptimal Blood sugar control. Consider increasing Metformin up to 750 mg twice a day (BD). Return to
-        Dispensary after 2 weeks. Educate on lifestyle modification
-    </label>
-    <label class="alert alert-info" id="obs.diabetes_reminder_9">
-        Suboptimal Blood sugar control. Consider increasing Metformin up to 1000 mg (1 gram) twice a day (BD).
-        Return to Dispensary after 2 weeks. Educate on lifestyle modification
-    </label>
-    <label class="alert alert-info" id="obs.diabetes_reminder_10">
-        Suboptimal BS control on 1000 mg (1 gram) metformin. REFER to CO immediately
-    </label>
-</div>-->
 <div class="section">
     <h4>Medications Prescribed</h4>
     <div>
@@ -1155,6 +1276,13 @@
             </div>
             <div class="form-group">
                 <label class="font-normal">
+                    <input id="obs.drugs_dispensed.Amlodipine" type="checkbox"
+                           name="obs.drugs_dispensed" value="amlodipine">
+                    Amlodipine
+                </label>
+            </div>
+            <div class="form-group">
+                <label class="font-normal">
                     <input id="obs.drugs_dispensed.Other" type="checkbox"
                            name="obs.drugs_dispensed" value="other">
                     Other Medications
@@ -1169,11 +1297,21 @@
             </div>
         </fieldset>
     </div>
+
+
     <label class="alert alert-info" id="obs.new_enalapril">
-        Prescribed enalapril please assess creatinine
+        Prescribed <span style="text-decoration: underline;">Enalapril</span>
+        <ul>
+            <li>Please confirm that client's creatinine is normal prior to starting Enalapril</li>
+            <li>If no creatinine is on record, please order creatinine</li>
+        </ul>
     </label>
     <label class="alert alert-info" id="obs.new_losartan">
-        Prescribed Losartan please assess creatinine
+        Prescribed <span style="text-decoration: underline;">Losartan</span>
+        <ul>
+            <li>Please confirm that client's creatinine is normal prior to starting Losartan</li>
+            <li>If no creatinine is on record, please order creatinine</li>
+        </ul>
     </label>
 </div>
 <div class="section repeat metformin_dispense" id="metformin_dispense" data-name="metformin_dispense" data-counter="1"
@@ -1542,6 +1680,69 @@
         </select>
     </div>
 </div>
+
+<div class="section repeat amlodipine_dispense" id="amlodipine_dispense" data-name="amlodipine_dispense" data-counter="1"
+     data-concept="1901^OTHER MEDICATION ORDER^99DCT^7">
+    <h3>Amlodipine Dispense</h3>
+
+    <input class="form-control" name="medication_added" type="hidden"
+           data-concept="1895^MEDICATION ADDED^99DCT" value="2272^AMLODIPINE^99DCT">
+
+    <div class="form-group" id="amlodipine_dosage_changed">
+        <label for="obs.other_medication_order_amlodipine">
+            Did you change the [Amlodipine] dosage?<span class="required">*</span>
+        </label>
+        <select class="form-control" id="obs.other_medication_order_amlodipine" required="required"
+                name="obs.other_medication_order_amlodipine" data-concept="1931^DOSAGE CHANGE^99DCT">
+            <option value="">...</option>
+            <option value="1065^YES^99DCT">Yes</option>
+            <option value="1066^NO^99DCT">No</option>
+            <option value="1624^DO NOT KNOW^99DCT">Do not know</option>
+        </select>
+    </div>
+    <div class="form-group" id="amlodipine_prescribed_dosage">
+        <label for="obs.tmp_dosage_change_nifedipine">
+            Prescribed [Amlodipine] dose in milligrams (mg):<span class="required">*</span>
+        </label>
+        <input class="form-control numberOfMilligrams" id="obs.tmp_dosage_change_amlodipine"
+               name="obs.tmp_dosage_change_amlodipine"
+               type="number" required="required" data-concept="1899^NUMBER OF MILLIGRAM^99DCT">
+    </div>
+    <div class="form-group">
+        <label for="obs.omo_medication_frequency_per_day_amlodipine">
+            [Amlodipine] frequency per day:<span class="required">*</span>
+        </label>
+        <select class="form-control" id="obs.omo_medication_frequency_per_day_amlodipine" required="required"
+                name="obs.omo_medication_frequency_per_day_amlodipine" data-concept="1896^MEDICATION FREQUENCY^99DCT">
+            <option value="">...</option>
+            <option value="1639^MORNING^99DCT">Every Morning</option>
+            <option value="1730^EVENING^99DCT">Every Evening</option>
+            <option value="1891^ONCE A DAY^99DCT">Once Daily</option>
+            <option value="1888^TWICE A DAY^99DCT">Twice Daily</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="obs.omo_number_of_tablets_amlodipine">
+            Number of [Amlodipine] tablets prescribed:<span class="required">*</span>
+        </label>
+        <input class="form-control numberOfTablets" id="obs.omo_number_of_tablets_amlodipine"
+               name="obs.omo_number_of_tablets_amlodipine" type="number" data-concept="1898^NUMBER OF TABLETS^99DCT"
+               required="required">
+    </div>
+    <div class="form-group">
+        <label for="obs.omo_medication_received_at_vist_nifedipine">
+            [Amlodipine] picked-up at dispensary?<span class="required">*</span>
+        </label>
+        <select class="form-control" id="obs.omo_medication_received_at_vist_amlodipine" required="required"
+                name="obs.omo_medication_received_at_vist_amlodipine"
+                data-concept="1276^MEDICATION RECEIVED AT VIST^99DCT">>
+            <option value="">...</option>
+            <option value="true">Yes</option>
+            <option value="false">No</option>
+        </select>
+    </div>
+</div>
+
 <div class="section repeat other_medication" id="other_medication" data-name="other_medication" data-counter="1"
      data-concept="1901^OTHER MEDICATION ORDER^99DCT^8">
     <h3>Other Medication</h3>
@@ -1718,6 +1919,19 @@
     </div>
 </div>
 <div class="section">
+    <div class="alert alert-info">
+        <h4><span style="text-decoration: underline;">General recommendation</span></h4> <b>
+        1. If patient has diabetes and HbA1c observation date is more than 5 months
+        <ul>
+            <li>Advice patient to plan for upcoming HbA1c test in a month</li>
+        </ul>
+        2. If difference between last HbA1c date and current visit date is more than 6 months
+        <ul>
+            <li>Alert patient of a missed HbA1c test to be done immediately.</li>
+        </ul></b>
+    </div>
+</div>
+<div class="section">
     <div class="form-group">
         <label for="obs.return_visit_date">Return Date to Dispensary:</label>
         <input class="form-control datepicker checkFutureDate" data-concept="5096^RETURN VISIT DATE^99DCT"
@@ -1725,6 +1939,7 @@
                readonly="readonly">
     </div>
 </div>
+
 
 </form>
 
@@ -1909,6 +2124,7 @@ $(document).ready(function () {
             "#obs\\.drugs_dispensed\\.HCTZ": "#hctz_dispense",
             "#obs\\.drugs_dispensed\\.Losartan": "#losartan_dispense",
             "#obs\\.drugs_dispensed\\.Nifedipine": "#nifedipine_dispense",
+            "#obs\\.drugs_dispensed\\.Amlodipine": "#amlodipine_dispense",
             "#obs\\.drugs_dispensed\\.Other": "#other_medication"
         };
         $.each(drugsArray, function (k, v) {
@@ -1953,15 +2169,6 @@ $(document).ready(function () {
 
     var symptomsAndDrugReminders = function (selectedElement) {
         var objectArray = {
-            "#obs\\.review_of_systems_general\\.shortness_of_breath_with_exertion": "#obs\\.symptomReminders_breath",
-            "#obs\\.review_of_systems_general\\.heart_racing": "#obs\\.symptomReminders_heart_racing",
-            "#obs\\.review_of_systems_general\\.edema_legs": "#obs\\.symptomReminders_leg_swelling",
-            "#obs\\.review_of_systems_general\\.confusion": "#obs\\.symptomReminders_confusion",
-            "#obs\\.review_of_systems_general\\.focal_weakness": "#obs\\.symptomReminders_weakness",
-            "#obs\\.review_of_systems_general\\.unconscious": "#obs\\.symptomReminders_consciousness",
-            "#obs\\.review_of_systems_general\\.dizziness": "#obs\\.symptomReminders_dizziness",
-            "#obs\\.review_of_systems_general\\.vision_difficulties": "#obs\\.symptomReminders_vision",
-            "#obs\\.review_of_systems_general\\.convulsions": "#obs\\.symptomReminders_convulsions",
             "#obs\\.tmp_drugs\\.Enalapril": "#obs\\.on_enalapril",
             "#obs\\.tmp_drugs\\.Losartan": "#obs\\.on_losartan",
             "#obs\\.drugs_dispensed\\.Enalapril": "#obs\\.new_enalapril",
@@ -2000,58 +2207,6 @@ $(document).ready(function () {
         })
     };
     enalaprilRecurrentCough();
-
-    var fastingRandom = function (selectedElement) {
-        var fastingRandomArray = {
-            "#obs\\.serum_glucose_fasting": "#validate_glucose_fasting_2",
-            "#obs\\.serum_glucose": "#validate_glucose_fasting_2"
-        };
-        $.each(fastingRandomArray, function (k, v) {
-            $(k).change(function () {
-                if ((parseFloat($('#obs\\.serum_glucose_fasting').val()) > 10.0) || (parseFloat($('#obs\\.serum_glucose').val()) > 15.0) ) {
-                    $(v).show();
-                } else {
-                    $(v).hide();
-                }
-            });
-            $(k).trigger('change');
-        })
-    };
-    fastingRandom();
-
-    var diabetesMellitus = function (selectedElement) {
-        var diabetesMellitusArray = {
-            "#obs\\.serum_glucose": "#diabetes_mellitus",
-            "#obs\\.review_of_systems_general\\.nausea": "#diabetes_mellitus",
-            "#obs\\.review_of_systems_general\\.vomiting": "#diabetes_mellitus",
-            "#obs\\.review_of_systems_general\\.abdominal_pain": "#diabetes_mellitus"
-        };
-        $.each(diabetesMellitusArray, function (k, v) {
-            $(k).change(function () {
-                var nausea = "#obs\\.review_of_systems_general\\.nausea"
-                var vomiting = "#obs\\.review_of_systems_general\\.vomiting"
-                var abdominal_pain = "#obs\\.review_of_systems_general\\.abdominal_pain"
-                var fainting = "#obs\\.review_of_systems_general\\.fainting"
-                if ((parseFloat($('#obs\\.serum_glucose').val()) > 13.0 && (nausea).is(':checked')&& ((vomiting).is(':checked') || (fainting).is(':checked') )) ) {
-                    $(v).show();
-                } else {
-                    $(v).hide();
-                }
-            });
-            $(k).trigger('change');
-        })
-    };
-    diabetesMellitus();
-
-
-    $('#obs\\.serum_glucose_fasting').change(function () {
-        var $validate_glucose_fasting = $('.validate_glucose_fasting');
-        if(parseFloat($('#obs\\.serum_glucose_fasting').val()) > 7.0 && parseFloat($('#obs\\.serum_glucose_fasting').val()) < 10.0 )
-            $validate_glucose_fasting.show();
-        else
-            $validate_glucose_fasting.hide();
-    });
-
     /*  End - Based on Current medication prescribed show dosage fields */
 
     /*  Start - If some medication dose was missed, ask for reason */
@@ -2061,7 +2216,8 @@ $(document).ready(function () {
             "#obs\\.medication_enalapril\\.number_of_pills_taken": ".enalapril_missed_medication_reason",
             "#obs\\.medication_hctz\\.number_of_pills_taken": ".hctz_missed_medication_reason",
             "#obs\\.medication_losartan\\.number_of_pills_taken": ".losartan_missed_medication_reason",
-            "#obs\\.medication_nifedipine\\.number_of_pills_taken": ".nifedipine_missed_medication_reason"
+            "#obs\\.medication_nifedipine\\.number_of_pills_taken": ".nifedipine_missed_medication_reason",
+            "#obs\\.medication_amlodipine\\.number_of_pills_taken": ".amlodipine_missed_medication_reason"
         };
         $.each(drugsArray, function (pillsTaken, missedReason) {
             $(pillsTaken).change(function () {
@@ -2142,11 +2298,19 @@ $(document).ready(function () {
     var $height = $('#height_cm');
     var $bodyMassIndex = $('.bodyMassIndex');
     var displayBMI = function () {
+        var $bmiReminder = $('#bmiReminder');
         if (($weight.val() != '') && ($height.val() != '')) {
             $bodyMassIndex.find('input').val(computeBMI());
             $bodyMassIndex.show();
+            if(computeBMI()>25){
+               $bmiReminder.show();
+            }
+            else{
+                $bmiReminder.hide();
+            }
         } else {
             $bodyMassIndex.hide();
+            $bmiReminder.hide();
         }
     };
     var computeBMI = function () {
@@ -2180,7 +2344,8 @@ $(document).ready(function () {
             "Enalapril": "#enalapril_dosage_changed",
             "HCTZ": "#hctz_dosage_changed",
             "Losartan": "#losartan_dosage_changed",
-            "Nifedipine": "#nifedipine_dosage_changed"
+            "Nifedipine": "#nifedipine_dosage_changed",
+            "Amlodipine": "#amlodipine_dosage_changed"
         };
         $.each(drugsArray, function (k, v) {
             var drugCurrent = "#obs\\.tmp_drugs\\." + k;
@@ -2200,7 +2365,7 @@ $(document).ready(function () {
 
     /*  Start - Based on "Did you change the xx dosage" show or hide  "prescribed dosage" fields */
     var showOrHidePrescribedDosage = function (selectedElement) {
-        var drugsArray = ["metformin", "glibenclamide", "enalapril", "enalapril", "hctz", "losartan", "nifedipine","amlodipine"];
+        var drugsArray = ["metformin", "glibenclamide", "enalapril", "hctz", "losartan", "nifedipine","amlodipine"];
         $.each(drugsArray, function (index, v) {
             var changeDosageSelect = "#obs\\.other_medication_order_" + v;
             var prescribedDosage = "#" + v + "_prescribed_dosage";
@@ -2225,6 +2390,8 @@ $(document).ready(function () {
     /*  End - Based on Selected medication prescribed show dispensed fields */
 
     /* Start - Define variables for conditional displays */
+    var $fbs =$('#serum_glucose_fasting');
+    var $rbs = $('#obs\\.serum_glucose_random');
     var $systolicBloodPressure = $('#obs\\.systolic_blood_pressure');
     var $diastolicBloodPressure = $('#obs\\.diastolic_blood_pressure');
     var $currentVisitType = $('#obs\\.current_visit_type');
@@ -2276,8 +2443,9 @@ $(document).ready(function () {
     };
     displayHTNReminder2();
 
-    var $serumGlucoseFasting = $('#serum_glucose_fasting');
+    var $serumGlucoseFasting = $('#obs\\.serum_glucose_fasting');
     var $glycosylatedHemoglobin = $('#glycosylated_hemoglobin');
+    var $rbs = $('#obs\\.serum_glucose_random');
     var isAtLeast35YearsOld = function () {
         var birthdate = $birthdate.val();
         var ageInYears = $.fn.getAgeInYears(birthdate);
@@ -2371,10 +2539,11 @@ $(document).ready(function () {
         var systolicBloodValue = parseFloat($systolicBloodPressure.val());
         var diastolicBloodValue = parseFloat($diastolicBloodPressure.val());
         var currentMedication = getCurrentMedicationValues();
-        if ((selectedVisitType =='7034^FIRST DISPENSARY VISIT AFTER HCT^99DCT' || selectedVisitType == '7035^SECOND DISPENSARY VISIT AFTER HCT ^99DCT'
-                || selectedVisitType == '7875^WALK IN^99DCT') &&(systolicBloodValue < 140 || diastolicBloodValue < 90)
-                && (currentMedication.indexOf("enalapril") < 0 && currentMedication.indexOf("hctz") < 0 && currentMedication.indexOf("losartan") < 0
-                && currentMedication.indexOf("nifedipine") < 0) ) {
+        if ((selectedVisitType =='7034^FIRST DISPENSARY VISIT AFTER HCT^99DCT'
+                || selectedVisitType == '7035^SECOND DISPENSARY VISIT AFTER HCT^99DCT'
+                || selectedVisitType == '7875^WALK IN^99DCT') && (systolicBloodValue < 140 && diastolicBloodValue < 90)
+                && ((currentMedication.indexOf("enalapril") < 0 && currentMedication.indexOf("hctz") < 0 && currentMedication.indexOf("losartan") < 0
+                && currentMedication.indexOf("nifedipine") < 0)) ) {
             $htnColumnB.show();
         } else {
             $htnColumnB.hide();
@@ -2399,10 +2568,8 @@ $(document).ready(function () {
 
     var hTNReminderColumnD = function () {
         var $htnColumnD = $('#htnColumnD');
-        var selectedVisitType = $currentVisitType.val();
         var systolicBloodValue = parseFloat($systolicBloodPressure.val());
         var diastolicBloodValue = parseFloat($diastolicBloodPressure.val());
-
         var urinePregnancyTestQualitativeValue = $urinePregnancyTestQualitative.val();
         var currentMedication = getCurrentMedicationValues();
         if (urinePregnancyTestQualitativeValue == '703^POSITIVE^99DCT' &&(systolicBloodValue >= 140 || diastolicBloodValue >= 90)
@@ -2420,11 +2587,10 @@ $(document).ready(function () {
         var selectedVisitType = $currentVisitType.val();
         var systolicBloodValue = parseFloat($systolicBloodPressure.val());
         var diastolicBloodValue = parseFloat($diastolicBloodPressure.val());
-        var currentMedication = getCurrentMedicationValues();
         var urinePregnancyTestQualitativeValue = $urinePregnancyTestQualitative.val();
         if ((selectedVisitType =='7034^FIRST DISPENSARY VISIT AFTER HCT^99DCT' || selectedVisitType == '7875^WALK IN^99DCT')
-                &&((systolicBloodValue >= 140 && systolicBloodValue < 150) || diastolicBloodValue < 90)
-                && (urinePregnancyTestQualitativeValue != '703^POSITIVE^99DCT'||urinePregnancyTestQualitativeValue != '1138^INDETERMINATE^99DCT')
+                &&((systolicBloodValue >= 140 && systolicBloodValue < 150) && diastolicBloodValue < 90)
+                && (urinePregnancyTestQualitativeValue == '664^NEGATIVE^99DCT'||urinePregnancyTestQualitativeValue == '1138^INDETERMINATE^99DCT')
                 && isAtLeast35YearsOld() ) {
             $htnColumnE.show();
         } else {
@@ -2442,7 +2608,7 @@ $(document).ready(function () {
         var urinePregnancyTestQualitativeValue = $urinePregnancyTestQualitative.val();
         if ((selectedVisitType =='7034^FIRST DISPENSARY VISIT AFTER HCT^99DCT' || selectedVisitType == '7875^WALK IN^99DCT')
                 &&(systolicBloodValue >= 180 || diastolicBloodValue >= 110)
-                && (urinePregnancyTestQualitativeValue != '703^POSITIVE^99DCT'||urinePregnancyTestQualitativeValue != '1138^INDETERMINATE^99DCT')) {
+                && (urinePregnancyTestQualitativeValue == '664^NEGATIVE^99DCT'||urinePregnancyTestQualitativeValue == '1138^INDETERMINATE^99DCT')) {
             $htnColumnF.show();
         } else {
             $htnColumnF.hide();
@@ -2459,8 +2625,8 @@ $(document).ready(function () {
         if ((selectedVisitType =='7034^FIRST DISPENSARY VISIT AFTER HCT^99DCT' || selectedVisitType == '7875^WALK IN^99DCT')
                 &&((systolicBloodValue > 150 && systolicBloodValue < 180) || (diastolicBloodValue > 90 && diastolicBloodValue < 110))
                 && isAtLeast35YearsOld()
-                && (urinePregnancyTestQualitativeValue != '703^POSITIVE^99DCT'||urinePregnancyTestQualitativeValue != '1138^INDETERMINATE^99DCT')
-                && (reviewOfSystemsGeneral.indexOf("590^EDEMA, LEGS^99DCT") < 0  || reviewOfSystemsGeneral.indexOf("6021^OLIGURIA^99DCT") < 0 )) {
+                && (urinePregnancyTestQualitativeValue == '664^NEGATIVE^99DCT'||urinePregnancyTestQualitativeValue == '1138^INDETERMINATE^99DCT')
+                && (reviewOfSystemsGeneral.indexOf("590^EDEMA, LEGS^99DCT") < 0  && reviewOfSystemsGeneral.indexOf("6021^OLIGURIA^99DCT") < 0 )) {
             $htnColumnG.show();
         } else {
             $htnColumnG.hide();
@@ -2470,6 +2636,7 @@ $(document).ready(function () {
 
     var hTNReminderColumnH = function () {
         var $htnColumnH = $('#htnColumnH');
+        var $htnColumnG = $('#htnColumnG');
         var reviewOfSystemsGeneral = getReviewOfSystemsGeneralValues();
         var selectedVisitType = $currentVisitType.val();
         var systolicBloodValue = parseFloat($systolicBloodPressure.val());
@@ -2478,10 +2645,11 @@ $(document).ready(function () {
         if ((selectedVisitType =='7035^SECOND DISPENSARY VISIT AFTER HCT^99DCT' || selectedVisitType == '7875^WALK IN^99DCT')
                 &&((systolicBloodValue > 140 && systolicBloodValue < 180) || (diastolicBloodValue > 90 && diastolicBloodValue < 110))
                 && isAtLeast35YearsOld()
-                && (urinePregnancyTestQualitativeValue != '703^POSITIVE^99DCT'||urinePregnancyTestQualitativeValue != '1138^INDETERMINATE^99DCT')
-                && (reviewOfSystemsGeneral.indexOf("590^EDEMA, LEGS^99DCT") < 0  || reviewOfSystemsGeneral.indexOf("6021^OLIGURIA^99DCT") < 0 ))
+                && (urinePregnancyTestQualitativeValue == '664^NEGATIVE^99DCT'||urinePregnancyTestQualitativeValue == '1138^INDETERMINATE^99DCT')
+                && (reviewOfSystemsGeneral.indexOf("590^EDEMA, LEGS^99DCT") < 0  && reviewOfSystemsGeneral.indexOf("6021^OLIGURIA^99DCT") < 0 ))
         {
             $htnColumnH.show();
+            $htnColumnG.hide();
         } else {
             $htnColumnH.hide();
         }
@@ -2526,12 +2694,13 @@ $(document).ready(function () {
         var currentMedication = getCurrentMedicationValues();
         if ((selectedVisitType =='7036^RETURN DISPENSARY VISIT^99DCT')
                 &&((systolicBloodValue > 140 && systolicBloodValue < 180) || (diastolicBloodValue > 90 && diastolicBloodValue < 110))
-                && (urinePregnancyTestQualitativeValue != '703^POSITIVE^99DCT'||urinePregnancyTestQualitativeValue != '1138^INDETERMINATE^99DCT')
+                && (urinePregnancyTestQualitativeValue == '664^NEGATIVE^99DCT'||urinePregnancyTestQualitativeValue == '1138^INDETERMINATE^99DCT')
                 && isAtLeast35YearsOld()
-                && (reviewOfSystemsGeneral.indexOf("590^EDEMA, LEGS^99DCT") < 0  || reviewOfSystemsGeneral.indexOf("6021^OLIGURIA^99DCT") < 0 )
-                && currentMedication.indexOf("hctz") >= 0 &&
+                && (reviewOfSystemsGeneral.indexOf("590^EDEMA, LEGS^99DCT") < 0  && reviewOfSystemsGeneral.indexOf("6021^OLIGURIA^99DCT") < 0 )
+                && (currentMedication.indexOf("hctz") >= 0 &&
                 hctzNumberOfMilligram == 25 && (hctzFrequencyPerDay == '1639^MORNING^99DCT'
-                || hctzFrequencyPerDay == '1730^EVENING^99DCT' || hctzFrequencyPerDay == '1891^ONCE A DAY^99DCT' )) {
+                || hctzFrequencyPerDay == '1730^EVENING^99DCT' || hctzFrequencyPerDay == '1891^ONCE A DAY^99DCT' ))
+                &&(currentMedication.indexOf("amlodipine") < 0 )) {
             $htnColumnJ.show();
         } else {
             $htnColumnJ.hide();
@@ -2540,6 +2709,7 @@ $(document).ready(function () {
     hTNReminderColumnJ();
     var hTNReminderColumnK = function () {
         var $htnColumnK = $('#htnColumnK');
+        var $htnColumnI = $('#htnColumnI');
         var selectedVisitType = $currentVisitType.val();
         var systolicBloodValue = parseFloat($systolicBloodPressure.val());
         var diastolicBloodValue = parseFloat($diastolicBloodPressure.val());
@@ -2550,21 +2720,23 @@ $(document).ready(function () {
         var currentMedication = getCurrentMedicationValues();
         if ((selectedVisitType =='7036^RETURN DISPENSARY VISIT^99DCT')
                 && systolicBloodValue < 140 && diastolicBloodValue < 90
-                && ((currentMedication.indexOf("hctz") >= 0 &&
-                hctzNumberOfMilligram == 25) && (hctzFrequencyPerDay == '1639^MORNING^99DCT'
-                || hctzFrequencyPerDay == '1730^EVENING^99DCT' || hctzFrequencyPerDay == '1891^ONCE A DAY^99DCT' ))
-                && ((currentMedication.indexOf("amlodipine") >= 0 &&
-                        amlodipineNumberOfMilligram == 2.5) && (amlodipineFrequencyPerDay == '1639^MORNING^99DCT'
-                        || amlodipineFrequencyPerDay == '1730^EVENING^99DCT' || amlodipineFrequencyPerDay == '1891^ONCE A DAY^99DCT' )))
+                && (currentMedication.indexOf("amlodipine") >= 0 &&
+                        amlodipineNumberOfMilligram == 2.5 && (amlodipineFrequencyPerDay == '1639^MORNING^99DCT'
+                        || amlodipineFrequencyPerDay == '1730^EVENING^99DCT' || amlodipineFrequencyPerDay == '1891^ONCE A DAY^99DCT' ))
+                && (currentMedication.indexOf("hctz") >= 0 &&
+                        hctzNumberOfMilligram == 25 && (hctzFrequencyPerDay == '1639^MORNING^99DCT'
+                        || hctzFrequencyPerDay == '1730^EVENING^99DCT' || hctzFrequencyPerDay == '1891^ONCE A DAY^99DCT' )))
         {
             $htnColumnK.show();
+            $htnColumnI.hide();
+
         } else {
             $htnColumnK.hide();
         }
     } ;
     hTNReminderColumnK();
 
-    var hTNReminderColumnL = function () {
+    var  hTNReminderColumnL = function () {
         var $htnColumnL = $('#htnColumnL');
         var reviewOfSystemsGeneral = getReviewOfSystemsGeneralValues();
         var selectedVisitType = $currentVisitType.val();
@@ -2577,16 +2749,16 @@ $(document).ready(function () {
         var amlodipineFrequencyPerDay = $amlodipineFrequencyPerDay.val();
         var currentMedication = getCurrentMedicationValues();
         if ((selectedVisitType =='7036^RETURN DISPENSARY VISIT^99DCT')
-                &&((systolicBloodValue >= 140 && systolicBloodValue < 180) || (diastolicBloodValue > 90 && diastolicBloodValue < 110))
+                &&((systolicBloodValue >= 140 && systolicBloodValue < 180) && (diastolicBloodValue > 90 && diastolicBloodValue < 110))
                 && isAtLeast35YearsOld()
-                && (urinePregnancyTestQualitativeValue != '703^POSITIVE^99DCT'||urinePregnancyTestQualitativeValue != '1138^INDETERMINATE^99DCT')
-                && (reviewOfSystemsGeneral.indexOf("590^EDEMA, LEGS^99DCT") < 0  || reviewOfSystemsGeneral.indexOf("6021^OLIGURIA^99DCT") < 0 )
+                && (reviewOfSystemsGeneral.indexOf("590^EDEMA, LEGS^99DCT") < 0  && reviewOfSystemsGeneral.indexOf("6021^OLIGURIA^99DCT") < 0 )
                 && (currentMedication.indexOf("hctz") >= 0 &&
                 hctzNumberOfMilligram == 25 && (hctzFrequencyPerDay == '1639^MORNING^99DCT'
-                || hctzFrequencyPerDay == '1730^EVENING^99DCT' || hctzFrequencyPerDay == '1891^ONCE A DAY^99DCT' )
-                (currentMedication.indexOf("amlodipine") >= 0 &&
+                || hctzFrequencyPerDay == '1730^EVENING^99DCT' || hctzFrequencyPerDay == '1891^ONCE A DAY^99DCT' ))
+                &&(currentMedication.indexOf("amlodipine") >= 0 &&
                         amlodipineNumberOfMilligram == 2.5 && (amlodipineFrequencyPerDay == '1639^MORNING^99DCT'
-                        || amlodipineFrequencyPerDay == '1730^EVENING^99DCT' || amlodipineFrequencyPerDay == '1891^ONCE A DAY^99DCT' )))) {
+                        || amlodipineFrequencyPerDay == '1730^EVENING^99DCT' || amlodipineFrequencyPerDay == '1891^ONCE A DAY^99DCT' ))
+                && (urinePregnancyTestQualitativeValue == '664^NEGATIVE^99DCT'||urinePregnancyTestQualitativeValue == '1138^INDETERMINATE^99DCT')) {
             $htnColumnL.show();
         } else {
             $htnColumnL.hide();
@@ -2596,6 +2768,7 @@ $(document).ready(function () {
 
     var hTNReminderColumnM = function () {
         var $htnColumnM = $('#htnColumnM');
+        var $htnColumnI = $('#htnColumnI');
         var selectedVisitType = $currentVisitType.val();
         var systolicBloodValue = parseFloat($systolicBloodPressure.val());
         var diastolicBloodValue = parseFloat($diastolicBloodPressure.val());
@@ -2605,18 +2778,21 @@ $(document).ready(function () {
         var amlodipineFrequencyPerDay = $amlodipineFrequencyPerDay.val();
         var currentMedication = getCurrentMedicationValues();
         if ((selectedVisitType =='7036^RETURN DISPENSARY VISIT^99DCT')
-                &&(systolicBloodValue < 140 && diastolicBloodValue < 90)
+                && systolicBloodValue < 140 && diastolicBloodValue < 90
+                && (currentMedication.indexOf("amlodipine") >= 0 &&
+                        amlodipineNumberOfMilligram == 5 && (amlodipineFrequencyPerDay == '1639^MORNING^99DCT'
+                        || amlodipineFrequencyPerDay == '1730^EVENING^99DCT' || amlodipineFrequencyPerDay == '1891^ONCE A DAY^99DCT' ))
                 && (currentMedication.indexOf("hctz") >= 0 &&
                         hctzNumberOfMilligram == 25 && (hctzFrequencyPerDay == '1639^MORNING^99DCT'
-                        || hctzFrequencyPerDay == '1730^EVENING^99DCT' || hctzFrequencyPerDay == '1891^ONCE A DAY^99DCT' )
-                (currentMedication.indexOf("amlodipine") >= 0 &&
-                        amlodipineNumberOfMilligram == 5 && (amlodipineFrequencyPerDay == '1639^MORNING^99DCT'
-                        || amlodipineFrequencyPerDay == '1730^EVENING^99DCT' || amlodipineFrequencyPerDay == '1891^ONCE A DAY^99DCT' )))) {
+                        || hctzFrequencyPerDay == '1730^EVENING^99DCT' || hctzFrequencyPerDay == '1891^ONCE A DAY^99DCT' )))
+        {
             $htnColumnM.show();
+            $htnColumnI.hide();
+
         } else {
             $htnColumnM.hide();
         }
-    } ;
+    };
     hTNReminderColumnM();
     var hTNReminderColumnN = function () {
         var $htnColumnN = $('#htnColumnN');
@@ -2631,22 +2807,340 @@ $(document).ready(function () {
         var amlodipineFrequencyPerDay = $amlodipineFrequencyPerDay.val();
         var currentMedication = getCurrentMedicationValues();
         if ((selectedVisitType =='7036^RETURN DISPENSARY VISIT^99DCT')
-                &&((systolicBloodValue >= 140 && systolicBloodValue < 180) || (diastolicBloodValue > 90 && diastolicBloodValue < 110))
-                && (urinePregnancyTestQualitativeValue != '703^POSITIVE^99DCT'||urinePregnancyTestQualitativeValue != '1138^INDETERMINATE^99DCT')
+                &&((systolicBloodValue >= 140 && systolicBloodValue < 180) && (diastolicBloodValue >= 90 && diastolicBloodValue < 110))
+                && (urinePregnancyTestQualitativeValue == '664^NEGATIVE^99DCT'||urinePregnancyTestQualitativeValue == '1138^INDETERMINATE^99DCT')
                 && isAtLeast35YearsOld()
-                && (reviewOfSystemsGeneral.indexOf("590^EDEMA, LEGS^99DCT") < 0  || reviewOfSystemsGeneral.indexOf("6021^OLIGURIA^99DCT") < 0 )
+                && (reviewOfSystemsGeneral.indexOf("590^EDEMA, LEGS^99DCT") < 0  && reviewOfSystemsGeneral.indexOf("6021^OLIGURIA^99DCT") < 0 )
                 && (currentMedication.indexOf("hctz") >= 0 &&
                         hctzNumberOfMilligram == 25 && (hctzFrequencyPerDay == '1639^MORNING^99DCT'
-                        || hctzFrequencyPerDay == '1730^EVENING^99DCT' || hctzFrequencyPerDay == '1891^ONCE A DAY^99DCT' )
-                (currentMedication.indexOf("amlodipine") >= 0 &&
+                        || hctzFrequencyPerDay == '1730^EVENING^99DCT' || hctzFrequencyPerDay == '1891^ONCE A DAY^99DCT' ))
+                &&(currentMedication.indexOf("amlodipine") >= 0 &&
                         amlodipineNumberOfMilligram == 5 && (amlodipineFrequencyPerDay == '1639^MORNING^99DCT'
-                        || amlodipineFrequencyPerDay == '1730^EVENING^99DCT' || amlodipineFrequencyPerDay == '1891^ONCE A DAY^99DCT' )))) {
+                        || amlodipineFrequencyPerDay == '1730^EVENING^99DCT' || amlodipineFrequencyPerDay == '1891^ONCE A DAY^99DCT' ))) {
             $htnColumnN.show();
         } else {
             $htnColumnN.hide();
         }
     } ;
     hTNReminderColumnN();
+
+    //Start DM reminders
+    var dmReminderColumnB = function () {
+        var $dmColumnB = $('#dmColumnB');
+        var selectedVisitType = $currentVisitType.val();
+        var rbs = parseFloat($rbs.val());
+        if ((selectedVisitType =='7875^WALK IN^99DCT') && (rbs >= 7.8))
+        {
+            $dmColumnB.show();
+        } else {
+            $dmColumnB.hide();
+        }
+    };dmReminderColumnB();
+
+    var dmReminderColumnC = function () {
+        var $htnColumnC = $('#dmColumnC');
+        var selectedVisitType = $currentVisitType.val();
+        var fbs = parseFloat($serumGlucoseFasting.val());
+        var a1c = parseFloat($glycosylatedHemoglobin.val());
+        var currentMedication = getCurrentMedicationValues();
+        if ((selectedVisitType =='7034^FIRST DISPENSARY VISIT AFTER HCT^99DCT'
+                || selectedVisitType == '7035^SECOND DISPENSARY VISIT AFTER HCT^99DCT'
+                || selectedVisitType == '7875^WALK IN^99DCT')
+                && (fbs < 5.6 || a1c < 5.7)
+                && (currentMedication.indexOf("metformin") < 0 && currentMedication.indexOf("glibenclamide") < 0)) {
+            $htnColumnC.show();
+        } else {
+            $htnColumnC.hide();
+        }
+    };dmReminderColumnC();
+    var dmReminderColumnD = function () {
+        var $htnColumnD = $('#dmColumnD');
+        var selectedVisitType = $currentVisitType.val();
+        var serumGlucoseFasting = parseFloat($serumGlucoseFasting.val());
+        var glycosylatedHemoglobin = parseFloat($glycosylatedHemoglobin.val());
+        var currentMedication = getCurrentMedicationValues();
+        if ((selectedVisitType =='7034^FIRST DISPENSARY VISIT AFTER HCT^99DCT'
+                || selectedVisitType == '7035^SECOND DISPENSARY VISIT AFTER HCT^99DCT'
+                || selectedVisitType == '7875^WALK IN^99DCT')
+                && ((serumGlucoseFasting >= 5.6 && serumGlucoseFasting <= 6.9)
+                || (glycosylatedHemoglobin >= 5.7 && glycosylatedHemoglobin <= 7))
+                && (currentMedication.indexOf("metformin") < 0 && currentMedication.indexOf("glibenclamide") < 0)) {
+            $htnColumnD.show();
+        } else {
+            $htnColumnD.hide();
+        }
+    };dmReminderColumnD();
+
+    var dmReminderColumnE = function () {
+        var $htnColumnE = $('#dmColumnE');
+        var urinePregnancyTestQualitativeValue = $urinePregnancyTestQualitative.val();
+        var fbs = parseFloat($serumGlucoseFasting.val());
+        var a1c = parseFloat($glycosylatedHemoglobin.val());
+        var currentMedication = getCurrentMedicationValues();
+        if (urinePregnancyTestQualitativeValue == '703^POSITIVE^99DCT'
+                && ((fbs >= 5.6 || a1c >= 5.7)
+                || (currentMedication.indexOf("metformin") >= 0 || currentMedication.indexOf("glibenclamide") >= 0))) {
+            $htnColumnE.show();
+        } else {
+            $htnColumnE.hide();
+        }
+    };dmReminderColumnE();
+    var dmReminderColumnF = function () {
+        var $htnColumnF = $('#dmColumnF');
+        var selectedVisitType = $currentVisitType.val();
+        var fbs = parseFloat($serumGlucoseFasting.val());
+        var rbs = parseFloat($rbs.val());
+        var a1c = parseFloat($glycosylatedHemoglobin.val());
+        var currentMedication = getCurrentMedicationValues();
+        if ((selectedVisitType =='7034^FIRST DISPENSARY VISIT AFTER HCT^99DCT'
+                || selectedVisitType == '7035^SECOND DISPENSARY VISIT AFTER HCT^99DCT'
+                || selectedVisitType == '7875^WALK IN^99DCT')
+                && (fbs > 10 || rbs > 15.0 || a1c > 9 )
+                && (currentMedication.indexOf("metformin") < 0 && currentMedication.indexOf("glibenclamide") < 0)) {
+            $htnColumnF.show();
+        } else {
+            $htnColumnF.hide();
+        }
+    };dmReminderColumnF();
+
+    var dmReminderColumnG = function () {
+        var $htnColumnG = $('#dmColumnG');
+        var reviewOfSystemsGeneral = getReviewOfSystemsGeneralValues();
+        var selectedVisitType = $currentVisitType.val();
+        var fbs = parseFloat($serumGlucoseFasting.val());
+        var rbs = parseFloat($rbs.val());
+        var a1c = parseFloat($glycosylatedHemoglobin.val());
+        var currentMedication = getCurrentMedicationValues();
+        if ((selectedVisitType =='7034^FIRST DISPENSARY VISIT AFTER HCT^99DCT'
+                || selectedVisitType == '7035^SECOND DISPENSARY VISIT AFTER HCT^99DCT'
+                || selectedVisitType == '7875^WALK IN^99DCT')
+                && ((fbs > 6.9 && fbs <= 10) ||(a1c > 7 && a1c <=9 ))
+                && (currentMedication.indexOf("metformin") < 0 && currentMedication.indexOf("glibenclamide") < 0)
+                && (reviewOfSystemsGeneral.indexOf("5978^NAUSEA^99DCT") < 0  && reviewOfSystemsGeneral.indexOf("5980^VOMITING^99DCT") < 0
+                        &&  reviewOfSystemsGeneral.indexOf("151^ABDOMINAL PAIN^99DCT") < 0  && reviewOfSystemsGeneral.indexOf("6021^OLIGURIA^99DCT") < 0
+                        &&  reviewOfSystemsGeneral.indexOf("5953^VISION DIFFICULTIES^99DCT") < 0  && reviewOfSystemsGeneral.indexOf("5963^SHORTNESS OF BREATH WITH EXERTION^99DCT") < 0
+                        &&  reviewOfSystemsGeneral.indexOf("6005^FOCAL WEAKNESS^99DCT")
+                        )) {
+            $htnColumnG.show();
+        } else {
+            $htnColumnG.hide();
+        }
+    };dmReminderColumnG();
+    var dmReminderColumnH = function () {
+        var $htnColumnH = $('#dmColumnH');
+        var reviewOfSystemsGeneral = getReviewOfSystemsGeneralValues();
+        var currentMedication = getCurrentMedicationValues();
+        if (currentMedication.indexOf("metformin") >= 0
+                && (reviewOfSystemsGeneral.indexOf("5978^NAUSEA^99DCT") < 0  || reviewOfSystemsGeneral.indexOf("5980^VOMITING^99DCT") < 0
+                        ||  reviewOfSystemsGeneral.indexOf("151^ABDOMINAL PAIN^99DCT") < 0  && reviewOfSystemsGeneral.indexOf("16^DIARRHEA^99DCT") < 0
+                        ||  reviewOfSystemsGeneral.indexOf("996^CONSTIPATION^99DCT")
+                        )) {
+            $htnColumnH.show();
+        } else {
+            $htnColumnH.hide();
+        }
+    };dmReminderColumnH();
+
+    var dmReminderColumnI = function () {
+        var $htnColumnI = $('#dmColumnI');
+        var reviewOfSystemsGeneral = getReviewOfSystemsGeneralValues();
+        var selectedVisitType = $currentVisitType.val();
+        var fbs = parseFloat($serumGlucoseFasting.val());
+        var urinePregnancyTestQualitativeValue = $urinePregnancyTestQualitative.val();
+        var currentMedication = getCurrentMedicationValues();
+        if (selectedVisitType =='7036^RETURN DISPENSARY VISIT^99DCT' && fbs < 8
+                && urinePregnancyTestQualitativeValue == '664^NEGATIVE^99DCT'
+                && (currentMedication.indexOf("metformin") >=0 || currentMedication.indexOf("glibenclamide") >= 0)
+                && (reviewOfSystemsGeneral.indexOf("5978^NAUSEA^99DCT") < 0  && reviewOfSystemsGeneral.indexOf("5980^VOMITING^99DCT") < 0
+                        &&  reviewOfSystemsGeneral.indexOf("151^ABDOMINAL PAIN^99DCT") < 0  && reviewOfSystemsGeneral.indexOf("6021^OLIGURIA^99DCT") < 0
+                        &&  reviewOfSystemsGeneral.indexOf("5953^VISION DIFFICULTIES^99DCT") < 0  && reviewOfSystemsGeneral.indexOf("5963^SHORTNESS OF BREATH WITH EXERTION^99DCT") < 0
+                        &&  reviewOfSystemsGeneral.indexOf("6005^FOCAL WEAKNESS^99DCT") && reviewOfSystemsGeneral.indexOf("16^DIARRHEA^99DCT")
+                        && reviewOfSystemsGeneral.indexOf("996^CONSTIPATION^99DCT")
+                        )) {
+            $htnColumnI.show();
+        } else {
+            $htnColumnI.hide();
+        }
+    };dmReminderColumnI();
+
+    var dmReminderColumnJ = function () {
+        var $htnColumnJ = $('#dmColumnJ');
+        var reviewOfSystemsGeneral = getReviewOfSystemsGeneralValues();
+        var selectedVisitType = $currentVisitType.val();
+        var fbs = parseFloat($serumGlucoseFasting.val());
+        var urinePregnancyTestQualitativeValue = $urinePregnancyTestQualitative.val();
+        var currentMedication = getCurrentMedicationValues();
+        var metforminCurrentMilligramVal = parseFloat($metforminCurrentMilligram.val());
+        var metforminFrequencyPerDayVal = $metforminFrequencyPerDay.val();
+        if (selectedVisitType =='7036^RETURN DISPENSARY VISIT^99DCT' && fbs >= 8
+                && urinePregnancyTestQualitativeValue == '664^NEGATIVE^99DCT'
+                && (currentMedication.indexOf("metformin") >= 0
+                        && metforminCurrentMilligramVal == 500
+                        && (metforminFrequencyPerDayVal == '1639^MORNING^99DCT'
+                        || metforminFrequencyPerDayVal == '1730^EVENING^99DCT' || metforminFrequencyPerDayVal == '1891^ONCE A DAY^99DCT' ))
+                && (reviewOfSystemsGeneral.indexOf("5978^NAUSEA^99DCT") < 0  && reviewOfSystemsGeneral.indexOf("5980^VOMITING^99DCT") < 0
+                        &&  reviewOfSystemsGeneral.indexOf("151^ABDOMINAL PAIN^99DCT") < 0  && reviewOfSystemsGeneral.indexOf("6021^OLIGURIA^99DCT") < 0
+                        &&  reviewOfSystemsGeneral.indexOf("5953^VISION DIFFICULTIES^99DCT") < 0  && reviewOfSystemsGeneral.indexOf("5963^SHORTNESS OF BREATH WITH EXERTION^99DCT") < 0
+                        &&  reviewOfSystemsGeneral.indexOf("6005^FOCAL WEAKNESS^99DCT") && reviewOfSystemsGeneral.indexOf("16^DIARRHEA^99DCT")
+                        && reviewOfSystemsGeneral.indexOf("996^CONSTIPATION^99DCT")
+                        )) {
+            $htnColumnJ.show();
+        } else {
+            $htnColumnJ.hide();
+        }
+    };dmReminderColumnJ();
+    var dmReminderColumnK = function () {
+        var $htnColumnK = $('#dmColumnK');
+        var reviewOfSystemsGeneral = getReviewOfSystemsGeneralValues();
+        var selectedVisitType = $currentVisitType.val();
+        var fbs = parseFloat($serumGlucoseFasting.val());
+        var urinePregnancyTestQualitativeValue = $urinePregnancyTestQualitative.val();
+        var currentMedication = getCurrentMedicationValues();
+        var metforminCurrentMilligramVal = parseFloat($metforminCurrentMilligram.val());
+        var metforminFrequencyPerDayVal = $metforminFrequencyPerDay.val();
+        if (selectedVisitType =='7036^RETURN DISPENSARY VISIT^99DCT' && fbs >= 8
+                && urinePregnancyTestQualitativeValue == '664^NEGATIVE^99DCT'
+                && (currentMedication.indexOf("metformin") >= 0
+                        && metforminCurrentMilligramVal == 500
+                        && (metforminFrequencyPerDayVal == '1888^TWICE A DAY^99DCT'))
+                && (reviewOfSystemsGeneral.indexOf("5978^NAUSEA^99DCT") < 0  && reviewOfSystemsGeneral.indexOf("5980^VOMITING^99DCT") < 0
+                        &&  reviewOfSystemsGeneral.indexOf("151^ABDOMINAL PAIN^99DCT") < 0  && reviewOfSystemsGeneral.indexOf("6021^OLIGURIA^99DCT") < 0
+                        &&  reviewOfSystemsGeneral.indexOf("5953^VISION DIFFICULTIES^99DCT") < 0  && reviewOfSystemsGeneral.indexOf("5963^SHORTNESS OF BREATH WITH EXERTION^99DCT") < 0
+                        &&  reviewOfSystemsGeneral.indexOf("6005^FOCAL WEAKNESS^99DCT") && reviewOfSystemsGeneral.indexOf("16^DIARRHEA^99DCT")
+                        && reviewOfSystemsGeneral.indexOf("996^CONSTIPATION^99DCT")
+                        )) {
+            $htnColumnK.show();
+        } else {
+            $htnColumnK.hide();
+        }
+    };dmReminderColumnK();
+    var dmReminderColumnL = function () {
+        var $htnColumnL = $('#dmColumnL');
+        var reviewOfSystemsGeneral = getReviewOfSystemsGeneralValues();
+        var selectedVisitType = $currentVisitType.val();
+        var fbs = parseFloat($serumGlucoseFasting.val());
+        var urinePregnancyTestQualitativeValue = $urinePregnancyTestQualitative.val();
+        var currentMedication = getCurrentMedicationValues();
+        var metforminCurrentMilligramVal = parseFloat($metforminCurrentMilligram.val());
+        var metforminFrequencyPerDayVal = $metforminFrequencyPerDay.val();
+        if (selectedVisitType =='7036^RETURN DISPENSARY VISIT^99DCT' && fbs >= 8
+                && urinePregnancyTestQualitativeValue == '664^NEGATIVE^99DCT'
+                && (currentMedication.indexOf("metformin") >= 0
+                        && metforminCurrentMilligramVal == 750
+                        && (metforminFrequencyPerDayVal == '1888^TWICE A DAY^99DCT'))
+                && (reviewOfSystemsGeneral.indexOf("5978^NAUSEA^99DCT") < 0  && reviewOfSystemsGeneral.indexOf("5980^VOMITING^99DCT") < 0
+                        &&  reviewOfSystemsGeneral.indexOf("151^ABDOMINAL PAIN^99DCT") < 0  && reviewOfSystemsGeneral.indexOf("6021^OLIGURIA^99DCT") < 0
+                        &&  reviewOfSystemsGeneral.indexOf("5953^VISION DIFFICULTIES^99DCT") < 0  && reviewOfSystemsGeneral.indexOf("5963^SHORTNESS OF BREATH WITH EXERTION^99DCT") < 0
+                        &&  reviewOfSystemsGeneral.indexOf("6005^FOCAL WEAKNESS^99DCT") && reviewOfSystemsGeneral.indexOf("16^DIARRHEA^99DCT")
+                        && reviewOfSystemsGeneral.indexOf("996^CONSTIPATION^99DCT")
+                        )) {
+            $htnColumnL.show();
+        } else {
+            $htnColumnL.hide();
+        }
+    };dmReminderColumnL();
+    var dmReminderColumnM = function () {
+        var $htnColumnM = $('#dmColumnM');
+        var reviewOfSystemsGeneral = getReviewOfSystemsGeneralValues();
+        var selectedVisitType = $currentVisitType.val();
+        var fbs = parseFloat($serumGlucoseFasting.val());
+        var urinePregnancyTestQualitativeValue = $urinePregnancyTestQualitative.val();
+        var currentMedication = getCurrentMedicationValues();
+        var metforminCurrentMilligramVal = parseFloat($metforminCurrentMilligram.val());
+        var metforminFrequencyPerDayVal = $metforminFrequencyPerDay.val();
+        if (selectedVisitType =='7036^RETURN DISPENSARY VISIT^99DCT' && fbs >= 8
+                && urinePregnancyTestQualitativeValue == '664^NEGATIVE^99DCT'
+                && (currentMedication.indexOf("metformin") >= 0
+                        && metforminCurrentMilligramVal == 1000
+                        && (metforminFrequencyPerDayVal == '1888^TWICE A DAY^99DCT'))
+                && (reviewOfSystemsGeneral.indexOf("5978^NAUSEA^99DCT") < 0  && reviewOfSystemsGeneral.indexOf("5980^VOMITING^99DCT") < 0
+                        &&  reviewOfSystemsGeneral.indexOf("151^ABDOMINAL PAIN^99DCT") < 0  && reviewOfSystemsGeneral.indexOf("6021^OLIGURIA^99DCT") < 0
+                        &&  reviewOfSystemsGeneral.indexOf("5953^VISION DIFFICULTIES^99DCT") < 0  && reviewOfSystemsGeneral.indexOf("5963^SHORTNESS OF BREATH WITH EXERTION^99DCT") < 0
+                        &&  reviewOfSystemsGeneral.indexOf("6005^FOCAL WEAKNESS^99DCT") && reviewOfSystemsGeneral.indexOf("16^DIARRHEA^99DCT") <0
+                        && reviewOfSystemsGeneral.indexOf("996^CONSTIPATION^99DCT") < 0
+                        )) {
+            $htnColumnM.show();
+        } else {
+            $htnColumnM.hide();
+        }
+    };dmReminderColumnM();
+
+    var dmReminderColumnN = function () {
+        var $htnColumnN = $('#dmColumnN');
+        var reviewOfSystemsGeneral = getReviewOfSystemsGeneralValues();
+        var selectedVisitType = $currentVisitType.val();
+        var rbs = parseFloat($rbs.val());
+        var currentMedication = getCurrentMedicationValues();
+        if (rbs >13
+                && ((reviewOfSystemsGeneral.indexOf("5978^NAUSEA^99DCT") >= 0
+                        && reviewOfSystemsGeneral.indexOf("5980^VOMITING^99DCT") < 0 )
+                        ||  reviewOfSystemsGeneral.indexOf("151^ABDOMINAL PAIN^99DCT") < 0
+                        ||  reviewOfSystemsGeneral.indexOf("7045^FAINTING^99DCT") < 0 )){
+            $htnColumnN.show();
+        } else {
+            $htnColumnN.hide();
+        }
+    };dmReminderColumnN();
+    var dmReminderColumnQ = function () {
+        var $htnColumnQ = $('#dmColumnQ');
+        var reviewOfSystemsGeneral = getReviewOfSystemsGeneralValues();
+        var fbs = parseFloat($serumGlucoseFasting.val());
+        var a1c = parseFloat($glycosylatedHemoglobin.val());
+        var currentMedication = getCurrentMedicationValues();
+        if (((fbs >= 5.6 || a1c >= 5.7)
+                        || (currentMedication.indexOf("metformin") >= 0
+                                || currentMedication.indexOf("glibenclamide") >= 0))
+                && (reviewOfSystemsGeneral.indexOf("5978^NAUSEA^99DCT") >= 0
+                        || reviewOfSystemsGeneral.indexOf("6021^OLIGURIA^99DCT") >= 0
+                        ||  reviewOfSystemsGeneral.indexOf("5953^VISION DIFFICULTIES^99DCT") >= 0
+                        || reviewOfSystemsGeneral.indexOf("5963^SHORTNESS OF BREATH WITH EXERTION^99DCT") >= 0
+                        )) {
+            $htnColumnQ.show();
+        } else {
+            $htnColumnQ.hide();
+        }
+    };dmReminderColumnQ();
+
+
+    var dmReminderColumnR = function () {
+        var $dmColumnR = $('#dmColumnR');
+        var systolicBloodValue = parseFloat($systolicBloodPressure.val());
+        var diastolicBloodValue = parseFloat($diastolicBloodPressure.val());
+        var currentMedication = getCurrentMedicationValues();
+        var fbs = parseFloat($serumGlucoseFasting.val());
+        var a1c = parseFloat($glycosylatedHemoglobin.val());
+        if ((systolicBloodValue >= 140 && diastolicBloodValue >= 90
+                && (fbs >= 5.6 || a1c >= 5.7))
+                || (currentMedication.indexOf("metformin") >= 0
+                || currentMedication.indexOf("glibenclamide") >= 0))
+        {
+            $dmColumnR.show();
+
+        } else {
+            $dmColumnR.hide();
+        }
+    };dmReminderColumnR();
+
+    var stdReminderColumnC = function () {
+        var $stdColumnC = $('#stdColumnC');
+        var reviewOfSystemsGeneral = getReviewOfSystemsGeneralValues();
+        if (reviewOfSystemsGeneral.indexOf("5953^VISION DIFFICULTIES^99DCT") >= 0
+                || reviewOfSystemsGeneral.indexOf("5963^SHORTNESS OF BREATH WITH EXERTION^99DCT") >= 0
+                || reviewOfSystemsGeneral.indexOf("7044^HEART RACING^99DCT") >= 0
+                || reviewOfSystemsGeneral.indexOf("590^EDEMA, LEGS^99DCT") >= 0
+                || reviewOfSystemsGeneral.indexOf("6006^CONFUSION^99DCT") >= 0
+                || reviewOfSystemsGeneral.indexOf("6005^FOCAL WEAKNESS^99DCT") >= 0
+                || reviewOfSystemsGeneral.indexOf("2295^UNCONSCIOUS^99DCT") >= 0
+                || reviewOfSystemsGeneral.indexOf("877^DIZZINESS^99DCT") >= 0
+                || reviewOfSystemsGeneral.indexOf("206^CONVULSIONS^99DCT") >= 0
+                ) {
+            $stdColumnC.show();
+        } else {
+            $stdColumnC.hide();
+        }
+    };stdReminderColumnC();
+
+
 
     var displayHTNReminder6 = function () {
         var $htn_reminder_6a = $('#htn_reminder_6a');
@@ -2751,6 +3245,7 @@ $(document).ready(function () {
         displayHTNReminder9();
         hTNReminderColumnI();
     });
+
     $hctzNumberOfMilligram.change(function () {
         displayHTNReminder8();
         displayHTNReminder9();
@@ -3074,6 +3569,11 @@ $(document).ready(function () {
     });
     $currentVisitType.change(function () {
         displayPHCTReview();
+        dmReminderColumnF();
+        dmReminderColumnG();
+        dmReminderColumnC();
+        dmReminderColumnD();
+        dmReminderColumnB();
         hTNReminderColumnB();
         hTNReminderColumnC();
         hTNReminderColumnD();
@@ -3104,7 +3604,12 @@ $(document).ready(function () {
     });
     $currentVisitType.trigger('change');
     $urinePregnancyTest.change(function () {
-        hTNReminderColumnB();
+        dmReminderColumnE();
+        dmReminderColumnI();
+        dmReminderColumnJ();
+        dmReminderColumnK();
+        dmReminderColumnL();
+        dmReminderColumnM();
         hTNReminderColumnD();
         hTNReminderColumnE();
         hTNReminderColumnF();
@@ -3134,6 +3639,18 @@ $(document).ready(function () {
         displayDiabetesReminder10();
     });
     $serumGlucoseFasting.change(function () {
+        dmReminderColumnC();
+        dmReminderColumnI();
+        dmReminderColumnJ();
+        dmReminderColumnK();
+        dmReminderColumnL();
+        dmReminderColumnM();
+        dmReminderColumnD();
+        dmReminderColumnE();
+        dmReminderColumnQ();
+        dmReminderColumnR();
+        dmReminderColumnF();
+        dmReminderColumnG();
         displayHTNReminder3a();
         displayHTNReminder3c();
         displayHTNReminder6();
@@ -3148,6 +3665,13 @@ $(document).ready(function () {
         displayDiabetesReminder10();
     });
     $glycosylatedHemoglobin.change(function () {
+        dmReminderColumnG();
+        dmReminderColumnC();
+        dmReminderColumnD();
+        dmReminderColumnE();
+        dmReminderColumnQ();
+        dmReminderColumnR();
+        dmReminderColumnF();
         displayHTNReminder3a();
         displayHTNReminder3c();
         displayHTNReminder6();
@@ -3157,6 +3681,11 @@ $(document).ready(function () {
         displayDiabetesReminder3();
         displayDiabetesReminder4();
         displayDiabetesReminder5();
+    });
+    $rbs.change(function () {
+       dmReminderColumnB();
+       dmReminderColumnF();
+       dmReminderColumnN();
     });
     $systolicBloodPressure.change(function () {
         hTNReminderColumnB();
@@ -3169,8 +3698,10 @@ $(document).ready(function () {
         hTNReminderColumnI();
         hTNReminderColumnJ();
         hTNReminderColumnK();
+        hTNReminderColumnL();
         hTNReminderColumnM();
         hTNReminderColumnN();
+        dmReminderColumnR();
         displayHTNReminder2();
         displayHTNReminder3a();
         displayHTNReminder3b();
@@ -3187,6 +3718,19 @@ $(document).ready(function () {
         displayDiabetesReminder4();
     });
     $('input[name="obs.tmp_drugs"]').change(function () {
+        dmReminderColumnC();
+        dmReminderColumnI();
+        dmReminderColumnJ();
+        dmReminderColumnK();
+        dmReminderColumnL();
+        dmReminderColumnM();
+        dmReminderColumnD();
+        dmReminderColumnE();
+        dmReminderColumnQ();
+        dmReminderColumnR();
+        dmReminderColumnF();
+        dmReminderColumnG();
+        dmReminderColumnH();
         hTNReminderColumnB();
         hTNReminderColumnE();
         hTNReminderColumnI();
@@ -3207,6 +3751,16 @@ $(document).ready(function () {
         displayDiabetesReminder10();
     });
     $('input[data-concept="1069^REVIEW OF SYSTEMS, GENERAL^99DCT"]').change(function () {
+        dmReminderColumnG();
+        stdReminderColumnC();
+        dmReminderColumnQ();
+        dmReminderColumnN();
+        dmReminderColumnH();
+        dmReminderColumnI();
+        dmReminderColumnJ();
+        dmReminderColumnK();
+        dmReminderColumnL();
+        dmReminderColumnM();
         hTNReminderColumnG();
         hTNReminderColumnF();
         hTNReminderColumnH();
@@ -3241,6 +3795,7 @@ $(document).ready(function () {
         hTNReminderColumnL();
         hTNReminderColumnM();
         hTNReminderColumnN();
+        dmReminderColumnR();
         displayHTNReminder2();
         displayHTNReminder3a();
         displayHTNReminder3b();
@@ -3260,10 +3815,18 @@ $(document).ready(function () {
         displayDiabetesReminder8();
         displayDiabetesReminder9();
         displayDiabetesReminder10();
+        dmReminderColumnJ();
+        dmReminderColumnK();
+        dmReminderColumnL();
+        dmReminderColumnM();
     });
     $metforminFrequencyPerDay.change(function () {
         displayDiabetesReminder8();
         displayDiabetesReminder9();
+        dmReminderColumnJ();
+        dmReminderColumnK();
+        dmReminderColumnL();
+        dmReminderColumnM();
     });
 
     /* End - Reminder triggers */
