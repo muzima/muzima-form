@@ -16,7 +16,7 @@
 
 <body class="col-md-10 col-md-offset-1">
 <div id="pre_populate_data"></div>
-<form class="relevant-female" id="via_form" name="via_form">
+<form class="relevant-female" id="dysplasia_form" name="dysplasia_form">
 <h2 class="text-center">Dysplasia Form v 0.01</h2>
 
 <div class="section">
@@ -1117,14 +1117,14 @@ $(document).ready(function () {
         $(this).prop('disabled', false);
     });
 
-    $('#breastcancer_form').validate({
+    $('#dysplasia_form').validate({
         rules: {
             gravida: {
-                number: true,
+                digit: true,
                 min: 0
             },
             parity: {
-                number: true,
+                digit: true,
                 min: 0
             },
             age_of_first_pregnancy: {
