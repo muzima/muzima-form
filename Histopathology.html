@@ -24,24 +24,24 @@
         </div>
         <div class="form-group">
             <label for="patient.given_name">Given Name:</label>
-            <input class="form-control" id="patient.given_name" name="patient.given_name" type="text">
+            <input class="form-control" id="patient.given_name" name="patient.given_name" type="text" readonly="readonly">
         </div>
         <div class="form-group">
             <label for="patient.family_name">Family Name:</label>
-            <input class="form-control" id="patient.family_name" name="patient.family_name" type="text">
+            <input class="form-control" id="patient.family_name" name="patient.family_name" type="text" readonly="readonly">
         </div>
         <div class="form-group">
             <label for="patient.middle_name">Middle Name:</label>
-            <input class="form-control" id="patient.middle_name" name="patient.middle_name" type="text">
+            <input class="form-control" id="patient.middle_name" name="patient.middle_name" type="text" readonly="readonly">
         </div>
         <div class="form-group">
             <label for="patient.medical_record_number">AMRS ID Number</label>
             <input class="form-control checkDigit" id="patient.medical_record_number"
-                   name="patient.medical_record_number" type="text">
+                   name="patient.medical_record_number" type="text" readonly="readonly">
         </div>
         <div class="form-group">
             <label for="patient.sex">Gender:</label>
-            <select class="form-control" id="patient.sex" name="patient.sex" disabled="disabled">
+            <select class="form-control" id="patient.sex" name="patient.sex" readonly="readonly">
                 <option value="">...</option>
                 <option value="M">Male</option>
                 <option value="F">Female</option>
@@ -57,15 +57,8 @@
         <h3>Encounter Details</h3>
         <div class="form-group">
             <label for="encounter.location_id">Screening Site:<span class="required">*</span></label>
-            <select class="form-control" name="encounter.location_id" id="encounter.location_id" required="required">
-                <option value="">...</option>
-                <option value="9">Ampath MTRH</option>
-                <option value="7">Chulaimbo</option>
-                <option value="17">Iten</option>
-                <option value="2">Mosoriot</option>
-                <option value="3">Turbo</option>
-                <option value="8">Webuye</option>
-            </select>
+            <input class="form-control" id="encounter.location_id" type="text" placeholder="Start typing something...">
+            <input class="form-control" name="encounter.location_id" type="hidden" required="required">
         </div>
         <div class="form-group">
             <label for="encounter.encounter_datetime">Encounter Date:<span class="required">*</span>
@@ -94,7 +87,7 @@
             </select>
         </div>
         <div class="form-group">
-            <label for="obs.procedures_done_this_visit_detailed">How was specimen collected?</label>
+            <label for="obs.procedures_done_this_visit_detailed">How was specimen collected?<span class="required">*</span></label>
             <select class="form-control" name="obs.procedures_done_this_visit_detailed"
                     data-concept="7479^PROCEDURES DONE THIS VISIT^99DCT"
                     id="obs.procedures_done_this_visit_detailed" required="required">
@@ -187,12 +180,6 @@
 
     <div class="section">
         <div class="form-group">
-            <label for="freetext_general">Comments</label>
-            <textarea class="form-control" name="freetext_general" id="freetext_general"
-                      data-concept="1915^FREETEXT GENERAL^99DCT"
-                      placeholder="Provider notes/comments."></textarea>
-        </div>
-        <div class="form-group">
             <label for="encounter.provider_id_select">Provider Name:</label>
             <input class="form-control" id="encounter.provider_id_select" type="text"
                    placeholder="Start typing provider name here ...">
@@ -204,11 +191,11 @@
             <input class="form-control checkDigit" id="encounter.provider_id" name="encounter.provider_id" type="text"
                    placeholder="Or enter the provider system id here ..." required="required">
         </div>
-        <div class="form-group">
-            <label for="return_visit_date">Encounter Date <span class="required">*</span></label>
-            <input class="form-control datepicker" readonly="readonly" id="return_visit_date"
-                   name="return_visit_date" data-concept="5096^RETURN VISIT DATE^99DCT"
-                   type="text" required="required">
+         <div class="form-group">
+            <label for="freetext_general">Comments</label>
+            <input class="form-control" name="freetext_general" id="freetext_general"
+                      data-concept="1915^FREETEXT GENERAL^99DCT"
+                      placeholder="Provider notes/comments.">
         </div>
     </div>
 </form>
@@ -236,6 +223,83 @@
             document.submit();
             $(this).prop('disabled', false);
         });
+
+        var locationName = [
+        {"val": "7", "label": "Chulaimbo"},
+        {"val": "3", "label": "Turbo"},
+        {"val": "17", "label": "Iten"},
+        {"val": "2", "label": "Mosoriot"},
+        {"val": "8", "label": "Webuye"},
+        {"val": "9", "label": "Ampath MTRH"}
+        ];
+        $('#encounter\\.location_id').autocomplete({
+            source: locationName,
+            create: function (event, ui) {
+                var location_val = $('input[name="encounter\\.location_id"]').val();
+                $.each(locationName, function (i, elem) {
+                    if (elem.val == location_val) {
+                        $('#encounter\\.location_id').val(elem.label)
+                    }
+                    ;
+                });
+            },
+            select: function (event, ui) {
+                $('input[name="encounter\\.location_id"]').val(ui.item.val);
+                $('#encounter\\.location_id').val(ui.item.label);
+                return false;
+            }
+        });
+        var provider = [
+            {"label": "Daurine Achieng Agumba", "val": "3419-9"},
+            {"label": "Irene Chepkosgei Kurgat", "val": "3420-7"},
+            {"label": "Rose Cheruto Toroitich", "val": "3421-5"},
+            {"label": "Mary Kipkurui Kimosop", "val": "3422-3"},
+            {"label": "Jacqueline Chemom Ndiema", "val": "3423-1"},
+            {"label": "Grace Wanjiru Mwangi", "val": "3424-9"},
+            {"label": "Collette Mabia Palapala", "val": "3425-6"},
+            {"label": "Dorice Erima Wekesa", "val": "3426-4"},
+            {"label": "Agnes Kagure Boen", "val": "120-6"},
+            {"label": "Linet Kerubo Onyancha", "val": "3427-2"},
+            {"label": "Delinah Muchai Tanui", "val": "1208-8"},
+            {"label": "Hellen Mushimbi Indumbwe", "val": "1208-8"},
+            {"label": "Lydia Cherugut Samoei", "val": "1525-5"},
+            {"label": "Ruth Kalunda Nzili", "val": "1529-7"},
+            {"label": "Lucy Cheruto Birgen", "val": "3428-0"},
+            {"label": "Gratiah Nafuna Khaemba", "val": "1409-2"},
+            {"label": "Leonida Chemutai Mengich", "val": "1357-3"},
+            {"label": "Ann Wangoi Maina", "val": "1412-6"},
+            {"label": "Elkanah Omenge Orango", "val": "1474-6"},
+            {"label": "Peter Mukhanadale Istura", "val": "1478-7"},
+            {"label": "Hillary Mabeya", "val": "1476-1"},
+            {"label": "Astrid Christoffersen Deb", "val": "1237-7"},
+            {"label": "Philip Kipkirui Tonui", "val": "1485-7"}
+        ];
+
+        $('#encounter\\.provider_id_select').autocomplete({
+            source: provider,
+            create: function (event, ui) {
+                var provider_val = $('input[name="encounter\\.provider_id_select"]').val();
+                $.each(provider, function (i, elem) {
+                    if (elem.val == provider_val) {
+                        $('#encounter\\.provider_id_select').val(elem.label)
+                    }
+                });
+            },
+            select: function (event, ui) {
+                $('input[name="encounter\\.provider_id_select"]').val(ui.item.val);
+                $('#encounter\\.provider_id_select').val(ui.item.label);
+                $('#encounter\\.provider_id').val(ui.item.val);
+                $('.show_provider_id_text').hide();
+                return false;
+            }
+        });
+        $('#encounter\\.provider_id_select').change(function () {
+            if ($('#encounter\\.provider_id_select').val() === '') {
+                $('#encounter\\.provider_id').val('');
+                $('.show_provider_id_text').show();
+            }
+        });
+
 
         var $patientSex = $('#patient\\.sex');
         $patientSex.change(function () {
