@@ -85,7 +85,7 @@
             <span class="required">*</span>
         </label>
         <input class="form-control datepicker nonFutureDate" id="obs.last_menstrual_period_date"
-               name="last_menstrual_period_date" type="date" data-concept="1836^LAST MENSTRUAL PERIOD DATE^99DCT"
+               name="last_menstrual_period_date" type="text" data-concept="1836^LAST MENSTRUAL PERIOD DATE^99DCT"
                required="required">
     </div>
     <div class="section">
@@ -313,14 +313,14 @@
                     Do not know
                 </label>
             </div>
-        </fieldset>
 
-        <div class="form-group">
+         <div class="form-group">
             <label for="date_most_recent_papanicolaou_smear_performed">Date of most recent PAP result</label>
             <input class="form-control datepicker nonFutureDate" id="date_most_recent_papanicolaou_smear_performed"
-                   name="date_most_recent_papanicolaou_smear_performed" type="date"
+                   name="date_most_recent_papanicolaou_smear_performed" type="text"
                    data-concept="6727^DATE MOST RECENT PAPANICOLAOU SMEAR PERFORMED^99DCT">
         </div>
+        </fieldset>
     </div>
 </div>
 <div class="section">
@@ -373,7 +373,10 @@
             {"val": "17", "label": "Iten"},
             {"val": "2", "label": "Mosoriot"},
             {"val": "8", "label": "Webuye"},
-            {"val": "9", "label": "Ampath MTRH"}
+            {"val": "9", "label": "Ampath MTRH"},
+            {"val": "11", "label": "Kitale"},
+            {"val": "19", "label": "Busia"}
+
         ];
         $('#encounter\\.location_id').autocomplete({
             source: locationName,
