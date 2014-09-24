@@ -68,19 +68,6 @@
     </div>
 
     <div class="form-group">
-        <label for="encounter.provider_id_select">Provider ID:</label>
-        <input class="form-control" id="encounter.provider_id_select" type="text"
-               placeholder="Start typing something...">
-        <input class="form-control" name="encounter.provider_id_select" type="hidden">
-    </div>
-
-    <div class="form-group show_provider_id_text">
-        <label for="encounter.provider_id">Enter provider's system-id:<span class="required">*</span>
-        </label>
-        <input class="form-control checkDigit" id="encounter.provider_id" name="encounter.provider_id" type="text"
-               required="required">
-    </div>
-    <div class="form-group">
         <label for="encounter.encounter_datetime">Encounter Date:<span class="required">*</span>
         </label>
         <input class="form-control datepicker nonFutureDate" id="encounter.encounter_datetime"
@@ -192,7 +179,7 @@
         <input class="form-control lessThanGravida" id="parity" name="parity" type="number"
                data-concept="1053^PARITY^99DCT" required="required">
     </div>
-
+    <div class = "section">
     <div class="form-group">
         <label>Current family planning method</label>
         <fieldset name="374^METHOD OF FAMILY PLANNING^99DCT">
@@ -278,7 +265,7 @@
             </div>
         </fieldset>
     </div>
-
+    </div>
     <div class="form-group">
         <label for="hiv_status">HIV status</label>
         <select class="form-control" id="hiv_status" name="hiv_status" type="text"
@@ -338,7 +325,7 @@
         <input class="form-control datepicker nonFutureDate" id="recent_via_result_date"
                name="with-tmp.recent_via_result_date" type="text">
     </div>
-
+    <div class = "section">
     <div class="form-group">
         <h4>Prior PAP results</h4>
         <fieldset name="7423^MOST RECENT PAPANICOLAOU SMEAR RESULT^99DCT">
@@ -414,7 +401,8 @@
                name="date_most_recent_papanicolaou_smear_performed" type="text"
                data-concept="6727^DATE MOST RECENT PAPANICOLAOU SMEAR PERFORMED^99DCT">
     </div>
-
+    </div>
+    <div class = "section">
     <div class="form-group">
         <h4>Prior colposcopy results</h4>
         <fieldset name="7426^MOST RECENT COLPOSCOPY RESULT^99DCT">
@@ -482,7 +470,7 @@
         <input class="form-control datepicker nonFutureDate" id="date_of_colposcopy_result"
                name="with-tmp.date_of_colposcopy_result" type="text" required="required">
     </div>
-
+    </div>
     <div class="form-group">
         <label for="most_recent_biopsy_result">Other biopsy results</label>
         <input class="form-control" id="most_recent_biopsy_result" name="most_recent_biopsy_result" type="text"
@@ -499,6 +487,7 @@
 <div class="section repeat past_treatment_of_dysplasia_detailed" id="past_treatment_of_dysplasia_detailed"
      data-concept="7580^PAST TREATMENT OF DYSPLASIA, DETAILED^99DCT">
 
+    <div class = "section">
     <div class="form-group">
         <h4>Past treatment of dysplasia</h4>
         <div>
@@ -550,11 +539,13 @@
             <label class="font-normal">
                 <input id="past_treatment_of_dysplasia.not_applicable" type="checkbox"
                        data-concept="7467^PAST TREATMENT OF DYSPLASIA^99DCT"
-                       value="1175^NOT APPLICABLE^99DCT">Not Applicable
+                       value="1175^NOT APPLICABLE^99DCT">
+                       Not Applicable
             </label>
         </div>
     </div>
-
+    </div>
+    <div class = "section">
     <div class="form-group">
         <h4>Pathological diagnosis for cervical specimen</h4>
         <div>
@@ -624,7 +615,8 @@
             </div>
         </fieldset>
     </div>
-
+    </div>
+    <div class = "section">
     <div class="form-group">
         <h4>Visual cervical exam findings</h4>
         <fieldset name="7484^VISUAL CERVICAL EXAM FINDINGS^99DCT">
@@ -691,6 +683,8 @@
             </div>
         </fieldset>
     </div>
+    </div>
+    <div class = "section">
     <div class="form-group">
         <h4>Visual vaginal exam findings</h4>
         <fieldset name="7490^VISUAL VAGINAL EXAM FINDINGS ^99DCT">
@@ -734,6 +728,8 @@
             </div>
         </fieldset>
     </div>
+    </div>
+    <div class = "section">
     <div class="form-group">
         <h4>Visual vulval exam findings</h4>
         <fieldset name="7487^VISUAL VULVAL EXAM FINDINGS ^99DCT">
@@ -776,6 +772,7 @@
                 </label>
             </div>
         </fieldset>
+    </div>
     </div>
 </div>
 
@@ -1079,6 +1076,19 @@
 </div>
 
 <div class="section">
+    <div class="form-group">
+        <label for="encounter.provider_id_select">Provider ID:</label>
+        <input class="form-control" id="encounter.provider_id_select" type="text"
+               placeholder="Start typing something...">
+        <input class="form-control" name="encounter.provider_id_select" type="hidden">
+    </div>
+
+    <div class="form-group show_provider_id_text">
+        <label for="encounter.provider_id">Enter provider's system-id:<span class="required">*</span>
+        </label>
+        <input class="form-control checkDigit" id="encounter.provider_id" name="encounter.provider_id" type="text"
+               required="required">
+    </div>
     <div class="form-group">
         <label for="freetext_general">Comments</label>
         <input class="form-control" id="freetext_general" name="freetext_general" type="text"
@@ -1404,35 +1414,6 @@ $(document).ready(function () {
     };
     /* End - Ensuring some selection are selected alone */
 
-    var validateAlone = function (source, values, message) {
-        var errors = {};
-        var validator = $('form').validate();
-
-        var fieldSet = $(source).closest('fieldset');
-        if (fieldSet === undefined) {
-            return true;
-        }
-
-        var selected = false;
-        var checkedBoxes = $(fieldSet).find('input:checkbox:checked');
-        if (checkedBoxes.length > 1) {
-            $.each(checkedBoxes, function (i, checkBox) {
-                $.each(values, function (j, value) {
-                    if ($(checkBox).val() == value) {
-                        selected = true;
-                    }
-                })
-            })
-        }
-
-        if (selected) {
-            errors[$(fieldSet).attr('name')] = message;
-            validator.showErrors(errors);
-        } else {
-            $(fieldSet).removeClass('error');
-            $(fieldSet).closest('.section').find('label.error').remove();
-        }
-    };
 
     /* Start - Hiding refill and new based on current value */
     var $familyPlanning = $(':checkbox[data-concept="374^METHOD OF FAMILY PLANNING^99DCT"]');
@@ -1449,10 +1430,6 @@ $(document).ready(function () {
                 $refilled.closest('.form-group').hide();
             }
         }
-
-        var values = ["1624^DO NOT KNOW^99DCT", "1107^NONE^99DCT"];
-        var message = "If None or Don't know is selected, it should be the only option.";
-        validateAlone($(this), values, message);
     });
     $familyPlanning.trigger('change');
     /* End - Hiding refill and new based on current value */
@@ -1461,49 +1438,60 @@ $(document).ready(function () {
         return true;
     };
 
+    var values = ["1624^DO NOT KNOW^99DCT", "1107^NONE^99DCT"];
+    var message = "If None or Don't know is selected, it should be the only option.";
+    $(':checkbox[data-concept="374^METHOD OF FAMILY PLANNING^99DCT"]').change(function () {
+        toggleValidationMessages(validateAlone($(this), values, message));
+    });
+
     var noneValues = ["1107^NONE^99DCT"];
     var noneMessage = "If None is selected, it should be the only option.";
     $(':checkbox[data-concept="7495^FAMILY PLANNING REFILL PROVIDED^99DCT"]').change(function () {
-        validateAlone($(this), noneValues, noneMessage);
+        toggleValidationMessages(validateAlone($(this), noneValues, noneMessage));
     });
-
     $(':checkbox[data-concept="7240^FAMILY PLANNING METHOD CHOSEN^99DCT"]').change(function () {
-        validateAlone($(this), noneValues, noneMessage);
+        toggleValidationMessages(validateAlone($(this), noneValues, noneMessage));
     });
-
     $(':checkbox[data-concept="5219^CHIEF COMPLAINT^99DCT"]').change(function () {
-        validateAlone($(this), noneValues, noneMessage);
+        toggleValidationMessages(validateAlone($(this), noneValues, noneMessage));
     });
 
     var normalValues = ['1115^NORMAL^99DCT'];
     var normalMessage = "If Normal is selected, it should be the only option.";
     $(':checkbox[data-concept="7484^VISUAL CERVICAL EXAM FINDINGS^99DCT"]').change(function () {
-        validateAlone($(this), normalValues, normalMessage);
+        toggleValidationMessages(validateAlone($(this), normalValues, normalMessage));
     });
     $(':checkbox[data-concept="7490^VISUAL VAGINAL EXAM FINDINGS ^99DCT"]').change(function () {
-        validateAlone($(this), normalValues, normalMessage);
+        toggleValidationMessages(validateAlone($(this), normalValues, normalMessage));
     });
     $(':checkbox[data-concept="7487^VISUAL VULVAL EXAM FINDINGS ^99DCT"]').change(function () {
-        validateAlone($(this), normalValues, normalMessage);
+        toggleValidationMessages(validateAlone($(this), normalValues, normalMessage));
     });
-
+    
     var papanicolaouValues = ['1115^NORMAL^99DCT', '1624^DO NOT KNOW^99DCT'];
     var papanicolaouMessage = "If Normal or Don't Know is selected, it should be the only option.";
     $(':checkbox[data-concept="7423^MOST RECENT PAPANICOLAOU SMEAR RESULT^99DCT"]').change(function () {
-        validateAlone($(this), papanicolaouValues, papanicolaouMessage);
+        toggleValidationMessages(validateAlone($(this), papanicolaouValues, papanicolaouMessage));
     });
-
+    
     var pastTreatmentValues = ["1175^NOT APPLICABLE^99DCT", "1107^NONE^99DCT"]
-    var pastTreatmentMessage = "If normal or don't know is selected, it should be the only option.";
+    var pastTreatmentMessage = "If Not Applicable or None is selected, it should be the only option.";
     $(':checkbox[data-concept="7467^PAST TREATMENT OF DYSPLASIA^99DCT"]').change(function () {
-        validateAlone($(this), pastTreatmentValues, pastTreatmentMessage);
+        toggleValidationMessages(validateAlone($(this), pastTreatmentValues, pastTreatmentMessage));
     });
 
     var dysplasiaValues = ['1115^NORMAL^99DCT'];
     var dysplasiaMessage = "If Normal is selected, it should be the only option.";
     $(':checkbox[data-concept="7579^DYSPLASIA HISTOPATHOLOGICAL FINDINGS BASED ON LAST TREATMENT^99DCT"]').change(function () {
-        validateAlone($(this), dysplasiaValues, dysplasiaMessage);
+        toggleValidationMessages(validateAlone($(this), dysplasiaValues, dysplasiaMessage));
     });
+
+    var colposcopyresultsValues = ['1115^NORMAL^99DCT', "1175^NOT APPLICABLE^99DCT", "1624^DO NOT KNOW^99DCT"]
+    var colposcopyresultsMessage = "If Normal or Don't know or Not Applicable is selected, it should be the only option.";
+    $(':checkbox[data-concept="7426^MOST RECENT COLPOSCOPY RESULT^99DCT"]').change(function () {
+        toggleValidationMessages(validateAlone($(this), colposcopyresultsValues, colposcopyresultsMessage));
+    });
+
 });
 </script>
 
