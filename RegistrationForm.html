@@ -1,5 +1,6 @@
 <html>
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/muzima.css" rel="stylesheet">
     <link href="css/ui-darkness/jquery-ui-1.10.4.custom.min.css" rel="stylesheet">
@@ -9,6 +10,8 @@
     <script src="js/jquery.validate.min.js"></script>
     <script src="js/additional-methods.min.js"></script>
     <script src="js/muzima.js"></script>
+
+    <title>Registration Form</title>
 </head>
 <body class="col-md-8 col-md-offset-2">
 <div id="result"></div>
@@ -112,39 +115,48 @@
                    type="text" required="required">
         </div>
     </div>
-    <div class="form-group text-center">
-        <input class="btn btn-primary" type="button" value="Save"/>
-        <input class="btn btn-primary" type="submit" value="Submit"/>
-    </div>
 </form>
 
 </body>
 <script type="text/javascript">
     $(document).ready(function () {
-        var prePopulateData = $.trim($('#pre_populate_data').html());
-        if (prePopulateData != '') {
-            var prePopulateJSON = JSON.parse(prePopulateData);
-            $.each(prePopulateJSON, function (key, value) {
-                $('[name="' + key + '"]').val(value);
-            });
+
+        var dateFormat = "dd-mm-yy";
+        var currentDate = $.datepicker.formatDate(dateFormat, new Date());
+        var encounterDatetime = $('#encounter\\.encounter_datetime');
+        if ($(encounterDatetime).val() == "") {
+            $(encounterDatetime).val(currentDate);
         }
+
+        $('#save_draft').click(function () {
+            // pre process the medications
+            $(this).prop('disabled', true);
+            document.saveDraft(this);
+            $(this).prop('disabled', false);
+        });
+
+        $('#submit_form').click(function () {
+            // pre process the medications
+            $(this).prop('disabled', true);
+            document.submit();
+            $(this).prop('disabled', false);
+        });
+
         $.fn.calculateFields = function () {
             var tempAgeInYears = $.trim($("#tmp\\.age_in_years").val());
             if (tempAgeInYears != '') {
                 $('#patient\\.birthdate_estimated').val('true');
                 $('#patient\\.birth_date').val($.fn.getTempBirthDate(tempAgeInYears));
             }
+            return true;
         };
 
-        $('#registration_form').validate({
-            submitHandler: function (form) {
-                $.fn.calculateFields();
-                $('#result').html(JSON.stringify($('form').serializeForm()));
-                return false;
-            }
-        });
+        $.fn.customValidationCheck = function () {
+            return $.fn.calculateFields();
+        };
 
-        $('#tmp\\.birthdate_type').change(function () {
+        var dobType = $('#tmp\\.birthdate_type');
+        dobType.change(function () {
             var $show_birth_date = $('.show_birthdate');
             var $show_age = $('.show_age');
             if ($('#tmp\\.birthdate_type').val() == 'age') {
@@ -157,9 +169,7 @@
                 $show_birth_date.show();
             }
         });
-        $('#tmp\\.birthdate_type').trigger('change');
-
-
+        dobType.trigger('change');
     })
 </script>
 
