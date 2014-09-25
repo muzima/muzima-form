@@ -174,11 +174,11 @@ $(document).ready(function () {
     };
 
     document.saveDraft = function () {
-        save("incomplete",false);
+        save("incomplete", false);
         return false;
     };
 
-    var save = function (status) {
+    var save = function (status, keepFormOpen) {
         var jsonData = JSON.stringify($('form').serializeEncounterForm(), null, '\t');
         var pre = $("#json-output");
         if (pre.length == 0) {
