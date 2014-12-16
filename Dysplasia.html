@@ -47,7 +47,7 @@
         <select class="form-control" id="patient.sex" name="patient.sex" disabled="disabled">
             <option value="">...</option>
             <option value="M">Male</option>
-            <option value="F">Female</option>
+            <option value="F" selected>Female</option>
         </select>
     </div>
     <div class="form-group">
@@ -1138,11 +1138,11 @@ $(document).ready(function () {
     $('#dysplasia_form').validate({
         rules: {
             gravida: {
-                digit: true,
+                digits: true,
                 min: 0
             },
             parity: {
-                digit: true,
+                digits: true,
                 min: 0
             },
             age_of_first_pregnancy: {
@@ -1487,13 +1487,13 @@ $(document).ready(function () {
     $(':checkbox[data-concept="7487^VISUAL VULVAL EXAM FINDINGS ^99DCT"]').change(function () {
         toggleValidationMessages(validateAlone($(this), normalValues, normalMessage));
     });
-    
+
     var papanicolaouValues = ['1115^NORMAL^99DCT', '1624^DO NOT KNOW^99DCT'];
     var papanicolaouMessage = "If Normal or Don't Know is selected, it should be the only option.";
     $(':checkbox[data-concept="7423^MOST RECENT PAPANICOLAOU SMEAR RESULT^99DCT"]').change(function () {
         toggleValidationMessages(validateAlone($(this), papanicolaouValues, papanicolaouMessage));
     });
-    
+
     var pastTreatmentValues = ["1175^NOT APPLICABLE^99DCT", "1107^NONE^99DCT"]
     var pastTreatmentMessage = "If Not Applicable or None is selected, it should be the only option.";
     $(':checkbox[data-concept="7467^PAST TREATMENT OF DYSPLASIA^99DCT"]').change(function () {
