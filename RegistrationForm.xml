@@ -256,16 +256,44 @@
         <select1 bind="encounter.location_id">
             <label>Encounter Location</label>
             <item>
+                <label>AMPATH-MTRH</label>
+                <value>84</value>
+            </item>
+            <item>
+                <label>Busia</label>
+                <value>19</value>
+            </item>
+            <item>
+                <label>Chulaimbo</label>
+                <value>7</value>
+            </item>
+            <item>
+                <label>Iten</label>
+                <value>17</value>
+            </item>
+            <item>
+                <label>Kitale</label>
+                <value>11</value>
+            </item>
+            <item>
                 <label>Mosoriot Health Centre</label>
                 <value>2</value>
+            </item>
+            <item>
+                <label>Port Victorial</label>
+                <value>20</value>
+            </item>
+            <item>
+                <label>Teso District Hospital</label>
+                <value>12</value>
             </item>
             <item>
                 <label>Turbo Health Centre</label>
                 <value>3</value>
             </item>
             <item>
-                <label>Teso District Hospital</label>
-                <value>12</value>
+                <label>Webuye</label>
+                <value>8</value>
             </item>
         </select1>
         <select1 appearance="autocomplete" bind="encounter.provider_id">
