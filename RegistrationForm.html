@@ -19,7 +19,10 @@
     <h2 class="text-center">Registration Form</h2>
     <div class="section">
         <h3>Demographics</h3>
-
+	<div class="form-group">
+            <input class="form-control" id="patient.uuid"
+                           name="patient.uuid" type="hidden" readonly="readonly">
+        </div>
         <div class="form-group">
             <label for="patient.family_name">Family Name: <span class="required">*</span> </label>
             <input class="form-control" id="patient.family_name" name="patient.family_name" type="text"
@@ -61,6 +64,24 @@
             </div>
         </div>
     </div>
+<div class="section">
+        <div class="form-group">
+ 	    <label for="other_identifier_type">Identifier<span class="required">*</span></label>
+            <select class="form-control" name="other_identifier_type" id="other_identifier_type" required="required">
+                <option value="">...</option>
+                <option value="ampath_medical_record_number">AMRS Medical Record Number</option>
+                <option value="kenyan_national_id_number">KENYAN NATIONAL ID NUMBER</option>
+            </select>
+	</div>
+	<div class="form-group">
+	   <label for="no_checkdigit_id_value">Enter Identifier<span class="required">*</span></label>
+	   <input class="form-control" id="no_checkdigit_id_value" name="no_checkdigit_id_value" type="text">
+	</div>
+	<div class="form-group">
+	   <label for="confirm_identifier_value">Confirm Identifier<span class="required">*</span></label>
+	   <input class="form-control" id="confirm_identifier_value" name="confirm_identifier_value" type="text">
+	</div>
+</div>
     <div class="section">
         <div class="form-group">
             <label for="tmp.birthdate_type">Will Record Date of Birth... <span class="required">*</span></label>
@@ -89,6 +110,7 @@
         <div class="form-group show_age">
             <label for="tmp.age_in_years">How old are you in Years <span class="required">*</span></label>
             <input class="form-control" id="tmp.age_in_years" name="tmp.age_in_years" type="number" required="required">
+
         </div>
     </div>
     <div class="section">
@@ -109,18 +131,25 @@
             </select>
         </div>
         <div class="form-group">
-            <label for="encounter.provider_id">Provider ID <span class="required">*</span></label>
-            <select class="form-control" id="encounter.provider_id" name="encounter.provider_id" required="required">
-                <option>...</option>
-                <option value="1">Super User</option>
-            </select>
-        </div>
+                    <label for="encounter.provider_id_select">Provider ID:</label>
+                    <input class="form-control" id="encounter.provider_id_select" type="text" placeholder="Start typing something...">
+                    <input class="form-control" name="encounter.provider_id_select" type="hidden">
+                </div>
+                <div class="form-group show_provider_id_text">
+                    <label for="encounter.provider_id">Enter provider's system-id:<span class="required">*</span></label>
+                    <input class="form-control checkDigit" id="encounter.provider_id" name="encounter.provider_id"
+                           type="text" required="required">
+                </div>
         <div class="form-group">
             <label for="encounter.encounter_datetime">Encounter Date <span class="required">*</span></label>
             <input class="form-control datepicker" readonly="readonly" id="encounter.encounter_datetime"
                    name="encounter.encounter_datetime"
                    type="text" required="required">
         </div>
+	<div class="form-group">
+                    <input class="form-control" id="encounter.form_uuid" name="encounter.form_uuid"
+                           type="hidden" required="required">
+                </div>
     </div>
 </form>
 
@@ -177,6 +206,58 @@
             }
         });
         dobType.trigger('change');
+
+
+      var provider = [{"val":"3356-3","label":"David S. Pamba"},
+                {"val":"237-8","label":"Ariya Patrick"},
+                {"val":"3331-6","label":"Benjamin Osiya Ekirapa"},
+                {"val":"3332-4","label":"Molly Omodek Aluku"},
+                {"val":"3333-2","label":"Mercyline Lubisya Omusolo"},
+                {"val":"3334-0","label":"Julita Auma Ndege"},
+                {"val":"3335-7","label":"Caroline Fedha Injete"},
+                {"val":"3336-5","label":"Nelly Nabwire Shiundu"},
+                {"val":"3337-3","label":"Nicholas Dekkers Shitaha"},
+                {"val":"3338-1","label":"Tezra Asangire Okaal"},
+                {"val":"3340-7","label":"Sophy Ikarot Idele"},
+                {"val":"3339-9","label":"Maureen Jacinta Muteitsi"},
+                {"val":"3341-5","label":"Gibson Musera Mutira"},
+                {"val":"3342-3","label":"Titus Chuma Khusua"},
+                {"val":"3343-1","label":"Pamela Ekuriai Emukule"},
+                {"val":"3344-9","label":"Rhoda Jeruto Kurgat"},
+                {"val":"3345-6","label":"Zaitun Hassan Mohamed"},
+                {"val":"3346-4","label":"Grace Gichanga Nyathogora"},
+                {"val":"3347-2","label":"Gabriel Silas Okapes"},
+                {"val":"3348-0","label":"Henry Samson Obonyo"},
+                {"val":"3349-8","label":"Rebecca M. Wambura"},
+                {"val":"3350-6","label":"Zeruya Amwatok Barua"},
+                {"val":"3351-4","label":"Immaculate Otengo Namibia"},
+                {"val":"3352-2","label":"Pamela Were Wamoyi"},
+                {"val":"3357-1","label":"Caroline Wafula Nandisi"},
+                {"val":"3353-0","label":"Markins Opuko Cresent"},
+                {"val":"3354-8","label":"Benedict Kifufuli Wafula"},
+                {"val":"4-2","label":"Sam Sam"},
+                {"val":"3355-5","label":"Clementine Ingosi Osiel"}
+            ];
+
+            $('#encounter\\.provider_id_select').autocomplete({
+                source: provider,
+                create: function (event, ui) {
+                    var provider_val = $('input[name="encounter\\.provider_id_select"]').val();
+                    $.each(provider, function (i, elem) {
+                        if (elem.val == provider_val) {
+                            $('#encounter\\.provider_id_select').val(elem.label)
+                        }
+                    });
+                },
+                select: function (event, ui) {
+                    $('input[name="encounter\\.provider_id_select"]').val(ui.item.val);
+                    $('#encounter\\.provider_id_select').val(ui.item.label);
+                    $('#encounter\\.provider_id').val(ui.item.val);
+                    $('.show_provider_id_text').hide();
+                    return false;
+                }
+            });
+
     })
 </script>
 
