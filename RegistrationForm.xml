@@ -299,9 +299,99 @@
         <select1 appearance="autocomplete" bind="encounter.provider_id">
             <label>Provider ID</label>
             <item>
-                <label>Super User</label>
-                <value>1</value>
-            </item>
+				    <label>Daurine Achieng Agumba</label>
+				    <value>3-4</value>
+				  </item>
+				  <item>
+				    <label>Irene Chepkosgei	Kurgat</label>
+				    <value>3420-7</value>
+				  </item>
+				  <item>
+				    <label>Rose	Cheruto	Toroitich</label>
+				    <value>3-4</value>
+				  </item>
+				  <item>
+				    <label>Mary	Kipkurui Kimosop</label>
+				    <value>3422-3</value>
+				  </item>
+				  <item>
+				    <label>Jacqueline Chemom Ndiema</label>
+				    <value>3423-1</value>
+				  </item>
+				  <item>
+				    <label>Grace Wanjiru Mwangi </label>
+				    <value>3424-9</value>
+				  </item>
+				  <item>
+				    <label>Collette	Mabia Palapala</label>
+				    <value>3425-6</value>
+				  </item>
+				  <item>
+				    <label>Dorice Erima	Wekesa	Female </label>
+				    <value>3426-4</value>
+				  </item>
+				  <item>
+				    <label>Agnes Kagure	Boen</label>
+				    <value>120-6</value>
+				  </item>
+				  <item>
+				    <label>Linet Kerubo	Onyancha</label>
+				    <value>3427-2</value>
+				  </item>
+				  <item>
+				    <label>Delinah Muchai Tanui</label>
+				    <value>1208-8</value>
+				  </item>
+				  <item>
+				    <label>Hellen Mushimbi Indumbwe	</label>
+				    <value>1208-8</value>
+				  </item>
+				  <item>
+				    <label>Lydia Cherugut Samoei </label>
+				    <value>1525-5</value>
+				  </item>
+				  <item>
+				    <label>Ruth	Kalunda	Nzili</label>
+				    <value>1529-7</value>
+				  </item>
+				  <item>
+				    <label>Lucy	Cheruto	Birgen</label>
+				    <value>3428-0</value>
+				  </item>
+				  <item>
+				    <label>Gratiah Nafuna Khaemba</label>
+				    <value>1409-2</value>
+				  </item>
+				  <item>
+				    <label>Leonida Chemutai	Mengich</label>
+				    <value>1357-3</value>
+				  </item>
+				  <item>
+				    <label>Ann Wangoi Maina	</label>
+				    <value>1412-6</value>
+				  </item>
+				  <item>
+				    <label>Elkanah Omenge Orango</label>
+				    <value>1474-6</value>
+				  </item>
+				  
+				  <item>
+				    <label>Peter Mukhanadale Istura	</label>
+				    <value>1478-7</value>
+				  </item>
+				  <item>
+				    <label>Hillary Mabeya</label>
+				    <value>1476-1</value>
+				  </item>
+				  <item>
+				    <label>Astrid Christoffersen Deb </label>
+				    <value>1237-7</value>
+				  </item>
+				  <item>
+				    <label>Philip Kipkirui Tonui
+				    </label>
+				    <value>1485-7</value>
+				  </item>
         </select1>
         <input bind="encounter.encounter_datetime">
             <label>Encounter Date</label>
