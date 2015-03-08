@@ -1,0 +1,1857 @@
+<html>
+<head>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/muzima.css" rel="stylesheet">
+    <link href="css/ui-darkness/jquery-ui-1.10.4.custom.min.css" rel="stylesheet">
+    <script src="js/jquery.min.js"></script>
+    <script src="js/jquery-ui-1.10.4.custom.min.js"></script>
+    <script src="js/jquery.validate.min.js"></script>
+    <script src="js/additional-methods.min.js"></script>
+    <script src="js/muzima.js"></script>
+    <script src="js/LinkageRules.js"></script>
+    <script src="js/CommonRules.js"></script>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <title>LINKAGE Assessment</title>
+</head>
+<body class="col-md-8 col-md-offset-2">
+<div id="pre_populate_data"></div>
+<form id="linkage_form" name="linkage_form">
+<h2 class="text-center">LINKAGE Assessment</h2>
+<div class="section">
+    <h4>Demographics</h4>
+    <div class="form-group">
+        <input class="form-control" id="patient.uuid"
+               name="patient.uuid" type="hidden" readonly="readonly">
+    </div>
+    <div class="form-group">
+        <label for="patient.medical_record_number">AMRS ID Number:</label>
+        <input class="form-control" id="patient.medical_record_number"
+               name="patient.medical_record_number" type="text"
+               readonly="readonly">
+    </div>
+    <div class="form-group">
+        <label for="patient.family_name">Family Name:</label>
+        <input class="form-control" id="patient.family_name"
+               name="patient.family_name" type="text" readonly="readonly">
+    </div>
+    <div class="form-group">
+        <label for="patient.given_name">Given Name:</label>
+        <input class="form-control" id="patient.given_name"
+               name="patient.given_name" type="text" readonly="readonly">
+    </div>
+    <div class="form-group">
+        <label for="patient.middle_name">Middle Name:</label>
+        <input class="form-control" id="patient.middle_name"
+               name="patient.middle_name" type="text" readonly="readonly">
+    </div>
+    <div class="form-group">
+        <label for="patient.sex">Gender:</label>
+        <select class="form-control" id="patient.sex" name="patient.sex" readonly="readonly">
+            <option value="">...</option>
+            <option value="M">Male</option>
+            <option value="F">Female</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="patient.birthdate">Date Of Birth:</label>
+        <input class="form-control" id="patient.birthdate"
+               name="patient.birthdate" type="text" readonly="readonly">
+    </div>
+</div>
+<div class="section">
+    <h4>Encounter Details</h4>
+    <div class="form-group">
+        <label for="encounter.location_id">Encounter Location <span class="required">*</span></label>
+        <select class="form-control" id="encounter.location_id" name="encounter.location_id" required="required">
+            <option>...</option>
+            <option value="2">Mosoriot</option>
+            <option value="3">Turbo</option>
+            <option value="12">Teso District Hospital</option>
+            <option value="60">Chepsaita Dispensary</option>
+            <option value="65">Angurai Health Centre</option>
+            <option value="90">Changara Dispensary</option>
+            <option value="91">Malaba Dispensary</option>
+            <option value="106">Kamollo Dispensary</option>
+            <option value="110">Mogoget Dispensary</option>
+            <option value="111">Biribiriet Dispensary</option>
+            <option value="112">Itigo Dispensary</option>
+            <option value="113">Lelmokwo Dispensary</option>
+            <option value="114">Kokwet Dispensary</option>
+            <option value="115">Ngechek Dispensary</option>
+            <option value="116">Ngechek Dispensary</option>
+            <option value="117">Murgusi Dispensary</option>
+            <option value="118">Cheplasgei Dispensary</option>
+            <option value="119">Sigot Dispensary</option>
+            <option value="120">Sigot Dispensary</option>
+            <option value="121">Sugoi A Dispensary</option>
+            <option value="121">Sugoi B Dispensary</option>
+            <option value="124">Akichelesit Dispensary</option>
+            <option value="125">Aboloi Dispensary</option>
+            <option value="126">Moding Dispensary</option>
+            <option value="127">Sambut</option>
+            <option value="128">Moding Dispensary</option>
+            <option value="128">Ngenyilel</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="encounter.provider_id_select">CHV Name:</label>
+        <input class="form-control" id="encounter.provider_id_select" type="text"
+               placeholder="Start typing provider name here ...">
+        <input class="form-control" name="encounter.provider_id_select" type="hidden">
+    </div>
+
+    <div class="form-group show_provider_id_text">
+        <label for="encounter.provider_id">Enter CHV's system-id:<span class="required">*</span></label>
+        <input class="form-control checkDigit" id="encounter.provider_id" name="encounter.provider_id" type="text"
+               placeholder="Or enter the provider system id here ..." required="required">
+    </div>
+    <div class="form-group">
+        <label for="encounter.encounter_datetime">Encounter Date:<span class="required">*</span>
+        </label>
+        <input class="form-control datepicker nonFutureDate" id="encounter.encounter_datetime"
+               name="encounter.encounter_datetime" type="text" readonly="readonly"
+               required="required">
+    </div>
+    <div class="form-group">
+        <input class="form-control" id="encounter.form_uuid"
+               name="encounter.form_uuid" type="hidden" required="required">
+    </div>
+</div>
+<div class="section">
+<h4><div style="text-align: center;">SECTION II</div><p>Part A: General</h4>
+<div class="place_for_health_care_detailed" id="obs.place_for_health_care_detailed"
+     data-counter="1" data-concept="9087^FACILITY TYPE, DETAILED^99DCT"
+     data-name="obs.place_for_health_care_detailed">
+    <div class="form-group">
+        <label for="obs.place_for_health_care">
+            Where do you usually go for health care?<span class="required">*</span>
+        </label>
+        <select class="form-control specifyOther" id="obs.place_for_health_care" name="obs.place_for_health_care"
+                data-concept="9086^FACILITY TYPE^99DCT" required="required">
+            <option value="">...</option>
+            <option value="6436^DISPENSARY^99DCT">Dispensary</option>
+            <option value="1275^HEALTH CENTRE HOSPITALS^99DCT">Health Center</option>
+            <option value="6437^DISTRICT HOSPITAL^99DCT">District</option>
+            <option value="1863^PRIVATE CLINIC^99DCT">Private Clinic</option>
+            <option value="1860^TRADITIONAL HEALER^99DCT">Herbal Clinic</option>
+            <option value="9088^NEVER BEEN TO A HEALTH FACILITY^99DCT">Never been to a health facility</option>
+            <option value="5622^OTHER NON-CODED^99DCT">Other</option>
+        </select>
+    </div>
+    <div class="form-group freetext">
+        <label for="obs.place_for_health_care.freetext_general">Specify<span class="required">*</span></label>
+        <input class="form-control specifyOther" id="obs.place_for_health_care.freetext_general"
+               name="obs.place_for_health_care.freetext_general" type="text" required="required"
+               data-concept="1915^FREETEXT GENERAL^99DCT">
+    </div>
+</div>
+<div class="form-group">
+    <label for="obs.means_to_usual_health_facility">
+        When you go to your usual health facility, how do you generally get there? <span class="required">*</span>
+    </label>
+    <select class="form-control" id="obs.means_to_usual_health_facility" name="obs.means_to_usual_health_facility"
+            data-concept="6468^MODE OF TRANSPORTATION TO CLINIC^99DCT" required="required">
+        <option value="">...</option>
+        <option value="6415^WALKINGY^99DCT">Foot</option>
+        <option value="6395^BICYCLE^99DCT">Bicycle</option>
+        <option value="6396^MOTORCYCLE^99DCT">Boda</option>
+        <option value="6416^MATATU^99DCT">Matatu</option>
+        <option value="6471^PRIVATE CAR^99DCT">Private car</option>
+        <option value="9088^NEVER BEEN TO A HEALTH FACILITY^99DCT">Never been to a health facility</option>
+        <option value="1958^REFUSAL^99DCT">Refused</option>
+    </select>
+</div>
+<div class="form-group">
+    <label for="obs.how_long_to_facility">
+        On average, how long does it take you to get to the facility? <span class="required">*</span>
+    </label>
+    <select class="form-control" id="obs.how_long_to_facility" name="obs.how_long_to_facility"
+            data-concept="5605^CLINIC TRAVEL TIME^99DCT" required="required">
+        <option value="">...</option>
+        <option value="1049^LESS THAN 30 MINUTES^99DCT">Less than 30 Mins</option>
+        <option value="1050^30 TO 60 MINUTES^99DCT">30 to Less than 60 Mins</option>
+        <option value="1051^ONE TO TWO HOURS^99DCT">1 to Less than 2 hrs</option>
+        <option value="8884^TWO TO THREE HOURS^99DCT">2 to Less than 3 hrs</option>
+        <option value="8885^THREE TO FOUR HOURS^99DCT">3 to Less than 4 hrs</option>
+        <option value="8886^MORE THAN FOUR HOURS^99DCT">More than4 hrs</option>
+        <option value="1958^REFUSAL^99DCT">Refused</option>
+    </select>
+</div>
+<div class="form-group">
+    <label for="obs.rate_personal_manner">
+        How would you rate the personal manner(courtesy, respect,sensitivity, friendliness, and attitude) of the health care provider you see at your usual health facility? <span class="required">*</span>
+    </label>
+    <select class="form-control" id="obs.rate_personal_manner" name="obs.rate_personal_manner"
+            data-concept="9089^HEALTH CARE PROVIDER RATING, PERSONAL MANNERISM^99DCT" required="required">
+        <option value="">...</option>
+        <option value="6343^GOOD^99DCT">Good</option>
+        <option value="6655^FAIR^99DCT">Fair</option>
+        <option value="6344^BAD^99DCT">Poor</option>
+        <option value="1958^REFUSAL^99DCT">Refused</option>
+    </select>
+</div>
+<div class="form-group">
+    <label for="obs.rate_health_manner">
+        How would you rate the health care provider's explanation of your high blood pressure and the treatment you need in a way that you understand?<span class="required">*</span>
+    </label>
+    <select class="form-control" id="obs.rate_health_manner" name="obs.rate_health_manne"
+            data-concept="9090^HEALTH CARE PROVIDER RATING, EXPLANATION AND TREATMENT^99DCT" required="required">
+        <option value="">...</option>
+        <option value="6343^GOOD^99DCT">Good</option>
+        <option value="6655^FAIR^99DCT">Fair</option>
+        <option value="6344^BAD^99DCT">Poor</option>
+        <option value="1958^REFUSAL^99DCT">Refused</option>
+    </select>
+</div>
+
+<div class="section">
+<h4><p>Part B: Perceived Risks/Severity</h4>
+<div class="form-group">
+    <label for="obs.told_having_hypertension">
+        Have you ever been told by a health care provider that you might have high blood pressure or hypertensio? <span class="required">*</span>
+    </label>
+    <select class="form-control yesSelect noSelect" id="obs.told_having_hypertension" name="obs.told_having_hypertension"
+            data-concept="9092^PREVIOUS FINDING, HIGH BLOOD PRESSURE^99DCT" required="required">
+        <option value="">...</option>
+        <option value="1065^YES^99DCT">Yes</option>
+        <option value="1066^NO^99DCT">No</option>
+        <option value="1958^REFUSAL^99DCT">Refused</option>
+    </select>
+</div>
+<div class="form-group yesSectionToShow combinationOneSelect">
+    <label for="obs.having_hypertension">
+        Do you believe that you might have high blood pressure? <span class="required">*</span>
+    </label>
+    <select class="form-control" id="obs.having_hypertension" name="obs.having_hypertension"
+            data-concept="9092^PATIENT REPORTED HIGH BLOOD PRESSURE^99DCT" required="required">
+        <option value="">...</option>
+        <option value="1065^YES^99DCT">Yes</option>
+        <option value="1066^NO^99DCT">No</option>
+        <option value="1958^REFUSAL^99DCT">Refused</option>
+    </select>
+</div>
+<div class="form-group">
+    <label for="obs.perception_of_bp">
+        What is your perception of high blood pressure? <span class="required">*</span>
+    </label>
+    <select class="form-control" id="obs.perception_of_bp" name="obs.perception_of_bp"
+            data-concept="9097^PERCEPTION OF HIGH BLOOD PRESSURE^99DCT" required="required">
+        <option value="">...</option>
+        <option value="9094^VERY SERIOUS^99DCT">Very serious</option>
+        <option value="9095^SERIOUS^99DCT">Serious</option>
+        <option value="9096^NOT SERIOUS^99DCT">Not that serious</option>
+        <option value="1958^REFUSAL^99DCT">Refused</option>
+    </select>
+</div>
+
+<div class="form-group">
+    <label for="obs.told_having_hypertension">
+        Do you know any signs and symptoms of high blood pressure? <span class="required">*</span>
+    </label>
+    <select class="form-control yesSelect noSelect" id="pb_knowing_signs" name="pb_knowing_signs"
+            data-concept="9149^KNOWLEDGE OF HIGH BLOOD PRESSURE SYMPTOMS^99DCT" required="required">
+        <option value="">...</option>
+        <option value="1065^YES^99DCT">Yes</option>
+        <option value="1066^NO^99DCT">No</option>
+        <option value="1958^REFUSAL^99DCT">Refused</option>
+    </select>
+</div>
+
+<div class="form-group yesSectionToShow">
+
+    <label>What are some of the signs of high blood pressure that you know?
+        (Please do not read the options aloud to the patient; select only those that the patient
+        mentions on his/her own accord)</label>
+
+    <div class="form-group">
+        <fieldset name ="9150^KNOWLEDGE OF HIGH BLOOD PRESSURE SYMPTOMS, SPECIFIC^99DCT">
+            <div class="form-group">
+                <label class="font-normal">
+                    <input id="asymptomatic" type="checkbox"
+                           data-concept="9150^KNOWLEDGE OF HIGH BLOOD PRESSURE SYMPTOMS, SPECIFIC^99DCT"
+                           value="5006^ASYMPTOMATIC^99DCT">
+                    No symptoms (asymptomatic)
+                </label>
+            </div>
+
+            <div class="form-group">
+                <label class="font-normal">
+                    <input id="headache" type="checkbox"
+                           data-concept="9150^KNOWLEDGE OF HIGH BLOOD PRESSURE SYMPTOMS, SPECIFIC^99DCT"
+                           value="620^HEADACHE^99DCT">
+                    Headache
+                </label>
+            </div>
+            <div class="form-group">
+                <label class="font-normal">
+                    <input id="fatigue" type="checkbox"
+                           data-concept="9150^KNOWLEDGE OF HIGH BLOOD PRESSURE SYMPTOMS, SPECIFIC^99DCT"
+                           value="5949^FATIGUE^99DCT">
+                    Fatigue
+                </label>
+            </div>
+
+            <div class="form-group">
+                <label class="font-normal">
+                    <input id="weakness" type="checkbox"
+                           data-concept="9150^KNOWLEDGE OF HIGH BLOOD PRESSURE SYMPTOMS, SPECIFIC^99DCT"
+                           value="5226^WEAKNESS^99DCT">
+                    Weakness
+                </label>
+            </div>
+
+            <div class="form-group">
+                <label class="font-normal">
+                    <input id="shortness_of_breath_with_exertion" type="checkbox"
+                           data-concept="9150^KNOWLEDGE OF HIGH BLOOD PRESSURE SYMPTOMS, SPECIFIC^99DCT"
+                           value="5960^SHORTNESS OF BREATH^99DCT">
+                    Shortness of breath
+                </label>
+            </div>
+
+            <div class="form-group">
+                <label class="font-normal">
+                    <input id="chest_pain" type="checkbox"
+                           data-concept="9150^KNOWLEDGE OF HIGH BLOOD PRESSURE SYMPTOMS, SPECIFIC^99DCT"
+                           value="136^CHEST PAIN^99DCT">
+                    Chest pain
+                </label>
+            </div>
+
+            <div class="form-group">
+                <label class="font-normal">
+                    <input id="edema_legs" type="checkbox"
+                           data-concept="9150^KNOWLEDGE OF HIGH BLOOD PRESSURE SYMPTOMS, SPECIFIC^99DCT"
+                           value="590^EDEMA, LEGS^99DCT">
+                    Leg Swelling (Oedema)
+                </label>
+            </div>
+
+            <div class="form-group">
+                <label class="font-normal">
+                    <input id="palpitation" type="checkbox"
+                           data-concept="9150^KNOWLEDGE OF HIGH BLOOD PRESSURE SYMPTOMS, SPECIFIC^99DCT"
+                           value="7999^PALPITATIONS^99DCT">
+                    Palpitation
+                </label>
+            </div>
+
+
+            <div class="form-group">
+                <label class="font-normal">
+                    <input id="dizziness" type="checkbox"
+                           data-concept="9150^KNOWLEDGE OF HIGH BLOOD PRESSURE SYMPTOMS, SPECIFIC^99DCT"
+                           value="877^DIZZINESS^99DCT">
+                    Dizziness
+                </label>
+            </div>
+            <div class="form-group">
+                <label class="font-normal">
+                    <input class="has-other" id="referred_by.other_non_coded" type="checkbox"
+                           data-concept="9150^KNOWLEDGE OF HIGH BLOOD PRESSURE SYMPTOMS, SPECIFIC^99DCT"
+                           value="5622^OTHER NON-CODED^99DCT">
+                    Other (specify)
+                </label>
+            </div>
+            <div class="form-group freetext">
+                <label for="referred_by.freetext_general">Specify<span class="required">*</span></label>
+                <input class="form-control" id="referred_by.freetext_general"
+                       name="referred_by.freetext_general" type="text" required="required"
+                       data-concept="1915^FREETEXT GENERAL^99DCT">
+            </div>
+
+            <div class="form-group">
+                <label class="font-normal">
+                    <input id="refused" type="checkbox"
+                           data-concept="9150^KNOWLEDGE OF HIGH BLOOD PRESSURE SYMPTOMS, SPECIFIC^99DCT"
+                           value="1958^REFUSAL^99DCT">
+                    Refused/No Answer
+                </label>
+            </div>
+        </fieldset>
+    </div>
+</div>
+
+
+<label>If you have high blood pressure and you don't seek care, do you think you are at risk of...
+</label>
+
+<div class="form-group">
+    <span><strong>Having a stroke<span class="required">*</span></strong></span>
+
+    <fieldset name="1878^STROKE^99DCT">
+        <div class="form-group">
+            <label class="font-normal">
+                <input name="blood_pressure_stroke_bp" id="blood_pressure_stroke_yes" type="radio"
+                       data-concept="9111^PERCEIVED RISK OF HIGH BLOOD PRESSURE WITHOUT CARE^99DCT"
+                       value="1878^STROKE^99DCT">
+                Yes
+            </label>
+        </div>
+        <div class="form-group">
+            <label class="font-normal">
+                <input name="blood_pressure_stroke_bp" id="blood_pressure_stroke_no" type="radio"
+                       data-concept="9112^ABSENCE OF PERCEIVED RISK OF HIGH BLOOD PRESSURE WITHOUT CARE^99DCT"
+                       value="1878^STROKE^99DCT">
+                No
+            </label>
+        </div>
+        <div class="form-group">
+            <label class="font-normal">
+                <input name="blood_pressure_stroke_bp" id="blood_pressure_stroke_na" type="radio"
+                       data-concept="9113^UNANSWERED HEALTH PRACTICES^99DCT"
+                       value="1878^STROKE^99DCT">
+                Refused/No Answer
+            </label>
+        </div>
+    </fieldset>
+</div>
+
+<div class="form-group">
+    <span><strong>Develop kidney failure<span class="required">*</span></strong></span>
+
+    <fieldset name="1885^RENAL FAILURE^99DCT">
+        <div class="form-group">
+            <label class="font-normal">
+                <input name="develop_kidney_failure_bp" id=develop_kidney_failure_yes" type="radio"
+                       data-concept="9111^PERCEIVED RISK OF HIGH BLOOD PRESSURE WITHOUT CARE^99DCT"
+                       value="1885^RENAL FAILURE^99DCT">
+                Yes
+            </label>
+        </div>
+        <div class="form-group">
+            <label class="font-normal">
+                <input name="develop_kidney_failure_bp" id="develop_kidney_failure_no" type="radio"
+                       data-concept="9112^ABSENCE OF PERCEIVED RISK OF HIGH BLOOD PRESSURE WITHOUT CARE^99DCT"
+                       value="1885^RENAL FAILURE^99DCT">
+                No
+            </label>
+        </div>
+        <div class="form-group">
+            <label class="font-normal">
+                <input name="develop_kidney_failure_bp" id="develop_kidney_failure_na" type="radio"
+                       data-concept="9113^UNANSWERED HEALTH PRACTICES^99DCT"
+                       value="1885^RENAL FAILURE^99DCT">
+                Refused/No Answer
+            </label>
+        </div>
+    </fieldset>
+</div>
+<div class="form-group">
+    <span><strong>Develop heart disease<span class="required">*</span></strong></span>
+
+    <fieldset name="6237^HEART DISEASE^99DCT">
+        <div class="form-group">
+            <label class="font-normal">
+                <input name="develop_heart_disease_bp" id=develop_heart_disease_yes" type="radio"
+                       data-concept="9111^PERCEIVED RISK OF HIGH BLOOD PRESSURE WITHOUT CARE^99DCT"
+                       value="6237^HEART DISEASE^99DCT">
+                Yes
+            </label>
+        </div>
+        <div class="form-group">
+            <label class="font-normal">
+                <input name="develop_heart_disease_bp" id="develop_heart_disease_no" type="radio"
+                       data-concept="9112^ABSENCE OF PERCEIVED RISK OF HIGH BLOOD PRESSURE WITHOUT CARE^99DCT"
+                       value="6237^HEART DISEASE^99DCT">
+                No
+            </label>
+        </div>
+        <div class="form-group">
+            <label class="font-normal">
+                <input name="develop_heart_disease_bp" id="develop_heart_disease_na" type="radio"
+                       data-concept="9113^UNANSWERED HEALTH PRACTICES^99DCT"
+                       value="6237^HEART DISEASE^99DCT">
+                Refused/No Answer
+            </label>
+        </div>
+    </fieldset>
+</div>
+
+</div>
+
+
+<div class="section">
+
+<h4>Part C: Perceived Barriers<br><div style="text-align: center;">
+    Have you delayed or not sought care for your high blood pressure for any of the following reasons:
+</div> </h4>
+<div class="form-group">
+    <span><strong>You lacked fare<span class="required">*</span></strong></span>
+
+    <fieldset name="1578^TRANSPORT COSTS^99DCT">
+        <div class="form-group">
+            <label class="font-normal">
+                <input name="you_lacked_fare_bp" id=you_lacked_fare_yes" type="radio"
+                       data-concept="9120^PRESENT BARRIERS TO HEALTHCARE^99DCT"
+                       value="1578^TRANSPORT COSTS^99DCT">
+                Yes
+            </label>
+        </div>
+        <div class="form-group">
+            <label class="font-normal">
+                <input name="you_lacked_fare_bp" id="you_lacked_fare_no" type="radio"
+                       data-concept="9121^ABSENT BARRIERS TO HEALTHCARE^99DCT"
+                       value="1578^TRANSPORT COSTS^99DCT">
+                No
+            </label>
+        </div>
+        <div class="form-group">
+            <label class="font-normal">
+                <input name="you_lacked_fare_bp" id="you_lacked_fare_na" type="radio"
+                       data-concept="9122^UNANSWERED BARRIERS TO HEALTHCARE^99DCT"
+                       value="1578^TRANSPORT COSTS^99DCT">
+                Refused/No Answer
+            </label>
+        </div>
+    </fieldset>
+</div>
+
+<div class="form-group">
+    <span><strong>You lacked the mode of transportation<span class="required">*</span></strong></span>
+
+    <fieldset name="820^TRANSPORT PROBLEMS^99DCT">
+        <div class="form-group">
+            <label class="font-normal">
+                <input name="you_lacked_mode_of_transport_bp" id=you_lacked_mode_of_transport_yes" type="radio"
+                       data-concept="9120^PRESENT BARRIERS TO HEALTHCARE^99DCT"
+                       value="820^TRANSPORT PROBLEMS^99DCT">
+                Yes
+            </label>
+        </div>
+        <div class="form-group">
+            <label class="font-normal">
+                <input name="you_lacked_mode_of_transport_bp" id="you_lacked_mode_of_transport_no" type="radio"
+                       data-concept="9121^ABSENT BARRIERS TO HEALTHCARE^99DCT"
+                       value="820^TRANSPORT PROBLEMS^99DCT">
+                No
+            </label>
+        </div>
+        <div class="form-group">
+            <label class="font-normal">
+                <input name="you_lacked_mode_of_transport_bp" id="you_lacked_mode_of_transport_na" type="radio"
+                       data-concept="9122^UNANSWERED BARRIERS TO HEALTHCARE^99DCT"
+                       value="820^TRANSPORT PROBLEMS^99DCT">
+                Refused/No Answer
+            </label>
+        </div>
+    </fieldset>
+</div>
+
+<div class="form-group">
+    <span><strong>You didn’t have someone to take you<span class="required">*</span></strong></span>
+
+    <fieldset name="820^TRANSPORT PROBLEMS^99DCT">
+        <div class="form-group">
+            <label class="font-normal">
+                <input name="no_someone_to_take_you" id="no_someone_to_take_you_yes" type="radio"
+                       data-concept="9120^PRESENT BARRIERS TO HEALTHCARE^99DCT"
+                       value="9151^ABSENCE OF TREATMENT SUPPORTER^99DCT">
+                Yes
+            </label>
+        </div>
+        <div class="form-group">
+            <label class="font-normal">
+                <input name="no_someone_to_take_you" id="no_someone_to_take_you_no" type="radio"
+                       data-concept="9121^ABSENT BARRIERS TO HEALTHCARE^99DCT"
+                       value="9151^ABSENCE OF TREATMENT SUPPORTER^99DCT">
+                No
+            </label>
+        </div>
+        <div class="form-group">
+            <label class="font-normal">
+                <input name="no_someone_to_take_you" id="no_someone_to_take_you_na" type="radio"
+                       data-concept="9122^UNANSWERED BARRIERS TO HEALTHCARE^99DCT"
+                       value="9151^ABSENCE OF TREATMENT SUPPORTER^99DCT">
+                Refused/No Answer
+            </label>
+        </div>
+    </fieldset>
+</div>
+
+<div class="form-group">
+    <span><strong>You thought seeking health care would cost too much (e.g. medical procedure fee/drug expense fee/etc.)<span class="required">*</span></strong></span>
+
+    <fieldset name="6295^FINANCIAL BARRIER^99DCT">
+        <div class="form-group">
+            <label class="font-normal">
+                <input name="you_lacked_money_bp" id=you_lacked_money_yes" type="radio"
+                       data-concept="9120^PRESENT BARRIERS TO HEALTHCARE^99DCT"
+                       value="6295^FINANCIAL BARRIER^99DCT">
+                Yes
+            </label>
+        </div>
+        <div class="form-group">
+            <label class="font-normal">
+                <input name="you_lacked_money_bp" id="you_lacked_money_no" type="radio"
+                       data-concept="9121^ABSENT BARRIERS TO HEALTHCARE^99DCT"
+                       value="6295^FINANCIAL BARRIER^99DCT">
+                No
+            </label>
+        </div>
+        <div class="form-group">
+            <label class="font-normal">
+                <input name="you_lacked_money_bp" id="you_lacked_money_na" type="radio"
+                       data-concept="9122^UNANSWERED BARRIERS TO HEALTHCARE^99DCT"
+                       value="6295^FINANCIAL BARRIER^99DCT">
+                Refused/No Answer
+            </label>
+        </div>
+    </fieldset>
+</div>
+
+<div class="form-group">
+    <span><strong>You thought it was more important to spend your money on school fees, food, or farm inputs<span class="required">*</span></strong></span>
+
+    <fieldset name="9114^OTHER EXPENSES^99DCT">
+        <div class="form-group">
+            <label class="font-normal">
+                <input name="spend_money_otherwise_bp" id=spend_money_otherwise_yes" type="radio"
+                       data-concept="9120^PRESENT BARRIERS TO HEALTHCARE^99DCT"
+                       value="9114^OTHER EXPENSES^99DCT">
+                Yes
+            </label>
+        </div>
+        <div class="form-group">
+            <label class="font-normal">
+                <input name="spend_money_otherwise_bp" id="spend_money_otherwise_no" type="radio"
+                       data-concept="9121^ABSENT BARRIERS TO HEALTHCARE^99DCT"
+                       value="9114^OTHER EXPENSES^99DCT">
+                No
+            </label>
+        </div>
+        <div class="form-group">
+            <label class="font-normal">
+                <input name="spend_money_otherwise_bp" id="spend_money_otherwise_na" type="radio"
+                       data-concept="9122^UNANSWERED BARRIERS TO HEALTHCARE^99DCT"
+                       value="9114^OTHER EXPENSES^99DCT">
+                Refused/No Answer
+            </label>
+        </div>
+    </fieldset>
+</div>
+
+<div class="form-group">
+    <span><strong>You thought there would be limited services at the health facility<span class="required">*</span></strong></span>
+
+    <fieldset name="9115^LIMITED SERVICES^99DCT">
+        <div class="form-group">
+            <label class="font-normal">
+                <input name="limited_services_bp" id="limited_services_yes" type="radio"
+                       data-concept="9120^PRESENT BARRIERS TO HEALTHCARE^99DCT"
+                       value="9115^LIMITED SERVICES^99DCT">
+                Yes
+            </label>
+        </div>
+        <div class="form-group">
+            <label class="font-normal">
+                <input name="limited_services_bp" id="limited_services_no" type="radio"
+                       data-concept="9121^ABSENT BARRIERS TO HEALTHCARE^99DCT"
+                       value="9115^LIMITED SERVICES^99DCT">
+                No
+            </label>
+        </div>
+        <div class="form-group">
+            <label class="font-normal">
+                <input name="limited_services_bp" id="limited_services_na" type="radio"
+                       data-concept="9122^UNANSWERED BARRIERS TO HEALTHCARE^99DCT"
+                       value="9115^LIMITED SERVICES^99DCT">
+                Refused/No Answer
+            </label>
+        </div>
+    </fieldset>
+</div>
+
+<div class="form-group">
+    <span><strong>You thought there would be long queues at the health facility<span class="required">*</span></strong></span>
+
+    <fieldset name="9116^WAIT AT HEALTH FACILITY^99DCT">
+        <div class="form-group">
+            <label class="font-normal">
+                <input name="long_queues_bp" id="long_queues_yes" type="radio"
+                       data-concept="9120^PRESENT BARRIERS TO HEALTHCARE^99DCT"
+                       value="9116^WAIT AT HEALTH FACILITY^99DCT">
+                Yes
+            </label>
+        </div>
+        <div class="form-group">
+            <label class="font-normal">
+                <input name="long_queues_bp" id="long_queues_no" type="radio"
+                       data-concept="9121^ABSENT BARRIERS TO HEALTHCARE^99DCT"
+                       value="9116^WAIT AT HEALTH FACILITY^99DCT">
+                No
+            </label>
+        </div>
+        <div class="form-group">
+            <label class="font-normal">
+                <input name="long_queues_bp" id="long_queues_na" type="radio"
+                       data-concept="9122^UNANSWERED BARRIERS TO HEALTHCARE^99DCT"
+                       value="9116^WAIT AT HEALTH FACILITY^99DCT">
+                Refused/No Answer
+            </label>
+        </div>
+    </fieldset>
+</div>
+
+<div class="form-group">
+            <span><strong>You thought there would be corruption (taking bribes, favoritism in queues, denial of service) at the
+                health facility<span class="required">*</span></strong></span>
+    <fieldset name="9117^CORRUPTION^99DCT">
+        <div class="form-group">
+            <label class="font-normal">
+                <input name="corruption_bp" id="corruption_yes" type="radio"
+                       data-concept="9120^PRESENT BARRIERS TO HEALTHCARE^99DCT"
+                       value="9117^CORRUPTION^99DCT">
+                Yes
+            </label>
+        </div>
+        <div class="form-group">
+            <label class="font-normal">
+                <input name="corruption_bp" id="corruption_no" type="radio"
+                       data-concept="9121^ABSENT BARRIERS TO HEALTHCARE^99DCT"
+                       value="9117^CORRUPTION^99DCT">
+                No
+            </label>
+        </div>
+        <div class="form-group">
+            <label class="font-normal">
+                <input name="corruption_bp" id="corruption_na" type="radio"
+                       data-concept="9122^UNANSWERED BARRIERS TO HEALTHCARE^99DCT"
+                       value="9117^CORRUPTION^99DCT">
+                Refused/No Answer
+            </label>
+        </div>
+    </fieldset>
+</div>
+
+<div class="form-group">
+    <span><strong>You were not so sick to the extent of needing to lie down<span class="required">*</span></strong></span>
+    <fieldset name="9117^CORRUPTION^99DCT">
+        <div class="form-group">
+            <label class="font-normal">
+                <input name="not_sick" id="not_sick_yes" type="radio"
+                       data-concept="9120^PRESENT BARRIERS TO HEALTHCARE^99DCT"
+                       value="9070^IN GOOD HEALTH^99DCT">
+                Yes
+            </label>
+        </div>
+        <div class="form-group">
+            <label class="font-normal">
+                <input name="not_sick" id="not_sick_no" type="radio"
+                       data-concept="9121^ABSENT BARRIERS TO HEALTHCARE^99DCT"
+                       value="9070^IN GOOD HEALTH^99DCT">
+                No
+            </label>
+        </div>
+        <div class="form-group">
+            <label class="font-normal">
+                <input name="not_sick" id="not_sick_na" type="radio"
+                       data-concept="9122^UNANSWERED BARRIERS TO HEALTHCARE^99DCT"
+                       value="9070^IN GOOD HEALTH^99DCT">
+                Refused/No Answer
+            </label>
+        </div>
+    </fieldset>
+</div>
+
+
+<div class="form-group">
+    <span><strong>Seeking care may not be that helpful/may not make any difference<span class="required">*</span></strong></span>
+
+    <fieldset name="9118^TREATMENT NOT EFFECTIVE, SELF PERCEPTION^99DCT">
+        <div class="form-group">
+            <label class="font-normal">
+                <input name="no_difference_bp" id="no_difference_yes" type="radio"
+                       data-concept="9120^PRESENT BARRIERS TO HEALTHCARE^99DCT"
+                       value="9118^TREATMENT NOT EFFECTIVE, SELF PERCEPTION^99DCT">
+                Yes
+            </label>
+        </div>
+        <div class="form-group">
+            <label class="font-normal">
+                <input name="no_difference_bp" id="no_difference_no" type="radio"
+                       data-concept="9121^ABSENT BARRIERS TO HEALTHCARE^99DCT"
+                       value="9118^TREATMENT NOT EFFECTIVE, SELF PERCEPTION^99DCT">
+                No
+            </label>
+        </div>
+        <div class="form-group">
+            <label class="font-normal">
+                <input name="no_difference_bp" id="no_difference_na" type="radio"
+                       data-concept="9122^UNANSWERED BARRIERS TO HEALTHCARE^99DCT"
+                       value="9118^TREATMENT NOT EFFECTIVE, SELF PERCEPTION^99DCT">
+                Refused/No Answer
+            </label>
+        </div>
+    </fieldset>
+</div>
+
+<div class="form-group">
+    <span><strong>You didn't have time/You could not take time off from the responsibilities you have<span class="required">*</span></strong></span>
+
+    <fieldset name="9148^COMMITMENTS^99DCT">
+        <div class="form-group">
+            <label class="font-normal">
+                <input name="commitments_bp" id="commitments_yes" type="radio"
+                       data-concept="9120^PRESENT BARRIERS TO HEALTHCARE^99DCT"
+                       value="9148^COMMITMENTS^99DCT">
+                Yes
+            </label>
+        </div>
+        <div class="form-group">
+            <label class="font-normal">
+                <input name="commitments_bp" id="commitments_no" type="radio"
+                       data-concept="9121^ABSENT BARRIERS TO HEALTHCARE^99DCT"
+                       value="9148^COMMITMENTS^99DCT">
+                No
+            </label>
+        </div>
+        <div class="form-group">
+            <label class="font-normal">
+                <input name="commitments_bp" id="commitments_na" type="radio"
+                       data-concept="9122^UNANSWERED BARRIERS TO HEALTHCARE^99DCT"
+                       value="9148^COMMITMENTS^99DCT">
+                Refused/No Answer
+            </label>
+        </div>
+    </fieldset>
+</div>
+
+<div class="form-group">
+    <span><strong>You could not find someone to watch over your children<span class="required">*</span></strong></span>
+
+    <fieldset name="9148^COMMITMENTS^99DCT">
+        <div class="form-group">
+            <label class="font-normal">
+                <input name="no_caregiver" id="no_caregiver_yes" type="radio"
+                       data-concept="9120^PRESENT BARRIERS TO HEALTHCARE^99DCT"
+                       value="9152^ABSENCE OF CAREGIVER FOR CHILDREN^99DCT">
+                Yes
+            </label>
+        </div>
+        <div class="form-group">
+            <label class="font-normal">
+                <input name="no_caregiver" id="no_caregiver_no" type="radio"
+                       data-concept="9121^ABSENT BARRIERS TO HEALTHCARE^99DCT"
+                       value="9148^COMMITMENTS^99DCT">
+                No
+            </label>
+        </div>
+        <div class="form-group">
+            <label class="font-normal">
+                <input name="no_caregiver" id="no_caregiver_na" type="radio"
+                       data-concept="9122^UNANSWERED BARRIERS TO HEALTHCARE^99DCT"
+                       value="9148^COMMITMENTS^99DCT">
+                Refused/No Answer
+            </label>
+        </div>
+    </fieldset>
+</div>
+
+<div class="form-group">
+    <span><strong>You preferred traditional herbal medicine<span class="required">*</span></strong></span>
+
+    <fieldset name="8828^HERBAL MEDICATION CONSUMPTION^99DCT">
+        <div class="form-group">
+            <label class="font-normal">
+                <input name="herbal_medicine_bp" id="herbal_medicine_yes" type="radio"
+                       data-concept="9120^PRESENT BARRIERS TO HEALTHCARE^99DCT"
+                       value="8828^HERBAL MEDICATION CONSUMPTION^99DCT">
+                Yes
+            </label>
+        </div>
+        <div class="form-group">
+            <label class="font-normal">
+                <input name="herbal_medicine_bp" id="herbal_medicine_no" type="radio"
+                       data-concept="9121^ABSENT BARRIERS TO HEALTHCARE^99DCT"
+                       value="8828^HERBAL MEDICATION CONSUMPTION^99DCT">
+                No
+            </label>
+        </div>
+        <div class="form-group">
+            <label class="font-normal">
+                <input name="herbal_medicine_bp" id="herbal_medicine_na" type="radio"
+                       data-concept="9122^UNANSWERED BARRIERS TO HEALTHCARE^99DCT"
+                       value="8828^HERBAL MEDICATION CONSUMPTION^99DCT">
+                Refused/No Answer
+            </label>
+        </div>
+    </fieldset>
+</div>
+
+<div class="form-group">
+    <span><strong>You received medication from your friend or family member<span class="required">*</span></strong></span>
+
+    <fieldset name="7064^SHARE MEDICATION WITH OTHER PEOPLE^99DCT">
+        <div class="form-group">
+            <label class="font-normal">
+                <input name="medication_from_family_member_bp" id="medication_from_family_member_yes" type="radio"
+                       data-concept="9120^PRESENT BARRIERS TO HEALTHCARE^99DCT"
+                       value="7064^SHARE MEDICATION WITH OTHER PEOPLE^99DCT">
+                Yes
+            </label>
+        </div>
+        <div class="form-group">
+            <label class="font-normal">
+                <input name="medication_from_family_member_bp" id="medication_from_family_member_no" type="radio"
+                       data-concept="9121^ABSENT BARRIERS TO HEALTHCARE^99DCT"
+                       value="7064^SHARE MEDICATION WITH OTHER PEOPLE^99DCT">
+                No
+            </label>
+        </div>
+        <div class="form-group">
+            <label class="font-normal">
+                <input name="medication_from_family_member_bp" id="medication_from_family_member_na" type="radio"
+                       data-concept="9122^UNANSWERED BARRIERS TO HEALTHCARE^99DCT"
+                       value="7064^SHARE MEDICATION WITH OTHER PEOPLE^99DCT">
+                Refused/No Answer
+            </label>
+        </div>
+    </fieldset>
+</div>
+
+<div class="form-group">
+    <span><strong>You believe your faith will heal you<span class="required">*</span></strong></span>
+
+    <fieldset name="1587^HEALED BY FAITH^99DCT">
+        <div class="form-group">
+            <label class="font-normal">
+                <input name="faith_will_heal_bp" id="faith_will_heal_yes" type="radio"
+                       data-concept="9120^PRESENT BARRIERS TO HEALTHCARE^99DCT"
+                       value="1587^HEALED BY FAITH^99DCT">
+                Yes
+            </label>
+        </div>
+        <div class="form-group">
+            <label class="font-normal">
+                <input name="faith_will_heal_bp" id="faith_will_heal_no" type="radio"
+                       data-concept="9121^ABSENT BARRIERS TO HEALTHCARE^99DCT"
+                       value="1587^HEALED BY FAITH^99DCT">
+                No
+            </label>
+        </div>
+        <div class="form-group">
+            <label class="font-normal">
+                <input name="faith_will_heal_bp" id="faith_will_heal_na" type="radio"
+                       data-concept="9122^UNANSWERED BARRIERS TO HEALTHCARE^99DCT"
+                       value="1587^HEALED BY FAITH^99DCT">
+                Refused/No Answer
+            </label>
+        </div>
+    </fieldset>
+</div>
+
+</div>
+
+<div class="section">
+<h4>Part D: Emotional Factors<br>
+    <div style="text-align: center;">Have you ever not sought care for your high blood pressure because of one or more or the following reasons</div> </h4>
+
+
+<div class="form-group">
+    <span><strong>You were afraid of the outcome of blood pressure screening<span class="required">*</span></strong></span>
+
+    <fieldset name="9154^AFRAID OF TEST RESULTS^99DCT">
+        <div class="form-group">
+            <label class="font-normal">
+                <input name="afraid_of_the_outcome" id="afraid_of_the_outcome_yes" type="radio"
+                       data-concept="9153^PRESENT EMOTIONAL BARRIER TO HEALTHCARE, EVER^99DCT"
+                       value="9154^AFRAID OF TEST RESULTS^99DCT">
+                Yes
+            </label>
+        </div>
+        <div class="form-group">
+            <label class="font-normal">
+                <input name="afraid_of_the_outcome" id="afraid_of_the_outcome_no" type="radio"
+                       data-concept="9156^ABSENT EMOTIONAL BARRIER TO HEALTHCARE, EVER^99DCT"
+                       value="9154^AFRAID OF TEST RESULTS^99DCT">
+                No
+            </label>
+        </div>
+        <div class="form-group">
+            <label class="font-normal">
+                <input name="afraid_of_the_outcome" id="afraid_of_the_outcome_na" type="radio"
+                       data-concept="9157^UNANSWERED EMOTIONAL BARRIER TO HEALTHCARE, EVER^99DCT"
+                       value="9154^AFRAID OF TEST RESULTS^99DCT">
+                Refused/No Answer
+            </label>
+        </div>
+    </fieldset>
+</div>
+
+<div class="form-group">
+    <span><strong>You were afraid of being screened for other disease<span class="required">*</span></strong></span>
+
+    <fieldset name="9155^AFRAID OF SCREENING FOR DISEASES^99DCT">
+        <div class="form-group">
+            <label class="font-normal">
+                <input name="afraid_of_the_stigma_bp" id="afraid_of_the_stigma_yes" type="radio"
+                       data-concept="9153^PRESENT EMOTIONAL BARRIER TO HEALTHCARE, EVER^99DCT"
+                       value="9155^AFRAID OF SCREENING FOR DISEASES^99DCT">
+                Yes
+            </label>
+        </div>
+        <div class="form-group">
+            <label class="font-normal">
+                <input name="afraid_of_the_stigma_bp" id="afraid_of_the_stigma_no" type="radio"
+                       data-concept="9156^ABSENT EMOTIONAL BARRIER TO HEALTHCARE, EVER^99DCT"
+                       value="9155^AFRAID OF SCREENING FOR DISEASES^99DCT">
+                No
+            </label>
+        </div>
+        <div class="form-group">
+            <label class="font-normal">
+                <input name="afraid_of_the_stigma_bp" id="afraid_of_the_stigma_na" type="radio"
+                       data-concept="9157^UNANSWERED EMOTIONAL BARRIER TO HEALTHCARE, EVER^99DCT"
+                       value="9155^AFRAID OF SCREENING FOR DISEASES^99DCT">
+                Refused/No Answer
+            </label>
+        </div>
+    </fieldset>
+</div>
+
+<div class="form-group">
+    <span><strong>You were scared of the chronic nature of high blood pressure<span class="required">*</span></strong></span>
+
+    <fieldset name="9125^AFRAID OF HIGH BLOOD PRESSURE chronic_nature^99DCT">
+        <div class="form-group">
+            <label class="font-normal">
+                <input name="chronic_nature" id="chronic_nature_yes" type="radio"
+                       data-concept="9153^PRESENT EMOTIONAL BARRIER TO HEALTHCARE, EVER^99DCT"
+                       value="9125^AFRAID OF HIGH BLOOD PRESSURE chronic_nature^99DCT">
+                Yes
+            </label>
+        </div>
+        <div class="form-group">
+            <label class="font-normal">
+                <input name="chronic_nature" id="chronic_nature_no" type="radio"
+                       data-concept="9156^ABSENT EMOTIONAL BARRIER TO HEALTHCARE, EVER^99DCT"
+                       value="9125^AFRAID OF HIGH BLOOD PRESSURE chronic_nature^99DCT">
+                No
+            </label>
+        </div>
+        <div class="form-group">
+            <label class="font-normal">
+                <input name="chronic_nature" id="chronic_nature_na" type="radio"
+                       data-concept="9157^UNANSWERED EMOTIONAL BARRIER TO HEALTHCARE, EVER^99DCT"
+                       value="9125^AFRAID OF HIGH BLOOD PRESSURE chronic_nature^99DCT">
+                Refused/No Answer
+            </label>
+        </div>
+    </fieldset>
+</div>
+
+<div class="form-group">
+    <span><strong>You were afraid of taking drugs for high blood pressure<span class="required">*</span></strong></span>
+
+    <fieldset name="9125^AFRAID OF HIGH BLOOD PRESSURE CHRONIC NATURE^99DCT">
+        <div class="form-group">
+            <label class="font-normal">
+                <input name="afraid_of_taking_drugs" id="afraid_of_taking_drugs_yes" type="radio"
+                       data-concept="9153^PRESENT EMOTIONAL BARRIER TO HEALTHCARE, EVER^99DCT"
+                       value="9126^AFRAID OF TAKING DRUGS^99DCT">
+                Yes
+            </label>
+        </div>
+        <div class="form-group">
+            <label class="font-normal">
+                <input name="afraid_of_taking_drugs" id="afraid_of_taking_drugs_no" type="radio"
+                       data-concept="9156^ABSENT EMOTIONAL BARRIER TO HEALTHCARE, EVER^99DCT"
+                       value="9126^AFRAID OF TAKING DRUGS^99DCT">
+                No
+            </label>
+        </div>
+        <div class="form-group">
+            <label class="font-normal">
+                <input name="afraid_of_taking_drugs" id="afraid_of_taking_drugs_na" type="radio"
+                       data-concept="9157^UNANSWERED EMOTIONAL BARRIER TO HEALTHCARE, EVER^99DCT"
+                       value="9126^AFRAID OF TAKING DRUGS^99DCT">
+                Refused/No Answer
+            </label>
+        </div>
+    </fieldset>
+</div>
+
+
+<div class="form-group">
+    <span><strong>You were afraid of the stigma associated with high blood pressure<span class="required">*</span></strong></span>
+
+    <fieldset name="9123^AFRAID OF HYPERTENSION STIGMA^99DCT">
+        <div class="form-group">
+            <label class="font-normal">
+                <input name="afraid_of_stigma" id="afraid_of_stigma_yes" type="radio"
+                       data-concept="9153^PRESENT EMOTIONAL BARRIER TO HEALTHCARE, EVER^99DCT"
+                       value="9123^AFRAID OF HYPERTENSION STIGMA^99DCT">
+                Yes
+            </label>
+        </div>
+        <div class="form-group">
+            <label class="font-normal">
+                <input name="afraid_of_stigma" id="afraid_of_stigma_no" type="radio"
+                       data-concept="9156^ABSENT EMOTIONAL BARRIER TO HEALTHCARE, EVER^99DCT"
+                       value="9123^AFRAID OF HYPERTENSION STIGMA^99DCT">
+                No
+            </label>
+        </div>
+        <div class="form-group">
+            <label class="font-normal">
+                <input name="afraid_of_stigma" id="afraid_of_stigma_na" type="radio"
+                       data-concept="9157^UNANSWERED EMOTIONAL BARRIER TO HEALTHCARE, EVER^99DCT"
+                       value="9123^AFRAID OF HYPERTENSION STIGMA^99DCT">
+                Refused/No Answer
+            </label>
+        </div>
+    </fieldset>
+</div>
+
+
+<div class="form-group">
+    <span><strong>You were afraid of being seen at the AMPATH facility because of possible HIV stigma<span class="required">*</span></strong></span>
+
+    <fieldset name="9124^AFRAID OF AMPATH STIGMA^99DCT">
+        <div class="form-group">
+            <label class="font-normal">
+                <input name="afraid_being_seen_at_AMPATH_bp" id="afraid_being_seen_at_AMPATH_yes" type="radio"
+                       data-concept="9127^PRESENT EMOTIONAL BARRIER TO HEALTHCARE, RECENT^99DCT"
+                       value="9124^AFRAID OF AMPATH STIGMA^99DCT">
+                Yes
+            </label>
+        </div>
+        <div class="form-group">
+            <label class="font-normal">
+                <input name="afraid_being_seen_at_AMPATH_bp" id="afraid_being_seen_at_AMPATH_no" type="radio"
+                       data-concept="9128^ABSENT EMOTIONAL BARRIER TO HEALTHCARE, RECENT^99DCT"
+                       value="9124^AFRAID OF AMPATH STIGMA^99DCT">
+                No
+            </label>
+        </div>
+        <div class="form-group">
+            <label class="font-normal">
+                <input name="afraid_being_seen_at_AMPATH_bp" id="afraid_being_seen_at_AMPATH_na" type="radio"
+                       data-concept="9129^UNANSWERED EMOTIONAL BARRIER TO HEALTHCARE, RECENT^99DCT"
+                       value="9124^AFRAID OF AMPATH STIGMA^99DCT">
+                Refused/No Answer
+            </label>
+        </div>
+    </fieldset>
+</div>
+
+
+<div class="form-group">
+    <label for="obs.means_to_usual_health_facility">
+        Have you ever been treated rudely/shouted at by your health care provider<span class="required">*</span>
+    </label>
+
+    <select id = "harassed_by_health_care_provider" class="form-control yesSelect noSelect" id="obs.blood_pressure_treated" name="obs.blood_pressure_treated"
+            data-concept="9130^HARASSED BY HEALTH CARE PROVIDER^99DCT" required="required">
+        <option value="">...</option>
+        <option value="1065^YES^99DCT">Yes</option>
+        <option value="1066^NO^99DCT">No</option>
+        <option value="1958^REFUSAL^99DCT">Refused</option>
+    </select>
+</div>
+
+<div class="form-group yesSectionToShow">
+<div id = "reason_harassed_by_health_worker" data-concept="9133^REASON HARASSED BY HEALTH CARE PROVIDER, DETAILED^99DCT">
+    <label for="obs.means_to_usual_health_facility">
+        For what reason were you treated rudely by your health care provider? (Check all that apply)<span class="required">*</span>
+    </label>
+    <fieldset name="9131^REASON HARASSED BY HEALTH CARE PROVIDER^99DCT">
+        <div class="form-group">
+            <label class="font-normal">
+                <input id="reasons_were_you_harassed_late" type="checkbox"
+                       data-concept="9131^REASON HARASSED BY HEALTH CARE PROVIDER^99DCT"
+                       value="9132^LATE^99DCT">
+                Being late
+            </label>
+        </div>
+        <div class="form-group">
+            <label class="font-normal">
+                <input id="reasons_were_you_harassed_showing" type="checkbox"
+                       data-concept="9131^REASON HARASSED BY HEALTH CARE PROVIDER^99DCT"
+                       value="1448^MISSED APPOINTMENT^99DCT">
+                Not showing up for appointment
+            </label>
+        </div>
+        <div class="form-group">
+            <label class="font-normal">
+                <input id="reasons_were_you_harassed_medications" type="checkbox"
+                       data-concept="9131^REASON HARASSED BY HEALTH CARE PROVIDER^99DCT"
+                       value="1961^NO LONGER TAKING MEDICINE^99DCT">
+                Not taking medications
+            </label>
+        </div>
+        <div class="form-group">
+            <label class="font-normal">
+                <input class="has-freetext" id="reasons_were_you_harassed_other_non_coded" type="checkbox"
+                       data-concept="9131^REASON HARASSED BY HEALTH CARE PROVIDER^99DCT"
+                       value="5622^OTHER NON-CODED^99DCT">
+                Other
+            </label>
+        </div>
+        <div class="form-group freetext">
+            <label for="reasons_were_you_harassed_freetext_general">Specify<span class="required">*</span></label>
+            <input class="form-control" id="reasons_were_you_harassed_freetext_general"
+                   name="reasons_were_you_harassed_freetext" type="text"
+                   data-concept="1915^FREETEXT GENERAL^99DCT">
+        </div>
+        <div class="form-group">
+            <label class="font-normal">
+                <input id=reasons_were_you_harassed_na" type="checkbox"
+                       data-concept="9131^REASON HARASSED BY HEALTH CARE PROVIDER^99DCT"
+                       value="1958^REFUSAL^99DCT">
+                Refused/No Answer
+            </label>
+        </div>
+    </fieldset>
+</div>
+</div>
+
+</div>
+
+<div class="section">
+    <h2>Part E: Motivation</h2>
+
+    <div class="form-group">
+        <span><strong>What encourages you to seek hypertension care? (Please do not read the options aloud to the patient, select only those that the patient mentions on her own accord)<span class="required">*</span></strong></span>
+
+        <fieldset name="9143^REASONS FOR SEEKING CARE^99DCT">
+            <div class="form-group">
+                <label class="font-normal">
+                    <input id="seek_hypertension_care_none" type="checkbox"
+                           data-concept="9143^REASONS FOR SEEKING CARE^99DCT"
+                           value=" 1107^NONE^99DCT">
+                    None
+                </label>
+            </div>
+            <div class="form-group">
+                <label class="font-normal">
+                    <input name="seek_hypertension_care_bp" id="seek_hypertension_care_improved" type="checkbox"
+                           data-concept="9143^REASONS FOR SEEKING CARE^99DCT"
+                           value="6610^IMPROVED^99DCT">
+                    Improved health
+                </label>
+            </div>
+            <div class="form-group">
+                <label class="font-normal">
+                    <input name="seek_hypertension_care_bp" id="seek_hypertension_care_manageable" type="checkbox"
+                           data-concept="9143^REASONS FOR SEEKING CARE^99DCT"
+                           value="9136^MANAGEABLE DISEASE^99DCT">
+                    High blood pressure being a manageable disease
+                </label>
+            </div>
+            <div class="form-group">
+                <label class="font-normal">
+                    <input name="seek_hypertension_care_bp" id="seek_hypertension_care_followup" type="checkbox"
+                           data-concept="9143^REASONS FOR SEEKING CARE^99DCT"
+                           value="7247^COMMUNITY HEALTH WORKER FOLLOW-UP VISIT^99DCT">
+                    Follow-up by CHWs
+                </label>
+            </div>
+            <div class="form-group">
+                <label class="font-normal">
+                    <input name="seek_hypertension_care_bp" id="seek_hypertension_care_freindliness" type="checkbox"
+                           data-concept="9143^REASONS FOR SEEKING CARE^99DCT"
+                           value="9137^FRIENDLINESS OF THE HEALTH FACILITY STAFF^99DCT">
+                    Friendliness of the health facility staff
+                </label>
+            </div>
+            <div class="form-group">
+                <label class="font-normal">
+                    <input name="seek_hypertension_care_bp" id="seek_hypertension_care_assistance" type="checkbox"
+                           data-concept="9143^REASONS FOR SEEKING CARE^99DCT"
+                           value="8294^HEALTH ASSISTANCE^99DCT">
+                    Family and/or peer support/encouragement
+                </label>
+            </div>
+
+            <div class="form-group">
+                <label class="font-normal">
+                    <input name="seek_hypertension_care_bp" id="seek_hypertension_care_response" type="checkbox"
+                           data-concept="9143^REASONS FOR SEEKING CARE^99DCT"
+                           value="9135^RESPONSE TO MEDICATIONS^99DCT">
+                    Response to medication
+                </label>
+            </div>
+            <div class="form-group">
+                <label class="font-normal">
+                    <input class="has-freetext" id="seek_hypertension_care_other_non_coded" type="checkbox"
+                           data-concept="9143^REASONS FOR SEEKING CARE^99DCT"
+                           value="5622^OTHER NON-CODED^99DCT">
+                    Other
+                </label>
+            </div>
+            <div class="form-group freetext">
+                <label for="seek_hypertension_care_freetext_general">Specify<span class="required">*</span></label>
+                <input class="form-control" id="seek_hypertension_care_freetext_general"
+                       name="reasons_were_you_harassed_freetext" type="text"
+                       data-concept="1915^FREETEXT GENERAL^99DCT">
+            </div>
+            <div class="form-group">
+                <label class="font-normal">
+                    <input id="seek_hypertension_care_na" type="checkbox"
+                           data-concept="9143^REASONS FOR SEEKING CARE^99DCT"
+                           value="1958^REFUSAL^99DCT">
+                    Refused/No Answer
+                </label>
+            </div>
+        </fieldset>
+    </div>
+</div>
+
+
+
+<div class="section">
+
+
+    <div class="form-group">
+        <h2>Part F: Confidence </h2>
+        <label for="follow_instructions">
+            How sure are you that you will be able to follow instructions provided by your health care provider, such as taking your medications?<span class="required">*</span>
+        </label>
+        <select class="form-control yesSelect noSelect" id="follow_instructions" name="follow_instructions"
+                data-concept="9144^ABILITY TO FOLLOW MEDICAL ADVICE^99DCT" required="required">
+            <option value="">...</option>
+            <option value="9139^VERY CONFIDENT^99DCT">Very confident</option>
+            <option value="9140^SOMEWHAT CONFIDENT^99DCT">Somewhat confident</option>
+            <option value="9141^NOT VERY CONFIDENT^99DCT">Not very confident</option>
+            <option value="1958^REFUSAL^99DCT">Refused</option>
+        </select>
+    </div>
+</div>
+</div>
+
+<div class="form-group text-center" id="buttonSection">
+    <input class="btn btn-primary pull-right" id="show_messages" type="button" value="Show Messages"/>
+</div>
+<br>
+
+</form>
+
+ <div id="messageContainer">
+
+ </div>
+
+</body>
+
+<script type="text/javascript">
+
+        var ruleEngine = function(submittedForm,RulesList){
+            var messageList = {};
+            for (var i = 0; i < RulesList.length; i++)
+            {
+                 var messages = RulesList[i](submittedForm);
+
+                 for(var j = 0; j < messages.length ; j++){
+                    var message = messages[j];
+                    messageList[message.id] = message;
+                 }
+            }
+            return messageList;
+        };
+
+
+        function getObjectForm()
+        {
+            var jsonData = JSON.stringify($('form').serializeEncounterForm(), null, '\t');
+            var jsonToObjectNew = JSON.parse(jsonData);
+            return jsonToObjectNew;
+        }
+
+        function assembleRuleListForForm()
+        {
+            var ruleList = [];
+            ruleList.push(toldByHealthCareProviderHasHighBPButBelievesDoesNotHaveHighBP);
+            ruleList.push(perceptionHighBPNotSerious);
+            ruleList.push(perceptionHighBPDoesNotCauseStroke);
+            ruleList.push(perceptionHighBPDoesNotCauseKidneyFailure);
+            ruleList.push(perceptionHighBPDoesNotCauseHeartDisease);
+            ruleList.push(lackedFareBarrier);
+            ruleList.push(lackOfTransportationBarrier);
+            ruleList.push(absenceOfTreatmentSupporterBarrier);
+            ruleList.push(financialBarrier);
+            ruleList.push(haveOtherImportantExpensesBarrier);
+            ruleList.push(assumptionOfLimitedServicesBarrier);
+            ruleList.push(assumptionOfLongQueueAndWaitTimeBarrier);
+            ruleList.push(incorrectPresumptionOfGoodHealthBarrier);
+            ruleList.push(doesNotSeeUseUsefulnessOrSuccessInTreatmentBarrier);
+            ruleList.push(otherCommitmentsBarrier);
+            ruleList.push(nobodyToWatchOverChildrenBarrier);
+            ruleList.push(traditionalHerbalMedicineBarrier);
+            ruleList.push(otherSourcesOfMedicineBarrier);
+            ruleList.push(beliefOfHealingByFaithBarrier);
+            ruleList.push(afraidOfOutcomeOfScreeningForHighBP);
+            ruleList.push(afraidOfChronicNatureOfHighBP);
+            ruleList.push(afraidOfTakingDrugsForHighBP);
+            ruleList.push(afraidOfStigmaAssociatedToHighBP);
+            ruleList.push(afraidOfPossibleHIVStigmaAtAMPATHClinics);
+            ruleList.push(harassedByHealthWorker);
+            ruleList.push(symptomsOfHypertension);
+            return ruleList;
+        }
+
+    $(document).ready(function () {
+
+    var provider = [
+                {"val":"1773-1","label":"Rael  Chelimo"},
+                {"val":"3662-4","label":"Milka Cherurto"},
+                {"val":"3663-2","label":"Lilian Chepchipchir"},
+                {"val":"1764-0","label":"Pamela Ngetich"},
+                {"val":"1769-9","label":"Stephene Kipkosgei"},
+                {"val":"3664-0","label":"Irine Jesang"},
+                {"val":"1766-5","label":"Solomon Ngetich"},
+                {"val":"1772-3","label":"Elvis Kiprono"},
+                {"val":"3665-7","label":"Willy Kosgei"},
+                {"val":"3666-5","label":"Irine Sisiwa"}
+    ];
+
+    $('#encounter\\.provider_id_select').autocomplete({
+        source: provider,
+        create: function (event, ui) {
+            var provider_val = $('input[name="encounter\\.provider_id_select"]').val();
+            $.each(provider, function (i, elem) {
+                if (elem.val == provider_val) {
+                    $('#encounter\\.provider_id_select').val(elem.label)
+                }
+            });
+        },
+        select: function (event, ui) {
+            $('input[name="encounter\\.provider_id_select"]').val(ui.item.val);
+            $('#encounter\\.provider_id_select').val(ui.item.label);
+            $('#encounter\\.provider_id').val(ui.item.val);
+            $('.show_provider_id_text').hide();
+            return false;
+        }
+    });
+    $('#encounter\\.provider_id_select').change(function () {
+        if ($('#encounter\\.provider_id_select').val() === '') {
+            $('#encounter\\.provider_id').val('');
+            $('.show_provider_id_text').show();
+        }
+    });
+
+    $('#show_messages').click(function () {
+
+          var messageList = ruleEngine(getObjectForm(),assembleRuleListForForm());
+          $("#messageContainer").find(".message").remove();
+
+          for(key in messageList) {
+            var messageId = key;
+            var message = messageList[key];
+            var messageLink = $("<p class='alert alert-info message' id=" + messageId + ">  <b> " + message.title + "<span id='expandIcon' class='glyphicon glyphicon-collapse-down pull-right'></span>  <span id='collapseIcon' class='glyphicon glyphicon-collapse-up pull-right'></span></b> </p>");
+            $("#messageContainer").append(messageLink);
+            $("#" + messageId).find("#collapseIcon").hide();
+            $("#" + messageId).append('<div style="display: none"> ' + message.messageHtml + '</div>');
+            $("#" + messageId).find("#expandIcon").on("click", function(){
+                $(this).closest("p").find("div").toggle();
+                $(this).hide();
+                $(this).siblings("#collapseIcon").show()
+               });
+               $("#" + messageId).find("#collapseIcon").on("click", function(){
+                $(this).closest("p").find("div").toggle();
+                $(this).hide();
+                $(this).siblings("#expandIcon").show()
+               });
+          }
+
+          $('html, body').animate({
+                  scrollTop: $("#messageContainer").offset().top}, 2000);
+        });
+
+        $('#messageContainer').on('click', '.image-player', function(){
+            imagingComponent.openImage($(this).attr('data-image'));
+         });
+
+         $("#messageContainer").on('click','.video-player', function(){
+             videoComponent.openVideo($(this).attr('data-video'));
+         });
+
+        $('#save_draft').click(function () {
+            $(this).prop('disabled', true);
+            document.saveDraft();
+            $(this).prop('disabled', false);
+        });
+
+        $('#submit_form').click(function () {
+            $(this).prop('disabled', true);
+            document.submit();
+            $(this).prop('disabled', false);
+        });
+
+        $('#linkage_form').validate({
+            rules: {
+                weight_kg: {
+                    number: true,
+                    range: [0, 250]
+                },
+                height_cm: {
+                    number: true,
+                    range: [10, 228]
+                }
+            },
+            submitHandler: function (form) {
+                $('#result').html(JSON.stringify($('form').serializeEncounterForm(), undefined, 2));
+            }
+        });
+
+        var locationName = [
+            {"val": "7", "label": "Chulaimbo"},
+            {"val": "3", "label": "Turbo"},
+            {"val": "17", "label": "Iten"}
+        ];
+        $('#encounter\\.location_id').autocomplete({
+            source: locationName,
+            create: function (event, ui) {
+                var location_val = $('input[name="encounter\\.location_id"]').val();
+                $.each(locationName, function (i, elem) {
+                    if (elem.val == location_val) {
+                        $('#encounter\\.location_id').val(elem.label)
+                    }
+                    ;
+                });
+            },
+            select: function (event, ui) {
+                $('input[name="encounter\\.location_id"]').val(ui.item.val);
+                $('#encounter\\.location_id').val(ui.item.label);
+                return false;
+            }
+        });
+
+        //pick todays date by default
+        var dateFormat = "dd-mm-yy";
+        var currentDate = $.datepicker.formatDate(dateFormat, new Date());
+        var encounterDatetime = $('#encounter\\.encounter_datetime');
+        if ($(encounterDatetime).val() == "") {
+            $(encounterDatetime).val(currentDate);
+        }
+        //Ask to specify when other is select
+        var $specifyOther = $('.specifyOther');
+        $specifyOther.change(function () {
+            var $freetext = $(this).closest('.section').find('.freetext');
+            var divToShowVal = $(this).val();
+            if (divToShowVal  == '5622^OTHER NON-CODED^99DCT' ) {
+                $freetext.show();
+            } else {
+                $freetext.hide();
+            }
+        });
+        $specifyOther.trigger('change');
+
+        //Display when YES is selected
+        var $yesSelect = $('.yesSelect');
+        $yesSelect.change(function () {
+            var $yesSectionToShow = $(this).closest('.section').find('.yesSectionToShow');
+            var divToShowVal = $(this).val();
+            if (divToShowVal  == '1065^YES^99DCT' ) {
+                $yesSectionToShow.show();
+            } else {
+                $yesSectionToShow.hide();
+            }
+        });
+        $yesSelect.trigger('change');
+
+        //Display when NO is selected
+        var $noSelect = $('.noSelect');
+        $noSelect.change(function () {
+            var $noSectionToShow = $(this).closest('.section').find('.noSectionToShow');
+            var divToShowVal = $(this).val();
+            if (divToShowVal  == '1066^NO^99DCT' ) {
+                $noSectionToShow.show();
+            } else {
+                $noSectionToShow.hide();
+            }
+        });
+        $noSelect.trigger('change');
+
+        //Display when YES is NOT selected
+        var $NotYesSelect = $('.NotYesSelect');
+        $NotYesSelect.change(function () {
+            var $notYesSectionToShow = $(this).closest('.section').find('.notYesSectionToShow');
+            var divToShowVal = $(this).val();
+            if (divToShowVal  == '1065^YES^99DCT' || divToShowVal != '') {
+                $notYesSectionToShow.show();
+            } else {
+                $notYesSectionToShow.hide();
+            }
+        });
+        $NotYesSelect.trigger('change');
+
+        var $having_hypertension = $('#obs\\.having_hypertension');
+        var $perception_of_bp = $('#obs\\.perception_of_bp');
+        //CombinationOne display message 1,2 & 3.
+        var combinationOne = function () {
+            var having_hypertension = $having_hypertension.val();
+            if (having_hypertension == '1065^YES^99DCT' || having_hypertension == '')
+            {
+                $('#message1').hide();
+                $('#message2').hide();
+                $('#message3').hide();
+            } else {
+                $('#message1').show();
+                $('#message2').show();
+                $('#message3').show();
+            }
+        };combinationOne();
+        $having_hypertension.change(function () {
+            combinationOne();
+        });$having_hypertension.trigger('change');
+
+//        combinationTwo
+        var combinationTwo = function () {
+            var perception_of_bp= $perception_of_bp.val();
+            if (perception_of_bp == '9096^NOT SERIOUS^99DCT')
+            {
+                $('#message1').show();
+                $('#message2').show();
+                $('#message7').show();
+
+            } else {
+                $('#message1').hide();
+                $('#message2').hide();
+                $('#message7').hide();
+                combinationOne();
+            }
+        };combinationTwo();
+        $perception_of_bp.change(function () {
+            combinationTwo();
+        });$perception_of_bp.trigger('change');
+
+        var combinationThree  = function () {
+            var msgArray = {
+                "#regularly_to_monitor_bp_yes": "exclude",
+                "#regularly_to_monitor_bp_no": "",
+                "#regularly_to_monitor_bp_na": ""
+            };
+            var having_hypertension = $having_hypertension.val();
+            $.each(msgArray, function (index,value) {
+                $(index).change(function () {
+                    if (($(index).is(':checked'))) {
+                        if(value !='exclude'){
+                            $('#message3').show();
+                            $('#message10').show();
+                        } else{
+                            if (having_hypertension == '1065^YES^99DCT' || having_hypertension == ''){
+                                $('#message3').hide();
+                                $('#message10').hide();
+                            }  else{
+                                $('#message10').hide();
+                            }
+                        }
+                    } else {
+                        if (having_hypertension == '1065^YES^99DCT' || having_hypertension == ''){
+                            $('#message3').hide();
+                            $('#message10').hide();
+                        }  else{
+                            $('#message10').hide();
+                        }
+                    }
+                });
+                $(index).trigger('change');
+            })
+        };combinationThree();
+        var combinationFour  = function () {
+            var msgArray = {
+                "#take_medication_to_manage_bp_yes": "exclude",
+                "#take_medication_to_manage_bp_no": "",
+                "#take_medication_to_manage_bp_na": ""
+            };
+            $.each(msgArray, function (index,value) {
+                $(index).change(function () {
+                    if (($(index).is(':checked'))) {
+                        if(value !='exclude'){
+                            $('#message5').show();
+                        } else{
+                            $('#message5').hide();
+                        }
+                    } else {
+                        $('#message5').hide();
+
+                    }
+                });
+                $(index).trigger('change');
+            })
+        };combinationFour();
+        var combinationFive  = function () {
+            var msgArray = {
+                "#take_medication_to_manage_bp_yes": "exclude",
+                "#take_medication_to_manage_bp_no": "",
+                "#take_medication_to_manage_bp_na": "",
+                "#control_your_weight_yes": "exclude",
+                "#control_your_weight_no": "",
+                "#control_your_weight_na": "",
+                "#reduce_your_salt_yes": "exclude",
+                "#reduce_your_salt_no": "",
+                "#reduce_your_salt_na": "",
+                "#exercise_more_yes": "exclude",
+                "#exercise_more_no": "",
+                "#exercise_more_na": "",
+                "#stop_smoking_tobacco_yes": "exclude",
+                "#stop_smoking_tobacco_no": "",
+                "#stop_smoking_tobacco_na": "" ,
+                "#reducing_tobacco_use_yes": "exclude",
+                "#reducing_tobacco_use_no": "",
+                "#reducing_tobacco_use_na": "",
+                "#reducing_your_salt_intake_yes": "exclude",
+                "#reducing_your_salt_intake_no": "",
+                "#reducing_your_salt_intake_na": "",
+                "#exercising_more_yes": "exclude",
+                "#exercising_more_no": "",
+                "#exercising_more_na": "",
+                "#reducing_your_alcohol_yes": "exclude",
+                "#reducing_your_alcohol_no": "",
+                "#reducing_your_alcohol_na": ""
+
+            };
+            $.each(msgArray, function (index,value) {
+                $(index).change(function () {
+                    if (($(index).is(':checked'))) {
+                        if(value !='exclude'){
+                            $('#message4').show();
+                        } else{
+                            if($('#take_medication_to_manage_bp_no').is(':checked')||$('#take_medication_to_manage_bp_na').is(':checked') ||
+                                    $('#control_your_weight_no').is(':checked')||$('#control_your_weight_na').is(':checked')||
+                                    $('#reduce_your_salt_no').is(':checked')||$('#reduce_your_salt_na').is(':checked') ||
+                                    $('#exercise_more_no').is(':checked')||$('#exercise_more_na').is(':checked') ||
+                                    $('#stop_smoking_tobacco_no').is(':checked')||$('#stop_smoking_tobacco_na').is(':checked')||
+                                    $('#reducing_tobacco_use_no').is(':checked')||$('#reducing_tobacco_use_na').is(':checked')||
+                                    $('#reducing_your_salt_intake_no').is(':checked')||$('#reducing_your_salt_intake_na').is(':checked') ||
+                                    $('#exercising_more_no').is(':checked')||$('#exercising_more_na').is(':checked') ||
+                                    $('#reducing_your_alcohol_no').is(':checked')||$('#reducing_your_alcohol_na').is(':checked')) {
+
+
+                            }  else{
+                                $('#message4').hide();
+                            }
+
+                        }
+                    } else {
+                        if($('#take_medication_to_manage_bp_no').is(':checked')||$('#take_medication_to_manage_bp_na').is(':checked') ||
+                                $('#control_your_weight_no').is(':checked')||$('#control_your_weight_na').is(':checked')||
+                                $('#reduce_your_salt_no').is(':checked')||$('#reduce_your_salt_na').is(':checked') ||
+                                $('#exercise_more_no').is(':checked')||$('#exercise_more_na').is(':checked') ||
+                                $('#stop_smoking_tobacco_no').is(':checked')||$('#stop_smoking_tobacco_na').is(':checked')||
+                                $('#reducing_tobacco_use_no').is(':checked')||$('#reducing_tobacco_use_na').is(':checked')||
+                                $('#reducing_your_salt_intake_no').is(':checked')||$('#reducing_your_salt_intake_na').is(':checked') ||
+                                $('#exercising_more_no').is(':checked')||$('#exercising_more_na').is(':checked') ||
+                                $('#reducing_your_alcohol_no').is(':checked')||$('#reducing_your_alcohol_na').is(':checked')){
+
+                        }  else{
+                            $('#message4').hide();
+                        }
+                    }
+                });
+                $(index).trigger('change');
+            })
+        };combinationFive();
+
+        $('#blood_pressure_missed').change(function () {
+            var having_hypertension = $having_hypertension.val();
+            if (($('#blood_pressure_missed').val() == '9070^IN GOOD HEALTH^99DCT')||
+                    ($('#blood_pressure_better').val() == '1647^FELT WELL AND DID NOT THINK TAKING MEDICINIE WAS NEEDED^99DCT')) {
+                $('#message8').show();
+                $('#message3').show();
+                $('#message5').show();
+                $('#message7').show();
+            } else {
+                if (having_hypertension == '1065^YES^99DCT' || having_hypertension == ''){
+                    $('#message3').hide();
+                }
+                $('#message8').hide();
+                $('#message5').hide();
+                $('#message7').hide();
+            }
+            combinationFour();
+            combinationTwo();
+        });
+        $('#blood_pressure_missed').trigger('change');
+
+
+        $('#blood_pressure_stroke_no').change(function () {
+            if ($('#blood_pressure_stroke_no').is(':checked')) {
+                $('#message7').show();
+                $('#message8').show();
+            } else {
+                $('#message7').hide();
+                $('#message8').hide();
+            }
+            combinationFour();
+            combinationTwo();
+        });
+        $('#blood_pressure_stroke_no').trigger('change');
+
+        var combinationSix  = function () {
+            var msgArray = {
+                "#blood_pressure_stroke_yes": "exclude",
+                "#blood_pressure_stroke_no": "",
+                "#blood_pressure_stroke_na": "exclude"
+            };
+            $.each(msgArray, function (index,value) {
+                $(index).change(function () {
+                    if (($(index).is(':checked'))) {
+                        if(value !='exclude'){
+                            $('#message7').show();
+                            $('#message8').show();
+                        } else{
+                            $('#message7').hide();
+                            $('#message8').hide();
+                        }
+                    } else {
+                        $('#message7').hide();
+                        $('#message8').hide();
+                    }
+                    combinationFour();
+                    combinationTwo();
+                });
+                $(index).trigger('change');
+            })
+        };combinationSix();
+
+        var $hasOther = $('.has-other');
+        $hasOther.change(function () {
+            var $freetext = $(this).closest('.section').find('.freetext');
+            if ($(this).is(':checkbox')) {
+                if ($(this).is(':checked')) {
+                    $freetext.show();
+                } else {
+                    $freetext.hide();
+                }
+            }
+        });
+        $hasOther.trigger('change');
+
+        var refusalValue = ['1958^REFUSAL^99DCT'];
+        var asymptomaticValue = ['5006^ASYMPTOMATIC^99DCT'];
+        var messageSelectOnly = "If Asymptomatic/No Answer/Refused to answer is selected, that should be the only allowed option.";
+
+        $(':checkbox[data-concept="9150^KNOWLEDGE OF HIGH BLOOD PRESSURE SYMPTOMS, SPECIFIC^99DCT"]').change(function () {
+            showValidationMessages(validateAlone($(this), refusalValue, messageSelectOnly)); });
+
+        $(':checkbox[data-concept="9150^KNOWLEDGE OF HIGH BLOOD PRESSURE SYMPTOMS, SPECIFIC^99DCT"]').change(function () {
+            showValidationMessages(validateAlone($(this), asymptomaticValue, messageSelectOnly)); });
+
+        $(':checkbox[data-concept="9131^REASON HARASSED BY HEALTH CARE PROVIDER^99DCT"]').change(function () {
+            showValidationMessages(validateAlone($(this), refusalValue, messageSelectOnly)); });
+
+        $(':checkbox[data-concept="9143^REASONS FOR SEEKING CARE^99DCT"]').change(function () {
+            showValidationMessages(validateAlone($(this), refusalValue, messageSelectOnly)); });
+
+        $.fn.customValidationCheck = function () {
+            var knowledgeOfHighBPSymptoms = $('fieldset[name="9150^KNOWLEDGE OF HIGH BLOOD PRESSURE SYMPTOMS, SPECIFIC^99DCT"]');
+            var reasonsHarassedByHealthCareWorker = $('fieldset[name="9131^REASON HARASSED BY HEALTH CARE PROVIDER^99DCT"]');
+            var reasonsForSeekingCare = $('fieldset[name="9143^REASONS FOR SEEKING CARE^99DCT"]');
+            var errors = $.extend({},
+                    validateSelected(knowledgeOfHighBPSymptoms),
+                    validateAlone(knowledgeOfHighBPSymptoms, refusalValue, messageSelectOnly),
+                    validateAlone(knowledgeOfHighBPSymptoms, asymptomaticValue, messageSelectOnly),
+                    validateSelected(reasonsHarassedByHealthCareWorker),
+                    validateAlone(reasonsHarassedByHealthCareWorker, refusalValue, messageSelectOnly),
+                    validateSelected(reasonsForSeekingCare),
+                    validateAlone(reasonsForSeekingCare, refusalValue, messageSelectOnly));
+            showValidationMessages(errors);
+            return $.isEmptyObject(errors);
+         };
+
+
+    });
+</script>
+</html>
