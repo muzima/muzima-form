@@ -177,8 +177,8 @@
                 <option value="">...</option>
                 <option value="1065^YES^99DCT">Yes</option>
                 <option value="1066^NO^99DCT">No</option>
-                <option value="-77">Don&#39;t Know</option>
-                <option value="-99">Refused</option>
+                <option value="1624^DO NOT KNOW^99DCT">Don&#39;t Know</option>
+                <option value="1958^REFUSAL^99DCT">Refused</option>
             </select>
         </div>
         <div class="admission_in_past_12_months">
@@ -199,8 +199,8 @@
                         <option value="">...</option>
                         <option value="1065^YES^99DCT">Yes</option>
                         <option value="1066^NO^99DCT">No</option>
-                        <option value="-77">Don&#39;t Know</option>
-                        <option value="-99">Refused</option>
+                        <option value="1624^DO NOT KNOW^99DCT">Don&#39;t Know</option>
+                        <option value="1958^REFUSAL^99DCT">Refused</option>
                     </select>
                 </div>
                 <div class="form-group admission_disease_select">
@@ -212,8 +212,8 @@
                         <option value="">...</option>
                         <option value="1065^YES^99DCT">Yes</option>
                         <option value="1066^NO^99DCT">No</option>
-                        <option value="-77">Don&#39;t Know</option>
-                        <option value="-99">Refused</option>
+                        <option value="1624^DO NOT KNOW^99DCT">Don&#39;t Know</option>
+                        <option value="1958^REFUSAL^99DCT">Refused</option>
                     </select>
                 </div>
                 <div class="admission_disease_input">
@@ -228,8 +228,8 @@
                         <option value="123^MALARIA^99DCT">Malaria</option>
                         <option value="141^TYPHOID^99DCT">Typhoid</option>
                         <option value="77^OTHER^99DCT">Others</option>
-                        <option value="-77">Don&#39;t Know</option>
-                        <option value="-99">Refused/No Answer</option>
+                        <option value="1624^DO NOT KNOW^99DCT">Don&#39;t Know</option>
+                        <option value="1958^REFUSAL^99DCT">Refused/No Answer</option>
                     </select>
                     <div class="form-group other_diseases" data-name="diseases">
                         <label>
@@ -313,13 +313,13 @@
 
                 <div class="form-group">
                     <label for="obs.medical_bill">How much was the total bill for the admission?<span class="required">*</span></label>
-                    <input class="form-control" id="obs.medical_bill" name="obs.medical_bill" type="text" data-concept="9093^MEDICAL BILL^99DCT" required="required">
-
+                    <input class="form-control" id="obs.medical_bill" name="obs.medical_bill" type="number" data-concept="9093^MEDICAL BILL^99DCT" required="required">
+                    <input class="form-control hiddenInput" id="medical_bill_DK_RF" type="text">
                     <div class="form-group">
                         <fieldset name="obs.medical_bill_DR">
-                            <input id="obs.medical_bill_DK" type="radio" name="obs.medical_bill_DR" value="-77" onchange="setTextDataFor(this, 'obs.medical_bill')">
+                            <input id="obs.medical_bill_DK" type="radio" name="obs.medical_bill_DR" value="-77" onchange="setTextDataFor(this, '#obs\\.medical_bill', '#medical_bill_DK_RF')">
                             <label for="obs.medical_bill_DK">Don&#39;t</label> &nbsp;&nbsp;
-                            <input id="obs.medical_bill_RF" type="radio"  name="obs.medical_bill_DR" value="-99" onchange="setTextDataFor(this, 'obs.medical_bill')">
+                            <input id="obs.medical_bill_RF" type="radio"  name="obs.medical_bill_DR" value="-99" onchange="setTextDataFor(this, '#obs\\.medical_bill', '#medical_bill_DK_RF')">
                             <label for="obs.medical_bill_RF">Refused</label><br>
                         </fieldset>
                     </div>
@@ -327,14 +327,15 @@
 
                 <div class="form-group">
                     <label for="obs.medical_bill_self_paid">How much did you pay using your own money including money from loans that you will need to pay back?<span class="required">*</span></label>
-                    <input class="form-control" id="obs.medical_bill_self_paid" name="obs.medical_bill_self_paid" type="text"
+                    <input class="form-control" id="obs.medical_bill_self_paid" name="obs.medical_bill_self_paid" type="number"
                            data-concept="9094^MEDICAL BILL PAID BY OWN MONEY^99DCT" required="required">
+                    <input class="form-control hiddenInput" id="medical_bill_self_paid_DK_RF" type="text">
 
                     <div class="form-group">
                         <fieldset name="obs.medical_bill_self_paid_DR">
-                            <input id="obs.medical_bill_self_paid_DK" type="radio" name="obs.medical_bill_self_paid_DR" value="-77" onchange="setTextDataFor(this, 'obs.medical_bill_self_paid')">
+                            <input id="obs.medical_bill_self_paid_DK" type="radio" name="obs.medical_bill_self_paid_DR" value="-77" onchange="setTextDataFor(this, '#obs\\.medical_bill_self_paid', '#medical_bill_self_paid_DK_RF')">
                             <label for="obs.medical_bill_self_paid_DK">Don&#39;t</label> &nbsp;&nbsp;
-                            <input id="obs.medical_bill_self_paid_RF" type="radio"  name="obs.medical_bill_self_paid_DR" value="-99" onchange="setTextDataFor(this, 'obs.medical_bill_self_paid')">
+                            <input id="obs.medical_bill_self_paid_RF" type="radio"  name="obs.medical_bill_self_paid_DR" value="-99" onchange="setTextDataFor(this, '#obs\\.medical_bill_self_paid', '#medical_bill_self_paid_DK_RF')">
                             <label for="obs.medical_bill_self_paid_RF">Refused</label><br>
                         </fieldset>
                     </div>
@@ -353,7 +354,7 @@
                     <option value="6415^WALKING^99DCT">On foot</option>
                     <option value="6580^BODA-BODA^99DCT">Boda Boda</option>
                     <option value="6416^MATATU^99DCT">Matatu</option>
-                    <option value="-99">Refused</option>
+                    <option value="1958^REFUSAL^99DCT">Refused</option>
                 </select>
             </div>
 
@@ -424,8 +425,8 @@
                 <option value="">...</option>
                 <option value="1065^YES^99DCT">Yes</option>
                 <option value="1066^NO^99DCT">No</option>
-                <option value="-77">Don&#39;t Know</option>
-                <option value="-99">Refused</option>
+                <option value="1624^DO NOT KNOW^99DCT">Don&#39;t Know</option>
+                <option value="1958^REFUSAL^99DCT">Refused</option>
             </select>
         </div>
         <div class="medical_not_admitted_quiz">
@@ -481,8 +482,8 @@
                                 <option value="123^MALARIA^99DCT">Malaria</option>
                                 <option value="141^TYPHOID^99DCT">Typhoid</option>
                                 <option value="77^OTHER^99DCT">Others</option>
-                                <option value="-77">Don&#39;t Know</option>
-                                <option value="-99">Refused/No Answer</option>
+                                <option value="1624^DO NOT KNOW^99DCT">Don&#39;t Know</option>
+                                <option value="1958^REFUSAL^99DCT">Refused/No Answer</option>
                             </select>
                             <div class="form-group other_health_center_visit_disease" data-name="diseases">
                                 <label>
@@ -509,13 +510,14 @@
 
                         <div class="form-group medical_bill">
                             <lebal for="obs.medical_bill">How much did you pay out of pocket for the visit including drug costs if applicable?<span class="required">*</span></lebal>
-                            <input class="form-control" id="obs.health_center_bill" name="obs.health_center_bill" type="text"
+                            <input class="form-control" id="obs.health_center_bill" name="obs.health_center_bill" type="number"
                                    data-concept="9121^HEALTH CENTER VISIT  COST^99DCT" required="required">
+                            <input class="form-control hiddenInput" id="health_center_bill_DK_RF" type="text">
                             <div class="form-group">
                                 <fieldset name="obs.health_center_bill_DR">
-                                    <input id="obs.health_center_bill_DK" type="radio" name="obs.health_center_bill_DR" value="-77" onchange="setTextDataFor(this, 'obs.health_center_bill')">
+                                    <input id="obs.health_center_bill_DK" type="radio" name="obs.health_center_bill_DR" value="-77" onchange="setTextDataFor(this, '#obs\\.health_center_bill', '#health_center_bill_DK_RF')">
                                     <label for="obs.health_center_bill_DK">Don&#39;t</label> &nbsp;&nbsp;
-                                    <input id="obs.health_center_bill_RF" type="radio"  name="obs.health_center_bill_DR" value="-99" onchange="setTextDataFor(this, 'obs.health_center_bill')">
+                                    <input id="obs.health_center_bill_RF" type="radio"  name="obs.health_center_bill_DR" value="-99" onchange="setTextDataFor(this, '#obs\\.health_center_bill', '#health_center_bill_DK_RF')">
                                     <label for="obs.health_center_bill_RF">Refused</label><br>
                                 </fieldset>
                             </div>
@@ -573,8 +575,8 @@
                                 <option value="123^MALARIA^99DCT">Malaria</option>
                                 <option value="141^TYPHOID^99DCT">Typhoid</option>
                                 <option value="77^OTHER^99DCT">Others</option>
-                                <option value="-77">Don&#39;t Know</option>
-                                <option value="-99">Refused/No Answer</option>
+                                <option value="1624^DO NOT KNOW^99DCT">Don&#39;t Know</option>
+                                <option value="1958^REFUSAL^99DCT">Refused/No Answer</option>
                             </select>
                             <div class="form-group other_dispensary_visit_disease" data-name="diseases">
                                 <label>
@@ -601,13 +603,14 @@
 
                         <div class="form-group medical_bill">
                             <lebal for="obs.medical_bill">How much did you pay out of pocket for the dispensary visit including drug costs if applicable?<span class="required">*</span></lebal>
-                            <input class="form-control" id="obs.dispensary_center_bill" name="obs.dispensary_center_bill" type="text"
+                            <input class="form-control" id="obs.dispensary_center_bill" name="obs.dispensary_center_bill" type="number"
                                    data-concept="9118^DISPENSARY VISIT COST^99DCT" required="required">
+                            <input class="form-control hiddenInput" id="dispensary_center_bill_DK_RF" type="text">
                             <div class="form-group">
                                 <fieldset name="obs.dispensary_center_bill_DR">
-                                    <input id="obs.dispensary_center_bill_DK" type="radio" name="obs.dispensary_center_bill_DR" value="-77" onchange="setTextDataFor(this, 'obs.dispensary_center_bill')">
+                                    <input id="obs.dispensary_center_bill_DK" type="radio" name="obs.dispensary_center_bill_DR" value="-77" onchange="setTextDataFor(this, '#obs\\.dispensary_center_bill', '#dispensary_center_bill_DK_RF')">
                                     <label for="obs.dispensary_center_bill_DK">Don&#39;t</label> &nbsp;&nbsp;
-                                    <input id="obs.dispensary_center_bill_RF" type="radio"  name="obs.dispensary_center_bill_DR" value="-99" onchange="setTextDataFor(this, 'obs.dispensary_center_bill')">
+                                    <input id="obs.dispensary_center_bill_RF" type="radio"  name="obs.dispensary_center_bill_DR" value="-99" onchange="setTextDataFor(this, '#obs\\.dispensary_center_bill', '#dispensary_center_bill_DK_RF')">
                                     <label for="obs.dispensary_center_bill_RF">Refused</label><br>
                                 </fieldset>
                             </div>
@@ -667,8 +670,8 @@
                                 <option value="123^MALARIA^99DCT">Malaria</option>
                                 <option value="141^TYPHOID^99DCT">Typhoid</option>
                                 <option value="77^OTHER^99DCT">Others</option>
-                                <option value="-77">Don&#39;t Know</option>
-                                <option value="-99">Refused/No Answer</option>
+                                <option value="1624^DO NOT KNOW^99DCT">Don&#39;t Know</option>
+                                <option value="1958^REFUSAL^99DCT">Refused/No Answer</option>
                             </select>
                             <div class="form-group other_hospital_day_visit_disease" data-name="diseases">
                                 <label>
@@ -694,13 +697,14 @@
                         </div>
                         <div class="form-group medical_bill">
                             <lebal for="obs.medical_bill">How much did you pay out of pocket for the visit including drug costs if applicable?<span class="required">*</span></lebal>
-                            <input class="form-control" id="obs.hospital_day_bill" name="obs.hospital_day_bill" type="text"
+                            <input class="form-control" id="obs.hospital_day_bill" name="obs.hospital_day_bill" type="number"
                                    data-concept="9119^HOSPITAL DAY VISIT COST^99DCT" required="required">
+                            <input class="form-control hiddenInput" id="hospital_day_bill_DK_RF" type="text">
                             <div class="form-group">
                                 <fieldset name="obs.hospital_day_bill_DR">
-                                    <input id="obs.hospital_day_bill_DK" type="radio" name="obs.hospital_day_bill_DR" value="-77" onchange="setTextDataFor(this, 'obs.hospital_day_bill')">
+                                    <input id="obs.hospital_day_bill_DK" type="radio" name="obs.hospital_day_bill_DR" value="-77" onchange="setTextDataFor(this, '#obs\\.hospital_day_bill', '#hospital_day_bill_DK_RF')">
                                     <label for="obs.hospital_day_bill_DK">Don&#39;t</label> &nbsp;&nbsp;
-                                    <input id="obs.hospital_day_bill_RF" type="radio"  name="obs.hospital_day_bill_DR" value="-99" onchange="setTextDataFor(this, 'obs.hospital_day_bill')">
+                                    <input id="obs.hospital_day_bill_RF" type="radio"  name="obs.hospital_day_bill_DR" value="-99" onchange="setTextDataFor(this, '#obs\\.hospital_day_bill', '#hospital_day_bill_DK_RF')">
                                     <label for="obs.hospital_day_bill_RF">Refused</label><br>
                                 </fieldset>
                             </div>
@@ -757,8 +761,8 @@
                                 <option value="123^MALARIA^99DCT">Malaria</option>
                                 <option value="141^TYPHOID^99DCT">Typhoid</option>
                                 <option value="77^OTHER^99DCT">Others</option>
-                                <option value="-77">Don&#39;t Know</option>
-                                <option value="-99">Refused/No Answer</option>
+                                <option value="1624^DO NOT KNOW^99DCT">Don&#39;t Know</option>
+                                <option value="1958^REFUSAL^99DCT">Refused/No Answer</option>
                             </select>
                             <div class="form-group other_chemist_visitDisease" data-name="diseases">
                                 <label>
@@ -785,13 +789,14 @@
 
                         <div class="form-group medical_bill">
                             <lebal for="obs.medical_bill">How much did you pay out of pocket for the visit including drug costs if applicable?<span class="required">*</span></lebal>
-                            <input class="form-control" id="obs.chemist_bill" name="obs.chemist_bill" type="text"
+                            <input class="form-control" id="obs.chemist_bill" name="obs.chemist_bill" type="number"
                                    data-concept="9120^CHEMIST VISIT COST^99DCT" required="required">
+                            <input class="form-control hiddenInput" id="chemist_bill_DK_RF" type="text">
                             <div class="form-group">
                                 <fieldset name="obs.chemist_bill_DR">
-                                    <input id="obs.chemist_bill_DK" type="radio" name="obs.chemist_bill_DR" value="-77" onchange="setTextDataFor(this, 'obs.chemist_bill')">
+                                    <input id="obs.chemist_bill_DK" type="radio" name="obs.chemist_bill_DR" value="-77" onchange="setTextDataFor(this, '#obs\\.chemist_bill', '#chemist_bill_DK_RF')">
                                     <label for="obs.chemist_bill_DK">Don&#39;t</label> &nbsp;&nbsp;
-                                    <input id="obs.chemist_bill_RF" type="radio"  name="obs.chemist_bill_DR" value="-99" onchange="setTextDataFor(this, 'obs.chemist_bill')">
+                                    <input id="obs.chemist_bill_RF" type="radio"  name="obs.chemist_bill_DR" value="-99" onchange="setTextDataFor(this, '#obs\\.chemist_bill', '#chemist_bill_DK_RF')">
                                     <label for="obs.chemist_bill_RF">Refused</label><br>
                                 </fieldset>
                             </div>
@@ -850,8 +855,8 @@
                                 <option value="123^MALARIA^99DCT">Malaria</option>
                                 <option value="141^TYPHOID^99DCT">Typhoid</option>
                                 <option value="77^OTHER^99DCT">Others</option>
-                                <option value="-77">Don&#39;t Know</option>
-                                <option value="-99">Refused/No Answer</option>
+                                <option value="1624^DO NOT KNOW^99DCT">Don&#39;t Know</option>
+                                <option value="1958^REFUSAL^99DCT">Refused/No Answer</option>
                             </select>
                             <div class="form-group other_private_clinic_visitDisease" data-name="diseases">
                                 <label>
@@ -878,13 +883,14 @@
 
                         <div class="form-group medical_bill">
                             <div for="obs.medical_bill">How much did you pay out of pocket for the visit including drug costs if applicable?<span class="required">*</span></div>
-                            <input class="form-control" id="obs.private_clinic_bill" name="obs.private_clinic_bill" type="text"
+                            <input class="form-control" id="obs.private_clinic_bill" name="obs.private_clinic_bill" type="number"
                                    data-concept="9122^PRIVATE CLINIC VISIT COST^99DCT" required="required">
+                            <input class="form-control hiddenInput" id="private_clinic_bill_DK_RF" type="text">
                             <div class="form-group">
                                 <fieldset name="obs.private_clinic_bill_DR">
-                                    <input id="obs.private_clinic_bill_DK" type="radio" name="obs.private_clinic_bill_DR" value="-77" onchange="setTextDataFor(this, 'obs.private_clinic_bill')">
+                                    <input id="obs.private_clinic_bill_DK" type="radio" name="obs.private_clinic_bill_DR" value="-77" onchange="setTextDataFor(this, '#obs\\.private_clinic_bill', '#private_clinic_bill_DK_RF')">
                                     <label for="obs.private_clinic_bill_DK">Don&#39;t</label> &nbsp;&nbsp;
-                                    <input id="obs.private_clinic_bill_RF" type="radio"  name="obs.private_clinic_bill_DR" value="-99" onchange="setTextDataFor(this, 'obs.private_clinic_bill')">
+                                    <input id="obs.private_clinic_bill_RF" type="radio"  name="obs.private_clinic_bill_DR" value="-99" onchange="setTextDataFor(this, '#obs\\.private_clinic_bill', '#private_clinic_bill_DK_RF')">
                                     <label for="obs.private_clinic_bill_RF">Refused</label><br>
                                 </fieldset>
                             </div>
@@ -907,7 +913,7 @@
                     <option value="6415^WALKING^99DCT">On foot</option>
                     <option value="6580^BODA-BODA^99DCT">Boda Boda</option>
                     <option value="6416^MATATU^99DCT">Matatu</option>
-                    <option value="-99">Refused</option>
+                    <option value="1958^REFUSAL^99DCT">Refused</option>
                 </select>
             </div>
             <div class="section form-group time_to_medication_place" id="time_to_medication_place">
@@ -968,8 +974,8 @@
                 <option value="">...</option>
                 <option value="1065^YES^99DCT">Yes</option>
                 <option value="1066^NO^99DCT">No</option>
-                <option value="-77">Don&#39;t Know</option>
-                <option value="-99">Refused</option>
+                <option value="1624^DO NOT KNOW^99DCT">Don&#39;t Know</option>
+                <option value="1958^REFUSAL^99DCT">Refused</option>
             </select>
         </div>
         <div class="visited_herbalist">
@@ -989,8 +995,8 @@
                         <option value="">...</option>
                         <option value="1065^YES^99DCT">Yes</option>
                         <option value="1066^NO^99DCT">No</option>
-                        <option value="-77">Don&#39;t Know</option>
-                        <option value="-99">Refused</option>
+                        <option value="1624^DO NOT KNOW^99DCT">Don&#39;t Know</option>
+                        <option value="1958^REFUSAL^99DCT">Refused</option>
                     </select>
                 </div>
 
@@ -1006,8 +1012,8 @@
                         <option value="123^MALARIA^99DCT">Malaria</option>
                         <option value="141^TYPHOID^99DCT">Typhoid</option>
                         <option value="77^OTHER^99DCT">Others</option>
-                        <option value="-77">Don&#39;t Know</option>
-                        <option value="-99">Refused/No Answer</option>
+                        <option value="1624^DO NOT KNOW^99DCT">Don&#39;t Know</option>
+                        <option value="1958^REFUSAL^99DCT">Refused/No Answer</option>
                     </select>
                     <div class="form-group herbalist_visit_disease_select_other">
                         <label>
@@ -1023,13 +1029,14 @@
                     </label>
                     <div class="repeat herbalist_visit_diseases" id="herbalist_visit_disease" data-name="herbalist_visit_disease">
                         <div class="form-group">
-                            <input class="form-control" id="obs.herbalist_visit_disease" name="obs.herbalist_visit_disease" type="text"
+                            <input class="form-control" id="obs.herbalist_visit_disease" name="obs.herbalist_visit_disease" type="number"
                                    data-concept="9178^HERBALIST VISIT DISEASE^99DCT">
+                            <input class="form-control hiddenInput" id="herbalist_visit_disease_DK_RF" type="text">
                             <div class="form-group">
                                 <fieldset name="obs.herbalist_visit_disease_DR">
-                                    <input id="obs.herbalist_visit_disease_DK" type="radio" name="obs.herbalist_visit_disease_DR" value="-77" onchange="setTextDataFor(this, 'obs.herbalist_visit_disease')">
+                                    <input id="obs.herbalist_visit_disease_DK" type="radio" name="obs.herbalist_visit_disease_DR" value="-77" onchange="setTextDataFor(this, 'obs\\.herbalist_visit_disease', '#herbalist_visit_disease_DK_RF')">
                                     <label for="obs.herbalist_visit_disease_DK">Don&#39;t</label> &nbsp;&nbsp;
-                                    <input id="obs.herbalist_visit_disease_RF" type="radio"  name="obs.herbalist_visit_disease_DR" value="-99" onchange="setTextDataFor(this, 'obs.herbalist_visit_disease')">
+                                    <input id="obs.herbalist_visit_disease_RF" type="radio"  name="obs.herbalist_visit_disease_DR" value="-99" onchange="setTextDataFor(this, 'obs\\.herbalist_visit_disease', '#herbalist_visit_disease_DK_RF')">
                                     <label for="obs.herbalist_visit_disease_RF">Refused</label><br>
                                 </fieldset>
                             </div>
@@ -1046,20 +1053,21 @@
                         <option value="">...</option>
                         <option value="1065^YES^99DCT">Yes</option>
                         <option value="1066^NO^99DCT">No</option>
-                        <option value="-77">Don&#39;t Know</option>
-                        <option value="-99">Refused</option>
+                        <option value="1624^DO NOT KNOW^99DCT">Don&#39;t Know</option>
+                        <option value="1958^REFUSAL^99DCT">Refused</option>
                     </select>
                 </div>
 
                 <div class="form-group herbalist_visit_bill">
                     <label for="obs.medical_bill"> How much did you pay out of pocket for the visit, including the cost of any medications or other interventions?<span class="required">*</span></label>
-                    <input class="form-control" id="obs.herbalist_visit_bill" name="obs.medical_bill" type="text"
+                    <input class="form-control" id="obs.herbalist_visit_bill" name="obs.medical_bill" type="number"
                            data-concept="9093^MEDICAL BILL^99DCT" required="required">
+                    <input class="form-control hiddenInput" id="herbalist_visit_bill_DK_RF" type="text">
                     <div class="form-group">
                         <fieldset name="obs.herbalist_visit_bill_DR">
-                            <input id="obs.herbalist_visit_bill_DK" type="radio" name="obs.herbalist_visit_bill_DR" value="-77" onchange="setTextDataFor(this, 'obs.herbalist_visit_bill')">
+                            <input id="obs.herbalist_visit_bill_DK" type="radio" name="obs.herbalist_visit_bill_DR" value="-77" onchange="setTextDataFor(this, '#obs\\.herbalist_visit_bill', '#herbalist_visit_bill_DK_RF')">
                             <label for="obs.herbalist_visit_bill_DK">Don&#39;t</label> &nbsp;&nbsp;
-                            <input id="obs.herbalist_visit_bill_RF" type="radio"  name="obs.herbalist_visit_bill_DR" value="-99" onchange="setTextDataFor(this, 'obs.herbalist_visit_bill')">
+                            <input id="obs.herbalist_visit_bill_RF" type="radio"  name="obs.herbalist_visit_bill_DR" value="-99" onchange="setTextDataFor(this, '#obs\\.herbalist_visit_bill', '#herbalist_visit_bill_DK_RF')">
                             <label for="obs.herbalist_visit_bill_RF">Refused</label><br>
                         </fieldset>
                     </div>
@@ -1075,7 +1083,7 @@
                         <option value="6415^WALKING^99DCT">On foot</option>
                         <option value="6580^BODA-BODA^99DCT">Boda Boda</option>
                         <option value="6416^MATATU^99DCT">Matatu</option>
-                        <option value="-99">Refused</option>
+                        <option value="1958^REFUSAL^99DCT">Refused</option>
                     </select>
                 </div>
 
@@ -1127,13 +1135,14 @@
                 </div>
                 <div class="form-group">
                     <label for="obs.transport_cost">How much was the transport cost?<span class="required">*</span></label>
-                    <input class="form-control" id="obs.transport_cost" name="obs.transport_cost" type="text"
+                    <input class="form-control" id="obs.transport_cost" name="obs.transport_cost" type="number"
                            data-concept="9093^TRANSPORT COST^99DCT" required="required">
+                    <input class="form-control hiddenInput" id="transport_cost_DK_RF" type="text">
                     <div class="form-group">
                         <fieldset name="obs.transport_cost_DR">
-                            <input id="obs.transport_cost_DK" type="radio" name="obs.transport_cost_DR" value="-77" onchange="setTextDataFor(this, 'obs.transport_cost')">
+                            <input id="obs.transport_cost_DK" type="radio" name="obs.transport_cost_DR" value="-77" onchange="setTextDataFor(this, '#obs\\.transport_cost','#transport_cost_DK_RF')">
                             <label for="obs.transport_cost_DK">Don&#39;t</label> &nbsp;&nbsp;
-                            <input id="obs.transport_cost_RF" type="radio"  name="obs.transport_cost_DR" value="-99" onchange="setTextDataFor(this, 'obs.transport_cost')">
+                            <input id="obs.transport_cost_RF" type="radio"  name="obs.transport_cost_DR" value="-99" onchange="setTextDataFor(this, '#obs\\.transport_cost', '#transport_cost_DK_RF')">
                             <label for="obs.transport_cost_RF">Refused</label><br>
                         </fieldset>
                     </div>
@@ -1157,20 +1166,21 @@
                 <option value="">...</option>
                 <option value="1065^YES^99DCT">Yes</option>
                 <option value="1066^NO^99DCT">No</option>
-                <option value="-77">Don&#39;t Know</option>
-                <option value="-99">Refused</option>
+                <option value="1624^DO NOT KNOW^99DCT">Don&#39;t Know</option>
+                <option value="1958^REFUSAL^99DCT">Refused</option>
             </select>
         </div>
         <div class="takenMedsQuiz">
             <div class="form-group">
                 <label for="obs.number_of_meds">How many different types of prescriptions/medicines have you taken in the past 3 months?<span class="required">*</span></label>
-                <input class="form-control" id="obs.number_of_meds" name="obs.number_of_meds" type="text"
+                <input class="form-control" id="obs.number_of_meds" name="obs.number_of_meds" type="number"
                        data-concept="9139^NUMBER OF PRESCRIBED MEDICATION TAKEN^99DCT" required="required">
+                <input class="form-control hiddenInput" id="number_of_meds_DK_RF" type="text">
                 <div class="form-group">
                     <fieldset name="obs.number_of_meds_DR">
-                        <input id="obs.number_of_meds_DK" type="radio" name="obs.number_of_meds_DR" value="-77" onchange="setTextDataFor(this, 'obs.number_of_meds')">
+                        <input id="obs.number_of_meds_DK" type="radio" name="obs.number_of_meds_DR" value="-77" onchange="setTextDataFor(this, '#obs\\.number_of_meds', '#number_of_meds_DK_RF')">
                         <label for="obs.number_of_meds_DK">Don&#39;t</label> &nbsp;&nbsp;
-                        <input id="obs.number_of_meds_RF" type="radio"  name="obs.number_of_meds_DR" value="-99" onchange="setTextDataFor(this, 'obs.number_of_meds')">
+                        <input id="obs.number_of_meds_RF" type="radio"  name="obs.number_of_meds_DR" value="-99" onchange="setTextDataFor(this, '#obs\\.number_of_meds', '#number_of_meds_DK_RF')">
                         <label for="obs.number_of_meds_RF">Refused</label><br>
                     </fieldset>
                 </div>
@@ -1193,8 +1203,8 @@
                         <option value="1242^ENALAPRIL^99DCT">Enalapril</option>
                         <option value="99^FUROSEMIDE^99DCT">Furosemide</option>
                         <option value="77^OTHER^99DCT">Other</option>
-                        <option value="-77">Don&#39;t Know</option>
-                        <option value="-99">Refused</option>
+                        <option value="1624^DO NOT KNOW^99DCT">Don&#39;t Know</option>
+                        <option value="1958^REFUSAL^99DCT">Refused</option>
                     </select>
                 </div>
                 <div class="form-group name_of_meds_other">
@@ -1217,8 +1227,8 @@
                             <option value="123^MALARIA^99DCT">Malaria</option>
                             <option value="141^TYPHOID^99DCT">Typhoid</option>
                             <option value="77^OTHER^99DCT">Others</option>
-                            <option value="-77">Don&#39;t Know</option>
-                            <option value="-99">Refused/No Answer</option>
+                            <option value="1624^DO NOT KNOW^99DCT">Don&#39;t Know</option>
+                            <option value="1958^REFUSAL^99DCT">Refused/No Answer</option>
                         </select>
                         <div class="form-group prescriptionDisease_other" data-name="diseases">
                             <label>
@@ -1240,19 +1250,20 @@
                         <option value="2">Government chemist</option>
                         <option value="3">Dispensary/Health Center</option>
                         <option value="4">Revolving Fund Pharmacy</option>
-                        <option value="-77">Don&#39;t Know</option>
-                        <option value="-99">Refused</option>
+                        <option value="1624^DO NOT KNOW^99DCT">Don&#39;t Know</option>
+                        <option value="1958^REFUSAL^99DCT">Refused</option>
                     </select>
                 </div>
                 <div class="form-group medical_bill">
                     <div for="obs.medication_purchase_bill">How much did you pay for the medicine?<span class="required">*</span></div>
-                    <input class="form-control" id="obs.medication_purchase_bill" name="obs.medication_purchase_bill" type="text"
+                    <input class="form-control" id="obs.medication_purchase_bill" name="obs.medication_purchase_bill" type="number"
                            data-concept="9142^MEDICATION PURCHASE COST^99DCT" required="required">
+                    <input class="form-control hiddenInput" id="medication_purchase_bill_DK_RF" type="text">
                     <div class="form-group">
                         <fieldset name="obs.medication_purchase_bill_DR">
-                            <input id="obs.medication_purchase_bill_DK" type="radio" name="obs.medication_purchase_bill_DR" value="-77" onchange="setTextDataFor(this, 'obs.medication_purchase_bill')">
+                            <input id="obs.medication_purchase_bill_DK" type="radio" name="obs.medication_purchase_bill_DR" value="-77" onchange="setTextDataFor(this, '#obs\\.medication_purchase_bill', '#medication_purchase_bill_DK_RF')">
                             <label for="obs.medication_purchase_bill_DK">Don&#39;t</label> &nbsp;&nbsp;
-                            <input id="obs.medication_purchase_bill_RF" type="radio"  name="obs.medication_purchase_bill_DR" value="-99" onchange="setTextDataFor(this, 'obs.medication_purchase_bill')">
+                            <input id="obs.medication_purchase_bill_RF" type="radio"  name="obs.medication_purchase_bill_DR" value="-99" onchange="setTextDataFor(this, '#obs\\.medication_purchase_bill', '#medication_purchase_bill_DK_RF')">
                             <label for="obs.medication_purchase_bill_RF">Refused</label><br>
                         </fieldset>
                     </div>
@@ -1273,8 +1284,8 @@
                 <option value="">...</option>
                 <option value="1065^YES^99DCT">Yes</option>
                 <option value="1066^NO^99DCT">No</option>
-                <option value="-77">Don&#39;t Know</option>
-                <option value="-99">Refused</option>
+                <option value="1624^DO NOT KNOW^99DCT">Don&#39;t Know</option>
+                <option value="1958^REFUSAL^99DCT">Refused</option>
             </select>
         </div>
 
@@ -1287,8 +1298,8 @@
                 <option value="">...</option>
                 <option value="1065^YES^99DCT">Yes</option>
                 <option value="1066^NO^99DCT">No</option>
-                <option value="-77">Don&#39;t Know</option>
-                <option value="-99">Refused</option>
+                <option value="1624^DO NOT KNOW^99DCT">Don&#39;t Know</option>
+                <option value="1958^REFUSAL^99DCT">Refused</option>
             </select>
         </div>
 
@@ -1301,8 +1312,8 @@
                 <option value="">...</option>
                 <option value="1065^YES^99DCT">Yes</option>
                 <option value="1066^NO^99DCT">No</option>
-                <option value="-77">Don&#39;t Know</option>
-                <option value="-99">Refused</option>
+                <option value="1624^DO NOT KNOW^99DCT">Don&#39;t Know</option>
+                <option value="1958^REFUSAL^99DCT">Refused</option>
             </select>
         </div>
         <div class="otherInsuranceDisplay">
@@ -1463,13 +1474,14 @@
             </div>
         <div class="form-group purchase_salt_grams">
             <label for="obs.medical_bill"> For the last one month, how many grams of salt did you purchase?<span class="required">*</span></label>
-            <input class="form-control" id="obs.purchase_salt_grams" name="obs.purchase_salt_grams" type="text"
+            <input class="form-control" id="obs.purchase_salt_grams" name="obs.purchase_salt_grams" type="number"
                    data-concept="9151^PURCHASED SALT IN GRAM^99DCT" required="required">
+            <input class="form-control hiddenInput" id="purchase_salt_grams_DK_RF" type="text">
             <div class="form-group">
                 <fieldset name="obs.purchase_salt_grams_DR">
-                    <input id="obs.purchase_salt_grams_DK" type="radio" name="obs.purchase_salt_grams_DR" value="-77" onchange="setTextDataFor(this, 'obs.purchase_salt_grams')">
+                    <input id="obs.purchase_salt_grams_DK" type="radio" name="obs.purchase_salt_grams_DR" value="-77" onchange="setTextDataFor(this, '#obs\\.purchase_salt_grams', '#purchase_salt_grams_DK_RF')">
                     <label for="obs.purchase_salt_grams_DK">Don&#39;t</label> &nbsp;&nbsp;
-                    <input id="obs.purchase_salt_grams_RF" type="radio"  name="obs.purchase_salt_grams_DR" value="-99" onchange="setTextDataFor(this, 'obs.purchase_salt_grams')">
+                    <input id="obs.purchase_salt_grams_RF" type="radio"  name="obs.purchase_salt_grams_DR" value="-99" onchange="setTextDataFor(this, '#obs\\.purchase_salt_grams', '#purchase_salt_grams_DK_RF')">
                     <label for="obs.purchase_salt_grams_RF">Refused</label><br>
                 </fieldset>
             </div>
@@ -1489,8 +1501,8 @@
                 <option value="5">5 days</option>
                 <option value="6">6 days</option>
                 <option value="7">7 days</option>
-                <option value="-77">Don&#39;t</option>
-                <option value="-99">refused</option>
+                <option value="1624^DO NOT KNOW^99DCT">Don&#39;t</option>
+                <option value="1958^REFUSAL^99DCT">refused</option>
             </select>
         </div>
 
@@ -1507,8 +1519,8 @@
                 <option value="3">3 servings</option>
                 <option value="4">4 servings</option>
                 <option value="5">5 servings</option>
-                <option value="-77">Don&#39;t</option>
-                <option value="-99">refused</option>
+                <option value="1624^DO NOT KNOW^99DCT">Don&#39;t</option>
+                <option value="1958^REFUSAL^99DCT">refused</option>
             </select>
         </div>
 
@@ -1525,8 +1537,8 @@
                 <option value="3">3 days</option>
                 <option value="4">4 days</option>
                 <option value="5">5 days</option>
-                <option value="-77">Don&#39;t</option>
-                <option value="-99">refused</option>
+                <option value="1624^DO NOT KNOW^99DCT">Don&#39;t</option>
+                <option value="1958^REFUSAL^99DCT">refused</option>
             </select>
         </div>
 
@@ -1543,8 +1555,8 @@
                 <option value="3">3 servings</option>
                 <option value="4">4 servings</option>
                 <option value="5">5 servings</option>
-                <option value="-77">Don&#39;t</option>
-                <option value="-99">refused</option>
+                <option value="1624^DO NOT KNOW^99DCT">Don&#39;t</option>
+                <option value="1958^REFUSAL^99DCT">refused</option>
             </select>
         </div>
         <p></p><div class="alert alert-info">Tobacco Use</div>
@@ -1759,8 +1771,8 @@
                 <option value="4">Kshs 20,000-29,999</option>
                 <option value="5">Kshs 30,000-39,999</option>
                 <option value="6">Over Kshs 40,000</option>
-                <option value="-77">Don&#39;t Know</option>
-                <option value="-99">Refused</option>
+                <option value="1624^DO NOT KNOW^99DCT">Don&#39;t Know</option>
+                <option value="1958^REFUSAL^99DCT">Refused</option>
             </select>
         </div>
         <div class="form-group notWorkingDisplay">
@@ -1843,8 +1855,8 @@
                         <option value="123^MALARIA^99DCT">Malaria</option>
                         <option value="141^TYPHOID^99DCT">Typhoid</option>
                         <option value="77^OTHER^99DCT">Others</option>
-                        <option value="-77">Don&#39;t Know</option>
-                        <option value="-99">Refused/No Answer</option>
+                        <option value="1624^DO NOT KNOW^99DCT">Don&#39;t Know</option>
+                        <option value="1958^REFUSAL^99DCT">Refused/No Answer</option>
                     </select>
                     <div class="form-group reasonMissedWork_other">
                         <label>
@@ -1929,94 +1941,113 @@
 </body>
 <script type="text/javascript">
 
-    var setTextDataFor = function(rdoButton, inputText){
+    var setTextDataFor = function(rdoButton, inputText, displayInput){
         if(rdoButton.checked){
-            document.getElementById(inputText).readOnly = true;
+            $(inputText).hide();
+            $(displayInput).show();
             if(rdoButton.value == -77){
-                document.getElementById(inputText).value = "Don't Know";
+                $(inputText).val(-77);
+                $(displayInput).val('Do not Know');
             }else if(rdoButton.value == -99){
-                document.getElementById(inputText).value = "Refused";
+                $(inputText).val(-99);
+                $(displayInput).val('Refuse');
             }
         }
     };
 
     $(document).ready(function () {
 
-        $('#obs\\.medical_bill').click(function(){
-                if($(this).val()=="Don't Know" || $(this).val()=='Refused'){$(this).val('')} ;
-                $(this).attr('readonly', false);
+        $('.hiddenInput').hide();
+
+        $('#medical_bill_DK_RF').click(function(){
+                $('#obs\\.medical_bill').show();
+                $('#obs\\.medical_bill').val('');
+                $(this).hide();
                 $('#obs\\.medical_bill_RF').prop('checked', false);
                 $('#obs\\.medical_bill_DK').prop('checked', false);
             });
-        $('#obs\\.medical_bill_self_paid').click(function(){
-                if($(this).val()=="Don't Know" || $(this).val()=='Refused'){$(this).val('')} ;
-                $(this).attr('readonly', false);
+
+        $('#medical_bill_self_paid_DK_RF').click(function(){
+                $('#obs\\.medical_bill_self_paid').show();
+                $('#obs\\.medical_bill_self_paid').val('');
+                $(this).hide();
                 $('#obs\\.medical_bill_self_paid_RF').prop('checked', false);
                 $('#obs\\.medical_bill_self_paid_DK').prop('checked', false);
             });
-        $('#obs\\.transport_cost').click(function(){
-                if($(this).val()=="Don't Know" || $(this).val()=='Refused'){$(this).val('')} ;
-                $(this).attr('readonly', false);
+        $('#transport_cost_DK_RF').click(function(){
+                $('#obs\\.transport_cost').show();
+                $('#obs\\.transport_cost').val('');
+                $(this).hide();
                 $('#obs\\.transport_cost_RF').prop('checked', false);
                 $('#obs\\.transport_cost_DK').prop('checked', false);
             });
-        $('#obs\\.health_center_bill').click(function(){
-                if($(this).val()=="Don't Know" || $(this).val()=='Refused'){$(this).val('')} ;
-                $(this).attr('readonly', false);
+        $('#health_center_bill_DK_RF').click(function(){
+                $('#obs\\.health_center_bill').show();
+                $('#obs\\.health_center_bill').val('');
+                $(this).hide();
                 $('#obs\\.health_center_bill_RF').prop('checked', false);
                 $('#obs\\.health_center_bill_DK').prop('checked', false);
             });
-        $('#obs\\.hospital_day_bill').click(function(){
-                if($(this).val()=="Don't Know" || $(this).val()=='Refused'){$(this).val('')} ;
-                $(this).attr('readonly', false);
+        $('#hospital_day_bill_DK_RF').click(function(){
+                $('#obs\\.hospital_day_bill').show();
+                $('#obs\\.hospital_day_bill').val('');
+                $(this).hide();
                 $('#obs\\.hospital_day_bill_RF').prop('checked', false);
                 $('#obs\\.hospital_day_bill_DK').prop('checked', false);
             });
-        $('#obs\\.chemist_bill').click(function(){
-                if($(this).val()=="Don't Know" || $(this).val()=='Refused'){$(this).val('')} ;
-                $(this).attr('readonly', false);
+        $('#chemist_bill_DK_RF').click(function(){
+                $('#obs\\.chemist_bill').show();
+                $('#obs\\.chemist_bill').val('');
+                $(this).hide();
                 $('#obs\\.chemist_bill_RF').prop('checked', false);
                 $('#obs\\.chemist_bill_DK').prop('checked', false);
             });
-         $('#obs\\.private_clinic_bill').click(function(){
-                if($(this).val()=="Don't Know" || $(this).val()=='Refused'){$(this).val('')} ;
-                $(this).attr('readonly', false);
+        $('#private_clinic_bill_DK_RF').click(function(){
+                $('#obs\\.private_clinic_bill').show();
+                $('#obs\\.private_clinic_bill').val('');
+                $(this).hide();
                 $('#obs\\.private_clinic_bill_RF').prop('checked', false);
                 $('#obs\\.private_clinic_bill_DK').prop('checked', false);
             });
-         $('#obs\\.dispensary_center_bill').click(function(){
-                if($(this).val()=="Don't Know" || $(this).val()=='Refused'){$(this).val('')} ;
-                $(this).attr('readonly', false);
+        $('#dispensary_center_bill_DK_RF').click(function(){
+                $('#obs\\.dispensary_center_bill').show();
+                $('#obs\\.dispensary_center_bill').val('');
+                $(this).hide();
                 $('#obs\\.dispensary_center_bill_RF').prop('checked', false);
                 $('#obs\\.dispensary_center_bill_DK').prop('checked', false);
             });
-        $('#obs\\.herbalist_visit_disease').click(function(){
-                if($(this).val()=="Don't Know" || $(this).val()=='Refused'){$(this).val('')} ;
-                $(this).attr('readonly', false);
+        $('#herbalist_visit_disease_DK_RF').click(function(){
+                $('#obs\\.herbalist_visit_disease').show();
+                $('#obs\\.herbalist_visit_disease').val('');
+                $(this).hide();
                 $('#obs\\.herbalist_visit_disease_RF').prop('checked', false);
                 $('#obs\\.herbalist_visit_disease_DK').prop('checked', false);
             });
-        $('#obs\\.herbalist_visit_bill').click(function(){
-                if($(this).val()=="Don't Know" || $(this).val()=='Refused'){$(this).val('')} ;
-                $(this).attr('readonly', false);
+        $('#herbalist_visit_bill_DK_RF').click(function(){
+                $('#obs\\.herbalist_visit_bill').show();
+                $('#obs\\.herbalist_visit_bill').val('');
+                $(this).hide();
                 $('#obs\\.herbalist_visit_bill_RF').prop('checked', false);
                 $('#obs\\.herbalist_visit_bill_DK').prop('checked', false);
             });
-        $('#obs\\.number_of_meds').click(function(){
-                if($(this).val()=="Don't Know" || $(this).val()=='Refused'){$(this).val('')} ;
-                $(this).attr('readonly', false);
+        $('#number_of_meds_DK_RF').click(function(){
+                $('#obs\\.number_of_meds').show();
+                $('#obs\\.number_of_meds').val('');
+                $(this).hide();
                 $('#obs\\.number_of_meds_RF').prop('checked', false);
                 $('#obs\\.number_of_meds_DK').prop('checked', false);
             });
-        $('#obs\\.medication_purchase_bill').click(function(){
-                if($(this).val()=="Don't Know" || $(this).val()=='Refused'){$(this).val('')} ;
-                $(this).attr('readonly', false);
+        $('#medication_purchase_bill_DK_RF').click(function(){
+                $('#obs\\.medication_purchase_bill').show();
+                $('#obs\\.medication_purchase_bill').val('');
+                $(this).hide();
                 $('#obs\\.medication_purchase_bill_RF').prop('checked', false);
                 $('#obs\\.medication_purchase_bill_DK').prop('checked', false);
             });
-          $('#obs\\.purchase_salt_grams').click(function(){
-                if($(this).val()=="Don't Know" || $(this).val()=='Refused'){$(this).val('')} ;
-                $(this).attr('readonly', false);
+        $('#purchase_salt_grams_DK_RF').click(function(){
+                $('#obs\\.purchase_salt_grams').show();
+                $('#obs\\.purchase_salt_grams').val('');
+                $(this).hide();
                 $('#obs\\.purchase_salt_grams_RF').prop('checked', false);
                 $('#obs\\.purchase_salt_grams_DK').prop('checked', false);
             });
@@ -2046,8 +2077,6 @@
         $.validator.addMethod("checkHourAndMints", function (value, element) {
             var d = $('#obs\\.time_doing_vigorous_physical_mins').val();
             var a = $('#obs\\.time_doing_vigorous_physical_hours').val();
-            alert(d);
-            alert(a);
             if(d =='' && a =='')
                 return false;
             else
