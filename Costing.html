@@ -69,13 +69,14 @@
             <label for="encounter.provider_id">Provider ID <span class="required">*</span></label>
             <select class="form-control" id="encounter.provider_id" name="encounter.provider_id" required="required">
                 <option>...</option>
-                <option value="4-2">Josephine Kisato</option>
-                <option value="4-2">Catherine Chiliswa</option>
+                <option value="6-7">Josephine Kisato</option>
+                <option value="9-1">Catherine Chiliswa</option>
                 <option value="4-2">Derek Levembe</option>
-                <option value="4-2">Daniel Malakwen</option>
-                <option value="4-2">Jackson Rotich</option>
+                <option value="15-8">Jackson Rotich</option>
                 <option value="4-2">Penina Kiptoo</option>
-                <option value="4-2">Kennedy Kirwa</option>
+                <option value="8-3">Kennedy Kirwa</option>
+                <option value="7-5">Abraham Saat Kimaru</option>
+                <option value="5-9">Keviner Chavera Asigi</option>
             </select>
         </div>
         <div class="form-group">
@@ -167,7 +168,7 @@
 
 
     <div class="section">
-        <h3>INPATIENT ADMISSIONS</h3>
+        <h3>SECTION B - INPATIENT ADMISSIONS</h3>
         <div class="form-group">
             <label for="obs.admitted_select">
                 Have you at any time during the past 12 months been admitted in a hospital for at least one night? <span class="required">*</span>
@@ -365,6 +366,7 @@
                 <label>Hours</label>
                 <select class="form-control" id="obs.time_to_hospital_hours" required="required">
                     <option value="">...</option>
+		    <option value="0">0</option>
                     <option value="1">1</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
@@ -384,6 +386,7 @@
                 <label>Minutes</label>
                 <select class="form-control" id="obs.time_to_hospital_mins">
                     <option value="">...</option>
+	 	    <option value="0">0</option>
                     <option value="5">5</option>
                     <option value="10">10</option>
                     <option value="15">15</option>
@@ -408,9 +411,20 @@
             <div class="form-group">
                 <input class="form-control" name="obs.time_to_hosp" type="hidden" data-concept="9133^NUMBER OF MINUTES TO REACH HOSPITAL^99DCT">
             </div>
-
+                <div class="form-group">
+                    <label for="obs.transport_cost_to_hospital">How much was the transport cost?</label>
+                    <input class="form-control" id="obs.transport_cost_to_hospital" name="obs.transport_cost_to_hospital" type="number" data-concept="9182^INPATIENT TRANSPORT COSTS^99DCT">
+                    <input class="form-control hiddenInput" id="transport_cost_to_hospital_DK_RF" type="text">
+                    <div class="form-group">
+                        <fieldset name="obs.transport_cost_to_hospital_DR">
+                            <input id="obs.transport_cost_to_hospital_DK" type="radio" name="obs.transport_cost_to_hospital_DR" value="-77" onchange="setTextDataFor(this, '#obs\\.transport_cost_to_hospital', '#transport_cost_to_hospital_DK_RF')">
+                            <label for="obs.transport_cost_to_hospital_DK">Don&#39;t Know</label> &nbsp;&nbsp;
+                            <input id="obs.transport_cost_to_hospital_RF" type="radio"  name="obs.transport_cost_to_hospital_DR" value="-99" onchange="setTextDataFor(this, '#obs\\.transport_cost_to_hospital', '#transport_cost_to_hospital_DK_RF')">
+                            <label for="obs.transport_cost_to_hospital_RF">Refused</label><br>
+                        </fieldset>
+                    </div>
+                </div>
         </div>
-
 
     </div>
     <div class="section">
@@ -924,6 +938,7 @@
                 <select class="form-control" id="obs.time_to_medication_place_hours" name="obs.time_to_medication_place_hours"
                         data-concept="9124^TIME TAKEN TO MEDICATION PLACE^99DCT" required="required">
                     <option value="">...</option>
+		    <option value="0">0</option>
                     <option value="1">1</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
@@ -964,7 +979,7 @@
         </div>
     </div>
     <div class="section">
-        <h3>SECTION D-HERBAL MEDICINE/SPIRITUAL HEALER</h3>
+        <h3>SECTION D - HERBAL MEDICINE/SPIRITUAL HEALER</h3>
         <div class="form-group">
             <label for="obs.visited_herbalist">
                 Have you at any time during the past 3 months visited a herbalist or spiritual healer?  <span class="required">*</span>
@@ -1095,6 +1110,7 @@
                     <select class="form-control" id="obs.time_to_herbalist_hours" name="obs.time_to_herbalist_hours"
                             data-concept="8117^NUMBER OF MINUTES^99DCT" required="required">
                         <option value="">...</option>
+			<option value="0">0</option>
                         <option value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
@@ -1111,6 +1127,7 @@
                     <label>Minutes</label>
                     <select  name="obs.time_to_herbalist_mins" class="form-control" id="obs.time_to_herbalist_mins">
                         <option value="">...</option>
+			<option value="0">0</option>
                         <option value="5">5</option>
                         <option value="10">10</option>
                         <option value="15">15</option>
@@ -1273,7 +1290,7 @@
         </div>
     </div>
     <div class="section" >
-        <h3>SECTION F- HEALTH INSURANCE</h3>
+        <h3>SECTION F - HEALTH INSURANCE</h3>
 
         <div class="form-group">
             <label for="obs.inpatient_admission">
@@ -1327,7 +1344,7 @@
         </div>
     </div>
     <div class="section" >
-        <h3>SECTION G LIFESTYLE/HABITS</h3>
+        <h3>SECTION G - LIFESTYLE/HABITS</h3>
 
         <div class="alert alert-info">We are interested in finding out about the kinds of physical activities that people do as part of their everyday lives.  The questions will ask you about the time you spent being physically active in the last 7 days.  Please answer each question even if you do not consider yourself to be an active person.  Please think about the activities you do at work and as part of your house, to get from place to place, and in your spare time for recreation, exercise or sport.
             I am going to first ask you about vigorous activities then later ask about moderate activities that you did in the last seven days
@@ -1656,7 +1673,7 @@
 
     </div>
     <div class="section" >
-        <h3>SECTION H- HEALTH STATUS</h3>
+        <h3>SECTION H - HEALTH STATUS</h3>
         <div class="alert alert-info">We are now going to ask you questions about your health-related quality of life.</div>
         <div class="form-group">
             <label for="obs.mobility">
@@ -1737,7 +1754,7 @@
         </div>
     </div>
     <div class="section" >
-        <h3>SECTION I- WORK PRODUCTIVITY</h3>
+        <h3>SECTION I - WORK PRODUCTIVITY</h3>
         <div class="form-group">
             <label for="obs.primary_job">
                 what is your primary job<span class="required">*</span>
@@ -1901,7 +1918,7 @@
 
     </div>
     <div class="section">
-        <h3>PHYSICAL MEASUREMENTS</h3>
+        <h3>SECTION J - PHYSICAL MEASUREMENTS</h3>
         <div class="form-group"></p>
             <label for="obs.height">Height (CM)</label>
             <input class="form-control" id="obs.height" name="obs.height"
@@ -1918,8 +1935,19 @@
             <input class="form-control" id="obs.hip_circumference" name="obs.hip_circumference"
                    type="number" placeholder="Centimeters" data-concept="9175^HIP CIRCUMFERENCE^99DCT">
         </div>
-
-
+	<div class="section">
+	</p><label> Blood Pressure</label>
+		<div class="form-group">
+		    </p><label for="obs.blood_pressure_systolic"> Systolic </label>
+		    <input class="form-control" id="obs.blood_pressure_systolic" name="obs.blood_pressure_systolic"
+			   type="number" placeholder="mm Hg" data-concept="5085^SYSTOLIC BLOOD PRESSURE^99DCT">
+		</div>
+		<div class="form-group">
+		    </p><label for="obs.blood_pressure_diastolic"> Diastolic </label>
+		    <input class="form-control" id="obs.blood_pressure_diastolic" name="obs.blood_pressure_diastolic"
+			   type="number" placeholder="mm Hg" data-concept="5086^DIASTOLIC BLOOD PRESSURE^99DCT">
+		</div>
+	</div>
         <div class="form-group">
             <label for="obs.enrollment_strategy">Select Enrollment Strategy:<span class="required">*</span></label>
             <select class="form-control" id="obs.enrollment_strategy" name="obs.enrollment_strategy"
@@ -2161,6 +2189,12 @@
                 },
                 "obs.hip_circumference":{
                     range : [0, 50]
+                },
+		"obs.blood_pressure_systolic":{
+                    range : [50, 300]
+                },
+		"obs.blood_pressure_diastolic":{
+                    range : [20, 150]
                 }
 
 
