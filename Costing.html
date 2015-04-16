@@ -102,9 +102,9 @@
         </div>
 
         <div class="form-group">
-            <div for="obs.division_select">
+            <label for="obs.division_select">
                 Select Division <span class="required">*</span>
-            </div>
+            </label>
             <select class="form-control" id="obs.division_select" name="obs.division_select"
                     data-concept="9177^DIVISION^99DCT" required="required">
                 <option value="">...</option>
@@ -122,11 +122,11 @@
                 <option value="Q">Chepterit</option>
                 <option value="R">Itigo</option>
                 <option value="S">Kokwet</option>
-                <option value="T">Kingwal</option>
-                <option value="U">Lelmokwo</option>
+                <option value="X">Kosirai</option>
+                <option value="U">Lelmokwo/Sigot</option>
                 <option value="V">Mosoriot</option>
+                <option value="T">Mutwot/King'wal</option>
                 <option value="W">Ngechek</option>
-                <option value="X">Sigot</option>
             </select>
         </div>
         <div class="form-group show_community_unit_turbo_select">
@@ -161,6 +161,32 @@
             <label for="obs.size_of_house_hold"> What is the size of your house hold?<span class="required">*</span></label>
             <input class="form-control" id="obs.size_of_house_hold" name="obs.size_of_house_hold"
                    type="number" placeholder="Size of house hold" data-concept="9087^HOUSEHOLD SIZE^99DCT" required="required">
+        </div>
+        <div class="form-group">
+            <label for="obs.enrollment_strategy">Select Enrollment Strategy:<span class="required">*</span></label>
+            <select class="form-control" id="obs.enrollment_strategy" name="obs.enrollment_strategy"
+                    data-concept="9176^ENROLLMENT STRATEGY^99DCT" required="required">
+                <option value="">...</option>
+                <option value="1">Baraza</option>
+                <option value="2">Newly identified PHCT</option>
+                <option value="3">Previously identified PHCT-not linked</option>
+                <option value="4">Previously identified PHCT-not retained</option>
+                <option value="5">Health Facility</option>
+                <option value="6">Identified by CHW</option>
+            </select>
+        </div>
+	<div class="form-group">
+            <label for="obs.told_having_blood_pressure_in_12_months">
+                During the past 12 months have you been told by a doctor or other health worker that you have raised blood pressure or hypertension? <span class="required">*</span>
+            </label>
+            <select class="form-control" id="obs.told_having_blood_pressure_in_12_months" name="obs.told_having_blood_pressure_in_12_months"
+                    data-concept="9181^TOLD HAVING BLOOD PRESSURE IN 12 MONTHS^99DCT" required="required">
+                <option value="">...</option>
+                <option value="1065^YES^99DCT">Yes</option>
+                <option value="1066^NO^99DCT">No</option>
+                <option value="1624^DO NOT KNOW^99DCT">Don&#39;t Know</option>
+                <option value="1958^REFUSAL^99DCT">Refused</option>
+            </select>
         </div>
     </div>
 
@@ -832,9 +858,9 @@
                         <div class="alert alert-info" id="private_clinicVisitCount">1st private clinic visit</div>
                         <p>
                         <div class="form-group">
-                            <div for="obs.private_clinic_visit_select">
+                            <label for="obs.private_clinic_visit_select">
                                 Was the private clinic visit the result of an accident or injury? <span class="required">*</span>
-                            </div>
+                            </label>
                             <select class="form-control" id="obs.private_clinic_visit_select" name="obs.private_clinic_visit_select"
                                     data-concept="9102^PRIVATE CLINIC VISIT DUE TO INJURY^99DCT" required="required">
                                 <option value="">...</option>
@@ -882,9 +908,9 @@
                         </div>
 
                         <div class="form-group dispensary_visit_drugs">
-                            <div for="obs.dispensary_visit_drugs">
+                            <label for="obs.dispensary_visit_drugs">
                                 During the visit were you prescribed or given any drugs to use? <span class="required">*</span>
-                            </div>
+                            </label>
                             <select class="form-control" id="obs.private_clinic_visit_drugs" name="obs.private_clinic_visit_drugs"
                                     data-concept="9114^PRIVATE CLINIC VISIT ISSUED DRUGS^99DCT" required="required">
                                 <option value="">...</option>
@@ -896,7 +922,7 @@
                         </div>
 
                         <div class="form-group medical_bill">
-                            <div for="obs.medical_bill">How much did you pay out of pocket for the visit including drug costs if applicable?<span class="required">*</span></div>
+                            <label for="obs.medical_bill">How much did you pay out of pocket for the visit including drug costs if applicable?<span class="required">*</span></label>
                             <input class="form-control" id="obs.private_clinic_bill" name="obs.private_clinic_bill" type="number"
                                    data-concept="9122^PRIVATE CLINIC VISIT COST^99DCT" required="required">
                             <input class="form-control hiddenInput" id="private_clinic_bill_DK_RF" type="text">
@@ -1272,7 +1298,7 @@
                     </select>
                 </div>
                 <div class="form-group medical_bill">
-                    <div for="obs.medication_purchase_bill">How much did you pay for the medicine?<span class="required">*</span></div>
+                    <label for="obs.medication_purchase_bill">How much did you pay for the medicine?<span class="required">*</span></label>
                     <input class="form-control" id="obs.medication_purchase_bill" name="obs.medication_purchase_bill" type="number"
                            data-concept="9142^MEDICATION PURCHASE COST^99DCT" required="required">
                     <input class="form-control hiddenInput" id="medication_purchase_bill_DK_RF" type="text">
@@ -1614,7 +1640,7 @@
                         data-concept="9157^CIGARETTES SMOKED EACH DAY^99DCT" required="required">
                     <option value="">...</option>
                     <option value="0">None</option>
-                    <option value="1">More than 10</option>
+                    <option value="1">Less than 10</option>
                     <option value="2">Between 11-20</option>
                     <option value="3">Between 21-30</option>
                     <option value="4">More than 31</option>
@@ -1661,10 +1687,10 @@
                 <select class="form-control" id="obs.alcohol_taken_each_day" name="obs.alcohol_taken_each_day"
                         data-concept="9186^SERVINGS OF ALCOHOL USED IN A WEEK^99DCT" required="required">
                     <option value="">...</option>
-                    <option value="1">More than 5</option>
+                    <option value="1">Less than 5</option>
                     <option value="2">Between 6-10</option>
                     <option value="3">Between 11-15</option>
-                    <option value="4">More than16</option>
+                    <option value="4">More than 16</option>
                 </select>
 
             </div>
@@ -1747,7 +1773,7 @@
 
         <div class="form-group">
             <label for="obs.health_status">
-                please select the number you based on the scale<span class="required">*</span>
+                Please select the number you based on the scale<span class="required">*</span>
             </label>
             <input class="form-control" id="obs.health_status" name="obs.health_status" type="number"
                    data-concept="9165^HEALTH STATUS^99DCT" required="required">
@@ -1757,7 +1783,7 @@
         <h3>SECTION I - WORK PRODUCTIVITY</h3>
         <div class="form-group">
             <label for="obs.primary_job">
-                what is your primary job<span class="required">*</span>
+                What is your primary job<span class="required">*</span>
             </label>
             <select class="form-control" id="obs.primary_job" name="obs.primary_job"
                     data-concept="9166^PRIMARY JOB^99DCT" required="required">
@@ -1948,19 +1974,7 @@
 			   type="number" placeholder="mm Hg" data-concept="5086^DIASTOLIC BLOOD PRESSURE^99DCT">
 		</div>
 	</div>
-        <div class="form-group">
-            <label for="obs.enrollment_strategy">Select Enrollment Strategy:<span class="required">*</span></label>
-            <select class="form-control" id="obs.enrollment_strategy" name="obs.enrollment_strategy"
-                    data-concept="9176^ENROLLMENT STRATEGY^99DCT" required="required">
-                <option value="">...</option>
-                <option value="1">Baraza</option>
-                <option value="2">Newly identified PHCT</option>
-                <option value="3">Previously identified PHCT-not linked</option>
-                <option value="4">Previously identified PHCT-not retained</option>
-                <option value="5">Health Facility</option>
-                <option value="6">Identified by CHW</option>
-            </select>
-        </div>
+
     </div>
 
     <div class="form-group text-center">
