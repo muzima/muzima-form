@@ -1640,10 +1640,10 @@
                         data-concept="9157^CIGARETTES SMOKED EACH DAY^99DCT" required="required">
                     <option value="">...</option>
                     <option value="0">None</option>
-                    <option value="1">Less than 10</option>
+                    <option value="1">Less or equal to 10</option>
                     <option value="2">Between 11-20</option>
                     <option value="3">Between 21-30</option>
-                    <option value="4">More than 31</option>
+                    <option value="4">More than 30</option>
                 </select>
             </div>
 
@@ -1690,7 +1690,7 @@
                     <option value="1">Less than 5</option>
                     <option value="2">Between 6-10</option>
                     <option value="3">Between 11-15</option>
-                    <option value="4">More than 16</option>
+                    <option value="4">More than 15</option>
                 </select>
 
             </div>
@@ -1957,6 +1957,11 @@
                    type="number" placeholder="Kilograms" data-concept="5089^WEIGHT (KG)^99DCT">
         </div>
         <div class="form-group">
+            </p><label for="obs.waist_circumference"> Waist circumference (CM)</label>
+            <input class="form-control" id="obs.waist_circumference" name="obs.waist_circumference"
+                   type="number" placeholder="Centimeters" data-concept="9321^WAIST CIRCUMFERENCE (CM)^99DCT">
+        </div>
+        <div class="form-group">
             </p><label for="obs.hip_circumference"> Hip circumference (CM)</label>
             <input class="form-control" id="obs.hip_circumference" name="obs.hip_circumference"
                    type="number" placeholder="Centimeters" data-concept="9175^HIP CIRCUMFERENCE^99DCT">
@@ -1964,14 +1969,14 @@
 	<div class="section">
 	</p><label> Blood Pressure</label>
 		<div class="form-group">
-		    </p><label for="obs.blood_pressure_systolic"> Systolic </label>
+		    </p><label for="obs.blood_pressure_systolic"> Systolic <span class="required">*</span></label>
 		    <input class="form-control" id="obs.blood_pressure_systolic" name="obs.blood_pressure_systolic"
-			   type="number" placeholder="mm Hg" data-concept="5085^SYSTOLIC BLOOD PRESSURE^99DCT">
+			   type="number" placeholder="mm Hg" data-concept="5085^SYSTOLIC BLOOD PRESSURE^99DCT"  required="required">
 		</div>
 		<div class="form-group">
-		    </p><label for="obs.blood_pressure_diastolic"> Diastolic </label>
+		    </p><label for="obs.blood_pressure_diastolic"> Diastolic  <span class="required">*</span></label>
 		    <input class="form-control" id="obs.blood_pressure_diastolic" name="obs.blood_pressure_diastolic"
-			   type="number" placeholder="mm Hg" data-concept="5086^DIASTOLIC BLOOD PRESSURE^99DCT">
+			   type="number" placeholder="mm Hg" data-concept="5086^DIASTOLIC BLOOD PRESSURE^99DCT"  required="required">
 		</div>
 	</div>
 
