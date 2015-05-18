@@ -125,7 +125,7 @@
                 <option value="X">Kosirai</option>
                 <option value="U">Lelmokwo/Sigot</option>
                 <option value="V">Mosoriot</option>
-                <option value="T">Mutwot/King'wal</option>
+                <option value="T">Mutwot</option>
                 <option value="W">Ngechek</option>
             </select>
         </div>
@@ -271,21 +271,21 @@
                 <fieldset name="9092^SOURCE OF PAYMENT^99DCT">
                     <div class="form-group">
                         <label class="font-normal">
-                            <input id="obs.source_of_payment_nhif" type="checkbox"
+                            <input id="obs.source_of_payment_nhif"  type="checkbox"
                                    data-concept="9092^SOURCE OF PAYMENT^99DCT" value="1">
                             NHIF
                         </label>
                     </div>
                     <div class="form-group">
                         <label class="font-normal">
-                            <input id="obs.source_of_payment_private" type="checkbox"
+                            <input id="obs.source_of_payment_private"  type="checkbox"
                                    data-concept="9092^SOURCE OF PAYMENT^99DCT" value="2">
                             Private Medical Insurance
                         </label>
                     </div>
                     <div class="form-group">
                         <label class="font-normal">
-                            <input id="obs.source_of_payment_pocket" type="checkbox"
+                            <input id="obs.source_of_payment_pocket"  type="checkbox"
                                    data-concept="9092^SOURCE OF PAYMENT^99DCT"
                                    value="3">
                             Out of pocket
@@ -293,28 +293,28 @@
                     </div>
                     <div class="form-group">
                         <label class="font-normal">
-                            <input id="obs.source_of_payment_loan" type="checkbox"
+                            <input id="obs.source_of_payment_loan"  type="checkbox"
                                    data-concept="9092^SOURCE OF PAYMENT^99DCT" value="4">
                             Loan from Chama
                         </label>
                     </div>
                     <div class="form-group">
                         <label class="font-normal">
-                            <input id="obs.source_of_payment_waiver" type="checkbox"
+                            <input id="obs.source_of_payment_waiver"  type="checkbox"
                                    data-concept="9092^SOURCE OF PAYMENT^99DCT" value="5">
                             Waiver
                         </label>
                     </div>
                     <div class="form-group">
                         <label class="font-normal">
-                            <input id="obs.source_of_payment_donations" type="checkbox"
+                            <input id="obs.source_of_payment_donations"  type="checkbox"
                                    data-concept="9092^SOURCE OF PAYMENT^99DCT" value="6">
                             Donations
                         </label>
                     </div>
                     <div class="form-group">
                         <label class="font-normal">
-                            <input id="obs.source_of_payment_others" type="checkbox"
+                            <input id="obs.source_of_payment_others"  type="checkbox"
                                    data-concept="9092^SOURCE OF PAYMENT^99DCT" value="7">
                             Others
                         </label>
@@ -323,14 +323,14 @@
                         <label class="alert alert-info">If selected will clear the applied above</label>
                         <div class="form-group">
                             <label class="font-normal">
-                                <input id="obs.source_of_payment_dk" type="checkbox"
+                                <input id="obs.source_of_payment_dk"   type="checkbox"
                                        data-concept="9092^SOURCE OF PAYMENT^99DCT" value="-77">
                                 Don&#39;t Know
                             </label>
                         </div>
                         <div class="form-group">
                             <label class="font-normal">
-                                <input id="obs.source_of_payment_rf" type="checkbox"
+                                <input id="obs.source_of_payment_rf"  type="checkbox"
                                        data-concept="9092^SOURCE OF PAYMENT^99DCT" value="-99">
                                 Refused
                             </label>
@@ -371,18 +371,40 @@
             </div>
 
             <p><label class="alert alert-info">During your last hospital admission</label> </p>
-            <div class="form-group">
+            <div class="form-group means_to_hosp">
                 <label for="obs.means_to_hosp">
                     What means of transport did you use to get to the hospital?  <span class="required">*</span>
                 </label>
-                <select class="form-control" id="obs.means_to_hosp" name="obs.means_to_hosp"
-                        data-concept="9095^MEANS OF TRANSPORT TO HOSPITAL^99DCT" required="required">
-                    <option value="">...</option>
-                    <option value="6415^WALKING^99DCT">On foot</option>
-                    <option value="6580^BODA-BODA^99DCT">Boda Boda</option>
-                    <option value="6416^MATATU^99DCT">Matatu</option>
-                    <option value="1958^REFUSAL^99DCT">Refused</option>
-                </select>
+		<fieldset name="9095^MEANS OF TRANSPORT TO HOSPITAL^99DCT">
+                    <div class="form-group">
+                        <label class="font-normal">
+                            <input id="obs.means_to_hosp_walking" class="means_to_hosp" type="checkbox"
+                                   data-concept="6415^WALKING^99DCT" value="1">
+                            On foot
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label class="font-normal">
+                            <input id="obs.means_to_hosp_bodaboda"  class="means_to_hosp" type="checkbox"
+                                   data-concept="6580^BODA-BODA^99DCT" value="2">
+                            Boda Boda
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label class="font-normal">
+                            <input id="obs.means_to_hosp_matatu"  class="means_to_hosp" type="checkbox"
+                                   data-concept="6416^MATATU^99DCT" value="3">
+                            Matatu
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label class="font-normal">
+                            <input id="obs.means_to_hosp_refusal"  class="means_to_hosp" type="checkbox"
+                                   data-concept="1958^REFUSAL^99DCT" value="-99">
+                            Refused
+                        </label>
+                    </div>
+		</fieldset>              
             </div>
 
             <div class="form-group">
@@ -944,17 +966,39 @@
 
             <div class="form-group means_of_medication_visit">
                 <label class="alert alert-info"><p></p>Now, thinking about  your LAST visit<br></label>
-                <label for="obs.means_to_hosp">
+                <label for="obs.means_of_medication_visit">
                     What means of transport did you use to get there?<span class="required">*</span>
                 </label>
-                <select class="form-control" id="obs.means_of_medication_visit" name="obs.means_of_medication_visit"
-                        data-concept="9123^MEANS OF TRANSPORT TO MEDICATION PLACE^99DCT" required="required">
-                    <option value="">...</option>
-                    <option value="6415^WALKING^99DCT">On foot</option>
-                    <option value="6580^BODA-BODA^99DCT">Boda Boda</option>
-                    <option value="6416^MATATU^99DCT">Matatu</option>
-                    <option value="1958^REFUSAL^99DCT">Refused</option>
-                </select>
+		<fieldset name="9123^MEANS OF TRANSPORT TO MEDICATION PLACE^99DCT">
+                    <div class="form-group">
+                        <label class="font-normal">
+                            <input id="obs.means_of_medication_visit_walking" class="means_of_medication_visit" type="checkbox"
+                                   data-concept="6415^WALKING^99DCT" value="1">
+                            On foot
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label class="font-normal">
+                            <input id="obs.means_of_medication_visit_bodaboda" class="means_of_medication_visit" type="checkbox"
+                                   data-concept="6580^BODA-BODA^99DCT" value="2">
+                            Boda Boda
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label class="font-normal">
+                            <input id="obs.means_of_medication_visit_matatu" class="means_of_medication_visit" type="checkbox"
+                                   data-concept="6416^MATATU^99DCT" value="3">
+                            Matatu
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label class="font-normal">
+                            <input id="obs.means_of_medication_visit_refusal" class="means_of_medication_visit" type="checkbox"
+                                   data-concept="1958^REFUSAL^99DCT" value="-99">
+                            Refused
+                        </label>
+                    </div>
+		</fieldset>              
             </div>
             <div class="section form-group time_to_medication_place" id="time_to_medication_place">
                 <label for="time_to_medication_place">
@@ -1001,8 +1045,21 @@
                         <label for="obs.time_to_medication_place_RF">Refused</label><br>
                     </fieldset>
                 </div>
-            </div>
-        </div>
+		<div class="form-group">
+                    <label for="obs.outpatient_transport_cost_to_hospital">How much was the transport cost?</label>
+                    <input class="form-control" id="obs.outpatient_transport_cost_to_hospital" name="obs.outpatient_transport_cost_to_hospital" type="number" data-concept="9183^OUTPATIENT TRANSPORT COST^99DCT">
+                    <input class="form-control hiddenInput" id="outpatient_transport_cost_to_hospital_DK_RF" type="text">
+                    <div class="form-group">
+                        <fieldset name="obs.outpatient_transport_cost_to_hospital_DR">
+                            <input id="obs.outpatient_transport_cost_to_hospital_DK" type="radio" name="obs.outpatient_transport_cost_to_hospital_DR" value="-77" onchange="setTextDataFor(this, '#obs\\.outpatient_transport_cost_to_hospital', '#outpatient_transport_cost_to_hospital_DK_RF')">
+                            <label for="obs.outpatient_transport_cost_to_hospital_DK">Don&#39;t Know</label> &nbsp;&nbsp;
+                            <input id="obs.outpatient_transport_cost_to_hospital_RF" type="radio"  name="obs.outpatient_transport_cost_to_hospital_DR" value="-99" onchange="setTextDataFor(this, '#obs\\.outpatient_transport_cost_to_hospital', '#outpatient_transport_cost_to_hospital_DK_RF')">
+                            <label for="obs.outpatient_transport_cost_to_hospital_RF">Refused</label><br>
+                        </fieldset>
+                    </div>
+                </div>
+		</div>
+    </div>
     </div>
     <div class="section">
         <h3>SECTION D - HERBAL MEDICINE/SPIRITUAL HEALER</h3>
@@ -1021,7 +1078,7 @@
         </div>
         <div class="visited_herbalist">
             <div class="form-group">
-                <p>In the past three months how many times did you visit?<span class="required">*</span> </p>
+                <label for="obs.times_visited_herbalist_in_3months">In the past three months how many times did you visit?<span class="required">*</span> </p>
                 <input class="form-control" id="obs.times_visited_herbalist_in_3months" name="obs.times_visited_herbalist_in_3months"
                        type="number" placeholder="Number of visits" data-concept="9127^NUMBER OF TIMES VISITED HERBALIST IN 3 MONTHS^99DCT" required="required">
             </div>
@@ -1114,18 +1171,40 @@
                     </div>
                 </div>
                 <p><div class="alert alert-info">Now, thinking about your LAST visit:</div> </p>
-                <div class="form-group means_to_hosp">
-                    <label for="obs.means_to_hosp">
+                <div class="form-group means_to_herbalist">
+                    <label for="obs.means_to_herbalist">
                         What means of transport did you use to get there?   <span class="required">*</span>
                     </label>
-                    <select class="form-control" id="obs.means_to_herbalist" name="obs.obs.means_to_herbalist"
-                            data-concept="9131^MEANS OF TRANSPORT TO HERBALIST^99DCT" required="required">
-                        <option value="">...</option>
-                        <option value="6415^WALKING^99DCT">On foot</option>
-                        <option value="6580^BODA-BODA^99DCT">Boda Boda</option>
-                        <option value="6416^MATATU^99DCT">Matatu</option>
-                        <option value="1958^REFUSAL^99DCT">Refused</option>
-                    </select>
+		<fieldset name="9131^MEANS OF TRANSPORT TO HERBALIST^99DCT">
+                    <div class="form-group">
+                        <label class="font-normal">
+                            <input id="obs.means_to_herbalist_walking" class="means_to_herbalist" type="checkbox"
+                                   data-concept="6415^WALKING^99DCT" value="1">
+                            On foot
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label class="font-normal">
+                            <input id="obs.means_to_herbalist_bodaboda" class="means_to_herbalist" type="checkbox"
+                                   data-concept="6580^BODA-BODA^99DCT" value="2">
+                            Boda Boda
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label class="font-normal">
+                            <input id="obs.means_to_herbalist_matatu" class="means_to_herbalist" type="checkbox"
+                                   data-concept="6416^MATATU^99DCT" value="3">
+                            Matatu
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label class="font-normal">
+                            <input id="obs.means_to_herbalist_refusal" class="means_to_herbalist" type="checkbox"
+                                   data-concept="1958^REFUSAL^99DCT" value="-99">
+                            Refused
+                        </label>
+                    </div>
+		</fieldset> 
                 </div>
 
                 <div class="section form-group time_to_herbalist" id="time_to_herbalist">
@@ -1177,23 +1256,23 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="obs.transport_cost">How much was the transport cost?<span class="required">*</span></label>
-                    <input class="form-control" id="obs.transport_cost" name="obs.transport_cost" type="number"
-                           data-concept="9093^TRANSPORT COST^99DCT" required="required">
-                    <input class="form-control hiddenInput" id="transport_cost_DK_RF" type="text">
+                    <label for="obs.herbal_transport_cost">How much was the transport cost?<span class="required">*</span></label>
+                    <input class="form-control" id="obs.herbal_transport_cost" name="obs.herbal_transport_cost" type="number"
+                           data-concept="9184^HERBAL TRANSPORT COST^99DCT" required="required">
+                    <input class="form-control hiddenInput" id="herbal_transport_cost_DK_RF" type="text">
                     <div class="form-group">
-                        <fieldset name="obs.transport_cost_DR">
-                            <input id="obs.transport_cost_DK" type="radio" name="obs.transport_cost_DR" value="-77" onchange="setTextDataFor(this, '#obs\\.transport_cost','#transport_cost_DK_RF')">
-                            <label for="obs.transport_cost_DK">Don&#39;t Know</label> &nbsp;&nbsp;
-                            <input id="obs.transport_cost_RF" type="radio"  name="obs.transport_cost_DR" value="-99" onchange="setTextDataFor(this, '#obs\\.transport_cost', '#transport_cost_DK_RF')">
-                            <label for="obs.transport_cost_RF">Refused</label><br>
+                        <fieldset name="obs.herbal_transport_cost_DR">
+                            <input id="obs.herbal_transport_cost_DK" type="radio" name="obs.herbal_transport_cost_DR" value="-77" onchange="setTextDataFor(this, '#obs\\.herbal_transport_cost','#herbal_transport_cost_DK_RF')">
+                            <label for="obs.herbal_transport_cost_DK">Don&#39;t Know</label> &nbsp;&nbsp;
+                            <input id="obs.herbal_transport_cost_RF" type="radio"  name="obs.herbal_transport_cost_DR" value="-99" onchange="setTextDataFor(this, '#obs\\.herbal_transport_cost', '#herbal_transport_cost_DK_RF')">
+                            <label for="obs.herbal_transport_cost_RF">Refused</label><br>
                         </fieldset>
                     </div>
                 </div>
 
 
             </div>
-
+	
         </div>
 
 
@@ -1671,13 +1750,28 @@
                 <label for="obs.alcohol_currently_use">
                     what form of alcohol do you use? <span class="required">*</span>
                 </label>
-                <select class="form-control" id="obs.alcohol_currently_use" name="obs.alcohol_currently_use"
-                        data-concept="9159^ALCOHOL USED CURRENTLY^99DCT" required="required">
-                    <option value="">...</option>
-                    <option value="1">Beer</option>
-                    <option value="2">Local Brew</option>
-                    <option value="3">Spirits & Wines</option>
-                </select>
+		<fieldset name="9159^ALCOHOL USED CURRENTLY^99DCT">
+                    <div class="form-group">
+                        <label class="font-normal">
+                            <input id="obs.alcohol_currently_use_beer" type="checkbox"
+                                   data-concept="9059^ALCOHOL USED CURRENTLY^99DCT" value="1">
+                            Beer
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label class="font-normal">
+                            <input id="obs.alcohol_currently_use_local_brew" type="checkbox"
+                                   data-concept="9059^ALCOHOL USED CURRENTLY^99DCT" value="2">
+                            Local Brew
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label class="font-normal">
+                            <input id="obs.alcohol_currently_use_spirits_and_wines" type="checkbox"
+                                   data-concept="9059^ALCOHOL USED CURRENTLY^99DCT" value="3">
+                            Spirits & Wines
+                        </label>
+                    </div>
             </div>
 
             <div class="form-group alcohol_taken_each_day">
@@ -2173,7 +2267,7 @@
                 "obs.times_visited_herbalist_in_3months":{
                     min :1
                 },
-                "obs.transport_cost":{
+                "obs.herbal_transport_cost":{
                     min :0
                 },
                 "obs.number_of_meds":{
@@ -2350,28 +2444,24 @@
         };
         admissionDue();
 
-         //uncheck all other if don't know or refused is selected
+	//function to uncheck all supplied options
+	var uncheck_elements=function(element_list){
+		element_list.each(function(){
+			$(this).prop('checked', false);
+			console.log("unchecked: "+$(this).id);
+		});
+	};
+
+        //uncheck all other if refused is selected
         $('#obs\\.source_of_payment_rf').on('change', function() {
-            $('#obs\\.source_of_payment_dk').not(this).prop('checked', false);
-            $("#obs\\.source_of_payment_nhif").not(this).prop('checked', false);
-            $("#obs\\.source_of_payment_private").not(this).prop('checked', false);
-            $("#obs\\.source_of_payment_pocket").not(this).prop('checked', false);
-            $("#obs\\.source_of_payment_waiver").not(this).prop('checked', false);
-            $("#obs\\.source_of_payment_loan").not(this).prop('checked', false);
-            $("#obs\\.source_of_payment_waiver").not(this).prop('checked', false);
-            $("#obs\\.source_of_payment_donations").not(this).prop('checked', false);
-            $("#obs\\.source_of_payment_others").not(this).prop('checked', false);
+		var elements_to_uncheck = $(':checkbox[data-concept="9092^SOURCE OF PAYMENT^99DCT"]').not(this);
+		uncheck_elements(elements_to_uncheck);
         });
+
+	//uncheck all other if don't know is selected
         $('#obs\\.source_of_payment_dk').on('change', function() {
-            $('#obs\\.source_of_payment_rf').not(this).prop('checked', false);
-            $("#obs\\.source_of_payment_nhif").not(this).prop('checked', false);
-            $("#obs\\.source_of_payment_private").not(this).prop('checked', false);
-            $("#obs\\.source_of_payment_pocket").not(this).prop('checked', false);
-            $("#obs\\.source_of_payment_waiver").not(this).prop('checked', false);
-            $("#obs\\.source_of_payment_loan").not(this).prop('checked', false);
-            $("#obs\\.source_of_payment_waiver").not(this).prop('checked', false);
-            $("#obs\\.source_of_payment_donations").not(this).prop('checked', false);
-            $("#obs\\.source_of_payment_others").not(this).prop('checked', false);
+           	var elements_to_uncheck = $(':checkbox[data-concept="9092^SOURCE OF PAYMENT^99DCT"]').not(this);
+		uncheck_elements(elements_to_uncheck);
         });
 
         $('#obs\\.hours_attended_work_mins').change(function(){
@@ -2393,6 +2483,37 @@
             }
         });
         $paymentSources.trigger('change');
+
+
+        $('#obs\\.means_to_hosp_refusal').on('change', function() {
+           	var elements_to_uncheck = $(':checkbox[class="means_to_hosp"]').not(this);
+		uncheck_elements(elements_to_uncheck);
+        });
+
+	$(':checkbox[class="means_to_hosp"]').not('#obs\\.means_to_hosp_refusal').on('change', function() {
+           	var elements_to_uncheck = $('#obs\\.means_to_hosp_refusal');
+		uncheck_elements(elements_to_uncheck);
+        });
+
+        $('#obs\\.means_of_medication_visit_refusal').on('change', function() {
+           	var elements_to_uncheck = $(':checkbox[class="means_of_medication_visit"]').not(this);
+		uncheck_elements(elements_to_uncheck);
+        });
+
+	$(':checkbox[class="means_of_medication_visit"]').not('#obs\\.means_of_medication_visit_refusal').on('change', function() {
+           	var elements_to_uncheck = $('#obs\\.means_of_medication_visit_refusal');
+		uncheck_elements(elements_to_uncheck);
+        });
+
+        $('#obs\\.means_to_herbalist_refusal').on('change', function() {
+           	var elements_to_uncheck = $(':checkbox[class="means_to_herbalist"]').not(this);
+		uncheck_elements(elements_to_uncheck);
+        });
+
+	$(':checkbox[class="means_to_herbalist"]').not('#obs\\.means_to_herbalist_refusal').on('change', function() {
+           	var elements_to_uncheck = $('#obs\\.means_to_herbalist_refusal');
+		uncheck_elements(elements_to_uncheck);
+        });
 
         //unselect hours to hos if don't know or refused is selected
         var uncheckDRH = function (selectedElement) {
@@ -2504,7 +2625,6 @@
                 /* clear values on cloned fields */
                 $clonedSection.find(':input:not(:button)').val('');
                 $clonedSection.find(':input:not(:button)').trigger('change');
-
             }
 
         });
