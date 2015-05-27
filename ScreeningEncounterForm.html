@@ -1,0 +1,511 @@
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/muzima.css" rel="stylesheet">
+    <link href="css/ui-darkness/jquery-ui-1.10.4.custom.min.css" rel="stylesheet">
+    <script src="js/jquery.min.js"></script>
+    <script src="js/jquery-ui-1.10.4.custom.min.js"></script>
+    <script src="js/jquery.validate.min.js"></script>
+    <script src="js/additional-methods.min.js"></script>
+    <script src="js/muzima.js"></script>
+
+    <title>Screening Encounter Form V 0.02</title>
+</head>
+
+<body class="col-md-10 col-md-offset-1">
+<div id="pre_populate_data"></div>
+<h2 class="text-center">Screening Encounter Form V 0.02</h2>
+
+<form id="chew_form" name="chew_form">
+
+<div class="section">
+    <h3>Demographics</h3>
+
+    <div class="form-group">
+        <input class="form-control" id="patient.uuid" name="patient.uuid" type="hidden" readonly="readonly">
+    </div>
+    <div class="form-group">
+        <label for="patient.medical_record_number">AMRS ID Number:</label>
+        <input class="form-control" id="patient.medical_record_number" name="patient.medical_record_number" type="text"
+               readonly="readonly" disabled="disabled">
+    </div>
+    <div class="form-group">
+        <label for="patient.family_name">Family Name:</label>
+        <input class="form-control" id="patient.family_name" name="patient.family_name" type="text" readonly="readonly"
+               disabled="disabled">
+    </div>
+    <div class="form-group">
+        <label for="patient.given_name">Given Name:</label>
+        <input class="form-control" id="patient.given_name" name="patient.given_name" type="text" readonly="readonly"
+               disabled="disabled">
+    </div>
+    <div class="form-group">
+        <label for="patient.middle_name">Middle Name:</label>
+        <input class="form-control" id="patient.middle_name" name="patient.middle_name" type="text" readonly="readonly"
+               disabled="disabled">
+    </div>
+    <div class="form-group">
+        <label for="patient.sex">Gender:</label>
+        <select class="form-control" id="patient.sex" name="patient.sex" disabled="disabled">
+            <option value="">...</option>
+            <option value="M">Male</option>
+            <option value="F">Female</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="patient.birthdate">Date Of Birth:</label>
+        <input class="form-control" id="patient.birthdate" name="patient.birthdate" type="text"
+               readonly="readonly" disabled="disabled">
+    </div>
+</div>
+
+<div class="section">
+    <div class="form-group">
+        </p><label for="obs.weight">Weight (KG)</label>
+        <input class="form-control" id="obs.weight" name="obs.weight"
+               type="number" placeholder="Kilograms" data-concept="5089^WEIGHT (KG)^99DCT">
+    </div>
+    <div class="form-group"></p>
+        <label for="obs.height">Height (CM)</label>
+        <input class="form-control" id="obs.height" name="obs.height"
+               type="number" placeholder="Centimeters" data-concept="5090^HEIGHT (CM)^99DCT">
+    </div>
+    <div class="form-group">
+        </p><label for="obs.bmi">BMI (KG/M<sup>2</sup>)</label>
+        <input class="form-control" id="obs.bmi" name="obs.bmi"
+               type="number" placeholder="kg/m2" data-concept="1342^BODY MASS INDEX^99DCT" disabled>
+    </div>
+    <label id="bmi_advisory_message" style="display:none" class="alert alert-info">Advice on weight loss, check Random Blood Sugar</label>
+    <div class="form-group">
+        </p><label for="obs.waist_circumference"> Waist circumference (CM)</label>
+        <input class="form-control" id="obs.waist_circumference" name="obs.waist_circumference"
+               type="number" placeholder="Centimeters" data-concept="7321^WAIST CIRCUMFERENCE (CM)^99DCT">
+    </div>
+    <label id="waist_circumference_bmi_advisory_message" style="display:none" class="alert alert-info">Advice on weight loss, check Random Blood Sugar</label>
+
+</div>
+<div class="section">
+    <div class="form-group">
+        </p><label for="obs.random_blood_sugar"> Random Blood Sugar<span id="random_blood_sugar_label" style="display:none" class="required">*</span></label>
+        <input class="form-control" id="obs.random_blood_sugar" name="obs.random_blood_sugar"
+               type="number" placeholder="mmoll/L" data-concept="7042^RANDOM BLOOD SUGAR, DETAILED^99DCT">
+    </div>
+    <label id="random_blood_sugar_advisory_message" style="display:none" class="alert alert-info">Refer to facility for FBS</label>
+    <div class="form-group">
+        </p><label for="obs.systolic_blood_pressure"> Systolic Blood Pressure <span class="required">*</span></label>
+        <input class="form-control" id="obs.systolic_blood_pressure" name="obs.systolic_blood_pressure"
+           type="number" placeholder="mmHg" data-concept="5085^SYSTOLIC BLOOD PRESSURE^99DCT"  required="required">
+    </div>
+    <label id="systolic_blood_pressure_advisory_message" style="display:none" class="alert alert-info"><p>Refer to facility for hypertension screening</p>
+        <p>Educate on salt reduction and lifestyle modifcation</p>
+    </label>
+    <div class="form-group">
+        </p><label for="obs.diastolic_blood_pressure"> Diastolic Blood Pressure  <span class="required">*</span></label>
+        <input class="form-control" id="obs.diastolic_blood_pressure" name="obs.diastolic_blood_pressure"
+           type="number" placeholder="mmHg" data-concept="5086^DIASTOLIC BLOOD PRESSURE^99DCT"  required="required">
+    </div>
+    <label id="diastolic_blood_pressure_advisory_message" style="display:none" class="alert alert-info"><p>Refer to facility for hypertension screening</p>
+        <p>Educate on salt reduction and lifestyle modifcation</p>
+    </label>
+</div>
+<div class="section">
+    <div class="form-group">
+        </p><label for="obs.known_diabetic"> Known Diabetic  <span class="required">*</span></label>
+        <fieldset name="obs.known_diabetic" id="obs.known_diabetic" data-concept="7287^DIABETES STATUS^99DCT">
+           <input id="known_diabetic_yes" name="obs.known_diabetic" type="radio" value="7282^KNOWN DIABETIC PATIENT^99DCT">
+           <label for="known_diabetic_yes">Yes</label>&nbsp;&nbsp;
+           <input id="known_diabetic_no" name="obs.known_diabetic" type="radio" value="7281^NEW DIABETIC PATIENT^99DCT">
+           <label for="known_diabetic_no">No</label>
+        </fieldset>
+    </div>
+    <label id="known_diabetic_advisory_message" style="display:none" class="alert alert-info">Confirm treatment adherence</label>
+    <div class="form-group">
+        </p><label for="obs.known_hypertensive"> Known Hypertensive:  <span class="required">*</span></label>
+        <fieldset name="obs.known_hypertensive"  id="obs.known_hypertensive"  data-concept="7288^HYPERTENSION STATUS^99DCT">
+           <input id="known_hypertensive_yes" name="obs.known_hypertensive" type="radio" value="7286^KNOWN HYPERTENSIVE PATIENT^99DCT">
+           <label for="known_hypertensive_yes">Yes</label>&nbsp;&nbsp;
+           <input id="known_hypertensive_no" name="obs.known_hypertensive" type="radio" value="7285^NEW HYPERTENSIVE PATIENT^99DCT">
+           <label for="known_hypertensive_no">No</label>
+        </fieldset>
+    </div>
+    <label id="known_hypertensive_advisory_message" style="display:none" class="alert alert-info">Confirm treatment adherence</label>
+</div>
+
+<script>
+    var show_message=function(element_id){
+        $(element_id).show();
+    }
+    var hide_message=function(element_id){
+        $(element_id).hide();
+    }
+    var evaluate_bmi_and_bmi_logic=function(){
+        var weight = $('#obs\\.weight').val();
+        var height_in_meters = $('#obs\\.height').val()/100;
+        var bmi=weight/(height_in_meters*height_in_meters);
+        $('#obs\\.bmi').attr('value',bmi);
+
+        evaluate_bmi_logic();
+
+    };
+    var evaluate_bmi_logic=function(){
+        if(bmi_is_above_threshold()){
+            show_message('#bmi_advisory_message');
+            set_require_random_blood_sugar(true);
+        }else{
+            hide_message('#bmi_advisory_message');
+            evaluate_require_random_blood_sugar();
+        }
+    };
+    var bmi_is_above_threshold=function(){
+        var bmi = $('#obs\\.bmi').val();
+        var height_in_meters = $('#obs\\.height').val()/100;
+        if(height_in_meters>0 && bmi>25){
+            return true;
+        }else{
+            return false;
+        }
+    }
+    var evaluate_require_random_blood_sugar=function(){
+        if(bmi_is_above_threshold()||waist_circumference_is_above_threshold()){
+            set_require_random_blood_sugar(true);
+        }else{
+            set_require_random_blood_sugar(false);
+        }
+    }
+    var set_require_random_blood_sugar=function(require_random_blood_sugar){
+        if(require_random_blood_sugar==true){
+            $('#obs\\.random_blood_sugar').attr('required');
+            $('#random_blood_sugar_label').show();
+        } else {
+            $('#obs\\.random_blood_sugar').removeAttr('required');
+            $('#random_blood_sugar_label').hide();
+        }
+    }
+    var is_gender=function(gender){
+        return $('#patient.sex').val() == gender;
+    }
+    var is_female=function(){
+        return is_gender('F');
+    }
+    var is_male=function(){
+        return is_gender('M');
+    }
+    var waist_circumference_is_above_female_threshold=function(){
+        return $('#obs\\.waist_circumference').val() >88;
+    }
+    var waist_circumference_is_above_male_threshold=function(){
+        return $('#obs\\.waist_circumference').val() >102;
+    }
+    var waist_circumference_is_above_threshold=function(){
+        return is_female()&&waist_circumference_is_above_female_threshold() || is_male()&&waist_circumference_is_above_male_threshold();
+    }
+    var random_blood_sugar_is_above_threshold=function(){
+        return $('#obs\\.random_blood_sugar').val() >7.8;
+    }
+    var systolic_blood_pressure_is_above_threshold=function(){
+        return $('#obs\\.systolic_blood_pressure').val() >140;
+    }
+    var diastolic_blood_pressure_is_above_threshold=function(){
+        return $('#obs\\.diastolic_blood_pressure').val() >90;
+    }
+    var is_known_diabetic=function(){
+        return $('#known_diabetic_yes').is(':checked');
+    }
+    var is_known_hypertensive=function(){
+        return $('#known_hypertensive_yes').is(':checked');
+    }
+
+    var evaluate_waist_circumference_logic=function(){
+        if(waist_circumference_is_above_threshold()){
+            show_message('#waist_circumference_bmi_advisory_message');
+            set_require_random_blood_sugar(true);
+        }else{
+            hide_message('#waist_circumference_bmi_advisory_message');
+            evaluate_require_random_blood_sugar();
+        }
+    }
+    var evaluate_random_blood_sugar_logic=function(){
+        if(random_blood_sugar_is_above_threshold()){
+            show_message('#random_blood_sugar_advisory_message');
+        }else{
+            hide_message('#random_blood_sugar_advisory_message');
+        }
+    }
+    var evaluate_systolic_blood_pressure_logic=function(){
+        if(systolic_blood_pressure_is_above_threshold()){
+            show_message('#systolic_blood_pressure_advisory_message');
+        }else{
+            hide_message('#systolic_blood_pressure_advisory_message');
+        }
+    }
+    var evaluate_diastolic_blood_pressure_logic=function(){
+        if(diastolic_blood_pressure_is_above_threshold()){
+            show_message('#diastolic_blood_pressure_advisory_message');
+        }else{
+            hide_message('#diastolic_blood_pressure_advisory_message');
+        }
+    }
+    var evaluate_known_diabetic_logic=function(){
+        if(is_known_diabetic()){
+            show_message('#known_diabetic_advisory_message');
+        }else{
+            hide_message('#known_diabetic_advisory_message');
+        }
+    }
+    var evaluate_known_hypertensive_logic=function(){
+        if(is_known_hypertensive()){
+            show_message('#known_hypertensive_advisory_message');
+        }else{
+            hide_message('#known_hypertensive_advisory_message');
+        }
+    }
+
+
+    $('#obs\\.weight').change(function(){
+        evaluate_bmi_and_bmi_logic();
+    });
+    $('#obs\\.height').change(function(){
+        evaluate_bmi_and_bmi_logic();
+    });
+    $('#obs\\.waist_circumference').change(function(){
+        evaluate_waist_circumference_logic();
+    });
+    $('#obs\\.random_blood_sugar').change(function(){
+        evaluate_random_blood_sugar_logic();
+    });
+    $('#obs\\.systolic_blood_pressure').change(function(){
+        evaluate_systolic_blood_pressure_logic();
+    });
+    $('#obs\\.diastolic_blood_pressure').change(function(){
+        evaluate_diastolic_blood_pressure_logic();
+    });
+    $('#obs\\.known_diabetic').change(function(){
+        evaluate_known_diabetic_logic();
+    });
+    $('#obs\\.known_hypertensive').change(function(){
+        evaluate_known_hypertensive_logic();
+    });
+
+
+</script>
+
+
+
+
+
+<div class="section">
+    <div class="form-group">
+        <label for="obs.follow_up_facility">Health Facility referred to for follow-up:<span class="required">*</span></label>
+        <select class="form-control" name="obs.follow_up_facility" id="obs.follow_up_facility_type" required="required">
+            <option value="">...</option>
+            <option value="9">HHA</option>
+            <option value="7">CDM</option>
+            <option value="17">Non Ampath</option>
+        </select>
+    </div>
+    <div class="section" style="display:none">
+         <div class="form-group">
+            <label for="obs.follow_up_facility">HHA Facility:<span class="required">*</span></label>
+            <select class="form-control" name="obs.follow_up_facility" id="obs.follow_up_facility" required="required">
+                <option value="">...</option>
+                <option value="9">Ampath MTRH</option>
+                <option value="7">Chulaimbo</option>
+                <option value="17">Iten</option>
+                <option value="2">Mosoriot</option>
+                <option value="3">Turbo</option>
+                <option value="8">Webuye</option>
+            </select>
+        </div> 
+        <div class="form-group">
+            <label for="obs.follow_up_facility">CDM Facility:<span class="required">*</span></label>
+            <select class="form-control" name="obs.follow_up_facility" id="obs.follow_up_facility" required="required">
+                <option value="">...</option>
+                <option value="9">Ampath MTRH</option>
+                <option value="7">Chulaimbo</option>
+                <option value="17">Iten</option>
+                <option value="2">Mosoriot</option>
+                <option value="3">Turbo</option>
+                <option value="8">Webuye</option>
+            </select>
+        </div>
+         <div class="form-group">
+            <label for="obs.follow_up_facility">Non Ampath Facility:<span class="required">*</span></label>
+            <select class="form-control" name="obs.follow_up_facility" id="obs.follow_up_facility" required="required">
+                <option value="">...</option>
+                <option value="9">Ampath MTRH</option>
+                <option value="7">Chulaimbo</option>
+                <option value="17">Iten</option>
+                <option value="2">Mosoriot</option>
+                <option value="3">Turbo</option>
+                <option value="8">Webuye</option>
+            </select>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="encounter.encounter_datetime">
+            Proposed date of facility visit:<span class="required">*</span>
+        </label>
+        <input class="form-control datepicker " id="encounter.encounter_datetime"
+               name="encounter.encounter_datetime" type="text" readonly="readonly"
+               required="required">
+    </div>
+</div>
+    <div class="section">
+    <div class="form-group">
+        <label for="encounter.provider_id_select">Screening Provider Name:</label>
+        <input class="form-control" id="encounter.provider_id_select" type="text"
+               placeholder="Start typing provider name here ...">
+        <input class="form-control" name="encounter.provider_id_select" type="hidden">
+    </div>
+    <div class="form-group show_provider_id_text">
+        <label for="encounter.provider_id">Enter provider's system-id:<span class="required">*</span></label>
+        <input class="form-control checkDigit" id="encounter.provider_id" name="encounter.provider_id" type="text"
+               placeholder="Or enter the provider system id here ..." required="required" disabled="disabled">
+    </div>
+    <div class="form-group">
+        <label for="encounter.location_id">Screening location:<span class="required">*</span></label>
+        <select class="form-control" name="encounter.location_id" id="encounter.location_id" required="required">
+            <option value="">...</option>
+            <option value="9">Ampath MTRH</option>
+            <option value="7">Chulaimbo</option>
+            <option value="17">Iten</option>
+            <option value="2">Mosoriot</option>
+            <option value="3">Turbo</option>
+            <option value="8">Webuye</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="encounter.encounter_datetime">
+            Date of Screening:<span class="required">*</span>
+        </label>
+        <input class="form-control datepicker nonFutureDate past-date" id="encounter.encounter_datetime"
+               name="encounter.encounter_datetime" type="text" readonly="readonly"
+               required="required">
+    </div>
+    <div class="form-group">
+        <input class="form-control" id="encounter.form_uuid" name="encounter.form_uuid" type="hidden"
+               required="required">
+    </div>
+</div>
+</div>
+</form>
+</body>
+<script type="text/javascript">
+
+$(document).ready(function () {
+
+    var dateFormat = "dd-mm-yy";
+    var currentDate = $.datepicker.formatDate(dateFormat, new Date());
+    var encounterDatetime = $('#encounter\\.encounter_datetime');
+    if ($(encounterDatetime).val() == "") {
+        $(encounterDatetime).val(currentDate);
+    }
+
+    $('#save_draft').click(function () {
+        $(this).prop('disabled', true);
+        document.saveDraft(this);
+        $(this).prop('disabled', false);
+    });
+
+    $('#submit_form').click(function () {
+        $(this).prop('disabled', true);
+        document.submit();
+        $(this).prop('disabled', false);
+    });
+
+    var locationName = [
+        {"val": "7", "label": "Chulaimbo"},
+        {"val": "3", "label": "Turbo"},
+        {"val": "17", "label": "Iten"},
+        {"val": "2", "label": "Mosoriot"},
+        {"val": "8", "label": "Webuye"},
+        {"val": "9", "label": "Ampath MTRH"}
+    ];
+    $('#encounter\\.location_id').autocomplete({
+        source: locationName,
+        create: function (event, ui) {
+            var location_val = $('input[name="encounter\\.location_id"]').val();
+            $.each(locationName, function (i, elem) {
+                if (elem.val == location_val) {
+                    $('#encounter\\.location_id').val(elem.label)
+                }
+            });
+        },
+        select: function (event, ui) {
+            $('input[name="encounter\\.location_id"]').val(ui.item.val);
+            $('#encounter\\.location_id').val(ui.item.label);
+            return false;
+        }
+    });
+
+    var provider = [
+        {"label": "Ann Githua", "val": "3762-2"},
+        {"label": "Faith Bargoiyet", "val": "3854-7"},
+        {"label": "Jackline Chemeli Chebii", "val": "3853-9"},
+        {"label": "Lydia Jepkoech", "val": "1830-9"},
+        {"label": "Peter Onditi", "val": "3760-6"},
+        {"label": "Valentine Jeptoo Kimisoi", "val": "3855-4"},
+        {"label": "Viola Boitt", "val": "3766-3"},
+        {"label": "Philip Kiprop Rutto", "val": "3764-8"},
+        {"label": "Carolyne Sambaya Kiptoo", "val": "3755-6"},
+        {"label": "Alice Bor", "val": "3756-4"},
+        {"label": "John Kitur", "val": "3768-9"},
+        {"label": "Isaiah Rono Kemei", "val": "3851-3"},
+        {"label": "Musa Mugungei", "val": "3851-3"},
+        {"label": "Daurine Achieng Agumba", "val": "3419-9"},
+        {"label": "Irene Chepkosgei	Kurgat", "val": "3420-7"},
+        {"label": "Rose	Cheruto	Toroitich", "val": "3421-5"},
+        {"label": "Mary	Kipkurui Kimosop", "val": "3422-3"},
+        {"label": "Jacqueline Chemom Ndiema", "val": "3423-1"},
+        {"label": "Grace Wanjiru Mwangi", "val": "3424-9"},
+        {"label": "Collette	Mabia Palapala", "val": "3425-6"},
+        {"label": "Dorice Erima	Wekesa	Female", "val": "3426-4"},
+        {"label": "Agnes Kagure	Boen", "val": "120-6"},
+        {"label": "Linet Kerubo	Onyancha", "val": "3427-2"},
+        {"label": "Delinah Muchai Tanui", "val": "1208-8"},
+        {"label": "Hellen Mushimbi Indumbwe", "val": "1208-8"},
+        {"label": "Lydia Cherugut Samoei", "val": "1525-5"},
+        {"label": "Ruth	Kalunda	Nzili", "val": "1529-7"},
+        {"label": "Lucy	Cheruto	Birgen", "val": "3428-0"},
+        {"label": "Gratiah Nafuna Khaemba", "val": "1409-2"},
+        {"label": "Leonida Chemutai	Mengich", "val": "1357-3"},
+        {"label": "Ann Wangoi Maina", "val": "1412-6"},
+        {"label": "Elkanah Omenge Orango", "val": "1474-6"},
+        {"label": "Peter Mukhanadale Istura", "val": "1478-7"},
+        {"label": "Hillary Mabeya", "val": "1476-1"},
+        {"label": "Astrid Christoffersen Deb", "val": "1237-7"},
+        {"label": "Philip Kipkirui Tonui", "val": "1485-7"}
+    ];
+
+    $('#encounter\\.provider_id_select').autocomplete({
+        source: provider,
+        create: function (event, ui) {
+            var provider_val = $('input[name="encounter\\.provider_id_select"]').val();
+            $.each(provider, function (i, elem) {
+                if (elem.val == provider_val) {
+                    $('#encounter\\.provider_id_select').val(elem.label)
+                }
+            });
+        },
+        select: function (event, ui) {
+            $('input[name="encounter\\.provider_id_select"]').val(ui.item.val);
+            $('#encounter\\.provider_id_select').val(ui.item.label);
+            $('#encounter\\.provider_id').val(ui.item.val);
+            //$('.show_provider_id_text').hide();
+            return false;
+        }
+    });
+    $('#encounter\\.provider_id_select').change(function () {
+        if ($('#encounter\\.provider_id_select').val() === '') {
+            $('#encounter\\.provider_id').val('');
+            $('.show_provider_id_text').show();
+        }
+    });
+
+
+});
+</script>
+
+</html>
