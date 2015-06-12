@@ -79,14 +79,14 @@
     </div>
     <label id="bmi_out_of_range_message" style="display:none" class="alert alert-danger">
         BMI should be between 0 and 100. Check Weight and Height values.</label>
-    <label id="bmi_advisory_message" style="display:none" class="alert alert-info">
+    <label id="bmi_above_threshold_message" style="display:none" class="alert alert-info">
         Advice on weight loss, check Random Blood Sugar</label>
     <div class="form-group">
         </p><label for="obs.waist_circumference"> Waist circumference (CM)  <span class="required">*</span></label>
         <input class="form-control" id="obs.waist_circumference" name="obs.waist_circumference"
                type="number" placeholder="Centimeters" data-concept="7231^WAIST CIRCUMFERENCE (CM)^99DCT" required="required">
     </div>
-    <label id="waist_circumference_bmi_advisory_message" style="display:none" class="alert alert-info">
+    <label id="waist_circumference_above_threshold_message" style="display:none" class="alert alert-info">
         Advice on weight loss, check Random Blood Sugar</label>
 
 </div>
@@ -98,13 +98,16 @@
         <input class="form-control" id="obs.random_blood_sugar" name="obs.random_blood_sugar"
                type="number" placeholder="mmoll/L" data-concept="887^SERUM GLUCOSE^99DCT">
     </div>
-    <label id="random_blood_sugar_advisory_message" style="display:none" class="alert alert-info">Refer to facility for FBS</label>
+    <label id="random_blood_sugar_above_threshold_message" style="display:none" class="alert alert-info">Refer to facility for FBS</label>
     <div class="form-group">
         </p><label for="obs.systolic_blood_pressure"> Systolic Blood Pressure <span class="required">*</span></label>
         <input class="form-control" id="obs.systolic_blood_pressure" name="obs.systolic_blood_pressure"
            type="number" placeholder="mmHg" data-concept="5085^SYSTOLIC BLOOD PRESSURE^99DCT"  required="required">
     </div>
-    <label id="systolic_blood_pressure_advisory_message" style="display:none" class="alert alert-info">
+    <label id="systolic_blood_pressure_below_threshold_message" style="display:none" class="alert alert-info">
+        <p>Low blood pressure. Refer for confirmation.</p>
+    </label>
+    <label id="systolic_blood_pressure_above_threshold_message" style="display:none" class="alert alert-info">
         <p>Refer to facility for hypertension screening</p>
         <p>Educate on salt reduction and lifestyle modifcation</p>
     </label>
@@ -113,7 +116,10 @@
         <input class="form-control" id="obs.diastolic_blood_pressure" name="obs.diastolic_blood_pressure"
            type="number" placeholder="mmHg" data-concept="5086^DIASTOLIC BLOOD PRESSURE^99DCT"  required="required">
     </div>
-    <label id="diastolic_blood_pressure_advisory_message" style="display:none" class="alert alert-info">
+    <label id="diastolic_blood_pressure_below_threshold_message" style="display:none" class="alert alert-info">
+        <p>Low blood pressure. Refer for confirmation.</p>
+    </label>
+    <label id="diastolic_blood_pressure_above_threshold_message" style="display:none" class="alert alert-info">
         <p>Refer to facility for hypertension screening</p>
         <p>Educate on salt reduction and lifestyle modifcation</p>
     </label>
@@ -165,7 +171,7 @@
         <label for="obs.return_visit_date">
             Proposed date of facility visit:<span class="required">*</span>
         </label>
-        <input class="form-control datepicker " id="obs.return_visit_date"
+        <input class="form-control datepicker future-or-today-date" id="obs.return_visit_date"
                name="obs.return_visit_date" type="text" readonly="readonly" data-concept="5096^RETURN VISIT DATE^99DCT" required="required">
     </div>
 </div>
@@ -256,6 +262,30 @@ $(document).ready(function () {
         }
     });
 
+    $.validator.addMethod("compareBloodPressure", function (value, element) {
+            var systolic_blood_pressure = $('#obs\\.systolic_blood_pressure').val();
+            var diastolic_blood_pressure = $('#obs\\.diastolic_blood_pressure').val();
+            if(systolic_blood_pressure < diastolic_blood_pressure)
+                return false;
+            else
+                return true;
+
+            },"Systolic blood pressue can not be less than Diastolic blood pressure"
+        );
+    $('.future-or-today-date').change(function () {
+        if ($(this).is(':visible') && $(this).val() != '') {
+            var errors = {};
+            var pattern = /(\d{2})-(\d{2})-(\d{4})/g;
+            var matches = pattern.exec($(this).val());
+            var enteredDate = new Date(matches[3], matches[2] - 1, matches[1]);
+            var today = new Date(new Date().getFullYear(),new Date().getMonth(),new Date().getDate());
+            if (enteredDate < today) {
+                errors[$(this).attr('name')] = "Please enter present or future date.";
+            }
+            toggleValidationMessages(errors);
+        }
+    });
+
     var show_message=function(element_id){
         $(element_id).show();
     }
@@ -278,10 +308,10 @@ $(document).ready(function () {
             hide_message('#bmi_out_of_range_message');
         }
         if(bmi_is_above_threshold()){
-            show_message('#bmi_advisory_message');
+            show_message('#bmi_above_threshold_message');
             set_require_random_blood_sugar(true);
         }else{
-            hide_message('#bmi_advisory_message');
+            hide_message('#bmi_above_threshold_message');
             evaluate_require_random_blood_sugar();
         }
     };
@@ -353,8 +383,14 @@ $(document).ready(function () {
     var systolic_blood_pressure_is_above_threshold=function(){
         return $('#obs\\.systolic_blood_pressure').val() >140;
     }
+    var systolic_blood_pressure_is_below_threshold=function(){
+        return $('#obs\\.systolic_blood_pressure').val() < 80;
+    }
     var diastolic_blood_pressure_is_above_threshold=function(){
         return $('#obs\\.diastolic_blood_pressure').val() >90;
+    }
+    var diastolic_blood_pressure_is_below_threshold=function(){
+        return $('#obs\\.diastolic_blood_pressure').val() < 60;
     }
     var is_known_diabetic=function(){
         return $('#known_diabetic_yes').is(':checked');
@@ -365,32 +401,42 @@ $(document).ready(function () {
 
     var evaluate_waist_circumference_logic=function(){
         if(waist_circumference_is_above_threshold()){
-            show_message('#waist_circumference_bmi_advisory_message');
+            show_message('#waist_circumference_above_threshold_message');
             set_require_random_blood_sugar(true);
         }else{
-            hide_message('#waist_circumference_bmi_advisory_message');
+            hide_message('#waist_circumference_above_threshold_message');
             evaluate_require_random_blood_sugar();
         }
     }
     var evaluate_random_blood_sugar_logic=function(){
         if(random_blood_sugar_is_above_threshold()){
-            show_message('#random_blood_sugar_advisory_message');
+            show_message('#random_blood_sugar_above_threshold_message');
         }else{
-            hide_message('#random_blood_sugar_advisory_message');
+            hide_message('#random_blood_sugar_above_threshold_message');
         }
     }
     var evaluate_systolic_blood_pressure_logic=function(){
-        if(systolic_blood_pressure_is_above_threshold()){
-            show_message('#systolic_blood_pressure_advisory_message');
+        if(systolic_blood_pressure_is_below_threshold()){
+            show_message('#systolic_blood_pressure_below_threshold_message');
         }else{
-            hide_message('#systolic_blood_pressure_advisory_message');
+            hide_message('#systolic_blood_pressure_below_threshold_message');
+        }
+        if(systolic_blood_pressure_is_above_threshold()){
+            show_message('#systolic_blood_pressure_above_threshold_message');
+        }else{
+            hide_message('#systolic_blood_pressure_above_threshold_message');
         }
     }
     var evaluate_diastolic_blood_pressure_logic=function(){
-        if(diastolic_blood_pressure_is_above_threshold()){
-            show_message('#diastolic_blood_pressure_advisory_message');
+        if(diastolic_blood_pressure_is_below_threshold()){
+            show_message('#diastolic_blood_pressure_below_threshold_message');
         }else{
-            hide_message('#diastolic_blood_pressure_advisory_message');
+            hide_message('#diastolic_blood_pressure_below_threshold_message');
+        }
+        if(diastolic_blood_pressure_is_above_threshold()){
+            show_message('#diastolic_blood_pressure_above_threshold_message');
+        }else{
+            hide_message('#diastolic_blood_pressure_above_threshold_message');
         }
     }
     var evaluate_known_diabetic_logic=function(){
@@ -553,7 +599,6 @@ $(document).ready(function () {
     {"label": "Ngechek", "val": "115"},
     {"label": "Lelmokwo", "val": "113"},
     {"label": "sigot", "val": "119"},
-    {"label": "Turbo Division", "val": ""},
     {"label": "Chepkemel ", "val": "122"},
     {"label": "Cheplaskei", "val": "118"},
     {"label": "Tuigoin", "val": "157"},
@@ -754,7 +799,6 @@ $(document).ready(function () {
     {"label": "Ngechek", "val": "115"},
     {"label": "Lelmokwo", "val": "113"},
     {"label": "sigot", "val": "119"},
-    {"label": "Turbo Division", "val": ""},
     {"label": "Chepkemel ", "val": "122"},
     {"label": "Cheplaskei", "val": "118"},
     {"label": "Tuigoin", "val": "157"},
