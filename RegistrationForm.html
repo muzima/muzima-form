@@ -661,27 +661,8 @@
 		{"val":"3952-9","label":"Keviner Chavera"},
 		{"val":"3848-9","label":"Abraham Saat Kimaru"},
 		{"val":"3849-7","label":"Catherine Chiliswa"}
-];
-
-            $('#encounter\\.provider_id_select').autocomplete({
-                source: provider,
-                create: function (event, ui) {
-                    var provider_val = $('input[name="encounter\\.provider_id_select"]').val();
-                    $.each(provider, function (i, elem) {
-                        if (elem.val == provider_val) {
-                            $('#encounter\\.provider_id_select').val(elem.label)
-                        }
-                    });
-                },
-                select: function (event, ui) {
-                    $('input[name="encounter\\.provider_id_select"]').val(ui.item.val);
-                    $('#encounter\\.provider_id_select').val(ui.item.label);
-                    $('#encounter\\.provider_id').val(ui.item.val);
-                    $('.show_provider_id_text').hide();
-                    return false;
-                }
-            });
-
+		];
+	  document.setupAutoCompleteForProvider('encounter\\.provider_id_select', provider);
     })
 </script>
 
