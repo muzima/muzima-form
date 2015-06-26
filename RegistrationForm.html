@@ -17,11 +17,13 @@
 <div id="result"></div>
 <form id="registration_form" name="registration_form">
     <h2 class="text-center">Registration Form</h2>
+
     <div class="section">
         <h3>Demographics</h3>
-	<div class="form-group">
+
+        <div class="form-group">
             <input class="form-control" id="patient.uuid"
-                           name="patient.uuid" type="hidden" readonly="readonly">
+                   name="patient.uuid" type="hidden" readonly="readonly">
         </div>
         <div class="form-group">
             <label for="patient.family_name">Family Name: <span class="required">*</span> </label>
@@ -64,13 +66,13 @@
             </div>
         </div>
     </div>
-<div class="section repeat">
+    <div class="section repeat">
         <div class="form-group">
- 	    <label for="other_identifier_type">Identifier</label>
+            <label for="other_identifier_type">Identifier</label>
             <select class="form-control" name="other_identifier_type" id="other_identifier_type">
                 <option value="">...</option>
                 <option value="AMRS Medical Record Number">AMRS Medical Record Number</option>
-		<option value="CCC Number">CCC Number</option>
+                <option value="CCC Number">CCC Number</option>
                 <option value="HCT ID">HCT ID</option>
                 <option value="KENYAN NATIONAL ID NUMBER">KENYAN NATIONAL ID NUMBER</option>
                 <option value="MTCT Plus ID">MTCT Plus ID</option>
@@ -78,16 +80,16 @@
                 <option value="Old AMPATH Medical Record Number">Old AMPATH Medical Record Number</option>
                 <option value="pMTCT ID">pMTCT ID</option>
             </select>
-	</div>
-	<div class="form-group">
-	   <label for="other_identifier_value">Enter Identifier</label>
-	   <input class="form-control" id="other_identifier_value" name="other_identifier_value" type="text">
-	</div>
-	<div class="form-group">
-	   <label for="confirm_identifier_value">Confirm Identifier</label>
-	   <input class="form-control" id="confirm_identifier_value" name="confirm_identifier_value" type="text">
-	</div>
-</div>
+        </div>
+        <div class="form-group">
+            <label for="other_identifier_value">Enter Identifier</label>
+            <input class="form-control" id="other_identifier_value" name="other_identifier_value" type="text">
+        </div>
+        <div class="form-group">
+            <label for="confirm_identifier_value">Confirm Identifier</label>
+            <input class="form-control" id="confirm_identifier_value" name="confirm_identifier_value" type="text">
+        </div>
+    </div>
     <div class="section">
         <div class="form-group">
             <label for="tmp.birthdate_type">Will Record Date of Birth... <span class="required">*</span></label>
@@ -99,7 +101,8 @@
         </div>
         <div class="form-group show_birthdate">
             <label for="patient.birth_date">Select Birthdate <span class="required">*</span></label>
-            <input class="form-control datepicker nonFutureDate" id="patient.birth_date" name="patient.birth_date" type="text"
+            <input class="form-control datepicker nonFutureDate" id="patient.birth_date" name="patient.birth_date"
+                   type="text"
                    required="required"
                    readonly="readonly">
         </div>
@@ -123,97 +126,97 @@
         <div class="form-group">
             <label for="encounter.location_id">Encounter Location <span class="required">*</span></label>
             <select class="form-control" id="encounter.location_id" name="encounter.location_id" required="required">
-                <option value="">...</option>
-                <option value="84">AMPATH-MTRH</option>
-		<option value="125">Aboloi</option>
-		<option value="124">Akichelesit</option>
-		<option value="65">Angurai</option>
-		<option value="111">Biribiriet </option>
-		<option value="152">Budalangi</option>
-		<option value="55">Bumala A</option>
-		<option value="83">Bumala B</option>
-		<option value="4">Burnt Forest </option>
-                <option value="19">Busia</option>
-		<option value="90">Changara</option>
-		<option value="131">Chebaiywa</option>
-		<option value="122">Chepkemel</option>
-		<option value="118">Cheplasgei</option>
-		<option value="60">Chepsaita</option>
-		<option value="133">Chepterit</option>
-		<option value="122">Chepkemel</option>
-		<option value="118">Cheplasgei</option>
-		<option value="116">Cheramei</option>
-                <option value="7">Chulaimbo</option>
-		<option value="69">Huruma SDH</option>
-                <option value="17">Iten</option>
-		<option value="112">Itigo</option>
-		<option value="106">Kamolo </option>
-		<option value="132">Kapsara SDH</option>
-		<option value="134">Kapyemit</option>
-		<option value="23">Khunyangu</option>
-                <option value="11">Kitale</option>
-		<option value="159">Kosirai</option>
-		<option value="114">Kokwet</option>
-		<option value="113">Lelmokwo</option>
-		<option value="158">Leseru</option>
-		<option value="91">Malaba</option>
-		<option value="130">Matayos Health Centre</option>
-		<option value="126">Moding</option>
-		<option value="110">Mogoget</option>
-		<option value="71">Moi's Bridge</option>
-		<option value="2">Mosoriot</option>
-                <option value="2">Mosoriot Health Centre</option>
-		<option value="78">Mukhobola</option>
-		<option value="136">Murgor Hills</option>
-		<option value="117">Murgusi</option>
-		<option value="160">Mutwot</option>
-		<option value="79">Nambale</option>
-		<option value="115">Ngechek </option>
-		<option value="128">Ngenyilel</option>
-		<option value="137">Osorongai</option>
-                <option value="20">Port Victoria</option>
-		<option value="103">Riat</option>
-		<option value="151">Rukala Dispensary</option>
-		<option value="82">Saboti</option>
-		<option value="127">Sambut</option>
-		<option value="119">Sigot</option>
-		<option value="105">Siriba</option>
-		<option value="150">Sisenye</option>
-		<option value="129">Sosiani</option>
-		<option value="120">Sugoi</option>
-		<option value="120">Sugoi A</option>
-		<option value="121">Sugoi B</option>
-		<option value="104">Sunga</option>
-                <option value="12">Teso District Hospital</option>
-		<option value="157">Tuigoin</option>
-		<option value="3">Turbo</option>
-                <option value="3">Turbo Health Centre</option>
-                <option value="8">Webuye</option>
-		<option value="28">Ziwa</option>
-
-
+                <option>...</option>
+                <option value="84" data-location="AMPATH-MTRH">AMPATH-MTRH</option>
+                <option value="125" data-location="Aboloi">Aboloi</option>
+                <option value="124" data-location="Akichelesit">Akichelesit</option>
+                <option value="65" data-location="Angurai">Angurai</option>
+                <option value="111" data-location="Biribiriet">Biribiriet</option>
+                <option value="152" data-location="Budalangi">Budalangi</option>
+                <option value="55" data-location="Bumala A">Bumala A</option>
+                <option value="83" data-location="Bumala B">Bumala B</option>
+                <option value="4" data-location="Burnt Forest">Burnt Forest</option>
+                <option value="19" data-location="Busia">Busia</option>
+                <option value="90" data-location="Changara">Changara</option>
+                <option value="131" data-location="Chebaiywa">Chebaiywa</option>
+                <option value="122" data-location="Chepkemel">Chepkemel</option>
+                <option value="118" data-location="Cheplasgei">Cheplasgei</option>
+                <option value="60" data-location="Chepsaita">Chepsaita</option>
+                <option value="133" data-location="Chepterit">Chepterit</option>
+                <option value="122" data-location="Chepkemel">Chepkemel</option>
+                <option value="118" data-location="Cheplasgei">Cheplasgei</option>
+                <option value="116" data-location="Cheramei">Cheramei</option>
+                <option value="7" data-location="Chulaimbo">Chulaimbo</option>
+                <option value="69" data-location="Huruma SDH">Huruma SDH</option>
+                <option value="17" data-location="Iten">Iten</option>
+                <option value="112" data-location="Itigo">Itigo</option>
+                <option value="106" data-location="Kamolo">Kamolo</option>
+                <option value="132" data-location="Kapsara SDH">Kapsara SDH</option>
+                <option value="134" data-location="Kapyemit">Kapyemit</option>
+                <option value="23" data-location="Khunyangu">Khunyangu</option>
+                <option value="11" data-location="Kitale">Kitale</option>
+                <option value="159" data-location="Kosirai">Kosirai</option>
+                <option value="114" data-location="Kokwet">Kokwet</option>
+                <option value="113" data-location="Lelmokwo">Lelmokwo</option>
+                <option value="158" data-location="Leseru">Leseru</option>
+                <option value="91" data-location="Malaba">Malaba</option>
+                <option value="130" data-location="Matayos Health Centre">Matayos Health Centre</option>
+                <option value="126" data-location="Moding">Moding</option>
+                <option value="110" data-location="Mogoget">Mogoget</option>
+                <option value="71" data-location="Moi's Bridge">Moi's Bridge</option>
+                <option value="2" data-location="Mosoriot">Mosoriot</option>
+                <option value="2" data-location="Mosoriot Health Centre">Mosoriot Health Centre</option>
+                <option value="78" data-location="Mukhobola">Mukhobola</option>
+                <option value="136" data-location="Murgor Hills">Murgor Hills</option>
+                <option value="117" data-location="Murgusi">Murgusi</option>
+                <option value="160" data-location="Mutwot">Mutwot</option>
+                <option value="79" data-location="Nambale">Nambale</option>
+                <option value="115" data-location="Ngechek">Ngechek</option>
+                <option value="128" data-location="Ngenyilel">Ngenyilel</option>
+                <option value="137" data-location="Osorongai">Osorongai</option>
+                <option value="20" data-location="Port Victoria">Port Victoria</option>
+                <option value="103" data-location="Riat">Riat</option>
+                <option value="151" data-location="Rukala Dispensary">Rukala Dispensary</option>
+                <option value="82" data-location="Saboti">Saboti</option>
+                <option value="127" data-location="Sambut">Sambut</option>
+                <option value="119" data-location="Sigot">Sigot</option>
+                <option value="105" data-location="Siriba">Siriba</option>
+                <option value="150" data-location="Sisenye">Sisenye</option>
+                <option value="129" data-location="Sosiani">Sosiani</option>
+                <option value="120" data-location="Sugoi">Sugoi</option>
+                <option value="120" data-location="Sugoi A">Sugoi A</option>
+                <option value="121" data-location="Sugoi B">Sugoi B</option>
+                <option value="104" data-location="Sunga">Sunga</option>
+                <option value="12" data-location="Teso District Hospital">Teso District Hospital</option>
+                <option value="157" data-location="Tuigoin">Tuigoin</option>
+                <option value="3" data-location="Turbo">Turbo</option>
+                <option value="3" data-location="Turbo Health Centre">Turbo Health Centre</option>
+                <option value="8" data-location="Webuye">Webuye</option>
+                <option value="28" data-location="Ziwa">Ziwa</option>
             </select>
         </div>
         <div class="form-group">
-                    <label for="encounter.provider_id_select">Provider ID:</label>
-                    <input class="form-control valid-provider-only" id="encounter.provider_id_select" type="text" placeholder="Start typing something...">
-                    <input class="form-control" name="encounter.provider_id_select" type="hidden">
-                </div>
-                <div class="form-group show_provider_id_text">
-                    <label for="encounter.provider_id">Enter provider's system-id:<span class="required">*</span></label>
-                    <input class="form-control checkDigit" id="encounter.provider_id" name="encounter.provider_id"
-                           type="text" placeholder="Or enter the provider system id here ..." required="required">
-                </div>
+            <label for="encounter.provider_id_select">Provider ID:</label>
+            <input class="form-control" id="encounter.provider_id_select" type="text"
+                   placeholder="Start typing something...">
+            <input class="form-control" name="encounter.provider_id_select" type="hidden">
+        </div>
+        <div class="form-group show_provider_id_text">
+            <label for="encounter.provider_id">Enter provider's system-id:<span class="required">*</span></label>
+            <input class="form-control checkDigit" id="encounter.provider_id" name="encounter.provider_id"
+                   type="text" required="required">
+        </div>
+>>>>>>> MUZIMA-272 : Change muzima forms as part of Download Locations(MUZIMA-232)
         <div class="form-group">
             <label for="encounter.encounter_datetime">Encounter Date <span class="required">*</span></label>
             <input class="form-control datepicker" readonly="readonly" id="encounter.encounter_datetime"
                    name="encounter.encounter_datetime"
                    type="text" required="required">
         </div>
-	<div class="form-group">
-                    <input class="form-control" id="encounter.form_uuid" name="encounter.form_uuid"
-                           type="hidden" required="required">
-                </div>
+        <div class="form-group">
+            <input class="form-control" id="encounter.form_uuid" name="encounter.form_uuid"
+                   type="hidden" required="required">
+        </div>
     </div>
 </form>
 
@@ -669,7 +672,12 @@
    	document.setupValidationForProvider("$('#encounter\\.provider_id_select').val()","encounter\\.provider_id",provider);
 
 
+<<<<<<< HEAD
     });
+=======
+    })
+
+>>>>>>> MUZIMA-272 : Change muzima forms as part of Download Locations(MUZIMA-232)
 </script>
 
 </html>
