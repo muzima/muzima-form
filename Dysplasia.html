@@ -62,7 +62,6 @@
         <label for="encounter.location_id">Screening Site:<span class="required">*</span></label>
         <select class="form-control" name="encounter.location_id" id="encounter.location_id" required="required">
             <option value="">...</option>
-            <option>...</option>
             <option value="84">AMPATH-MTRH</option>
             <option value="19">Busia</option>
             <option value="7">Chulaimbo</option>
@@ -298,7 +297,7 @@
     <div class="form-group relevant_hiv_status">
         <label for="date_of_last_cd4_by_facs">Date of latest CD4 count</label>
         <input class="form-control datepicker nonFutureDate" id="date_of_last_cd4_by_facs"
-               name="with-tmp.date_last_cd4_by_facs" type="text" required="required">
+               name="with-tmp.date_last_cd4_by_facs" type="text" >
     </div>
 
     <div class="form-group">
@@ -1261,7 +1260,7 @@ $(document).ready(function () {
     /* Start - Female only breast cancer history */
     var $patientSex = $('#patient\\.sex');
     $patientSex.change(function () {
-        var $womenOnly = $('.relevant-female');
+        var $womenOnly = "F";//$('.relevant-female');
         if ($patientSex.val() != 'F') {
             $womenOnly.hide();
             $('body').html("<div class='section text-center'><h4>This form is only applicable to female patient. " +
