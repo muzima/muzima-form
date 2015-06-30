@@ -1260,7 +1260,7 @@ $(document).ready(function () {
     /* Start - Female only breast cancer history */
     var $patientSex = $('#patient\\.sex');
     $patientSex.change(function () {
-        var $womenOnly = "F";//$('.relevant-female');
+        var $womenOnly = $('.relevant-female');
         if ($patientSex.val() != 'F') {
             $womenOnly.hide();
             $('body').html("<div class='section text-center'><h4>This form is only applicable to female patient. " +
