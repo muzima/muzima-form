@@ -123,7 +123,7 @@
         <div class="form-group">
             <label for="encounter.location_id">Encounter Location <span class="required">*</span></label>
             <select class="form-control" id="encounter.location_id" name="encounter.location_id" required="required">
-                <option>...</option>
+                <option value="">...</option>
                 <option value="84">AMPATH-MTRH</option>
 		<option value="125">Aboloi</option>
 		<option value="124">Akichelesit</option>
@@ -196,13 +196,13 @@
         </div>
         <div class="form-group">
                     <label for="encounter.provider_id_select">Provider ID:</label>
-                    <input class="form-control" id="encounter.provider_id_select" type="text" placeholder="Start typing something...">
+                    <input class="form-control valid-provider-only" id="encounter.provider_id_select" type="text" placeholder="Start typing something...">
                     <input class="form-control" name="encounter.provider_id_select" type="hidden">
                 </div>
                 <div class="form-group show_provider_id_text">
                     <label for="encounter.provider_id">Enter provider's system-id:<span class="required">*</span></label>
                     <input class="form-control checkDigit" id="encounter.provider_id" name="encounter.provider_id"
-                           type="text" required="required">
+                           type="text" placeholder="Or enter the provider system id here ..." required="required">
                 </div>
         <div class="form-group">
             <label for="encounter.encounter_datetime">Encounter Date <span class="required">*</span></label>
@@ -663,7 +663,13 @@
 		{"val":"3849-7","label":"Catherine Chiliswa"}
 		];
 	  document.setupAutoCompleteForProvider('encounter\\.provider_id_select', provider);
-    })
+
+	$('#registration_form').validate({});
+
+   	document.setupValidationForProvider("$('#encounter\\.provider_id_select').val()","encounter\\.provider_id",provider);
+
+
+    });
 </script>
 
 </html>

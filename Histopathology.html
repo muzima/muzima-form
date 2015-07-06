@@ -58,7 +58,7 @@
         <div class="form-group">
             <label for="encounter.location_id">Screening Site:<span class="required">*</span></label>
             <select class="form-control" name="encounter.location_id" id="encounter.location_id" required="required">
-                <option>...</option>
+                <option value="">...</option>
                 <option value="84">AMPATH-MTRH</option>
                 <option value="19">Busia</option>
                 <option value="7">Chulaimbo</option>
@@ -192,7 +192,7 @@
     <div class="section">
         <div class="form-group">
             <label for="encounter.provider_id_select">Provider Name:</label>
-            <input class="form-control" id="encounter.provider_id_select" type="text"
+            <input class="form-control valid-provider-only" id="encounter.provider_id_select" type="text"
                    placeholder="Start typing provider name here ...">
             <input class="form-control" name="encounter.provider_id_select" type="hidden">
         </div>
@@ -296,6 +296,7 @@
             }
         });
 
+        $('#histopathology_form').validate({});
 
         var $patientSex = $('#patient\\.sex');
         $patientSex.change(function () {
@@ -347,6 +348,11 @@
             }
         });
         $obs.trigger('change');
+
+
+    document.setupValidationForProvider("$('#encounter\\.provider_id_select').val()","encounter\\.provider_id",provider);
+
+
     });
 </script>
 

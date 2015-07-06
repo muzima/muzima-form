@@ -1085,7 +1085,7 @@
 <div class="section">
     <div class="form-group">
         <label for="encounter.provider_id_select">Provider Name:</label>
-        <input class="form-control" id="encounter.provider_id_select" type="text"
+        <input class="form-control valid-provider-only" id="encounter.provider_id_select" type="text"
                placeholder="Start typing provider name here ...">
         <input class="form-control" name="encounter.provider_id_select" type="hidden">
     </div>
@@ -1480,6 +1480,9 @@ $(document).ready(function () {
     $(':checkbox[data-concept="7426^MOST RECENT COLPOSCOPY RESULT^99DCT"]').change(function () {
         toggleValidationMessages(validateAlone($(this), colposcopyresultsValues, colposcopyresultsMessage));
     });
+
+    document.setupValidationForProvider("$('#encounter\\.provider_id_select').val()","encounter\\.provider_id",provider);
+
 
 });
 </script>

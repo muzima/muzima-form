@@ -505,7 +505,7 @@
 <div class="section">
     <div class="form-group">
         <label for="encounter.provider_id_select">Provider Name:</label>
-        <input class="form-control" id="encounter.provider_id_select" type="text"
+        <input class="form-control valid-provider-only" id="encounter.provider_id_select" type="text"
                placeholder="Start typing provider name here ...">
         <input class="form-control" name="encounter.provider_id_select" type="hidden">
     </div>
@@ -602,6 +602,8 @@ $(document).ready(function () {
             $('.show_provider_id_text').show();
         }
     });
+
+    $('#chw_form').validate({});
 
     /* Start - Toggle free text element */
     var $hasOther = $('.has-freetext');
@@ -818,6 +820,9 @@ $(document).ready(function () {
         showValidationMessages(errors);
         return $.isEmptyObject(errors);
     }
+
+    document.setupValidationForProvider("$('#encounter\\.provider_id_select').val()","encounter\\.provider_id",provider);
+
 
 });
 </script>

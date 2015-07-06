@@ -178,18 +178,18 @@
 <div class="section">
     <div class="form-group">
         <label for="encounter.provider_id_select">Screening Provider Name:</label>
-        <input class="form-control" id="encounter.provider_id_select" type="text"
+        <input class="form-control valid-provider-only" id="encounter.provider_id_select" type="text"
                placeholder="Start typing provider name here ...">
         <input class="form-control" name="encounter.provider_id_select" type="hidden">
     </div>
     <div class="form-group show_provider_id_text">
         <label for="encounter.provider_id">Screening provider's system-id:<span class="required">*</span></label>
         <input class="form-control checkDigit" id="encounter.provider_id" name="encounter.provider_id" type="text"
-               placeholder="Or enter the provider system id here ..." required="required" disabled="disabled">
+               placeholder="Or enter the provider system id here ..." required="required" >
     </div>
     <div class="form-group">
         <label for="encounter.location_id">Screening Location:<span class="required">*</span></label>
-        <input class="form-control" id="encounter.location_id" type="text" placeholder="Start typing something...">
+        <input class="form-control valid-location-only" id="encounter.location_id" type="text" placeholder="Start typing something..." required="required">
         <input class="form-control" name="encounter.location_id" type="hidden">
     </div>
     <div class="form-group">
@@ -814,22 +814,9 @@ $(document).ready(function () {
     {"label": "Osorongai", "val": "137"},
     {"label": "Sokyot", "val": "154"}
     ];
-    $('#encounter\\.location_id').autocomplete({
-        source: locationName,
-        create: function (event, ui) {
-            var location_val = $('input[name="encounter\\.location_id"]').val();
-            $.each(locationName, function (i, elem) {
-                if (elem.val == location_val) {
-                    $('#encounter\\.location_id').val(elem.label)
-                }
-            });
-        },
-        select: function (event, ui) {
-            $('input[name="encounter\\.location_id"]').val(ui.item.val);
-            $('#encounter\\.location_id').val(ui.item.label);
-            return false;
-        }
-    });
+
+    document.setupAutoComplete('encounter\\.location_id',locationName);
+
 
     var provider = [
     {"label": "Christopher J Mwenengo", "val": "2281-4"},
@@ -1178,29 +1165,20 @@ $(document).ready(function () {
 	{"label": "Silas Keronei", "val": "3679-8"},
     ];
 
-    $('#encounter\\.provider_id_select').autocomplete({
-        source: provider,
-        create: function (event, ui) {
-            var provider_val = $('input[name="encounter\\.provider_id_select"]').val();
-            $.each(provider, function (i, elem) {
-                if (elem.val == provider_val) {
-                    $('#encounter\\.provider_id_select').val(elem.label)
-                }
-            });
-        },
-        select: function (event, ui) {
-            $('input[name="encounter\\.provider_id_select"]').val(ui.item.val);
-            $('#encounter\\.provider_id_select').val(ui.item.label);
-            $('#encounter\\.provider_id').val(ui.item.val);
-            return false;
-        }
-    });
+    document.setupAutoCompleteForProvider('encounter\\.provider_id_select', provider);
+
+
     $('#encounter\\.provider_id_select').change(function () {
         if ($('#encounter\\.provider_id_select').val() === '') {
             $('#encounter\\.provider_id').val('');
             $('.show_provider_id_text').show();
         }
     });
+
+    document.setupValidationForProvider("$('#encounter\\.provider_id_select').val()","encounter\\.provider_id",provider);
+
+    document.setupValidationForLocation("$('#encounter\\.location_id').val()","encounter\\.location_id",locationName);
+
 
 
 });

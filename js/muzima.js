@@ -728,4 +728,93 @@ $(document).ready(function () {
 
     /* End - Code to Serialize form along with Data-Concepts */
 
+    //Set up auto complete for an element.(generic, will work with any element that needs auto complete on it)
+    document.setupAutoComplete = function(elementName, dataDictionary) {
+
+        $("#" + elementName).autocomplete({
+            source: dataDictionary,
+            create: function(event, ui) {
+                var val = $('input[name=' + elementName + ']').val();
+                $.each(dataDictionary, function(i, elem) {
+                    if (elem.val == val) {
+                        $("#" + elementName).val(elem.label)
+                    }
+                });
+            },
+            select: function(event, ui) {
+                $('input[name="' + elementName + '"]').val(ui.item.val);
+                $("#" + elementName).val(ui.item.label);
+                return false;
+            }
+        });
+    }
+
+    //Set up auto complete for the provider element.
+    document.setupAutoCompleteForProvider = function(elementName, providers) {
+
+        $("#" + elementName).autocomplete({
+            source: providers,
+            create: function(event, ui) {
+                var provider_val = $('input[name="' + elementName + '"]').val();
+                $.each(providers, function(i, elem) {
+                    if (elem.val == provider_val) {
+                        $("#" + elementName).val(elem.label)
+                    }
+                });
+            },
+            select: function(event, ui) {
+                $('input[name="' + elementName + '"]').val(ui.item.val);
+                $("#" + elementName).val(ui.item.label);
+                $('#encounter\\.provider_id').val(ui.item.val);
+                $('.show_provider_id_text').hide();
+                return false;
+            }
+        });
+    }
+
+    document.setupValidationForProvider = function(value, element, listOfProviders) {
+        /* Start - Checking that the user entered provider exists in the list of possible providers */
+        $.validator.addMethod("validProviderOnly", function(value, element) {
+
+            if ($.fn.isNotRequiredAndEmpty(value, element)) return true;
+            var providerEnteredByUser = value;
+            for (var i = 0; i < listOfProviders.length; i++) {
+                if (providerEnteredByUser == listOfProviders[i].label) {
+                    return true;
+                }
+            }
+            return false;
+        }, "Please provide a provider from the list of possible providers.");
+
+        // attach 'validProviderOnly' class to perform validation.
+        jQuery.validator.addClassRules({
+            "valid-provider-only": {
+                validProviderOnly: true
+            }
+        });
+        /* End - validProviderOnly*/
+    }
+
+    document.setupValidationForLocation = function(value, element, listOfLocations) {
+
+        /* Start - Checking that the user entered location exists in the list of possible locations */
+        $.validator.addMethod("validLocationOnly", function(value, element) {
+            if ($.fn.isNotRequiredAndEmpty(value, element)) return true;
+            var locationEnteredByUser = $('#encounter\\.location_id').val();
+            for (var i = 0; i < listOfLocations.length; i++) {
+                if (locationEnteredByUser == listOfLocations[i].label) {
+                    return true;
+                }
+            }
+            return false;
+        }, "Please provide a location from the list of possible locations.");
+
+    }
+
+    // attach 'validLocationOnly' class to perform validation.
+        jQuery.validator.addClassRules({
+            "valid-location-only": { validLocationOnly: true }
+        });
+        /* End - validLocationOnly*/
+
 });
