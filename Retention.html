@@ -63,7 +63,7 @@
     <div class="form-group">
         <label for="encounter.location_id">Encounter Location <span class="required">*</span></label>
         <select class="form-control" id="encounter.location_id" name="encounter.location_id" required="required">
-            <option>...</option>
+            <option value="">...</option>
             <option value="2">Mosoriot</option>
             <option value="3">Turbo</option>
             <option value="12">Teso District Hospital</option>
@@ -95,7 +95,7 @@
     </div>
     <div class="form-group">
         <label for="encounter.provider_id_select">CHV Name:</label>
-        <input class="form-control" id="encounter.provider_id_select" type="text"
+        <input class="form-control valid-provider-only" id="encounter.provider_id_select" type="text"
                placeholder="Start typing provider name here ...">
         <input class="form-control" name="encounter.provider_id_select" type="hidden">
     </div>
@@ -1765,24 +1765,8 @@ var ruleEngine = function(submittedForm,RulesList){
                 {"val":"3666-5","label":"Irine Sisiwa"}
     ];
 
-    $('#encounter\\.provider_id_select').autocomplete({
-        source: provider,
-        create: function (event, ui) {
-            var provider_val = $('input[name="encounter\\.provider_id_select"]').val();
-            $.each(provider, function (i, elem) {
-                if (elem.val == provider_val) {
-                    $('#encounter\\.provider_id_select').val(elem.label)
-                }
-            });
-        },
-        select: function (event, ui) {
-            $('input[name="encounter\\.provider_id_select"]').val(ui.item.val);
-            $('#encounter\\.provider_id_select').val(ui.item.label);
-            $('#encounter\\.provider_id').val(ui.item.val);
-            $('.show_provider_id_text').hide();
-            return false;
-        }
-    });
+    document.setupAutoCompleteForProvider('encounter\\.provider_id_select', provider);
+
     $('#encounter\\.provider_id_select').change(function () {
         if ($('#encounter\\.provider_id_select').val() === '') {
             $('#encounter\\.provider_id').val('');
@@ -1858,23 +1842,9 @@ var ruleEngine = function(submittedForm,RulesList){
             {"val": "3", "label": "Turbo"},
             {"val": "17", "label": "Iten"}
         ];
-        $('#encounter\\.location_id').autocomplete({
-            source: locationName,
-            create: function (event, ui) {
-                var location_val = $('input[name="encounter\\.location_id"]').val();
-                $.each(locationName, function (i, elem) {
-                    if (elem.val == location_val) {
-                        $('#encounter\\.location_id').val(elem.label)
-                    }
-                    ;
-                });
-            },
-            select: function (event, ui) {
-                $('input[name="encounter\\.location_id"]').val(ui.item.val);
-                $('#encounter\\.location_id').val(ui.item.label);
-                return false;
-            }
-        });
+
+        document.setupAutoComplete('encounter\\.location_id',locationName);
+
 
         //pick todays date by default
         var dateFormat = "dd-mm-yy";
@@ -2211,6 +2181,9 @@ var ruleEngine = function(submittedForm,RulesList){
             showValidationMessages(errors);
             return $.isEmptyObject(errors);
          };
+
+
+        document.setupValidationForProvider("$('#encounter\\.provider_id_select').val()","encounter\\.provider_id",provider);
 
     });
 </script>

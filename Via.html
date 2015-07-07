@@ -65,7 +65,7 @@
     <div class="form-group">
         <label for="encounter.location_id">Screening Site:<span class="required">*</span></label>
         <select class="form-control" name="encounter.location_id" id="encounter.location_id" required="required">
-            <option>...</option>
+            <option value="">...</option>
             <option value="84">AMPATH-MTRH</option>
             <option value="19">Busia</option>
             <option value="7">Chulaimbo</option>
@@ -939,7 +939,7 @@
 <div class="section">
     <div class="form-group">
         <label for="encounter.provider_id_select">Provider Name:</label>
-        <input class="form-control" id="encounter.provider_id_select" type="text"
+        <input class="form-control valid-provider-only" id="encounter.provider_id_select" type="text"
                placeholder="Start typing provider name here ...">
         <input class="form-control" name="encounter.provider_id_select" type="hidden">
     </div>
@@ -1011,22 +1011,8 @@ $(document).ready(function () {
         {"val": "8", "label": "Webuye"},
         {"val": "84", "label": "Ampath MTRH"}
     ];
-    $('#encounter\\.location_id').autocomplete({
-        source: locationName,
-        create: function (event, ui) {
-            var location_val = $('input[name="encounter\\.location_id"]').val();
-            $.each(locationName, function (i, elem) {
-                if (elem.val == location_val) {
-                    $('#encounter\\.location_id').val(elem.label)
-                }
-            });
-        },
-        select: function (event, ui) {
-            $('input[name="encounter\\.location_id"]').val(ui.item.val);
-            $('#encounter\\.location_id').val(ui.item.label);
-            return false;
-        }
-    });
+
+    document.setupAutoComplete('encounter\\.location_id',locationName);
 
     var provider = [
         {"label": "Daurine Achieng Agumba", "val": "3419-9"},
@@ -1065,24 +1051,8 @@ $(document).ready(function () {
         {"label": "Philip Kipkirui Tonui", "val": "1485-7"}
     ];
 
-    $('#encounter\\.provider_id_select').autocomplete({
-        source: provider,
-        create: function (event, ui) {
-            var provider_val = $('input[name="encounter\\.provider_id_select"]').val();
-            $.each(provider, function (i, elem) {
-                if (elem.val == provider_val) {
-                    $('#encounter\\.provider_id_select').val(elem.label)
-                }
-            });
-        },
-        select: function (event, ui) {
-            $('input[name="encounter\\.provider_id_select"]').val(ui.item.val);
-            $('#encounter\\.provider_id_select').val(ui.item.label);
-            $('#encounter\\.provider_id').val(ui.item.val);
-            $('.show_provider_id_text').hide();
-            return false;
-        }
-    });
+    document.setupAutoCompleteForProvider('encounter\\.provider_id_select', provider);
+
     $('#encounter\\.provider_id_select').change(function () {
         if ($('#encounter\\.provider_id_select').val() === '') {
             $('#encounter\\.provider_id').val('');
@@ -1090,18 +1060,7 @@ $(document).ready(function () {
         }
     });
 
-    var $patientSex = $('#patient\\.sex');
-    $patientSex.change(function () {
-        var $womenOnly = $('.relevant-female');
-        if ($patientSex.val() != 'F') {
-            $womenOnly.hide();
-            $('body').html("<div class='section text-center'><h4>This form is only applicable to female patient. " +
-                    "Please press back to close the form.</h4></div>");
-        } else {
-            $womenOnly.show();
-        }
-    });
-    $patientSex.trigger('change');
+
 
     /* Start - Checking that parity is less than gravida */
     $.validator.addMethod("lessThanGravida", function (value, element) {
@@ -1117,18 +1076,18 @@ $(document).ready(function () {
     });
     /* End - lessThanGravida*/
 
-    /* Start - Female only breast cancer history */
-    var $patientSex = $('#patient\\.sex');
-    $patientSex.change(function () {
-        var $womenOnly = $('.relevant_female');
-        if ($patientSex.val() != 'F') {
-            $womenOnly.hide();
-        } else {
-            $womenOnly.show();
-        }
-    });
-    $patientSex.trigger('change');
-    /* End - Female only breast cancer history */
+        var $patientSex = $('#patient\\.sex');
+        $patientSex.change(function () {
+            var $womenOnly = $('.relevant-female');
+            if ($patientSex.val() != 'F') {
+                $womenOnly.hide();
+                $('body').html("<div class='section text-center'><h4>This form is only applicable to female patient. " +
+                        "Please press back to close the form.</h4></div>");
+            } else {
+                $womenOnly.show();
+            }
+        });
+        $patientSex.trigger('change');
 
     /* Start - Toggle based on HIV status */
     var $hivStatus = $('#hiv_status');
@@ -1333,6 +1292,10 @@ $(document).ready(function () {
         showValidationMessages(errors);
         return $.isEmptyObject(errors);
     };
+
+
+    document.setupValidationForProvider("$('#encounter\\.provider_id_select').val()","encounter\\.provider_id",provider);
+
 });
 </script>
 
