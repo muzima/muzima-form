@@ -66,13 +66,13 @@
 
                 <div class="form-group">
                     <label for="encounter.location_id">Location Name:<span class="required">*</span></label>
-                    <input class="form-control" id="encounter.location_id" type="text" placeholder="Start typing something..."
+                    <input class="form-control valid-location-only" id="encounter.location_id" type="text" placeholder="Start typing something..."
                            required="required">
                     <input class="form-control" name="encounter.location_id" type="hidden">
                 </div>
                 <div class="form-group">
                     <label for="encounter.provider_id_select">Provider ID:</label>
-                    <input class="form-control" id="encounter.provider_id_select" type="text" placeholder="Start typing something...">
+                    <input class="form-control valid-provider-only" id="encounter.provider_id_select" type="text" placeholder="Start typing something...">
                     <input class="form-control" name="encounter.provider_id_select" type="hidden">
                 </div>
                 <div class="form-group show_provider_id_text">
@@ -129,7 +129,7 @@
 
                 <div class="form-group">
                     <label for="consultation.recipient">Select Consultant:<span class="required">*</span></label>
-                    <input class="form-control" id="consultation.recipient" type="text" placeholder="Start typing something..."
+                    <input class="form-control valid-consultant-only" id="consultation.recipient" type="text" placeholder="Start typing something..."
                            required="required">
                     <input class="form-control" name="consultation.recipient" type="hidden">
                 </div>
@@ -195,12 +195,23 @@
     <script type="text/javascript">
         $(document).ready(function () {
 
+            $('#save_draft').click(function () {
+            // pre process the medications
+            $(this).prop('disabled', true);
+            document.saveDraft(this);
+            $(this).prop('disabled', false);
+        });
+
+        $('#submit_form').click(function () {
+            // pre process the medications
+            $(this).prop('disabled', true);
+            document.submit();
+            $(this).prop('disabled', false);
+        });
+
             $('#teleconsultation_form').validate({
                 rules: {
 
-                },
-                submitHandler: function (form) {
-                    document.submit();
                 }
             });
 
@@ -234,22 +245,8 @@
                 {"val": "128", "label": "Ngenyilel"},
                 {"val": "129", "label": "Sosiani"}
             ];
-            $('#encounter\\.location_id').autocomplete({
-                source: dispensaryName,
-                create: function(event,ui){
-                    var location_val = $('input[name="encounter\\.location_id"]').val();
-                    $.each(dispensaryName, function (i, elem) {
-                        if (elem.val == location_val) {
-                            $('#encounter\\.location_id').val(elem.label)
-                        }
-                    });
-                },
-                select: function (event, ui) {
-                    $('input[name="encounter\\.location_id"]').val(ui.item.val  );
-                    $('#encounter\\.location_id').val(ui.item.label);
-                    return false;
-                }
-            });
+
+            document.setupAutoComplete('encounter\\.location_id',dispensaryName);
 
             var provider = [{"val":"3356-3","label":"David S. Pamba"},
                 {"val":"237-8","label":"Ariya Patrick"},
@@ -282,25 +279,14 @@
                 {"val":"3355-5","label":"Clementine Ingosi Osiel"}
             ];
 
-            $('#encounter\\.provider_id_select').autocomplete({
-                source: provider,
-                create: function (event, ui) {
-                    var provider_val = $('input[name="encounter\\.provider_id_select"]').val();
-                    $.each(provider, function (i, elem) {
-                        if (elem.val == provider_val) {
-                            $('#encounter\\.provider_id_select').val(elem.label)
-                        }
-                    });
-                },
-                select: function (event, ui) {
-                    $('input[name="encounter\\.provider_id_select"]').val(ui.item.val);
-                    $('#encounter\\.provider_id_select').val(ui.item.label);
-                    $('#encounter\\.provider_id').val(ui.item.val);
-                    $('.show_provider_id_text').hide();
-                    return false;
+            document.setupAutoCompleteForProvider('encounter\\.provider_id_select', provider);
+
+            $('#encounter\\.provider_id_select').change(function(){
+                if($('#encounter\\.provider_id_select').val() == ''){
+                    $('#encounter\\.provider_id').val('');
+                    $('.show_provider_id_text').show();
                 }
             });
-
             var consultant = [
                 {"val":"3356-3:u","label":"David S. Pamba"},
                 {"val":"237-8:u","label":"Ariya Patrick"},
@@ -332,22 +318,14 @@
                 {"val":"admin:u","label":"Super User"},
                 {"val":"3355-5:u","label":"Clementine Ingosi Osiel"}];
 
-            $('#consultation\\.recipient').autocomplete({
-                source: consultant,
-                create: function(event,ui){
-                    var consultant_val = $('input[name="consultation\\.recipient"]').val();
-                    $.each(consultant, function (i, elem) {
-                        if (elem.val == consultant_val) {
-                            $('#consultation\\.recipient').val(elem.label)
-                        }
-                    });
-                },
-                select: function (event, ui) {
-                    $('input[name="consultation\\.recipient"]').val(ui.item.val  );
-                    $('#consultation\\.recipient').val(ui.item.label);
-                    return false;
-                }
-            });
+            document.setupAutoComplete('consultation\\.recipient',consultant);
+
+            document.setupValidationForProvider("$('#encounter\\.provider_id_select').val()","encounter\\.provider_id",provider);
+
+            document.setupValidationForLocation("$('#encounter\\.location_id').val()","encounter\\.location_id",dispensaryName);
+
+            document.setupValidationForConsultation("$('#consultation\\.recipient').val()","consultation\\.recipient",consultant);
+
         });
 
     </script>
