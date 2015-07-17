@@ -61,8 +61,14 @@
 <div class="section">
     <h4>Encounter Details</h4>
     <div class="form-group">
-        <label for="encounter.location_id">Encounter Location <span class="required">*</span></label>
-        <select class="form-control" id="encounter.location_id" name="encounter.location_id" required="required">
+        <label for="encounter.location_id">Name of Dispensary:<span class="required">*</span></label>
+        <input class="form-control valid-location-only" id="encounter.location_id" type="text" placeholder="Start typing something..." required="required">
+        <input class="form-control" name="encounter.location_id" type="hidden">
+    </div>
+
+    <div class="form-group hidden">
+        <label for="encounter.location_id_select">Encounter Location <span class="required">*</span></label>
+        <select class="form-control" id="encounter.location_id_select"  required="required">
             <option>...</option>
             <option value="84" data-location="AMPATH-MTRH">AMPATH-MTRH</option>
             <option value="2" data-location="Mosoriot">Mosoriot</option>
@@ -1486,8 +1492,7 @@
             {"val": "17", "label": "Iten"}
         ];
 
-        document.setupAutoComplete('encounter\\.location_id',locationName);
-
+         document.setupAutoCompleteData('encounter\\.location_id');
 
         //pick todays date by default
         var dateFormat = "dd-mm-yy";
@@ -1825,6 +1830,8 @@
 
 
        document.setupValidationForProvider("$('#encounter\\.provider_id_select').val()","encounter\\.provider_id",provider);
+
+       document.setupValidationForLocation("$('#encounter\\.location_id').val()","encounter\\.location_id");
 
 
     });

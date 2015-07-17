@@ -62,9 +62,16 @@
 </div>
 
 <div class="section">
+
     <div class="form-group">
-        <label for="encounter.location_id">Encounter Location:<span class="required">*</span></label>
-        <select class="form-control" name="encounter.location_id" id="encounter.location_id" required="required">
+        <label for="encounter.location_id">Name of Dispensary:<span class="required">*</span></label>
+        <input class="form-control valid-location-only" id="encounter.location_id" type="text" placeholder="Start typing something..." required="required">
+        <input class="form-control" name="encounter.location_id" type="hidden">
+    </div>
+
+    <div class="form-group hidden">
+        <label for="encounter.location_id_select">Encounter Location:<span class="required">*</span></label>
+        <select class="form-control" id="encounter.location_id_select" required="required">
             <option value="">...</option>
             <option value="9" data-location="Ampath MTRH">Ampath MTRH</option>
             <option value="7" data-location="Chulaimbo">Chulaimbo</option>
@@ -473,7 +480,7 @@ $(document).ready(function () {
         {"val": "9", "label": "Ampath MTRH"}
     ];
 
-    document.setupAutoComplete('encounter\\.location_id',locationName);
+    document.setupAutoCompleteData('encounter\\.location_id');
 
 
     var provider = [
@@ -581,6 +588,8 @@ $(document).ready(function () {
     }
 
     document.setupValidationForProvider("$('#encounter\\.provider_id_select').val()","encounter\\.provider_id",provider);
+
+    document.setupValidationForLocation("$('#encounter\\.location_id').val()","encounter\\.location_id");
 
 });
 </script>
