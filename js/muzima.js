@@ -749,6 +749,19 @@ $(document).ready(function () {
         });
     }
 
+
+    document.setupAutoCompleteDataForProvider = function(elementName) {
+          var providers = [];
+          var providers = [{"val":"3356-3","label":"David S. Pamba"},
+                      {"val":"237-8","label":"Ariya Patrick"},
+                      {"val":"3331-6","label":"Benjamin Osiya Ekirapa"},
+                      {"val":"3332-4","label":"Molly Omodek Aluku"},
+                      {"val":"3355-5","label":"Clementine Ingosi Osiel"}];
+          alert('setupDispensaryAutoComplete called with:' + JSON.stringify(providers));
+          document.setupAutoCompleteForProvider('encounter\\.provider_id_select', providers);
+       };
+
+
     //Set up auto complete for the provider element.
     document.setupAutoCompleteForProvider = function(elementName, providers) {
 
@@ -772,8 +785,14 @@ $(document).ready(function () {
         });
     }
 
-    document.setupValidationForProvider = function(value, element, listOfProviders) {
+    document.setupValidationForProvider = function(value, element) {
         /* Start - Checking that the user entered provider exists in the list of possible providers */
+        var listOfProviders = [{"val":"3356-3","label":"David S. Pamba"},
+                              {"val":"237-8","label":"Ariya Patrick"},
+                              {"val":"3331-6","label":"Benjamin Osiya Ekirapa"},
+                              {"val":"3332-4","label":"Molly Omodek Aluku"},
+                              {"val":"3355-5","label":"Clementine Ingosi Osiel"}];
+ alert('setupValidation called with:' + JSON.stringify(listOfProviders));
         $.validator.addMethod("validProviderOnly", function(value, element) {
 
             if ($.fn.isNotRequiredAndEmpty(value, element)) return true;

@@ -196,6 +196,45 @@
                    placeholder="Start typing provider name here ...">
             <input class="form-control" name="encounter.provider_id_select" type="hidden">
         </div>
+        <div class="form-group hidden">
+            <select id="select_providers">
+                <option data-provider = "Daurine Achieng Agumba" value = "3419-9">Daurine Achieng Agumba</option>
+                <option data-provider = "Irene Chepkosgei Kurgat" value = "3420-7">Irene Chepkosgei Kurgat</option>
+                <option data-provider = "Rose Cheruto Toroitich" value = "3421-5">Rose Cheruto Toroitich</option>
+                <option data-provider = "Mary Kipkurui Kimosop" value = "3422-3">Mary Kipkurui Kimosop</option>
+                <option data-provider = "Jacqueline Chemom Ndiema" value = "3423-1">Jacqueline Chemom Ndiema</option>
+                <option data-provider = "Grace Wanjiru Mwangi" value = "3424-9">Grace Wanjiru Mwangi</option>
+                <option data-provider = "Collette Mabia Palapala" value = "3425-6">Collette Mabia Palapala</option>
+                <option data-provider = "Dorice Erima Wekesa" value = "3426-4">Dorice Erima Wekesa</option>
+                <option data-provider = "Agnes Kagure Boen" value = "120-6">"Agnes Kagure Boen</option>
+                <option data-provider = "Linet Kerubo Onyancha" value = "3427-2">Linet Kerubo Onyancha</option>
+                <option data-provider = "Delinah Muchai Tanui" value = "1208-8">Delinah Muchai Tanui</option>
+                <option data-provider = "Hellen Mushimbi Indumbwe" value = "3321-7">Hellen Mushimbi Indumbwe</option>
+                <option data-provider = "Lydia Cherugut Samoei" value = "1525-5">Lydia Cherugut Samoei</option>
+                <option data-provider = "Ruth Kalunda Nzili" value = "1529-7">Ruth Kalunda Nzili</option>
+                <option data-provider = "Lucy Cheruto Birgen" value = "3428-0">Lucy Cheruto Birgen</option>
+                <option data-provider = "Gratiah Nafuna Khaemba" value = "1409-2">Gratiah Nafuna Khaemba</option>
+                <option data-provider = "Leonida Chemutai Mengich" value = "1357-3">Leonida Chemutai Mengich</option>
+                <option data-provider = "Ann Wangoi Maina" value = "1412-6">Ann Wangoi Maina</option>
+                <option data-provider = "Elkanah Omenge Orango" value = "1474-6">Elkanah Omenge Orango</option>
+                <option data-provider = "Peter Mukhanadale Istura" value = "1478-7">Peter Mukhanadale Istura</option>
+                <option data-provider = "Hillary Mabeya" value = "1476-1">Hillary Mabeya</option>
+                <option data-provider = "Astrid Christoffersen Deb" value = "1237-7">Astrid Christoffersen Deb</option>
+                <option data-provider = "Philip Kipkirui Tonui" value = "1485-7">Philip Kipkirui Tonui</option>
+                <option data-provider = "Ann Jebet Ngelel" value = "3613-7">Ann Jebet Ngelel</option>
+                <option data-provider = "Job Wekesa Wamukaya" value = "3614-5">Job Wekesa Wamukaya</option>
+                <option data-provider = "Joyce Chepkorir Chessum" value = "3615-2">Joyce Chepkorir Chessum</option>
+                <option data-provider = "Monica Chelimo Rotich" value = "3616-0">Monica Chelimo Rotich</option>
+                <option data-provider = "Penina Jerotich Biwott" value = "3617-8">Penina Jerotich Biwott</option>
+                <option data-provider = "Peter Gachingi Kamau" value = "3618-6">Peter Gachingi Kamau</option>
+                <option data-provider = "Phanice Jepkemoi Tomu" value = "3619-4">Phanice Jepkemoi Tomu</option>
+                <option data-provider = "Phyllis Jelagat Bartilol" value = "3620-2">Roselyne Yatich</option>
+                <option data-provider = "Roselyne Yatich" value = "3621-0">Roselyne Yatich</option>
+                <option data-provider = "Ruth Sego" value = "3622-8">Ruth Sego</option>
+                <option data-provider = "Yosabia Osebe Monari" value = "3623-6">Yosabia Osebe Monari</option>
+                <option data-provider = "Philip Kipkirui Tonui" value = "1485-7">Philip Kipkirui Tonui</option>
+            </select>
+        </div>
 
         <div class="form-group show_provider_id_text">
             <label for="encounter.provider_id">Enter provider's system-id:<span class="required">*</span></label>
@@ -248,46 +287,8 @@
 
         document.setupAutoComplete('encounter\\.location_id',locationName);
 
-        var provider = [
-            {"label": "Daurine Achieng Agumba", "val": "3419-9"},
-            {"label": "Irene Chepkosgei Kurgat", "val": "3420-7"},
-            {"label": "Rose Cheruto Toroitich", "val": "3421-5"},
-            {"label": "Mary Kipkurui Kimosop", "val": "3422-3"},
-            {"label": "Jacqueline Chemom Ndiema", "val": "3423-1"},
-            {"label": "Grace Wanjiru Mwangi", "val": "3424-9"},
-            {"label": "Collette Mabia Palapala", "val": "3425-6"},
-            {"label": "Dorice Erima Wekesa", "val": "3426-4"},
-            {"label": "Agnes Kagure Boen", "val": "120-6"},
-            {"label": "Linet Kerubo Onyancha", "val": "3427-2"},
-            {"label": "Delinah Muchai Tanui", "val": "1208-8"},
-            {"label": "Hellen Mushimbi Indumbwe", "val": "3321-7"},
-            {"label": "Lydia Cherugut Samoei", "val": "1525-5"},
-            {"label": "Ruth Kalunda Nzili", "val": "1529-7"},
-            {"label": "Lucy Cheruto Birgen", "val": "3428-0"},
-            {"label": "Gratiah Nafuna Khaemba", "val": "1409-2"},
-            {"label": "Leonida Chemutai Mengich", "val": "1357-3"},
-            {"label": "Ann Wangoi Maina", "val": "1412-6"},
-            {"label": "Elkanah Omenge Orango", "val": "1474-6"},
-            {"label": "Peter Mukhanadale Istura", "val": "1478-7"},
-            {"label": "Hillary Mabeya", "val": "1476-1"},
-            {"label": "Astrid Christoffersen Deb", "val": "1237-7"},
-            {"label": "Philip Kipkirui Tonui", "val": "1485-7"},
-            {"label": "Ann Jebet Ngelel", "val": "3613-7"},
-            {"label": "Job Wekesa Wamukaya", "val": "3614-5"},
-            {"label": "Joyce Chepkorir Chessum", "val": "3615-2"},
-            {"label": "Monica Chelimo Rotich", "val": "3616-0"},
-            {"label": "Penina Jerotich Biwott", "val": "3617-8"},
-            {"label": "Peter Gachingi Kamau", "val": "3618-6"},
-            {"label": "Phanice Jepkemoi Tomu", "val": "3619-4"},
-            {"label": "Phyllis Jelagat Bartilol", "val": "3620-2"},
-            {"label": "Roselyne Yatich", "val": "3621-0"},
-            {"label": "Ruth Sego", "val": "3622-8"},
-            {"label": "Yosabia Osebe Monari", "val": "3623-6"},
-            {"label": "Philip Kipkirui Tonui", "val": "1485-7"}
-        ];
 
-
-        document.setupAutoCompleteForProvider('encounter\\.provider_id_select', provider);
+        document.setupAutoCompleteDataForProvider('encounter\\.provider_id_select');
 
         $('#encounter\\.provider_id_select').change(function () {
             if ($('#encounter\\.provider_id_select').val() === '') {
@@ -350,7 +351,7 @@
         $obs.trigger('change');
 
 
-    document.setupValidationForProvider("$('#encounter\\.provider_id_select').val()","encounter\\.provider_id",provider);
+    document.setupValidationForProvider("$('#encounter\\.provider_id_select').val()","encounter\\.provider_id");
 
 
     });
