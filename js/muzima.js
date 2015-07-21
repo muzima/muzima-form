@@ -817,4 +817,27 @@ $(document).ready(function () {
         });
         /* End - validLocationOnly*/
 
+
+    document.setupValidationForConsultation = function(value, element, listOfConsultants) {
+
+            /* Start - Checking that the user entered consultant exists in the list of possible consultant */
+            $.validator.addMethod("validConsultantOnly", function(value, element) {
+                if ($.fn.isNotRequiredAndEmpty(value, element)) return true;
+                var locationEnteredByUser = $('#consultation\\.recipient').val();
+                for (var i = 0; i < listOfConsultants.length; i++) {
+                    if (locationEnteredByUser == listOfConsultants[i].label) {
+                        return true;
+                    }
+                }
+                return false;
+            }, "Please provide a consultant from the list of possible consultants.");
+
+        }
+
+        // attach 'validConsultantOnly' class to perform validation.
+            jQuery.validator.addClassRules({
+                "valid-consultant-only": { validConsultantOnly: true }
+            });
+            /* End - validConsultantOnly*/
+
 });
