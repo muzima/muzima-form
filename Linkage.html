@@ -107,6 +107,20 @@
                placeholder="Start typing provider name here ...">
         <input class="form-control" name="encounter.provider_id_select" type="hidden">
     </div>
+    <div class="form-group hidden">
+        <select id="select_providers">
+            <option value ="1773-1" data-provider = "Rael  Chelimo">Rael  Chelimo</option>
+            <option value ="3662-4" data-provider = "Milka Cherurto">Milka Cherurto</option>
+            <option value ="3663-2" data-provider = "Lilian Chepchipchir">Lilian Chepchipchir</option>
+            <option value ="1764-0" data-provider = "Pamela Ngetich">Pamela Ngetich</option>
+            <option value ="1769-9" data-provider = "Stephene Kipkosgei">Stephene Kipkosgei</option>
+            <option value ="3664-0" data-provider = "Irine Jesang">Irine Jesang</option>
+            <option value ="1766-5" data-provider = "Solomon Ngetich">Solomon Ngetich</option>
+            <option value ="1772-3" data-provider = "Elvis Kiprono">Elvis Kiprono</option>
+            <option value ="3665-7" data-provider = "Willy Kosgei">Willy Kosgei</option>
+            <option value ="3666-5" data-provider = "Irine Sisiwa">Irine Sisiwa</option>
+        </select>
+    </div>
 
     <div class="form-group show_provider_id_text">
         <label for="encounter.provider_id">Enter CHV's system-id:<span class="required">*</span></label>
@@ -1400,20 +1414,9 @@
 
     $(document).ready(function () {
 
-    var provider = [
-                {"val":"1773-1","label":"Rael  Chelimo"},
-                {"val":"3662-4","label":"Milka Cherurto"},
-                {"val":"3663-2","label":"Lilian Chepchipchir"},
-                {"val":"1764-0","label":"Pamela Ngetich"},
-                {"val":"1769-9","label":"Stephene Kipkosgei"},
-                {"val":"3664-0","label":"Irine Jesang"},
-                {"val":"1766-5","label":"Solomon Ngetich"},
-                {"val":"1772-3","label":"Elvis Kiprono"},
-                {"val":"3665-7","label":"Willy Kosgei"},
-                {"val":"3666-5","label":"Irine Sisiwa"}
-    ];
 
-    document.setupAutoCompleteForProvider('encounter\\.provider_id_select', provider);
+
+    document.setupAutoCompleteDataForProvider('encounter\\.provider_id_select');
 
     $('#encounter\\.provider_id_select').change(function () {
         if ($('#encounter\\.provider_id_select').val() === '') {
@@ -1829,7 +1832,7 @@
          };
 
 
-       document.setupValidationForProvider("$('#encounter\\.provider_id_select').val()","encounter\\.provider_id",provider);
+       document.setupValidationForProvider("$('#encounter\\.provider_id_select').val()","encounter\\.provider_id");
 
        document.setupValidationForLocation("$('#encounter\\.location_id').val()","encounter\\.location_id");
 

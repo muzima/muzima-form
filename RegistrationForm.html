@@ -204,15 +204,409 @@
         </div>
         <div class="form-group">
             <label for="encounter.provider_id_select">Provider ID:</label>
-            <input class="form-control" id="encounter.provider_id_select" type="text"
-                   placeholder="Start typing something...">
+            <input class="form-control valid-provider-only" id="encounter.provider_id_select" type="text" placeholder="Start typing something...">
             <input class="form-control" name="encounter.provider_id_select" type="hidden">
         </div>
-        <div class="form-group show_provider_id_text">
-            <label for="encounter.provider_id">Enter provider's system-id:<span class="required">*</span></label>
-            <input class="form-control checkDigit" id="encounter.provider_id" name="encounter.provider_id"
-                   type="text" required="required">
+        <div class="form-group hidden">
+            <select id="select_providers">
+                <option value = "3356-3" data-provider = "David S. Pamba">David S. Pamba</option>
+                <option value = "237-8" data-provider = "Ariya Patrick">Ariya Patrick</option>
+                <option value = "3331-6" data-provider = "Benjamin Osiya Ekirapa">Benjamin Osiya Ekirapa</option>
+                <option value = "3332-4" data-provider = "Molly Omodek Aluku">Molly Omodek Aluku</option>
+                <option value = "3333-2" data-provider = "Mercyline Lubisya Omusolo">Mercyline Lubisya Omusolo</option>
+                <option value = "3334-0" data-provider = "Julita Auma Ndege">Julita Auma Ndege</option>
+                <option value = "3335-7" data-provider = "Caroline Fedha Injete">Caroline Fedha Injete</option>
+                <option value = "3336-5" data-provider = "Nelly Nabwire Shiundu">Nelly Nabwire Shiundu</option>
+                <option value = "3337-3" data-provider = "Nicholas Dekkers Shitaha">Nicholas Dekkers Shitaha</option>
+                <option value = "3338-1" data-provider = "Tezra Asangire Okaal">Tezra Asangire Okaal</option>
+                <option value = "3340-7" data-provider = "Sophy Ikarot Idele">Sophy Ikarot Idele</option>
+                <option value = "3339-9" data-provider = "Maureen Jacinta Muteitsi">Maureen Jacinta Muteitsi</option>
+                <option value = "3341-5" data-provider = "Gibson Musera Mutira">Gibson Musera Mutira</option>
+                <option value = "3342-3" data-provider = "Titus Chuma Khusua">Titus Chuma Khusua</option>
+                <option value = "3343-1" data-provider = "Pamela Ekuriai Emukule">Pamela Ekuriai Emukule</option>
+                <option value = "3344-9" data-provider = "Rhoda Jeruto Kurgat">Rhoda Jeruto Kurgat</option>
+                <option value = "3345-6" data-provider = "Zaitun Hassan Mohamed">Zaitun Hassan Mohamed</option>
+                <option value = "3346-4" data-provider = "Grace Gichanga Nyathogora">Grace Gichanga Nyathogora</option>
+                <option value = "3347-2" data-provider = "Gabriel Silas Okapes">Gabriel Silas Okapes</option>
+                <option value = "3348-0" data-provider = "Henry Samson Obonyo">Henry Samson Obonyo</option>
+                <option value = "3349-8" data-provider = "Rebecca M. Wambura">Rebecca M. Wambura</option>
+                <option value = "3350-6" data-provider = "Zeruya Amwatok Barua">Zeruya Amwatok Barua</option>
+                <option value = "3351-4" data-provider = "Immaculate Otengo Namibia">Immaculate Otengo Namibia</option>
+                <option value = "3352-2" data-provider = "Pamela Were Wamoyi">Pamela Were Wamoyi</option>
+                <option value = "3357-1" data-provider = "Caroline Wafula Nandisi">Caroline Wafula Nandisi</option>
+                <option value = "3353-0" data-provider = "Markins Opuko Cresent">Markins Opuko Cresent</option>
+                <option value = "3354-8" data-provider = "Benedict Kifufuli Wafula">Benedict Kifufuli Wafula</option>
+                <option value = "4-2" data-provider = "Sam Sam">Sam Sam</option>
+                <option value = "3355-5" data-provider = "Clementine Ingosi Osiel">Clementine Ingosi Osiel</option>
+                <option value = "3419-9" data-provider = "Daurine Achieng Agumba">Daurine Achieng Agumba</option>
+                <option value = "3420-7" data-provider = "Irene Chepkosgei Kurgat">Irene Chepkosgei Kurgat</option>
+                <option value = "3421-5" data-provider = "Rose Cheruto Toroitich">Rose Cheruto Toroitich</option>
+                <option value = "3422-3" data-provider = "Mary Kipkurui Kimosop">Mary Kipkurui Kimosop</option>
+                <option value = "3423-1" data-provider = "Jacqueline Chemom Ndiema">Jacqueline Chemom Ndiema</option>
+                <option value = "3424-9" data-provider = "Grace Wanjiru Mwangi">Grace Wanjiru Mwangi</option>
+                <option value = "3425-6" data-provider = "Collette Mabia Palapala">Collette Mabia Palapala</option>
+                <option value = "3426-4" data-provider = "Dorice Erima Wekesa">Dorice Erima Wekesa</option>
+                <option value = "120-6" data-provider = "Agnes Kagure Boen">Agnes Kagure Boen</option>
+                <option value = "3427-2" data-provider = "Linet Kerubo Onyanch">Linet Kerubo Onyanch</option>
+                <option value = "1208-8" data-provider = "Delinah Muchai Tanui">Delinah Muchai Tanui</option>
+                <option value = "3321-7" data-provider = "Hellen Musimbi Indumwa">Hellen Musimbi Indumwa</option>
+                <option value = "1525-5" data-provider = "Lydia Cherugut Samoei">Lydia Cherugut Samoei</option>
+                <option value = "1529-7" data-provider = "Ruth Kalunda Nzili">Ruth Kalunda Nzili</option>
+                <option value = "3428-0" data-provider = "Lucy Cheruto Birgen">Lucy Cheruto Birgen</option>
+                <option value = "1409-2" data-provider = "Gratiah Nafuna Khaemba">Gratiah Nafuna Khaemba</option>
+                <option value = "1357-3" data-provider = "Leonida Chemutai Mengich">Leonida Chemutai Mengich</option>
+                <option value = "1412-6" data-provider = "Ann Wangoi Maina">Ann Wangoi Maina</option>
+                <option value = "1474-6" data-provider = "Elkanah Omenge Orango">Elkanah Omenge Orango</option>
+                <option value = "1478-7" data-provider = "Peter Mukhanadale Istura">Peter Mukhanadale Istura</option>
+                <option value = "1476-1" data-provider = "Hillary Mabeya">Hillary Mabeya</option>
+                <option value = "1237-7" data-provider = "Astrid Christoffersen Deb">Astrid Christoffersen Deb</option>
+                <option value = "1483-7" data-provider = "Philip Kipkirui Tonui">Philip Kipkirui Tonui</option>
+                <option value = "3613-7" data-provider = "Ann Jebet Ngelel">Ann Jebet Ngelel</option>
+                <option value = "3614-5" data-provider = "Job Wekesa Wamukaya">Job Wekesa Wamukaya</option>
+                <option value = "3615-2" data-provider = "Joyce Chepkorir Chessum">Joyce Chepkorir Chessum</option>
+                <option value = "3616-0" data-provider = "Monica Chelimo Rotich">Monica Chelimo Rotich</option>
+                <option value = "3617-8" data-provider = "Penina Jerotich Biwott">Penina Jerotich Biwott</option>
+                <option value = "3618-6" data-provider = "Peter Gachingi Kamau ">Peter Gachingi Kamau </option>
+                <option value = "3619-4" data-provider = "Phanice Jepkemoi Tomu">Phanice Jepkemoi Tomu</option>
+                <option value = "3620-2" data-provider = "Phyllis Jelagat Bartilol">Phyllis Jelagat Bartilol</option>
+                <option value = "3621-0" data-provider = "Roselyne Yatich">Roselyne Yatich</option>
+                <option value = "3622-8" data-provider = "Ruth Sego">Ruth Sego</option>
+                <option value = "3623-6" data-provider = "Yosabia Osebe Monari">Yosabia Osebe Monari</option>
+                <option value = "1773-1" data-provider = "Rael Chelimo">Rael Chelimo</option>
+                <option value = "3662-4" data-provider = "Milka Cherurto">Milka Cherurto</option>
+                <option value = "3663-2" data-provider = "Lilian Chepchipchir">Lilian Chepchipchir</option>
+                <option value = "1764-0" data-provider = "Pamela Ngetich">Pamela Ngetich</option>
+                <option value = "1769-9" data-provider = "Stephene Kipkosgei">Stephene Kipkosgei</option>
+                <option value = "3664-0" data-provider = "Irine Jesang">Irine Jesang</option>
+                <option value = "1766-5" data-provider = "Solomon Ngetich">Solomon Ngetich</option>
+                <option value = "1772-3" data-provider = "Elvis Kiprono">Elvis Kiprono</option>
+                <option value = "3665-7" data-provider = "Willy Kosgei">Willy Kosgei</option>
+                <option value = "3666-5" data-provider = "Irine Sisiwa">Irine Sisiwa</option>
+                <option value = "3667-3" data-provider = "Angeline Jerubon">Angeline Jerubon</option>
+                <option value = "1783-0" data-provider = "Joan Yapsoi">Joan Yapsoi</option>
+                <option value = "3668-1" data-provider = "Margaret Keino">Margaret Keino</option>
+                <option value = "1778-0" data-provider = "Robert Songok">Robert Songok</option>
+                <option value = "1779-8" data-provider = "Jackson Kiprotich">Jackson Kiprotich</option>
+                <option value = "3669-9" data-provider = "Lorna Jerotich">Lorna Jerotich</option>
+                <option value = "3670-7" data-provider = "Beatrice Kirwa">Beatrice Kirwa</option>
+                <option value = "3671-5" data-provider = "Henry Kemboi">Henry Kemboi</option>
+                <option value = "3672-3" data-provider = "Viola Jeptoo">Viola Jeptoo</option>
+                <option value = "2153-5" data-provider = "Fridah Chepkemboi">Fridah Chepkemboi</option>
+                <option value = "2146-9" data-provider = "Mildred Tanui">Mildred Tanui</option>
+                <option value = "2152-7" data-provider = "Judith Jepchirchir">Judith Jepchirchir</option>
+                <option value = "2150-1" data-provider = "Festus Bitok">Festus Bitok</option>
+                <option value = "2145-1" data-provider = "Albert Kiprotich">Albert Kiprotich</option>
+                <option value = "3657-4" data-provider = "David Kieni">David Kieni</option>
+                <option value = "3658-2" data-provider = "Irine Maru">Irine Maru</option>
+                <option value = "3659-0" data-provider = "Eusila Chelule">Eusila Chelule</option>
+                <option value = "3660-8" data-provider = "Lilian Cherop">Lilian Cherop</option>
+                <option value = "3661-6" data-provider = "Bornes Chemutai">Bornes Chemutai</option>
+                <option value = "1925-7" data-provider = "Silas Matolo Natili">Silas Matolo Natili</option>
+                <option value = "1928-1" data-provider = "Simon Chepkwony Kipsang">Simon Chepkwony Kipsang</option>
+                <option value = "1933-1" data-provider = "Everline Nelima Zakayo">Everline Nelima Zakayo</option>
+                <option value = "1927-3" data-provider = "Zakariah Lumakanda Mutua">Zakariah Lumakanda Mutua</option>
+                <option value = "1931-5" data-provider = "Harriet Jepkemboi Sawe ">Harriet Jepkemboi Sawe </option>
+                <option value = "1937-2" data-provider = "Sarah Jerop Cheruiyot">Sarah Jerop Cheruiyot</option>
+                <option value = "1930-7" data-provider = "Irene Makavila Sokoso">Irene Makavila Sokoso</option>
+                <option value = "1926-5" data-provider = "Japheth Kipkemboi Kogo">Japheth Kipkemboi Kogo</option>
+                <option value = "1932-3" data-provider = "Benjamin Kipruto Korir">Benjamin Kipruto Korir</option>
+                <option value = "1935-6" data-provider = "Joel Kipkemboi Korir">Joel Kipkemboi Korir</option>
+                <option value = "3634-3" data-provider = "Lilian Koech">Lilian Koech</option>
+                <option value = "3635-0" data-provider = "Lydia Jerubet">Lydia Jerubet</option>
+                <option value = "3636-8" data-provider = "Hazel Boit">Hazel Boit</option>
+                <option value = "3637-6" data-provider = "Joan Ndombi">Joan Ndombi</option>
+                <option value = "3638-4" data-provider = "Eliud Bungei">Eliud Bungei</option>
+                <option value = "3882-8" data-provider = "Rose Jepketer Kiplagat">Rose Jepketer Kiplagat</option>
+                <option value = "1940-6" data-provider = "EliudKiprop Samitui">EliudKiprop Samitui</option>
+                <option value = "1952-1" data-provider = "WiliamKipchumba Sang">WiliamKipchumba Sang</option>
+                <option value = "1941-4" data-provider = "Donald Kiprop Bett">Donald Kiprop Bett</option>
+                <option value = "1945-5" data-provider = "Linda Jepkoech Rono">Linda Jepkoech Rono</option>
+                <option value = "3881-0" data-provider = "Caroline Cherotich Ngetich">Caroline Cherotich Ngetich</option>
+                <option value = "1946-3" data-provider = "Lydia Jepkosgei Yego">Lydia Jepkosgei Yego</option>
+                <option value = "3639-2" data-provider = "AmbiliaJeptoo Martim">AmbiliaJeptoo Martim</option>
+                <option value = "3640-0" data-provider = "Philip Kosgei">Philip Kosgei</option>
+                <option value = "2317-6" data-provider = "Caroline Jepkoech">Caroline Jepkoech</option>
+                <option value = "3641-8" data-provider = "Simon Kiptoo">Simon Kiptoo</option>
+                <option value = "3642-6" data-provider = "Nelly Jemutai">Nelly Jemutai</option>
+                <option value = "3643-4" data-provider = "Rose Rutto">Rose Rutto</option>
+                <option value = "3644-2" data-provider = "Rosbella Kurgat">Rosbella Kurgat</option>
+                <option value = "3645-9" data-provider = "Risper Jeptum">Risper Jeptum</option>
+                <option value = "3646-7" data-provider = "Jonah Rongoei">Jonah Rongoei</option>
+                <option value = "3647-5" data-provider = "Michael Bett">Michael Bett</option>
+                <option value = "3648-3" data-provider = "Elfas Limo">Elfas Limo</option>
+                <option value = "3649-1" data-provider = "Wilson letting">Wilson letting</option>
+                <option value = "1824-2" data-provider = "Edward Kiprop Norman  ">Edward Kiprop Norman  </option>
+                <option value = "1825-9" data-provider = "Peter Kipkemboi Birech">Peter Kipkemboi Birech</option>
+                <option value = "1826-7" data-provider = "Peter Kibet Kemboi">Peter Kibet Kemboi</option>
+                <option value = "3650-9" data-provider = "Gladys Koros">Gladys Koros</option>
+                <option value = "1828-3" data-provider = "Zipporah Chebet Boit">Zipporah Chebet Boit</option>
+                <option value = "1829-1" data-provider = "Mary Cherotich Barno">Mary Cherotich Barno</option>
+                <option value = "3651-7" data-provider = "Nancy Jepchirchir">Nancy Jepchirchir</option>
+                <option value = "1831-7" data-provider = "Edwin Kiplagat Letting">Edwin Kiplagat Letting</option>
+                <option value = "1832-5" data-provider = "Ruth Cheptoo Kitur">Ruth Cheptoo Kitur</option>
+                <option value = "1833-3" data-provider = "Eunice Jerobon Melewa">Eunice Jerobon Melewa</option>
+                <option value = "3652-5" data-provider = "DorcusJeptoo Ngelechei">DorcusJeptoo Ngelechei</option>
+                <option value = "3653-3" data-provider = "Benjamin  Cheruiyot Yego">Benjamin  Cheruiyot Yego</option>
+                <option value = "1836-6" data-provider = "Musa KipchumbaKoech">Musa KipchumbaKoech</option>
+                <option value = "1837-4" data-provider = "Samuel Kiptanui Mzee">Samuel Kiptanui Mzee</option>
+                <option value = "3654-1" data-provider = "Sylvenas Kiprop Kurgat">Sylvenas Kiprop Kurgat</option>
+                <option value = "1839-0" data-provider = "Maximilah Jeptoo Chepkwony">Maximilah Jeptoo Chepkwony</option>
+                <option value = "3655-8" data-provider = "Christine  Justine Yego">Christine  Justine Yego</option>
+                <option value = "1841-6" data-provider = "Dorcus Chepkemboi Murrey">Dorcus Chepkemboi Murrey</option>
+                <option value = "1842-4" data-provider = "Issac KipngetichTimbwol">Issac KipngetichTimbwol</option>
+                <option value = "3656-6" data-provider = "Selly Jepkurui Cheruiyot">Selly Jepkurui Cheruiyot</option>
+                <option value = "2097-4" data-provider = "Gilbert  Kipkorir Rono">Gilbert  Kipkorir Rono</option>
+                <option value = "3682-2" data-provider = "Milka Cherono Samoei">Milka Cherono Samoei</option>
+                <option value = "3876-0" data-provider = "Priscah Cherotich Kosgei">Priscah Cherotich Kosgei</option>
+                <option value = "2102-2" data-provider = "Hosea Kipkurgat Sitienei">Hosea Kipkurgat Sitienei</option>
+                <option value = "3877-8" data-provider = "Bridgid Jekorir Lagat">Bridgid Jekorir Lagat</option>
+                <option value = "3878-6" data-provider = "Jackline Cherono Kemei">Jackline Cherono Kemei</option>
+                <option value = "3683-0" data-provider = "Rebecca Jepkorir">Rebecca Jepkorir</option>
+                <option value = "3684-8" data-provider = "Samuel Kimeli Bor">Samuel Kimeli Bor</option>
+                <option value = "3685-5" data-provider = "Eunice Chesang Kimoi">Eunice Chesang Kimoi</option>
+                <option value = "3686-3" data-provider = "Everline Cheptoo Serem">Everline Cheptoo Serem</option>
+                <option value = "2100-6" data-provider = "LilianJepleting">LilianJepleting</option>
+                <option value = "2104-8" data-provider = "Rael Jepkorir">Rael Jepkorir</option>
+                <option value = "3687-1" data-provider = "Teresa Kurui">Teresa Kurui</option>
+                <option value = "3879-4" data-provider = "Eliud Koech">Eliud Koech</option>
+                <option value = "2101-4" data-provider = "Barnabas Kimaru Koross">Barnabas Kimaru Koross</option>
+                <option value = "1845-7" data-provider = "Paul Kiptanui Maina">Paul Kiptanui Maina</option>
+                <option value = "1865-5" data-provider = "Caroline Chepkemboi Cheruiyot">Caroline Chepkemboi Cheruiyot</option>
+                <option value = "1848-1" data-provider = "HellenJepkemei Chirchir">HellenJepkemei Chirchir</option>
+                <option value = "1850-7" data-provider = "Stanley  Kipkemboi Rugut">Stanley  Kipkemboi Rugut</option>
+                <option value = "1851-5" data-provider = "JosphineKemunto Murumbi">JosphineKemunto Murumbi</option>
+                <option value = "1863-0" data-provider = "Mary Cheptoo Wendot">Mary Cheptoo Wendot</option>
+                <option value = "3673-1" data-provider = "Martim Sarah Jelimo">Martim Sarah Jelimo</option>
+                <option value = "1859-8" data-provider = "Stanley  Kipleting Metto">Stanley  Kipleting Metto</option>
+                <option value = "1862-2" data-provider = "Rose  Jepchumba Mugun">Rose  Jepchumba Mugun</option>
+                <option value = "1861-4" data-provider = "Lily Chepkemoi Matelong">Lily Chepkemoi Matelong</option>
+                <option value = "3674-9" data-provider = "Beatrice Ichenihi">Beatrice Ichenihi</option>
+                <option value = "3675-6" data-provider = "Caroline Chepchumba">Caroline Chepchumba</option>
+                <option value = "1175-9" data-provider = "Jane Jeruto">Jane Jeruto</option>
+                <option value = "2185-7" data-provider = "Lilian Cherotich">Lilian Cherotich</option>
+                <option value = "3676-4" data-provider = "Nelly Too">Nelly Too</option>
+                <option value = "3677-2" data-provider = "Julia Magoi">Julia Magoi</option>
+                <option value = "3678-0" data-provider = "Paul Busienei">Paul Busienei</option>
+                <option value = "3679-8" data-provider = "Silas Keronei">Silas Keronei</option>
+                <option value = "3807-5" data-provider = "Wambetsa  Euugene Philip">Wambetsa  Euugene Philip</option>
+                <option value = "3806-7" data-provider = "Alfayo  Ogecha">Alfayo  Ogecha</option>
+                <option value = "3808-3" data-provider = "Fredrick M Ayega">Fredrick M Ayega</option>
+                <option value = "3886-9" data-provider = "Rogers Peter Mukanda">Rogers Peter Mukanda</option>
+                <option value = "3810-9" data-provider = "Odonya Joseph Okochi">Odonya Joseph Okochi</option>
+                <option value = "2312-7" data-provider = "Fedinard Mudibo Okuku">Fedinard Mudibo Okuku</option>
+                <option value = "3397-7" data-provider = "Peter Onyango Nabongo">Peter Onyango Nabongo</option>
+                <option value = "3811-7" data-provider = "Eunice Nabwiire Musumba">Eunice Nabwiire Musumba</option>
+                <option value = "3812-5" data-provider = "Mildred Nigt Sikhanga">Mildred Nigt Sikhanga</option>
+                <option value = "2292-1" data-provider = "Everlyne Kura Jomo">Everlyne Kura Jomo</option>
+                <option value = "2434-9" data-provider = "Agnes Achieno Ogutu">Agnes Achieno Ogutu</option>
+                <option value = "2407-5" data-provider = "Emily Nabwire Were">Emily Nabwire Were</option>
+                <option value = "2358-0" data-provider = "Wida Akinyi Otieno">Wida Akinyi Otieno</option>
+                <option value = "3813-3" data-provider = "Cynthia Mercy Barasa">Cynthia Mercy Barasa</option>
+                <option value = "3814-1" data-provider = "Celestine   N  . Okora">Celestine   N  . Okora</option>
+                <option value = "3815-8" data-provider = "Roselyne Afumbwa">Roselyne Afumbwa</option>
+                <option value = "3816-6" data-provider = "Felistus Akinyi Ndagwa">Felistus Akinyi Ndagwa</option>
+                <option value = "3817-4" data-provider = "Janetrix  Aumz  Wesonga">Janetrix  Aumz  Wesonga</option>
+                <option value = "3818-2" data-provider = "Nelson  Amisi Oluanda">Nelson  Amisi Oluanda</option>
+                <option value = "2313-5" data-provider = "Susan Diana Nekesa">Susan Diana Nekesa</option>
+                <option value = "3819-0" data-provider = "Alexina Kadogo  K">Alexina Kadogo  K</option>
+                <option value = "3820-8" data-provider = "Leondra Odira Ogutu">Leondra Odira Ogutu</option>
+                <option value = "2470-3" data-provider = "Francisca  Mukeni">Francisca  Mukeni</option>
+                <option value = "3821-6" data-provider = "Jentrix Mudubo Rapando ">Jentrix Mudubo Rapando </option>
+                <option value = "3856-2" data-provider = "James O. Mutere">James O. Mutere</option>
+                <option value = "2524-7" data-provider = "Benthon A Okumu">Benthon A Okumu</option>
+                <option value = "2439-8" data-provider = "Rosemary A Kutsatsu">Rosemary A Kutsatsu</option>
+                <option value = "2436-4" data-provider = "Simon  D Wanyama ">Simon  D Wanyama </option>
+                <option value = "3822-4" data-provider = "Jesca Jonai">Jesca Jonai</option>
+                <option value = "2404-2" data-provider = "Rosemary Auma Neyima">Rosemary Auma Neyima</option>
+                <option value = "3823-2" data-provider = "Leonard  Osabu Oduori">Leonard  Osabu Oduori</option>
+                <option value = "3824-0" data-provider = "Josephat O .Mukanda">Josephat O .Mukanda</option>
+                <option value = "3825-7" data-provider = "Pamela Night Madge ">Pamela Night Madge </option>
+                <option value = "3826-5" data-provider = "Margaret Atieno Lukeyo">Margaret Atieno Lukeyo</option>
+                <option value = "2352-3" data-provider = "Lucas Bwire Mugele">Lucas Bwire Mugele</option>
+                <option value = "3827-3" data-provider = "Rashid Bwire">Rashid Bwire</option>
+                <option value = "3828-1" data-provider = "Charles Ratory">Charles Ratory</option>
+                <option value = "3829-9" data-provider = "Oscar A Gaunya">Oscar A Gaunya</option>
+                <option value = "3830-7" data-provider = "Ogolla Fredrick">Ogolla Fredrick</option>
+                <option value = "3831-5" data-provider = "David O Okhalo">David O Okhalo</option>
+                <option value = "3776-2" data-provider = "Noah  Ekisa  Ishiepali">Noah  Ekisa  Ishiepali</option>
+                <option value = "2831-6" data-provider = "Cresent  Wafula">Cresent  Wafula</option>
+                <option value = "3777-0" data-provider = "Zippora  Etyang  Anyire">Zippora  Etyang  Anyire</option>
+                <option value = "3778-8" data-provider = "Charles  O  Isogori">Charles  O  Isogori</option>
+                <option value = "2627-8" data-provider = "Zaitun  Apade  Shaban">Zaitun  Apade  Shaban</option>
+                <option value = "2796-1" data-provider = "Selina  Emeje">Selina  Emeje</option>
+                <option value = "2825-8" data-provider = "Joan  Amelait">Joan  Amelait</option>
+                <option value = "2690-6" data-provider = "David  I  Karani">David  I  Karani</option>
+                <option value = "3779-6" data-provider = "Makokha  Fred">Makokha  Fred</option>
+                <option value = "3780-4" data-provider = "Getrudde Isabiti">Getrudde Isabiti</option>
+                <option value = "3781-2" data-provider = "Mkanda Isaac ">Mkanda Isaac </option>
+                <option value = "2660-9" data-provider = "Titus I Obwana">Titus I Obwana</option>
+                <option value = "2659-1" data-provider = "Phylis  S   Kimatwai">Phylis  S   Kimatwai</option>
+                <option value = "3782-0" data-provider = "Airen  Wakhungu">Airen  Wakhungu</option>
+                <option value = "3783-8" data-provider = "Jantix Sakwa">Jantix Sakwa</option>
+                <option value = "3784-6" data-provider = "Charles    O  Ewalat">Charles    O  Ewalat</option>
+                <option value = "3785-3" data-provider = "Joseph  Ny0Ngesa">Joseph  Ny0Ngesa</option>
+                <option value = "3786-1" data-provider = "Judith  Ongiro">Judith  Ongiro</option>
+                <option value = "3787-9" data-provider = "Eli  Inyila">Eli  Inyila</option>
+                <option value = "3788-7" data-provider = "Bernard Osabinyi">Bernard Osabinyi</option>
+                <option value = "2756-5" data-provider = "Humphrey  Omusolo">Humphrey  Omusolo</option>
+                <option value = "3789-5" data-provider = "Silas  O  Onyapidi">Silas  O  Onyapidi</option>
+                <option value = "2670-8" data-provider = "George   Oroni">George   Oroni</option>
+                <option value = "2705-2" data-provider = "Josephine  Emojong">Josephine  Emojong</option>
+                <option value = "2705-2" data-provider = "Kiptalaam   M   Peter">Kiptalaam   M   Peter</option>
+                <option value = "2837-3" data-provider = "Francis  Olagi">Francis  Olagi</option>
+                <option value = "2590-8" data-provider = "Stephen  O  Ipala">Stephen  O  Ipala</option>
+                <option value = "3867-9" data-provider = "Raphael  O  Epiin">Raphael  O  Epiin</option>
+                <option value = "2683-1" data-provider = "Rebecca  Akasi">Rebecca  Akasi</option>
+                <option value = "3791-1" data-provider = "Francis  M  Amutala">Francis  M  Amutala</option>
+                <option value = "3792-9" data-provider = "William   O  Oropia">William   O  Oropia</option>
+                <option value = "2725-0" data-provider = "Lina   A   Barasa">Lina   A   Barasa</option>
+                <option value = "2781-3" data-provider = "Janet A  Ekapel">Janet A  Ekapel</option>
+                <option value = "2732-6" data-provider = "Linet  Opili">Linet  Opili</option>
+                <option value = "2734-2" data-provider = "Joseph    Emukule  Akadake">Joseph    Emukule  Akadake</option>
+                <option value = "3793-7" data-provider = "Simon  E  Murunga">Simon  E  Murunga</option>
+                <option value = "2648-4" data-provider = "Christine  Ruth  Napunyi">Christine  Ruth  Napunyi</option>
+                <option value = "2619-5" data-provider = "Redemptor  Ikasegere">Redemptor  Ikasegere</option>
+                <option value = "2606-2" data-provider = "Catherine  Aluku  Kirabu">Catherine  Aluku  Kirabu</option>
+                <option value = "2597-3" data-provider = "Florence  Emachuku">Florence  Emachuku</option>
+                <option value = "2645-0" data-provider = "Florence  Iminza">Florence  Iminza</option>
+                <option value = "3794-5" data-provider = "Emojong  Irene">Emojong  Irene</option>
+                <option value = "2692-2" data-provider = "Moses Papa">Moses Papa</option>
+                <option value = "3795-2" data-provider = "Pascal  Jude Etyang">Pascal  Jude Etyang</option>
+                <option value = "3797-8" data-provider = "Tophista  Nashipai Etyang">Tophista  Nashipai Etyang</option>
+                <option value = "3796-0" data-provider = "Alfred  Omanyala">Alfred  Omanyala</option>
+                <option value = "3798-6" data-provider = "Arnold  Obelllo">Arnold  Obelllo</option>
+                <option value = "3799-4" data-provider = "Timothy  Adaka  Omongole">Timothy  Adaka  Omongole</option>
+                <option value = "3800-0" data-provider = "Zeruiah  A  Barua">Zeruiah  A  Barua</option>
+                <option value = "3801-8" data-provider = "Ben  Isiya">Ben  Isiya</option>
+                <option value = "3802-6" data-provider = "Masai  Obetel  Titus">Masai  Obetel  Titus</option>
+                <option value = "3803-4" data-provider = "Geogina A  Omukule">Geogina A  Omukule</option>
+                <option value = "237-8" data-provider = "Ariya  Patrick">Ariya  Patrick</option>
+                <option value = "3804-2" data-provider = "Judith  Hecksnusur">Judith  Hecksnusur</option>
+                <option value = "3805-9" data-provider = "George   Motuka">George   Motuka</option>
+                <option value = "3343-1" data-provider = "Pamela  Emukule">Pamela  Emukule</option>
+                <option value = "1823-4" data-provider = "Juliu S    Nakitare">Juliu S    Nakitare</option>
+                <option value = "3709-3" data-provider = "Esther  Serem">Esther  Serem</option>
+                <option value = "3832-3" data-provider = "William   Kiprop">William   Kiprop</option>
+                <option value = "3833-1" data-provider = "Viola  Kolum">Viola  Kolum</option>
+                <option value = "3691-3" data-provider = "Phylis   Rotich">Phylis   Rotich</option>
+                <option value = "3834-9" data-provider = "Milka  Kuto">Milka  Kuto</option>
+                <option value = "1956-2" data-provider = "Damaris  Jebet">Damaris  Jebet</option>
+                <option value = "3703-6" data-provider = "Teresa   Sitienei">Teresa   Sitienei</option>
+                <option value = "3704-4" data-provider = "Lucy  Tiony">Lucy  Tiony</option>
+                <option value = "3726-7" data-provider = "Cherotichh  Lucy">Cherotichh  Lucy</option>
+                <option value = "3885-1" data-provider = "Doreen   K  Nanjala">Doreen   K  Nanjala</option>
+                <option value = "1261-7" data-provider = "Irene  Rono">Irene  Rono</option>
+                <option value = "2518-9" data-provider = "Caroline   Ouma">Caroline   Ouma</option>
+                <option value = "3835-6" data-provider = "Belinda  Khisa">Belinda  Khisa</option>
+                <option value = "3836-4" data-provider = "Faith  Tarus">Faith  Tarus</option>
+                <option value = "3837-2" data-provider = "Emily  Kotui">Emily  Kotui</option>
+                <option value = "3691-3" data-provider = "Phylis Rotich">Phylis Rotich</option>
+                <option value = "3702-8" data-provider = "Milka Chepchumba">Milka Chepchumba</option>
+                <option value = "3703-6" data-provider = "Teresia Chepsat Sitienei">Teresia Chepsat Sitienei</option>
+                <option value = "3704-4" data-provider = "Lucy Tiony">Lucy Tiony</option>
+                <option value = "829-2" data-provider = "Viola Jerotich">Viola Jerotich</option>
+                <option value = "165-1" data-provider = "Lucy Warui">Lucy Warui</option>
+                <option value = "596-7" data-provider = "Sophia Ambasa">Sophia Ambasa</option>
+                <option value = "1338-3" data-provider = "Mercy Korir">Mercy Korir</option>
+                <option value = "3726-7" data-provider = "Lucy Cherotich">Lucy Cherotich</option>
+                <option value = "3888-5" data-provider = "Millicent Chumo">Millicent Chumo</option>
+                <option value = "1808-5" data-provider = "Emily Kotut">Emily Kotut</option>
+                <option value = "3706-9" data-provider = "Mary Too">Mary Too</option>
+                <option value = "464-8" data-provider = "Doreen Toroitich">Doreen Toroitich</option>
+                <option value = "3312-6" data-provider = "Linet Kiboi">Linet Kiboi</option>
+                <option value = "3889-3" data-provider = "Odilya">Odilya</option>
+                <option value = "1251-8" data-provider = "Zablon Nyaberi">Zablon Nyaberi</option>
+                <option value = "3890-1" data-provider = "Milka Chebet">Milka Chebet</option>
+                <option value = "3891-9" data-provider = "Tereza  Wamalma">Tereza  Wamalma</option>
+                <option value = "3708-5" data-provider = "Silas Wambulwa">Silas Wambulwa</option>
+                <option value = "1818-4" data-provider = "Douglas Cheboi">Douglas Cheboi</option>
+                <option value = "1504-0" data-provider = "Monica Kimosop">Monica Kimosop</option>
+                <option value = "3892-7" data-provider = "Nancy Leting">Nancy Leting</option>
+                <option value = "3709-3" data-provider = "Esther Serem">Esther Serem</option>
+                <option value = "3403-3" data-provider = "Emily Jepkazi">Emily Jepkazi</option>
+                <option value = "3316-7" data-provider = "Jacinta Ngugi">Jacinta Ngugi</option>
+                <option value = "3893-5" data-provider = "Jeniffer Aseka ">Jeniffer Aseka </option>
+                <option value = "3904-0" data-provider = "Caroline J">Caroline J</option>
+                <option value = "3903-2" data-provider = "Celestine M">Celestine M</option>
+                <option value = "3895-0" data-provider = "Lucy Agade Robai">Lucy Agade Robai</option>
+                <option value = "3896-8" data-provider = "Samwel Limo">Samwel Limo</option>
+                <option value = "3710-1" data-provider = "Irine Cherop Rono">Irine Cherop Rono</option>
+                <option value = "3894-3" data-provider = "Ben Too">Ben Too</option>
+                <option value = "3314-2" data-provider = "Rotich Raphael">Rotich Raphael</option>
+                <option value = "1823-4" data-provider = "Julius Nakitare">Julius Nakitare</option>
+                <option value = "3902-4" data-provider = "Londo P">Londo P</option>
+                <option value = "3897-6" data-provider = "Ronald Koech">Ronald Koech</option>
+                <option value = "3899-2" data-provider = "Linda J">Linda J</option>
+                <option value = "3900-8" data-provider = "Nancy J">Nancy J</option>
+                <option value = "3901-6" data-provider = "Komen K">Komen K</option>
+                <option value = "3457-9" data-provider = "Edwin Maiyo">Edwin Maiyo</option>
+                <option value = "26-5" data-provider = "Jemimah Kamano">Jemimah Kamano</option>
+                <option value = "3458-7" data-provider = "Benedictor Chepkorir">Benedictor Chepkorir</option>
+                <option value = "1522-2" data-provider = "Stephen Rono">Stephen Rono</option>
+                <option value = "3373-8" data-provider = "Charity Kanyoro">Charity Kanyoro</option>
+                <option value = "1519-8" data-provider = "William Mayamba">William Mayamba</option>
+                <option value = "3844-8" data-provider = "Jackson Chieng Oduol">Jackson Chieng Oduol</option>
+                <option value = "3742-4" data-provider = "Maurice Ogoti">Maurice Ogoti</option>
+                <option value = "3845-5" data-provider = "Abdul Aziz">Abdul Aziz</option>
+                <option value = "3846-3" data-provider = "Fredrick Anam">Fredrick Anam</option>
+                <option value = "1518-0" data-provider = "Jackline Khaemba">Jackline Khaemba</option>
+                <option value = "3724-2" data-provider = "Lucy Wafula">Lucy Wafula</option>
+                <option value = "3741-6" data-provider = "Josephine Auma">Josephine Auma</option>
+                <option value = "3723-4" data-provider = "Wilbroda Wandera">Wilbroda Wandera</option>
+                <option value = "3847-1" data-provider = "Charles Okou">Charles Okou</option>
+                <option value = "3331-6" data-provider = "Benjamin Osiya">Benjamin Osiya</option>
+                <option value = "3343-1" data-provider = "Pamela Emukule">Pamela Emukule</option>
+                <option value = "3841-4" data-provider = "Linet Aujata">Linet Aujata</option>
+                <option value = "3842-2" data-provider = "Beryl Ogutu">Beryl Ogutu</option>
+                <option value = "3338-1" data-provider = "Tezra Okaal">Tezra Okaal</option>
+                <option value = "3711-9" data-provider = "Modesta Toto">Modesta Toto</option>
+                <option value = "3839-8" data-provider = "Molly Omudeck">Molly Omudeck</option>
+                <option value = "3336-5" data-provider = "Nelly Nabwire">Nelly Nabwire</option>
+                <option value = "3744-0" data-provider = "Edwin Masika">Edwin Masika</option>
+                <option value = "3352-2" data-provider = "Pamela Wamoyi">Pamela Wamoyi</option>
+                <option value = "3843-0" data-provider = "Makomere Catherine">Makomere Catherine</option>
+                <option value = "3714-3" data-provider = "Okapes Gabriel">Okapes Gabriel</option>
+                <option value = "3713-5" data-provider = "Fidelis Emodo">Fidelis Emodo</option>
+                <option value = "3838-0" data-provider = "Maurine Muteiysi">Maurine Muteiysi</option>
+                <option value = "237-8" data-provider = "Ariya Patrick">Ariya Patrick</option>
+                <option value = "3758-0" data-provider = "Ann Githua">Ann Githua</option>
+                <option value = "3854-7" data-provider = "Faith Bargoiyet">Faith Bargoiyet</option>
+                <option value = "3853-9" data-provider = "Jackline Chemeli Chebii">Jackline Chemeli Chebii</option>
+                <option value = "1830-9" data-provider = "Lydia Jepkoech">Lydia Jepkoech</option>
+                <option value = "3760-6" data-provider = "Peter Onditi">Peter Onditi</option>
+                <option value = "3855-4" data-provider = "Valentine Jeptoo Kimisoi">Valentine Jeptoo Kimisoi</option>
+                <option value = "3759-8" data-provider = "Ann Thairu">Ann Thairu</option>
+                <option value = "3766-3" data-provider = "Viola Boitt">Viola Boitt</option>
+                <option value = "3754-9" data-provider = "James Maina Mwangi">James Maina Mwangi</option>
+                <option value = "3765-5" data-provider = "Harun Maswai">Harun Maswai</option>
+                <option value = "3764-8" data-provider = "Philip Kiprop Rutto">Philip Kiprop Rutto</option>
+                <option value = "3755-6" data-provider = "Carolyne Sambaya Kiptoo">Carolyne Sambaya Kiptoo</option>
+                <option value = "3756-4" data-provider = "Alice Bor">Alice Bor</option>
+                <option value = "3753-1" data-provider = "Sarah Jepkogey Kiloch">Sarah Jepkogey Kiloch</option>
+                <option value = "3768-9" data-provider = "John Kitur">John Kitur</option>
+                <option value = "3898-4" data-provider = "Francis Gacicio">Francis Gacicio</option>
+                <option value = "3851-3" data-provider = "Isaiah Rono Kemei">Isaiah Rono Kemei</option>
+                <option value = "3752-3" data-provider = "Esther Cheruiyot">Esther Cheruiyot</option>
+                <option value = "120-6" data-provider = "Agnes Boen">Agnes Boen</option>
+                <option value = "3737-4" data-provider = "Elima Barmosho">Elima Barmosho</option>
+                <option value = "321-0" data-provider = "Esther Melly">Esther Melly</option>
+                <option value = "68-7" data-provider = "Zipporah kemboi">Zipporah kemboi</option>
+                <option value = "111-5" data-provider = "Lynnet bett">Lynnet bett</option>
+                <option value = "63-8" data-provider = "John kibet">John kibet</option>
+                <option value = "3852-1" data-provider = "Musa Mugungei">Musa Mugungei</option>
+                <option value = "3951-1" data-provider = "Josephine  kisato">Josephine  kisato</option>
+                <option value = "3952-9" data-provider = "Keviner Chavera">Keviner Chavera</option>
+                <option value = "3848-9" data-provider = "Abraham Saat Kimaru">Abraham Saat Kimaru</option>
+                <option value = "3849-7" data-provider = "Catherine Chiliswa">Catherine Chiliswa</option>
+            </select>
         </div>
+
+                <div class="form-group show_provider_id_text">
+                    <label for="encounter.provider_id">Enter provider's system-id:<span class="required">*</span></label>
+                    <input class="form-control checkDigit" id="encounter.provider_id" name="encounter.provider_id"
+                           type="text" placeholder="Or enter the provider system id here ..." required="required">
+                </div>
+>
         <div class="form-group">
             <label for="encounter.encounter_datetime">Encounter Date <span class="required">*</span></label>
             <input class="form-control datepicker" readonly="readonly" id="encounter.encounter_datetime"
@@ -282,401 +676,12 @@
 
       document.setupAutoCompleteData('encounter\\.location_id');
 
-      var provider = [{"val":"3356-3","label":"David S. Pamba"},
-                {"val":"237-8","label":"Ariya Patrick"},
-                {"val":"3331-6","label":"Benjamin Osiya Ekirapa"},
-                {"val":"3332-4","label":"Molly Omodek Aluku"},
-                {"val":"3333-2","label":"Mercyline Lubisya Omusolo"},
-                {"val":"3334-0","label":"Julita Auma Ndege"},
-                {"val":"3335-7","label":"Caroline Fedha Injete"},
-                {"val":"3336-5","label":"Nelly Nabwire Shiundu"},
-                {"val":"3337-3","label":"Nicholas Dekkers Shitaha"},
-                {"val":"3338-1","label":"Tezra Asangire Okaal"},
-                {"val":"3340-7","label":"Sophy Ikarot Idele"},
-                {"val":"3339-9","label":"Maureen Jacinta Muteitsi"},
-                {"val":"3341-5","label":"Gibson Musera Mutira"},
-                {"val":"3342-3","label":"Titus Chuma Khusua"},
-                {"val":"3343-1","label":"Pamela Ekuriai Emukule"},
-                {"val":"3344-9","label":"Rhoda Jeruto Kurgat"},
-                {"val":"3345-6","label":"Zaitun Hassan Mohamed"},
-                {"val":"3346-4","label":"Grace Gichanga Nyathogora"},
-                {"val":"3347-2","label":"Gabriel Silas Okapes"},
-                {"val":"3348-0","label":"Henry Samson Obonyo"},
-                {"val":"3349-8","label":"Rebecca M. Wambura"},
-                {"val":"3350-6","label":"Zeruya Amwatok Barua"},
-                {"val":"3351-4","label":"Immaculate Otengo Namibia"},
-                {"val":"3352-2","label":"Pamela Were Wamoyi"},
-                {"val":"3357-1","label":"Caroline Wafula Nandisi"},
-                {"val":"3353-0","label":"Markins Opuko Cresent"},
-                {"val":"3354-8","label":"Benedict Kifufuli Wafula"},
-                {"val":"4-2","label":"Sam Sam"},
-                {"val":"3355-5","label":"Clementine Ingosi Osiel"},
-		{"val":"3419-9","label":"Daurine Achieng Agumba"},
-		{"val":"3420-7","label":"Irene Chepkosgei Kurgat"},
-		{"val":"3421-5","label":"Rose Cheruto Toroitich"},
-		{"val":"3422-3","label":"Mary Kipkurui Kimosop "},
-		{"val":"3423-1","label":"Jacqueline Chemom Ndiema"},
-		{"val":"3424-9","label":"Grace Wanjiru Mwangi"},
-		{"val":"3425-6","label":"Collette Mabia Palapala"},
-		{"val":"3426-4","label":"Dorice Erima Wekesa"},
-		{"val":"120-6","label":"Agnes Kagure Boen"},
-		{"val":"3427-2","label":"Linet Kerubo Onyanch"},
-		{"val":"1208-8","label":"Delinah Muchai Tanui"},
-		{"val":"3321-7","label":"Hellen Musimbi Indumwa"},
-		{"val":"1525-5","label":"Lydia Cherugut Samoei"},
-		{"val":"1529-7","label":"Ruth Kalunda Nzili"},
-		{"val":"3428-0","label":"Lucy Cheruto Birgen"},
-		{"val":"1409-2","label":"Gratiah Nafuna Khaemba"},
-		{"val":"1357-3","label":"Leonida Chemutai Mengich"},
-		{"val":"1412-6","label":"Ann Wangoi Maina"},
-		{"val":"1474-6","label":"Elkanah Omenge Orango"},
-		{"val":"1478-7","label":"Peter Mukhanadale Istura"},
-		{"val":"1476-1","label":"Hillary Mabeya"},
-		{"val":"1237-7","label":"Astrid Christoffersen Deb"},
-		{"val":"1483-7","label":"Philip Kipkirui Tonui"},
-		{"val":"3613-7","label":"Ann Jebet Ngelel"},
-		{"val":"3614-5","label":"Job Wekesa Wamukaya"},
-		{"val":"3615-2","label":"Joyce Chepkorir Chessum"},
-		{"val":"3616-0","label":"Monica Chelimo Rotich"},
-		{"val":"3617-8","label":"Penina Jerotich Biwott"},
-		{"val":"3618-6","label":"Peter Gachingi Kamau "},
-		{"val":"3619-4","label":"Phanice Jepkemoi Tomu"},
-		{"val":"3620-2","label":"Phyllis Jelagat Bartilol"},
-		{"val":"3621-0","label":"Roselyne Yatich"},
-		{"val":"3622-8","label":"Ruth Sego"},
-		{"val":"3623-6","label":"Yosabia Osebe Monari"},
-		{"val":"1773-1","label":"Rael Chelimo"},
-		{"val":"3662-4","label":"Milka Cherurto"},
-		{"val":"3663-2","label":"Lilian Chepchipchir"},
-		{"val":"1764-0","label":"Pamela Ngetich"},
-		{"val":"1769-9","label":"Stephene Kipkosgei"},
-		{"val":"3664-0","label":"Irine Jesang"},
-		{"val":"1766-5","label":"Solomon Ngetich"},
-		{"val":"1772-3","label":"Elvis Kiprono"},
-		{"val":"3665-7","label":"Willy Kosgei"},
-		{"val":"3666-5","label":"Irine Sisiwa"},
-		{"val":"3667-3","label":"Angeline Jerubon"},
-		{"val":"1783-0","label":"Joan Yapsoi"},
-		{"val":"3668-1","label":"Margaret Keino"},
-		{"val":"1778-0","label":"Robert Songok"},
-		{"val":"1779-8","label":"Jackson Kiprotich"},
-		{"val":"3669-9","label":"Lorna Jerotich"},
-		{"val":"3670-7","label":"Beatrice Kirwa"},
-		{"val":"3671-5","label":"Henry Kemboi"},
-		{"val":"3672-3","label":"Viola Jeptoo"},
-		{"val":"2153-5","label":"Fridah Chepkemboi"},
-		{"val":"2146-9","label":"Mildred Tanui"},
-		{"val":"2152-7","label":"Judith Jepchirchir"},
-		{"val":"2150-1","label":"Festus Bitok"},
-		{"val":"2145-1","label":"Albert Kiprotich"},
-		{"val":"3657-4","label":"David Kieni"},
-		{"val":"3658-2","label":"Irine Maru"},
-		{"val":"3659-0","label":"Eusila Chelule"},
-		{"val":"3660-8","label":"Lilian Cherop"},
-		{"val":"3661-6","label":"Bornes Chemutai"},
-		{"val":"1925-7","label":"Silas Matolo Natili"},
-		{"val":"1928-1","label":"Simon Chepkwony Kipsang"},
-		{"val":"1933-1","label":"Everline Nelima Zakayo"},
-		{"val":"1927-3","label":"Zakariah Lumakanda Mutua"},
-		{"val":"1931-5","label":"Harriet Jepkemboi Sawe "},
-		{"val":"1937-2","label":"Sarah Jerop Cheruiyot"},
-		{"val":"1930-7","label":"Irene Makavila Sokoso"},
-		{"val":"1926-5","label":"Japheth Kipkemboi Kogo"},
-		{"val":"1932-3","label":"Benjamin Kipruto Korir"},
-		{"val":"1935-6","label":"Joel Kipkemboi Korir"},
-		{"val":"3634-3","label":"Lilian Koech"},
-		{"val":"3635-0","label":"Lydia Jerubet"},
-		{"val":"3636-8","label":"Hazel Boit"},
-		{"val":"3637-6","label":"Joan Ndombi"},
-		{"val":"3638-4","label":"Eliud Bungei"},
-		{"val":"3882-8","label":"Rose Jepketer Kiplagat"},
-		{"val":"1940-6","label":"EliudKiprop Samitui"},
-		{"val":"1952-1","label":"WiliamKipchumba Sang"},
-		{"val":"1941-4","label":"Donald Kiprop Bett"},
-		{"val":"1945-5","label":"Linda Jepkoech Rono"},
-		{"val":"3881-0","label":"Caroline Cherotich Ngetich"},
-		{"val":"1946-3","label":"Lydia Jepkosgei Yego"},
-		{"val":"3639-2","label":"AmbiliaJeptoo Martim"},
-		{"val":"3640-0","label":"Philip Kosgei"},
-		{"val":"2317-6","label":"Caroline Jepkoech"},
-		{"val":"3641-8","label":"Simon Kiptoo"},
-		{"val":"3642-6","label":"Nelly Jemutai"},
-		{"val":"3643-4","label":"Rose Rutto"},
-		{"val":"3644-2","label":"Rosbella Kurgat"},
-		{"val":"3645-9","label":"Risper Jeptum"},
-		{"val":"3646-7","label":"Jonah Rongoei"},
-		{"val":"3647-5","label":"Michael Bett"},
-		{"val":"3648-3","label":"Elfas Limo"},
-		{"val":"3649-1","label":"Wilson letting"},
-		{"val":"1824-2","label":"Edward Kiprop Norman  "},
-		{"val":"1825-9","label":"Peter Kipkemboi Birech"},
-		{"val":"1826-7","label":"Peter Kibet Kemboi"},
-		{"val":"3650-9","label":"Gladys Koros"},
-		{"val":"1828-3","label":"Zipporah Chebet Boit"},
-		{"val":"1829-1","label":"Mary Cherotich Barno"},
-		{"val":"3651-7","label":"Nancy Jepchirchir"},
-		{"val":"1831-7","label":"Edwin Kiplagat Letting"},
-		{"val":"1832-5","label":"Ruth Cheptoo Kitur"},
-		{"val":"1833-3","label":"Eunice Jerobon Melewa"},
-		{"val":"3652-5","label":"DorcusJeptoo Ngelechei"},
-		{"val":"3653-3","label":"Benjamin  Cheruiyot Yego"},
-		{"val":"1836-6","label":"Musa KipchumbaKoech"},
-		{"val":"1837-4","label":"Samuel Kiptanui Mzee"},
-		{"val":"3654-1","label":"Sylvenas Kiprop Kurgat"},
-		{"val":"1839-0","label":"Maximilah Jeptoo Chepkwony"},
-		{"val":"3655-8","label":"Christine  Justine Yego"},
-		{"val":"1841-6","label":"Dorcus Chepkemboi Murrey"},
-		{"val":"1842-4","label":"Issac KipngetichTimbwol"},
-		{"val":"3656-6","label":"Selly Jepkurui Cheruiyot"},
-		{"val":"2097-4","label":"Gilbert  Kipkorir Rono"},
-		{"val":"3682-2","label":"Milka Cherono Samoei"},
-		{"val":"3876-0","label":"Priscah Cherotich Kosgei"},
-		{"val":"2102-2","label":"Hosea Kipkurgat Sitienei"},
-		{"val":"3877-8","label":"Bridgid Jekorir Lagat"},
-		{"val":"3878-6","label":"Jackline Cherono Kemei"},
-		{"val":"3683-0","label":"Rebecca Jepkorir"},
-		{"val":"3684-8","label":"Samuel Kimeli Bor"},
-		{"val":"3685-5","label":"Eunice Chesang Kimoi"},
-		{"val":"3686-3","label":"Everline Cheptoo Serem"},
-		{"val":"2100-6","label":"LilianJepleting"},
-		{"val":"2104-8","label":"Rael Jepkorir"},
-		{"val":"3687-1","label":"Teresa Kurui"},
-		{"val":"3879-4","label":"Eliud Koech"},
-		{"val":"2101-4","label":"Barnabas Kimaru Koross"},
-		{"val":"1845-7","label":"Paul Kiptanui Maina"},
-		{"val":"1865-5","label":"Caroline Chepkemboi Cheruiyot"},
-		{"val":"1848-1","label":"HellenJepkemei Chirchir"},
-		{"val":"1850-7","label":"Stanley  Kipkemboi Rugut"},
-		{"val":"1851-5","label":"JosphineKemunto Murumbi"},
-		{"val":"1863-0","label":"Mary Cheptoo Wendot"},
-		{"val":"3673-1","label":"Martim Sarah Jelimo"},
-		{"val":"1859-8","label":"Stanley  Kipleting Metto"},
-		{"val":"1862-2","label":"Rose  Jepchumba Mugun"},
-		{"val":"1861-4","label":"Lily Chepkemoi Matelong"},
-		{"val":"3674-9","label":"Beatrice Ichenihi"},
-		{"val":"3675-6","label":"Caroline Chepchumba"},
-		{"val":"1175-9","label":"Jane Jeruto"},
-		{"val":"2185-7","label":"Lilian Cherotich"},
-		{"val":"3676-4","label":"Nelly Too"},
-		{"val":"3677-2","label":"Julia Magoi"},
-		{"val":"3678-0","label":"Paul Busienei"},
-		{"val":"3679-8","label":"Silas Keronei"},
-		{"val":"3807-5","label":"Wambetsa  Euugene Philip"},
-		{"val":"3806-7","label":"Alfayo  Ogecha"},
-		{"val":"3808-3","label":"Fredrick M Ayega"},
-		{"val":"3886-9","label":"Rogers Peter Mukanda"},
-		{"val":"3810-9","label":"Odonya Joseph Okochi"},
-		{"val":"2312-7","label":"Fedinard Mudibo Okuku"},
-		{"val":"3397-7","label":"Peter Onyango Nabongo"},
-		{"val":"3811-7","label":"Eunice Nabwiire Musumba"},
-		{"val":"3812-5","label":"Mildred Nigt Sikhanga"},
-		{"val":"2292-1","label":"Everlyne Kura Jomo"},
-		{"val":"2434-9","label":"Agnes Achieno Ogutu"},
-		{"val":"2407-5","label":"Emily Nabwire Were"},
-		{"val":"2358-0","label":"Wida Akinyi Otieno"},
-		{"val":"3813-3","label":"Cynthia Mercy Barasa"},
-		{"val":"3814-1","label":"Celestine   N  . Okora"},
-		{"val":"3815-8","label":"Roselyne Afumbwa"},
-		{"val":"3816-6","label":"Felistus Akinyi Ndagwa"},
-		{"val":"3817-4","label":"Janetrix  Aumz  Wesonga"},
-		{"val":"3818-2","label":"Nelson  Amisi Oluanda"},
-		{"val":"2313-5","label":"Susan Diana Nekesa"},
-		{"val":"3819-0","label":"Alexina Kadogo  K"},
-		{"val":"3820-8","label":"Leondra Odira Ogutu"},
-		{"val":"2470-3","label":"Francisca  Mukeni"},
-		{"val":"3821-6","label":"Jentrix Mudubo Rapando "},
-		{"val":"3856-2","label":"James O. Mutere"},
-		{"val":"2524-7","label":"Benthon A Okumu"},
-		{"val":"2439-8","label":"Rosemary A Kutsatsu"},
-		{"val":"2436-4","label":"Simon  D Wanyama "},
-		{"val":"3822-4","label":"Jesca Jonai"},
-		{"val":"2404-2","label":"Rosemary Auma Neyima"},
-		{"val":"3823-2","label":"Leonard  Osabu Oduori"},
-		{"val":"3824-0","label":"Josephat O .Mukanda"},
-		{"val":"3825-7","label":"Pamela Night Madge "},
-		{"val":"3826-5","label":"Margaret Atieno Lukeyo"},
-		{"val":"2352-3","label":"Lucas Bwire Mugele"},
-		{"val":"3827-3","label":"Rashid Bwire"},
-		{"val":"3828-1","label":"Charles Ratory"},
-		{"val":"3829-9","label":"Oscar A Gaunya"},
-		{"val":"3830-7","label":"Ogolla Fredrick"},
-		{"val":"3831-5","label":"David O Okhalo"},
-		{"val":"3776-2","label":"Noah  Ekisa  Ishiepali"},
-		{"val":"2831-6","label":"Cresent  Wafula"},
-		{"val":"3777-0","label":"Zippora  Etyang  Anyire"},
-		{"val":"3778-8","label":"Charles  O  Isogori"},
-		{"val":"2627-8","label":"Zaitun  Apade  Shaban"},
-		{"val":"2796-1","label":"Selina  Emeje"},
-		{"val":"2825-8","label":"Joan  Amelait"},
-		{"val":"2690-6","label":"David  I  Karani"},
-		{"val":"3779-6","label":"Makokha  Fred"},
-		{"val":"3780-4","label":"Getrudde Isabiti"},
-		{"val":"3781-2","label":"Mkanda Isaac "},
-		{"val":"2660-9","label":"Titus I Obwana"},
-		{"val":"2659-1","label":"Phylis  S   Kimatwai"},
-		{"val":"3782-0","label":"Airen  Wakhungu"},
-		{"val":"3783-8","label":"Jantix Sakwa"},
-		{"val":"3784-6","label":"Charles    O  Ewalat"},
-		{"val":"3785-3","label":"Joseph  Ny0Ngesa"},
-		{"val":"3786-1","label":"Judith  Ongiro"},
-		{"val":"3787-9","label":"Eli  Inyila"},
-		{"val":"3788-7","label":"Bernard Osabinyi"},
-		{"val":"2756-5","label":"Humphrey  Omusolo"},
-		{"val":"3789-5","label":"Silas  O  Onyapidi"},
-		{"val":"2670-8","label":"George   Oroni"},
-		{"val":"2705-2","label":"Josephine  Emojong"},
-		{"val":"2705-2","label":"Kiptalaam   M   Peter"},
-		{"val":"2837-3","label":"Francis  Olagi"},
-		{"val":"2590-8","label":"Stephen  O  Ipala"},
-		{"val":"3867-9","label":"Raphael  O  Epiin"},
-		{"val":"2683-1","label":"Rebecca  Akasi"},
-		{"val":"3791-1","label":"Francis  M  Amutala"},
-		{"val":"3792-9","label":"William   O  Oropia"},
-		{"val":"2725-0","label":"Lina   A   Barasa"},
-		{"val":"2781-3","label":"Janet A  Ekapel"},
-		{"val":"2732-6","label":"Linet  Opili"},
-		{"val":"2734-2","label":"Joseph    Emukule  Akadake"},
-		{"val":"3793-7","label":"Simon  E  Murunga"},
-		{"val":"2648-4","label":"Christine  Ruth  Napunyi"},
-		{"val":"2619-5","label":"Redemptor  Ikasegere"},
-		{"val":"2606-2","label":"Catherine  Aluku  Kirabu"},
-		{"val":"2597-3","label":"Florence  Emachuku"},
-		{"val":"2645-0","label":"Florence  Iminza"},
-		{"val":"3794-5","label":"Emojong  Irene"},
-		{"val":"2692-2","label":"Moses Papa"},
-		{"val":"3795-2","label":"Pascal  Jude Etyang"},
-		{"val":"3797-8","label":"Tophista  Nashipai Etyang"},
-		{"val":"3796-0","label":"Alfred  Omanyala"},
-		{"val":"3798-6","label":"Arnold  Obelllo"},
-		{"val":"3799-4","label":"Timothy  Adaka  Omongole"},
-		{"val":"3800-0","label":"Zeruiah  A  Barua"},
-		{"val":"3801-8","label":"Ben  Isiya"},
-		{"val":"3802-6","label":"Masai  Obetel  Titus"},
-		{"val":"3803-4","label":"Geogina A  Omukule"},
-		{"val":"237-8","label":"Ariya  Patrick"},
-		{"val":"3804-2","label":"Judith  Hecksnusur"},
-		{"val":"3805-9","label":"George   Motuka"},
-		{"val":"3343-1","label":"Pamela  Emukule"},
-		{"val":"1823-4","label":"Juliu S    Nakitare"},
-		{"val":"3709-3","label":"Esther  Serem"},
-		{"val":"3832-3","label":"William   Kiprop"},
-		{"val":"3833-1","label":"Viola  Kolum"},
-		{"val":"3691-3","label":"Phylis   Rotich"},
-		{"val":"3834-9","label":"Milka  Kuto"},
-		{"val":"1956-2","label":"Damaris  Jebet"},
-		{"val":"3703-6","label":"Teresa   Sitienei"},
-		{"val":"3704-4","label":"Lucy  Tiony"},
-		{"val":"3726-7","label":"Cherotichh  Lucy"},
-		{"val":"3885-1","label":"Doreen   K  Nanjala"},
-		{"val":"1261-7","label":"Irene  Rono"},
-		{"val":"2518-9","label":"Caroline   Ouma"},
-		{"val":"3835-6","label":"Belinda  Khisa"},
-		{"val":"3836-4","label":"Faith  Tarus"},
-		{"val":"3837-2","label":"Emily  Kotui"},
-		{"val":"3691-3","label":"Phylis Rotich"},
-		{"val":"3702-8","label":"Milka Chepchumba"},
-		{"val":"3703-6","label":"Teresia Chepsat Sitienei"},
-		{"val":"3704-4","label":"Lucy Tiony"},
-		{"val":"829-2","label":"Viola Jerotich"},
-		{"val":"165-1","label":"Lucy Warui"},
-		{"val":"596-7","label":"Sophia Ambasa"},
-		{"val":"1338-3","label":"Mercy Korir"},
-		{"val":"3726-7","label":"Lucy Cherotich"},
-		{"val":"3888-5","label":"Millicent Chumo"},
-		{"val":"1808-5","label":"Emily Kotut"},
-		{"val":"3706-9","label":"Mary Too"},
-		{"val":"464-8","label":"Doreen Toroitich"},
-		{"val":"3312-6","label":"Linet Kiboi"},
-		{"val":"3889-3","label":"Odilya"},
-		{"val":"1251-8","label":"Zablon Nyaberi"},
-		{"val":"3890-1","label":"Milka Chebet"},
-		{"val":"3891-9","label":"Tereza  Wamalma"},
-		{"val":"3708-5","label":"Silas Wambulwa"},
-		{"val":"1818-4","label":"Douglas Cheboi"},
-		{"val":"1504-0","label":"Monica Kimosop"},
-		{"val":"3892-7","label":"Nancy Leting"},
-		{"val":"3709-3","label":"Esther Serem"},
-		{"val":"3403-3","label":"Emily Jepkazi"},
-		{"val":"3316-7","label":"Jacinta Ngugi"},
-		{"val":"3893-5","label":"Jeniffer Aseka "},
-		{"val":"3904-0","label":"Caroline J"},
-		{"val":"3903-2","label":"Celestine M"},
-		{"val":"3895-0","label":"Lucy Agade Robai"},
-		{"val":"3896-8","label":"Samwel Limo"},
-		{"val":"3710-1","label":"Irine Cherop Rono"},
-		{"val":"3894-3","label":"Ben Too"},
-		{"val":"3314-2","label":"Rotich Raphael"},
-		{"val":"1823-4","label":"Julius Nakitare"},
-		{"val":"3902-4","label":"Londo P"},
-		{"val":"3897-6","label":"Ronald Koech"},
-		{"val":"3899-2","label":"Linda J"},
-		{"val":"3900-8","label":"Nancy J"},
-		{"val":"3901-6","label":"Komen K"},
-		{"val":"3457-9","label":"Edwin Maiyo"},
-		{"val":"26-5","label":"Jemimah Kamano"},
-		{"val":"3458-7","label":"Benedictor Chepkorir"},
-		{"val":"1522-2","label":"Stephen Rono"},
-		{"val":"3373-8","label":"Charity Kanyoro"},
-		{"val":"1519-8","label":"William Mayamba"},
-		{"val":"3844-8","label":"Jackson Chieng Oduol"},
-		{"val":"3742-4","label":"Maurice Ogoti"},
-		{"val":"3845-5","label":"Abdul Aziz"},
-		{"val":"3846-3","label":"Fredrick Anam"},
-		{"val":"1518-0","label":"Jackline Khaemba"},
-		{"val":"3724-2","label":"Lucy Wafula"},
-		{"val":"3741-6","label":"Josephine Auma"},
-		{"val":"3723-4","label":"Wilbroda Wandera"},
-		{"val":"3847-1","label":"Charles Okou"},
-		{"val":"3331-6","label":"Benjamin Osiya"},
-		{"val":"3343-1","label":"Pamela Emukule"},
-		{"val":"3841-4","label":"Linet Aujata"},
-		{"val":"3842-2","label":"Beryl Ogutu"},
-		{"val":"3338-1","label":"Tezra Okaal"},
-		{"val":"3711-9","label":"Modesta Toto"},
-		{"val":"3839-8","label":"Molly Omudeck"},
-		{"val":"3336-5","label":"Nelly Nabwire"},
-		{"val":"3744-0","label":"Edwin Masika"},
-		{"val":"3352-2","label":"Pamela Wamoyi"},
-		{"val":"3843-0","label":"Makomere Catherine"},
-		{"val":"3714-3","label":"Okapes Gabriel"},
-		{"val":"3713-5","label":"Fidelis Emodo"},
-		{"val":"3838-0","label":"Maurine Muteiysi"},
-		{"val":"237-8","label":"Ariya Patrick"},
-		{"val":"3758-0","label":"Ann Githua"},
-		{"val":"3854-7","label":"Faith Bargoiyet"},
-		{"val":"3853-9","label":"Jackline Chemeli Chebii"},
-		{"val":"1830-9","label":"Lydia Jepkoech"},
-		{"val":"3760-6","label":"Peter Onditi"},	
-		{"val":"3855-4","label":"Valentine Jeptoo Kimisoi"},
-		{"val":"3759-8","label":"Ann Thairu"},
-		{"val":"3766-3","label":"Viola Boitt"},
-		{"val":"3754-9","label":"James Maina Mwangi"},
-		{"val":"3765-5","label":"Harun Maswai"},
-		{"val":"3764-8","label":"Philip Kiprop Rutto"},
-		{"val":"3755-6","label":"Carolyne Sambaya Kiptoo"},
-		{"val":"3756-4","label":"Alice Bor"},
-		{"val":"3753-1","label":"Sarah Jepkogey Kiloch"},
-		{"val":"3768-9","label":"John Kitur"},
-		{"val":"3898-4","label":"Francis Gacicio"},
-		{"val":"3851-3","label":"Isaiah Rono Kemei"},
-		{"val":"3752-3","label":"Esther Cheruiyot"},
-		{"val":"120-6","label":"Agnes Boen"},
-		{"val":"3737-4","label":"Elima Barmosho"},
-		{"val":"321-0","label":"Esther Melly"},
-		{"val":"68-7","label":"Zipporah kemboi"},
-		{"val":"111-5","label":"Lynnet bett"},
-		{"val":"63-8","label":"John kibet"},
-		{"val":"3852-1","label":"Musa Mugungei"},
-		{"val":"3951-1","label":"Josephine  kisato"},
-		{"val":"3952-9","label":"Keviner Chavera"},
-		{"val":"3848-9","label":"Abraham Saat Kimaru"},
-		{"val":"3849-7","label":"Catherine Chiliswa"}
-		];
-	  document.setupAutoCompleteForProvider('encounter\\.provider_id_select', provider);
+
+	document.setupAutoCompleteDataForProvider('encounter\\.provider_id_select');
 
 	$('#registration_form').validate({});
 
-   	document.setupValidationForProvider("$('#encounter\\.provider_id_select').val()","encounter\\.provider_id",provider);
+   	document.setupValidationForProvider("$('#encounter\\.provider_id_select').val()","encounter\\.provider_id");
 
     document.setupValidationForLocation("$('#encounter\\.location_id').val()","encounter\\.location_id");
 
