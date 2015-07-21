@@ -749,6 +749,20 @@ $(document).ready(function () {
         });
     }
 
+    document.setupAutoCompleteData = function(elementName) {
+                    var dataDictionary = [];
+                    var dataDictionary = [
+                            {"val": "7", "label": "Chulaimbo"},
+                            {"val": "3", "label": "Turbo"},
+                            {"val": "17", "label": "Iten"},
+                            {"val": "2", "label": "Mosoriot"},
+                            {"val": "8", "label": "Webuye"},
+                            {"val": "84", "label": "Ampath MTRH"}
+                        ];
+
+                    document.setupAutoComplete('encounter\\.location_id', dataDictionary);
+       };
+
     //Set up auto complete for the provider element.
     document.setupAutoCompleteForProvider = function(elementName, providers) {
 

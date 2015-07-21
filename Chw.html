@@ -61,17 +61,23 @@
     </div>
 </div>
 
+<div class="form-group">
+    <label for="encounter.location_id">Name of Dispensary:<span class="required">*</span></label>
+    <input class="form-control valid-location-only" id="encounter.location_id" type="text" placeholder="Start typing something..." required="required">
+    <input class="form-control" name="encounter.location_id" type="hidden">
+</div>
+
 <div class="section">
-    <div class="form-group">
-        <label for="encounter.location_id">Encounter Location:<span class="required">*</span></label>
-        <select class="form-control" name="encounter.location_id" id="encounter.location_id" required="required">
+    <div class="form-group hidden">
+        <label for="encounter.location_id_select">Encounter Location:<span class="required">*</span></label>
+        <select class="form-control" id="encounter.location_id_select" required="required">
             <option value="">...</option>
-            <option value="9">Ampath MTRH</option>
-            <option value="7">Chulaimbo</option>
-            <option value="17">Iten</option>
-            <option value="2">Mosoriot</option>
-            <option value="3">Turbo</option>
-            <option value="8">Webuye</option>
+            <option value="9" data-location="Ampath MTRH">Ampath MTRH</option>
+            <option value="7" data-location="Chulaimbo">Chulaimbo</option>
+            <option value="17" data-location="Iten">Iten</option>
+            <option value="2" data-location="Mosoriot">Mosoriot</option>
+            <option value="3" data-location="Turbo">Turbo</option>
+            <option value="8" data-location="Webuye">Webuye</option>
         </select>
     </div>
 
@@ -551,8 +557,7 @@ $(document).ready(function () {
         {"val": "9", "label": "Ampath MTRH"}
     ];
 
-    document.setupAutoComplete('encounter\\.location_id',locationName);
-
+     document.setupAutoCompleteData('encounter\\.location_id');
 
     var provider = [
         {"label": "Ann Githua", "val": "3762-2"},
@@ -822,7 +827,7 @@ $(document).ready(function () {
     }
 
     document.setupValidationForProvider("$('#encounter\\.provider_id_select').val()","encounter\\.provider_id",provider);
-
+    document.setupValidationForLocation("$('#encounter\\.location_id').val()","encounter\\.location_id");
 
 });
 </script>

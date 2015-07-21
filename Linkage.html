@@ -61,36 +61,44 @@
 <div class="section">
     <h4>Encounter Details</h4>
     <div class="form-group">
-        <label for="encounter.location_id">Encounter Location <span class="required">*</span></label>
-        <select class="form-control" id="encounter.location_id" name="encounter.location_id" required="required">
-            <option value="">...</option>
-            <option value="2">Mosoriot</option>
-            <option value="3">Turbo</option>
-            <option value="12">Teso District Hospital</option>
-            <option value="60">Chepsaita Dispensary</option>
-            <option value="65">Angurai Health Centre</option>
-            <option value="90">Changara Dispensary</option>
-            <option value="91">Malaba Dispensary</option>
-            <option value="106">Kamollo Dispensary</option>
-            <option value="110">Mogoget Dispensary</option>
-            <option value="111">Biribiriet Dispensary</option>
-            <option value="112">Itigo Dispensary</option>
-            <option value="113">Lelmokwo Dispensary</option>
-            <option value="114">Kokwet Dispensary</option>
-            <option value="115">Ngechek Dispensary</option>
-            <option value="116">Ngechek Dispensary</option>
-            <option value="117">Murgusi Dispensary</option>
-            <option value="118">Cheplasgei Dispensary</option>
-            <option value="119">Sigot Dispensary</option>
-            <option value="120">Sigot Dispensary</option>
-            <option value="121">Sugoi A Dispensary</option>
-            <option value="121">Sugoi B Dispensary</option>
-            <option value="124">Akichelesit Dispensary</option>
-            <option value="125">Aboloi Dispensary</option>
-            <option value="126">Moding Dispensary</option>
-            <option value="127">Sambut</option>
-            <option value="128">Moding Dispensary</option>
-            <option value="128">Ngenyilel</option>
+        <label for="encounter.location_id">Name of Dispensary:<span class="required">*</span></label>
+        <input class="form-control valid-location-only" id="encounter.location_id" type="text" placeholder="Start typing something..." required="required">
+        <input class="form-control" name="encounter.location_id" type="hidden">
+    </div>
+
+    <div class="form-group hidden">
+        <label for="encounter.location_id_select">Encounter Location <span class="required">*</span></label>
+        <select class="form-control" id="encounter.location_id_select"  required="required">
+            <option>...</option>
+            <option value="84" data-location="AMPATH-MTRH">AMPATH-MTRH</option>
+            <option value="2" data-location="Mosoriot">Mosoriot</option>
+            <option value="3" data-location="Turbo">Turbo</option>
+            <option value="12" data-location="Teso District Hospital">Teso District Hospital</option>
+            <option value="60" data-location="Chepsaita Dispensary">Chepsaita Dispensary</option>
+            <option value="65" data-location="Angurai Health Centre">Angurai Health Centre</option>
+            <option value="90" data-location="Changara Dispensary">Changara Dispensary</option>
+            <option value="91" data-location="Malaba Dispensary">Malaba Dispensary</option>
+            <option value="106" data-location="Kamollo Dispensary">Kamollo Dispensary</option>
+            <option value="110" data-location="Mogoget Dispensary">Mogoget Dispensary</option>
+            <option value="111" data-location="Biribiriet Dispensary">Biribiriet Dispensary</option>
+            <option value="112" data-location="Itigo Dispensary">Itigo Dispensary</option>
+            <option value="113" data-location="Lelmokwo Dispensary">Lelmokwo Dispensary</option>
+            <option value="114" data-location="Kokwet Dispensary">Kokwet Dispensary</option>
+            <option value="115" data-location="Ngechek Dispensary">Ngechek Dispensary</option>
+            <option value="116" data-location="Ngechek Dispensary">Ngechek Dispensary</option>
+            <option value="117" data-location="Murgusi Dispensary">Murgusi Dispensary</option>
+            <option value="118" data-location="Cheplasgei Dispensary">Cheplasgei Dispensary</option>
+            <option value="119" data-location="Sigot Dispensary">Sigot Dispensary</option>
+            <option value="120" data-location="Sigot Dispensary">Sigot Dispensary</option>
+            <option value="121" data-location="Sugoi A Dispensary">Sugoi A Dispensary</option>
+            <option value="121" data-location="Sugoi B Dispensary">Sugoi B Dispensary</option>
+            <option value="124" data-location="Akichelesit Dispensary">Akichelesit Dispensary</option>
+            <option value="125" data-location="Aboloi Dispensary">Aboloi Dispensary</option>
+            <option value="126" data-location="Moding Dispensary">Moding Dispensary</option>
+            <option value="127" data-location="Sambut">Sambut</option>
+            <option value="128" data-location="Moding Dispensary">Moding Dispensary</option>
+            <option value="128" data-location="Ngenyilel">Ngenyilel</option>
+>>>>>>> MUZIMA-272 : Change muzima forms as part of Download Locations(MUZIMA-232)
         </select>
     </div>
     <div class="form-group">
@@ -1484,8 +1492,7 @@
             {"val": "17", "label": "Iten"}
         ];
 
-        document.setupAutoComplete('encounter\\.location_id',locationName);
-
+         document.setupAutoCompleteData('encounter\\.location_id');
 
         //pick todays date by default
         var dateFormat = "dd-mm-yy";
@@ -1823,6 +1830,8 @@
 
 
        document.setupValidationForProvider("$('#encounter\\.provider_id_select').val()","encounter\\.provider_id",provider);
+
+       document.setupValidationForLocation("$('#encounter\\.location_id').val()","encounter\\.location_id");
 
 
     });
