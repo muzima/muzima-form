@@ -73,18 +73,27 @@
             </select>
         </div>
         <div class="form-group">
-            <label for="encounter.provider_id">Provider ID <span class="required">*</span></label>
-            <select class="form-control" id="encounter.provider_id" name="encounter.provider_id" required="required">
-                <option value="">...</option>
-                <option value="6-7">Josephine Kisato</option>
-                <option value="9-1">Catherine Chiliswa</option>
-                <option value="4-2">Derek Levembe</option>
-                <option value="15-8">Jackson Rotich</option>
-                <option value="4-2">Penina Kiptoo</option>
-                <option value="8-3">Kennedy Kirwa</option>
-                <option value="7-5">Abraham Saat Kimaru</option>
-                <option value="5-9">Keviner Chavera Asigi</option>
+            <label for="encounter.provider_id_select">Provider ID <span class="required">*</span></label>
+            <input class="form-control valid-provider-only" id="encounter.provider_id_select" type="text"
+                   placeholder="Start typing provider name here ...">
+            <input class="form-control" name="encounter.provider_id_select" type="hidden">
+        </div>
+        <div class="form-group hidden">
+            <select id="select_providers">
+                <option value="6-7" data-provider = "Josephine Kisato" >Josephine Kisato</option>
+                <option value="9-1" data-provider = "Catherine Chiliswa" >Catherine Chiliswa</option>
+                <option value="4-2" data-provider = "Derek Levembe" >Derek Levembe</option>
+                <option value="15-8" data-provider = "Jackson Rotich" >Jackson Rotich</option>
+                <option value="4-2" data-provider = "Penina Kiptoo" >Penina Kiptoo</option>
+                <option value="8-3" data-provider = "Kennedy Kirwa" >Kennedy Kirwa</option>
+                <option value="7-5" data-provider = "Abraham Saat Kimaru" >Abraham Saat Kimaru</option>
+                <option value="5-9" data-provider = "Keviner Chavera Asigi" >Keviner Chavera Asigi</option>
             </select>
+        </div>
+        <div class="form-group show_provider_id_text">
+            <label for="encounter.provider_id">Enter provider's system-id:<span class="required">*</span></label>
+            <input class="form-control checkDigit" id="encounter.provider_id" name="encounter.provider_id" type="text"
+                   placeholder="Or enter the provider system id here ..." required="required">
         </div>
         <div class="form-group">
             <label for="encounter.encounter_datetime">Encounter Date:<span class="required">*</span>
@@ -3753,8 +3762,18 @@
             $(encounterDatetime).val(currentDate);
         }
 
+
     document.setupAutoCompleteData('encounter\\.location_id');
+    document.setupAutoCompleteDataForProvider('encounter\\.provider_id_select');
+
+        $('#encounter\\.provider_id_select').change(function () {
+        if ($('#encounter\\.provider_id_select').val() === '') {
+            $('#encounter\\.provider_id').val('');
+            $('.show_provider_id_text').show();
+        }
+    });
     document.setupValidationForLocation("$('#encounter\\.location_id').val()","encounter\\.location_id");
+    document.setupValidationForProvider("$('#encounter\\.provider_id_select').val()","encounter\\.provider_id");
 
     });
 </script>
