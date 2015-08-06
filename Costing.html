@@ -1121,11 +1121,8 @@
                     <select class="form-control" id="obs.herbalist_visit_disease_select" name = "obs.herbalist_visit_disease_select"
                             data-concept="9129^HERBALIST VISIT DUE TO DISEASE^99DCT" required="required">
                         <option value="">...</option>
-                        <option value="903^HYPERTENSION^99DCT">Hypertension</option>
-                        <option value="175^DIABETES^99DCT">Diabetes</option>
-                        <option value="123^MALARIA^99DCT">Malaria</option>
-                        <option value="141^TYPHOID^99DCT">Typhoid</option>
-                        <option value="77^OTHER^99DCT">Others</option>
+                        <option value="1065^YES^99DCT">Yes</option>
+                        <option value="1066^NO^99DCT">No</option>
                         <option value="1624^DO NOT KNOW^99DCT">Don&#39;t Know</option>
                         <option value="1958^REFUSAL^99DCT">Refused/No Answer</option>
                     </select>
@@ -1134,7 +1131,7 @@
                             Specify others
                         </label>
                         <input class="form-control" id="obs.herbalist_visit_disease_select_other" name="obs.herbalist_visit_disease_select_other" type="text"
-                               data-concept="9129^HERBALIST VISIT DUE TO DISEASE^99DCT">
+                               data-concept="9178^HERBALIST VISIT DISEASE^99DCT">
                     </div>
                 </div>
                 <div class="herbalist_visit_disease_input">
@@ -1388,8 +1385,8 @@
                         <option value="2">Government chemist</option>
                         <option value="3">Dispensary/Health Center</option>
                         <option value="4">Revolving Fund Pharmacy</option>
-                        <option value="1624^DO NOT KNOW^99DCT">Don&#39;t Know</option>
-                        <option value="1958^REFUSAL^99DCT">Refused</option>
+                        <option value="-77">Don&#39;t Know</option>
+                        <option value="-99">refused</option>
                     </select>
                 </div>
                 <div class="form-group medical_bill">
@@ -1446,7 +1443,7 @@
                 Are you currently covered by any other health insurance apart from NHIF?<span class="required">*</span>
             </label>
             <select class="form-control" id="obs.other_insurance" name="obs.other_insurance"
-                    data-concept="9145^HAVING NHIF^99DCT" required="required">
+                    data-concept="9145^HAVING OTHER INSURANCE NOT NHIF^99DCT" required="required">
                 <option value="">...</option>
                 <option value="1065^YES^99DCT">Yes</option>
                 <option value="1066^NO^99DCT">No</option>
@@ -1657,8 +1654,8 @@
                 <option value="3">3 servings</option>
                 <option value="4">4 servings</option>
                 <option value="5">5 servings</option>
-                <option value="1624^DO NOT KNOW^99DCT">Don&#39;t Know</option>
-                <option value="1958^REFUSAL^99DCT">refused</option>
+                <option value="-77">Don&#39;t Know</option>
+                <option value="-99">refused</option>
             </select>
         </div>
 
@@ -1677,8 +1674,8 @@
                 <option value="5">5 days</option>
                 <option value="6">6 days</option>
                 <option value="7">7 days</option>
-                <option value="1624^DO NOT KNOW^99DCT">Don&#39;t Know</option>
-                <option value="1958^REFUSAL^99DCT">refused</option>
+                <option value="-77">Don&#39;t Know</option>
+                <option value="-99">refused</option>
             </select>
         </div>
 
@@ -1695,8 +1692,8 @@
                 <option value="3">3 servings</option>
                 <option value="4">4 servings</option>
                 <option value="5">5 servings</option>
-                <option value="1624^DO NOT KNOW^99DCT">Don&#39;t Know</option>
-                <option value="1958^REFUSAL^99DCT">refused</option>
+                <option value="-77">Don&#39;t Know</option>
+                <option value="-99">refused</option>
             </select>
         </div>
         <p></p><div class="alert alert-info">Tobacco Use</div>
@@ -1926,8 +1923,8 @@
                 <option value="4">Kshs 20,000-29,999</option>
                 <option value="5">Kshs 30,000-39,999</option>
                 <option value="6">Over Kshs 40,000</option>
-                <option value="1624^DO NOT KNOW^99DCT">Don&#39;t Know</option>
-                <option value="1958^REFUSAL^99DCT">Refused</option>
+                <option value="-77">Don&#39;t Know</option>
+                <option value="-99">Refused</option>
             </select>
         </div>
         <div class="form-group notWorkingDisplay">
