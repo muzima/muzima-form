@@ -74,6 +74,38 @@
         <input class="form-control valid-provider-only" id="encounter.provider_id_select" type="text" placeholder="Start typing something...">
         <input class="form-control" name="encounter.provider_id_select" type="hidden">
     </div>
+    <div class="form-group hidden">
+        <select id="select_providers">
+            <option value ="3356-3" data-provider ="David S. Pamba">David S. Pamba</option>
+            <option value ="237-8" data-provider ="Ariya Patrick">Ariya Patrick</option>
+            <option value ="3331-6" data-provider ="Benjamin Osiya Ekirapa">Benjamin Osiya Ekirapa</option>
+            <option value ="3332-4" data-provider ="Molly Omodek Aluku">Molly Omodek Aluku</option>
+            <option value ="3333-2" data-provider ="Mercyline Lubisya Omusolo">Mercyline Lubisya Omusolo</option>
+            <option value ="3334-0" data-provider ="Julita Auma Ndege">Julita Auma Ndege</option>
+            <option value ="3335-7" data-provider ="Caroline Fedha Injete">Caroline Fedha Injete</option>
+            <option value ="3336-5" data-provider ="Nelly Nabwire Shiundu">Nelly Nabwire Shiundu</option>
+            <option value ="3337-3" data-provider ="Nicholas Dekkers Shitaha">Nicholas Dekkers Shitaha</option>
+            <option value ="3338-1" data-provider ="Tezra Asangire Okaal">Tezra Asangire Okaal</option>
+            <option value ="3340-7" data-provider ="Sophy Ikarot Idele">Sophy Ikarot Idele</option>
+            <option value ="3339-9" data-provider ="Maureen Jacinta Muteitsi">Maureen Jacinta Muteitsi</option>
+            <option value ="3341-5" data-provider ="Gibson Musera Mutira">Gibson Musera Mutira</option>
+            <option value ="3342-3" data-provider ="Titus Chuma Khusua">Titus Chuma Khusua</option>
+            <option value ="3343-1" data-provider ="Pamela Ekuriai Emukule">Pamela Ekuriai Emukule</option>
+            <option value ="3344-9" data-provider ="Rhoda Jeruto Kurgat">Rhoda Jeruto Kurgat</option>
+            <option value ="3345-6" data-provider ="Zaitun Hassan Mohamed">Zaitun Hassan Mohamed</option>
+            <option value ="3346-4" data-provider ="Grace Gichanga Nyathogora">Grace Gichanga Nyathogora</option>
+            <option value ="3347-2" data-provider ="Gabriel Silas Okapes">Gabriel Silas Okapes</option>
+            <option value ="3348-0" data-provider ="Henry Samson Obonyo">Henry Samson Obonyo</option>
+            <option value ="3349-8" data-provider ="Rebecca M. Wambura">Rebecca M. Wambura</option>
+            <option value ="3350-6" data-provider ="Zeruya Amwatok Barua">Zeruya Amwatok Barua</option>
+            <option value ="3351-4" data-provider ="Immaculate Otengo Namibia">Immaculate Otengo Namibia</option>
+            <option value ="3352-2" data-provider ="Pamela Were Wamoyi">Pamela Were Wamoyi</option>
+            <option value ="3357-1" data-provider ="Caroline Wafula Nandisi">Caroline Wafula Nandisi</option>
+            <option value ="3353-0" data-provider ="Markins Opuko Cresent">Markins Opuko Cresent</option>
+            <option value ="3354-8" data-provider ="Benedict Kifufuli Wafula">Benedict Kifufuli Wafula</option>
+            <option value ="3355-5" data-provider ="Clementine Ingosi Osiel">Clementine Ingosi Osiel</option>
+        </select>
+    </div>
 
     <div class="form-group show_provider_id_text">
         <label for="encounter.provider_id">Enter provider's system-id:<span class="required">*</span></label>
@@ -2036,37 +2068,7 @@ $(document).ready(function () {
 
     document.setupAutoComplete('encounter\\.location_id',dispensaryName);
 
-
-    var provider = [{"val":"3356-3","label":"David S. Pamba"},
-        {"val":"237-8","label":"Ariya Patrick"},
-        {"val":"3331-6","label":"Benjamin Osiya Ekirapa"},
-        {"val":"3332-4","label":"Molly Omodek Aluku"},
-        {"val":"3333-2","label":"Mercyline Lubisya Omusolo"},
-        {"val":"3334-0","label":"Julita Auma Ndege"},
-        {"val":"3335-7","label":"Caroline Fedha Injete"},
-        {"val":"3336-5","label":"Nelly Nabwire Shiundu"},
-        {"val":"3337-3","label":"Nicholas Dekkers Shitaha"},
-        {"val":"3338-1","label":"Tezra Asangire Okaal"},
-        {"val":"3340-7","label":"Sophy Ikarot Idele"},
-        {"val":"3339-9","label":"Maureen Jacinta Muteitsi"},
-        {"val":"3341-5","label":"Gibson Musera Mutira"},
-        {"val":"3342-3","label":"Titus Chuma Khusua"},
-        {"val":"3343-1","label":"Pamela Ekuriai Emukule"},
-        {"val":"3344-9","label":"Rhoda Jeruto Kurgat"},
-        {"val":"3345-6","label":"Zaitun Hassan Mohamed"},
-        {"val":"3346-4","label":"Grace Gichanga Nyathogora"},
-        {"val":"3347-2","label":"Gabriel Silas Okapes"},
-        {"val":"3348-0","label":"Henry Samson Obonyo"},
-        {"val":"3349-8","label":"Rebecca M. Wambura"},
-        {"val":"3350-6","label":"Zeruya Amwatok Barua"},
-        {"val":"3351-4","label":"Immaculate Otengo Namibia"},
-        {"val":"3352-2","label":"Pamela Were Wamoyi"},
-        {"val":"3357-1","label":"Caroline Wafula Nandisi"},
-        {"val":"3353-0","label":"Markins Opuko Cresent"},
-        {"val":"3354-8","label":"Benedict Kifufuli Wafula"},
-        {"val":"3355-5","label":"Clementine Ingosi Osiel"}];
-
-    document.setupAutoCompleteForProvider('encounter\\.provider_id_select', provider);
+    document.setupAutoCompleteDataForProvider('encounter\\.provider_id_select');
 
     $('#encounter\\.provider_id_select').change(function(){
         if($('#encounter\\.provider_id_select').val() == ''){
@@ -3804,7 +3806,7 @@ $(document).ready(function () {
     /* End - Reminder triggers */
 
 
-    document.setupValidationForProvider("$('#encounter\\.provider_id_select').val()","encounter\\.provider_id",provider);
+    document.setupValidationForProvider("$('#encounter\\.provider_id_select').val()","encounter\\.provider_id");
 
     document.setupValidationForLocation("$('#encounter\\.location_id').val()","encounter\\.location_id",dispensaryName);
 
