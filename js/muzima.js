@@ -728,6 +728,19 @@ $(document).ready(function () {
 
     /* End - Code to Serialize form along with Data-Concepts */
 
+     document.setupAutoCompleteData = function(elementName) {
+         var dataDictionary = [];
+         var dataDictionary = [
+                 {"val": "7", "label": "Chulaimbo"},
+                 {"val": "3", "label": "Turbo"},
+                 {"val": "17", "label": "Iten"},
+                 {"val": "2", "label": "Mosoriot"},
+                 {"val": "8", "label": "Webuye"},
+                 {"val": "84", "label": "Ampath MTRH"}
+             ];
+         document.setupAutoComplete('encounter\\.location_id', dataDictionary);
+     };
+
     //Set up auto complete for an element.(generic, will work with any element that needs auto complete on it)
     document.setupAutoComplete = function(elementName, dataDictionary) {
 
@@ -737,7 +750,7 @@ $(document).ready(function () {
                 var val = $('input[name=' + elementName + ']').val();
                 $.each(dataDictionary, function(i, elem) {
                     if (elem.val == val) {
-                        $("#" + elementName).val(elem.label)
+                        $("#" + elementName).val(elem.label);
                     }
                 });
             },
@@ -764,7 +777,6 @@ $(document).ready(function () {
                     document.setupAutoComplete('encounter\\.location_id', dataDictionary);
        };
 
-
     document.setupAutoCompleteDataForProvider = function(elementName) {
           var providers = [];
           var providers = [{"val":"3356-3","label":"David S. Pamba"},
@@ -772,9 +784,8 @@ $(document).ready(function () {
                       {"val":"3331-6","label":"Benjamin Osiya Ekirapa"},
                       {"val":"3332-4","label":"Molly Omodek Aluku"},
                       {"val":"3355-5","label":"Clementine Ingosi Osiel"}];
-          alert('setupDispensaryAutoComplete called with:' + JSON.stringify(providers));
           document.setupAutoCompleteForProvider('encounter\\.provider_id_select', providers);
-       };
+    };
 
 
 
@@ -787,7 +798,7 @@ $(document).ready(function () {
                 var provider_val = $('input[name="' + elementName + '"]').val();
                 $.each(providers, function(i, elem) {
                     if (elem.val == provider_val) {
-                        $("#" + elementName).val(elem.label)
+                        $("#" + elementName).val(elem.label);
                     }
                 });
             },
@@ -808,7 +819,6 @@ $(document).ready(function () {
                               {"val":"3331-6","label":"Benjamin Osiya Ekirapa"},
                               {"val":"3332-4","label":"Molly Omodek Aluku"},
                               {"val":"3355-5","label":"Clementine Ingosi Osiel"}];
- alert('setupValidation called with:' + JSON.stringify(listOfProviders));
         $.validator.addMethod("validProviderOnly", function(value, element) {
 
             if ($.fn.isNotRequiredAndEmpty(value, element)) return true;
@@ -820,17 +830,27 @@ $(document).ready(function () {
             }
             return false;
         }, "Please provide a provider from the list of possible providers.");
-
+    }
         // attach 'validProviderOnly' class to perform validation.
         jQuery.validator.addClassRules({
+
             "valid-provider-only": {
                 validProviderOnly: true
             }
         });
         /* End - validProviderOnly*/
-    }
 
-    document.setupValidationForLocation = function(value, element, listOfLocations) {
+
+    document.setupValidationForLocation = function(value, element) {
+             var listOfLocations = [];
+                     var listOfLocations = [
+                             {"val": "7", "label": "Chulaimbo"},
+                             {"val": "3", "label": "Turbo"},
+                             {"val": "17", "label": "Iten"},
+                             {"val": "2", "label": "Mosoriot"},
+                             {"val": "8", "label": "Webuye"},
+                             {"val": "84", "label": "Ampath MTRH"}
+                         ];
 
         /* Start - Checking that the user entered location exists in the list of possible locations */
         $.validator.addMethod("validLocationOnly", function(value, element) {

@@ -240,14 +240,14 @@
             $(this).prop('disabled', true);
             document.saveDraft(this);
             $(this).prop('disabled', false);
-        });
+            });
 
-        $('#submit_form').click(function () {
-            // pre process the medications
-            $(this).prop('disabled', true);
-            document.submit();
-            $(this).prop('disabled', false);
-        });
+            $('#submit_form').click(function () {
+                // pre process the medications
+                $(this).prop('disabled', true);
+                document.submit();
+                $(this).prop('disabled', false);
+            });
 
             $('#teleconsultation_form').validate({});
 
@@ -282,13 +282,14 @@
                 {"val": "129", "label": "Sosiani"}
             ];
 
-            document.setupAutoComplete('encounter\\.location_id');
+
+
+            document.setupAutoCompleteData('encounter\\.location_id');
             document.setupValidationForLocation("$('#encounter\\.location_id').val()","encounter\\.location_id");
 
 
             document.setupAutoCompleteDataForProvider('encounter\\.provider_id_select');
             document.setupValidationForProvider("$('#encounter\\.provider_id_select').val()","encounter\\.provider_id");
-
             $('#encounter\\.provider_id_select').change(function () {
                 if ($('#encounter\\.provider_id_select').val() === '') {
                     $('#encounter\\.provider_id').val('');
@@ -326,7 +327,7 @@
                 {"val":"admin:u","label":"Super User"},
                 {"val":"3355-5:u","label":"Clementine Ingosi Osiel"}];
 
-            document.setupAutoComplete('consultation\\.recipient',consultant);
+            document.setupAutoCompleteData('consultation\\.recipient',consultant);
             document.setupValidationForConsultation("$('#consultation\\.recipient').val()","consultation\\.recipient",consultant);
 
         });
