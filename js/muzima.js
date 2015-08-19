@@ -729,7 +729,6 @@ $(document).ready(function () {
     /* End - Code to Serialize form along with Data-Concepts */
 
      document.setupAutoCompleteData = function(elementName) {
-         var dataDictionary = [];
          var dataDictionary = [
                  {"val": "7", "label": "Chulaimbo"},
                  {"val": "3", "label": "Turbo"},
@@ -762,23 +761,7 @@ $(document).ready(function () {
         });
     }
 
-
-    document.setupAutoCompleteData = function(elementName) {
-                    var dataDictionary = [];
-                    var dataDictionary = [
-                            {"val": "7", "label": "Chulaimbo"},
-                            {"val": "3", "label": "Turbo"},
-                            {"val": "17", "label": "Iten"},
-                            {"val": "2", "label": "Mosoriot"},
-                            {"val": "8", "label": "Webuye"},
-                            {"val": "84", "label": "Ampath MTRH"}
-                        ];
-
-                    document.setupAutoComplete('encounter\\.location_id', dataDictionary);
-       };
-
     document.setupAutoCompleteDataForProvider = function(elementName) {
-          var providers = [];
           var providers = [{"val":"3356-3","label":"David S. Pamba"},
                       {"val":"237-8","label":"Ariya Patrick"},
                       {"val":"3331-6","label":"Benjamin Osiya Ekirapa"},
@@ -842,7 +825,6 @@ $(document).ready(function () {
 
 
     document.setupValidationForLocation = function(value, element) {
-             var listOfLocations = [];
                      var listOfLocations = [
                              {"val": "7", "label": "Chulaimbo"},
                              {"val": "3", "label": "Turbo"},
@@ -874,7 +856,6 @@ $(document).ready(function () {
 
 
     document.setupValidationForConsultation = function(value, element, listOfConsultants) {
-
             /* Start - Checking that the user entered consultant exists in the list of possible consultant */
             $.validator.addMethod("validConsultantOnly", function(value, element) {
                 if ($.fn.isNotRequiredAndEmpty(value, element)) return true;
