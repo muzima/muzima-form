@@ -491,6 +491,12 @@ $(document).ready(function () {
         /* clear values on cloned fields */
         $clonedSection.find(':input:not(:button)').val('');
         $clonedSection.find(':input:not(:button)').trigger('change');
+        var $fields = $clonedSection.find(':input:not(:button)');
+        $.each($fields, function(i,elem){
+            var fieldName = $(elem).attr('name');
+            fieldName += parseInt(suffixInt) + 1;
+            $(elem).attr('name', fieldName);
+        });
     });
 
     $(document.body).on('click', '.remove_section', function () {
@@ -531,7 +537,29 @@ $(document).ready(function () {
         $.each(prePopulateJson, function (key, value) {
             var $elements = $('[name="' + key + '"]');
             if (value instanceof Array) {
-                $elements.val(value);
+               if ($elements.length < value.length) {
+                    $.each(value, function (i, valueElement) {
+                        if (i == 0) {
+                            $.each($elements, function(i, element) {
+                                applyValue(element, valueElement);
+                            });
+                        } else {
+                            var $div = $elements.closest('.repeat, .custom-repeat');
+                            var $clonedDiv = $div.clone(true);
+                            $div.after($clonedDiv);
+                            $elements = $clonedDiv.find('[name="' + key + '"]');
+                            $.each($elements, function(i, element) {
+                                applyValue(element, valueElement);
+                            });
+                        }
+                    });
+                } else {
+                    $.each(value, function (i, valueElement) {
+                        $.each($elements, function(i, element) {
+                            applyValue(element, valueElement);
+                        });
+                    });
+                }
             } else {
                 $.each($elements, function (i, element) {
                     applyValue(element, value);
