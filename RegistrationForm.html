@@ -85,24 +85,26 @@
                     <label for="patient.other_identifier_type">Identifier Type</label>
                     <select class="form-control patient.other_identifier_type" name="patient.other_identifier_type" id="patient.other_identifier_type">
                         <option value="">...</option>
-                        <option value="AMRS Medical Record Number">AMRS Medical Record Number</option>
+                        <option id="amrs_medical_record_number" value="AMRS Medical Record Number">AMRS Medical Record Number</option>
                         <option value="CCC Number">CCC Number</option>
-                        <option value="HCT ID">HCT ID</option>
+                        <option id="hct_id" value="HCT ID">HCT ID</option>
                         <option value="KENYAN NATIONAL ID NUMBER">KENYAN NATIONAL ID NUMBER</option>
                         <option value="MTCT Plus ID">MTCT Plus ID</option>
                         <option value="MTRH Hospital Number">MTRH Hospital Number</option>
                         <option value="Old AMPATH Medical Record Number">Old AMPATH Medical Record Number</option>
-                        <option value="pMTCT ID">pMTCT ID</option>
+                        <option id="pmtct_id" value="pMTCT ID">pMTCT ID</option>
                     </select>
                 </div>
                 <div class="identifier_value_section">
                     <div class="form-group">
                         <label for="patient.other_identifier_value">Enter Identifier</label>
-                        <input class="form-control check-other-identifier" id="patient.other_identifier_value" name="patient.other_identifier_value" type="text">
+                        <input class="form-control check-other-identifier" id="patient.other_identifier_value" required
+                        name="patient.other_identifier_value" type="text">
                     </div>
                     <div class="form-group">
                         <label for="patient.confirm_identifier_value">Confirm Identifier</label>
-                        <input class="form-control check-confirm-identifier" id="patient.confirm_identifier_value" name="patient.confirm_identifier_value" type="text">
+                        <input class="form-control check-confirm-identifier" id="patient.confirm_identifier_value" required
+                        name="patient.confirm_identifier_value" type="text">
                     </div>
                 </div>
             </div>
@@ -274,9 +276,17 @@
         });
 
     $('.patient\\.other_identifier_type').change(function(){
-        if($(this).val() == ""){
+        var selected_val = $(this).val();
+        if(selected_val == ""){
             $(this).closest('.repeat').find('.identifier_value_section').hide();
         }else{
+            if(selected_val == $('#amrs_medical_record_number').val() || selected_val == $('#hct_id').val() || selected_val == $('#pmtct_id')){
+                $('#patient\\.other_identifier_value').addClass('checkDigit');
+                $('#patient\\.confirm_identifier_value').addClass('checkDigit');
+            }else{
+                $('#patient\\.other_identifier_value').removeClass('checkDigit');
+                $('#patient\\.confirm_identifier_value').removeClass('checkDigit');
+            }
             $(this).closest('.repeat').find('.identifier_value_section').show();
         }
 
