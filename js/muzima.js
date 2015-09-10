@@ -491,12 +491,6 @@ $(document).ready(function () {
         /* clear values on cloned fields */
         $clonedSection.find(':input:not(:button)').val('');
         $clonedSection.find(':input:not(:button)').trigger('change');
-        var $fields = $clonedSection.find(':input:not(:button)');
-        $.each($fields, function(i,elem){
-            var fieldName = $(elem).attr('name');
-            fieldName += parseInt(suffixInt) + 1;
-            $(elem).attr('name', fieldName);
-        });
     });
 
     $(document.body).on('click', '.remove_section', function () {
@@ -553,6 +547,12 @@ $(document).ready(function () {
                             });
                         }
                     });
+                } else if ($elements.length == value.length) {
+                    $.each(value, function (i, valueElement) {
+                        applyValue($elements[i], valueElement);
+                    });
+
+
                 } else {
                     $.each(value, function (i, valueElement) {
                         $.each($elements, function(i, element) {
