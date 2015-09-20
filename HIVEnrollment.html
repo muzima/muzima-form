@@ -1,0 +1,439 @@
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/muzima.css" rel="stylesheet">
+    <link href="css/ui-darkness/jquery-ui-1.10.4.custom.min.css" rel="stylesheet">
+    <script src="js/jquery.min.js"></script>
+    <script src="js/jquery-ui-1.10.4.custom.min.js"></script>
+    <script src="js/jquery.validate.min.js"></script>
+    <script src="js/additional-methods.min.js"></script>
+    <script src="js/muzima.js"></script>
+
+    <title>HIV Enrollment</title>
+</head>
+
+<body class="col-md-10 col-md-offset-1">
+<div id="pre_populate_data"></div>
+<h2 class="text-center">HIV Enrollment</h2>
+
+<form id="hiv_enrollment_form" name="hiv_enrollment_form">
+
+<div class="section">
+    <h3>Demographics</h3>
+
+    <div class="form-group">
+        <input class="form-control" id="patient.uuid" name="patient.uuid" type="hidden" readonly="readonly">
+    </div>
+    <div class="form-group">
+        <label for="patient.medical_record_number">Unique Patient Number:</label>
+        <input class="form-control" id="patient.medical_record_number" name="patient.medical_record_number" type="text"
+               readonly="readonly" disabled="disabled">
+    </div>
+    <div class="form-group">
+        <label for="patient.clinic_number">Patient Clinic Number:</label>
+        <input class="form-control" id="patient.clinic_number" name="patient.clinic_number" type="text"
+               readonly="readonly" disabled="disabled">
+    </div>
+    <div class="form-group">
+        <label for="patient.family_name">Family Name:</label>
+        <input class="form-control" id="patient.family_name" name="patient.family_name" type="text" readonly="readonly"
+               disabled="disabled">
+    </div>
+    <div class="form-group">
+        <label for="patient.given_name">Given Name:</label>
+        <input class="form-control" id="patient.given_name" name="patient.given_name" type="text" readonly="readonly"
+               disabled="disabled">
+    </div>
+    <div class="form-group">
+        <label for="patient.middle_name">Middle Name:</label>
+        <input class="form-control" id="patient.middle_name" name="patient.middle_name" type="text" readonly="readonly"
+               disabled="disabled">
+    </div>
+    <div class="form-group">
+        <label for="patient.sex">Gender:</label>
+        <select class="form-control" id="patient.sex" name="patient.sex"  readonly="readonly" disabled="disabled">
+            <option value="">...</option>
+            <option value="M">Male</option>
+            <option value="F">Female</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="patient.birth_date">Date Of Birth:</label>
+        <input class="form-control" id="patient.birth_date" name="patient.birth_date" type="text" readonly="readonly"
+               disabled="disabled">
+    </div>
+</div>
+
+<div class="section">   
+    <div class="form-group">
+        <label for="encounter.encounter_datetime">Enrollment Date <span class="required">*</span></label>
+        <input class="form-control nonFutureDate datepicker" readonly="readonly" id="encounter.encounter_datetime"
+               name="encounter.encounter_datetime" type="text" required="required">
+    </div>
+    <div class="form-group">
+        <label for="encounter.location_id">Enrolled at:<span class="required">*</span></label>
+        <input class="form-control valid-location-only" id="encounter.location_id" type="text" placeholder="Start typing something..." required="required">
+        <input class="form-control" name="encounter.location_id" type="hidden">
+    </div>
+
+    <div class="form-group hidden">
+        <select class="form-control" id="encounter.location_id_select" required="required">
+            <option>...</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="encounter.provider_id_select">Enrolled by (name):</label>
+        <input class="form-control valid-provider-only" id="encounter.provider_id_select" type="text" placeholder="Start typing something...">
+        <input class="form-control" name="encounter.provider_id_select" type="hidden">
+    </div>
+    <div class="form-group hidden">
+        <select id="select_providers">
+        </select>
+    </div>
+    <div class="form-group show_provider_id_text">
+        <label for="encounter.provider_id">Enrolled by (system-id):<span class="required">*</span></label>
+        <input class="form-control checkDigit" id="encounter.provider_id" name="encounter.provider_id"
+               type="text" placeholder="Or enter the provider system id here ..." required="required">
+    </div>
+    <div class="form-group">
+        <input class="form-control" id="encounter.form_uuid" name="encounter.form_uuid"
+               type="hidden" required="required">
+    </div>
+</div>
+<div class="section">
+    <h3>Patient Source</h3>
+    <div class="form-group">
+        <label for="obs.entry_point">Enrolled at:<span class="required">*</span></label>
+        <select class="form-control" name="obs.entry_point" id="obs.entry_point" data-concept="160540^Method of Enrollment^99DCT">
+            <option value="">...</option>
+            <option value="160538^PMTCT Program^99DCT">PMTCT</option>
+            <option value="160536^Adult Inpatient Service^99DCT">IPD-Ad</option>
+            <option value="160541^Tuberculosis Treatment Program^99DCT">TB Clinic</option>
+            <option value="160542^Outpatient Department^99DCT">OPD</option>
+            <option value="160539^VCT Program^99DCT">VCT</option>
+            <option value="160537^Pediatric inpatient service^99DCT">IPD-Ch</option>
+            <option value="160544^Under five clinic^99DCT">MCH Child</option>
+            <option value="5622^OTHER NON-CODED^99DCT">Other</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="obs.transfer_in">Transfer in:<span class="required">*</span></label>
+        <select class="form-control" name="obs.transfer_in" id="obs.transfer_in" data-concept="160563^Transfer in^99DCT">
+            <option value="">...</option>
+            <option value="1065^Yes^99DCT">Yes</option>
+            <option value="1066^No^99DCT">No</option>
+        </select>
+    </div>
+    <div id="transfer_in_details">
+        <div class="form-group">
+            <label for="obs.transfer_in_date">
+                Transfer in date:<span class="required">*</span>
+            </label>
+            <input class="form-control datepicker nonFutureDate past-date" id="obs.transfer_in_date"
+                   name="obs.transfer_in_date" type="text" readonly="readonly" data-concept="160534^Transfer in date^99DCT">
+        </div> 
+        <div class="form-group">
+            <label for="obs.transfer_from_facility">
+                Transfer From Facility:<span class="required">*</span>
+            </label>
+            <input class="form-control" id="obs.transfer_from_facility" name="obs.transfer_from_facility" type="text" data-concept="160535^Transferred from location^99DCT">
+        </div> 
+        <div class="form-group">
+            <label for="obs.transfer_from_facility_district">
+                Transfer From Facility District:<span class="required">*</span>
+            </label>
+            <input class="form-control" id="obs.transfer_from_facility_district" name="obs.transfer_from_facility_district" data-concept="161551^Referring district name^99DCT" type="text">
+        </div>  
+        <div class="form-group">
+            <label for="obs.date_first_enrolled_hiv_care">
+                Date first enrolled in HIV care:<span class="required">*</span>
+            </label>
+            <input class="form-control datepicker nonFutureDate past-date" id="obs.date_first_enrolled_hiv_care"
+                   name="obs.date_first_enrolled_hiv_care" type="text" readonly="readonly" data-concept="160555^Date enrolled in HIV care^99DCT">
+        </div>  
+        <div class="form-group">
+            <label for="obs.date_started_art">
+                Date started ART at transferring facility:<span class="required">*</span>
+            </label>
+            <input class="form-control datepicker nonFutureDate past-date" id="obs.date_started_art" name="obs.date_started_art" type="text"
+            data-concept="159599^ART start date^99DCT">
+        </div> 
+    </div>          
+</div>
+<div class="section">
+    <h3>ART History</h3>
+    <div class="form-group">
+        <label for="obs.hiv_confirmation_date">Date patient was confirmed HIV+:<span class="required">*</span></label>
+        <input class="form-control datepicker" id="obs.hiv_confirmation_date" type="text" required="required" readonly="readonly" data-concept="160554^Date of HIV diagnosis^99DCT">
+    </div>
+    <div class="form-group concept-set" data-concept="161559^HIV confirmation location set^99DCT">
+        <label for="obs.hiv_confirmation_facility">Facility where confirmation done:<span class="required">*</span></label>
+        <input class="form-control" id="obs.hiv_confirmation_facility" type="text" required="required" data-concept="160632^Freetext general^99DCT">
+    </div>
+    <div class="form-group">
+        <label for="obs.patient_on_arvs">Patient has been on ARVs (inc. PEP & PMTCT):<span class="required">*</span></label>
+        <select class="form-control" name="obs.patient_on_arvs" id="obs.patient_on_arvs" data-concept="160533^Previous ARV treatment^99DCT">
+            <option value="">...</option>
+            <option value="1">Yes</option>
+            <option value="0">No</option>
+        </select>
+    </div>
+    <div class="section" id="patient_on_arvs">
+        <div class="form-group">
+            <label>Purpose</purpose>
+        </div>
+        <div class="form-group">
+            <label class="font-normal">
+                <input name="obs.arv_purpose" id="obs.arv_purpose_pmtct" type="checkbox" value="1065^Yes^99DCT" data-concept="1148^TOTAL PMTCT^99DCT"> PMTCT
+            </label>
+            <div class="section" id="arv_purpose_pmtct" data-concept="160741^Medication History^99DCT">
+                <div class="form-group">
+                    <label for="obs.arv_pmtct_drug_name">Drug Name:<span class="required">*</span></label>
+                    <select class="form-control" name="obs.arv_pmtct_drug_name" id="obs.arv_pmtct_drug_name" data-concept="966^CURRENT ARV DRUGS USED^99DCT">
+                        <option value="">...</option>
+                        <option value="792^D4T/3TC/NVP^99DCT">D4T/3TC/NVP</option>
+                        <option value="794^LPV/R^99DCT">LPV/R</option>
+                        <option value="630^AZT/3TC^99DCT">AZT/3TC</option>
+                        <option value="84309^D4T^99DCT">D4T</option>
+                        <option value="74807^DDI^99DCT">DDI</option>
+                        <option value="70056^ABC^99DCT">ABC</option>
+                        <option value="80487^NELFINAVIR^99DCT">NELFINAVIR</option>
+                        <option value="80586^NVP^99DCT">NVP</option>
+                        <option value="75523^EFV^99DCT">EFV</option>
+                        <option value="78643^3TC^99DCT">3TC</option>
+                        <option value="84795^TDF^99DCT">TDF</option>
+                        <option value="77995^IDV^99DCT">IDV</option>
+                        <option value="160124^D4T/3TC/EFV^99DCT">AZT/3TC/EFV</option>
+                        <option value="160104^D4T/3TC/EFV^99DCT">D4T/3TC/EFV</option>
+                        <option value="86663^AZT^99DCT">AZT</option>
+                        <option value="75628^FTC^99DCT">FTC</option>
+                        <option value="79040^LPV^99DCT">LPV</option>
+                        <option value="83412^RTV^99DCT">RTV</option>
+                        <option value="71647^ATV^99DCT">ATV</option>
+                        <option value="1652^3TC/NVP/AZT^99DCT">3TC/NVP/AZT</option>
+                        <option value="161363^3TC/D4T^99DCT">3TC/D4T</option>
+                        <option value="161364^TDF/3TC^99DCT">TDF/3TC</option>
+                        <option value="161361^EDF/3TC/EFV^99DCT">EDF/3TC/EFV</option>
+                        <option value="103166^ABC/3TC^99DCT">ABC/3TC</option>
+                        <option value="104565^EFV/FTC/TDF^99DCT">EFV/FTC/TDF</option>
+                        <option value="162201^3TC/LPV/r/TDF^99DCT">3TC/LVP/r/TDF</option>
+                        <option value="817^ABC/3TC/AZT^99DCT">ABC/3TC/AZT</option>
+                        <option value="162199^ABC/NVP/3TC^99DCT">ABC/NVP/3TC</option>
+                        <option value="162200^3TC/ABC/LPV/r^99DCT">3TC/ABC/LVP/r</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="obs.arv_pmtct_date_last_used">Date last used:<span class="required">*</span></label>
+                    <input class="form-control datepicker" id="obs.arv_pmtct_date_last_used" name="obs.arv_pmtct_date_last_used" type="text" required="required"
+                     data-obsdatetimefor="obs.arv_pmtct_drug_name" readonly="readonly">
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="font-normal">
+                <input name="obs.arv_purpose" id="obs.arv_purpose_pep" type="checkbox" value="true" data-concept="1691^POST-EXPOSURE PROPHYLAXIS^99DCT"> PEP
+            </label>
+            <div class="section" id="arv_purpose_pep" data-concept="160741^Medication History^99DCT">
+                <div class="form-group">
+                    <label for="obs.arv_pep_drug_name">Drug Name:<span class="required">*</span></label>
+                    <select class="form-control" name="obs.arv_pep_drug_name" id="obs.arv_pep_drug_name" data-concept="1088^CURRENT ANTIRETROVIRAL DRUGS USED FOR TREATMENT^99DCT">
+                        <option value="">...</option>
+                        <option value="792^D4T/3TC/NVP^99DCT">D4T/3TC/NVP</option>
+                        <option value="794^LPV/R^99DCT">LPV/R</option>
+                        <option value="630^AZT/3TC^99DCT">AZT/3TC</option>
+                        <option value="84309^D4T^99DCT">D4T</option>
+                        <option value="74807^DDI^99DCT">DDI</option>
+                        <option value="70056^ABC^99DCT">ABC</option>
+                        <option value="80487^NELFINAVIR^99DCT">NELFINAVIR</option>
+                        <option value="80586^NVP^99DCT">NVP</option>
+                        <option value="75523^EFV^99DCT">EFV</option>
+                        <option value="78643^3TC^99DCT">3TC</option>
+                        <option value="84795^TDF^99DCT">TDF</option>
+                        <option value="77995^IDV^99DCT">IDV</option>
+                        <option value="160124^D4T/3TC/EFV^99DCT">AZT/3TC/EFV</option>
+                        <option value="160104^D4T/3TC/EFV^99DCT">D4T/3TC/EFV</option>
+                        <option value="86663^AZT^99DCT">AZT</option>
+                        <option value="75628^FTC^99DCT">FTC</option>
+                        <option value="79040^LPV^99DCT">LPV</option>
+                        <option value="83412^RTV^99DCT">RTV</option>
+                        <option value="71647^ATV^99DCT">ATV</option>
+                        <option value="1652^3TC/NVP/AZT^99DCT">3TC/NVP/AZT</option>
+                        <option value="161363^3TC/D4T^99DCT">3TC/D4T</option>
+                        <option value="161364^TDF/3TC^99DCT">TDF/3TC</option>
+                        <option value="161361^EDF/3TC/EFV^99DCT">EDF/3TC/EFV</option>
+                        <option value="103166^ABC/3TC^99DCT">ABC/3TC</option>
+                        <option value="104565^EFV/FTC/TDF^99DCT">EFV/FTC/TDF</option>
+                        <option value="162201^3TC/LPV/r/TDF^99DCT">3TC/LVP/r/TDF</option>
+                        <option value="817^ABC/3TC/AZT^99DCT">ABC/3TC/AZT</option>
+                        <option value="162199^ABC/NVP/3TC^99DCT">ABC/NVP/3TC</option>
+                        <option value="162200^3TC/ABC/LPV/r^99DCT">3TC/ABC/LVP/r</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="obs.arv_pep_date_last_used">Date last used:<span class="required">*</span></label>
+                    <input class="form-control datepicker" id="obs.arv_pep_date_last_used" name="obs.arv_pep_date_last_used" type="text" required="required"
+                     data-obsdatetimefor="obs.arv_pep_drug_name" readonly="readonly">
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="font-normal">
+                <input name="obs.arv_purpose" id="obs.arv_purpose_haart" type="checkbox" data-concept="1181^ANTIRETROVIRAL DOSE QUANTIFICATION^99DCT" value="1185^TREATMENT^99DCT"> HAART
+            </label>
+            <div class="section" id="arv_purpose_haart" data-concept="160741^Medication History^99DCT">
+                <div class="form-group">
+                    <label for="obs.arv_haart_drug_name">Drug Name:<span class="required">*</span></label>
+                    <select class="form-control" name="obs.arv_haart_drug_name" id="obs.arv_haart_drug_name" data-concept="1088^CURRENT ANTIRETROVIRAL DRUGS USED FOR TREATMENT^99DCT">
+                        <option value="">...</option>
+                        <option value="792^D4T/3TC/NVP^99DCT">D4T/3TC/NVP</option>
+                        <option value="794^LPV/R^99DCT">LPV/R</option>
+                        <option value="630^AZT/3TC^99DCT">AZT/3TC</option>
+                        <option value="84309^D4T^99DCT">D4T</option>
+                        <option value="74807^DDI^99DCT">DDI</option>
+                        <option value="70056^ABC^99DCT">ABC</option>
+                        <option value="80487^NELFINAVIR^99DCT">NELFINAVIR</option>
+                        <option value="80586^NVP^99DCT">NVP</option>
+                        <option value="75523^EFV^99DCT">EFV</option>
+                        <option value="78643^3TC^99DCT">3TC</option>
+                        <option value="84795^TDF^99DCT">TDF</option>
+                        <option value="77995^IDV^99DCT">IDV</option>
+                        <option value="160124^D4T/3TC/EFV^99DCT">AZT/3TC/EFV</option>
+                        <option value="160104^D4T/3TC/EFV^99DCT">D4T/3TC/EFV</option>
+                        <option value="86663^AZT^99DCT">AZT</option>
+                        <option value="75628^FTC^99DCT">FTC</option>
+                        <option value="79040^LPV^99DCT">LPV</option>
+                        <option value="83412^RTV^99DCT">RTV</option>
+                        <option value="71647^ATV^99DCT">ATV</option>
+                        <option value="1652^3TC/NVP/AZT^99DCT">3TC/NVP/AZT</option>
+                        <option value="161363^3TC/D4T^99DCT">3TC/D4T</option>
+                        <option value="161364^TDF/3TC^99DCT">TDF/3TC</option>
+                        <option value="161361^EDF/3TC/EFV^99DCT">EDF/3TC/EFV</option>
+                        <option value="103166^ABC/3TC^99DCT">ABC/3TC</option>
+                        <option value="104565^EFV/FTC/TDF^99DCT">EFV/FTC/TDF</option>
+                        <option value="162201^3TC/LPV/r/TDF^99DCT">3TC/LVP/r/TDF</option>
+                        <option value="817^ABC/3TC/AZT^99DCT">ABC/3TC/AZT</option>
+                        <option value="162199^ABC/NVP/3TC^99DCT">ABC/NVP/3TC</option>
+                        <option value="162200^3TC/ABC/LPV/r^99DCT">3TC/ABC/LVP/r</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="obs.arv_haart_date_last_used">Date last used:<span class="required">*</span></label>
+                    <input class="form-control datepicker" id="obs.arv_haart_date_last_used" name="obs.arv_haart_date_last_used" type="text" required="required"
+                     data-obsdatetimefor="obs.arv_haart_drug_name" readonly="readonly">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="section">
+    <h3>Treatment Supporter</h3>
+    <div class="form-group">
+        <label for="obs.supporter_name">Name:<span class="required">*</span></label>
+        <input class="form-control" id="obs.supporter_name" name="obs.supporter_name" type="text" data-concept="160638^Name of treatment supporter^99DCT">
+    </div>
+    <div class="form-group">
+        <label for="obs.supporter_relationship">Relationship:<span class="required">*</span></label>
+        <select class="form-control" name="obs.supporter_relationship" id="obs.supporter_relationship" required="required"
+         data-concept="160640^Treatment supporter relationship to patient^99DCT">
+            <option value="">...</option>
+            <option value="973^GRANDPARENT^99DCT">Grandparent</option>
+            <option value="1527^PARENT^99DCT">Parent</option>
+            <option value="160639^Guardian^99DCT">Guardian</option>
+            <option value="5617^PARTNER OR SPOUSE^99DCT">Partner or Spouse</option>
+            <option value="972^Sibling^99DCT">Sibling</option>
+            <option value="5622^OTHER NON-CODED^99DCT">Other Non-Coded</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="obs.supporter_postal_address">Postal Address:<span class="required">*</span></label>
+        <input class="form-control" id="obs.supporter_postal_address" name="obs.supporter_postal_address" type="text" data-concept="160641^Address of treatment supporter^99DCT">
+    </div>
+    <div class="form-group">
+        <label for="obs.supporter_telephone">Telephone:<span class="required">*</span></label>
+        <input class="form-control phoneNumber" id="obs.supporter_telephone" name="obs.supporter_telephone" type="tel" data-concept="160642^Telephone number of treatment supporter^99DCT">
+    </div>
+</div>
+</form>
+</body>
+<script type="text/javascript">
+
+$(document).ready(function () {
+
+    var dateFormat = "dd-mm-yy";
+    var currentDate = $.datepicker.formatDate(dateFormat, new Date());
+    var encounterDatetime = $('#encounter\\.encounter_datetime');
+    if ($(encounterDatetime).val() == "") {
+        $(encounterDatetime).val(currentDate);
+    }
+
+    $('#obs\\.transfer_in').change(function(){
+        if($(this).val() == '1065^Yes^99DCT'){
+            $('#transfer_in_details').show();
+        } else {
+            $('#transfer_in_details').hide();
+        }
+    });
+    $('#obs\\.transfer_in').trigger('change');
+
+    $('#obs\\.patient_on_arvs').change(function(){
+        if($(this).val() == '1'){
+            $('#patient_on_arvs').show();
+        } else {
+            $('#patient_on_arvs').hide();
+        }
+    });
+    $('#obs\\.patient_on_arvs').trigger('change');
+
+    $('input[name="obs.arv_purpose"]').change(function(){
+        var arv_purpose_array = {
+            "#obs\\.arv_purpose_pmtct":"#arv_purpose_pmtct",
+            "#obs\\.arv_purpose_pep":"#arv_purpose_pep",
+            "#obs\\.arv_purpose_haart":"#arv_purpose_haart"
+        }
+        var $changed_element = $(this);
+        var changed_checked = $(this).is(":checked");
+        $.each(arv_purpose_array, function(k,v){
+            if($changed_element.is($(k))){
+                if(changed_checked){
+                    $(v).show();
+                } else {
+                    $(v).hide();
+                }
+            }
+        });
+    });
+    $('input[name="obs.arv_purpose"]').trigger('change');
+
+    $('#save_draft').click(function () {
+        $(this).prop('disabled', true);
+        document.saveDraft(this);
+        $(this).prop('disabled', false);
+    });
+
+    $('#submit_form').click(function () {
+        $(this).prop('disabled', true);
+        document.submit();
+        $(this).prop('disabled', false);
+    });
+
+    $('#hiv_enrollment_form').validate({
+
+        submitHandler: function (form) {
+            $('#result').html(JSON.stringify($('form').serializeEncounterForm(), undefined, 2));
+        }
+    });
+
+
+    document.setupAutoCompleteData('encounter\\.location_id');
+    document.setupAutoCompleteDataForProvider('encounter\\.provider_id_select');    
+
+    document.setupValidationForProvider("$('#encounter\\.provider_id_select').val()","encounter\\.provider_id");
+
+    document.setupValidationForLocation("$('#encounter\\.location_id').val()","encounter\\.location_id");
+
+});
+</script>
+
+</html>

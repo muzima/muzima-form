@@ -1,0 +1,247 @@
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/muzima.css" rel="stylesheet">
+    <link href="css/ui-darkness/jquery-ui-1.10.4.custom.min.css" rel="stylesheet">
+    <script src="js/jquery.min.js"></script>
+    <script src="js/jquery-ui-1.10.4.custom.min.js"></script>
+    <script src="js/jquery.validate.min.js"></script>
+    <script src="js/additional-methods.min.js"></script>
+    <script src="js/muzima.js"></script>
+
+    <title>HIV Family History</title>z
+</head>
+
+<body class="col-md-10 col-md-offset-1">
+<div id="pre_populate_data"></div>
+<h2 class="text-center">HIV Enrollment</h2>
+
+<form id="hiv_family_history_form" name="hiv_family_history_form">
+
+<div class="section">
+    <h3>Demographics</h3>
+
+    <div class="form-group">
+        <input class="form-control" id="patient.uuid" name="patient.uuid" type="hidden" readonly="readonly">
+    </div>
+    <div class="form-group">
+        <label for="patient.medical_record_number">Unique Patient Number:</label>
+        <input class="form-control" id="patient.medical_record_number" name="patient.medical_record_number" type="text"
+               readonly="readonly" disabled="disabled">
+    </div>
+    <div class="form-group">
+        <label for="patient.clinic_number">Patient Clinic Number:</label>
+        <input class="form-control" id="patient.clinic_number" name="patient.clinic_number" type="text"
+               readonly="readonly" disabled="disabled">
+    </div>
+    <div class="form-group">
+        <label for="patient.family_name">Family Name:</label>
+        <input class="form-control" id="patient.family_name" name="patient.family_name" type="text" readonly="readonly"
+               disabled="disabled">
+    </div>
+    <div class="form-group">
+        <label for="patient.given_name">Given Name:</label>
+        <input class="form-control" id="patient.given_name" name="patient.given_name" type="text" readonly="readonly"
+               disabled="disabled">
+    </div>
+    <div class="form-group">
+        <label for="patient.middle_name">Middle Name:</label>
+        <input class="form-control" id="patient.middle_name" name="patient.middle_name" type="text" readonly="readonly"
+               disabled="disabled">
+    </div>
+    <div class="form-group">
+        <label for="patient.sex">Gender:</label>
+        <select class="form-control" id="patient.sex" name="patient.sex"  readonly="readonly" disabled="disabled">
+            <option value="">...</option>
+            <option value="M">Male</option>
+            <option value="F">Female</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="patient.birth_date">Date Of Birth:</label>
+        <input class="form-control" id="patient.birth_date" name="patient.birth_date" type="text" readonly="readonly"
+               disabled="disabled">
+    </div>
+</div>
+
+<div class="section repeat" data-concept="160593^Patient's family history list^99DCT">
+    <div class="form-group">
+        <label for="obs.name_of_member">
+            Name of family member:<span class="required">*</span>
+        </label>
+        <input class="form-control" id="obs.name_of_member" name="obs.name_of_member"
+          data-concept="160750^Name of family member^99DCT" type="text" required="required">
+    </div>
+    <div class="form-group">
+        <label>
+            Age at diagnosis:<span class="required">*</span>
+        </label>
+        <div class="section">
+            <div class="form-group">
+                <label for="obs.age_units">Will record Age in ... <span class="required">*</span></label>
+                <select class="form-control" name="obs.age_units" id="obs.age_units" required="required" data-concept="1732^Duration units^99DCT">
+                    <option value="">...</option>
+                    <option value="1734^Years^99DCT">Years</option>
+                    <option value="1074^Months^99DCT">Months</option>
+                </select>
+            </div>
+            <div class="form-group" id="age">
+                <label for="obs.age_in_years" id="lbl.age_in_years">Age(Years):<span class="required">*</span></label>
+                <label for="obs.age_in_months" id="lbl.age_in_months">Age(Months):<span class="required">*</span></label>
+                <input class="form-control" name="obs.age" type="text" data-concept="160617^Age at diagnosis^99DCT" required="required">
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="obs.relation">Relation:<span class="required">*</span></label>
+        <select class="form-control" name="obs.relation" id="obs.relation" data-concept="1560^Family member^99DCT" required="required">
+            <option value="">...</option>
+            <option value="970^Mother^99DCT">Mother</option>
+            <option value="971^Father^99DCT">Father</option>
+            <option value="159772^Grandmother^99DCT">Grandmother</option>
+            <option value="160273^Grandfather^99DCT">Grandfather</option>
+            <option value="972^Sibling^99DCT">Sibling</option>
+            <option value="1528^Child^99DCT">Child</option>
+            <option value="975^Aunt^99DCT">Aunt</option>
+            <option value="974^Uncle^99DCT">Aunt</option>
+            <option value="5617^PARTNER OR SPOUSE^99DCT">Partner or Spouse</option>
+            <option value="162221^Co-wife^99DCT">Co-wife</option>
+            <option value="160639^Guardian^99DCT">Guardian</option>
+            <option value="5622^OTHER NON-CODED^99DCT">Other Non-Coded</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="obs.hiv_result">
+            HIV Result:<span class="required">*</span>
+        </label>
+        <select class="form-control" name="obs.hiv_result" id="obs.hiv_result" data-concept="1729^SIGN/SYMPTOM PRESENT^99DCT" required="required">
+            <option value="">...</option>
+            <option value="1065^Yes^99DCT">P</option>
+            <option value="1066^No^99DCT">N</option>
+            <option value="1405^HIV exp-status unk^99DCT">E</option>
+            <option value="1067^Unknown^99DCT">DK</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="obs.in_care">In Care?:</label>
+        <select class="form-control" id="obs.in_care" name="obs.in_care" data-concept="159811^enrolled in HIV care program^99DCT">
+            <option value="">...</option>
+            <option value="1065^Yes^99DCT">Yes</option>
+            <option value="1066^No^99DCT">No</option>
+            <option value="1067^Unknown^99DCT">Unknown</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="obs.ccc_number">
+            CCC Number:<span class="required">*</span>
+        </label>
+        <input class="form-control" id="obs.ccc_number" name="obs.ccc_number" type="text" data-concept="160752^ID number of family member^99DCT"
+          required="required">
+    </div>
+</div>
+<div class="section">   
+    <div class="form-group">
+        <label for="encounter.encounter_datetime">Encounter Date <span class="required">*</span></label>
+        <input class="form-control nonFutureDate datepicker" readonly="readonly" id="encounter.encounter_datetime"
+               name="encounter.encounter_datetime" type="text" required="required">
+    </div>
+    <div class="form-group">
+        <label for="encounter.location_id">Encounter Location:<span class="required">*</span></label>
+        <input class="form-control valid-location-only" id="encounter.location_id" type="text" placeholder="Start typing something..." required="required">
+        <input class="form-control" name="encounter.location_id" type="hidden">
+    </div>
+
+    <div class="form-group hidden">
+        <label for="encounter.location_id_select">Encounter Location <span class="required">*</span></label>
+        <select class="form-control" id="encounter.location_id_select" required="required">
+            <option>...</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="encounter.provider_id_select">Provider Name:</label>
+        <input class="form-control valid-provider-only" id="encounter.provider_id_select" type="text" placeholder="Start typing something...">
+        <input class="form-control" name="encounter.provider_id_select" type="hidden">
+    </div>
+    <div class="form-group hidden">
+        <select id="select_providers">
+        </select>
+    </div>
+    <div class="form-group show_provider_id_text">
+        <label for="encounter.provider_id">Provider's system-id:<span class="required">*</span></label>
+        <input class="form-control checkDigit" id="encounter.provider_id" name="encounter.provider_id"
+               type="text" placeholder="Or enter the provider system id here ..." required="required">
+    </div>
+    <div class="form-group">
+        <input class="form-control" id="encounter.form_uuid" name="encounter.form_uuid"
+               type="hidden" required="required">
+    </div>
+</div>
+</form>
+</body>
+<script type="text/javascript">
+
+$(document).ready(function () {
+
+    var dateFormat = "dd-mm-yy";
+    var currentDate = $.datepicker.formatDate(dateFormat, new Date());
+    var encounterDatetime = $('#encounter\\.encounter_datetime');
+    if ($(encounterDatetime).val() == "") {
+        $(encounterDatetime).val(currentDate);
+    }
+
+    $('#save_draft').click(function () {
+        $(this).prop('disabled', true);
+        document.saveDraft(this);
+        $(this).prop('disabled', false);
+    });
+
+    $('#submit_form').click(function () {
+        $(this).prop('disabled', true);
+        document.submit();
+        $(this).prop('disabled', false);
+    });
+
+    $('#hiv_family_history_form').validate({
+
+        submitHandler: function (form) {
+            $('#result').html(JSON.stringify($('form').serializeEncounterForm(), undefined, 2));
+        },
+        rules: {
+            'obs.age': {
+                range: [0, 120]
+            }
+        }
+    });
+
+    $('#obs\\.age_units').change(function(){
+        if($(this).val() == "1734^Years^99DCT"){
+            $('label[for="obs.age_in_years"]').show();
+            $('label[for="obs.age_in_months"]').hide();
+            $('#age').show();
+        } else if($(this).val() == "1074^Months^99DCT"){
+            $('label[for="obs.age_in_months"]').show();
+            $('label[for="obs.age_in_years"]').hide();
+            $('#age').show();
+        } else {
+            $('label[for="obs.age_in_years"]').hide();
+            $('label[for="obs.age_in_months"]').hide();
+            $('#age').hide();
+        }
+    });
+    $('#obs\\.age_units').trigger('change');
+
+    
+    document.setupAutoCompleteData('encounter\\.location_id');
+    document.setupAutoCompleteDataForProvider('encounter\\.provider_id_select');
+
+    document.setupValidationForProvider("$('#encounter\\.provider_id_select').val()","encounter\\.provider_id");
+
+    document.setupValidationForLocation("$('#encounter\\.location_id').val()","encounter\\.location_id");
+
+});
+</script>
+
+</html>

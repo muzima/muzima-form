@@ -1,0 +1,1745 @@
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/muzima.css" rel="stylesheet">
+    <link href="css/ui-darkness/jquery-ui-1.10.4.custom.min.css" rel="stylesheet">
+    <script src="js/jquery.min.js"></script>
+    <script src="js/jquery-ui-1.10.4.custom.min.js"></script>
+    <script src="js/jquery.validate.min.js"></script>
+    <script src="js/additional-methods.min.js"></script>
+    <script src="js/muzima.js"></script>
+
+    <title>Visit Summary</title>
+</head>
+
+<body class="col-md-10 col-md-offset-1">
+<div id="pre_populate_data"></div>
+<h2 class="text-center">Visit Summary</h2>
+
+<form id="hiv_family_history_form" name="hiv_family_history_form">
+
+<div class="section">
+    <h3>Demographics</h3>
+
+    <div class="form-group">
+        <input class="form-control" id="patient.uuid" name="patient.uuid" type="hidden" readonly="readonly">
+    </div>
+    <div class="form-group">
+        <label for="patient.medical_record_number">Unique Patient Number:</label>
+        <input class="form-control" id="patient.unique_patient_number" name="patient.unique_patient_number" type="text"
+               readonly="readonly" disabled="disabled">
+    </div>
+    <div class="form-group">
+        <label for="patient.medical_record_number">OpenMRS ID:</label>
+        <input class="form-control" id="patient.medical_record_number" name="patient.medical_record_number" type="text"
+               readonly="readonly" disabled="disabled">
+    </div>
+    <div class="form-group">
+        <label for="patient.clinic_number">Patient Clinic Number:</label>
+        <input class="form-control" id="patient.clinic_number" name="patient.clinic_number" type="text"
+               readonly="readonly" disabled="disabled">
+    </div>
+    <div class="form-group">
+        <label for="patient.family_name">Family Name:</label>
+        <input class="form-control" id="patient.family_name" name="patient.family_name" type="text" readonly="readonly"
+               disabled="disabled">
+    </div>
+    <div class="form-group">
+        <label for="patient.given_name">Given Name:</label>
+        <input class="form-control" id="patient.given_name" name="patient.given_name" type="text" readonly="readonly"
+               disabled="disabled">
+    </div>
+    <div class="form-group">
+        <label for="patient.middle_name">Middle Name:</label>
+        <input class="form-control" id="patient.middle_name" name="patient.middle_name" type="text" readonly="readonly"
+               disabled="disabled">
+    </div>
+    <div class="form-group">
+        <label for="patient.sex">Gender:</label>
+        <select class="form-control" id="patient.sex" name="patient.sex"  readonly="readonly" disabled="disabled">
+            <option value="">...</option>
+            <option selected value="M">Male</option>
+            <option value="F">Female</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="patient.birth_date">Date Of Birth:</label>
+        <input class="form-control" id="patient.birth_date" name="patient.birth_date" type="text" readonly="readonly"
+               disabled="disabled">
+    </div>
+</div>
+<div class="section">  	
+    <div class="form-group">
+        <label for="encounter.encounter_datetime">Encounter Date: <span class="required">*</span></label>
+        <input class="form-control nonFutureDate datepicker" readonly="readonly" id="encounter.encounter_datetime"
+               name="encounter.encounter_datetime" type="text" required="required">
+    </div>
+    <div class="form-group">
+        <label for="encounter.location_id">Encounter Location:<span class="required">*</span></label>
+        <input class="form-control valid-location-only" id="encounter.location_id" type="text" placeholder="Start typing something..." required="required">
+        <input class="form-control" name="encounter.location_id" type="hidden">
+    </div>
+
+    <div class="form-group hidden">
+        <label for="encounter.location_id_select">Encounter Location <span class="required">*</span></label>
+        <select class="form-control" id="encounter.location_id_select" required="required">
+            <option>...</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="encounter.provider_id_select">Provider Name:</label>
+        <input class="form-control valid-provider-only" id="encounter.provider_id_select" type="text"
+        data-concept="1473^Name of Health Care provider^99DCT" placeholder="Start typing something...">
+        <input class="form-control" name="encounter.provider_id_select" type="hidden">
+    </div>
+    <div class="form-group hidden">
+        <select id="select_providers">
+        </select>
+    </div>
+    <div class="form-group show_provider_id_text">
+        <label for="encounter.provider_id">Provider's system-id:<span class="required">*</span></label>
+        <input class="form-control checkDigit" id="encounter.provider_id" name="encounter.provider_id"
+               type="text" placeholder="Or enter the provider system id here ..." required="required">
+    </div>
+    <div class="form-group">
+        <input class="form-control" id="encounter.form_uuid" name="encounter.form_uuid"
+               type="hidden" required="required">
+    </div>
+</div>
+
+<div class="section">
+    <h3>Visit Details</h3>
+
+    <div class="form-group">
+        <label for="obs.visit_type">Visit Type:<span class="required">*</span></label>
+        <select class="form-control" id="obs.visit_type"
+                name="obs.visit_type" data-concept="161643^Person attending facility^99DCT">
+            <option value="">...</option>
+            <option value="978^Self^99DCT">Self (SF)</option>
+            <option value="161642^Treatment supporter^99DCT">Treatment Supporter (TS)</option>
+            <option value="5622^OTHER NON-CODED^99DCT">Other (give name)</option>
+        </select>
+    </div>
+    <div class="form-group" id="treatment_supporter_name">
+        <label for="obs.treatment_supporter_name">Name of treatment supporter:<span class="required">*</span></label>
+        <input class="form-control" id="obs.treatment_supporter_name"
+               name="obs.treatment_supporter_name" type="number"
+               data-concept="160638^Name of treatment supporter^99DCT"
+               required="required">
+    </div>
+    <div class="form-group">
+        <label>Is current visit scheduled?<span class="required">*</span></label>
+        <select class="form-control" id="obs.visit_sheduled" name="obs.visit_sheduled" required="required"
+            data-concept="1246^Visit Scheduled^99DCT">
+            <option value="">...</option>
+            <option value="true">Yes</option>
+            <option value="false">No</option>
+        </select>
+    </div>
+</div>
+
+<div class="section">
+    <h3>Vital Signs</h3>
+    <div class="form-group">
+        <label for="obs.systolic_blood_pressure">Systolic Blood Pressure (mmHg):</label>
+        <input class="form-control systolicBloodPressure" id="obs.systolic_blood_pressure"
+               name="obs.systolic_blood_pressure" type="number"
+               placeholder="Please record today's SBP" data-concept="5085^SYSTOLIC BLOOD PRESSURE^99DCT">
+
+    </div>
+    <div class="form-group">
+        <label for="obs.diastolic_blood_pressure">Diastolic Blood Pressure (mmHg):</label>
+        <input class="form-control diastolicBloodPressure lessThankSystolic" id="obs.diastolic_blood_pressure"
+               name="obs.diastolic_blood_pressure" type="number"
+               placeholder="Please record today's DBP" data-concept="5086^DIASTOLIC BLOOD PRESSURE^99DCT">
+    </div>
+    <div class="form-group">
+        <label for="height_cm">Height (CM):</label>
+        <input class="form-control" id="height_cm" name="height_cm" type="number"
+               placeholder="Please record today's height"
+               data-concept="5090^HEIGHT (CM)^99DCT">
+    </div>
+    <div class="form-group">
+        <label for="weight_kg">Weight (KG):</label>
+        <input class="form-control" id="weight_kg" name="weight_kg" type="number"
+               placeholder="Please record today's weight"
+               data-concept="5089^WEIGHT (KG)^99DCT">
+    </div>
+    <div class="form-group bodyMassIndex">
+        <label for="obs.body_mass_index">BMI:</label>
+        <input class="form-control" id="obs.body_mass_index" name="obs.body_mass_index"
+        type="number" placeholder="calculated BMI" readonly="readonly">
+    </div>  
+</div>
+<div class="section" id="pregnancy">
+    <h3>Pregnancy</h3>  
+    <div class="form-group">
+        <label for="obs.pregnancy">Pregnancy status:<span class="required">*</span></label>
+        <select class="form-control" name="obs.pregnancy" id="obs.pregnancy" required="required"
+                name="obs.pregnancy">
+            <option value="">...</option>
+            <option value="yes">Pregnant</option>
+            <option value="no">Not Pregnant</option>
+            <option value="ab">Abortion (AB)</option>
+            <option value="mc">Miscarriage (MC)</option>
+            <option value="lb">Live birth</option>
+            <option value="sb">Still birth</option>
+        </select>
+        <input id="obs.pregnancy_status" name="obs.pregnancy_status" data-concept="5272^Pregnancy Status^99DCT">
+        <input id="obs.pregnancy_outcome" name="obs.pregnancy_outcome" data-concept="5272^Pregnancy Status^99DCT">
+    </div>  
+    <div class="form-group" id="anc_no">
+        <label for="obs.anc_no">ANC No:</label>
+        <input class="form-control" id="obs.anc_no" name="obs.anc_no" type="number"
+               data-concept="161655^Antenatal case number^99DCT">
+    </div>
+    <div class="form-group" id="edd">
+        <label for="obs.edd">EDD:</label>
+        <input class="form-control datepicker futureDate" id="obs.edd" name="obs.edd" type="test"
+               data-concept="5596^Expected date of delivery^99DCT" required="required">
+    </div>
+    <div class="form-group" id="pregnancy_end_date">
+        <label for="obs.pregnancy_end_date">Date of pregnancy end:</label>
+        <input class="form-control datepicker" id="obs.pregnancy_end_date" name="obs.pregnancy_end_date"
+        type="number" data-concept="161655^Date of pregnancy outcome^99DCT">
+    </div>
+</div>
+<div class="section">
+    <h3>Family planning</h3> 
+    <div class="form-group">
+        <label for="obs.fp">Family planning status:<span class="required">*</span></label>
+        <select class="form-control" id="obs.fp" required="required"
+                name="obs.fp" data-concept="160653^Family planning status^99DCT">>
+            <option value="">...</option>
+            <option value="965^Currently using birth control^99DCT">Currently using (FP)</option>
+            <option value="1360^Wants family planning^99DCT">Wants (WFP)</option>
+            <option value="160652^Patient not using birth control^99DCT">Not using (NOFP)</option>
+        </select>
+    </div>
+    <div class="form-group" id="fp_methods">
+        <label for="obs.fp_methods">Family planning Methods:</label>
+            <div class="form-group">
+                <label class="font-normal">
+                    <input name="obs.fp_methods" class="obs.fp_methods"
+                    type="checkbox" data-concept="374^Method of birth control^99DCT"
+                    value="190^Condoms^99DCT"> Condoms (C)
+                </label>
+            </div> 
+            <div class="form-group">
+                <label class="font-normal">
+                    <input name="obs.fp_methods" class="obs.fp_methods"
+                    type="checkbox" data-concept="374^Method of birth control^99DCT"
+                    value="160570^Emergency contraceptive pills^99DCT"> Emergency contraceptive pills
+                </label>
+            </div> 
+            <div class="form-group">
+                <label class="font-normal">
+                    <input name="obs.fp_methods" class="obs.fp_methods"
+                    type="checkbox" data-concept="374^Method of birth control^99DCT"
+                    value="780^Oral Contraception^99DCT"> Oral contraceptive pills (OC) 
+                </label>
+            </div> 
+            <div class="form-group">
+                <label class="font-normal">
+                    <input name="obs.fp_methods" class="obs.fp_methods"
+                    type="checkbox" data-concept="374^Method of birth control^99DCT"
+                    value="5279^Injectables (INJ)^99DCT"> Injectables (INJ) 
+                </label>
+            </div> 
+            <div class="form-group">
+                <label class="font-normal">
+                    <input name="obs.fp_methods" class="obs.fp_methods"
+                    type="checkbox" data-concept="374^Method of birth control^99DCT"
+                    value="5279^Implant (IMP)^99DCT"> Implant (IMP)
+                </label>
+            </div> 
+            <div class="form-group">
+                <label class="font-normal">
+                    <input name="obs.fp_methods" class="obs.fp_methods"
+                    type="checkbox" data-concept="374^Method of birth control^99DCT"
+                    value="5275^Intrauterine devices (IUD)^99DCT"> Intrauterine devices (IUD)
+                </label>
+            </div> 
+            <div class="form-group">
+                <label class="font-normal">
+                    <input name="obs.fp_methods" class="obs.fp_methods"
+                    type="checkbox" data-concept="374^Method of birth control^99DCT"
+                    value="136163^Lactational amenorrhea (LAM)^99DCT"> Lactational amenorrhea (LAM)
+                </label>
+            </div> 
+            <div class="form-group">
+                <label class="font-normal">
+                    <input name="obs.fp_methods" class="obs.fp_methods"
+                    type="checkbox" data-concept="374^Method of birth control^99DCT"
+                    value="5278^Diaphragm/cervical cap (D)^99DCT"> Diaphragm/cervical cap (D)
+                </label>
+            </div> 
+            <div class="form-group">
+                <label class="font-normal">
+                    <input name="obs.fp_methods" class="obs.fp_methods"
+                    type="checkbox" data-concept="374^Method of birth control^99DCT"
+                    value="5277^Natural family planning^99DCT"> Fertility awareness/periodic abstinence (FA)
+                </label>
+            </div> 
+            <div class="form-group">
+                <label class="font-normal">
+                    <input name="obs.fp_methods" class="obs.fp_methods"
+                    type="checkbox" data-concept="374^Method of birth control^99DCT"
+                    value="1472^Tubal ligation procedure^99DCT"> Tubal ligation/female sterilization (TL)
+                </label>
+            </div> 
+            <div class="form-group">
+                <label class="font-normal">
+                    <input name="obs.fp_methods" class="obs.fp_methods"
+                    type="checkbox" data-concept="374^Method of birth control^99DCT"
+                    value="1489^Vasectomy^99DCT"> Vasectomy - partner (V)
+                </label>
+            </div> 
+            <div class="form-group">
+                <label class="font-normal">
+                    <input name="obs.fp_methods" class="obs.fp_methods"
+                    type="checkbox" data-concept="374^Method of birth control^99DCT"
+                    value="162195^Spermicidal contraception^99DCT"> Spermicide
+                </label>
+            </div> 
+            <div class="form-group" id="fp_method_undecided">
+                <label class="font-normal">
+                    <input name="obs.fp_methods" class="obs.fp_methods"
+                    type="checkbox" data-concept="374^Method of birth control^99DCT"
+                    value="162195^Undecided^99DCT"> Undecided
+                </label>
+            </div>
+    </div>
+    <div class="form-group" id="no_fp_reason">
+        <label for="obs.no_fp_reason">Reason not on family planning:<span class="required">*</span></label>
+        <select class="form-control" id="obs.no_fp_reason" required="required"
+                name="obs.no_fp_reason" data-concept="160575^Reason not on family planning^99DCT">>
+            <option value="">...</option>
+            <option value="160571^Wants to get pregnant^99DCT">Wants to get pregnant (WP)</option>
+            <option value="160572^Patient thinks she can't get pregnant^99DCT">Thinks can't get pregnant (UP)</option>
+            <option value="160573^Currently not sexually active^99DCT">Not sexually active now (NSex)</option>
+        </select>
+    </div> 
+</div>
+<div class="section">
+    <h3>Tuberculosis Status</h3>
+    <div class="form-group">
+        <label for="obs.tb_status">Status:</label>
+        <select class="form-control" id="obs.tb_status" required="required"
+                name="obs.tb_status" data-concept="1659^Tuberculosis disease status^99DCT">>
+            <option value="">...</option>
+            <option value="1660^No signs or symptoms^99DCT">No signs</option>
+            <option value="142177^TB Suspected^99DCT">TB Suspected</option>
+            <option value="1662^On treatment^99DCT">On treatment</option>
+            <option value="160737^Not done^99DCT">Not done (ND)</option>
+        </select>
+    </div>
+    <div class="form-group" id="tb_treatment_no">
+        <label for="obs.tb_treatment_no">Treatment No.:</label>
+        <input class="form-control" id="obs.tb_treatment_no" name="obs.tb_treatment_no"
+        type="number" data-concept="161654^Tuberculosis treatment number^99DCT">
+    </div>
+</div>
+<div class="sub-section">
+    <h3>Potential Side Effects</h3>
+    <div class="form-group"
+        data-concept="161879^Antiretroviral drug side effects, since last visit, construct^99DCT">
+        <label>Reported complains since last visit:</label>
+        <fieldset name="obs.drug_tolerance">
+            <div class="form-group">
+                <label class="font-normal">
+                    <input type="checkbox" value="151^Abdominal pain^99DCT" class="obs.drug_tolerance"
+                     data-concept="159935^Antiretroviral drug side effects, since last visit^99DCT">
+                    Abdominal pain (AB)
+                </label>
+            </div>
+            <div class="form-group">
+                <label class="font-normal">
+                    <input type="checkbox" value="121629^Anaemia^99DCT" class="obs.drug_tolerance"
+                     data-concept="159935^Antiretroviral drug side effects, since last visit^99DCT">
+                    Anaemia (A)
+                </label>
+            </div>
+            <div class="form-group">
+                <label class="font-normal">
+                    <input type="checkbox" value="6004^paraesthesia pain^99DCT" class="obs.drug_tolerance"
+                     data-concept="159935^Antiretroviral drug side effects, since last visit^99DCT">
+                    Burning, numb, tingling (BN)
+                </label>
+            </div>
+            <div class="form-group">
+                <label class="font-normal">
+                    <input type="checkbox" value="135764^Lipoatrophy pain^99DCT" class="obs.drug_tolerance"
+                     data-concept="159935^Antiretroviral drug side effects, since last visit^99DCT">
+                    CNS Symptoms (dizzy, anxiety, nightmare, depression)
+                </label>
+            </div>
+            <div class="form-group">
+                <label class="font-normal">
+                    <input type="checkbox" value="142412^Diarrhoea^99DCT" class="obs.drug_tolerance"
+                     data-concept="159935^Antiretroviral drug side effects, since last visit^99DCT">
+                    Diarrhoea (D)
+                </label>
+            </div>
+            <div class="form-group">
+                <label class="font-normal">
+                    <input type="checkbox" value="135764^Lipoatrophy pain^99DCT" class="obs.drug_tolerance"
+                     data-concept="159935^Antiretroviral drug side effects, since last visit^99DCT">
+                    Fat changes (FAT)
+                </label>
+            </div>
+            <div class="form-group">
+                <label class="font-normal">
+                    <input type="checkbox" value="140501^Fatigue^99DCT" class="obs.drug_tolerance"
+                     data-concept="159935^Antiretroviral drug side effects, since last visit^99DCT">
+                    Fatigue (F)
+                </label>
+            </div>
+            <div class="form-group">
+                <label class="font-normal">
+                    <input type="checkbox" value="139534^Generalized Headache^99DCT" class="obs.drug_tolerance"
+                     data-concept="159935^Antiretroviral drug side effects, since last visit^99DCT">
+                    Headache (H)
+                </label>
+            </div>
+            <div class="form-group">
+                <label class="font-normal">
+                    <input type="checkbox" value="136443^Jaundice^99DCT" class="obs.drug_tolerance"
+                     data-concept="159935^Antiretroviral drug side effects, since last visit^99DCT">
+                    Jaundice (J)
+                </label>
+            </div>
+            <div class="form-group">
+                <label class="font-normal">
+                    <input type="checkbox" value="5978^Nausea^99DCT" class="obs.drug_tolerance"
+                     data-concept="159935^Antiretroviral drug side effects, since last visit^99DCT">
+                    Nausea (N)
+                </label>
+            </div>
+            <div class="form-group">
+                <label class="font-normal">
+                    <input type="checkbox" value="512^Rash^99DCT" class="obs.drug_tolerance"
+                     data-concept="159935^Antiretroviral drug side effects, since last visit^99DCT">
+                    Rash (R)
+                </label>
+            </div>
+            <div class="form-group">
+                <label class="font-normal">
+                    <input type="checkbox" value="5622^Other^99DCT" class="obs.drug_tolerance"
+                     data-concept="1107^Antiretroviral drug side effects, since last visit^99DCT">
+                    Other
+                </label>
+            </div>
+            <div class="form-group sub-section" id="drug_tolerance_other" >
+                <div class="form-group" id="drug_tolerance_other_value">
+                    <label class="font-normal" for="obs.drug_tolerance_other_value">
+                        Specify Other symptom:<span class="required">*</span>
+                    </label>
+                        <input class="form-control" id="obs.drug_tolerance_other_value" type="text" name="obs.drug_tolerance_other_value"
+                        required = "required" data-concept="160632^Free text general^99DCT">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="font-normal">
+                    <input type="checkbox" value="1107^None^99DCT" class="obs.drug_tolerance"
+                     data-concept="1107^Antiretroviral drug side effects, since last visit^99DCT">
+                    None
+                </label>
+            </div>
+        </fieldset>
+    </div>
+</div>
+<div class="sub-section">
+    <h3>New OIs & Other Problems</h3>
+    <div class="form-group">
+        <label>Does patient report any of the following?</label>
+        <fieldset name="obs.problem_added">
+            <div class="form-group">
+                <label class="font-normal">
+                    <input type="checkbox" value="143264^Cough^99DCT"
+                    class="obs.problem_added" data-concept="6042^Problem Added^99DCT">
+                    Cough
+                </label>
+            </div>
+            <div class="form-group">
+                <label class="font-normal">
+                    <input type="checkbox" value="122496^Dyspnea^99DCT"
+                    class="obs.problem_added" data-concept="6042^Problem Added^99DCT">
+                    Difficult breathing (DB)
+                </label>
+            </div>
+            <div class="form-group">
+                <label class="font-normal">
+                    <input type="checkbox" value="487^Dementia^99DCT"
+                    class="obs.problem_added" data-concept="6042^Problem Added^99DCT">
+                    Dementia/Enceph (DE)
+                </label>
+            </div>
+            <div class="form-group">
+                <label class="font-normal">
+                    <input type="checkbox" value="140238^Fever^99DCT"
+                    class="obs.problem_added" data-concept="6042^Problem Added^99DCT">
+                    Fever
+                </label>
+            </div>
+            <div class="form-group">
+                <label class="font-normal">
+                    <input type="checkbox" value="120939^Genital ulcer disease^99DCT"
+                    class="obs.problem_added" data-concept="145762^Problem Added^99DCT">
+                    Genital ulcer disease (GUD)
+                </label>
+            </div>
+            <div class="form-group">
+                <label class="font-normal">
+                    <input type="checkbox" value="160028^Immune reconstitution inflammatory syndrome^99DCT"
+                    class="obs.problem_added" data-concept="145762^Problem Added^99DCT">
+                    Immune reconstitution inflammatory syndrome (IRIS)
+                </label>
+            </div>
+            <div class="form-group">
+                <label class="font-normal">
+                    <input type="checkbox" value="111721^Mouth Ulceration^99DCT"
+                    class="obs.problem_added" data-concept="6042^Problem Added^99DCT">
+                    Mouth Ulceration
+                </label>
+            </div>
+            <div class="form-group">
+                <label class="font-normal">
+                    <input type="checkbox" value="902^Pelvic inflammatory disease^99DCT"
+                    class="obs.problem_added" data-concept="6042^Problem Added^99DCT">
+                    Pelvic inflammatory disease (PID)
+                </label>
+            </div>
+            <div class="form-group">
+                <label class="font-normal">
+                    <input type="checkbox" value="114100^Pneumonia^99DCT"
+                    class="obs.problem_added" data-concept="6042^Problem Added^99DCT">
+                    Pneumonia (P)
+                </label>
+            </div>
+            <div class="form-group">
+                <label class="font-normal">
+                    <input type="checkbox" value="140707^Poor weight gain^99DCT"
+                    class="obs.problem_added" data-concept="145762^Problem Added^99DCT">
+                    Poor weight gain (PWG)
+                </label>
+            </div>
+            <div class="form-group">
+                <label class="font-normal">
+                    <input type="checkbox" value="162330^Severe uncomplicated malnutrition^99DCT"
+                    class="obs.problem_added" data-concept="145762^Problem Added^99DCT">
+                    Severe uncomplicated malnutrition (SUM)
+                </label>
+            </div>
+            <div class="form-group">
+                <label class="font-normal">
+                    <input type="checkbox" value="162331^Severe complicated malnutrition^99DCT"
+                    class="obs.problem_added" data-concept="145762^Problem Added^99DCT">
+                    Severe complicated malnutrition (SCM)
+                </label>
+            </div>
+            <div class="form-group">
+                <label class="font-normal">
+                    <input type="checkbox" value="5334^Thrush - oral^99DCT"
+                    class="obs.problem_added" data-concept="6042^Problem Added^99DCT">
+                    Thrush - oral
+                </label>
+            </div>
+            <div class="form-group">
+                <label class="font-normal">
+                    <input type="checkbox" value="298^Thrush - vaginal^99DCT"
+                    class="obs.problem_added" data-concept="6042^Problem Added^99DCT">
+                    Thrush - vaginal
+                </label>
+            </div>
+            <div class="form-group">
+                <label class="font-normal">
+                    <input type="checkbox" value="112141^Tuberculosis^99DCT"
+                    class="obs.problem_added" data-concept="145762^Problem Added^99DCT">
+                    Tuberculosis (TB)
+                </label>
+            </div>
+            <div class="form-group">
+                <label class="font-normal">
+                    <input type="checkbox" value="120939^Candidiasis^99DCT"
+                    class="obs.problem_added" data-concept="6042^Problem Added^99DCT">
+                    Ulcers - other
+                </label>
+            </div>
+            <div class="form-group">
+                <label class="font-normal">
+                    <input type="checkbox" value="123529^Urethral discharge^99DCT"
+                    class="obs.problem_added" data-concept="6042^Problem Added^99DCT">
+                    Urethral discharge
+                </label>
+            </div>
+            <div class="form-group">
+                <label class="font-normal">
+                    <input type="checkbox" value="150796^Abnormal Weight Loss^99DCT"
+                    class="obs.problem_added" data-concept="6042^Problem Added^99DCT">
+                    Weight loss (W)
+                </label>
+            </div>
+            <div class="form-group">
+                <label class="font-normal">
+                    <input type="checkbox" value="123358^Herpes Zoster Infection^99DCT"
+                    class="obs.problem_added" data-concept="6042^Problem Added^99DCT">
+                    Zoster (Z)
+                </label>
+            </div>
+            <div class="form-group">
+                <label class="font-normal">
+                    <input type="checkbox" value="5622^Other^99DCT" class="obs.problem_added"
+                     data-concept="6042^Problem Added^99DCT">
+                    Other
+                </label>
+            </div>
+            <div class="form-group sub-section" id="problem_added_other" >
+                <div class="form-group" id="problem_added_other_value">
+                    <label class="font-normal" for="obs.problem_added_other_value">
+                        Specify Other problems:
+                    </label>
+                        <input class="form-control"  type="text"
+                        name="obs.problem_added_other_value"
+                        required = "required" data-concept="1915^FREETEXT GENERAL^99DCT"><br>
+                        <input class="form-control"  type="text"
+                        name="obs.problem_added_other_value"
+                        required = "required" data-concept="1915^FREETEXT GENERAL^99DCT"><br>
+                        <input class="form-control"  type="text"
+                        name="obs.problem_added_other_value"
+                        required = "required" data-concept="1915^FREETEXT GENERAL^99DCT">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="font-normal">
+                    <input type="checkbox" value="1107^None^99DCT" class="obs.problem_added"
+                     data-concept="6042^Problem Added^99DCT">
+                    None
+                </label>
+            </div>
+        </fieldset>
+    </div>
+</div>
+<div class="section">
+    <h3>WHO Stage</h3>
+    <div class="form-group" id="who_stage_peds">
+        <label for="obs.who_stage_peds">Current WHO HIV stage(Pediatric):</label>
+        <select class="form-control" id="obs.who_stage_peds" required="required"
+                name="obs.who_stage_peds" data-concept="5356^Current WHO HIV stage^99DCT">>
+            <option value="">...</option>
+            <option value="1220^Who Stage 1 Pediatric^99DCT">Who Stage 1 Pediatric</option>
+            <option value="1221^Who Stage 2 Pediatric^99DCT">Who Stage 2 Pediatric</option>
+            <option value="1222^Who Stage 3 Pediatric^99DCT">Who Stage 3 Pediatric</option>
+            <option value="1223^Who Stage 4 Pediatric^99DCT">Who Stage 4 Pediatric</option>
+        </select>
+    </div>
+    <div class="form-group" id="who_stage_adult">
+        <label for="obs.who_stage_adult">Current WHO HIV stage(Adult):</label>
+        <select class="form-control" id="obs.who_stage_adult" required="required"
+                name="obs.who_stage_adult" data-concept="5356^Current WHO HIV stage^99DCT">>
+            <option value="">...</option>
+            <option value="1204^Who Stage 1 Adult^99DCT">Who Stage 1 Adult</option>
+            <option value="1205^Who Stage 2 Adult^99DCT">Who Stage 2 Adult</option>
+            <option value="1206^Who Stage 3 Adult^99DCT">Who Stage 3 Adult</option>
+            <option value="1207^Who Stage 4 Adult^99DCT">Who Stage 4 Adult</option>
+        </select>
+    </div>
+</div>
+<div class="section">
+    <h3>Cotrimoxazole</h3>
+    <div class="form-group">
+        <label for="obs.Cotrimoxazole_adherence">Cotrimoxazole Adherence:</label>
+        <select class="form-control" id="obs.Cotrimoxazole_adherence" required="required"
+                name="obs.Cotrimoxazole_adherence" data-concept="161652^Cotrimoxazole adherence^99DCT">>
+            <option value="">...</option>
+            <option value="159405^Good^99DCT">Good (G)</option>
+            <option value="159406^Fair^99DCT">Fair (F)</option>
+            <option value="159407^Poor^99DCT">Poor (P)</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="obs.Cotrimoxazole_dispensed">Cotrimoxazole Dispensed:</label>
+        <select class="form-control" id="obs.Cotrimoxazole_dispensed" required="required"
+                name="obs.Cotrimoxazole_dispensed" data-concept="162229^Cotrimoxazole dispensed^99DCT">>
+            <option value="">...</option>
+            <option value="1065^Yes^99DCT">Yes</option>
+            <option value="1066^No^99DCT">No</option>
+            <option value="1175^Not Applicable^99DCT">Not applicable (N/A)</option>
+        </select>
+    </div>
+</div>
+<div class="section">
+    <h3>INH Dispensed</h3>
+    <div class="form-group">
+        <label for="obs.inh_dispensed">INH Dispensed:</label>
+        <select class="form-control" id="obs.inh_dispensed" required="required"
+                name="obs.inh_dispensed" data-concept="162230^Isoniazid dispensed^99DCT">>
+            <option value="">...</option>
+            <option value="1065^Yes^99DCT">Yes</option>
+            <option value="1066^No^99DCT">No</option>
+            <option value="1175^Not Applicable^99DCT">Not applicable (N/A)</option>
+        </select>
+    </div>
+</div>
+<div class="section">
+    <h3>Other Medications Dispensed</h3>
+    <div class="form-group sub-section repeat" data-concept="1442^Current medication order^99DCT">
+        <label>Other Medications Dispensed</label>
+        <div class="form-group">
+            <label for="obs.other_medication_drug">
+                Drug:
+            </label>
+            <input class="form-control" id="obs.other_medication_drug"
+            placeholder="Start typing Drug name ..." type="text">
+            <input class="form-control" type="hidden" name="obs.other_medication_drug"
+                data-concept="1282^Medication orders^99DCT">
+        </div>
+        <div class="form-group">
+            <label for="obs.other_medication_dose">
+                Dose:
+            </label>
+            <input class="form-control" id="obs.other_medication_dose" type="text" name="obs.other_medication_dose"
+                required ="required" data-concept="1443^Medication dispensed^99DCT" placeholder="Dosage" >
+        </div>
+        <div class="form-group">
+            <label for="obs.other_medication_dose_units">
+                Units:
+            </label>
+            <input class="form-control" id="obs.other_medication_dose_units" type="text" name="obs.other_medication_dose_units"
+            required ="required" data-concept="1444^Medication strength^99DCT" placeholder="Dosage units">
+        </div>
+        <div class="form-group">
+            <label for="obs.other_medication_frequency">Frequency:</label>
+            <select class="form-control" id="obs.other_medication_frequency" required="required"
+                    name="obs.other_medication_frequency" data-concept="160855^Medication frequency^99DCT">>
+                <option value="">...</option>
+                <option value="160862^Once daily^99DCT">Once daily</option>
+                <option value="160863^Once daily at bedtime^99DCT">Once daily at bedtime</option>
+                <option value="160864^Once daily in the evening^99DCT">Once daily in the evening</option>
+                <option value="160865^Once daily in the morning^99DCT">Once daily in the morning</option>
+                <option value="160858^Twice daily^99DCT">Twice daily</option>
+                <option value="160866^Thrice daily^99DCT">Thrice daily</option>
+                <option value="160870^Four times daily^99DCT">Four times daily</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="obs.other_medication_dose">
+                Medication duration:
+            </label>
+            <input class="form-control" id="obs.other_medication_duration" type="text" name="obs.other_medication_duration"
+                required = "required" data-concept="159368^Medication duration^99DCT" placeholder="Medication duration">
+        </div>
+        <div class="form-group">
+            <label for="obs.other_medication_duration_units">Duration Units:</label>
+            <select class="form-control" id="obs.other_medication_duration_units" required="required"
+                    name="obs.other_medication_duration_units" data-concept="1732^Duration units^99DCT">>
+                <option value="">...</option>
+                <option value="1822^Hours^99DCT">Hours</option>
+                <option value="1072^Days^99DCT">Days</option>
+                <option value="1073^Weeks^99DCT">Weeks</option>
+                <option value="1074^Months^99DCT">Months</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+<div class="section">
+    <h3>ARV Drugs</h3>
+    <div class="form-group">
+        <label for="obs.arv_adherence">Adherence:</label>
+        <select class="form-control" id="obs.arv_adherence" required="required"
+                name="obs.arv_adherence" data-concept="161652^Cotrimoxazole adherence^99DCT">>
+            <option value="">...</option>
+            <option value="159405^Good^99DCT">Good (G)</option>
+            <option value="159406^Fair^99DCT">Fair (F)</option>
+            <option value="159407^Poor^99DCT">Poor (P)</option>
+        </select>
+    </div>
+    <div class="form-group sub-section" id="arv_poor_adherence_reason"
+        data-concept="161881^Reason for poor treatment adherence, construct^99DCT">
+        <label>Reason for poor treatment adherence:</label>
+        <fieldset name="obs.arv_poor_adherence_reason">
+            <div class="form-group">
+                <label class="font-normal">
+                    <input type="checkbox" value="102^Toxicity, drug^99DCT"
+                    class="obs.arv_poor_adherence_reason" data-concept="160582^Reason for poor treatment adherence^99DCT">
+                    Toxicity/side effects (1) 
+                </label>
+            </div> 
+            <div class="form-group">
+                <label class="font-normal">
+                    <input type="checkbox" value="160583^Shares medications with others^99DCT"
+                    class="obs.arv_poor_adherence_reason" data-concept="160582^Reason for poor treatment adherence^99DCT">
+                    Shares medications with others (2)
+                </label>
+            </div> 
+            <div class="form-group">
+                <label class="font-normal">
+                    <input type="checkbox" value="160587^Forgot to take medication^99DCT"
+                    class="obs.arv_poor_adherence_reason" data-concept="160582^Reason for poor treatment adherence^99DCT">
+                    Forgot to take medication (3)
+                </label>
+            </div> 
+            <div class="form-group">
+                <label class="font-normal">
+                    <input type="checkbox" value="160586^Felt too ill to take medication^99DCT"
+                    class="obs.arv_poor_adherence_reason" data-concept="160582^Reason for poor treatment adherence^99DCT">
+                    Felt better and stopped taking medication (4)
+                </label>
+            </div> 
+            <div class="form-group">
+                <label class="font-normal">
+                    <input type="checkbox" value="160585^Felt better and stopped taking medication^99DCT"
+                    class="obs.arv_poor_adherence_reason" data-concept="160582^Reason for poor treatment adherence^99DCT">
+                    Felt too ill to take medication (5)
+                </label>
+            </div> 
+            <div class="form-group">
+                <label class="font-normal">
+                    <input type="checkbox" value="160589^Concerned about privacy/stigma^99DCT"
+                    class="obs.arv_poor_adherence_reason" data-concept="160582^Reason for poor treatment adherence^99DCT">
+                    Stigma, disclosure or privacy issues (6)
+                </label>
+            </div>
+            <div class="form-group">
+                <label class="font-normal">
+                    <input type="checkbox" value="1754^Drug stock out at dispensary (7)^99DCT"
+                    class="obs.arv_poor_adherence_reason" data-concept="160582^Reason for poor treatment adherence^99DCT">
+                    Drug stock out at dispensary (7)
+                </label>
+            </div> 
+            <div class="form-group">
+                <label class="font-normal">
+                    <input type="checkbox" value="160584^Patient lost/ran out of pills^99DCT"
+                    class="obs.arv_poor_adherence_reason" data-concept="160582^Reason for poor treatment adherence^99DCT">
+                    Patient lost/ran out of pills (8)
+                </label>
+            </div>
+            <div class="form-group">
+                <label class="font-normal">
+                    <input type="checkbox" value="820^Delivery/travel problems^99DCT"
+                    class="obs.arv_poor_adherence_reason" data-concept="160582^Reason for poor treatment adherence^99DCT">
+                    Delivery/travel problems (9)
+                </label>
+            </div>
+            <div class="form-group">
+                <label class="font-normal">
+                    <input type="checkbox" value="819^Inability to pay^99DCT"
+                    class="obs.arv_poor_adherence_reason" data-concept="160582^Reason for poor treatment adherence^99DCT">
+                    Inability to pay (10)
+                </label>
+            </div> 
+            <div class="form-group">
+                <label class="font-normal">
+                    <input type="checkbox" value="121725^Alcohol abuse^99DCT"
+                    class="obs.arv_poor_adherence_reason" data-concept="160582^Reason for poor treatment adherence^99DCT">
+                    Alcohol abuse (11)
+                </label>
+            </div> 
+            <div class="form-group">
+                <label class="font-normal">
+                    <input type="checkbox" value="119537^Depression^99DCT"
+                    class="obs.arv_poor_adherence_reason" data-concept="160582^Reason for poor treatment adherence^99DCT">
+                    Depression (12)
+                </label>
+            </div>
+            <div class="form-group">
+                <label class="font-normal">
+                    <input type="checkbox" value="160588^Pill burden^99DCT"
+                    class="obs.arv_poor_adherence_reason" data-concept="160582^Reason for poor treatment adherence^99DCT">
+                    Pill burden (13)
+                </label>
+            </div> 
+            <div class="form-group">
+                <label class="font-normal">
+                    <input type="checkbox" value="5622^Other^99DCT" class="obs.arv_poor_adherence_reason"
+                     data-concept="160582^Reason for poor treatment adherence^99DCT">
+                    Other
+                </label>
+            </div>   
+            <div class="form-group sub-section" id="arv_poor_adherence_reason_other" >
+                <div class="form-group" id="arv_poor_adherence_reason_other_value">
+                    <label class="font-normal" for="obs.arv_poor_adherence_reason_other_value">
+                        Specify Other reasons:
+                    </label>
+                    <input class="form-control"  type="text"
+                    name="obs.arv_poor_adherence_reason_other_value"
+                    required = "required" data-concept="160632^Free text general^99DCT">
+                </div>
+            </div>
+        </fieldset>
+    </div>
+    <div class="form-group"
+        data-concept="161888^Duration of antiretroviral therapy detail^99DCT">
+        <div class="form-group">
+            <label for="obs.regimen_duration">
+                Regimen Duration:
+            </label>
+            <input class="form-control" id="obs.regimen_duration" type="number" name="obs.regimen_duration"
+                required ="required" data-concept="159368^Medication duration^99DCT"
+                placeholder="Regimen duration">
+        </div>
+        <div class="form-group">
+            <label for="obs.regimen_duration_units">Regimen Duration Units:</label>
+            <select class="form-control" id="obs.regimen_duration_units" required="required"
+                    name="obs.regimen_duration_units" data-concept="1732^Duration units^99DCT">
+                <option value="">...</option>
+                <option value="162583^Seconds^99DCT">Seconds</option>
+                <option value="1733^Minutes^99DCT">Minutes</option>
+                <option value="1822^Hours^99DCT">Hours</option>
+                <option value="1072^Days^99DCT">Days</option>
+                <option value="1073^Weeks^99DCT">Weeks</option>
+                <option value="1074^Months^99DCT">Months</option>
+                <option value="1734^Months^99DCT">Years</option>
+                <option value="162582^Months^99DCT">Number of occurrences</option>
+            </select>
+        </div>
+    </div>
+</div>
+<div class="section">
+    <h3>Laboratory Investigations Done</h3>
+    <label>CD4 Count:</label>
+    <div class="sub-section">
+        <div class="form-group">
+            <label for="tmp.cd4count_by">Will record CD4 count by ...   </label>
+            <select class="form-control" id="tmp.cd4count_by" name="tmp.cd4count_by">
+                <option value="">...</option>
+                <option value="count">Count</option>
+                <option value="percentage">Percentage</option>
+            </select>
+        </div>
+        <div class="form-group" id="cd4count_by_count">
+                <label for="obs.cd4count_by_count">
+                    CD4 count :
+                </label>
+                <input class="form-control" id="obs.cd4count_by_count" type="text" name="obs.cd4count_by_count"
+                data-concept="5497^CD4 Count^99DCT" placeholder="CD4 count by count">
+        </div>
+        <div class="form-group" id="cd4count_by_percentage">
+                <label for="obs.cd4count_by_percentage">
+                    CD4 count (%) :
+                </label>
+                <input class="form-control" id="obs.cd4count_by_percentage" type="text" name="obs.cd4count_by_percentage"
+                data-concept="5497^CD4%^99DCT" placeholder="CD4 count by percentage">
+        </div>
+    </div>
+    <div class="form-group">
+            <label for="obs.hemoglobin">
+                Hemoglobin :
+            </label>
+            <input class="form-control" id="obs.hemoglobin" type="text" name="obs.hemoglobin"
+            data-concept="21^Hemoglobin^99DCT" placeholder="g/dL">
+    </div>
+    <div class="form-group">
+        <label for="obs.rpr">RPR:</label>
+        <select class="form-control" id="obs.rpr" required="required"
+                name="obs.rpr" data-concept="1619^Rapid Plasma Reagin^99DCT">>
+            <option value="">...</option>
+            <option value="664^Negative^99DCT">Negative</option>
+            <option value="703^Positive^99DCT">Positive</option>
+            <option value="1067^Unknown^99DCT">Unknown</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="obs.tb_sputum">TB Sputum:</label>
+        <select class="form-control" id="obs.tb_sputum" required="required"
+                name="obs.tb_sputum" data-concept="307^Sputum for Acid Fast Bacilli^99DCT">>
+            <option value="">...</option>
+            <option value="159985^Scanty^99DCT">Scanty</option>
+            <option value="1362^+^99DCT">+</option>
+            <option value="1363^++^99DCT">++</option>
+            <option value="1364^+++^99DCT">+++</option>
+            <option value="664^Negative^99DCT">Negative</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="obs.other_tests">Other Tests:</label>
+        <div class="form-group sub-section">
+            <label>Urine Tests:</label>
+            <div class="form-group">
+                <label class="font-normal">
+                    <input type="checkbox" id="obs.other_tests_urinalysis_order" name="obs.other_tests"
+                        class="obs.other_tests"> Urinalysis Order
+                </label>
+            </div>
+            <div class="form-group sub-section" id="other_tests_urinalysis_order">
+                <h4>Urinalysis Order</h4>
+                <label for="obs.urinalysis_order">Test result: <span class="required">*</span></label>
+                <select class="form-control" id="obs.urinalysis_order" required="required"
+                        name="obs.rpr" data-concept="302^Urinalysis Order^99DCT">>
+                    <option value="">...</option>
+                    <option value="1115^Normal^99DCT">Normal</option>
+                    <option value="1116^Abnormal^99DCT">Abnormal</option>
+                    <option value="1067^Unknown^99DCT">Unknown</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label class="font-normal">
+                    <input type="checkbox" id="obs.other_tests_urine_pregnancy_test" name="obs.other_tests"
+                        class="obs.other_tests"> Urine Pregnancy Test
+                </label>
+            </div>
+            <div class="form-group sub-section" id="other_tests_urine_pregnancy_test">
+                <h4>Urine Pregnancy Test</h4>
+                <label for="obs.urine_pregnancy_test">Test result: <span class="required">*</label>
+                <select class="form-control" id="obs.urine_pregnancy_test" required="required"
+                        name="obs.rpr" data-concept="45^Urine Pregnancy Test^99DCT">>
+                    <option value="">...</option>
+                    <option value="664^Negative^99DCT">Negative</option>
+                    <option value="703^Positive^99DCT">Positive</option>
+                    <option value="1138^Indeterminate^99DCT">Indeterminate</option>
+                    <option value="1304^Poor sample quality^99DCT">Poor sample quality</option>
+                </select>
+            </div>
+            <label>Blood Tests:</label>
+            <div class="form-group">
+                <label class="font-normal">
+                    <input type="checkbox" id="obs.other_tests_lymphocyte_count" name="obs.other_tests"
+                        class="obs.other_tests"> Lymphocyte Count
+                </label>
+            </div>
+            <div class="form-group sub-section" id="other_tests_lymphocyte_count">
+                <h4>Lymphocyte Count</h4>
+                <label for="obs.lymphocyte_count">Test result: <span class="required">*</label>
+                <input class="form-control" id="obs.lymphocyte_count" type="number" name="obs.lymphocyte_count"
+                data-concept="1319^Lymphocyte Count^99DCT" placeholder="cells/uL" required="required">
+            </div>
+            <div class="form-group">
+                <label class="font-normal">
+                    <input type="checkbox" id="obs.other_tests_hiv_viral_load" name="obs.other_tests"
+                        class="obs.other_tests"> HIV Viral Load
+                </label>
+            </div>
+            <div class="form-group sub-section" id="other_tests_hiv_viral_load">
+                <h4>HIV Viral Load</h4>
+                <label for="obs.hiv_viral_load">Test result: <span class="required">*</label>
+                <input class="form-control" id="obs.hiv_viral_load" type="number" name="obs.hiv_viral_load"
+                data-concept="856^HIV Viral Load^99DCT" placeholder="copies/ml" required="required">
+            </div>
+            <div class="form-group">
+                <label class="font-normal">
+                    <input type="checkbox" id="obs.other_tests_erythrocyte_sedimentation_rate" name="obs.other_tests"
+                        class="obs.other_tests"> Erythrocyte Sedimentation Rate
+                </label>
+            </div>
+            <div class="form-group sub-section" id="other_tests_erythrocyte_sedimentation_rate">
+                <h4>Erythrocyte Sedimentation Rate</h4>
+                <label for="obs.erythrocyte_sedimentation_rate">Test result: <span class="required">*</label>
+                <input class="form-control" id="obs.erythrocyte_sedimentation_rate" type="number"
+                name="obs.erythrocyte_sedimentation_rate" required="required"
+                data-concept="855^Erythrocyte Sedimentation Rate^99DCT" placeholder="mm/hr">
+            </div>
+        </div>
+    </div>
+</div>
+<div class="section">
+    <h3>Referral ordered & Hospitalization</h3>
+    <div class="form-group"
+        data-concept="161360^Referrals ordered detail^99DCT">
+        <label>Which referrals were ordered?</label>
+        <fieldset name="obs.referrals_ordered">
+            <div class="form-group">
+                <label class="font-normal">
+                    <input type="checkbox" value="5488^Adherence Counseling^99DCT" class="obs.referrals_ordered"
+                     data-concept="1272^Referrals Ordered^99DCT">
+                    Adherence Counseling
+                </label>
+            </div>
+            <div class="form-group">
+                <label class="font-normal">
+                    <input type="checkbox" value="1288^Alcohol Counselling^99DCT" class="obs.referrals_ordered"
+                     data-concept="1272^Referrals Ordered^99DCT">
+                    Alcohol Counselling
+                </label>
+            </div>
+            <div class="form-group">
+                <label class="font-normal">
+                    <input type="checkbox" value="5576^ARV for mother^99DCT" class="obs.referrals_ordered"
+                     data-concept="1272^Referrals Ordered^99DCT">
+                    ARV for mother
+                </label>
+            </div>
+            <div class="form-group">
+                <label class="font-normal">
+                    <input type="checkbox" value="1610^ARV Therapy^99DCT" class="obs.referrals_ordered"
+                     data-concept="1272^Referrals Ordered^99DCT">
+                    ARV Therapy
+                </label>
+            </div>
+            <div class="form-group">
+                <label class="font-normal">
+                    <input type="checkbox" value="1374^Dental Care^99DCT"
+                    class="obs.referrals_ordered"
+                    data-concept="1272^Referrals Ordered^99DCT">
+                    Dental Care
+                </label>
+            </div>
+            <div class="form-group">
+                <label class="font-normal">
+                    <input type="checkbox" value="1459^Diagnostic Testing and Counseling for HIV^99DCT"
+                    class="obs.referrals_ordered"
+                    data-concept="1272^Referrals Ordered^99DCT">
+                    Diagnostic Testing and Counseling for HIV
+                </label>
+            </div>
+            <div class="form-group">
+                <label class="font-normal">
+                    <input type="checkbox" value="1167^Disclosure Counseling^99DCT"
+                    class="obs.referrals_ordered"
+                    data-concept="1272^Referrals Ordered^99DCT">
+                    Disclosure Counseling
+                </label>
+            </div>
+            <div class="form-group">
+                <label class="font-normal">
+                    <input type="checkbox" value="1609^Imaging Study^99DCT"
+                    class="obs.referrals_ordered"
+                    data-concept="1272^Referrals Ordered^99DCT">
+                    Imaging Study
+                </label>
+            </div>
+            <div class="form-group">
+                <label class="font-normal">
+                    <input type="checkbox" value="5485^Inpatient Care or Hospitalization^99DCT"
+                    class="obs.referrals_ordered"
+                    data-concept="1272^Referrals Ordered^99DCT">
+                    Inpatient Care or Hospitalization
+                </label>
+            </div>
+            <div class="form-group">
+                <label class="font-normal">
+                    <input type="checkbox" value="5483^Family Planning services^99DCT"
+                    class="obs.referrals_ordered"
+                    data-concept="1272^Referrals Ordered^99DCT">
+                    Family Planning services
+                </label>
+            </div>
+            <div class="form-group">
+                <label class="font-normal">
+                    <input type="checkbox" value="5484^Nutritional Support^99DCT"
+                    class="obs.referrals_ordered"
+                    data-concept="1272^Referrals Ordered^99DCT">
+                    Nutritional Support
+                </label>
+            </div>
+            <div class="form-group">
+                <label class="font-normal">
+                    <input type="checkbox" value="5489^Mental Health Services^99DCT"
+                    class="obs.referrals_ordered"
+                    data-concept="1272^Referrals Ordered^99DCT">
+                    Mental Health Services
+                </label>
+            </div>
+            <div class="form-group">
+                <label class="font-normal">
+                    <input type="checkbox" value="1373^Ophthalmology^99DCT"
+                    class="obs.referrals_ordered"
+                    data-concept="1272^Referrals Ordered^99DCT">
+                    Ophthalmology
+                </label>
+            </div>
+            <div class="form-group">
+                <label class="font-normal">
+                    <input type="checkbox" value="1611^Opportunistic infection treatment^99DCT"
+                    class="obs.referrals_ordered"
+                    data-concept="1272^Referrals Ordered^99DCT">
+                    Opportunistic infection treatment
+                </label>
+            </div>
+            <div class="form-group">
+                <label class="font-normal">
+                    <input type="checkbox" value="1636^Pregnancy termination^99DCT"
+                    class="obs.referrals_ordered"
+                    data-concept="1272^Referrals Ordered^99DCT">
+                    Pregnancy termination
+                </label>
+            </div>
+            <div class="form-group">
+                <label class="font-normal">
+                    <input type="checkbox" value="1371^Prenatal Care^99DCT"
+                    class="obs.referrals_ordered"
+                    data-concept="1272^Referrals Ordered^99DCT">
+                    Prenatal Care
+                </label>
+            </div>
+            <div class="form-group">
+                <label class="font-normal">
+                    <input type="checkbox" value="160479^Private health care clinic/facility^99DCT"
+                    class="obs.referrals_ordered"
+                    data-concept="1272^Referrals Ordered^99DCT">
+                    Private health care clinic/facility
+                </label>
+            </div>
+            <div class="form-group">
+                <label class="font-normal">
+                    <input type="checkbox" value="161359^Private home-based care^99DCT"
+                    class="obs.referrals_ordered"
+                    data-concept="1272^Referrals Ordered^99DCT">
+                    Private home-based care
+                </label>
+            </div>
+            <div class="form-group">
+                <label class="font-normal">
+                    <input type="checkbox" value="1372^Postnatal Care^99DCT"
+                    class="obs.referrals_ordered"
+                    data-concept="1272^Referrals Ordered^99DCT">
+                    Postnatal Care
+                </label>
+            </div>
+            <div class="form-group">
+                <label class="font-normal">
+                    <input type="checkbox" value="5490^Psychosocial Counseling^99DCT"
+                    class="obs.referrals_ordered"
+                    data-concept="1272^Referrals Ordered^99DCT">
+                    Psychosocial Counseling
+                </label>
+            </div>
+            <div class="form-group">
+                <label class="font-normal">
+                    <input type="checkbox" value="1455^Tobacco Use Counseling^99DCT"
+                    class="obs.referrals_ordered"
+                    data-concept="1272^Referrals Ordered^99DCT">
+                    Tobacco Use Counseling
+                </label>
+            </div>
+            <div class="form-group">
+                <label class="font-normal">
+                    <input type="checkbox" value="160546^Sexually transmitted infection program/clinic^99DCT"
+                    class="obs.referrals_ordered"
+                    data-concept="1272^Referrals Ordered^99DCT">
+                    Sexually transmitted infection program/clinic
+                </label>
+            </div>
+            <div class="form-group">
+                <label class="font-normal">
+                    <input type="checkbox" value="5487^Tuberculosis Treatment or DOT Program^99DCT"
+                    class="obs.referrals_ordered"
+                    data-concept="1272^Referrals Ordered^99DCT">
+                    Tuberculosis Treatment or DOT Program
+                </label>
+            </div>
+            <div class="form-group">
+                <label class="font-normal">
+                    <input type="checkbox" value="1370^VCT HIV^99DCT"
+                    class="obs.referrals_ordered"
+                    data-concept="1272^Referrals Ordered^99DCT">
+                    VCT HIV
+                </label>
+            </div>
+            <div class="form-group">
+                <label class="font-normal">
+                    <input type="checkbox" value="5622^Other^99DCT" class="obs.referrals_ordered"
+                     data-concept="1272^Referrals Ordered^99DCT">
+                    Other
+                </label>
+            </div>
+            <div class="form-group sub-section" id="referrals_ordered_other" >
+                <div class="form-group" id="referrals_ordered_other_value">
+                    <label class="font-normal" for="obs.referrals_ordered_other_value">
+                        Specify Other referrals ordered:<span class="required">*</span>
+                    </label>
+                        <input class="form-control" id="obs.referrals_ordered_other_value" type="text"
+                        name="obs.referrals_ordered_other_value"
+                        required = "required" data-concept="160632^Free text general^99DCT">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="font-normal">
+                    <input type="checkbox" value="1107^None^99DCT" class="obs.referrals_ordered"
+                     data-concept="1272^Referrals Ordered^99DCT">
+                    None
+                </label>
+            </div>
+        </fieldset>
+    </div>
+    <div class="form-group">
+            <label for="obs.days_hospitalized">
+                Days hospitalized :
+            </label>
+            <input class="form-control" id="obs.days_hospitalized" type="number" name="obs.days_hospitalized"
+            data-concept="1647^Days hospitalized^99DCT" placeholder="Length of stay in hospital">
+    </div>
+</div>
+<div class="section">
+    <h3>At Risk Population</h3>
+    <div class="form-group">
+        <label>To which risk population does the patient belong?</label>
+        <fieldset name="obs.at_risk_population">
+            <div class="form-group">
+                <label class="font-normal">
+                    <input type="checkbox" value="6096^Discordant Couple^99DCT"
+                    class="obs.at_risk_population"
+                    data-concept="160581^HIV risk factor^99DCT">
+                    Discordant Couple
+                </label>
+            </div>
+            <div class="form-group" id="male_has_sex_with_men">
+                <label class="font-normal">
+                    <input type="checkbox" value="160578^Male who has sex with men^99DCT"
+                    class="obs.at_risk_population"
+                    data-concept="160581^HIV risk factor^99DCT">
+                    Male who has sex with men
+                </label>
+            </div>
+            <div class="form-group">
+                <label class="font-normal">
+                    <input type="checkbox" value="105^Injectable drug User^99DCT"
+                    class="obs.at_risk_population"
+                    data-concept="160581^HIV risk factor^99DCT">
+                    Injectable drug User (IDU)
+                </label>
+            </div>
+            <div class="form-group">
+                <label class="font-normal">
+                    <input type="checkbox" value="160579^Sex worker^99DCT"
+                    class="obs.at_risk_population"
+                    data-concept="160581^HIV risk factor^99DCT">
+                    Sex worker (SW)
+                </label>
+            </div>
+            <div class="form-group">
+                <label class="font-normal">
+                    <input type="checkbox" value="160580^Client of sex worker^99DCT"
+                    class="obs.at_risk_population"
+                    data-concept="160581^HIV risk factor^99DCT">
+                    Client of sex worker (cSW)
+                </label>
+            </div>
+            <div class="form-group">
+                <label class="font-normal">
+                    <input type="checkbox" value="162198^Long distance truck driver^99DCT"
+                    class="obs.at_risk_population"
+                    data-concept="160581^HIV risk factor^99DCT">
+                    Long distance truck driver
+                </label>
+            </div>
+            <div class="form-group">
+                <label class="font-normal">
+                    <input type="checkbox" value="1175^Not Applicable^99DCT"
+                    class="obs.at_risk_population"
+                    data-concept="160581^HIV risk factor^99DCT">
+                    Not Applicable
+                </label>
+            </div>
+        </fieldset>
+    </div>
+</div>
+<div class="section">
+    <h3>PwP Services</h3>
+    <div class="form-group">
+        <label for="obs.pwp_services_disclosure">HIV status disclosed to partner:</label>
+        <select class="form-control" id="obs.pwp_services_disclosure" required="required"
+                name="obs.pwp_services_disclosure" data-concept="159423^HIV status disclosed to partner^99DCT">>
+            <option value="">...</option>
+            <option value="1065^Yes^99DCT">Yes</option>
+            <option value="1066^No^99DCT">No</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="obs.pwp_services_hiv_tested">Partner HIV tested:</label>
+        <select class="form-control" id="obs.pwp_services_hiv_tested" required="required"
+                name="obs.pwp_services_hiv_tested" data-concept="161557^Partner HIV tested^99DCT">>
+            <option value="">...</option>
+            <option value="1065^Yes^99DCT">Yes</option>
+            <option value="1066^No^99DCT">No</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="obs.pwp_services_condoms_given">Condoms given during the visit:</label>
+        <select class="form-control" id="obs.pwp_services_condoms_given" required="required"
+                name="obs.pwp_services_condoms_given" data-concept="159777^Condoms given during the visit^99DCT">>
+            <option value="">...</option>
+            <option value="1065^Yes^99DCT">Yes</option>
+            <option value="1066^No^99DCT">No</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="obs.pwp_services_std_tested">Patient tested for sexually transmitted illness in current visit:</label>
+        <select class="form-control" id="obs.pwp_services_std_tested" required="required"
+                name="obs.pwp_services_std_tested" data-concept="161558^Patient tested for sexually transmitted illness in current visit^99DCT">>
+            <option value="">...</option>
+            <option value="1065^Yes^99DCT">Yes</option>
+            <option value="1066^No^99DCT">No</option>
+        </select>
+    </div>
+</div>
+<div class="section">
+    <h3>Next Appointment</h3>
+    <div class="form-group">
+        <label for="obs.next_appointment_date">Date of next appointment :</label>
+        <input class="form-control datepicker checkFutureDate" data-concept="5096^Return Visit Date^99DCT"
+               id="obs.next_appointment_date" name="obs.next_appointment_date" type="text"
+               readonly="readonly">
+    </div>
+</div>
+</form>
+</body>
+<script type="text/javascript">
+
+$(document).ready(function () {
+
+    var dateFormat = "dd-mm-yy";
+    var currentDate = $.datepicker.formatDate(dateFormat, new Date());
+    var encounterDatetime = $('#encounter\\.encounter_datetime');
+    if ($(encounterDatetime).val() == "") {
+        $(encounterDatetime).val(currentDate);
+    }
+
+    $('#save_draft').click(function () {
+        $(this).prop('disabled', true);
+        document.saveDraft(this);
+        $(this).prop('disabled', false);
+    });
+
+    $('#submit_form').click(function () {
+        $(this).prop('disabled', true);
+        document.submit();
+        $(this).prop('disabled', false);
+    });
+
+    $('#hiv_family_history_form').validate({
+
+        submitHandler: function (form) {
+            $('#result').html(JSON.stringify($('form').serializeEncounterForm(), undefined, 2));
+        },
+        rules: {
+            'obs.age': {
+                range: [0, 120]
+            },
+            weight_kg: {
+                number: true,
+                range: [0, 250]
+            },
+            height_cm: {
+                number: true,
+                range: [10, 228]
+            },
+            'obs.erythrocyte_sedimentation_rate': {
+                number: true,
+                range: [0, 30]
+            }
+        }
+    });
+    var $weight = $('#weight_kg');
+    var $height = $('#height_cm');
+    var $bodyMassIndex = $('.bodyMassIndex');
+    var computeBMI = function () {
+        var weight = $weight.val();
+        var height = $height.val() / 100;
+        var bmi = weight / (height * height);
+        $bodyMassIndex.find('input').val((bmi).toFixed(1));
+    };
+    $weight.change(computeBMI);
+    $weight.trigger('change');
+
+    $height.change(computeBMI);
+    $height.trigger('change');
+
+    $('#obs\\.visit_type').change(function(){
+        if($(this).val() == '5622^OTHER NON-CODED^99DCT'){
+            $('#treatment_supporter_name').show();
+        } else {
+            $('#treatment_supporter_name').hide();
+        }
+    });
+    $('#obs\\.visit_type').trigger('change');
+
+    $('#patient\\.sex').change(function(){
+        if($('#patient\\.sex').val() == 'F'){
+            $('#pregnancy').show();
+            $('#male_has_sex_with_men').hide();
+        }else{
+            $('#pregnancy').hide();
+            $('#male_has_sex_with_men').show();
+        }
+    });
+    $('#patient\\.sex').trigger('change');   
+
+    $('#obs\\.fp').change(function(){
+        var selected_value = $(this).val();
+        if(selected_value == "160652^Patient not using birth control^99DCT"){
+            $('#fp_methods').hide();
+            $('#no_fp_reason').show();
+        } else if(selected_value == "965^Currently using birth control^99DCT"){
+            $('#no_fp_reason').hide();
+            $('#fp_method_undecided').hide();
+            $('#fp_methods').show();
+        } else if(selected_value == "1360^Wants family planning^99DCT"){
+            $('#no_fp_reason').hide();
+            $('#fp_method_undecided').show();
+            $('#fp_methods').show();
+        } else{
+            $('#fp_methods').hide();
+            $('#no_fp_reason').hide();
+        }
+    });
+    $('#obs\\.fp').trigger('change');
+
+    $(".obs\\.fp_methods").change(function(){
+        if($(this).val() == '162195^Undecided^99DCT'){
+            if($(this).is(':checked')){
+                $('.obs\\.fp_methods').not('input[value="162195^Undecided^99DCT"]').attr('disabled',true);
+            } else {
+                $('.obs\\.fp_methods').not('input[value="162195^Undecided^99DCT"]').attr('disabled',false);
+            }
+        }else{
+            if($('.obs\\.fp_methods:checked').length > 0){
+                $('.obs\\.fp_methods[value="162195^Undecided^99DCT"]').attr('disabled',true);
+            }else{
+                $('.obs\\.fp_methods[value="162195^Undecided^99DCT"]').attr('disabled',false);
+            }
+        }
+
+    });
+    $(".obs\\.fp_methods").trigger('change');
+
+    $('#obs\\.tb_status').change(function(){
+        if($(this).val() == "1662^On treatment^99DCT"){
+            $('#tb_treatment_no').show();
+        } else {
+            $('#tb_treatment_no').hide();
+        }
+    });
+    $('#obs\\.tb_status').trigger('change');
+
+    $('#obs\\.pregnancy').change(function(){
+        var selected_value = $(this).val();
+        if(selected_value == 'yes'){
+            $('#obs\\.pregnancy_status').val('1065^Yes^99DCT');
+            $('#obs\\.pregnancy_outcome').val('');
+            $('#edd').show();
+            $('#pregnancy_end_date').hide();
+        }else if(selected_value == 'no'){
+            $('#obs\\.pregnancy_status').val('1066^No^99DCT');
+            $('#obs\\.pregnancy_outcome').val('');
+            $('#edd').hide();
+            $('#pregnancy_end_date').show();
+        }else if(selected_value == 'mc'){
+            $('#obs\\.pregnancy_outcome').val('126127^Spontaneous abortion^99DCT');
+            $('#obs\\.pregnancy_status').val('1066^No^99DCT');
+            $('#edd').hide();
+            $('#pregnancy_end_date').show();
+        }else if(selected_value == 'ab'){
+            $('#obs\\.pregnancy_outcome').val('159896^Therapeutic abortion procedure^99DCT');
+            $('#obs\\.pregnancy_status').val('1066^No^99DCT');
+            $('#edd').hide();
+            $('#pregnancy_end_date').show();
+        }else if(selected_value == 'lb'){
+            $('#obs\\.pregnancy_outcome').val('151849^baby born alive^99DCT');
+            $('#obs\\.pregnancy_status').val('1066^No^99DCT');
+            $('#edd').hide();
+            $('#pregnancy_end_date').show();
+        }else if(selected_value == 'sb'){
+            $('#obs\\.pregnancy_outcome').val('125872^Stillbirth^99DCT');
+            $('#obs\\.pregnancy_status').val('1066^No^99DCT');
+            $('#edd').hide();
+            $('#pregnancy_end_date').show();
+        }else {
+            $('#obs\\.pregnancy_outcome').val('');
+            $('#obs\\.pregnancy_status').val('');
+            $('#edd').hide();
+            $('#pregnancy_end_date').hide();
+        }
+    });
+    $('#obs\\.pregnancy').trigger('change');
+
+    $(".obs\\.drug_tolerance").change(function(){
+        if($(this).val() == '5622^Other^99DCT'){
+            if($(this).is(':checked')){
+                $('#drug_tolerance_other').show();
+            } else {
+                $('#drug_tolerance_other').hide();
+            }
+        }
+        if($(this).val() == '1107^None^99DCT'){
+            if($(this).is(':checked')){
+                $('.obs\\.drug_tolerance').not('input[value="1107^None^99DCT"]').attr('disabled',true);
+            } else {
+                $('.obs\\.drug_tolerance').not('input[value="1107^None^99DCT"]').attr('disabled',false);
+            }
+        }else{
+            if($('.obs\\.drug_tolerance:checked').length > 0){
+                $('.obs\\.drug_tolerance[value="1107^None^99DCT"]').attr('disabled',true);
+            }else{
+                $('.obs\\.drug_tolerance[value="1107^None^99DCT"]').attr('disabled',false);
+            }
+        }
+
+    });
+    $(".obs\\.drug_tolerance").trigger('change');
+
+    $(".obs\\.problem_added").change(function(){
+        if($(this).val() == '5622^Other^99DCT'){
+            if($(this).is(':checked')){
+                $('#problem_added_other').show();
+            } else {
+                $('#problem_added_other').hide();
+            }
+        }
+        if($(this).val() == '1107^None^99DCT'){
+            if($(this).is(':checked')){
+                $('.obs\\.problem_added').not('input[value="1107^None^99DCT"]').attr('disabled',true);
+            } else {
+                $('.obs\\.problem_added').not('input[value="1107^None^99DCT"]').attr('disabled',false);
+            }
+        }else{
+            if($('.obs\\.problem_added:checked').length > 0){
+                $('.obs\\.problem_added[value="1107^None^99DCT"]').attr('disabled',true);
+            }else{
+                $('.obs\\.problem_added[value="1107^None^99DCT"]').attr('disabled',false);
+            }
+        }
+
+    });
+    $(".obs\\.problem_added").trigger('change');
+
+    $(".obs\\.referrals_ordered").change(function(){
+        if($(this).val() == '5622^Other^99DCT'){
+            if($(this).is(':checked')){
+                $('#referrals_ordered_other').show();
+            } else {
+                $('#referrals_ordered_other').hide();
+            }
+        }
+        if($(this).val() == '1107^None^99DCT'){
+            if($(this).is(':checked')){
+                $('.obs\\.referrals_ordered').not('input[value="1107^None^99DCT"]').attr('disabled',true);
+            } else {
+                $('.obs\\.referrals_ordered').not('input[value="1107^None^99DCT"]').attr('disabled',false);
+            }
+        }else{
+            if($('.obs\\.referrals_ordered:checked').length > 0){
+                $('.obs\\.referrals_ordered[value="1107^None^99DCT"]').attr('disabled',true);
+            }else{
+                $('.obs\\.referrals_ordered[value="1107^None^99DCT"]').attr('disabled',false);
+            }
+        }
+
+    });
+    $(".obs\\.referrals_ordered").trigger('change');
+
+    $(".obs\\.at_risk_population").change(function(){
+        if($(this).val() == '1175^Not Applicable^99DCT'){
+            if($(this).is(':checked')){
+                $('.obs\\.at_risk_population').not('input[value="1175^Not Applicable^99DCT"]').attr('disabled',true);
+            } else {
+                $('.obs\\.at_risk_population').not('input[value="1175^Not Applicable^99DCT"]').attr('disabled',false);
+            }
+        }else{
+            if($('.obs\\.at_risk_population:checked').length > 0){
+                $('.obs\\.at_risk_population[value="1175^Not Applicable^99DCT"]').attr('disabled',true);
+            }else{
+                $('.obs\\.at_risk_population[value="1175^Not Applicable^99DCT"]').attr('disabled',false);
+            }
+        }
+
+    });
+    $(".obs\\.at_risk_population").trigger('change');
+
+    $('#obs\\.arv_adherence').change(function(){
+        if($(this).val() == "159407^Poor^99DCT"){
+            $('#arv_poor_adherence_reason').show();
+        } else {
+            $('#arv_poor_adherence_reason').hide();
+        }
+    });
+    $('#obs\\.arv_adherence').trigger('change');
+
+    $(".obs\\.arv_poor_adherence_reason").change(function(){
+        if($(this).val() == '5622^Other^99DCT'){
+            if($(this).is(':checked')){
+                $('#arv_poor_adherence_reason_other').show();
+            } else {
+                $('#arv_poor_adherence_reason_other').hide();
+            }
+        }
+
+    });
+    $(".obs\\.arv_poor_adherence_reason").trigger('change');
+
+    var age = $.fn.getAgeInYears($('#patient\\.birth_date').val());
+    if(isNaN(age)){
+        $('#who_stage_peds').hide();
+        $('#who_stage_adult').hide();
+    } else if(age < 15) {
+        $('#who_stage_peds').show();
+        $('#who_stage_adult').hide();
+    } else {
+        $('#who_stage_peds').hide();
+        $('#who_stage_adult').show();
+    }
+
+    $('#tmp\\.cd4count_by').change(function(){
+        var selected_value = $(this).val();
+        if(selected_value == 'count'){
+            $('#cd4count_by_count').show();
+            $('#cd4count_by_percentage').hide();
+        }else if(selected_value == 'percentage'){
+            $('#cd4count_by_count').hide();
+            $('#cd4count_by_percentage').show();
+        }else{
+            $('#cd4count_by_count').hide();
+            $('#cd4count_by_percentage').hide();
+        }
+    });
+    $('#tmp\\.cd4count_by').trigger('change');
+
+    $('#obs\\.age_units').change(function(){
+        if($(this).val() == "1734^Years^99DCT"){
+            $('label[for="obs.age_in_years"]').show();
+            $('label[for="obs.age_in_months"]').hide();
+            $('#age').show();
+        } else if($(this).val() == "1074^Months^99DCT"){
+            $('label[for="obs.age_in_months"]').show();
+            $('label[for="obs.age_in_years"]').hide();
+            $('#age').show();
+        } else {
+            $('label[for="obs.age_in_years"]').hide();
+            $('label[for="obs.age_in_months"]').hide();
+            $('#age').hide();
+        }
+    });
+    $('#obs\\.age_units').trigger('change');
+
+    var selectOtherTests = function(){
+        var $other_tests = $('.obs\\.other_tests')
+        $.each($other_tests, function(k,v){
+            var corresponding_test_element_id = $(v).attr('id').replace('obs.',"");
+            $(v).change(function(){
+                if($(v).is(':checked')){
+                    $("#"+corresponding_test_element_id).show();
+                } else {
+                    $("#"+corresponding_test_element_id).hide();
+                }
+            });
+            $(v).trigger('change');
+        });
+    }
+    selectOtherTests();
+
+    var drugs = [
+        {'val':'79641^Metaraminol^99DCT',    'label':'Metaraminol'},
+        {'val':'162639^Corticotropin^99DCT',    'label':'Corticotropin'},
+        {'val':'77136^Gramicidin^99DCT',    'label':'Gramicidin'},
+        {'val':'73941^Brincidofovir^99DCT',    'label':'Brincidofovir'},
+        {'val':'86681^Zinc Hydroxide^99DCT',    'label':'Zinc Hydroxide'},
+        {'val':'78368^Juniper Extract^99DCT',    'label':'Juniper Extract'},
+        {'val':'73087^Keflex^99DCT',    'label':'Keflex'},
+        {'val':'73087^Cephalexin^99DCT',    'label':'Cephalexin'},
+        {'val':'83034^Quinupramine^99DCT',    'label':'Quinupramine'},
+        {'val':'84518^Sultopride^99DCT',    'label':'Sultopride'},
+        {'val':'86415^Warfarin^99DCT',    'label':'Warfarin'},
+    ];    
+    document.setupAutoComplete('obs\\.other_medication_drug',drugs);
+	document.setupAutoCompleteDataForProvider('encounter\\.provider_id_select');
+
+    document.setupValidationForProvider("$('#encounter\\.provider_id_select').val()","encounter\\.provider_id");
+
+    document.setupValidationForLocation("$('#encounter\\.location_id').val()","encounter\\.location_id");
+
+});
+</script>
+
+</html>
