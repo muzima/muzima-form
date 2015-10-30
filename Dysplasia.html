@@ -15,7 +15,8 @@
 </head>
 
 <body class="col-md-10 col-md-offset-1">
-<div id="pre_populate_data"></div>
+<div id="pre_populate_data">
+</div>
 <form class="relevant-female" id="dysplasia_form" name="dysplasia_form">
 <h2 class="text-center">Dysplasia Form v 0.01</h2>
 
@@ -47,12 +48,12 @@
         <select class="form-control" id="patient.sex" name="patient.sex" disabled="disabled">
             <option value="">...</option>
             <option value="M">Male</option>
-            <option value="F">Female</option>
+            <option value="F" selected>Female</option>
         </select>
     </div>
     <div class="form-group">
-        <label for="patient.birthdate">Date Of Birth:</label>
-        <input class="form-control" id="patient.birthdate" name="patient.birthdate" type="text"
+        <label for="patient.birth_date">Date Of Birth:</label>
+        <input class="form-control" id="patient.birth_date" name="patient.birth_date" type="text"
                readonly="readonly">
     </div>
 </div>
@@ -85,7 +86,7 @@
     <div class="form-group">
         <label for="encounter.encounter_datetime">Encounter Date:<span class="required">*</span>
         </label>
-        <input class="form-control datepicker nonFutureDate past-date" id="encounter.encounter_datetime"
+        <input class="form-control datepicker nonFutureDate" id="encounter.encounter_datetime"
                name="encounter.encounter_datetime" type="text" readonly="readonly"
                required="required">
     </div>
@@ -304,8 +305,8 @@
 
     <div class="form-group relevant_hiv_status">
         <label for="date_of_last_cd4_by_facs">Date of latest CD4 count</label>
-        <input class="form-control datepicker nonFutureDate" id="date_of_last_cd4_by_facs"
-               name="with-tmp.date_last_cd4_by_facs" type="text" >
+        <input class="form-control datepicker nonFutureDate past-date" id="date_of_last_cd4_by_facs"
+               name="with-tmp.date_last_cd4_by_facs" type="text" readonly>
     </div>
 
     <div class="form-group">
@@ -337,8 +338,8 @@
         <label for="recent_via_result_date">
             Date of most recent VIA result
         </label>
-        <input class="form-control datepicker nonFutureDate" id="recent_via_result_date"
-               name="with-tmp.recent_via_result_date" type="text">
+        <input class="form-control datepicker nonFutureDate past-date" id="recent_via_result_date"
+               name="with-tmp.recent_via_result_date" type="text" readonly>
     </div>
     <div class = "section">
     <div class="form-group">
@@ -412,8 +413,8 @@
     </div>
     <div class="form-group">
         <label for="date_most_recent_papanicolaou_smear_performed">Date of most recent PAP result</label>
-        <input class="form-control datepicker nonFutureDate" id="date_most_recent_papanicolaou_smear_performed"
-               name="date_most_recent_papanicolaou_smear_performed" type="text"
+        <input class="form-control datepicker nonFutureDate past-date" id="date_most_recent_papanicolaou_smear_performed"
+               name="date_most_recent_papanicolaou_smear_performed" type="text" readonly
                data-concept="6727^DATE MOST RECENT PAPANICOLAOU SMEAR PERFORMED^99DCT">
     </div>
     </div>
@@ -482,8 +483,8 @@
 
     <div class="form-group">
         <label for="date_of_colposcopy_result">Date of most recent colposcopy result</label>
-        <input class="form-control datepicker nonFutureDate" id="date_of_colposcopy_result"
-               name="with-tmp.date_of_colposcopy_result" type="text" required="required">
+        <input class="form-control datepicker nonFutureDate past-date" id="date_of_colposcopy_result"
+               name="with-tmp.date_of_colposcopy_result" type="text" readonly>
     </div>
     </div>
     <div class="form-group">
@@ -494,8 +495,8 @@
 
     <div class="form-group">
         <label for="date_of_most_recent_biopsy_result">Date of most recent biopsy result</label>
-        <input class="form-control datepicker nonFutureDate" id="date_of_most_recent_biopsy_result"
-               name="with-tmp.date_of_most_recent_biopsy_result" type="text">
+        <input class="form-control datepicker nonFutureDate past-date" id="date_of_most_recent_biopsy_result"
+               name="with-tmp.date_of_most_recent_biopsy_result" type="text" readonly>
     </div>
 </div>
 
@@ -807,10 +808,10 @@
     <div class="form-group">
         <label for="ccsp_lesion">Extent of Visualized Lesion</label>
         <select class="form-control" id="ccsp_lesion" name="ccsp_lesion"
-                data-concept="7477^SIZE OF CERVICAL LESION, CODED^99DCT" required="required">
+                data-concept="7477^SIZE OF CERVICAL LESION, CODED^99DCT">
             <option value="">...</option>
-            <option value="7474^&lt;50% of cervix^99DCT">&lt;50% of cervix</option>
-            <option value="7475^&gt;50% of cervix^99DCT">&gt;50% of cervix</option>
+            <option value="7474^Less than 50% of cervix^99DCT">&lt;50% of cervix</option>
+            <option value="7475^Greater than 50% of cervix^99DCT">&gt;50% of cervix</option>
             <option value="7476^Extends into canal^99DCT">Extends into canal</option>
         </select>
     </div>
@@ -884,10 +885,11 @@
     </div>
 
     <div class="form-group">
-        <label for="ccsp_plan">Management Plan</label>
+        <label for="ccsp_plan">Management Plan: <span class="required">*</span></label>
         <select class="form-control" id="ccsp_plan" name="ccsp_plan"
                 data-concept="7500^GYNECOLOGIC ONCOLOGY PLAN^99DCT" required="required">
             <option value="">...</option>
+            <option value="1107^NONE^99DCT">None</option>
             <option value="7498^ROUTINE VIA IN 6-MONTHS^99DCT">VIA 6 Months follow up</option>
             <option value="7496^ROUTINE VIA IN 1-YEAR^99DCT">Routine VIA in 1-year</option>
             <option value="7497^ROUTINE VIA IN 3-YEARS^99DCT">Routine VIA in 3-years</option>
@@ -898,7 +900,7 @@
     </div>
 
     <div class="form-group">
-        <h5><strong>Directive family planning counseling performed</strong></h5>
+        <label for="ccsp_directive_fp">Directive family planning counseling performed: </label>
         <div class="form-group">
             <label class="font-normal">
                 <input name="ccsp_directive_fp" type="radio"
@@ -1189,11 +1191,15 @@ $(document).ready(function () {
             },
             parity: {
                 digits: true,
-                min: 0
+                range: [0, 50]
             },
             age_of_first_pregnancy: {
                 number: true,
                 range: [8, 50]
+            },
+            last_cd4_by_facs: {
+                number: true,
+                range: [0, 1500]
             }
         },
         submitHandler: function (form) {
@@ -1222,19 +1228,18 @@ $(document).ready(function () {
         }
     });
 
-    /* Start - Checking that parity is less than gravida */
+    /* Start - Checking that parity is less than gravida
     $.validator.addMethod("lessThanGravida", function (value, element) {
                 if ($.fn.isNotRequiredAndEmpty(value, element)) return true;
                 var gravida = parseInt($(element).closest('.section').find('.gravida').val());
                 return (parseInt(value) <= gravida);
             }, "Number of deliveries can't be more than number of pregnancies."
     );
-
-    // attach 'lessThanGravida' class to perform validation.
+     // attach 'lessThanGravida' class to perform validation.
     jQuery.validator.addClassRules({
         lessThanGravida: { lessThanGravida: true }
     });
-    /* End - lessThanGravida*/
+     End - lessThanGravida*/
 
     /* Start - Female only breast cancer history */
     var $patientSex = $('#patient\\.sex');
@@ -1279,7 +1284,7 @@ $(document).ready(function () {
     $visitType.trigger('change');
     /* Start - Toggle based on visit type */
 
-    /* Start - Toggle for gravida and parity based on gravida value */
+    /* Start - Toggle for gravida and parity based on gravida value
     var $gravida = $('#gravida');
     $gravida.change(function () {
         var gravidaValue = parseInt($gravida.val());
@@ -1290,8 +1295,9 @@ $(document).ready(function () {
             $gravidaRelevant.hide();
         }
     });
+
     $gravida.trigger('change');
-    /* End - Toggle for gravida and parity based on gravida value */
+     End - Toggle for gravida and parity based on gravida value */
 
     /* Start - Menstruation status skip logic */
     var $menstruationStatus = $('#menstruation_status');
@@ -1436,64 +1442,225 @@ $(document).ready(function () {
         return true;
     };
 
-    var values = ["1624^DO NOT KNOW^99DCT", "1107^NONE^99DCT"];
-    var message = "If None or Don't know is selected, it should be the only option.";
-    $(':checkbox[data-concept="374^METHOD OF FAMILY PLANNING^99DCT"]').change(function () {
-        toggleValidationMessages(validateAlone($(this), values, message));
-    });
-
-    var noneValues = ["1107^NONE^99DCT"];
-    var noneMessage = "If None is selected, it should be the only option.";
-    $(':checkbox[data-concept="7495^FAMILY PLANNING REFILL PROVIDED^99DCT"]').change(function () {
-        toggleValidationMessages(validateAlone($(this), noneValues, noneMessage));
-    });
-    $(':checkbox[data-concept="7240^FAMILY PLANNING METHOD CHOSEN^99DCT"]').change(function () {
-        toggleValidationMessages(validateAlone($(this), noneValues, noneMessage));
-    });
-    $(':checkbox[data-concept="5219^CHIEF COMPLAINT^99DCT"]').change(function () {
-        toggleValidationMessages(validateAlone($(this), noneValues, noneMessage));
-    });
-
-    var normalValues = ['1115^NORMAL^99DCT'];
-    var normalMessage = "If Normal is selected, it should be the only option.";
-    $(':checkbox[data-concept="7484^VISUAL CERVICAL EXAM FINDINGS^99DCT"]').change(function () {
-        toggleValidationMessages(validateAlone($(this), normalValues, normalMessage));
-    });
-    $(':checkbox[data-concept="7490^VISUAL VAGINAL EXAM FINDINGS ^99DCT"]').change(function () {
-        toggleValidationMessages(validateAlone($(this), normalValues, normalMessage));
-    });
-    $(':checkbox[data-concept="7487^VISUAL VULVAL EXAM FINDINGS ^99DCT"]').change(function () {
-        toggleValidationMessages(validateAlone($(this), normalValues, normalMessage));
-    });
-
-    var papanicolaouValues = ['1115^NORMAL^99DCT', '1624^DO NOT KNOW^99DCT'];
-    var papanicolaouMessage = "If Normal or Don't Know is selected, it should be the only option.";
-    $(':checkbox[data-concept="7423^MOST RECENT PAPANICOLAOU SMEAR RESULT^99DCT"]').change(function () {
-        toggleValidationMessages(validateAlone($(this), papanicolaouValues, papanicolaouMessage));
-    });
-
-    var pastTreatmentValues = ["1175^NOT APPLICABLE^99DCT", "1107^NONE^99DCT"]
-    var pastTreatmentMessage = "If Not Applicable or None is selected, it should be the only option.";
-    $(':checkbox[data-concept="7467^PAST TREATMENT OF DYSPLASIA^99DCT"]').change(function () {
-        toggleValidationMessages(validateAlone($(this), pastTreatmentValues, pastTreatmentMessage));
-    });
-
     var dysplasiaValues = ['1115^NORMAL^99DCT'];
     var dysplasiaMessage = "If Normal is selected, it should be the only option.";
     $(':checkbox[data-concept="7579^DYSPLASIA HISTOPATHOLOGICAL FINDINGS BASED ON LAST TREATMENT^99DCT"]').change(function () {
         toggleValidationMessages(validateAlone($(this), dysplasiaValues, dysplasiaMessage));
     });
 
-    var colposcopyresultsValues = ['1115^NORMAL^99DCT', "1175^NOT APPLICABLE^99DCT", "1624^DO NOT KNOW^99DCT"]
-    var colposcopyresultsMessage = "If Normal or Don't know or Not Applicable is selected, it should be the only option.";
-    $(':checkbox[data-concept="7426^MOST RECENT COLPOSCOPY RESULT^99DCT"]').change(function () {
-        toggleValidationMessages(validateAlone($(this), colposcopyresultsValues, colposcopyresultsMessage));
-    });
-
     document.setupValidationForProvider("$('#encounter\\.provider_id_select').val()","encounter\\.provider_id");
 
     document.setupValidationForLocation("$('#encounter\\.location_id').val()","encounter\\.location_id");
 
+    //function to disable all supplied options
+    var disable_elements=function(element_list){
+        element_list.each(function(){
+            $(this).attr('disabled', 'disabled');
+        });
+    };
+    //function to disable all supplied options
+    var enable_elements=function(element_list){
+        element_list.each(function(){
+            $(this).removeAttr('disabled', 'disabled');
+        });
+    };
+
+    $(':checkbox[data-concept="7579^DYSPLASIA HISTOPATHOLOGICAL FINDINGS BASED ON LAST TREATMENT^99DCT"]').on('change', function() {
+        var $selected_elements = $(':checkbox[data-concept="7579^DYSPLASIA HISTOPATHOLOGICAL FINDINGS BASED ON LAST TREATMENT^99DCT"]:checked');
+        var $all_elements_in_group = $(':checkbox[data-concept="7579^DYSPLASIA HISTOPATHOLOGICAL FINDINGS BASED ON LAST TREATMENT^99DCT"]');
+        if($selected_elements.length > 0){
+            $.each($selected_elements, function (k,v){
+                if($(v).val() == '1115^NORMAL^99DCT'){
+                    var elements_to_uncheck = $all_elements_in_group.not($(v));
+                    disable_elements(elements_to_uncheck);
+                } else {
+                    disable_elements($(':checkbox[data-concept="7579^DYSPLASIA HISTOPATHOLOGICAL FINDINGS BASED ON LAST TREATMENT^99DCT"][value="1115^NORMAL^99DCT"]'));
+                }
+            });
+        }else{
+            enable_elements($(':checkbox[data-concept="7579^DYSPLASIA HISTOPATHOLOGICAL FINDINGS BASED ON LAST TREATMENT^99DCT"]'));
+        }
+    });
+    $(':checkbox[data-concept="7579^DYSPLASIA HISTOPATHOLOGICAL FINDINGS BASED ON LAST TREATMENT^99DCT"]').trigger('change');
+
+    $(':checkbox[data-concept="7487^VISUAL VULVAL EXAM FINDINGS ^99DCT"]').on('change', function() {
+        var $selected_elements = $(':checkbox[data-concept="7487^VISUAL VULVAL EXAM FINDINGS ^99DCT"]:checked');
+        var $all_elements_in_group = $(':checkbox[data-concept="7487^VISUAL VULVAL EXAM FINDINGS ^99DCT"]');
+        if($selected_elements.length > 0){
+            $.each($selected_elements, function (k,v){
+                if($(v).val() == '1115^NORMAL^99DCT'){
+                    var elements_to_uncheck = $all_elements_in_group.not($(v));
+                    disable_elements(elements_to_uncheck);
+                } else {
+                    disable_elements($(':checkbox[data-concept="7487^VISUAL VULVAL EXAM FINDINGS ^99DCT"][value="1115^NORMAL^99DCT"]'));
+                }
+            });
+        }else{
+            enable_elements($(':checkbox[data-concept="7487^VISUAL VULVAL EXAM FINDINGS ^99DCT"]'));
+        }
+    });
+    $(':checkbox[data-concept="7487^VISUAL VULVAL EXAM FINDINGS ^99DCT"]').trigger('change');
+
+    $(':checkbox[data-concept="7490^VISUAL VAGINAL EXAM FINDINGS ^99DCT"]').on('change', function() {
+        var $selected_elements = $(':checkbox[data-concept="7490^VISUAL VAGINAL EXAM FINDINGS ^99DCT"]:checked');
+        var $all_elements_in_group = $(':checkbox[data-concept="7490^VISUAL VAGINAL EXAM FINDINGS ^99DCT"]');
+        if($selected_elements.length > 0){
+            $.each($selected_elements, function (k,v){
+                if($(v).val() == '1115^NORMAL^99DCT'){
+                    var elements_to_uncheck = $all_elements_in_group.not($(v));
+                    disable_elements(elements_to_uncheck);
+                } else {
+                    disable_elements($(':checkbox[data-concept="7490^VISUAL VAGINAL EXAM FINDINGS ^99DCT"][value="1115^NORMAL^99DCT"]'));
+                }
+            });
+        }else{
+            enable_elements($(':checkbox[data-concept="7490^VISUAL VAGINAL EXAM FINDINGS ^99DCT"]'));
+        }
+    });
+    $(':checkbox[data-concept="7490^VISUAL VAGINAL EXAM FINDINGS ^99DCT"]').trigger('change');
+
+    $(':checkbox[data-concept="7484^VISUAL CERVICAL EXAM FINDINGS^99DCT"]').on('change', function() {
+        var $selected_elements = $(':checkbox[data-concept="7484^VISUAL CERVICAL EXAM FINDINGS^99DCT"]:checked');
+        var $all_elements_in_group = $(':checkbox[data-concept="7484^VISUAL CERVICAL EXAM FINDINGS^99DCT"]');
+        if($selected_elements.length > 0){
+            $.each($selected_elements, function (k,v){
+                if($(v).val() == '1115^NORMAL^99DCT'){
+                    var elements_to_uncheck = $all_elements_in_group.not($(v));
+                    disable_elements(elements_to_uncheck);
+                } else {
+                    disable_elements($(':checkbox[data-concept="7484^VISUAL CERVICAL EXAM FINDINGS^99DCT"][value="1115^NORMAL^99DCT"]'));
+                }
+            });
+        }else{
+            enable_elements($(':checkbox[data-concept="7484^VISUAL CERVICAL EXAM FINDINGS^99DCT"]'));
+        }
+    });
+    $(':checkbox[data-concept="7484^VISUAL CERVICAL EXAM FINDINGS^99DCT"]').trigger('change');
+
+    $(':checkbox[data-concept="7240^FAMILY PLANNING METHOD CHOSEN^99DCT"]').on('change', function() {
+        var $selected_elements = $(':checkbox[data-concept="7240^FAMILY PLANNING METHOD CHOSEN^99DCT"]:checked');
+        var $all_elements_in_group = $(':checkbox[data-concept="7240^FAMILY PLANNING METHOD CHOSEN^99DCT"]');
+        if($selected_elements.length > 0){
+            $.each($selected_elements, function (k,v){
+                if($(v).val() == '1107^NONE^99DCT'){
+                    var elements_to_uncheck = $all_elements_in_group.not($(v));
+                    disable_elements(elements_to_uncheck);
+                } else {
+                    disable_elements($(':checkbox[data-concept="7240^FAMILY PLANNING METHOD CHOSEN^99DCT"][value="1107^NONE^99DCT"]'));
+                }
+            });
+        }else{
+            enable_elements($(':checkbox[data-concept="7240^FAMILY PLANNING METHOD CHOSEN^99DCT"]'));
+        }
+    });
+    $(':checkbox[data-concept="7240^FAMILY PLANNING METHOD CHOSEN^99DCT"]').trigger('change');
+
+    $(':checkbox[data-concept="7495^FAMILY PLANNING REFILL PROVIDED^99DCT"]').on('change', function() {
+        var $selected_elements = $(':checkbox[data-concept="7495^FAMILY PLANNING REFILL PROVIDED^99DCT"]:checked');
+        var $all_elements_in_group = $(':checkbox[data-concept="7495^FAMILY PLANNING REFILL PROVIDED^99DCT"]');
+        if($selected_elements.length > 0){
+            $.each($selected_elements, function (k,v){
+                if($(v).val() == '1107^NONE^99DCT'){
+                    var elements_to_uncheck = $all_elements_in_group.not($(v));
+                    disable_elements(elements_to_uncheck);
+                } else {
+                    disable_elements($(':checkbox[data-concept="7495^FAMILY PLANNING REFILL PROVIDED^99DCT"][value="1107^NONE^99DCT"]'));
+                }
+            });
+        }else{
+            enable_elements($(':checkbox[data-concept="7495^FAMILY PLANNING REFILL PROVIDED^99DCT"]'));
+        }
+    });
+    $(':checkbox[data-concept="7495^FAMILY PLANNING REFILL PROVIDED^99DCT"]').trigger('change');
+
+    $(':checkbox[data-concept="7467^PAST TREATMENT OF DYSPLASIA^99DCT"]').on('change', function() {
+        var $selected_elements = $(':checkbox[data-concept="7467^PAST TREATMENT OF DYSPLASIA^99DCT"]:checked');
+        var $all_elements_in_group = $(':checkbox[data-concept="7467^PAST TREATMENT OF DYSPLASIA^99DCT"]');
+        if($selected_elements.length > 0){
+            $.each($selected_elements, function (k,v){
+                if($(v).val() == '1107^NONE^99DCT' || $(v).val() == '1175^NOT APPLICABLE^99DCT'){
+                    var elements_to_uncheck = $all_elements_in_group.not($(v));
+                    disable_elements(elements_to_uncheck);
+                } else {
+                    disable_elements($(':checkbox[data-concept="7467^PAST TREATMENT OF DYSPLASIA^99DCT"][value="1107^NONE^99DCT"]'));
+                    disable_elements($(':checkbox[data-concept="7467^PAST TREATMENT OF DYSPLASIA^99DCT"][value="1175^NOT APPLICABLE^99DCT"]'));
+                }
+            });
+        }else{
+            enable_elements($(':checkbox[data-concept="7467^PAST TREATMENT OF DYSPLASIA^99DCT"]'));
+        }
+    });
+    $(':checkbox[data-concept="7467^PAST TREATMENT OF DYSPLASIA^99DCT"]').trigger('change');
+
+    $(':checkbox[data-concept="374^METHOD OF FAMILY PLANNING^99DCT"]').on('change', function() {
+        var $selected_elements = $(':checkbox[data-concept="374^METHOD OF FAMILY PLANNING^99DCT"]:checked');
+        var $all_elements_in_group = $(':checkbox[data-concept="374^METHOD OF FAMILY PLANNING^99DCT"]');
+        if($selected_elements.length > 0){
+            $.each($selected_elements, function (k,v){
+                if($(v).val() == '1107^NONE^99DCT' || $(v).val() == '1624^DO NOT KNOW^99DCT'){
+                    var elements_to_uncheck = $all_elements_in_group.not($(v));
+                    disable_elements(elements_to_uncheck);
+                } else {
+                    disable_elements($(':checkbox[data-concept="374^METHOD OF FAMILY PLANNING^99DCT"][value="1107^NONE^99DCT"]'));
+                    disable_elements($(':checkbox[data-concept="374^METHOD OF FAMILY PLANNING^99DCT"][value="1624^DO NOT KNOW^99DCT"]'));
+                }
+            });
+        }else{
+            enable_elements($(':checkbox[data-concept="374^METHOD OF FAMILY PLANNING^99DCT"]'));
+        }
+    });
+    $(':checkbox[data-concept="374^METHOD OF FAMILY PLANNING^99DCT"]').trigger('change');
+
+    $(':checkbox[data-concept="7426^MOST RECENT COLPOSCOPY RESULT^99DCT"]').on('change', function() {
+        var $selected_elements = $(':checkbox[data-concept="7426^MOST RECENT COLPOSCOPY RESULT^99DCT"]:checked');
+        var $all_elements_in_group = $(':checkbox[data-concept="7426^MOST RECENT COLPOSCOPY RESULT^99DCT"]');
+        if($selected_elements.length > 0){
+            $.each($selected_elements, function (k,v){
+                if($(v).val() == '1115^NORMAL^99DCT'){
+                    var elements_to_uncheck = $all_elements_in_group.not($(v));
+                    disable_elements(elements_to_uncheck);
+                } else if($(v).val() == '1175^NOT APPLICABLE^99DCT' || $(v).val() == '1624^DO NOT KNOW^99DCT'){
+                    var elements_to_uncheck = $all_elements_in_group.not($(v));
+                    disable_elements(elements_to_uncheck);
+                    $('#date_of_colposcopy_result').val("");
+                    disable_elements($('#date_of_colposcopy_result'));
+                } else {
+                    disable_elements($(':checkbox[data-concept="7426^MOST RECENT COLPOSCOPY RESULT^99DCT"][value="1115^NORMAL^99DCT"]'));
+                    disable_elements($(':checkbox[data-concept="7426^MOST RECENT COLPOSCOPY RESULT^99DCT"][value="1175^NOT APPLICABLE^99DCT"]'));
+                    disable_elements($(':checkbox[data-concept="7426^MOST RECENT COLPOSCOPY RESULT^99DCT"][value="1624^DO NOT KNOW^99DCT"]'));
+                }
+            });
+        }else{
+            enable_elements($(':checkbox[data-concept="7426^MOST RECENT COLPOSCOPY RESULT^99DCT"]'));
+            enable_elements($('#date_of_colposcopy_result'));
+        }
+    });
+    $(':checkbox[data-concept="7426^MOST RECENT COLPOSCOPY RESULT^99DCT"]').trigger('change');
+
+    $(':checkbox[data-concept="7423^MOST RECENT PAPANICOLAOU SMEAR RESULT^99DCT"]').on('change', function() {
+        var $selected_elements = $(':checkbox[data-concept="7423^MOST RECENT PAPANICOLAOU SMEAR RESULT^99DCT"]:checked');
+        var $all_elements_in_group = $(':checkbox[data-concept="7423^MOST RECENT PAPANICOLAOU SMEAR RESULT^99DCT"]');
+        if($selected_elements.length > 0){
+            $.each($selected_elements, function (k,v){
+                if($(v).val() == '1115^NORMAL^99DCT'){
+                    var elements_to_uncheck = $all_elements_in_group.not($(v));
+                    disable_elements(elements_to_uncheck);
+                } else if($(v).val() == '1624^DO NOT KNOW^99DCT'){
+                    var elements_to_uncheck = $all_elements_in_group.not($(v));
+                    disable_elements(elements_to_uncheck);
+                    $('#date_most_recent_papanicolaou_smear_performed').val("");
+                    disable_elements($('#date_most_recent_papanicolaou_smear_performed'));
+                } else {
+                    disable_elements($(':checkbox[data-concept="7423^MOST RECENT PAPANICOLAOU SMEAR RESULT^99DCT"][value="1115^NORMAL^99DCT"]'));
+                    disable_elements($(':checkbox[data-concept="7423^MOST RECENT PAPANICOLAOU SMEAR RESULT^99DCT"][value="1624^DO NOT KNOW^99DCT"]'));
+                }
+            });
+        }else{
+            enable_elements($(':checkbox[data-concept="7423^MOST RECENT PAPANICOLAOU SMEAR RESULT^99DCT"]'));
+            enable_elements($('#date_most_recent_papanicolaou_smear_performed'));
+        }
+    });
+   $(':checkbox[data-concept="7423^MOST RECENT PAPANICOLAOU SMEAR RESULT^99DCT"]').trigger('change');
 
 });
 </script>
