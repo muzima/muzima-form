@@ -759,11 +759,9 @@ $(document).ready(function () {
         var $show_provider_id_text = $('.show_provider_id_text');
         var selected_value = $('#encounter\\.provider_id_select').val();
         if (selected_value != '') {
-            $show_provider_id_text.hide();
             $show_provider_id_text.find('input').val(selected_value);
         }
         else {
-            $show_provider_id_text.show();
             $show_provider_id_text.find('input').val('');
         }
     });
