@@ -15,7 +15,8 @@
 </head>
 
 <body class="col-md-10 col-md-offset-1">
-<div id="pre_populate_data"></div>
+<div id="pre_populate_data">
+</div>
 <h2 class="text-center">HIV Enrollment</h2>
 
 <form id="hiv_enrollment_form" name="hiv_enrollment_form">
@@ -24,36 +25,37 @@
     <h3>Demographics</h3>
 
     <div class="form-group">
-        <input class="form-control" id="patient.uuid" name="patient.uuid" type="hidden" readonly="readonly">
+        <input class="form-control" id="patient.uuid" name="patient.uuid"
+        type="hidden" readonly="readonly">
     </div>
     <div class="form-group">
-        <label for="patient.medical_record_number">Unique Patient Number:</label>
-        <input class="form-control" id="patient.medical_record_number" name="patient.medical_record_number" type="text"
-               readonly="readonly" disabled="disabled">
-    </div>
-    <div class="form-group">
-        <label for="patient.clinic_number">Patient Clinic Number:</label>
-        <input class="form-control" id="patient.clinic_number" name="patient.clinic_number" type="text"
+        <label for="patient.medical_record_number">OpenMRS ID:</label>
+        <input class="form-control" id="patient.medical_record_number"
+        name="patient.medical_record_number" type="text"
                readonly="readonly" disabled="disabled">
     </div>
     <div class="form-group">
         <label for="patient.family_name">Family Name:</label>
-        <input class="form-control" id="patient.family_name" name="patient.family_name" type="text" readonly="readonly"
+        <input class="form-control" id="patient.family_name" name="patient.family_name"
+        type="text" readonly="readonly"
                disabled="disabled">
     </div>
     <div class="form-group">
         <label for="patient.given_name">Given Name:</label>
-        <input class="form-control" id="patient.given_name" name="patient.given_name" type="text" readonly="readonly"
+        <input class="form-control" id="patient.given_name" name="patient.given_name"
+        type="text" readonly="readonly"
                disabled="disabled">
     </div>
     <div class="form-group">
         <label for="patient.middle_name">Middle Name:</label>
-        <input class="form-control" id="patient.middle_name" name="patient.middle_name" type="text" readonly="readonly"
+        <input class="form-control" id="patient.middle_name" name="patient.middle_name"
+        type="text" readonly="readonly"
                disabled="disabled">
     </div>
     <div class="form-group">
         <label for="patient.sex">Gender:</label>
-        <select class="form-control" id="patient.sex" name="patient.sex"  readonly="readonly" disabled="disabled">
+        <select class="form-control" id="patient.sex" name="patient.sex"
+        readonly="readonly" disabled="disabled">
             <option value="">...</option>
             <option value="M">Male</option>
             <option value="F">Female</option>
@@ -61,20 +63,24 @@
     </div>
     <div class="form-group">
         <label for="patient.birth_date">Date Of Birth:</label>
-        <input class="form-control" id="patient.birth_date" name="patient.birth_date" type="text" readonly="readonly"
+        <input class="form-control" id="patient.birth_date" name="patient.birth_date"
+        type="text" readonly="readonly"
                disabled="disabled">
     </div>
 </div>
 
-<div class="section">   
+<div class="section">
+    <h3>Enrollment</h3>
     <div class="form-group">
-        <label for="encounter.encounter_datetime">Enrollment Date <span class="required">*</span></label>
-        <input class="form-control nonFutureDate datepicker" readonly="readonly" id="encounter.encounter_datetime"
+        <label for="encounter.encounter_datetime">Enrollment Date:<span class="required">*</span></label>
+        <input class="form-control past-date datepicker"
+        readonly="readonly" id="encounter.encounter_datetime"
                name="encounter.encounter_datetime" type="text" required="required">
     </div>
     <div class="form-group">
         <label for="encounter.location_id">Enrolled at:<span class="required">*</span></label>
-        <input class="form-control valid-location-only" id="encounter.location_id" type="text" placeholder="Start typing something..." required="required">
+        <input class="form-control valid-location-only" id="encounter.location_id" type="text"
+        placeholder="Start typing something..." required="required">
         <input class="form-control" name="encounter.location_id" type="hidden">
     </div>
 
@@ -84,8 +90,10 @@
         </select>
     </div>
     <div class="form-group">
-        <label for="encounter.provider_id_select">Enrolled by (name):</label>
-        <input class="form-control valid-provider-only" id="encounter.provider_id_select" type="text" placeholder="Start typing something...">
+        <label for="encounter.provider_id_select">Enrolled by (name):
+        <span class="required">*</span></label>
+        <input class="form-control valid-provider-only" id="encounter.provider_id_select" type="text"
+         required="required" placeholder="Start typing something...">
         <input class="form-control" name="encounter.provider_id_select" type="hidden">
     </div>
     <div class="form-group hidden">
@@ -106,7 +114,8 @@
     <h3>Patient Source</h3>
     <div class="form-group">
         <label for="obs.entry_point">Enrolled at:<span class="required">*</span></label>
-        <select class="form-control" name="obs.entry_point" id="obs.entry_point" data-concept="160540^Method of Enrollment^99DCT">
+        <select class="form-control" name="obs.entry_point" id="obs.entry_point"
+        data-concept="160540^Method of Enrollment^99DCT">
             <option value="">...</option>
             <option value="160538^PMTCT Program^99DCT">PMTCT</option>
             <option value="160536^Adult Inpatient Service^99DCT">IPD-Ad</option>
@@ -120,7 +129,8 @@
     </div>
     <div class="form-group">
         <label for="obs.transfer_in">Transfer in:<span class="required">*</span></label>
-        <select class="form-control" name="obs.transfer_in" id="obs.transfer_in" data-concept="160563^Transfer in^99DCT">
+        <select class="form-control" name="obs.transfer_in" id="obs.transfer_in"
+        data-concept="160563^Transfer in^99DCT">
             <option value="">...</option>
             <option value="1065^Yes^99DCT">Yes</option>
             <option value="1066^No^99DCT">No</option>
@@ -131,50 +141,63 @@
             <label for="obs.transfer_in_date">
                 Transfer in date:<span class="required">*</span>
             </label>
-            <input class="form-control datepicker nonFutureDate past-date" id="obs.transfer_in_date"
-                   name="obs.transfer_in_date" type="text" readonly="readonly" data-concept="160534^Transfer in date^99DCT">
+            <input class="form-control datepicker past-date" id="obs.transfer_in_date"
+                   name="obs.transfer_in_date" type="text" readonly="readonly"
+                   data-concept="160534^Transfer in date^99DCT">
         </div> 
         <div class="form-group">
             <label for="obs.transfer_from_facility">
                 Transfer From Facility:<span class="required">*</span>
             </label>
-            <input class="form-control" id="obs.transfer_from_facility" name="obs.transfer_from_facility" type="text" data-concept="160535^Transferred from location^99DCT">
+            <input class="form-control" id="obs.transfer_from_facility"
+            name="obs.transfer_from_facility"
+            type="text" data-concept="160535^Transferred from location^99DCT">
         </div> 
         <div class="form-group">
             <label for="obs.transfer_from_facility_district">
                 Transfer From Facility District:<span class="required">*</span>
             </label>
-            <input class="form-control" id="obs.transfer_from_facility_district" name="obs.transfer_from_facility_district" data-concept="161551^Referring district name^99DCT" type="text">
+            <input class="form-control" id="obs.transfer_from_facility_district"
+            name="obs.transfer_from_facility_district"
+            data-concept="161551^Referring district name^99DCT" type="text">
         </div>  
         <div class="form-group">
             <label for="obs.date_first_enrolled_hiv_care">
                 Date first enrolled in HIV care:<span class="required">*</span>
             </label>
-            <input class="form-control datepicker nonFutureDate past-date" id="obs.date_first_enrolled_hiv_care"
-                   name="obs.date_first_enrolled_hiv_care" type="text" readonly="readonly" data-concept="160555^Date enrolled in HIV care^99DCT">
+            <input class="form-control datepicker past-date" id="obs.date_first_enrolled_hiv_care"
+                   name="obs.date_first_enrolled_hiv_care" type="text" readonly="readonly"
+                   data-concept="160555^Date enrolled in HIV care^99DCT">
         </div>  
         <div class="form-group">
             <label for="obs.date_started_art">
                 Date started ART at transferring facility:<span class="required">*</span>
             </label>
-            <input class="form-control datepicker nonFutureDate past-date" id="obs.date_started_art" name="obs.date_started_art" type="text"
-            data-concept="159599^ART start date^99DCT">
+            <input class="form-control datepicker past-date" id="obs.date_started_art"
+            name="obs.date_started_art" type="text"
+            data-concept="159599^ART start date^99DCT" readonly="readonly">
         </div> 
     </div>          
 </div>
 <div class="section">
     <h3>ART History</h3>
     <div class="form-group">
-        <label for="obs.hiv_confirmation_date">Date patient was confirmed HIV+:<span class="required">*</span></label>
-        <input class="form-control datepicker" id="obs.hiv_confirmation_date" type="text" required="required" readonly="readonly" data-concept="160554^Date of HIV diagnosis^99DCT">
+        <label for="obs.hiv_confirmation_date">Date patient was confirmed HIV+:
+            <span class="required">*</span></label>
+        <input class="form-control datepicker past-date" id="obs.hiv_confirmation_date" type="text"
+        required="required" readonly="readonly" data-concept="160554^Date of HIV diagnosis^99DCT">
     </div>
     <div class="form-group concept-set" data-concept="161559^HIV confirmation location set^99DCT">
-        <label for="obs.hiv_confirmation_facility">Facility where confirmation done:<span class="required">*</span></label>
-        <input class="form-control" id="obs.hiv_confirmation_facility" type="text" required="required" data-concept="160632^Freetext general^99DCT">
+        <label for="obs.hiv_confirmation_facility">Facility where confirmation done:
+            <span class="required">*</span></label>
+        <input class="form-control" id="obs.hiv_confirmation_facility" type="text"
+        required="required" data-concept="160632^Freetext general^99DCT">
     </div>
     <div class="form-group">
-        <label for="obs.patient_on_arvs">Patient has been on ARVs (inc. PEP & PMTCT):<span class="required">*</span></label>
-        <select class="form-control" name="obs.patient_on_arvs" id="obs.patient_on_arvs" data-concept="160533^Previous ARV treatment^99DCT">
+        <label for="obs.patient_on_arvs">Patient has been on ARVs (inc. PEP & PMTCT):
+            <span class="required">*</span></label>
+        <select class="form-control" name="obs.patient_on_arvs" id="obs.patient_on_arvs"
+        data-concept="160533^Previous ARV treatment^99DCT">
             <option value="">...</option>
             <option value="1">Yes</option>
             <option value="0">No</option>
@@ -186,12 +209,14 @@
         </div>
         <div class="form-group">
             <label class="font-normal">
-                <input name="obs.arv_purpose" id="obs.arv_purpose_pmtct" type="checkbox" value="1065^Yes^99DCT" data-concept="1148^TOTAL PMTCT^99DCT"> PMTCT
+                <input name="obs.arv_purpose" id="obs.arv_purpose_pmtct" type="checkbox"
+                value="1065^Yes^99DCT" data-concept="1148^TOTAL PMTCT^99DCT"> PMTCT
             </label>
-            <div class="section" id="arv_purpose_pmtct" data-concept="160741^Medication History^99DCT">
+            <div class="section" id="arv_purpose_pmtct" data-concept="160741^PMTCT Medication History^99DCT">
                 <div class="form-group">
                     <label for="obs.arv_pmtct_drug_name">Drug Name:<span class="required">*</span></label>
-                    <select class="form-control" name="obs.arv_pmtct_drug_name" id="obs.arv_pmtct_drug_name" data-concept="966^CURRENT ARV DRUGS USED^99DCT">
+                    <select class="form-control" name="obs.arv_pmtct_drug_name" id="obs.arv_pmtct_drug_name"
+                    data-concept="966^CURRENT ARV DRUGS USED^99DCT">
                         <option value="">...</option>
                         <option value="792^D4T/3TC/NVP^99DCT">D4T/3TC/NVP</option>
                         <option value="794^LPV/R^99DCT">LPV/R</option>
@@ -226,19 +251,22 @@
                 </div>
                 <div class="form-group">
                     <label for="obs.arv_pmtct_date_last_used">Date last used:<span class="required">*</span></label>
-                    <input class="form-control datepicker" id="obs.arv_pmtct_date_last_used" name="obs.arv_pmtct_date_last_used" type="text" required="required"
+                    <input class="form-control datepicker past-date" id="obs.arv_pmtct_date_last_used"
+                    name="obs.arv_pmtct_date_last_used" type="text" required="required"
                      data-obsdatetimefor="obs.arv_pmtct_drug_name" readonly="readonly">
                 </div>
             </div>
         </div>
         <div class="form-group">
             <label class="font-normal">
-                <input name="obs.arv_purpose" id="obs.arv_purpose_pep" type="checkbox" value="true" data-concept="1691^POST-EXPOSURE PROPHYLAXIS^99DCT"> PEP
+                <input name="obs.arv_purpose" id="obs.arv_purpose_pep" type="checkbox" value="true"
+                data-concept="1691^POST-EXPOSURE PROPHYLAXIS^99DCT"> PEP
             </label>
-            <div class="section" id="arv_purpose_pep" data-concept="160741^Medication History^99DCT">
+            <div class="section" id="arv_purpose_pep" data-concept="1607412^PEP Medication History^99DCT">
                 <div class="form-group">
                     <label for="obs.arv_pep_drug_name">Drug Name:<span class="required">*</span></label>
-                    <select class="form-control" name="obs.arv_pep_drug_name" id="obs.arv_pep_drug_name" data-concept="1088^CURRENT ANTIRETROVIRAL DRUGS USED FOR TREATMENT^99DCT">
+                    <select class="form-control" name="obs.arv_pep_drug_name" id="obs.arv_pep_drug_name"
+                    data-concept="1088^CURRENT ANTIRETROVIRAL DRUGS USED FOR TREATMENT^99DCT">
                         <option value="">...</option>
                         <option value="792^D4T/3TC/NVP^99DCT">D4T/3TC/NVP</option>
                         <option value="794^LPV/R^99DCT">LPV/R</option>
@@ -273,19 +301,22 @@
                 </div>
                 <div class="form-group">
                     <label for="obs.arv_pep_date_last_used">Date last used:<span class="required">*</span></label>
-                    <input class="form-control datepicker" id="obs.arv_pep_date_last_used" name="obs.arv_pep_date_last_used" type="text" required="required"
+                    <input class="form-control datepicker past-date" id="obs.arv_pep_date_last_used"
+                    name="obs.arv_pep_date_last_used" type="text" required="required"
                      data-obsdatetimefor="obs.arv_pep_drug_name" readonly="readonly">
                 </div>
             </div>
         </div>
         <div class="form-group">
             <label class="font-normal">
-                <input name="obs.arv_purpose" id="obs.arv_purpose_haart" type="checkbox" data-concept="1181^ANTIRETROVIRAL DOSE QUANTIFICATION^99DCT" value="1185^TREATMENT^99DCT"> HAART
+                <input name="obs.arv_purpose" id="obs.arv_purpose_haart" type="checkbox"
+                data-concept="1181^ANTIRETROVIRAL DOSE QUANTIFICATION^99DCT" value="1185^TREATMENT^99DCT"> HAART
             </label>
-            <div class="section" id="arv_purpose_haart" data-concept="160741^Medication History^99DCT">
+            <div class="section" id="arv_purpose_haart" data-concept="1607413^HAART Medication History^99DCT">
                 <div class="form-group">
                     <label for="obs.arv_haart_drug_name">Drug Name:<span class="required">*</span></label>
-                    <select class="form-control" name="obs.arv_haart_drug_name" id="obs.arv_haart_drug_name" data-concept="1088^CURRENT ANTIRETROVIRAL DRUGS USED FOR TREATMENT^99DCT">
+                    <select class="form-control" name="obs.arv_haart_drug_name" id="obs.arv_haart_drug_name"
+                    data-concept="1088^CURRENT ANTIRETROVIRAL DRUGS USED FOR TREATMENT^99DCT">
                         <option value="">...</option>
                         <option value="792^D4T/3TC/NVP^99DCT">D4T/3TC/NVP</option>
                         <option value="794^LPV/R^99DCT">LPV/R</option>
@@ -320,7 +351,8 @@
                 </div>
                 <div class="form-group">
                     <label for="obs.arv_haart_date_last_used">Date last used:<span class="required">*</span></label>
-                    <input class="form-control datepicker" id="obs.arv_haart_date_last_used" name="obs.arv_haart_date_last_used" type="text" required="required"
+                    <input class="form-control datepicker past-date" id="obs.arv_haart_date_last_used"
+                    name="obs.arv_haart_date_last_used" type="text" required="required"
                      data-obsdatetimefor="obs.arv_haart_drug_name" readonly="readonly">
                 </div>
             </div>
@@ -331,11 +363,14 @@
     <h3>Treatment Supporter</h3>
     <div class="form-group">
         <label for="obs.supporter_name">Name:<span class="required">*</span></label>
-        <input class="form-control" id="obs.supporter_name" name="obs.supporter_name" type="text" data-concept="160638^Name of treatment supporter^99DCT">
+        <input class="form-control" id="obs.supporter_name" name="obs.supporter_name"
+        type="text" data-concept="160638^Name of treatment supporter^99DCT">
     </div>
     <div class="form-group">
-        <label for="obs.supporter_relationship">Relationship:<span class="required">*</span></label>
-        <select class="form-control" name="obs.supporter_relationship" id="obs.supporter_relationship" required="required"
+        <label for="obs.supporter_relationship">Relationship:
+            <span class="required">*</span></label>
+        <select class="form-control" name="obs.supporter_relationship"
+        id="obs.supporter_relationship" required="required"
          data-concept="160640^Treatment supporter relationship to patient^99DCT">
             <option value="">...</option>
             <option value="973^GRANDPARENT^99DCT">Grandparent</option>
@@ -348,11 +383,13 @@
     </div>
     <div class="form-group">
         <label for="obs.supporter_postal_address">Postal Address:<span class="required">*</span></label>
-        <input class="form-control" id="obs.supporter_postal_address" name="obs.supporter_postal_address" type="text" data-concept="160641^Address of treatment supporter^99DCT">
+        <input class="form-control" id="obs.supporter_postal_address" name="obs.supporter_postal_address"
+        type="text" data-concept="160641^Address of treatment supporter^99DCT">
     </div>
     <div class="form-group">
         <label for="obs.supporter_telephone">Telephone:<span class="required">*</span></label>
-        <input class="form-control phoneNumber" id="obs.supporter_telephone" name="obs.supporter_telephone" type="tel" data-concept="160642^Telephone number of treatment supporter^99DCT">
+        <input class="form-control phoneNumber" id="obs.supporter_telephone" name="obs.supporter_telephone"
+        type="tel" data-concept="160642^Telephone number of treatment supporter^99DCT">
     </div>
 </div>
 </form>
@@ -360,6 +397,7 @@
 <script type="text/javascript">
 
 $(document).ready(function () {
+    $('.past-date').trigger('change');
 
     var dateFormat = "dd-mm-yy";
     var currentDate = $.datepicker.formatDate(dateFormat, new Date());
@@ -417,14 +455,6 @@ $(document).ready(function () {
         document.submit();
         $(this).prop('disabled', false);
     });
-
-    $('#hiv_enrollment_form').validate({
-
-        submitHandler: function (form) {
-            $('#result').html(JSON.stringify($('form').serializeEncounterForm(), undefined, 2));
-        }
-    });
-
 
     document.setupAutoCompleteData('encounter\\.location_id');
     document.setupAutoCompleteDataForProvider('encounter\\.provider_id_select');    

@@ -11,12 +11,14 @@
     <script src="js/additional-methods.min.js"></script>
     <script src="js/muzima.js"></script>
 
-    <title>HIV Family History</title>z
+    <title>HIV Family History</title>
 </head>
 
 <body class="col-md-10 col-md-offset-1">
-<div id="pre_populate_data"></div>
-<h2 class="text-center">HIV Enrollment</h2>
+<div id="pre_populate_data">
+
+</div>
+<h2 class="text-center">HIV Family History</h2>
 
 <form id="hiv_family_history_form" name="hiv_family_history_form">
 
@@ -27,13 +29,8 @@
         <input class="form-control" id="patient.uuid" name="patient.uuid" type="hidden" readonly="readonly">
     </div>
     <div class="form-group">
-        <label for="patient.medical_record_number">Unique Patient Number:</label>
+        <label for="patient.medical_record_number">OpenMRS ID:</label>
         <input class="form-control" id="patient.medical_record_number" name="patient.medical_record_number" type="text"
-               readonly="readonly" disabled="disabled">
-    </div>
-    <div class="form-group">
-        <label for="patient.clinic_number">Patient Clinic Number:</label>
-        <input class="form-control" id="patient.clinic_number" name="patient.clinic_number" type="text"
                readonly="readonly" disabled="disabled">
     </div>
     <div class="form-group">
@@ -66,7 +63,9 @@
     </div>
 </div>
 
-<div class="section repeat" data-concept="160593^Patient's family history list^99DCT">
+<div class="section repeat member_details"
+    data-concept="160593^Patient's family history list^99DCT"
+    id="member_details" data-name="member_details">
     <div class="form-group">
         <label for="obs.name_of_member">
             Name of family member:<span class="required">*</span>
@@ -78,10 +77,11 @@
         <label>
             Age at diagnosis:<span class="required">*</span>
         </label>
-        <div class="section">
+        <div class="sub-section">
             <div class="form-group">
                 <label for="obs.age_units">Will record Age in ... <span class="required">*</span></label>
-                <select class="form-control" name="obs.age_units" id="obs.age_units" required="required" data-concept="1732^Duration units^99DCT">
+                <select class="form-control obs.age_units" name="obs.age_units"
+                id="obs.age_units" required="required" data-concept="1732^Duration units^99DCT">
                     <option value="">...</option>
                     <option value="1734^Years^99DCT">Years</option>
                     <option value="1074^Months^99DCT">Months</option>
@@ -90,7 +90,7 @@
             <div class="form-group" id="age">
                 <label for="obs.age_in_years" id="lbl.age_in_years">Age(Years):<span class="required">*</span></label>
                 <label for="obs.age_in_months" id="lbl.age_in_months">Age(Months):<span class="required">*</span></label>
-                <input class="form-control" name="obs.age" type="text" data-concept="160617^Age at diagnosis^99DCT" required="required">
+                <input class="form-control" name="obs.age" type="number" data-concept="160617^Age at diagnosis^99DCT" required="required">
             </div>
         </div>
     </div>
@@ -117,7 +117,8 @@
         <label for="obs.hiv_result">
             HIV Result:<span class="required">*</span>
         </label>
-        <select class="form-control" name="obs.hiv_result" id="obs.hiv_result" data-concept="1729^SIGN/SYMPTOM PRESENT^99DCT" required="required">
+        <select class="form-control" name="obs.hiv_result" id="obs.hiv_result"
+        data-concept="1729^SIGN/SYMPTOM PRESENT^99DCT" required="required">
             <option value="">...</option>
             <option value="1065^Yes^99DCT">P</option>
             <option value="1066^No^99DCT">N</option>
@@ -127,14 +128,15 @@
     </div>
     <div class="form-group">
         <label for="obs.in_care">In Care?:</label>
-        <select class="form-control" id="obs.in_care" name="obs.in_care" data-concept="159811^enrolled in HIV care program^99DCT">
+        <select class="form-control obs.in_care" id="obs.in_care"
+        name="obs.in_care" data-concept="159811^enrolled in HIV care program^99DCT">
             <option value="">...</option>
             <option value="1065^Yes^99DCT">Yes</option>
             <option value="1066^No^99DCT">No</option>
             <option value="1067^Unknown^99DCT">Unknown</option>
         </select>
     </div>
-    <div class="form-group">
+    <div class="form-group ccc_number">
         <label for="obs.ccc_number">
             CCC Number:<span class="required">*</span>
         </label>
@@ -145,7 +147,7 @@
 <div class="section">   
     <div class="form-group">
         <label for="encounter.encounter_datetime">Encounter Date <span class="required">*</span></label>
-        <input class="form-control nonFutureDate datepicker" readonly="readonly" id="encounter.encounter_datetime"
+        <input class="form-control past-date datepicker" readonly="readonly" id="encounter.encounter_datetime"
                name="encounter.encounter_datetime" type="text" required="required">
     </div>
     <div class="form-group">
@@ -161,8 +163,10 @@
         </select>
     </div>
     <div class="form-group">
-        <label for="encounter.provider_id_select">Provider Name:</label>
-        <input class="form-control valid-provider-only" id="encounter.provider_id_select" type="text" placeholder="Start typing something...">
+        <label for="encounter.provider_id_select">Provider Name:
+        <span class="required">*</span></label>
+        <input class="form-control valid-provider-only" id="encounter.provider_id_select"
+         required="required" type="text" placeholder="Start typing something...">
         <input class="form-control" name="encounter.provider_id_select" type="hidden">
     </div>
     <div class="form-group hidden">
@@ -184,6 +188,7 @@
 <script type="text/javascript">
 
 $(document).ready(function () {
+    $('.past-date').trigger('change');
 
     var dateFormat = "dd-mm-yy";
     var currentDate = $.datepicker.formatDate(dateFormat, new Date());
@@ -205,10 +210,6 @@ $(document).ready(function () {
     });
 
     $('#hiv_family_history_form').validate({
-
-        submitHandler: function (form) {
-            $('#result').html(JSON.stringify($('form').serializeEncounterForm(), undefined, 2));
-        },
         rules: {
             'obs.age': {
                 range: [0, 120]
@@ -216,22 +217,31 @@ $(document).ready(function () {
         }
     });
 
-    $('#obs\\.age_units').change(function(){
+    $('.obs\\.age_units').change(function(){
         if($(this).val() == "1734^Years^99DCT"){
-            $('label[for="obs.age_in_years"]').show();
-            $('label[for="obs.age_in_months"]').hide();
-            $('#age').show();
+            $(this).closest('.repeat').find('label[for="obs.age_in_years"]').show();
+            $(this).closest('.repeat').find('label[for="obs.age_in_months"]').hide();
+            $(this).closest('.repeat').find('#age').show();
         } else if($(this).val() == "1074^Months^99DCT"){
-            $('label[for="obs.age_in_months"]').show();
-            $('label[for="obs.age_in_years"]').hide();
-            $('#age').show();
+            $(this).closest('.repeat').find('label[for="obs.age_in_months"]').show();
+            $(this).closest('.repeat').find('label[for="obs.age_in_years"]').hide();
+            $(this).closest('.repeat').find('#age').show();
         } else {
-            $('label[for="obs.age_in_years"]').hide();
-            $('label[for="obs.age_in_months"]').hide();
-            $('#age').hide();
+            $(this).closest('.repeat').find('label[for="obs.age_in_years"]').hide();
+            $(this).closest('.repeat').find('label[for="obs.age_in_months"]').hide();
+            $(this).closest('.repeat').find('#age').hide();
         }
     });
-    $('#obs\\.age_units').trigger('change');
+    $('.obs\\.age_units').trigger('change');
+
+    $('.obs\\.in_care').change(function(){
+        if($(this).val() == "1065^Yes^99DCT"){
+            $(this).closest('.repeat').find('.ccc_number').show();
+        } else {
+            $(this).closest('.repeat').find('.ccc_number').hide();
+        }
+    });
+    $('.obs\\.in_care').trigger('change');
 
     
     document.setupAutoCompleteData('encounter\\.location_id');

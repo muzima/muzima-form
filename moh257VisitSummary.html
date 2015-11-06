@@ -18,7 +18,7 @@
 <div id="pre_populate_data"></div>
 <h2 class="text-center">Visit Summary</h2>
 
-<form id="hiv_family_history_form" name="hiv_family_history_form">
+<form id="moh_visit_summary_form" name="moh_visit_summary_form">
 
 <div class="section">
     <h3>Demographics</h3>
@@ -27,18 +27,8 @@
         <input class="form-control" id="patient.uuid" name="patient.uuid" type="hidden" readonly="readonly">
     </div>
     <div class="form-group">
-        <label for="patient.medical_record_number">Unique Patient Number:</label>
-        <input class="form-control" id="patient.unique_patient_number" name="patient.unique_patient_number" type="text"
-               readonly="readonly" disabled="disabled">
-    </div>
-    <div class="form-group">
         <label for="patient.medical_record_number">OpenMRS ID:</label>
         <input class="form-control" id="patient.medical_record_number" name="patient.medical_record_number" type="text"
-               readonly="readonly" disabled="disabled">
-    </div>
-    <div class="form-group">
-        <label for="patient.clinic_number">Patient Clinic Number:</label>
-        <input class="form-control" id="patient.clinic_number" name="patient.clinic_number" type="text"
                readonly="readonly" disabled="disabled">
     </div>
     <div class="form-group">
@@ -73,12 +63,13 @@
 <div class="section">  	
     <div class="form-group">
         <label for="encounter.encounter_datetime">Encounter Date: <span class="required">*</span></label>
-        <input class="form-control nonFutureDate datepicker" readonly="readonly" id="encounter.encounter_datetime"
+        <input class="form-control past-date datepicker" readonly="readonly" id="encounter.encounter_datetime"
                name="encounter.encounter_datetime" type="text" required="required">
     </div>
     <div class="form-group">
         <label for="encounter.location_id">Encounter Location:<span class="required">*</span></label>
-        <input class="form-control valid-location-only" id="encounter.location_id" type="text" placeholder="Start typing something..." required="required">
+        <input class="form-control valid-location-only" id="encounter.location_id"
+        type="text" placeholder="Start typing something..." required="required">
         <input class="form-control" name="encounter.location_id" type="hidden">
     </div>
 
@@ -89,9 +80,10 @@
         </select>
     </div>
     <div class="form-group">
-        <label for="encounter.provider_id_select">Provider Name:</label>
+        <label for="encounter.provider_id_select">Provider Name:<span class="required">*</span></label>
         <input class="form-control valid-provider-only" id="encounter.provider_id_select" type="text"
-        data-concept="1473^Name of Health Care provider^99DCT" placeholder="Start typing something...">
+        data-concept="1473^Name of Health Care provider^99DCT" placeholder="Start typing something..."
+         required="required">
         <input class="form-control" name="encounter.provider_id_select" type="hidden">
     </div>
     <div class="form-group hidden">
@@ -114,7 +106,7 @@
 
     <div class="form-group">
         <label for="obs.visit_type">Visit Type:<span class="required">*</span></label>
-        <select class="form-control" id="obs.visit_type"
+        <select class="form-control" id="obs.visit_type" required="required"
                 name="obs.visit_type" data-concept="161643^Person attending facility^99DCT">
             <option value="">...</option>
             <option value="978^Self^99DCT">Self (SF)</option>
@@ -125,7 +117,7 @@
     <div class="form-group" id="treatment_supporter_name">
         <label for="obs.treatment_supporter_name">Name of treatment supporter:<span class="required">*</span></label>
         <input class="form-control" id="obs.treatment_supporter_name"
-               name="obs.treatment_supporter_name" type="number"
+               name="obs.treatment_supporter_name" type="text"
                data-concept="160638^Name of treatment supporter^99DCT"
                required="required">
     </div>
@@ -187,8 +179,8 @@
             <option value="lb">Live birth</option>
             <option value="sb">Still birth</option>
         </select>
-        <input id="obs.pregnancy_status" name="obs.pregnancy_status" data-concept="5272^Pregnancy Status^99DCT">
-        <input id="obs.pregnancy_outcome" name="obs.pregnancy_outcome" data-concept="5272^Pregnancy Status^99DCT">
+        <input id="obs.pregnancy_status" name="obs.pregnancy_status" type="hidden" data-concept="5272^Pregnancy Status^99DCT">
+        <input id="obs.pregnancy_outcome" name="obs.pregnancy_outcome" type="hidden" data-concept="161033^Pregnancy Outcome^99DCT">
     </div>  
     <div class="form-group" id="anc_no">
         <label for="obs.anc_no">ANC No:</label>
@@ -196,14 +188,14 @@
                data-concept="161655^Antenatal case number^99DCT">
     </div>
     <div class="form-group" id="edd">
-        <label for="obs.edd">EDD:</label>
-        <input class="form-control datepicker futureDate" id="obs.edd" name="obs.edd" type="test"
-               data-concept="5596^Expected date of delivery^99DCT" required="required">
+        <label for="obs.edd">EDD:<span class="required">*</span></label>
+        <input class="form-control datepicker future-date" id="obs.edd" name="obs.edd" type="text"
+               data-concept="5596^Expected date of delivery^99DCT" required="required" readonly="readonly">
     </div>
     <div class="form-group" id="pregnancy_end_date">
-        <label for="obs.pregnancy_end_date">Date of pregnancy end:</label>
-        <input class="form-control datepicker" id="obs.pregnancy_end_date" name="obs.pregnancy_end_date"
-        type="number" data-concept="161655^Date of pregnancy outcome^99DCT">
+        <label for="obs.pregnancy_end_date">Date of pregnancy end:<span class="required">*</span></label>
+        <input class="form-control datepicker past-date" id="obs.pregnancy_end_date" name="obs.pregnancy_end_date"
+        type="text" data-concept="161655^Date of pregnancy outcome^99DCT" required="required" readonly="readonly">
     </div>
 </div>
 <div class="section">
@@ -603,13 +595,13 @@
                     </label>
                         <input class="form-control"  type="text"
                         name="obs.problem_added_other_value"
-                        required = "required" data-concept="1915^FREETEXT GENERAL^99DCT"><br>
+                        data-concept="1915^FREETEXT GENERAL^99DCT"><br>
                         <input class="form-control"  type="text"
                         name="obs.problem_added_other_value"
-                        required = "required" data-concept="1915^FREETEXT GENERAL^99DCT"><br>
+                        data-concept="1915^FREETEXT GENERAL^99DCT"><br>
                         <input class="form-control"  type="text"
                         name="obs.problem_added_other_value"
-                        required = "required" data-concept="1915^FREETEXT GENERAL^99DCT">
+                        data-concept="1915^FREETEXT GENERAL^99DCT">
                 </div>
             </div>
             <div class="form-group">
@@ -622,10 +614,11 @@
         </fieldset>
     </div>
 </div>
-<div class="section">
+<div class="section" id="who_stage_peds">
+    <div class="form-group">
     <h3>WHO Stage</h3>
-    <div class="form-group" id="who_stage_peds">
-        <label for="obs.who_stage_peds">Current WHO HIV stage(Pediatric):</label>
+        <label for="obs.who_stage_peds">Current WHO HIV stage(Pediatric):
+        <span class="required">*</span></label>
         <select class="form-control" id="obs.who_stage_peds" required="required"
                 name="obs.who_stage_peds" data-concept="5356^Current WHO HIV stage^99DCT">>
             <option value="">...</option>
@@ -636,7 +629,8 @@
         </select>
     </div>
     <div class="form-group" id="who_stage_adult">
-        <label for="obs.who_stage_adult">Current WHO HIV stage(Adult):</label>
+        <label for="obs.who_stage_adult">Current WHO HIV stage(Adult):
+        <span class="required">*</span></label>
         <select class="form-control" id="obs.who_stage_adult" required="required"
                 name="obs.who_stage_adult" data-concept="5356^Current WHO HIV stage^99DCT">>
             <option value="">...</option>
@@ -651,8 +645,9 @@
     <h3>Cotrimoxazole</h3>
     <div class="form-group">
         <label for="obs.Cotrimoxazole_adherence">Cotrimoxazole Adherence:</label>
-        <select class="form-control" id="obs.Cotrimoxazole_adherence" required="required"
-                name="obs.Cotrimoxazole_adherence" data-concept="161652^Cotrimoxazole adherence^99DCT">>
+        <select class="form-control" id="obs.Cotrimoxazole_adherence"
+                name="obs.Cotrimoxazole_adherence"
+                data-concept="161652^Cotrimoxazole adherence^99DCT">>
             <option value="">...</option>
             <option value="159405^Good^99DCT">Good (G)</option>
             <option value="159406^Fair^99DCT">Fair (F)</option>
@@ -661,8 +656,9 @@
     </div>
     <div class="form-group">
         <label for="obs.Cotrimoxazole_dispensed">Cotrimoxazole Dispensed:</label>
-        <select class="form-control" id="obs.Cotrimoxazole_dispensed" required="required"
-                name="obs.Cotrimoxazole_dispensed" data-concept="162229^Cotrimoxazole dispensed^99DCT">>
+        <select class="form-control" id="obs.Cotrimoxazole_dispensed"
+                name="obs.Cotrimoxazole_dispensed"
+                data-concept="162229^Cotrimoxazole dispensed^99DCT">>
             <option value="">...</option>
             <option value="1065^Yes^99DCT">Yes</option>
             <option value="1066^No^99DCT">No</option>
@@ -674,7 +670,7 @@
     <h3>INH Dispensed</h3>
     <div class="form-group">
         <label for="obs.inh_dispensed">INH Dispensed:</label>
-        <select class="form-control" id="obs.inh_dispensed" required="required"
+        <select class="form-control" id="obs.inh_dispensed"
                 name="obs.inh_dispensed" data-concept="162230^Isoniazid dispensed^99DCT">>
             <option value="">...</option>
             <option value="1065^Yes^99DCT">Yes</option>
@@ -685,7 +681,9 @@
 </div>
 <div class="section">
     <h3>Other Medications Dispensed</h3>
-    <div class="form-group sub-section repeat" data-concept="1442^Current medication order^99DCT">
+    <div class="form-group sub-section repeat"
+    data-concept="1442^Current medication order^99DCT"
+    data-name="other_medication_drug">
         <label>Other Medications Dispensed</label>
         <div class="form-group">
             <label for="obs.other_medication_drug">
@@ -700,19 +698,21 @@
             <label for="obs.other_medication_dose">
                 Dose:
             </label>
-            <input class="form-control" id="obs.other_medication_dose" type="text" name="obs.other_medication_dose"
-                required ="required" data-concept="1443^Medication dispensed^99DCT" placeholder="Dosage" >
+            <input class="form-control" id="obs.other_medication_dose" type="number"
+            name="obs.other_medication_dose"
+                data-concept="1443^Medication dispensed^99DCT" placeholder="Dosage" >
         </div>
         <div class="form-group">
             <label for="obs.other_medication_dose_units">
                 Units:
             </label>
-            <input class="form-control" id="obs.other_medication_dose_units" type="text" name="obs.other_medication_dose_units"
-            required ="required" data-concept="1444^Medication strength^99DCT" placeholder="Dosage units">
+            <input class="form-control" id="obs.other_medication_dose_units" type="text"
+            name="obs.other_medication_dose_units"
+            data-concept="1444^Medication strength^99DCT" placeholder="Dosage units">
         </div>
         <div class="form-group">
             <label for="obs.other_medication_frequency">Frequency:</label>
-            <select class="form-control" id="obs.other_medication_frequency" required="required"
+            <select class="form-control" id="obs.other_medication_frequency"
                     name="obs.other_medication_frequency" data-concept="160855^Medication frequency^99DCT">>
                 <option value="">...</option>
                 <option value="160862^Once daily^99DCT">Once daily</option>
@@ -728,12 +728,12 @@
             <label for="obs.other_medication_dose">
                 Medication duration:
             </label>
-            <input class="form-control" id="obs.other_medication_duration" type="text" name="obs.other_medication_duration"
-                required = "required" data-concept="159368^Medication duration^99DCT" placeholder="Medication duration">
+            <input class="form-control" id="obs.other_medication_duration" type="number" name="obs.other_medication_duration"
+                data-concept="159368^Medication duration^99DCT" placeholder="Medication duration">
         </div>
         <div class="form-group">
             <label for="obs.other_medication_duration_units">Duration Units:</label>
-            <select class="form-control" id="obs.other_medication_duration_units" required="required"
+            <select class="form-control" id="obs.other_medication_duration_units"
                     name="obs.other_medication_duration_units" data-concept="1732^Duration units^99DCT">>
                 <option value="">...</option>
                 <option value="1822^Hours^99DCT">Hours</option>
@@ -749,7 +749,7 @@
     <h3>ARV Drugs</h3>
     <div class="form-group">
         <label for="obs.arv_adherence">Adherence:</label>
-        <select class="form-control" id="obs.arv_adherence" required="required"
+        <select class="form-control" id="obs.arv_adherence"
                 name="obs.arv_adherence" data-concept="161652^Cotrimoxazole adherence^99DCT">>
             <option value="">...</option>
             <option value="159405^Good^99DCT">Good (G)</option>
@@ -866,7 +866,7 @@
                     </label>
                     <input class="form-control"  type="text"
                     name="obs.arv_poor_adherence_reason_other_value"
-                    required = "required" data-concept="160632^Free text general^99DCT">
+                    data-concept="160632^Free text general^99DCT">
                 </div>
             </div>
         </fieldset>
@@ -878,12 +878,12 @@
                 Regimen Duration:
             </label>
             <input class="form-control" id="obs.regimen_duration" type="number" name="obs.regimen_duration"
-                required ="required" data-concept="159368^Medication duration^99DCT"
+                data-concept="159368^Medication duration^99DCT"
                 placeholder="Regimen duration">
         </div>
         <div class="form-group">
             <label for="obs.regimen_duration_units">Regimen Duration Units:</label>
-            <select class="form-control" id="obs.regimen_duration_units" required="required"
+            <select class="form-control" id="obs.regimen_duration_units"
                     name="obs.regimen_duration_units" data-concept="1732^Duration units^99DCT">
                 <option value="">...</option>
                 <option value="162583^Seconds^99DCT">Seconds</option>
@@ -922,19 +922,19 @@
                     CD4 count (%) :
                 </label>
                 <input class="form-control" id="obs.cd4count_by_percentage" type="text" name="obs.cd4count_by_percentage"
-                data-concept="5497^CD4%^99DCT" placeholder="CD4 count by percentage">
+                data-concept="730^CD4%^99DCT" placeholder="CD4 count by percentage">
         </div>
     </div>
     <div class="form-group">
             <label for="obs.hemoglobin">
                 Hemoglobin :
             </label>
-            <input class="form-control" id="obs.hemoglobin" type="text" name="obs.hemoglobin"
+            <input class="form-control" id="obs.hemoglobin" type="number" name="obs.hemoglobin"
             data-concept="21^Hemoglobin^99DCT" placeholder="g/dL">
     </div>
     <div class="form-group">
         <label for="obs.rpr">RPR:</label>
-        <select class="form-control" id="obs.rpr" required="required"
+        <select class="form-control" id="obs.rpr"
                 name="obs.rpr" data-concept="1619^Rapid Plasma Reagin^99DCT">>
             <option value="">...</option>
             <option value="664^Negative^99DCT">Negative</option>
@@ -944,7 +944,7 @@
     </div>
     <div class="form-group">
         <label for="obs.tb_sputum">TB Sputum:</label>
-        <select class="form-control" id="obs.tb_sputum" required="required"
+        <select class="form-control" id="obs.tb_sputum"
                 name="obs.tb_sputum" data-concept="307^Sputum for Acid Fast Bacilli^99DCT">>
             <option value="">...</option>
             <option value="159985^Scanty^99DCT">Scanty</option>
@@ -966,14 +966,24 @@
             </div>
             <div class="form-group sub-section" id="other_tests_urinalysis_order">
                 <h4>Urinalysis Order</h4>
-                <label for="obs.urinalysis_order">Test result: <span class="required">*</span></label>
-                <select class="form-control" id="obs.urinalysis_order" required="required"
-                        name="obs.rpr" data-concept="302^Urinalysis Order^99DCT">>
-                    <option value="">...</option>
-                    <option value="1115^Normal^99DCT">Normal</option>
-                    <option value="1116^Abnormal^99DCT">Abnormal</option>
-                    <option value="1067^Unknown^99DCT">Unknown</option>
-                </select>
+                <div class="form-group">
+                    <label for="obs.urinalysis_order">Test result: <span class="required">*</span></label>
+                    <select class="form-control" id="obs.urinalysis_order" required="required"
+                            name="obs.rpr" data-concept="302^Urinalysis Order^99DCT">>
+                        <option value="">...</option>
+                        <option value="1115^Normal^99DCT">Normal</option>
+                        <option value="1116^Abnormal^99DCT">Abnormal</option>
+                        <option value="1067^Unknown^99DCT">Unknown</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="obs_datetime.urinalysis_order_date_collected">Date Collected:
+                        <span class="required">*</span></label>
+                    <input class="form-control datepicker  past-date obsdatetime"
+                    id="obs_datetime.urinalysis_order_date_collected"
+                            name="obs_datetime.urinalysis_order_date_collected" type="text"
+                            data-obsdatetimefor="obs.urinalysis_order" readonly="readonly">
+                </div>
             </div>
             <div class="form-group">
                 <label class="font-normal">
@@ -983,15 +993,25 @@
             </div>
             <div class="form-group sub-section" id="other_tests_urine_pregnancy_test">
                 <h4>Urine Pregnancy Test</h4>
-                <label for="obs.urine_pregnancy_test">Test result: <span class="required">*</label>
-                <select class="form-control" id="obs.urine_pregnancy_test" required="required"
-                        name="obs.rpr" data-concept="45^Urine Pregnancy Test^99DCT">>
-                    <option value="">...</option>
-                    <option value="664^Negative^99DCT">Negative</option>
-                    <option value="703^Positive^99DCT">Positive</option>
-                    <option value="1138^Indeterminate^99DCT">Indeterminate</option>
-                    <option value="1304^Poor sample quality^99DCT">Poor sample quality</option>
-                </select>
+                <div class="form-group">
+                    <label for="obs.urine_pregnancy_test">Test result: <span class="required">*</label>
+                    <select class="form-control" id="obs.urine_pregnancy_test" required="required"
+                            name="obs.rpr" data-concept="45^Urine Pregnancy Test^99DCT">>
+                        <option value="">...</option>
+                        <option value="664^Negative^99DCT">Negative</option>
+                        <option value="703^Positive^99DCT">Positive</option>
+                        <option value="1138^Indeterminate^99DCT">Indeterminate</option>
+                        <option value="1304^Poor sample quality^99DCT">Poor sample quality</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="obs_datetime.urine_pregnancy_test_date_collected">Date Collected:
+                        <span class="required">*</span></label>
+                    <input class="form-control datepicker  past-date obsdatetime"
+                    id="obs_datetime.urine_pregnancy_test_date_collected"
+                            name="obs_datetime.urine_pregnancy_test_date_collected" type="text"
+                            data-obsdatetimefor="obs.urine_pregnancy_test" readonly="readonly">
+                </div>
             </div>
             <label>Blood Tests:</label>
             <div class="form-group">
@@ -1005,6 +1025,15 @@
                 <label for="obs.lymphocyte_count">Test result: <span class="required">*</label>
                 <input class="form-control" id="obs.lymphocyte_count" type="number" name="obs.lymphocyte_count"
                 data-concept="1319^Lymphocyte Count^99DCT" placeholder="cells/uL" required="required">
+
+                <div class="form-group">
+                    <label for="obs_datetime.lymphocyte_count_date_collected">Date Collected:
+                        <span class="required">*</span></label>
+                    <input class="form-control datepicker past-date obsdatetime"
+                    id="obs_datetime.lymphocyte_count_date_collected"
+                            name="obs_datetime.lymphocyte_count_date_collected" type="text"
+                            data-obsdatetimefor="obs.lymphocyte_count" readonly="readonly">
+                </div>
             </div>
             <div class="form-group">
                 <label class="font-normal">
@@ -1017,6 +1046,13 @@
                 <label for="obs.hiv_viral_load">Test result: <span class="required">*</label>
                 <input class="form-control" id="obs.hiv_viral_load" type="number" name="obs.hiv_viral_load"
                 data-concept="856^HIV Viral Load^99DCT" placeholder="copies/ml" required="required">
+
+                <div class="form-group">
+                    <label for="obs_datetime.hiv_viral_load_date_collected">Date Collected: <span class="required">*</span></label>
+                    <input class="form-control datepicker past-date obsdatetime" id="obs_datetime.hiv_viral_load_date_collected"
+                            name="obs_datetime.hiv_viral_load_date_collected" type="text"
+                            data-obsdatetimefor="obs.hiv_viral_load" readonly="readonly">
+                </div>
             </div>
             <div class="form-group">
                 <label class="font-normal">
@@ -1030,6 +1066,15 @@
                 <input class="form-control" id="obs.erythrocyte_sedimentation_rate" type="number"
                 name="obs.erythrocyte_sedimentation_rate" required="required"
                 data-concept="855^Erythrocyte Sedimentation Rate^99DCT" placeholder="mm/hr">
+
+                <div class="form-group">
+                    <label for="obs_datetime.erythrocyte_sedimentation_rate_date_collected">Date Collected: 
+                        <span class="required">*</span></label>
+                    <input class="form-control datepicker past-date obsdatetime"
+                    id="obs_datetime.erythrocyte_sedimentation_rate_date_collected"
+                            name="obs_datetime.erythrocyte_sedimentation_rate_date_collected" type="text"
+                            data-obsdatetimefor="obs.erythrocyte_sedimentation_rate" readonly="readonly">
+                </div>
             </div>
         </div>
     </div>
@@ -1330,8 +1375,9 @@
     <h3>PwP Services</h3>
     <div class="form-group">
         <label for="obs.pwp_services_disclosure">HIV status disclosed to partner:</label>
-        <select class="form-control" id="obs.pwp_services_disclosure" required="required"
-                name="obs.pwp_services_disclosure" data-concept="159423^HIV status disclosed to partner^99DCT">>
+        <select class="form-control" id="obs.pwp_services_disclosure"
+                name="obs.pwp_services_disclosure"
+                data-concept="159423^HIV status disclosed to partner^99DCT">>
             <option value="">...</option>
             <option value="1065^Yes^99DCT">Yes</option>
             <option value="1066^No^99DCT">No</option>
@@ -1339,7 +1385,7 @@
     </div>
     <div class="form-group">
         <label for="obs.pwp_services_hiv_tested">Partner HIV tested:</label>
-        <select class="form-control" id="obs.pwp_services_hiv_tested" required="required"
+        <select class="form-control" id="obs.pwp_services_hiv_tested"
                 name="obs.pwp_services_hiv_tested" data-concept="161557^Partner HIV tested^99DCT">>
             <option value="">...</option>
             <option value="1065^Yes^99DCT">Yes</option>
@@ -1348,7 +1394,7 @@
     </div>
     <div class="form-group">
         <label for="obs.pwp_services_condoms_given">Condoms given during the visit:</label>
-        <select class="form-control" id="obs.pwp_services_condoms_given" required="required"
+        <select class="form-control" id="obs.pwp_services_condoms_given"
                 name="obs.pwp_services_condoms_given" data-concept="159777^Condoms given during the visit^99DCT">>
             <option value="">...</option>
             <option value="1065^Yes^99DCT">Yes</option>
@@ -1357,8 +1403,9 @@
     </div>
     <div class="form-group">
         <label for="obs.pwp_services_std_tested">Patient tested for sexually transmitted illness in current visit:</label>
-        <select class="form-control" id="obs.pwp_services_std_tested" required="required"
-                name="obs.pwp_services_std_tested" data-concept="161558^Patient tested for sexually transmitted illness in current visit^99DCT">>
+        <select class="form-control" id="obs.pwp_services_std_tested"
+                name="obs.pwp_services_std_tested"
+                data-concept="161558^Patient tested for sexually transmitted illness in current visit^99DCT">>
             <option value="">...</option>
             <option value="1065^Yes^99DCT">Yes</option>
             <option value="1066^No^99DCT">No</option>
@@ -1368,10 +1415,10 @@
 <div class="section">
     <h3>Next Appointment</h3>
     <div class="form-group">
-        <label for="obs.next_appointment_date">Date of next appointment :</label>
-        <input class="form-control datepicker checkFutureDate" data-concept="5096^Return Visit Date^99DCT"
+        <label for="obs.next_appointment_date">Date of next appointment: <span class="required">*</label></label>
+        <input class="form-control datepicker future-date" data-concept="5096^Return Visit Date^99DCT"
                id="obs.next_appointment_date" name="obs.next_appointment_date" type="text"
-               readonly="readonly">
+               readonly="readonly" required="required">
     </div>
 </div>
 </form>
@@ -1379,6 +1426,8 @@
 <script type="text/javascript">
 
 $(document).ready(function () {
+    $('.past-date').trigger('change');
+    $('.future-date').trigger('change');
 
     var dateFormat = "dd-mm-yy";
     var currentDate = $.datepicker.formatDate(dateFormat, new Date());
@@ -1399,11 +1448,7 @@ $(document).ready(function () {
         $(this).prop('disabled', false);
     });
 
-    $('#hiv_family_history_form').validate({
-
-        submitHandler: function (form) {
-            $('#result').html(JSON.stringify($('form').serializeEncounterForm(), undefined, 2));
-        },
+    $('#moh_visit_summary_form').validate({
         rules: {
             'obs.age': {
                 range: [0, 120]
@@ -1416,9 +1461,33 @@ $(document).ready(function () {
                 number: true,
                 range: [10, 228]
             },
+            'obs.diastolic_blood_pressure': {
+                number: true,
+                range: [0, 150]
+            },
+            'obs.systolic_blood_pressure': {
+                number: true,
+                range: [0, 250]
+            },
+            height_cm: {
+                number: true,
+                range: [10, 228]
+            },
             'obs.erythrocyte_sedimentation_rate': {
                 number: true,
                 range: [0, 30]
+            },
+            'obs.cd4count_by_count': {
+                number: true,
+                range: [0, 1497]
+            },
+            'obs.cd4count_by_percentage': {
+                number: true,
+                range: [0, 100]
+            },
+            'obs.hemoglobin': {
+                number: true,
+                range: [0, 50]
             }
         }
     });
@@ -1515,7 +1584,7 @@ $(document).ready(function () {
             $('#obs\\.pregnancy_status').val('1066^No^99DCT');
             $('#obs\\.pregnancy_outcome').val('');
             $('#edd').hide();
-            $('#pregnancy_end_date').show();
+            $('#pregnancy_end_date').hide();
         }else if(selected_value == 'mc'){
             $('#obs\\.pregnancy_outcome').val('126127^Spontaneous abortion^99DCT');
             $('#obs\\.pregnancy_status').val('1066^No^99DCT');
@@ -1719,6 +1788,20 @@ $(document).ready(function () {
     }
     selectOtherTests();
 
+    var d = new Date();
+    var curr_date = d.getDate();
+    var curr_month = d.getMonth();
+    var curr_year = d.getFullYear();
+    var months = ['01','02','03','04','05','06','07','08','09','10','11','12'];
+    currentFormattedDate = curr_date +'-'+months[curr_month] +'-' +curr_year;
+
+    var $obsdatetime = $('.obsdatetime');
+    $.each($obsdatetime, function(k,v){
+        if($(v).val() == ''){
+            $(v).val(currentFormattedDate) ;
+        }
+    });
+
     var drugs = [
         {'val':'79641^Metaraminol^99DCT',    'label':'Metaraminol'},
         {'val':'162639^Corticotropin^99DCT',    'label':'Corticotropin'},
@@ -1733,10 +1816,9 @@ $(document).ready(function () {
         {'val':'86415^Warfarin^99DCT',    'label':'Warfarin'},
     ];    
     document.setupAutoComplete('obs\\.other_medication_drug',drugs);
+    document.setupAutoCompleteData('encounter\\.location_id');
 	document.setupAutoCompleteDataForProvider('encounter\\.provider_id_select');
-
     document.setupValidationForProvider("$('#encounter\\.provider_id_select').val()","encounter\\.provider_id");
-
     document.setupValidationForLocation("$('#encounter\\.location_id').val()","encounter\\.location_id");
 
 });
