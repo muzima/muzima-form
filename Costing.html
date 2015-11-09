@@ -55,7 +55,7 @@
         <div class="form-group">
             <label for="patient.birth_date">Date Of Birth:</label>
             <input class="form-control" id="patient.birth_date"
-                   name="patient.birthdate" type="text" readonly="readonly">
+                   name="patient.birth_date" type="text" readonly="readonly">
         </div>
     </div>
     <div class="section">
@@ -76,27 +76,27 @@
             </select>
         </div>
         <div class="form-group">
-            <label for="encounter.provider_id_select">Provider ID <span class="required">*</span></label>
+            <label for="encounter.provider_id_select">Provider Name <span class="required">*</span></label>
             <input class="form-control valid-provider-only" id="encounter.provider_id_select" type="text"
                    placeholder="Start typing provider name here ...">
             <input class="form-control" name="encounter.provider_id_select" type="hidden">
         </div>
         <div class="form-group hidden">
             <select id="select_providers">
-                <option value="6-7" data-provider = "Josephine Kisato" >Josephine Kisato</option>
-                <option value="9-1" data-provider = "Catherine Chiliswa" >Catherine Chiliswa</option>
-                <option value="4-2" data-provider = "Derek Levembe" >Derek Levembe</option>
-                <option value="15-8" data-provider = "Jackson Rotich" >Jackson Rotich</option>
-                <option value="4-2" data-provider = "Penina Kiptoo" >Penina Kiptoo</option>
-                <option value="8-3" data-provider = "Kennedy Kirwa" >Kennedy Kirwa</option>
-                <option value="7-5" data-provider = "Abraham Saat Kimaru" >Abraham Saat Kimaru</option>
-                <option value="5-9" data-provider = "Keviner Chavera Asigi" >Keviner Chavera Asigi</option>
+                <option value="6-7" data-provider = "Josephine Kisato">Josephine Kisato</option>
+                <option value="9-1" data-provider = "Catherine Chiliswa">Catherine Chiliswa</option>
+                <option value="4-2" data-provider = "Derek Levembe">Derek Levembe</option>
+                <option value="15-8" data-provider = "Jackson Rotich">Jackson Rotich</option>
+                <option value="4-2" data-provider = "Penina Kiptoo">Penina Kiptoo</option>
+                <option value="8-3" data-provider = "Kennedy Kirwa">Kennedy Kirwa</option>
+                <option value="7-5" data-provider = "Abraham Saat Kimaru">Abraham Saat Kimaru</option>
+                <option value="5-9" data-provider = "Keviner Chavera Asigi">Keviner Chavera Asigi</option>
             </select>
         </div>
         <div class="form-group show_provider_id_text">
-            <label for="encounter.provider_id">Enter provider's system-id:<span class="required">*</span></label>
+            <label for="encounter.provider_id">Provider's system-id:<span class="required">*</span></label>
             <input class="form-control checkDigit" id="encounter.provider_id" name="encounter.provider_id" type="text"
-                   placeholder="Or enter the provider system id here ..." required="required">
+                    disabled="disabled" required="required">
         </div>
         <div class="form-group">
             <label for="encounter.encounter_datetime">Encounter Date:<span class="required">*</span>
@@ -228,7 +228,7 @@
             </select>
         </div>
         <div class="admission_in_past_12_months">
-            <div class="form-group" >
+            <div class="form-group">
                 <p>How many times were you admitted overnight to a hospital in the past 12 months?<span class="required">*</span> </p>
                 <input class="form-control" id="no_admission_in_past_12_months" name="obs.no_admission_in_past_12_months"
                        type="number" placeholder="Number of Admissions" data-concept="5704^NUMBER OF HOSPITALIZATIONS IN PAST YEAR^99DCT" required="required">
@@ -542,14 +542,14 @@
                     <label for="obs.transport_cost_to_hospital">How much was the transport cost?</label>
                     <div class="sub-section form-group">
                     <input class="form-control" id="obs.transport_cost_to_hospital" name="obs.transport_cost_to_hospital"
-                    type="number" data-concept="9182^INPATIENT TRANSPORT COSTS^99DCT">
+                    type="number" data-concept="9220^INPATIENT TRANSPORTION COST^99DCT">
                     <input class="form-control hiddenInput" id="transport_cost_to_hospital_DK_RF" type="text">
                         <fieldset name="obs.transport_cost_to_hospital_DR">
                             <input id="obs.transport_cost_to_hospital_DK" type="radio" name="obs.transport_cost_to_hospital_DR" value="-77"
-                            data-concept="9182^INPATIENT TRANSPORT COSTS^99DCT">
+                            data-concept="9220^INPATIENT TRANSPORTION COST^99DCT">
                             <label for="obs.transport_cost_to_hospital_DK">Don&#39;t Know</label> &nbsp;&nbsp;
                             <input id="obs.transport_cost_to_hospital_RF" type="radio"  name="obs.transport_cost_to_hospital_DR" value="-99"
-                            data-concept="9182^INPATIENT TRANSPORT COSTS^99DCT">
+                            data-concept="9220^INPATIENT TRANSPORTION COST^99DCT">
                             <label for="obs.transport_cost_to_hospital_RF">Refused</label><br>
                         </fieldset>
                     </div>
@@ -1411,17 +1411,17 @@
                     <div class="sub-section form-group">
                         <input class="form-control" id="obs.outpatient_transport_cost_to_hospital"
                         name="obs.outpatient_transport_cost_to_hospital" type="number"
-                        data-concept="9183^OUTPATIENT TRANSPORT COST^99DCT">
+                        data-concept="9221^OUTPATIENT TRANSPORTION COST^99DCT">
                         <input class="form-control hiddenInput"
                         id="outpatient_transport_cost_to_hospital_DK_RF" type="text">
                         <fieldset name="obs.outpatient_transport_cost_to_hospital_DR">
                             <input id="obs.outpatient_transport_cost_to_hospital_DK" type="radio" 
                             name="obs.outpatient_transport_cost_to_hospital_DR" value="-77"
-                            data-concept="9183^OUTPATIENT TRANSPORT COST^99DCT">
+                            data-concept="9221^OUTPATIENT TRANSPORTION COST^99DCT">
                             <label for="obs.outpatient_transport_cost_to_hospital_DK">Don&#39;t Know</label> &nbsp;&nbsp;
                             <input id="obs.outpatient_transport_cost_to_hospital_RF" type="radio"  
                             name="obs.outpatient_transport_cost_to_hospital_DR" value="-99"
-                            data-concept="9183^OUTPATIENT TRANSPORT COST^99DCT">
+                            data-concept="9221^OUTPATIENT TRANSPORTION COST^99DCT">
                             <label for="obs.outpatient_transport_cost_to_hospital_RF">Refused</label><br>
                         </fieldset>
                     </div>
@@ -1628,8 +1628,7 @@
                     </label>
                     <div class="sub-section">
                         <label>Hours</label>
-                        <select class="form-control" id="obs.time_to_herbalist_hours" name="obs.time_to_herbalist_hours"
-                            required="required">
+                        <select class="form-control" id="obs.time_to_herbalist_hours" name="obs.time_to_herbalist_hours">
                             <option value="">...</option>
     			             <option value="0">0</option>
                             <option value="1">1</option>
@@ -1683,15 +1682,15 @@
                 <div class="form-group">
                     <label for="obs.herbal_transport_cost">How much was the transport cost?<span class="required">*</span></label>
                     <input class="form-control" id="obs.herbal_transport_cost" name="obs.herbal_transport_cost" type="number"
-                           data-concept="9184^HERBAL TRANSPORT COST^99DCT" required="required">
+                           data-concept="9219^HERBAL TRANSPORTATION COST^99DCT" required="required">
                     <input class="form-control hiddenInput" id="herbal_transport_cost_DK_RF" type="text">
                     <div class="form-group">
                         <fieldset name="obs.herbal_transport_cost_DR">
                             <input id="obs.herbal_transport_cost_DK" type="radio" name="obs.herbal_transport_cost_DR" value="-77"
-                            data-concept="9184^HERBAL TRANSPORT COST^99DCT">
+                            data-concept="9219^HERBAL TRANSPORTATION COST^99DCT">
                             <label for="obs.herbal_transport_cost_DK">Don&#39;t Know</label> &nbsp;&nbsp;
                             <input id="obs.herbal_transport_cost_RF" type="radio"  name="obs.herbal_transport_cost_DR" value="-99"
-                            data-concept="9184^HERBAL TRANSPORT COST^99DCT">
+                            data-concept="9219^HERBAL TRANSPORTATION COST^99DCT">
                             <label for="obs.herbal_transport_cost_RF">Refused</label><br>
                         </fieldset>
                     </div>
@@ -1699,7 +1698,7 @@
 
         </div>
     </div>
-    <div class="section" >
+    <div class="section">
         <h3>SECTION E - PRESCRIBED MEDICINES</h3>
         <div class="form-group">
             <label for="obs.admitted_select">
@@ -1874,7 +1873,7 @@
 
         </div>
     </div>
-    <div class="section" >
+    <div class="section">
         <h3>SECTION F - HEALTH INSURANCE</h3>
 
         <div class="form-group">
@@ -1928,7 +1927,7 @@
             </div>
         </div>
     </div>
-    <div class="section" >
+    <div class="section">
         <h3>SECTION G - LIFESTYLE/HABITS</h3>
 
         <div class="alert alert-info">We are interested in finding out about the kinds of physical activities that people do
@@ -2301,7 +2300,7 @@
         </div>
 
     </div>
-    <div class="section" >
+    <div class="section">
         <h3>SECTION H - HEALTH STATUS</h3>
         <div class="alert alert-info">We are now going to ask you questions about your health-related quality of life.</div>
         <div class="form-group">
@@ -2382,7 +2381,7 @@
                    data-concept="9165^HEALTH STATUS^99DCT" required="required">
         </div>
     </div>
-    <div class="section" >
+    <div class="section">
         <h3>SECTION I - WORK PRODUCTIVITY</h3>
         <div class="form-group">
             <label for="obs.primary_job">
@@ -2944,17 +2943,6 @@
             },"Paid bill amount should be less or equal to total medical bill"
         );
 
-        $.validator.addMethod("checkHourAndMints", function (value, element) {
-            var d = $('#obs\\.time_doing_vigorous_physical_mins').val();
-            var a = $('#obs\\.time_doing_vigorous_physical_hours').val();
-            if(d =='' && a =='')
-                return false;
-            else
-                return true;
-
-            },"One of value has to be equal or grater than zero"
-        );
-
 
         $('#costing_form').validate({
 
@@ -3014,9 +3002,6 @@
                 },
                 "obs.medication_purchase_bill":{
                     min :0
-                },
-                "obs.time_doing_vigorous_physical_mins":{
-                    checkHourAndMints : true
                 },
                 "obs.years_used_tobacco":{
                     min : 1
