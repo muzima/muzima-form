@@ -13,15 +13,20 @@
 </head>
 <body class="col-md-10 col-md-offset-1">
 <div id="result"></div>
-<form class="relevant-female" id="histopathology_form" name="histopathology_form">
+<form id="histopathology_form" name="histopathology_form">
     <h2 class="text-center">Histopathology Form v 0.01</h2>
 
     <div class="section">
         <h3>Patient Demographics</h3>
         <div class="form-group">
-            <input class="form-control" id="patient.uuid" hidden="hidden"
-                   name="patient.uuid" type="text" readonly="readonly">
+            <input class="form-control" id="patient.uuid" name="patient.uuid" type="hidden" readonly="readonly">
         </div>
+        <div class="form-group">
+            <label for="patient.medical_record_number">AMRS ID Number:</label>
+            <input class="form-control" id="patient.medical_record_number" name="patient.medical_record_number" type="text"
+                   readonly="readonly">
+        </div>
+
         <div class="form-group">
             <label for="patient.given_name">Given Name:</label>
             <input class="form-control" id="patient.given_name" name="patient.given_name" type="text" readonly="readonly">
@@ -34,11 +39,7 @@
             <label for="patient.middle_name">Middle Name:</label>
             <input class="form-control" id="patient.middle_name" name="patient.middle_name" type="text" readonly="readonly">
         </div>
-        <div class="form-group">
-            <label for="patient.medical_record_number">AMRS ID Number</label>
-            <input class="form-control checkDigit" id="patient.medical_record_number"
-                   name="patient.medical_record_number" type="text" readonly="readonly">
-        </div>
+
         <div class="form-group">
             <label for="patient.sex">Gender:</label>
             <select class="form-control" id="patient.sex" name="patient.sex" readonly="readonly">
@@ -87,6 +88,7 @@
             <input class="form-control" id="encounter.form_uuid" name="encounter.form_uuid" type="hidden"
                    required="required">
         </div>
+
     </div>
     <div class="section repeat precedure_done_detailed" data-concept="7480^PROCEDURES DONE THIS VISIT, DETAILED^99DCT"
             id="precedure_done_detailed" data-name="precedure_done_detailed">
@@ -303,19 +305,6 @@
         });
 
         $('#histopathology_form').validate({});
-
-        var $patientSex = $('#patient\\.sex');
-        $patientSex.change(function () {
-            var $womenOnly = $('.relevant-female');
-            if ($patientSex.val() != 'F') {
-                $womenOnly.hide();
-                $('body').html("<div class='section text-center'><h4>This form is only applicable to female patient. " +
-                        "Please press back to close the form.</h4></div>");
-            } else {
-                $womenOnly.show();
-            }
-        });
-        $patientSex.trigger('change');
 
         var showBodyPartSpecificDiagonosis = function (bodyPart) {
             var availableBodyParts = {'8279^CERVIX^99DCT': '#obs\\.pathological_diagnosis_added_cervix',
