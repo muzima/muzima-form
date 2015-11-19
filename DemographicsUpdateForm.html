@@ -11,12 +11,12 @@
     <script src="js/additional-methods.min.js"></script>
     <script src="js/muzima.js"></script>
 
-    <title>Registration Form</title>
+    <title>Demographics Update Form</title>
 </head>
 <body class="col-md-8 col-md-offset-2">
 <div id="result"></div>
-<form id="registration_form" name="registration_form">
-    <h2 class="text-center">Registration Form</h2>
+<form id="demographics_update_form" name="demographics_update_form">
+    <h2 class="text-center">Demographics Update Form</h2>
 
     <div class="section">
         <h3>Names</h3>
@@ -63,7 +63,7 @@
         </div>
         <div class="form-group">
             <label for="patient.phone_number">Phone Number: </label>
-            <input class="form-control phoneNumber" id="patient.phone_number" name="patient.phone_number" type="tel">
+            <input class="form-control" id="patient.phone_number" name="patient.phone_number" type="tel">
         </div>
     </div>
     <div class="section">
@@ -85,26 +85,24 @@
                     <label for="patient.other_identifier_type">Identifier Type</label>
                     <select class="form-control patient.other_identifier_type" name="patient.other_identifier_type" id="patient.other_identifier_type">
                         <option value="">...</option>
-                        <option id="amrs_medical_record_number" value="AMRS Medical Record Number">AMRS Medical Record Number</option>
+                        <option value="AMRS Medical Record Number">AMRS Medical Record Number</option>
                         <option value="CCC Number">CCC Number</option>
-                        <option id="hct_id" value="HCT ID">HCT ID</option>
+                        <option value="HCT ID">HCT ID</option>
                         <option value="KENYAN NATIONAL ID NUMBER">KENYAN NATIONAL ID NUMBER</option>
                         <option value="MTCT Plus ID">MTCT Plus ID</option>
                         <option value="MTRH Hospital Number">MTRH Hospital Number</option>
                         <option value="Old AMPATH Medical Record Number">Old AMPATH Medical Record Number</option>
-                        <option id="pmtct_id" value="pMTCT ID">pMTCT ID</option>
+                        <option value="pMTCT ID">pMTCT ID</option>
                     </select>
                 </div>
                 <div class="identifier_value_section">
                     <div class="form-group">
                         <label for="patient.other_identifier_value">Enter Identifier</label>
-                        <input class="form-control check-other-identifier" id="patient.other_identifier_value" required
-                        name="patient.other_identifier_value" type="text">
+                        <input class="form-control check-other-identifier" id="patient.other_identifier_value" name="patient.other_identifier_value" type="text">
                     </div>
                     <div class="form-group">
                         <label for="patient.confirm_identifier_value">Confirm Identifier</label>
-                        <input class="form-control check-confirm-identifier" id="patient.confirm_identifier_value" required
-                        name="patient.confirm_identifier_value" type="text">
+                        <input class="form-control check-confirm-identifier" id="patient.confirm_identifier_value" name="patient.confirm_identifier_value" type="text">
                     </div>
                 </div>
             </div>
@@ -130,7 +128,9 @@
         <div class="form-group show_birthdate">
             <label for="patient.birth_date">Select Birthdate <span class="required">*</span></label>
             <input class="form-control birth_date_picker nonFutureDate" id="patient.birth_date" name="patient.birth_date"
-                   type="text" required="required" readonly="readonly">
+                   type="text"
+                   required="required"
+                   readonly="readonly">
         </div>
         <div class="form-group show_birthdate">
             <label for="patient.birthdate_estimated">Is this birthdate an estimate? <span
@@ -145,6 +145,7 @@
         <div class="form-group show_age">
             <label for="tmp.age_in_years">How old are you in Years <span class="required">*</span></label>
             <input class="form-control" id="tmp.age_in_years" name="tmp.age_in_years" type="number" required="required">
+
         </div>
     </div>
     <div class="section">
@@ -170,6 +171,7 @@
             <select id="select_providers">
             </select>
         </div>
+
         <div class="form-group show_provider_id_text">
             <label for="encounter.provider_id">Provider's system-id:<span class="required">*</span></label>
             <input class="form-control checkDigit" id="encounter.provider_id" name="encounter.provider_id"
@@ -177,8 +179,9 @@
         </div>
         <div class="form-group">
             <label for="encounter.encounter_datetime">Encounter Date <span class="required">*</span></label>
-            <input class="form-control nonFutureDate past-date datepicker" readonly="readonly" id="encounter.encounter_datetime"
-                   name="encounter.encounter_datetime" type="text" required="required">
+            <input class="form-control nonFutureDate past-date" readonly="readonly" id="encounter.encounter_datetime"
+                   name="encounter.encounter_datetime"
+                   type="text" required="required">
         </div>
         <div class="form-group">
             <input class="form-control" id="encounter.form_uuid" name="encounter.form_uuid"
@@ -255,6 +258,7 @@
             function(confirm_identifier_value, confirm_identifier_element){
                 var other_identifier_value = $(confirm_identifier_element).closest('.repeat').find('.check-other-identifier').val();
                 if (other_identifier_value == confirm_identifier_value) {
+                   
                     return true;
                 } else {
                     return false;
@@ -270,17 +274,9 @@
         });
 
     $('.patient\\.other_identifier_type').change(function(){
-        var selected_val = $(this).val();
-        if(selected_val == ""){
+        if($(this).val() == ""){
             $(this).closest('.repeat').find('.identifier_value_section').hide();
         }else{
-            if(selected_val == $('#amrs_medical_record_number').val() || selected_val == $('#hct_id').val() || selected_val == $('#pmtct_id')){
-                $('#patient\\.other_identifier_value').addClass('checkDigit');
-                $('#patient\\.confirm_identifier_value').addClass('checkDigit');
-            }else{
-                $('#patient\\.other_identifier_value').removeClass('checkDigit');
-                $('#patient\\.confirm_identifier_value').removeClass('checkDigit');
-            }
             $(this).closest('.repeat').find('.identifier_value_section').show();
         }
 
@@ -292,12 +288,7 @@
 
 	document.setupAutoCompleteDataForProvider('encounter\\.provider_id_select');
 
-	$('#registration_form').validate({rules: {
-            'tmp.age_in_years': {
-                range: [0, 120]
-            }
-        }
-    });
+	$('#demographics_update_form').validate({});
 
    	document.setupValidationForProvider("$('#encounter\\.provider_id_select').val()","encounter\\.provider_id");
 
