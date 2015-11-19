@@ -103,9 +103,9 @@
         <label for="obs.last_menstrual_period_date">First day of your last menstrual period (LMP)
             <span class="required">*</span>
         </label>
-        <input class="form-control datepicker nonFutureDate" id="obs.last_menstrual_period_date"
+        <input class="form-control datepicker nonFutureDate past-date" id="obs.last_menstrual_period_date"
                name="last_menstrual_period_date" type="text" data-concept="1836^LAST MENSTRUAL PERIOD DATE^99DCT"
-               required="required">
+               required="required" readonly="readonly">
     </div>
     <div class="section">
         <h4>Select all symptoms that best describe complaints</h4>
@@ -183,10 +183,16 @@
             </div>
             <div class="form-group">
                 <label class="font-normal">
-                    <input class="hasOther" id="chief_complaint.other_non_coded" type="checkbox"
+                    <input class="has-freetext" id="chief_complaint.other_non_coded" type="checkbox"
                            data-concept="5219^CHIEF COMPLAINT^99DCT" value="5622^OTHER NON-CODED^99DCT">
                     Other
                 </label>
+            </div>
+            <div class="form-group freetext">
+                <label for="chief_complaint.freetext_general">Specify:<span class="required">*</span></label>
+                <textarea class="form-control" name="chief_complaint.freetext_general"
+                          id="chief_complaint.freetext_general"
+                          data-concept="1915^FREETEXT GENERAL^99DCT"></textarea>
             </div>
         </fieldset>
     </div>
@@ -333,10 +339,10 @@
                 </label>
             </div>
 
-         <div class="form-group">
+         <div class="form-group" id="date_most_recent_papanicolaou_smear_performed_div" >
             <label for="date_most_recent_papanicolaou_smear_performed">Date of most recent PAP result</label>
             <input class="form-control datepicker nonFutureDate past-date" id="date_most_recent_papanicolaou_smear_performed"
-                   name="date_most_recent_papanicolaou_smear_performed" type="text"
+                   name="date_most_recent_papanicolaou_smear_performed" type="text" readonly="readonly"
                    data-concept="6727^DATE MOST RECENT PAPANICOLAOU SMEAR PERFORMED^99DCT">
         </div>
         </fieldset>
@@ -465,12 +471,24 @@
         });
         $patientSex.trigger('change');
 
+
         $('#papsmear_form').validate({});
 
         $.fn.customValidationCheck = function () {
             return true;
         };
 
+    document.disableDate = function(testResult,testResultDate){
+        $('#' + testResult).change(function() {
+        if($(this).is(":checked")) {
+            $("#" + testResultDate).hide();
+        } else{
+             $("#" + testResultDate).show();
+        }
+    });
+    }
+
+    document.disableDate('papanicolaou_result\\.do_not_know','date_most_recent_papanicolaou_smear_performed_div');
 
         var noneAndDontKnowValues = ["1107^NONE^99DCT", "1624^DO NOT KNOW^99DCT"];
         var noneAndDontKnowMessage = "If None or Don't Know is selected, it should be the only option.";

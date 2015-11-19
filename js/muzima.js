@@ -491,10 +491,21 @@ $(document).ready(function () {
         }
         $clonedSection.attr("data-name", parentName);
 
-        /* clear values on cloned fields */
-        $clonedSection.find(':input:not(:button)').val('');
-        $clonedSection.find(':input:not(:button)').trigger('change');
+        document.clearValuesOnClonedFields($clonedSection);
     });
+
+    $(document.body).on('click', '.remove_section', function () {
+        document.removeIfRepeatedSection($(this));
+    });
+
+    document.clearValuesOnClonedFields = function ($clonedSection){
+        $clonedSection.find(':input:not(:button):not(:radio):not(:checkbox)').val('');
+        $clonedSection.find(':input:not(:button)').trigger('change');
+        $clonedSection.find(':radio').prop('checked',false);
+        $clonedSection.find(':radio').trigger('change');
+        $clonedSection.find(':checkbox').prop('checked',false);
+        $clonedSection.find(':checkbox').trigger('change');
+    }
 
     $(document.body).on('click', '.remove_section', function () {
         document.removeIfRepeatedSection($(this));
@@ -662,12 +673,7 @@ $(document).ready(function () {
                                 populateDataConcepts($div, element);
                             } else {
                                 var $clonedDiv = $div.clone(true);
-
-                                /* clear values on cloned fields */
-                                $clonedDiv.find(':input:not(:button):not(:radio):not(:checkbox)').val('');
-                                $clonedDiv.find(':radio').prop('checked',false);
-                                $clonedDiv.find(':checkbox').prop('checked',false);
-
+                                document.clearValuesOnClonedFields($clonedDiv);
                                 document.removeRepeatedSubSections($clonedDiv);
                                 populateDataConcepts($clonedDiv, element);
                                 $div.after($clonedDiv);

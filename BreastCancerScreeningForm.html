@@ -18,7 +18,7 @@
 <div id="pre_populate_data"></div>
 <h2 class="text-center">Breast Cancer Screening Form v 0.01</h2>
 
-<form class="relevant-female" id="breastcancer_form" name="breastcancer_form">
+<form id="breastcancer_form" name="breastcancer_form">
 
 <div class="section">
     <h3>Demographics</h3>
@@ -245,10 +245,10 @@
     </div>
 </div>
 
-<div class="section">
+<div class="section" >
     <h3>Gynecologic History</h3>
 
-    <div class="form-group">
+    <div class="form-group relevant-female">
         <label for="age_of_menarche">
             Age of menarche (first period)?<span class="required">*</span>
         </label>
@@ -260,7 +260,7 @@
                required="required" data-concept="8185^AGE OF MENARCHE^99DCT">
     </div>
 
-    <div class="form-group">
+    <div class="form-group  relevant-female">
         <label for="gravida">Number of previous pregnancies?<span class="required">*</span></label><br/>
 
         <div>
@@ -270,7 +270,7 @@
                required="required" data-concept="5624^GRAVIDA^99DCT">
     </div>
 
-    <div class="form-group relevant_gravida">
+    <div class="form-group relevant-female">
         <label for="age_of_first_pregnancy">
             Age at first pregnancy?<span class="required">*</span>
         </label>
@@ -282,7 +282,7 @@
                required="required" data-concept="8186^AGE OF FIRST PREGNANCY^99DCT">
     </div>
 
-    <div class="form-group relevant_gravida">
+    <div class="form-group relevant-female">
         <label for="parity">
             Number of previous deliveries?<span class="required">*</span>
         </label>
@@ -290,11 +290,11 @@
         <div>
             <small><i>The number of children a woman has delivered?</i></small>
         </div>
-        <input class="form-control isDecimal lessThanGravida" id="parity" name="parity" type="number"
+        <input class="form-control isDecimal " id="parity" name="parity" type="number"
                required="required" data-concept="1053^PARITY^99DCT">
     </div>
 
-    <div class="form-group relevant_parity">
+    <div class="form-group relevant-female ">
         <label for="mother_breast_feeding_history">Did you breastfeed your children?</label>
         <select class="form-control" id="mother_breast_feeding_history"
                 name="mother_breast_feeding_history"
@@ -305,7 +305,7 @@
         </select>
     </div>
 
-    <div class="form-group">
+    <div class="form-group relevant-female">
         <label for="menstruation_status">
             How are your menstrual periods?<span class="required">*</span>
         </label>
@@ -326,11 +326,11 @@
         </select>
     </div>
 
-    <div class="form-group last_menstrual_period_date">
-        <label for="last_menstrual_period_date">
+    <div class="form-group last_menstrual_period_date relevant-female">
+        <label for="last_menstrual_period_date" class="relevant-female">
             First day of your last period (LMP)?<span class="required">*</span>
         </label>
-        <input class="form-control datepicker nonFutureDate past-date" id="last_menstrual_period_date"
+        <input class="form-control datepicker nonFutureDate past-date relevant-female" id="last_menstrual_period_date"
                name="last_menstrual_period_date"
                type="text" required="required" data-concept="1836^LAST MENSTRUAL PERIOD DATE^99DCT">
     </div>
@@ -1097,11 +1097,13 @@ $(document).ready(function () {
             },
             gravida: {
                 digits: true,
-                min: 0
+                min: 0,
+                max: 50
             },
             parity: {
                 digits: true,
-                min: 0
+                min: 0,
+                max: 50
             },
             age_of_first_pregnancy: {
                 digits: true,
@@ -1109,15 +1111,15 @@ $(document).ready(function () {
             },
             respiratory_rate: {
                 digits: true,
-                min: 0
+                range: [10,30]
             },
             mass_measurement_in_cm_second_direction: {
                 number: true,
-                min: 0
+                range: [2,10]
             },
             mass_measurement_in_cm_first_direction: {
                 number: true,
-                min: 0
+                range: [2,10]
             }
         }
     });
@@ -1133,10 +1135,7 @@ $(document).ready(function () {
 
     document.setupAutoCompleteData('encounter\\.location_id');
 
-
-
     document.setupAutoCompleteDataForProvider('encounter\\.provider_id_select');
-
 
     $('#encounter\\.provider_id_select').change(function () {
         if ($('#encounter\\.provider_id_select').val() === '') {
@@ -1179,8 +1178,6 @@ $(document).ready(function () {
             var $womenOnly = $('.relevant-female');
             if ($patientSex.val() != 'F') {
                 $womenOnly.hide();
-                $('body').html("<div class='section text-center'><h4>This form is only applicable to female patient. " +
-                        "Please press back to close the form.</h4></div>");
             } else {
                 $womenOnly.show();
             }
@@ -1246,6 +1243,23 @@ $(document).ready(function () {
         }
     });
     /* End - Checks that a field is a decimal */
+
+    document.disableAdd = function (answerToQuestion, sectionFromWhichAddShouldBeDisabled) {
+
+        var $answerToTheQuestion = $('#'+ answerToQuestion);
+        $answerToTheQuestion.change(function () {
+        var answerToTheQuestionValue = $answerToTheQuestion.val();
+        var $sectionFromWhichAddButtonShouldBeRemoved = $('#' + sectionFromWhichAddShouldBeDisabled);
+        if (answerToTheQuestionValue == '1118^NOT DONE^99DCT') {
+            $sectionFromWhichAddButtonShouldBeRemoved.find('.add_section').remove();
+            $sectionFromWhichAddButtonShouldBeRemoved.find('.remove_section').remove();
+        }
+    });
+    $answerToTheQuestion.trigger('change');
+
+    }
+    document.disableAdd('skin_exam_findings','skin_exam_findings_detailed');
+    document.disableAdd('breast_exam_findings','breast_exam_findings_detailed');
 
     /* Start - Toggle family illness detailed */
     var $familyHistory = $('#family_chronic_illnesses_history');
