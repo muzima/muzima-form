@@ -25,7 +25,7 @@
         </div>
         <div class="form-group">
             <label for="patient.unique_patient_number">OpenMRS ID: <span class="required">*</span> </label>
-            <input class="form-control" id="patient.medical_record_number" name="patient.medical_record_number"
+            <input class="form-control checkDigitMod25" id="patient.medical_record_number" name="patient.medical_record_number"
             required="required" type="text">
         </div>
         <div class="form-group">
@@ -354,15 +354,11 @@
         dobType.trigger('change');
 
     document.setupAutoCompleteData('encounter\\.location_id');
-	document.setupAutoCompleteDataForProvider('encounter\\.provider_id_select');
+    document.setupAutoCompleteDataForProvider('encounter\\.provider_id_select');
 
 
     $.validator.addMethod("checkDigitMod25", function (value, element) {
-            var num = value.split('-');
-            if (num.length != 2) {
-                return false;
-            }
-            return $.fn.luhnCheckDigitMod25(num[0]) == num[1];
+            return $.fn.validateLuhnCheckDigitMod25(value);
         }, "Please enter digits that matches CheckDigit algorithm."
     );
 
@@ -371,21 +367,21 @@
         checkDigitMod25: { checkDigitMod25: true }
     });
 
-    $.fn.luhnCheckDigitMod25 = function (number) {
-        var validChars = "34679ACDEFGHJKLMNPRTUVWXY";
-        number = number.toUpperCase().trim();
-        var factor=2;
+    $.fn.validateLuhnCheckDigitMod25     = function (number) {
+        var baseChars = "34679ACDEFGHJKLMNPRTUVWXY";
+        var inputChars = number.toUpperCase().trim();
+        var factor=1;
         var sum = 0;
-        var mod = validChars.length;
-        for (var i = number.length - 1; i >= 0;  i--) {
+        var mod = baseChars.length;
+        for (var i = inputChars.length - 1; i >= 0;  i--) {
             var codePoint = -1;
-            for (var j=0; j<validChars.length; j++) {
-                if (validChars.charAt(j) == number.charAt(i)) {
+            for (var j=0; j<baseChars.length; j++) {
+                if (baseChars.charAt(j) == inputChars.charAt(i)) {
                     codePoint = j;
                 }
             }
             if (codePoint == -1) {
-                return -1;
+                return false;
             }
             var addend = factor * codePoint;
      
@@ -393,25 +389,23 @@
             factor = (factor == 2) ? 1 : 2;
      
             // Sum the digits as expressed in base "n"
-            addend = (addend / mod) + (addend % mod);
+            addend = parseInt((addend / mod) + (addend % mod));
             sum += addend;
         }
-        // Calculate the number that must be added to the "sum" to make it divisible by "n"
+        console.log("sum "+sum);
+        console.log("mod "+mod);
         var remainder = sum % mod;
-        var checkCodePoint = mod - remainder;
-        checkCodePoint %= mod;
-        
-        return validChars.charAt(checkCodePoint);
+        return remainder == 0;
     };
 
-	$('#registration_form').validate({rules: {
+    $('#registration_form').validate({rules: {
             'tmp.age_in_years': {
                 range: [0, 120]
             }
         }
     });
 
-   	document.setupValidationForProvider("$('#encounter\\.provider_id_select').val()","encounter\\.provider_id");
+    document.setupValidationForProvider("$('#encounter\\.provider_id_select').val()","encounter\\.provider_id");
 
     document.setupValidationForLocation("$('#encounter\\.location_id').val()","encounter\\.location_id");
 

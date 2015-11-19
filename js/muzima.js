@@ -163,6 +163,9 @@ $(document).ready(function () {
             validForm = validForm && $.fn.customValidationCheck();
         }
         if (validForm) {
+	    $(this).find('input:text').each(function(){
+		$(this).val($.trim($(this).val()));
+	    });
             save("complete", false);
         } else {
             addValidationMessage();
@@ -494,12 +497,43 @@ $(document).ready(function () {
     });
 
     $(document.body).on('click', '.remove_section', function () {
-        var $parent = $(this).parent();
+        document.removeIfRepeatedSection($(this));
+    });
+
+    document.removeIfRepeatedSection = function($element){
+        var $parent = $element.parent();
         var _id = $parent.attr('id');
-        if ($("." + _id).length > 1) {
+        if ($parent.parent().find("." + _id).length > 1) {
             $parent.remove();
         }
-    });
+    }
+
+    /* remove any nested cloned subsections.
+        This function is reusable with custom cloning
+        @param removalClickElementSelector is optional*/
+    document.removeRepeatedSubSections = function($parentSection, removalClickElementSelector){
+        if(typeof removalButtonClass === "undefined"){
+            removalClickElementSelector = '.remove_section';
+        }
+        var $repeated_subsection = $parentSection.find(removalClickElementSelector);
+        if ($repeated_subsection !== undefined && $repeated_subsection instanceof Array) {
+            $.each($repeated_subsection,
+                function(key,section){
+                    $.each($(section),
+                        function(k,v){
+                           document.removeIfRepeatedSection($(v));
+                        }
+                    );
+                }
+            );
+        } else if($repeated_subsection !== undefined) {
+            $.each($repeated_subsection,
+                function(k,v){
+                   document.removeIfRepeatedSection($(v));
+               }
+            );
+        }
+    }
 
     /* End - Used for Sub-Forms */
 
@@ -517,7 +551,46 @@ $(document).ready(function () {
     var populateDataConcepts = function ($div, value) {
         $.each(value, function (k, v) {
             if (v instanceof Array) {
-                $div.find('[data-concept="' + k + '"]').val(v);
+               var $elements = $div.find('[data-concept="' + k + '"]');
+                 if ($elements.length < v.length) {
+                    $.each(v, function (i, valueElement) {
+                        if (i == 0) {
+                            $.each($elements, function(i, element) {
+                                applyValue(element, valueElement);
+                            });
+                        } else {
+                            var $div = $elements.closest('.repeat, .custom-repeat');
+                            var $clonedDiv = $div.clone(true);
+                            $div.after($clonedDiv);
+                            $elements = $clonedDiv.find('[data-concept="' + k + '"]');
+                            $.each($elements, function(i, element) {
+                                applyValue(element, valueElement);
+                            });
+                        }
+                    });
+                } else if ($elements.length == v.length) {
+                    $.each(v, function (i, valueElement) {
+                        applyValue($elements[i], valueElement);
+                    });
+                } else {
+                    $.each(v, function (i, valueElement) {
+                        $.each($elements, function(i, element) {
+                            applyValue(element, valueElement);
+                        });
+                    });
+                }
+            }else if (v instanceof Object){
+                if(v.obs_value !== undefined && v.obs_datetime !== undefined){
+                    var obs_elements = $div.find('[data-concept="' + k + '"]');
+                    $.each(obs_elements, function(i, element) {
+                        applyValue(element, v.obs_value);
+                    });
+
+                    var datetime_element = $div.find('[data-obsdatetimefor="' + obs_elements.attr('name') + '"]');
+                    applyValue(datetime_element, v.obs_datetime);
+                }else{
+                    populateObservations($div, v);
+                }
             } else {
                 var elements = $div.find('[data-concept="' + k + '"]');
                 $.each(elements, function(i, element) {
@@ -527,11 +600,11 @@ $(document).ready(function () {
         });
     };
 
-    var populateNonConceptFields = function (prePopulateJson) {
+       var populateNonConceptFields = function (prePopulateJson) {
         $.each(prePopulateJson, function (key, value) {
             var $elements = $('[name="' + key + '"]');
             if (value instanceof Array) {
-               if ($elements.length < value.length) {
+                 if ($elements.length < value.length) {
                     $.each(value, function (i, valueElement) {
                         if (i == 0) {
                             $.each($elements, function(i, element) {
@@ -551,8 +624,6 @@ $(document).ready(function () {
                     $.each(value, function (i, valueElement) {
                         applyValue($elements[i], valueElement);
                     });
-
-
                 } else {
                     $.each(value, function (i, valueElement) {
                         $.each($elements, function(i, element) {
@@ -578,11 +649,11 @@ $(document).ready(function () {
         }
     };
 
-    var populateObservations = function (prePopulateJson) {
+    var populateObservations = function ($parentDiv, prePopulateJson) {
         $.each(prePopulateJson, function (key, value) {
             if (value instanceof Object) {
                 // check if this is a grouping observation.
-                var $div = $('div[data-concept="' + key + '"]');
+                var $div = $parentDiv.find('div[data-concept="' + key + '"]');
                 if ($div.length > 0) {
                     // we are dealing with grouping
                     if (value instanceof Array) {
@@ -591,6 +662,13 @@ $(document).ready(function () {
                                 populateDataConcepts($div, element);
                             } else {
                                 var $clonedDiv = $div.clone(true);
+
+                                /* clear values on cloned fields */
+                                $clonedDiv.find(':input:not(:button):not(:radio):not(:checkbox)').val('');
+                                $clonedDiv.find(':radio').prop('checked',false);
+                                $clonedDiv.find(':checkbox').prop('checked',false);
+
+                                document.removeRepeatedSubSections($clonedDiv);
                                 populateDataConcepts($clonedDiv, element);
                                 $div.after($clonedDiv);
                             }
@@ -601,11 +679,11 @@ $(document).ready(function () {
                 } else {
                     // we are not dealing with repeating
                     if (value instanceof Array) {
-                        var elements = $('[data-concept="' + key + '"]');
+                        var elements = $parentDiv.find('[data-concept="' + key + '"]');
                         if (elements.length < value.length) {
                             $.each(value, function (i, valueElement) {
                                 if (i == 0) {
-                                    $.each(elements, function(i, element) {
+                                    $.each(elements, function (i, element) {
                                         applyValue(element, valueElement);
                                     });
                                 } else {
@@ -613,25 +691,32 @@ $(document).ready(function () {
                                     var $clonedDiv = $div.clone(true);
                                     $div.after($clonedDiv);
                                     elements = $clonedDiv.find('[data-concept="' + key + '"]');
-                                    $.each(elements, function(i, element) {
+                                    $.each(elements, function (i, element) {
                                         applyValue(element, valueElement);
                                     });
                                 }
                             });
                         } else {
                             $.each(value, function (i, valueElement) {
-                                $.each(elements, function(i, element) {
+                                $.each(elements, function (i, element) {
                                     applyValue(element, valueElement);
                                 });
                             });
                         }
+                    } else if (value.obs_value !== undefined && value.obs_datetime !== undefined) {
+                        var obs_elements = $parentDiv.find('[data-concept="' + key + '"]');
+                        $.each(obs_elements, function (i, element) {
+                            applyValue(element, value.obs_value);
+                        });
+                        var datetime_element = $parentDiv.find('[data-obsdatetimefor="' + obs_elements.attr('name') + '"]');
+                        applyValue(datetime_element, value.obs_datetime);
                     } else {
                         populateDataConcepts($div, value);
                     }
                 }
             }
             else {
-                var $elements = $('[data-concept="' + key + '"]');
+                var $elements = $parentDiv.find('[data-concept="' + key + '"]');
                 $.each($elements, function (i, element) {
                     applyValue(element, value);
                 });
@@ -646,7 +731,7 @@ $(document).ready(function () {
         var prePopulateJSON = JSON.parse(prePopulateData);
         $.each(prePopulateJSON, function(key, value) {
             if (key === 'observation') {
-                populateObservations(value);
+                populateObservations($('form'),value);
             } else {
                 populateNonConceptFields(value);
             }
@@ -694,10 +779,20 @@ $(document).ready(function () {
 
     var serializeNestedConcepts = function ($form) {
         var result = {};
-        var parentDivs = $form.find('div[data-concept]').filter(':visible');
-        $.each(parentDivs, function (i, element) {
-            var $allConcepts = $(element).find('*[data-concept]');
-            result = pushIntoArray(result, $(element).attr('data-concept'), jsonifyConcepts($allConcepts));
+        var allParentDivs = $form.find('div[data-concept]').filter(':visible');
+        var nestedParentDivs = allParentDivs.find('div[data-concept]');
+        var rootParentDivs = allParentDivs.not(nestedParentDivs);
+        $.each(rootParentDivs, function (i, element) {
+            var $childDivs = $(element).find('div[data-concept]');
+            if($childDivs.length > 0){
+                var subResult1 = serializeNestedConcepts($(element));
+                var subResult2 = serializeConcepts($(element));
+                var subResultCombined = $.extend({}, subResult1,subResult2);
+                result = pushIntoArray(result, $(element).attr('data-concept'), subResultCombined);
+            } else {
+                var $allConcepts = $(element).find('*[data-concept]');
+                result = pushIntoArray(result, $(element).attr('data-concept'), jsonifyConcepts($allConcepts));
+            }
         });
         return result;
     };
@@ -706,7 +801,8 @@ $(document).ready(function () {
         var object = {};
         var allConcepts = $form.find('*[data-concept]').filter(':visible');
         $.each(allConcepts, function (i, element) {
-            if ($(element).closest('.section, .concept-set').attr('data-concept') == undefined) {
+            var $closestElement = $(element).closest('.section, .concept-set', $form);
+            if ($form.is($closestElement) || $closestElement.attr('data-concept') == undefined ) {
                 var jsonifiedConcepts = jsonifyConcepts($(element));
                 if (JSON.stringify(jsonifiedConcepts) != '{}' && jsonifiedConcepts != "") {
                     $.each(jsonifiedConcepts, function (key, value) {
