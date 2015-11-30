@@ -188,13 +188,13 @@
                required="required">
     </div>
 
-    <div class="form-group relevant_gravida">
+    <div class="form-group">
         <label for="parity">Number of previous deliveries<span class="required">*</span></label>
 
         <div>
             <small><i>The number of children a woman has delivered?</i></small>
         </div>
-        <input class="form-control lessThanGravida" id="parity" name="parity" type="number"
+        <input class="form-control " id="parity" name="parity" type="number"
                data-concept="1053^PARITY^99DCT" required="required">
     </div>
 
@@ -600,7 +600,7 @@
          data-concept="7480^PROCEDURES DONE THIS VISIT, DETAILED^99DCT">
 
         <div class="form-group">
-            <label for="procedures_done_this_visit">Procedure done this visit</label>
+            <label for="procedures_done_this_visit">Procedure done this visit<span class="required">*</span></label>
             <select class="form-control" id="procedures_done_this_visit"
                     name="procedures_done_this_visit"
                     data-concept="7479^PROCEDURES DONE THIS VISIT^99DCT" required="required">
@@ -611,7 +611,10 @@
                 <option value="7147^LOOP ELECTROSURGICAL EXCISION PROCEDURE^99DCT">
                     Loop Electrosurgical Excision Procedure (LEEP)
                 </option>
-                <option value="1107^NONE^99DCT">None</option>
+                <option value="9434^Visual Inspection with Acetic Acid(VIA)^99DCT">
+                    Visual Inspection with Acetic Acid(VIA)
+                </option>
+                <option class="procedure_done_none" value="1107^NONE^99DCT">None</option>
             </select>
         </div>
 
@@ -723,7 +726,7 @@
     </div>
 
     <div class="form-group">
-        <label for="ccsp_plan">Management Plan</label>
+        <label for="ccsp_plan">Management Plan<span class="required">*</span></label>
         <select class="form-control" id="ccsp_plan" name="ccsp_plan"
                 data-concept="7500^GYNECOLOGIC ONCOLOGY PLAN^99DCT" required="required">
             <option value="">...</option>
@@ -735,7 +738,9 @@
             <option value="7499^REFERRAL TO GYNAE-ONCOLOGY^99DCT">Referral to Gynae-Oncology</option>
             <option value="7466^CRYOTHERAPY^99DCT">Referral for Cryotherapy</option>
             <option value="1496^CLINICIAN^99DCT">Referral to Clinician</option>
-            <option value="5622^OTHER NON-CODED^99DCT"></option>
+            <option value="6102^DISCHARGED FROM CLINIC^99DCT">Discharged from Clinic</option>
+            <option value="5622^OTHER NON-CODED^99DCT">Other</option>
+            <option value="1107^NONE^99DCT">None</option>
         </select>
     </div>
 
@@ -1029,11 +1034,13 @@ $(document).ready(function () {
         rules: {
             gravida: {
                 digits: true,
-                min: 0
+                min: 0,
+                max: 50
             },
             parity: {
                 digits: true,
-                min: 0
+                min: 0,
+                max: 50
             },
             last_cd4_by_facs: {
                 number: true,
@@ -1195,11 +1202,22 @@ $(document).ready(function () {
     $lastMenstruationDate.trigger('change');
     /* End - Last menstruation date */
 
+    var disable_repeat = function($element){
+        $element.find('.add_section').removeClass('add_section').removeClass('btn-primary')
+        .addClass('add_section_disabled').addClass('disable');
+    }
+    var enable_repeat = function($element){
+        $element.find('.add_section_disabled').removeClass('add_section_disabled')
+        .removeClass('disable').addClass('add_section').addClass('btn-primary');
+    }
+
+
     /* Start - Procedure done this visit */
-    var procedureDoneDetailed = function () {
+    var procedureDoneDetailed = function (selectedElement) {
         var allProcedureDone = $("select[name='procedures_done_this_visit']");
         $.each(allProcedureDone, function (index, object) {
             $(object).change(function () {
+                    enable_repeat($('.procedures_detailed'));
                 var procedureDoneValue = $(this).val();
                 var $procedureDoneRelevantBiopsies = $(this).closest('.section').find('.relevant_procedures_done_this_visit_biopsies');
                 var $procedureDoneRelevantLeep = $(this).closest('.section').find('.relevant_procedures_done_this_visit_leep');
@@ -1209,9 +1227,21 @@ $(document).ready(function () {
                 } else if (procedureDoneValue == '6511^EXCISIONAL OR SURGICAL BIOPSY^99DCT') {
                     $procedureDoneRelevantBiopsies.show();
                     $procedureDoneRelevantLeep.hide();
+                } else if(procedureDoneValue == '1107^NONE^99DCT'){
+                    $procedureDoneRelevantBiopsies.hide();
+                    $procedureDoneRelevantLeep.hide();
+                    disable_repeat($('.procedures_detailed'));
                 } else {
                     $procedureDoneRelevantBiopsies.hide();
                     $procedureDoneRelevantLeep.hide();
+                }
+                if(procedureDoneValue == ''){
+                    var elements = $('.procedure_done_none');
+                    $.each(elements, function(k,v){
+                        if(k>0){
+                            $(v).attr('disabled','disabled');
+                        }
+                    });
                 }
             });
             $(object).trigger('change');
@@ -1286,17 +1316,163 @@ $(document).ready(function () {
                 validateSelected(familyPlanning),
                 validateSelected(familyPlanningChosen),
                 validateSelected(familyPlanningRefill),
-                validateSelected(directive),
-                validateAlone(chiefComplaint, noneValues, noneMessage),
-                validateAlone(vulvalExam, normalValues, normalMessage),
-                validateAlone(vaginalExam, normalValues, normalMessage),
-                validateAlone(cervicalExam, normalValues, normalMessage),
-                validateAlone(familyPlanning, noneValues, noneMessage),
-                validateAlone(familyPlanningChosen, noneValues, noneMessage),
-                validateAlone(familyPlanningRefill, noneValues, noneMessage));
+                validateSelected(directive));
         showValidationMessages(errors);
         return $.isEmptyObject(errors);
     };
+
+    //function to disable all supplied options
+    var disable_elements=function(element_list){
+        element_list.each(function(){
+            $(this).attr('disabled', 'disabled');
+        });
+    };
+    //function to disable all supplied options
+    var enable_elements=function(element_list){
+        element_list.each(function(){
+            $(this).removeAttr('disabled', 'disabled');
+        });
+    };
+
+    $(':checkbox[data-concept="7240^FAMILY PLANNING METHOD CHOSEN^99DCT"]').on('change', function() {
+        var $selected_elements = $(':checkbox[data-concept="7240^FAMILY PLANNING METHOD CHOSEN^99DCT"]:checked');
+        var $all_elements_in_group = $(':checkbox[data-concept="7240^FAMILY PLANNING METHOD CHOSEN^99DCT"]');
+        if($selected_elements.length > 0){
+            $.each($selected_elements, function (k,v){
+                if($(v).val() == '1107^NONE^99DCT'){
+                    var elements_to_uncheck = $all_elements_in_group.not($(v));
+                    disable_elements(elements_to_uncheck);
+                } else {
+                    disable_elements($(':checkbox[data-concept="7240^FAMILY PLANNING METHOD CHOSEN^99DCT"][value="1107^NONE^99DCT"]'));
+                }
+            });
+        }else{
+            enable_elements($(':checkbox[data-concept="7240^FAMILY PLANNING METHOD CHOSEN^99DCT"]'));
+        }
+    });
+    $(':checkbox[data-concept="7240^FAMILY PLANNING METHOD CHOSEN^99DCT"]').trigger('change');
+
+    $(':checkbox[data-concept="7495^FAMILY PLANNING REFILL PROVIDED^99DCT"]').on('change', function() {
+        var $selected_elements = $(':checkbox[data-concept="7495^FAMILY PLANNING REFILL PROVIDED^99DCT"]:checked');
+        var $all_elements_in_group = $(':checkbox[data-concept="7495^FAMILY PLANNING REFILL PROVIDED^99DCT"]');
+        if($selected_elements.length > 0){
+            $.each($selected_elements, function (k,v){
+                if($(v).val() == '1107^NONE^99DCT'){
+                    var elements_to_uncheck = $all_elements_in_group.not($(v));
+                    disable_elements(elements_to_uncheck);
+                } else {
+                    disable_elements($(':checkbox[data-concept="7495^FAMILY PLANNING REFILL PROVIDED^99DCT"][value="1107^NONE^99DCT"]'));
+                }
+            });
+        }else{
+            enable_elements($(':checkbox[data-concept="7495^FAMILY PLANNING REFILL PROVIDED^99DCT"]'));
+        }
+    });
+    $(':checkbox[data-concept="7495^FAMILY PLANNING REFILL PROVIDED^99DCT"]').trigger('change');
+
+    $(':checkbox[data-concept="7487^VISUAL VULVAL EXAM FINDINGS ^99DCT"]').on('change', function() {
+        var $selected_elements = $(this).closest('.section')
+        .find(':checkbox[data-concept="7487^VISUAL VULVAL EXAM FINDINGS ^99DCT"]:checked');
+        var $all_elements_in_group = $(this).closest('.section')
+        .find(':checkbox[data-concept="7487^VISUAL VULVAL EXAM FINDINGS ^99DCT"]');
+        if($selected_elements.length > 0){
+            $.each($selected_elements, function (k,v){
+                if($(v).val() == '1115^NORMAL^99DCT'){
+                    var elements_to_uncheck = $all_elements_in_group.not($(v));
+                    disable_elements(elements_to_uncheck);
+                } else {
+                    disable_elements($(this).closest('.section')
+                        .find(':checkbox[data-concept="7487^VISUAL VULVAL EXAM FINDINGS ^99DCT"][value="1115^NORMAL^99DCT"]'));
+                }
+            });
+        }else{
+            enable_elements($(this).closest('.section')
+                .find(':checkbox[data-concept="7487^VISUAL VULVAL EXAM FINDINGS ^99DCT"]'));
+        }
+    });
+    $(':checkbox[data-concept="7487^VISUAL VULVAL EXAM FINDINGS ^99DCT"]').trigger('change');
+
+    $(':checkbox[data-concept="7490^VISUAL VAGINAL EXAM FINDINGS ^99DCT"]').on('change', function() {
+        var $selected_elements = $(this).closest('.section')
+        .find(':checkbox[data-concept="7490^VISUAL VAGINAL EXAM FINDINGS ^99DCT"]:checked');
+        var $all_elements_in_group = $(this).closest('.section')
+        .find(':checkbox[data-concept="7490^VISUAL VAGINAL EXAM FINDINGS ^99DCT"]');
+        if($selected_elements.length > 0){
+            $.each($selected_elements, function (k,v){
+                if($(v).val() == '1115^NORMAL^99DCT'){
+                    var elements_to_uncheck = $all_elements_in_group.not($(v));
+                    disable_elements(elements_to_uncheck);
+                } else {
+                    disable_elements($(this).closest('.section')
+                    .find(':checkbox[data-concept="7490^VISUAL VAGINAL EXAM FINDINGS ^99DCT"][value="1115^NORMAL^99DCT"]'));
+                }
+            });
+        }else{
+            enable_elements($(this).closest('.section')
+            .find(':checkbox[data-concept="7490^VISUAL VAGINAL EXAM FINDINGS ^99DCT"]'));
+        }
+    });
+    $(':checkbox[data-concept="7490^VISUAL VAGINAL EXAM FINDINGS ^99DCT"]').trigger('change');
+
+    $(':checkbox[data-concept="7484^VISUAL CERVICAL EXAM FINDINGS^99DCT"]').on('change', function() {
+        var $selected_elements = $(this).closest('.section')
+            .find(':checkbox[data-concept="7484^VISUAL CERVICAL EXAM FINDINGS^99DCT"]:checked');
+        var $all_elements_in_group = $(this).closest('.section')
+            .find(':checkbox[data-concept="7484^VISUAL CERVICAL EXAM FINDINGS^99DCT"]');
+        if($selected_elements.length > 0){
+            $.each($selected_elements, function (k,v){
+                if($(v).val() == '1115^NORMAL^99DCT'){
+                    var elements_to_uncheck = $all_elements_in_group.not($(v));
+                    disable_elements(elements_to_uncheck);
+                } else {
+                    disable_elements($(this).closest('.section')
+                        .find(':checkbox[data-concept="7484^VISUAL CERVICAL EXAM FINDINGS^99DCT"][value="1115^NORMAL^99DCT"]'));
+                }
+            });
+        }else{
+            enable_elements($(this).closest('.section')
+                .find(':checkbox[data-concept="7484^VISUAL CERVICAL EXAM FINDINGS^99DCT"]'));
+        }
+    });
+    $(':checkbox[data-concept="7484^VISUAL CERVICAL EXAM FINDINGS^99DCT"]').trigger('change');
+
+    $(':checkbox[data-concept="374^METHOD OF FAMILY PLANNING^99DCT"]').on('change', function() {
+        var $selected_elements = $(':checkbox[data-concept="374^METHOD OF FAMILY PLANNING^99DCT"]:checked');
+        var $all_elements_in_group = $(':checkbox[data-concept="374^METHOD OF FAMILY PLANNING^99DCT"]');
+        if($selected_elements.length > 0){
+            $.each($selected_elements, function (k,v){
+                if($(v).val() == '1107^NONE^99DCT' || $(v).val() == '1624^DO NOT KNOW^99DCT'){
+                    var elements_to_uncheck = $all_elements_in_group.not($(v));
+                    disable_elements(elements_to_uncheck);
+                } else {
+                    disable_elements($(':checkbox[data-concept="374^METHOD OF FAMILY PLANNING^99DCT"][value="1107^NONE^99DCT"]'));
+                    disable_elements($(':checkbox[data-concept="374^METHOD OF FAMILY PLANNING^99DCT"][value="1624^DO NOT KNOW^99DCT"]'));
+                }
+            });
+        }else{
+            enable_elements($(':checkbox[data-concept="374^METHOD OF FAMILY PLANNING^99DCT"]'));
+        }
+    });
+    $(':checkbox[data-concept="374^METHOD OF FAMILY PLANNING^99DCT"]').trigger('change');
+
+    $(':checkbox[data-concept="5219^CHIEF COMPLAINT^99DCT"]').on('change', function() {
+        var $selected_elements = $(':checkbox[data-concept="5219^CHIEF COMPLAINT^99DCT"]:checked');
+        var $all_elements_in_group = $(':checkbox[data-concept="5219^CHIEF COMPLAINT^99DCT"]');
+        if($selected_elements.length > 0){
+            $.each($selected_elements, function (k,v){
+                if($(v).val() == '1107^NONE^99DCT' || $(v).val() == '5622^OTHER NON-CODED^99DCT'){
+                    var elements_to_uncheck = $all_elements_in_group.not($(v));
+                    disable_elements(elements_to_uncheck);
+                } else {
+                    disable_elements($(':checkbox[data-concept="5219^CHIEF COMPLAINT^99DCT"][value="1107^NONE^99DCT"]'));
+                    disable_elements($(':checkbox[data-concept="5219^CHIEF COMPLAINT^99DCT"][value="5622^OTHER NON-CODED^99DCT"]'));
+                }
+            });
+        }else{
+            enable_elements($(':checkbox[data-concept="5219^CHIEF COMPLAINT^99DCT"]'));
+        }
+    });
+    $(':checkbox[data-concept="5219^CHIEF COMPLAINT^99DCT"]').trigger('change');
 
 
     document.setupValidationForProvider("$('#encounter\\.provider_id_select').val()","encounter\\.provider_id");
