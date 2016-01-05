@@ -8,8 +8,6 @@
     <script src="js/jquery.validate.min.js"></script>
     <script src="js/additional-methods.min.js"></script>
     <script src="js/muzima.js"></script>
-    <script src="js/LinkageRules.js"></script>
-    <script src="js/CommonRules.js"></script>
     <title>LINKAGE Assessment</title>
 </head>
 <body class="col-md-8 col-md-offset-2">
@@ -17,7 +15,7 @@
 <form id="linkage_form" name="linkage_form">
 <h2 class="text-center">LINKAGE Assessment</h2>
 <div class="section">
-    <h4>Demographics</h4>
+    <h3>Demographics</h3>
     <div class="form-group">
         <input class="form-control" id="patient.uuid"
                name="patient.uuid" type="hidden" readonly="readonly">
@@ -58,7 +56,7 @@
     </div>
 </div>
 <div class="section">
-    <h4>Encounter Details</h4>
+    <h3>Encounter Details</h3>
     <div class="form-group">
         <label for="encounter.location_id">Name of Dispensary:<span class="required">*</span></label>
         <input class="form-control valid-location-only" id="encounter.location_id" type="text" placeholder="Start typing something..." required="required">
@@ -97,7 +95,6 @@
             <option value="127" data-location="Sambut">Sambut</option>
             <option value="128" data-location="Moding Dispensary">Moding Dispensary</option>
             <option value="128" data-location="Ngenyilel">Ngenyilel</option>
->>>>>>> MUZIMA-272 : Change muzima forms as part of Download Locations(MUZIMA-232)
         </select>
     </div>
     <div class="form-group">
@@ -120,7 +117,6 @@
             <option value ="3666-5" data-provider = "Irine Sisiwa">Irine Sisiwa</option>
         </select>
     </div>
-
     <div class="form-group show_provider_id_text">
         <label for="encounter.provider_id">CHV's system-id:<span class="required">*</span></label>
         <input class="form-control checkDigit" id="encounter.provider_id" name="encounter.provider_id" type="text"
@@ -138,8 +134,9 @@
                name="encounter.form_uuid" type="hidden" required="required">
     </div>
 </div>
+
 <div class="section">
-<h4><div style="text-align: center;">SECTION II</div><p>Part A: General</h4>
+<h3>Part A: General</h3>
 <div class="place_for_health_care_detailed" id="obs.place_for_health_care_detailed"
      data-counter="1" data-concept="9087^FACILITY TYPE, DETAILED^99DCT"
      data-name="obs.place_for_health_care_detailed">
@@ -147,7 +144,7 @@
         <label for="obs.place_for_health_care">
             Where do you usually go for health care?<span class="required">*</span>
         </label>
-        <select class="form-control specifyOther" id="obs.place_for_health_care" name="obs.place_for_health_care"
+        <select class="form-control specifyOther usual_health_care_location" id="obs.place_for_health_care" name="obs.place_for_health_care"
                 data-concept="9086^FACILITY TYPE^99DCT" required="required">
             <option value="">...</option>
             <option value="6436^DISPENSARY^99DCT">Dispensary</option>
@@ -165,8 +162,7 @@
                name="obs.place_for_health_care.freetext_general" type="text" required="required"
                data-concept="1915^FREETEXT GENERAL^99DCT">
     </div>
-</div>
-<div class="form-group">
+<div class="form-group" id="transportation_mode">
     <label for="obs.means_to_usual_health_facility">
         When you go to your usual health facility, how do you generally get there? <span class="required">*</span>
     </label>
@@ -182,7 +178,7 @@
         <option value="1958^REFUSAL^99DCT">Refused</option>
     </select>
 </div>
-<div class="form-group">
+<div class="form-group" id="time_to_travel">
     <label for="obs.how_long_to_facility">
         On average, how long does it take you to get to the facility? <span class="required">*</span>
     </label>
@@ -198,9 +194,11 @@
         <option value="1958^REFUSAL^99DCT">Refused</option>
     </select>
 </div>
-<div class="form-group">
+
+<div class="form-group" id="rate_manner_provider">
     <label for="obs.rate_personal_manner">
-        How would you rate the personal manner(courtesy, respect,sensitivity, friendliness, and attitude) of the health care provider you see at your usual health facility? <span class="required">*</span>
+        How would you rate the personal manner (courtesy, respect, sensitivity, friendliness, and attitude)
+        of the health care provider you see at your usual health facility? <span class="required">*</span>
     </label>
     <select class="form-control" id="obs.rate_personal_manner" name="obs.rate_personal_manner"
             data-concept="9089^HEALTH CARE PROVIDER RATING, PERSONAL MANNERISM^99DCT" required="required">
@@ -211,9 +209,10 @@
         <option value="1958^REFUSAL^99DCT">Refused</option>
     </select>
 </div>
-<div class="form-group">
+<div class="form-group" id="rate_explanation_provider">
     <label for="obs.rate_health_manner">
-        How would you rate the health care provider's explanation of your high blood pressure and the treatment you need in a way that you understand?<span class="required">*</span>
+        How would you rate the Health Care Provider's ability (at your usual health facility) to explain your
+        health problem and the treatment you need in a way that you understand?<span class="required">*</span>
     </label>
     <select class="form-control" id="obs.rate_health_manner" name="obs.rate_health_manne"
             data-concept="9090^HEALTH CARE PROVIDER RATING, EXPLANATION AND TREATMENT^99DCT" required="required">
@@ -225,8 +224,11 @@
     </select>
 </div>
 
+</div>
+</div>
+
 <div class="section">
-<h4><p>Part B: Perceived Risks/Severity</h4>
+<h3>Part B: Perceived Risks/Severity</h3>
 <div class="form-group">
     <label for="obs.told_having_hypertension">
         Have you ever been told by a health care provider that you might have high blood pressure or hypertension? <span class="required">*</span>
@@ -394,111 +396,112 @@
 </div>
 
 
-<label>If you have high blood pressure and you don't seek care, do you think you are at risk of...
+<label>If you haven't received care for high blood pressure, do you think you are likely to:
 </label>
+<div class="sub-section">
+    <div class="form-group">
+        <label>Have a stroke?<span class="required">*</span></label>
 
-<div class="form-group">
-    <span><strong>Having a stroke<span class="required">*</span></strong></span>
+        <fieldset name="1878^STROKE^99DCT">
+            <div class="form-group">
+                <label class="font-normal">
+                    <input name="blood_pressure_stroke_bp" id="blood_pressure_stroke_yes" type="radio"
+                           data-concept="9111^PERCEIVED RISK OF HIGH BLOOD PRESSURE WITHOUT CARE^99DCT"
+                           value="1878^STROKE^99DCT">
+                    Yes
+                </label>
+            </div>
+            <div class="form-group">
+                <label class="font-normal">
+                    <input name="blood_pressure_stroke_bp" id="blood_pressure_stroke_no" type="radio"
+                           data-concept="9112^ABSENCE OF PERCEIVED RISK OF HIGH BLOOD PRESSURE WITHOUT CARE^99DCT"
+                           value="1878^STROKE^99DCT">
+                    No
+                </label>
+            </div>
+            <div class="form-group">
+                <label class="font-normal">
+                    <input name="blood_pressure_stroke_bp" id="blood_pressure_stroke_na" type="radio"
+                           data-concept="9113^UNANSWERED HEALTH PRACTICES^99DCT"
+                           value="1878^STROKE^99DCT">
+                    Refused/No Answer
+                </label>
+            </div>
+        </fieldset>
+    </div>
 
-    <fieldset name="1878^STROKE^99DCT">
-        <div class="form-group">
-            <label class="font-normal">
-                <input name="blood_pressure_stroke_bp" id="blood_pressure_stroke_yes" type="radio"
-                       data-concept="9111^PERCEIVED RISK OF HIGH BLOOD PRESSURE WITHOUT CARE^99DCT"
-                       value="1878^STROKE^99DCT">
-                Yes
-            </label>
-        </div>
-        <div class="form-group">
-            <label class="font-normal">
-                <input name="blood_pressure_stroke_bp" id="blood_pressure_stroke_no" type="radio"
-                       data-concept="9112^ABSENCE OF PERCEIVED RISK OF HIGH BLOOD PRESSURE WITHOUT CARE^99DCT"
-                       value="1878^STROKE^99DCT">
-                No
-            </label>
-        </div>
-        <div class="form-group">
-            <label class="font-normal">
-                <input name="blood_pressure_stroke_bp" id="blood_pressure_stroke_na" type="radio"
-                       data-concept="9113^UNANSWERED HEALTH PRACTICES^99DCT"
-                       value="1878^STROKE^99DCT">
-                Refused/No Answer
-            </label>
-        </div>
-    </fieldset>
+    <div class="form-group">
+        <label>Develop kidney failure and need dialysis?<span class="required">*</span></label>
+
+        <fieldset name="1885^RENAL FAILURE^99DCT">
+            <div class="form-group">
+                <label class="font-normal">
+                    <input name="develop_kidney_failure_bp" id="develop_kidney_failure_yes" type="radio"
+                           data-concept="9111^PERCEIVED RISK OF HIGH BLOOD PRESSURE WITHOUT CARE^99DCT"
+                           value="1885^RENAL FAILURE^99DCT">
+                    Yes
+                </label>
+            </div>
+            <div class="form-group">
+                <label class="font-normal">
+                    <input name="develop_kidney_failure_bp" id="develop_kidney_failure_no" type="radio"
+                           data-concept="9112^ABSENCE OF PERCEIVED RISK OF HIGH BLOOD PRESSURE WITHOUT CARE^99DCT"
+                           value="1885^RENAL FAILURE^99DCT">
+                    No
+                </label>
+            </div>
+            <div class="form-group">
+                <label class="font-normal">
+                    <input name="develop_kidney_failure_bp" id="develop_kidney_failure_na" type="radio"
+                           data-concept="9113^UNANSWERED HEALTH PRACTICES^99DCT"
+                           value="1885^RENAL FAILURE^99DCT">
+                    Refused/No Answer
+                </label>
+            </div>
+        </fieldset>
+    </div>
+    <div class="form-group">
+        <label>Develop heart disease?<span class="required">*</span></label>
+
+        <fieldset name="6237^HEART DISEASE^99DCT">
+            <div class="form-group">
+                <label class="font-normal">
+                    <input name="develop_heart_disease_bp" id="develop_heart_disease_yes" type="radio"
+                           data-concept="9111^PERCEIVED RISK OF HIGH BLOOD PRESSURE WITHOUT CARE^99DCT"
+                           value="6237^HEART DISEASE^99DCT">
+                    Yes
+                </label>
+            </div>
+            <div class="form-group">
+                <label class="font-normal">
+                    <input name="develop_heart_disease_bp" id="develop_heart_disease_no" type="radio"
+                           data-concept="9112^ABSENCE OF PERCEIVED RISK OF HIGH BLOOD PRESSURE WITHOUT CARE^99DCT"
+                           value="6237^HEART DISEASE^99DCT">
+                    No
+                </label>
+            </div>
+            <div class="form-group">
+                <label class="font-normal">
+                    <input name="develop_heart_disease_bp" id="develop_heart_disease_na" type="radio"
+                           data-concept="9113^UNANSWERED HEALTH PRACTICES^99DCT"
+                           value="6237^HEART DISEASE^99DCT">
+                    Refused/No Answer
+                </label>
+            </div>
+        </fieldset>
+    </div>
 </div>
-
-<div class="form-group">
-    <span><strong>Develop kidney failure<span class="required">*</span></strong></span>
-
-    <fieldset name="1885^RENAL FAILURE^99DCT">
-        <div class="form-group">
-            <label class="font-normal">
-                <input name="develop_kidney_failure_bp" id="develop_kidney_failure_yes" type="radio"
-                       data-concept="9111^PERCEIVED RISK OF HIGH BLOOD PRESSURE WITHOUT CARE^99DCT"
-                       value="1885^RENAL FAILURE^99DCT">
-                Yes
-            </label>
-        </div>
-        <div class="form-group">
-            <label class="font-normal">
-                <input name="develop_kidney_failure_bp" id="develop_kidney_failure_no" type="radio"
-                       data-concept="9112^ABSENCE OF PERCEIVED RISK OF HIGH BLOOD PRESSURE WITHOUT CARE^99DCT"
-                       value="1885^RENAL FAILURE^99DCT">
-                No
-            </label>
-        </div>
-        <div class="form-group">
-            <label class="font-normal">
-                <input name="develop_kidney_failure_bp" id="develop_kidney_failure_na" type="radio"
-                       data-concept="9113^UNANSWERED HEALTH PRACTICES^99DCT"
-                       value="1885^RENAL FAILURE^99DCT">
-                Refused/No Answer
-            </label>
-        </div>
-    </fieldset>
-</div>
-<div class="form-group">
-    <span><strong>Develop heart disease<span class="required">*</span></strong></span>
-
-    <fieldset name="6237^HEART DISEASE^99DCT">
-        <div class="form-group">
-            <label class="font-normal">
-                <input name="develop_heart_disease_bp" id="develop_heart_disease_yes" type="radio"
-                       data-concept="9111^PERCEIVED RISK OF HIGH BLOOD PRESSURE WITHOUT CARE^99DCT"
-                       value="6237^HEART DISEASE^99DCT">
-                Yes
-            </label>
-        </div>
-        <div class="form-group">
-            <label class="font-normal">
-                <input name="develop_heart_disease_bp" id="develop_heart_disease_no" type="radio"
-                       data-concept="9112^ABSENCE OF PERCEIVED RISK OF HIGH BLOOD PRESSURE WITHOUT CARE^99DCT"
-                       value="6237^HEART DISEASE^99DCT">
-                No
-            </label>
-        </div>
-        <div class="form-group">
-            <label class="font-normal">
-                <input name="develop_heart_disease_bp" id="develop_heart_disease_na" type="radio"
-                       data-concept="9113^UNANSWERED HEALTH PRACTICES^99DCT"
-                       value="6237^HEART DISEASE^99DCT">
-                Refused/No Answer
-            </label>
-        </div>
-    </fieldset>
-</div>
-
 </div>
 
 
 <div class="section">
 
-<h4>Part C: Perceived Barriers<br><div style="text-align: center;">
-    Have you delayed or not sought care for your high blood pressure for any of the following reasons:
-</div> </h4>
+<h3>Part C: Perceived Barriers</h3>
 <div class="form-group">
-    <span><strong>You lacked fare<span class="required">*</span></strong></span>
+    <label>Have you delayed or not sought care for your high blood pressure for any of the following reasons:</label>
+</div>
+<div class="form-group">
+    <label>You lacked fare<span class="required">*</span></label>
 
     <fieldset name="1578^TRANSPORT COSTS^99DCT">
         <div class="form-group">
@@ -529,7 +532,7 @@
 </div>
 
 <div class="form-group">
-    <span><strong>You lacked the mode of transportation<span class="required">*</span></strong></span>
+    <label>You lacked the mode of transportation<span class="required">*</span></label>
 
     <fieldset name="820^TRANSPORT PROBLEMS^99DCT">
         <div class="form-group">
@@ -560,7 +563,7 @@
 </div>
 
 <div class="form-group">
-    <span><strong>You didn’t have someone to take you<span class="required">*</span></strong></span>
+    <label>You didn't have someone to take you<span class="required">*</span></label>
 
     <fieldset name="820^TRANSPORT PROBLEMS^99DCT">
         <div class="form-group">
@@ -591,7 +594,7 @@
 </div>
 
 <div class="form-group">
-    <span><strong>You thought seeking health care would cost too much (e.g. medical procedure fee/drug expense fee/etc.)<span class="required">*</span></strong></span>
+    <label>You thought seeking health care would cost too much (e.g. medical procedure fee/drug expense fee/etc.)<span class="required">*</span></label>
 
     <fieldset name="6295^FINANCIAL BARRIER^99DCT">
         <div class="form-group">
@@ -622,7 +625,7 @@
 </div>
 
 <div class="form-group">
-    <span><strong>You thought it was more important to spend your money on school fees, food, or farm inputs<span class="required">*</span></strong></span>
+    <label>You thought it was more important to spend your money on school fees, food, or farm inputs<span class="required">*</span></label>
 
     <fieldset name="9114^OTHER EXPENSES^99DCT">
         <div class="form-group">
@@ -653,7 +656,7 @@
 </div>
 
 <div class="form-group">
-    <span><strong>You thought there would be limited services at the health facility<span class="required">*</span></strong></span>
+    <label>You thought there would be limited services at the health facility<span class="required">*</span></label>
 
     <fieldset name="9115^LIMITED SERVICES^99DCT">
         <div class="form-group">
@@ -684,7 +687,7 @@
 </div>
 
 <div class="form-group">
-    <span><strong>You thought there would be long queues at the health facility<span class="required">*</span></strong></span>
+    <label>You thought there would be long queues at the health facility<span class="required">*</span></label>
 
     <fieldset name="9116^WAIT AT HEALTH FACILITY^99DCT">
         <div class="form-group">
@@ -715,8 +718,8 @@
 </div>
 
 <div class="form-group">
-            <span><strong>You thought there would be corruption (taking bribes, favoritism in queues, denial of service) at the
-                health facility<span class="required">*</span></strong></span>
+            <label>You thought there would be corruption (taking bribes, favoritism in queues, denial of service) at the
+                health facility<span class="required">*</span></label>
     <fieldset name="9117^CORRUPTION^99DCT">
         <div class="form-group">
             <label class="font-normal">
@@ -746,7 +749,7 @@
 </div>
 
 <div class="form-group">
-    <span><strong>You were not so sick to the extent of needing to lie down<span class="required">*</span></strong></span>
+    <label>You were not so sick to the extent of needing to lie down<span class="required">*</span></label>
     <fieldset name="9117^CORRUPTION^99DCT">
         <div class="form-group">
             <label class="font-normal">
@@ -777,7 +780,7 @@
 
 
 <div class="form-group">
-    <span><strong>Seeking care may not be that helpful/may not make any difference<span class="required">*</span></strong></span>
+    <label>Seeking care may not be that helpful/may not make any difference<span class="required">*</span></label>
 
     <fieldset name="9118^TREATMENT NOT EFFECTIVE, SELF PERCEPTION^99DCT">
         <div class="form-group">
@@ -808,7 +811,7 @@
 </div>
 
 <div class="form-group">
-    <span><strong>You didn't have time/You could not take time off from the responsibilities you have<span class="required">*</span></strong></span>
+    <label>You didn't have time/You could not take time off from the responsibilities you have<span class="required">*</span></label>
 
     <fieldset name="9148^COMMITMENTS^99DCT">
         <div class="form-group">
@@ -839,7 +842,7 @@
 </div>
 
 <div class="form-group">
-    <span><strong>You could not find someone to watch over your children<span class="required">*</span></strong></span>
+    <label>You could not find someone to watch over your children<span class="required">*</span></label>
 
     <fieldset name="9148^COMMITMENTS^99DCT">
         <div class="form-group">
@@ -870,7 +873,7 @@
 </div>
 
 <div class="form-group">
-    <span><strong>You preferred traditional herbal medicine<span class="required">*</span></strong></span>
+    <label>You preferred traditional herbal medicine<span class="required">*</span></label>
 
     <fieldset name="8828^HERBAL MEDICATION CONSUMPTION^99DCT">
         <div class="form-group">
@@ -901,7 +904,7 @@
 </div>
 
 <div class="form-group">
-    <span><strong>You received medication from your friend or family member<span class="required">*</span></strong></span>
+    <label>You received medication from your friend or family member<span class="required">*</span></label>
 
     <fieldset name="7064^SHARE MEDICATION WITH OTHER PEOPLE^99DCT">
         <div class="form-group">
@@ -932,7 +935,7 @@
 </div>
 
 <div class="form-group">
-    <span><strong>You believe your faith will heal you<span class="required">*</span></strong></span>
+    <label>You believe your faith will heal you<span class="required">*</span></label>
 
     <fieldset name="1587^HEALED BY FAITH^99DCT">
         <div class="form-group">
@@ -965,12 +968,13 @@
 </div>
 
 <div class="section">
-<h4>Part D: Emotional Factors<br>
-    <div style="text-align: center;">Have you ever not sought care for your high blood pressure because of one or more or the following reasons</div> </h4>
-
+<h3>Part D: Emotional Factors</h3>
+<div class="form-group">
+    <label>Have you ever not sought care for your high blood pressure because of one or more or the following reasons:</label>
+</div>
 
 <div class="form-group">
-    <span><strong>You were afraid of the outcome of blood pressure screening<span class="required">*</span></strong></span>
+    <label>You were afraid of the outcome of blood pressure screening<span class="required">*</span></label>
 
     <fieldset name="9154^AFRAID OF TEST RESULTS^99DCT">
         <div class="form-group">
@@ -1001,7 +1005,7 @@
 </div>
 
 <div class="form-group">
-    <span><strong>You were afraid of being screened for other disease<span class="required">*</span></strong></span>
+    <label>You were afraid of being screened for other diseases<span class="required">*</span></label>
 
     <fieldset name="9155^AFRAID OF SCREENING FOR DISEASES^99DCT">
         <div class="form-group">
@@ -1032,7 +1036,7 @@
 </div>
 
 <div class="form-group">
-    <span><strong>You were scared of the chronic nature of high blood pressure<span class="required">*</span></strong></span>
+    <label>You were scared of the chronic nature of high blood pressure<span class="required">*</span></label>
 
     <fieldset name="9125^AFRAID OF HIGH BLOOD PRESSURE chronic_nature^99DCT">
         <div class="form-group">
@@ -1063,7 +1067,7 @@
 </div>
 
 <div class="form-group">
-    <span><strong>You were afraid of taking drugs for high blood pressure<span class="required">*</span></strong></span>
+    <label>You were afraid of taking drugs for high blood pressure<span class="required">*</span></label>
 
     <fieldset name="9125^AFRAID OF HIGH BLOOD PRESSURE CHRONIC NATURE^99DCT">
         <div class="form-group">
@@ -1095,7 +1099,7 @@
 
 
 <div class="form-group">
-    <span><strong>You were afraid of the stigma associated with high blood pressure<span class="required">*</span></strong></span>
+    <label>You were afraid of the stigma associated with high blood pressure<span class="required">*</span></label>
 
     <fieldset name="9123^AFRAID OF HYPERTENSION STIGMA^99DCT">
         <div class="form-group">
@@ -1127,7 +1131,7 @@
 
 
 <div class="form-group">
-    <span><strong>You were afraid of being seen at the AMPATH facility because of possible HIV stigma<span class="required">*</span></strong></span>
+    <label>You were afraid of being seen at the AMPATH facility because of possible HIV stigma<span class="required">*</span></label>
 
     <fieldset name="9124^AFRAID OF AMPATH STIGMA^99DCT">
         <div class="form-group">
@@ -1157,13 +1161,12 @@
     </fieldset>
 </div>
 
-
 <div class="form-group">
     <label for="obs.means_to_usual_health_facility">
-        Have you ever been treated rudely/shouted at by your health care provider<span class="required">*</span>
+        Have you ever been treated rudely/shouted at by your health care provider
     </label>
-
-    <select id = "harassed_by_health_care_provider" class="form-control yesSelect noSelect" id="obs.blood_pressure_treated" name="obs.blood_pressure_treated"
+    <select id = "harassed_by_health_care_provider" class="form-control yesSelect noSelect"
+    id="obs.blood_pressure_treated" name="obs.blood_pressure_treated"
             data-concept="9130^HARASSED BY HEALTH CARE PROVIDER^99DCT" required="required">
         <option value="">...</option>
         <option value="1065^YES^99DCT">Yes</option>
@@ -1175,7 +1178,8 @@
 <div class="form-group yesSectionToShow">
 <div id = "reason_harassed_by_health_worker" data-concept="9133^REASON HARASSED BY HEALTH CARE PROVIDER, DETAILED^99DCT">
     <label for="obs.means_to_usual_health_facility">
-        For what reason were you treated rudely by your health care provider? (Check all that apply)<span class="required">*</span>
+        For what reason were you treated rudely by your health care provider?
+        <i class="font-normal">(Check all that apply)</i><span class="required">*</span>
     </label>
     <fieldset name="9131^REASON HARASSED BY HEALTH CARE PROVIDER^99DCT">
         <div class="form-group">
@@ -1231,17 +1235,18 @@
 </div>
 
 <div class="section">
-    <h2>Part E: Motivation</h2>
+    <h3>Part E: Motivation</h3>
 
     <div class="form-group">
-        <span><strong>What encourages you to seek hypertension care? (Please do not read the options aloud to the patient, select only those that the patient mentions on her own accord)<span class="required">*</span></strong></span>
+        <label>What encourages you to seek hypertension care? <i class="font-normal">(Please do not read the options aloud to the patient,
+            select only those that the patient mentions on her own accord)</i><span class="required">*</span></label>
 
         <fieldset name="9143^REASONS FOR SEEKING CARE^99DCT">
             <div class="form-group">
                 <label class="font-normal">
                     <input id="seek_hypertension_care_none" type="checkbox"
                            data-concept="9143^REASONS FOR SEEKING CARE^99DCT"
-                           value=" 1107^NONE^99DCT">
+                           value="1107^NONE^99DCT">
                     None
                 </label>
             </div>
@@ -1326,9 +1331,10 @@
 
 
     <div class="form-group">
-        <h2>Part F: Confidence </h2>
+        <h3>Part F: Confidence </h3>
         <label for="follow_instructions">
-            How sure are you that you will be able to follow instructions provided by your health care provider, such as taking your medications?<span class="required">*</span>
+            How sure are you that you will be able to follow instructions provided by your health care provider,
+            such as taking your medications?<span class="required">*</span>
         </label>
         <select class="form-control yesSelect noSelect" id="follow_instructions" name="follow_instructions"
                 data-concept="9144^ABILITY TO FOLLOW MEDICAL ADVICE^99DCT" required="required">
@@ -1339,7 +1345,6 @@
             <option value="1958^REFUSAL^99DCT">Refused</option>
         </select>
     </div>
-</div>
 </div>
 
 <div class="form-group text-center" id="buttonSection">
@@ -1400,6 +1405,7 @@
             ruleList.push(nobodyToWatchOverChildrenBarrier);
             ruleList.push(traditionalHerbalMedicineBarrier);
             ruleList.push(otherSourcesOfMedicineBarrier);
+            ruleList.push(presenceOfCorruptionAtHealthFacility);
             ruleList.push(beliefOfHealingByFaithBarrier);
             ruleList.push(afraidOfOutcomeOfScreeningForHighBP);
             ruleList.push(afraidOfChronicNatureOfHighBP);
@@ -1408,12 +1414,14 @@
             ruleList.push(afraidOfPossibleHIVStigmaAtAMPATHClinics);
             ruleList.push(harassedByHealthWorker);
             ruleList.push(symptomsOfHypertension);
+            ruleList.push(womenOfReproductiveAge);
+            ruleList.push(allResponsesInPartEShouldDisplayMISkillsMessage);
+            ruleList.push(notConfidentAboutFollowingInstructionsOfHealthCareProvider);
+
             return ruleList;
         }
 
     $(document).ready(function () {
-
-
 
     document.setupAutoCompleteDataForProvider('encounter\\.provider_id_select');
 
@@ -1423,16 +1431,20 @@
             $('.show_provider_id_text').show();
         }
     });
+    document.setupValidationForLocation("$('#encounter\\.location_id').val()","encounter\\.location_id");
+    document.setupValidationForProvider("$('#encounter\\.provider_id_select').val()","encounter\\.provider_id");
 
     $('#show_messages').click(function () {
 
           var messageList = ruleEngine(getObjectForm(),assembleRuleListForForm());
-          $("#messageContainer").find(".message").remove();
+          $('#messageContainer').find('.message').remove();
 
           for(key in messageList) {
             var messageId = key;
             var message = messageList[key];
-            var messageLink = $("<p class='alert alert-info message' id=" + messageId + ">  <b> " + message.title + "<span id='expandIcon' class='glyphicon glyphicon-collapse-down pull-right'></span>  <span id='collapseIcon' class='glyphicon glyphicon-collapse-up pull-right'></span></b> </p>");
+            var messageLink = $("<p class='alert alert-info message' id='" + messageId + "'>  <b>"+ message.title +
+            "<span id='expandIcon' class='ui-icon  ui-icon-circle-triangle-s pull-right'></span>" +
+            "<span id='collapseIcon' class='ui-icon  ui-icon-circle-triangle-n pull-right'></span></b> </p>");
             $("#messageContainer").append(messageLink);
             $("#" + messageId).find("#collapseIcon").hide();
             $("#" + messageId).append('<div style="display: none"> ' + message.messageHtml + '</div>');
@@ -1460,17 +1472,13 @@
              videoComponent.openVideo($(this).attr('data-video'));
          });
 
-        $('#save_draft').click(function () {
-            $(this).prop('disabled', true);
-            document.saveDraft();
-            $(this).prop('disabled', false);
-        });
 
-        $('#submit_form').click(function () {
-            $(this).prop('disabled', true);
-            document.submit();
-            $(this).prop('disabled', false);
-        });
+        var dateFormat = "dd-mm-yy";
+        var currentDate = $.datepicker.formatDate(dateFormat, new Date());
+        var encounterDatetime = $('#encounter\\.encounter_datetime');
+        if ($(encounterDatetime).val() == "") {
+            $(encounterDatetime).val(currentDate);
+        }
 
         $('#linkage_form').validate({
             rules: {
@@ -1495,7 +1503,6 @@
         ];
 
          document.setupAutoCompleteData('encounter\\.location_id');
-
         //pick todays date by default
         var dateFormat = "dd-mm-yy";
         var currentDate = $.datepicker.formatDate(dateFormat, new Date());
@@ -1798,44 +1805,688 @@
         });
         $hasOther.trigger('change');
 
-        var refusalValue = ['1958^REFUSAL^99DCT'];
-        var asymptomaticValue = ['5006^ASYMPTOMATIC^99DCT'];
-        var messageSelectOnly = "If Asymptomatic/No Answer/Refused to answer is selected, that should be the only allowed option.";
+        $('.usual_health_care_location').change(function () {
 
-        $(':checkbox[data-concept="9150^KNOWLEDGE OF HIGH BLOOD PRESSURE SYMPTOMS, SPECIFIC^99DCT"]').change(function () {
-            showValidationMessages(validateAlone($(this), refusalValue, messageSelectOnly)); });
-
-        $(':checkbox[data-concept="9150^KNOWLEDGE OF HIGH BLOOD PRESSURE SYMPTOMS, SPECIFIC^99DCT"]').change(function () {
-            showValidationMessages(validateAlone($(this), asymptomaticValue, messageSelectOnly)); });
-
-        $(':checkbox[data-concept="9131^REASON HARASSED BY HEALTH CARE PROVIDER^99DCT"]').change(function () {
-            showValidationMessages(validateAlone($(this), refusalValue, messageSelectOnly)); });
-
-        $(':checkbox[data-concept="9143^REASONS FOR SEEKING CARE^99DCT"]').change(function () {
-            showValidationMessages(validateAlone($(this), refusalValue, messageSelectOnly)); });
-
-        $.fn.customValidationCheck = function () {
-            var knowledgeOfHighBPSymptoms = $('fieldset[name="9150^KNOWLEDGE OF HIGH BLOOD PRESSURE SYMPTOMS, SPECIFIC^99DCT"]');
-            var reasonsHarassedByHealthCareWorker = $('fieldset[name="9131^REASON HARASSED BY HEALTH CARE PROVIDER^99DCT"]');
-            var reasonsForSeekingCare = $('fieldset[name="9143^REASONS FOR SEEKING CARE^99DCT"]');
-            var errors = $.extend({},
-                    validateSelected(knowledgeOfHighBPSymptoms),
-                    validateAlone(knowledgeOfHighBPSymptoms, refusalValue, messageSelectOnly),
-                    validateAlone(knowledgeOfHighBPSymptoms, asymptomaticValue, messageSelectOnly),
-                    validateSelected(reasonsHarassedByHealthCareWorker),
-                    validateAlone(reasonsHarassedByHealthCareWorker, refusalValue, messageSelectOnly),
-                    validateSelected(reasonsForSeekingCare),
-                    validateAlone(reasonsForSeekingCare, refusalValue, messageSelectOnly));
-            showValidationMessages(errors);
-            return $.isEmptyObject(errors);
-         };
-
-
-       document.setupValidationForProvider("$('#encounter\\.provider_id_select').val()","encounter\\.provider_id");
-
-       document.setupValidationForLocation("$('#encounter\\.location_id').val()","encounter\\.location_id");
-
-
+        if(this.value != '' && this.value == "9088^NEVER BEEN TO A HEALTH FACILITY^99DCT"){
+            $('#transportation_mode').hide();
+            $("#transportation_mode").removeAttr("value");
+            $('#time_to_travel').hide();
+            $('#time_to_travel').removeAttr("value");
+            $('#rate_manner_provider').hide();
+            $('#rate_manner_provider').removeAttr("value");
+            $('#rate_explanation_provider').hide();
+            $('#rate_explanation_provider').removeAttr("value");
+        }else{
+            $('#transportation_mode').show();
+            $('#time_to_travel').show();
+            $('#rate_manner_provider').show();
+            $('#rate_explanation_provider').show();
+        }
     });
+
+    var refusalValue = ['1958^REFUSAL^99DCT'];
+    var noneValue = ['1107^NONE^99DCT'];
+    var messageSelectOnly = "If No Answer/Refused to answer is selected, that should be the only allowed option.";
+
+    $(':checkbox[data-concept="9150^KNOWLEDGE OF HIGH BLOOD PRESSURE SYMPTOMS, SPECIFIC^99DCT"]').change(function () {
+        if(($(this).val() == '1958^REFUSAL^99DCT' || $(this).val() == '5006^ASYMPTOMATIC^99DCT') && $(this).is(':checked')){
+            $(':checkbox[data-concept="9150^KNOWLEDGE OF HIGH BLOOD PRESSURE SYMPTOMS, SPECIFIC^99DCT"]').not(this).attr('disabled','disabled');
+        }else if($(':checkbox[data-concept="9150^KNOWLEDGE OF HIGH BLOOD PRESSURE SYMPTOMS, SPECIFIC^99DCT"]:checked').length > 0 ){
+            $(':checkbox[data-concept="9150^KNOWLEDGE OF HIGH BLOOD PRESSURE SYMPTOMS, SPECIFIC^99DCT"]')
+            .filter(':checkbox[value="1958^REFUSAL^99DCT"]').attr('disabled','disabled');
+            $(':checkbox[data-concept="9150^KNOWLEDGE OF HIGH BLOOD PRESSURE SYMPTOMS, SPECIFIC^99DCT"]')
+            .filter(':checkbox[value="5006^ASYMPTOMATIC^99DCT"]').attr('disabled','disabled');
+        }else{
+            $(':checkbox[data-concept="9150^KNOWLEDGE OF HIGH BLOOD PRESSURE SYMPTOMS, SPECIFIC^99DCT"]').removeAttr('disabled');
+        }
+    });
+
+    $(':checkbox[data-concept="9131^REASON HARASSED BY HEALTH CARE PROVIDER^99DCT"]').change(function () {
+
+        if($(this).val() == '1958^REFUSAL^99DCT' && $(this).is(':checked')){
+            $(':checkbox[data-concept="9131^REASON HARASSED BY HEALTH CARE PROVIDER^99DCT"]').not(this).attr('disabled','disabled');
+        }else if($(':checkbox[data-concept="9131^REASON HARASSED BY HEALTH CARE PROVIDER^99DCT"]:checked').length > 0 ){
+            $(':checkbox[data-concept="9131^REASON HARASSED BY HEALTH CARE PROVIDER^99DCT"]')
+            .filter(':checkbox[value="1958^REFUSAL^99DCT"]').attr('disabled','disabled');
+        }else{
+            $(':checkbox[data-concept="9131^REASON HARASSED BY HEALTH CARE PROVIDER^99DCT"]').removeAttr('disabled');
+        }
+    });
+    $(':checkbox[data-concept="9143^REASONS FOR SEEKING CARE^99DCT"]').change(function () {
+        if(($(this).val() == '1958^REFUSAL^99DCT' || $(this).val() == '1107^NONE^99DCT') && $(this).is(':checked')){
+            $(':checkbox[data-concept="9143^REASONS FOR SEEKING CARE^99DCT"]').not(this).attr('disabled','disabled');
+        }else if($(':checkbox[data-concept="9143^REASONS FOR SEEKING CARE^99DCT"]:checked').length > 0 ){
+            $(':checkbox[data-concept="9143^REASONS FOR SEEKING CARE^99DCT"]')
+            .filter(':checkbox[value="1107^NONE^99DCT"]').attr('disabled','disabled');
+            $(':checkbox[data-concept="9143^REASONS FOR SEEKING CARE^99DCT"]')
+            .filter(':checkbox[value="1958^REFUSAL^99DCT"]').attr('disabled','disabled');
+        }else{
+            $(':checkbox[data-concept="9143^REASONS FOR SEEKING CARE^99DCT"]').removeAttr('disabled');
+        }
+    });
+
+
+    $.fn.customValidationCheck = function () {
+        var knowledgeOfHighBPSymptoms = $('fieldset[name="9150^KNOWLEDGE OF HIGH BLOOD PRESSURE SYMPTOMS, SPECIFIC^99DCT"]');
+        var reasonsHarassedByHealthCareWorker = $('fieldset[name="9131^REASON HARASSED BY HEALTH CARE PROVIDER^99DCT"]');
+        var reasonsForSeekingCare = $('fieldset[name="9143^REASONS FOR SEEKING CARE^99DCT"]');
+        var errors = $.extend({},
+                validateSelected(knowledgeOfHighBPSymptoms),
+                validateAlone(knowledgeOfHighBPSymptoms, refusalValue, messageSelectOnly),
+                validateSelected(reasonsHarassedByHealthCareWorker),
+                validateAlone(reasonsHarassedByHealthCareWorker, refusalValue, messageSelectOnly),
+                validateSelected(reasonsForSeekingCare),
+                validateAlone(reasonsForSeekingCare, noneValue, messageSelectOnly),
+                validateAlone(reasonsForSeekingCare, refusalValue, messageSelectOnly));
+        showValidationMessages(errors);
+        return $.isEmptyObject(errors);
+     };
+    });
+
+    //Rules : Part B: Perceived Risks/Severity
+
+var keyExists = function(key, submittedForm){
+    return ((key in submittedForm));
+}
+
+var ruleIsSatisfied = function(concept,value,submittedForm){
+    if(keyExists("observation",submittedForm)) {
+        if(keyExists(concept,submittedForm.observation)) {
+            var conceptValues = submittedForm.observation[concept];
+            var valueMatch = conceptValues.indexOf(value);
+            if(valueMatch != -1){
+                return true;
+            }
+        }
+    }
+    return false;
+};
+
+var toldByHealthCareProviderHasHighBPButBelievesDoesNotHaveHighBP = function(submittedForm){
+    var messageList = [];
+    var concept = "9092^PATIENT REPORTED HIGH BLOOD PRESSURE^99DCT";
+    var expectedValue = "1066^NO^99DCT";
+    if(ruleIsSatisfied(concept,expectedValue,submittedForm)) {
+        messageList.push(message1_WhatIsHighBP);
+        messageList.push(message2_WhatCausesHypertension);
+    }
+    return messageList;
+};
+
+var perceptionHighBPNotSerious = function(submittedForm){
+    var messageList = [];
+    var concept = "9097^PERCEPTION OF HIGH BLOOD PRESSURE^99DCT";
+    var expectedValue = "9096^NOT SERIOUS^99DCT";
+    if(ruleIsSatisfied(concept,expectedValue,submittedForm)) {
+        messageList.push(message1_WhatIsHighBP);
+        messageList.push(message7_ComplicationsOfHypertension);
+    }
+    return messageList;
+};
+
+var symptomsOfHypertension = function(submittedForm){
+    var messageList = [];
+    var concept = "9149^KNOWLEDGE OF HIGH BLOOD PRESSURE SYMPTOMS^99DCT";
+    var expectedValueYes = "1065^YES^99DCT";
+    var expectedValueNo = "1066^NO^99DCT";
+    if(ruleIsSatisfied(concept,expectedValueYes,submittedForm) || ruleIsSatisfied(concept,expectedValueNo,submittedForm)) {
+        messageList.push(message1_WhatIsHighBP);
+        messageList.push(message7_ComplicationsOfHypertension);
+    }
+    return messageList;
+};
+
+//Rules : Part C: Perceived Barriers
+
+var lackedFareBarrier = function(submittedForm){
+    var messageList = [];
+    var concept = "9120^PRESENT BARRIERS TO HEALTHCARE^99DCT";
+    var expectedValue = "1578^TRANSPORT COSTS^99DCT";
+    if(ruleIsSatisfied(concept,expectedValue,submittedForm)){
+        messageList.push(message12_OvercomingBarriers);
+        messageList.push(message13_MoneyManagementTool);
+    }
+    return messageList;
+}
+
+var absenceOfTreatmentSupporterBarrier = function(submittedForm){
+    var messageList = [];
+    var concept = "9120^PRESENT BARRIERS TO HEALTHCARE^99DCT";
+    var expectedValue = "9151^ABSENCE OF TREATMENT SUPPORTER^99DCT"
+    if(ruleIsSatisfied(concept,expectedValue,submittedForm)){
+        messageList.push(message12_OvercomingBarriers);
+        messageList.push(message15_CommunityResources);
+    }
+    return messageList;
+}
+
+var financialBarrier = function(submittedForm){
+    var messageList = [];
+    var concept = "9120^PRESENT BARRIERS TO HEALTHCARE^99DCT";
+    var expectedValue = "6295^FINANCIAL BARRIER^99DCT";
+    if(ruleIsSatisfied(concept,expectedValue,submittedForm)){
+        messageList.push(message12_OvercomingBarriers);
+        messageList.push(message13_MoneyManagementTool);
+        messageList.push(message15_CommunityResources);
+    }
+    return messageList;
+}
+
+var assumptionOfLimitedServicesBarrier = function(submittedForm){
+    var messageList = [];
+    var concept = "9120^PRESENT BARRIERS TO HEALTHCARE^99DCT";
+    var expectedValue = "9115^LIMITED SERVICES^99DCT";
+    if(ruleIsSatisfied(concept,expectedValue,submittedForm)){
+        messageList.push(message10_CostEffectivenessInEarlyTreatment);
+        messageList.push(message12_OvercomingBarriers);
+    }
+    return messageList;
+}
+
+var assumptionOfLongQueueAndWaitTimeBarrier = function(submittedForm){
+    var messageList = [];
+    var concept = "9120^PRESENT BARRIERS TO HEALTHCARE^99DCT";
+    var expectedValue = "9116^WAIT AT HEALTH FACILITY^99DCT";
+    if(ruleIsSatisfied(concept,expectedValue,submittedForm)){
+        messageList.push(message15_CommunityResources);
+        messageList.push(message17_MISkills);
+    }
+    return messageList;
+}
+
+var incorrectPresumptionOfGoodHealthBarrier = function(submittedForm){
+    var messageList = [];
+    var concept = "9120^PRESENT BARRIERS TO HEALTHCARE^99DCT";
+    var expectedValue = "9070^IN GOOD HEALTH^99DCT"
+    if(ruleIsSatisfied(concept,expectedValue,submittedForm)){
+        messageList.push(message1_WhatIsHighBP);
+        messageList.push(message2_WhatCausesHypertension);
+        messageList.push(message3_SignAndSymptoms);
+        messageList.push(message10_CostEffectivenessInEarlyTreatment);
+    }
+    return messageList;
+}
+
+var doesNotSeeUseUsefulnessOrSuccessInTreatmentBarrier = function(submittedForm){
+    var messageList = [];
+    var concept = "9120^PRESENT BARRIERS TO HEALTHCARE^99DCT";
+    var expectedValue = "9118^TREATMENT NOT EFFECTIVE, SELF PERCEPTION^99DCT";
+    if(ruleIsSatisfied(concept,expectedValue,submittedForm)){
+        messageList.push(message4_LifestyleManagement);
+        messageList.push(message5_DrugManagement);
+        messageList.push(message6_AdhereManagingSideEffects);
+        messageList.push(message10_CostEffectivenessInEarlyTreatment);
+    }
+    return messageList;
+}
+
+var otherCommitmentsBarrier = function(submittedForm){
+    var messageList = [];
+    var concept = "9120^PRESENT BARRIERS TO HEALTHCARE^99DCT";
+    var expectedValue = "9148^COMMITMENTS^99DCT";
+    if(ruleIsSatisfied(concept,expectedValue,submittedForm)){
+        messageList.push(message10_CostEffectivenessInEarlyTreatment);
+        messageList.push(message14_TimeManagementTool);
+    }
+    return messageList;
+}
+
+var nobodyToWatchOverChildrenBarrier = function(submittedForm){
+    var messageList = [];
+    var concept = "9120^PRESENT BARRIERS TO HEALTHCARE^99DCT";
+    var expectedValue = "9152^ABSENCE OF CAREGIVER FOR CHILDREN^99DCT";
+    if(ruleIsSatisfied(concept,expectedValue,submittedForm)){
+        messageList.push(message12_OvercomingBarriers);
+        messageList.push(message15_CommunityResources);
+    }
+    return messageList;
+}
+
+var traditionalHerbalMedicineBarrier = function(submittedForm){
+    var messageList = [];
+    var concept = "9120^PRESENT BARRIERS TO HEALTHCARE^99DCT";
+    var expectedValue = "8828^HERBAL MEDICATION CONSUMPTION^99DCT"
+    if(ruleIsSatisfied(concept,expectedValue,submittedForm)){
+        messageList.push(message7_ComplicationsOfHypertension);
+        messageList.push(message11_ConsequencesOfHerbalTreatment);
+    }
+    return messageList;
+}
+
+var otherSourcesOfMedicineBarrier = function(submittedForm){
+    var messageList = [];
+    var concept = "9120^PRESENT BARRIERS TO HEALTHCARE^99DCT";
+    var expectedValue = "7064^SHARE MEDICATION WITH OTHER PEOPLE^99DCT";
+    if(ruleIsSatisfied(concept,expectedValue,submittedForm)){
+        messageList.push(message7_ComplicationsOfHypertension);
+        messageList.push(message9_KidneyFailureConsequences);
+    }
+    return messageList;
+}
+
+var presenceOfCorruptionAtHealthFacility = function(submittedForm) {
+    var messageList = [];
+    var concept = "9120^PRESENT BARRIERS TO HEALTHCARE^99DCT";
+    var expectedValue = "9117^CORRUPTION^99DCT";
+    if(ruleIsSatisfied(concept,expectedValue,submittedForm)){
+         messageList.push(message17_MISkills);
+    }
+    return messageList;
+    }
+
+var beliefOfHealingByFaithBarrier = function(submittedForm){
+    var messageList = [];
+    var concept = "9120^PRESENT BARRIERS TO HEALTHCARE^99DCT";
+    var expectedValue = "1587^HEALED BY FAITH^99DCT";
+    if(ruleIsSatisfied(concept,expectedValue,submittedForm)){
+        messageList.push(message7_ComplicationsOfHypertension);
+    }
+    return messageList;
+}
+
+//Rules : Part D: Emotional Factors
+
+var afraidOfOutcomeOfScreeningForHighBP = function(submittedForm){
+    var messageList = [];
+    var concept = "9153^PRESENT EMOTIONAL BARRIER TO HEALTHCARE, EVER^99DCT";
+    var expectedValue = "9154^AFRAID OF TEST RESULTS^99DCT";
+    if(ruleIsSatisfied(concept,expectedValue,submittedForm)){
+       messageList.push(message4_LifestyleManagement);
+       messageList.push(message10_CostEffectivenessInEarlyTreatment);
+       messageList.push(message12_OvercomingBarriers);
+       messageList.push(message17_MISkills);
+    }
+    return messageList;
+}
+
+var afraidOfChronicNatureOfHighBP = function(submittedForm){
+    var messageList = [];
+    var concept = "9153^PRESENT EMOTIONAL BARRIER TO HEALTHCARE, EVER^99DCT";
+    var expectedValue = "9125^AFRAID OF HIGH BLOOD PRESSURE chronic_nature^99DCT";
+    if(ruleIsSatisfied(concept,expectedValue,submittedForm)){
+        messageList.push(message4_LifestyleManagement);
+        messageList.push(message5_DrugManagement);
+        messageList.push(message6_AdhereManagingSideEffects);
+        messageList.push(message12_OvercomingBarriers);
+    }
+    return messageList;
+}
+
+var afraidOfTakingDrugsForHighBP = function(submittedForm){
+    var messageList = [];
+    var concept = "9153^PRESENT EMOTIONAL BARRIER TO HEALTHCARE, EVER^99DCT";
+    var expectedValue = "9126^AFRAID OF TAKING DRUGS^99DCT";
+    if(ruleIsSatisfied(concept,expectedValue,submittedForm)){
+        messageList.push(message4_LifestyleManagement);
+        messageList.push(message5_DrugManagement);
+        messageList.push(message6_AdhereManagingSideEffects);
+    }
+    return messageList;
+}
+
+var afraidOfStigmaAssociatedToHighBP = function(submittedForm){
+    var messageList = [];
+    var concept = "9153^PRESENT EMOTIONAL BARRIER TO HEALTHCARE, EVER^99DCT";
+    var expectedValue = "9123^AFRAID OF HYPERTENSION STIGMA^99DCT";
+    if(ruleIsSatisfied(concept,expectedValue,submittedForm)){
+        messageList.push(message12_OvercomingBarriers);
+    }
+    return messageList;
+}
+
+var afraidOfPossibleHIVStigmaAtAMPATHClinics = function(submittedForm){
+    var messageList = [];
+    var concept = "9127^PRESENT EMOTIONAL BARRIER TO HEALTHCARE, RECENT^99DCT";
+    var expectedValue = "9124^AFRAID OF AMPATH STIGMA^99DCT";
+    if(ruleIsSatisfied(concept,expectedValue,submittedForm)){
+        messageList.push(message15_CommunityResources);
+        messageList.push(message17_MISkills);
+    }
+    return messageList;
+}
+
+var womenOfReproductiveAge = function(submittedForm){
+    var messageList = [];
+    var $patientSex = $('#patient\\.sex');
+    var dateFormat = "dd-mm-yy";
+    var currentDate = new Date();
+    var patientBirthDate = new Date($('#patient\\.birthdate').val());
+    var oneDay = 24 * 60 * 60 * 1000; // hours*minutes*seconds*milliseconds
+    var diffDays = Math.round(Math.abs((currentDate.getTime() - patientBirthDate.getTime()) / (oneDay)));
+    var diffYears = Math.round(diffDays/365);
+    if ($patientSex.val() == 'F' && diffYears > 15 && diffYears < 49) {
+        messageList.push(message16_PreEclampsia);
+    }
+    return messageList;
+}
+
+//Part E: Motivation
+
+var allResponsesInPartEShouldDisplayMISkillsMessage = function(submittedForm){
+    var messageList = [];
+    messageList.push(message17_MISkills);
+    return messageList;
+}
+
+
+                     //Rules : Part B: Perceived Risks/Severity
+
+var perceptionHighBPDoesNotCauseStroke = function(submittedForm){
+    var messageList = [];
+    var concept = "9112^ABSENCE OF PERCEIVED RISK OF HIGH BLOOD PRESSURE WITHOUT CARE^99DCT";
+    var expectedValue = "1878^STROKE^99DCT"
+    if(ruleIsSatisfied(concept,expectedValue,submittedForm)){
+        messageList.push(message7_ComplicationsOfHypertension);
+        messageList.push(message8_StrokeOrConsequencesOfMedicationDefault);
+    }
+    return messageList;
+}
+
+var perceptionHighBPDoesNotCauseKidneyFailure = function(submittedForm){
+    var messageList = [];
+    var concept = "9112^ABSENCE OF PERCEIVED RISK OF HIGH BLOOD PRESSURE WITHOUT CARE^99DCT";
+    var expectedValue = "1885^RENAL FAILURE^99DCT";
+    if(ruleIsSatisfied(concept,expectedValue,submittedForm)){
+        messageList.push(message7_ComplicationsOfHypertension);
+        messageList.push(message9_KidneyFailureConsequences);
+    }
+    return messageList;
+}
+
+var perceptionHighBPDoesNotCauseHeartDisease = function(submittedForm){
+    var messageList = [];
+    var concept = "9112^ABSENCE OF PERCEIVED RISK OF HIGH BLOOD PRESSURE WITHOUT CARE^99DCT";
+    var expectedValue = "6237^HEART DISEASE^99DCT"
+    if(ruleIsSatisfied(concept,expectedValue,submittedForm)){
+        messageList.push(message7_ComplicationsOfHypertension);
+    }
+    return messageList;
+}
+
+//Rules : Part C: Perceived Barriers
+
+var lackOfTransportationBarrier = function(submittedForm){
+    var messageList = [];
+    var concept = "9120^PRESENT BARRIERS TO HEALTHCARE^99DCT";
+    var expectedValue = "820^TRANSPORT PROBLEMS^99DCT";
+    if(ruleIsSatisfied(concept,expectedValue,submittedForm)){
+        messageList.push(message12_OvercomingBarriers);
+        messageList.push(message15_CommunityResources);
+    }
+    return messageList;
+}
+
+var haveOtherImportantExpensesBarrier = function(submittedForm){
+    var messageList = [];
+    var concept = "9120^PRESENT BARRIERS TO HEALTHCARE^99DCT";
+    var expectedValue = "9114^OTHER EXPENSES^99DCT";
+    if(ruleIsSatisfied(concept,expectedValue,submittedForm)){
+        messageList.push(message10_CostEffectivenessInEarlyTreatment);
+        messageList.push(message12_OvercomingBarriers);
+        messageList.push(message13_MoneyManagementTool);
+    }
+    return messageList;
+}
+
+var harassedByHealthWorker = function(submittedForm){
+    var messageList = [];
+    var concept = "9130^HARASSED BY HEALTH CARE PROVIDER^99DCT";
+    var expectedValue = "1065^YES^99DCT";
+    if(ruleIsSatisfied(concept,expectedValue,submittedForm)){
+        messageList.push(message12_OvercomingBarriers);
+    }
+    return messageList;
+}
+
+//Part F :Confidence
+
+var notConfidentAboutFollowingInstructionsOfHealthCareProvider = function(submittedForm){
+    var messageList = [];
+    var concept = "9144^ABILITY TO FOLLOW MEDICAL ADVICE^99DCT";
+    var expectedValue = "9141^NOT VERY CONFIDENT^99DCT";
+    if (ruleIsSatisfied(concept,expectedValue,submittedForm)) {
+        messageList.push(message17_MISkills);
+    }
+    return messageList;
+}
+
+//Messages
+
+var message1_WhatIsHighBP = {
+                    id : "Message1",
+                    title : "What is high blood pressure?",
+                    messageHtml :  `<label class='alert alert-info' id='message1'>
+                                      <ol>\
+                                          High blood pressure is a condition of the heart and blood.  When blood pressure is
+                                          persistently and abnormally high, doctors call this condition 'hypertension'.\
+                                          <br>High blood pressure does not always cause noticeable symptoms, but it can be
+                                          a very serious disease. It can result in other serious diseases, such as heart attack,
+                                          stroke, and kidney disease if not well managed.\
+                                      </ol>\
+                                      <input class='btn btn-primary image-player' data-image = '/media/img/message1.jpg' type='button' value='show image'/>\
+                                  </label>`
+                   };
+
+var message2_WhatCausesHypertension = {
+                    id : "Message2",
+                    title : "Causes/predisposing factors",
+                    messageHtml : '<label class="alert alert-info" id="message2"> \
+                    What Causes Hypertension?  <br> \
+                        Many different things can cause high blood pressure. Most commonly, it is caused by:<br> \
+                        <span style="text-decoration: underline;">1. Lifestyle</span> \
+                        <ol type="I"> \
+                            <li>Eating a diet high in oil, fat and salt (such as a lot red meat or fried foods)</li> \
+                            <li>Being overweight,</li> \
+                            <li>Not doing exercise or physical activity,</li> \
+                            <li>Using tobacco or smoking, and </li> \
+                            <li>Drinking too much alcohol.</li> \
+                        </ol> \
+                        <span style="text-decoration: underline;">2. Hereditary factors.</span> \
+                        <ul> \
+                            <li>High blood pressure runs in the immediate family.</li> \
+                        </ul> \
+                        <input class="btn btn-primary image-player" data-image = "/media/img/message2.jpg" type="button" value="show image"/> \
+                    </label> <br>'
+                    };
+
+var message3_SignAndSymptoms = {
+                    id : "Message3",
+                    title : "Signs and Symptoms",
+                    messageHtml : '<label class="alert alert-info" id="message3"> \
+                        <input class="btn btn-primary video-player" data-video = "/media/vids/message3.mp4" type="button" value="show video"/> \
+                    </label>'
+                    };
+
+var message4_LifestyleManagement = {
+                    id : "Message4",
+                    title : "Lifestyle Management of Hypertension",
+                    messageHtml : '<label class="alert alert-info" id="message4"> \
+                        <input class="btn btn-primary video-player" data-video = "/media/vids/message4.mp4" type="button" value="show video"/> \
+                    </label>'
+                    };
+
+var message5_DrugManagement = {
+                    id : "Message5",
+                    title : "Drug Management of Hypertension",
+                    messageHtml :' <label class="alert alert-info" id="message5">   \
+                        <ul> \
+                            <li>High blood pressure medications work by lowering your blood pressure to a range that does not harm your body.</li> \
+                            <li>our blood pressure medication will help you stay healthy and reduce your risks of complications.</li> \
+                        </ul> \
+                        <span style="text-decoration: underline;">What can you do?</span> \
+                        <ul> \
+                            <li>Take your drugs as prescribed by your Health Care Providers</li> \
+                            <li>Adhere to your routine appointments for monitoring of blood pressure</li> \
+                       </ul> \
+                        <input class="btn btn-primary image-player" data-image = "/media/img/message5.jpg" type="button" value="show image"/> \
+                    </label> <br>'
+                    };
+
+var message6_AdhereManagingSideEffects = {
+                    id : "Message6",
+                    title : "Adherence and Managing Side Effects",
+                    messageHtml :`<label class="alert alert-info" id="message6"> \
+                        <ul> \
+                            <li>High blood pressure drugs, especially the “water pills” which promote water loss may make you urinate frequently first couple of weeks</li> \
+                            <li>Your drugs may also cause some other side effects such as; \
+                                <ul> \
+                                    <li>Weakness</li> \
+                                    <li>Dizziness</li> \
+                                    <li>Headache</li> \
+                                    <li>Nausea and</li> \
+                                    <li>Vomiting</li> \
+                                </ul> \
+                            </li> \
+                            <li>Most of the time, these will also go away. BUT you should always tell your nurse if
+                            you experience any side effects, especially if they are severe or don’t go away.</li> \
+                            <li>The nurse may want to change your drugs to find that works for your blood pressure, but also makes you feel better.</li> \
+                            <li>Until you talk to the nurse though, you should keep taking your blood pressure drugs.</li> \
+                            <li>If you get any really severe symptoms, such as fever, peeling skin or unusual bleeding,
+                            have someone take you to a health center right away.</li> \
+                        </ul> \
+                    </label>`
+                    };
+
+var message7_ComplicationsOfHypertension = {
+                    id : "Message7",
+                    title : "Complication of Hypertension",
+                    messageHtml :'<label class="alert alert-info" id="message7"> \
+                        <input class="btn btn-primary video-player" data-video = "/media/vids/message7.mp4" type="button" value="show video"/> \
+                    </label>'
+                    };
+
+var message8_StrokeOrConsequencesOfMedicationDefault = {
+                    id : "Message8",
+                    title : "Stroke/Consequences of Medication Default",
+                    messageHtml :'<label class="alert alert-info" id="message8"> \
+                        <input class="btn btn-primary video-player" data-video = "/media/vids/message8.mp4" type="button" value="show video"/> \
+                    </label>'
+                    };
+
+var message9_KidneyFailureConsequences = {
+                    id : "Message9",
+                    title : "Kidney Failure/Consequences of OTC Management",
+                    messageHtml :'<label class="alert alert-info" id="message9"> \
+                        <input class="btn btn-primary video-player" data-video = "/media/vids/message9.mp4" type="button" value="show video"/> \
+                    </label>'
+                    };
+
+var message10_CostEffectivenessInEarlyTreatment = {
+                    id : "Message10",
+                    title : "Cost Effectiveness of Early Intervention",
+                    messageHtml :'<label class="alert alert-info" id="message10"> \
+                         <input class="btn btn-primary video-player" data-video = "/media/vids/message10.mp4" type="button" value="show video"/> \
+                     </label>'
+                     };
+
+var message11_ConsequencesOfHerbalTreatment = {
+                    id : "Message11",
+                    title : "Consequences of Using Herbal Treatments",
+                    messageHtml : '<label class="alert alert-info" id="message11"> \
+                         <input class="btn btn-primary video-player" data-video = "/media/vids/message11.mp4" type="button" value="show video"/> \
+                     </label>'
+                     };
+
+var message12_OvercomingBarriers = {
+                    id : "Message12",
+                    title : "Overcoming Barriers to Treatment",
+                    messageHtml :'<label class="alert alert-info" id="message12"> \
+                         <input class="btn btn-primary video-player" data-video = "/media/vids/message12.mp4" type="button" value="show video"/> \
+                     </label>'
+                     };
+
+var message13_MoneyManagementTool = {
+                    id : "Message13",
+                    title : "Money Management Tool",
+                    messageHtml :'<label class="alert alert-info" id="message13"> \
+                         <input class="btn btn-primary video-player" data-video = "/media/vids/message13.mp4" type="button" value="show video"/> \
+                     </label>'
+                     };
+
+var message14_TimeManagementTool = {
+                    id : "Message14",
+                    title : "Time Management Tool",
+                    messageHtml :'<label class="alert alert-info" id="message14"> \
+                         <bold>Patients with High Blood Pressure</bold> <br> \
+                         Every activity that a patient can do during the day can be placed in one of the four quadrants/sections: <br> \
+                             <table class="table table-bordered"> \
+                                 <thead> \
+                                 <tr> \
+                                     <th></th> \
+                                     <th>Urgent – Must be done soon and on a particular day</th> \
+                                     <th>Not Urgent – Should be done but timing is flexible</th> \
+                                 </tr> \
+                                 </thead> \
+                                 <tbody> \
+                                 <tr> \
+                                     <td>Important</td> \
+                                     <td> Quadrant I <br> \
+                                         <ul> \
+                                             <li>Seeking medical attention/appointment</li> \
+                                             <li>House chores</li> \
+                                         </ul> \
+                                     </td> \
+                                     <td> Quadrant II <br> \
+                                         <ul> \
+                                             <li>Farming(farm cultivation, planting, animal)</li> \
+                                             <li>Visiting friends/relatives</li> \
+                                         </ul> \
+                                     </td> \
+                                 </tr> \
+                                 <tr> \
+                                     <td>Not Important</td> \
+                                     <td> Quadrant III <br> \
+                                         <ul> \
+                                             <li>Attending celebrations/festivals</li> \
+                                         </ul> \
+                                     </td> \
+                                     <td> Quadrant IV <br> \
+                                         <ul> \
+                                             <li>Going for vacations</li> \
+                                         </ul> \
+                                     </td> \
+                                 </tr> \
+                                 </tbody> \
+                             </table> \
+                         For you to realize optimum level of health, always place the highest priority on your health<br> \
+                     </label>'
+                     };
+
+var message15_CommunityResources = {
+                    id : "Message15",
+                    title : "Community Resources",
+                    messageHtml :`<label class="alert alert-info" id="message15"> \
+                         Within our community, there are some resources that we can utilize, for us to be empowered socially, financially and economically. These include: <br> \
+                        <ol type="1"> \
+                            <li>Family Preservation Initiative (FPI) by use of GISE (Group Integrated Savings Empowerment) <br> \
+                                <ol type="a"> \
+                                    <li>The groups  are formed within a community where they contribute their savings and later they can loan it to members</li> \
+                                    <li>They also encourage agribusiness to their members as well as teaching the group members
+                                    on proposal writing where they can apply for grants for development.</li> \
+                                </ol> \
+                            </li> \
+                            <li>Ministry of Agriculture- The Agricultural Extension Workers help in advising the community on how
+                            to do farming as well as encourage them on water harvesting which can help in farming through irrigation.</li> \
+                            <li>Ministry of gender, sports and youth affairs- they address the welfare of the women and youths in the community through empowerment</li> \
+                        </ol> \
+                     </label>`
+                     };
+
+var message16_PreEclampsia = {
+                    id : "Message16",
+                    title : "Pre-eclampsia",
+                    messageHtml :'<label class="alert alert-info" id="message16"> \
+                         <input class="btn btn-primary video-player" data-video = "/media/vids/message16.mp4" type="button" value="show video"/> \
+                     </label>'
+                     };
+
+var message17_MISkills = {
+                    id : "Message17",
+                    title : "Please use the motivational interviewing skills that you learned during training.",
+                    messageHtml :  ' <label class="alert alert-info" id="message17"> \
+                                               Please use the motivational interviewing skills that you learned during training. \
+                                     </label>'
+                    };
+
 </script>
 </html>
