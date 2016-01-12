@@ -73,9 +73,9 @@
                     class="required">*</span></label>
 
             <div class="form-horizontal">
-                <input type="button" class='btn barcode_btn'>
+                <input type="button" class='btn barcode_btn' disabled="disabled">
                 <input class="barcode_text form-control checkDigit" id="patient.medical_record_number"
-                       name="patient.medical_record_number" type="text" required="required">
+                       name="patient.medical_record_number" type="text" required="required" disabled="disabled">
             </div>
         </div>
         <div class="form-group">
@@ -117,35 +117,50 @@
                 <option value="F">Female</option>
             </select>
         </div>
-        <div class="form-group">
-            <label for="tmp.birthdate_type">Will Record Date of Birth... <span class="required">*</span></label>
-            <select class="form-control" name="tmp.birthdate_type" id="tmp.birthdate_type" required="required">
-                <option value="">...</option>
-                <option value="birthdate">By Birth-date</option>
-                <option value="age">By Age</option>
-            </select>
-        </div>
-        <div class="form-group show_birthdate">
-            <label for="patient.birth_date">Select Birthdate <span class="required">*</span></label>
+        <div class="form-group birthdate">
+            <label for="patient.birth_date">Birthdate <span class="required">*</span></label>
             <input class="form-control birth_date_picker nonFutureDate" id="patient.birth_date" name="patient.birth_date"
-                   type="text"
-                   required="required"
-                   readonly="readonly">
+                   type="text" disabled="disabled" readonly="readonly">
         </div>
-        <div class="form-group show_birthdate">
-            <label for="patient.birthdate_estimated">Is this birthdate an estimate? <span
-                    class="required">*</span></label>
-            <select class="form-control" id="patient.birthdate_estimated" name="patient.birthdate_estimated"
-                    required="required">
-                <option>...</option>
-                <option value="true">Yes</option>
-                <option value="false">No</option>
-            </select>
+        <div class="form-group">
+            <label for="tmp.update_birthdate">
+                <input id="tmp.update_birthdate" name="tmp.update_birthdate"
+                   type="checkbox" readonly="readonly">
+                   Will change Birth Date?
+            </label>
+            
         </div>
-        <div class="form-group show_age">
-            <label for="tmp.age_in_years">How old are you in Years <span class="required">*</span></label>
-            <input class="form-control" id="tmp.age_in_years" name="tmp.age_in_years" type="number" required="required">
+        <div id="update_birthdate" class="sub-section">
+            <div class="form-group">
+                <label for="tmp.birthdate_type">Will Record Date of Birth... <span class="required">*</span></label>
+                <select class="form-control" name="tmp.birthdate_type" id="tmp.birthdate_type" required="required">
+                    <option value="">...</option>
+                    <option value="birthdate">By Birth-date</option>
+                    <option value="age">By Age</option>
+                </select>
+            </div>
+            <div class="form-group show_birthdate">
+                <label for="patient.birth_date">Select New Birthdate <span class="required">*</span></label>
+                <input class="form-control birth_date_picker nonFutureDate" id="patient.new_birth_date" name="patient.new_birth_date"
+                       type="text"
+                       required="required"
+                       readonly="readonly">
+            </div>
+            <div class="form-group show_birthdate">
+                <label for="patient.birthdate_estimated">Is this birthdate an estimate? <span
+                        class="required">*</span></label>
+                <select class="form-control" id="patient.birthdate_estimated" name="patient.birthdate_estimated"
+                        required="required">
+                    <option>...</option>
+                    <option value="true">Yes</option>
+                    <option value="false">No</option>
+                </select>
+            </div>
+            <div class="form-group show_age">
+                <label for="tmp.age_in_years">How old are you in Years <span class="required">*</span></label>
+                <input class="form-control" id="tmp.age_in_years" name="tmp.age_in_years" type="number" required="required">
 
+            </div>
         </div>
     </div>
     <div class="section">
@@ -223,6 +238,15 @@
             document.submit();
             $(this).prop('disabled', false);
         });
+
+        $('#tmp\\.update_birthdate').change(function(){
+            if($(this).is(':checked')){
+                $('#update_birthdate').show();
+            } else {
+                $('#update_birthdate').hide();
+            }
+        });
+        $('#tmp\\.update_birthdate').trigger('change');
 
         $.fn.calculateFields = function () {
             var tempAgeInYears = $.trim($("#tmp\\.age_in_years").val());
