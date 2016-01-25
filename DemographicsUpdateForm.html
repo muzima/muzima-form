@@ -53,7 +53,7 @@
         </div>
     </div>
     <div class="section" id="update_names">
-        <h3>Update Names</h3>
+        <h3>Add Names</h3>
         <div class="form-group">
             <label for="demographicsupdate.family_name">New Family Name: <span class="required">*</span> </label>
             <input class="form-control" id="demographicsupdate.family_name" name="demographicsupdate.family_name" type="text"
@@ -110,7 +110,7 @@
         </div>
     </div>
     <div class="section" id="update_address">
-        <h3>Update Address</h3>
+        <h3>Add Address</h3>
         <div class="form-group">
             <label for="demographicsupdate.county">County: </label>
             <input class="form-control" id="demographicsupdate.county" name="demographicsupdate.county" type="text">
@@ -148,27 +148,33 @@
            <label>Add Identifiers:</label>
             <div class="section repeat other_identifiers" id="other_identifiers" data-name="other_identifiers">
                 <div class="form-group">
-                    <label for="demographicsupdate.other_identifier_type">Identifier Type</label>
-                    <select class="form-control demographicsupdate.other_identifier_type" name="demographicsupdate.other_identifier_type" id="demographicsupdate.other_identifier_type">
+                    <label for="demographicsupdate.other_identifier_type">Identifier Type:</label>
+                    <select class="form-control demographicsupdate.other_identifier_type"
+                    name="demographicsupdate.other_identifier_type" id="demographicsupdate.other_identifier_type">
                         <option value="">...</option>
-                        <option value="AMRS Medical Record Number">AMRS Medical Record Number</option>
+                        <option class="checkdigit" value="AMRS Universal ID">AMRS Universal ID</option>
+                        <option class="checkdigit" value="AMRS Medical Record Number">AMRS Medical Record Number</option>
                         <option value="CCC Number">CCC Number</option>
-                        <option value="HCT ID">HCT ID</option>
+                        <option class="checkdigit" value="HCT ID">HCT ID</option>
                         <option value="KENYAN NATIONAL ID NUMBER">KENYAN NATIONAL ID NUMBER</option>
                         <option value="MTCT Plus ID">MTCT Plus ID</option>
                         <option value="MTRH Hospital Number">MTRH Hospital Number</option>
                         <option value="Old AMPATH Medical Record Number">Old AMPATH Medical Record Number</option>
-                        <option value="pMTCT ID">pMTCT ID</option>
+                        <option class="checkdigit" value="pMTCT ID">pMTCT ID</option>
                     </select>
                 </div>
                 <div class="identifier_value_section">
                     <div class="form-group">
-                        <label for="demographicsupdate.other_identifier_value">Enter Identifier</label>
-                        <input class="form-control check-other-identifier" id="demographicsupdate.other_identifier_value" name="demographicsupdate.other_identifier_value" type="text">
+                        <label for="demographicsupdate.other_identifier_value">Enter Identifier:</label>
+                        <input class="form-control check-other-identifier demographicsupdate.other_identifier_value"
+                        id="demographicsupdate.other_identifier_value"
+                        name="demographicsupdate.other_identifier_value" type="text">
                     </div>
                     <div class="form-group">
-                        <label for="demographicsupdate.confirm_identifier_value">Confirm Identifier</label>
-                        <input class="form-control check-confirm-identifier" id="demographicsupdate.confirm_identifier_value" name="demographicsupdate.confirm_identifier_value" type="text">
+                        <label for="demographicsupdate.confirm_identifier_value">Confirm Identifier:</label>
+                        <input class="form-control check-confirm-identifier demographicsupdate.other_identifier_value"
+                        id="demographicsupdate.confirm_identifier_value"
+                        name="demographicsupdate.confirm_identifier_value" type="text">
                     </div>
                 </div>
             </div>
@@ -410,9 +416,17 @@
             $(this).closest('.repeat').find('.identifier_value_section').hide();
         }else{
             $(this).closest('.repeat').find('.identifier_value_section').show();
+            if($('.demographicsupdate\\.other_identifier_type option:selected').hasClass("checkdigit")){
+                $(this).closest('.repeat').find('.demographicsupdate\\.other_identifier_value').addClass('checkDigit');
+                $(this).closest('.repeat').find('.demographicsupdate\\.confirm_identifier_value').addClass('checkDigit');
+            } else {
+                $(this).closest('.repeat').find('.demographicsupdate\\.other_identifier_value').removeClass('checkDigit');
+                $(this).closest('.repeat').find('.demographicsupdate\\.confirm_identifier_value').removeClass('checkDigit');
+            }
         }
 
     });
+
     $('.demographicsupdate\\.other_identifier_type').trigger('change');
 
       document.setupAutoCompleteData('encounter\\.location_id');
