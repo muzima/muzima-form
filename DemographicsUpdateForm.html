@@ -183,11 +183,8 @@
     <div class="section">
         <div class="form-group">
             <label for="patient.sex">Sex: <span class="required">*</span></label>
-            <select class="form-control" id="patient.sex" name="patient.sex" required="required" readonly="readonly">
-                <option value="">...</option>
-                <option value="M">Male</option>
-                <option value="F">Female</option>
-            </select>
+            <input id="patient.sex" name="patient.sex" type="hidden">
+            <input class="form-control" disabled id="tmp.patient.sex" name="tmp.patient.sex" type="text">
         </div>
         <div class="form-group">
             <label for="tmp.update_sex">
@@ -362,6 +359,15 @@
         });
         $('#tmp\\.update_birthdate').trigger('change');
 
+        $('#patient\\.sex').change(function(){
+            if($(this).val() == 'M'){
+                $('#tmp\\.patient\\.sex').val('Male');
+            } else if ($(this).val() == 'F') {
+                $('#tmp\\.patient\\.sex').val('Female');
+            }
+        });
+        $('#patient\\.sex').trigger('change');
+
         $.fn.calculateFields = function () {
             var tempAgeInYears = $.trim($("#tmp\\.age_in_years").val());
             if (tempAgeInYears != '') {
@@ -432,11 +438,11 @@
       document.setupAutoCompleteData('encounter\\.location_id');
 
 
-	document.setupAutoCompleteDataForProvider('encounter\\.provider_id_select');
+    document.setupAutoCompleteDataForProvider('encounter\\.provider_id_select');
 
-	$('#demographics_update_form').validate({});
+    $('#demographics_update_form').validate({});
 
-   	document.setupValidationForProvider("$('#encounter\\.provider_id_select').val()","encounter\\.provider_id");
+    document.setupValidationForProvider("$('#encounter\\.provider_id_select').val()","encounter\\.provider_id");
 
     document.setupValidationForLocation("$('#encounter\\.location_id').val()","encounter\\.location_id");
 
