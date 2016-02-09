@@ -40,11 +40,6 @@
             readonly="readonly">
         </div>
         <div class="form-group">
-            <label for="patient.mothers_name">Mother's Name: </label>
-            <input class="form-control" id="patient.mothers_name" name="patient.mothers_name" type="text"
-            readonly="readonly">
-        </div>
-        <div class="form-group">
             <label for="tmp.update_names">
                 <input id="tmp.update_names" name="tmp.update_names"
                    type="checkbox">
@@ -68,7 +63,21 @@
             <label for="demographicsupdate.middle_name">New Middle Name:</label>
             <input class="form-control" id="demographicsupdate.middle_name" name="demographicsupdate.middle_name" type="text">
         </div>
+    </div>
+    <div class="section">
         <div class="form-group">
+            <label for="patient.mothers_name">Mother's Name: </label>
+            <input class="form-control" id="patient.mothers_name" name="patient.mothers_name" type="text"
+            readonly="readonly">
+        </div>
+        <div class="form-group">
+            <label for="tmp.update_name_of_mother">
+                <input id="tmp.update_name_of_mother" name="tmp.update_name_of_mother"
+                   type="checkbox">
+                   Will update Mother's Name?
+            </label>
+        </div>
+        <div class="form-group" id="update_name_of_mother">
             <label for="demographicsupdate.mothers_name">New Mother's Name: </label>
             <input class="form-control" id="demographicsupdate.mothers_name" name="demographicsupdate.mothers_name" type="text">
         </div>
@@ -251,7 +260,8 @@
 
         <div class="form-group">
             <label for="encounter.location_id">Encounter Location:<span class="required">*</span></label>
-            <input class="form-control valid-location-only" id="encounter.location_id" type="text" placeholder="Start typing something..." required="required">
+            <input class="form-control valid-location-only" id="encounter.location_id" type="text"
+            placeholder="Start typing something..." required="required">
             <input class="form-control" name="encounter.location_id" type="hidden">
         </div>
 
@@ -263,7 +273,8 @@
         </div>
         <div class="form-group">
             <label for="encounter.provider_id_select">Provider Name:</label>
-            <input class="form-control valid-provider-only" id="encounter.provider_id_select" type="text" placeholder="Start typing something...">
+            <input class="form-control valid-provider-only" id="encounter.provider_id_select" type="text"
+            placeholder="Start typing something...">
             <input class="form-control" name="encounter.provider_id_select" type="hidden">
         </div>
         <div class="form-group hidden">
@@ -278,7 +289,7 @@
         </div>
         <div class="form-group">
             <label for="encounter.encounter_datetime">Encounter Date <span class="required">*</span></label>
-            <input class="form-control nonFutureDate past-date" readonly="readonly" id="encounter.encounter_datetime"
+            <input class="form-control datepicker nonFutureDate past-date" readonly="readonly" id="encounter.encounter_datetime"
                    name="encounter.encounter_datetime"
                    type="text" required="required">
         </div>
@@ -331,6 +342,15 @@
             }
         });
         $('#tmp\\.update_names').trigger('change');
+
+        $('#tmp\\.update_name_of_mother').change(function(){
+            if($(this).is(':checked')){
+                $('#update_name_of_mother').show();
+            } else {
+                $('#update_name_of_mother').hide();
+            }
+        });
+        $('#tmp\\.update_name_of_mother').trigger('change');
 
         $('#tmp\\.update_address').change(function(){
             if($(this).is(':checked')){
