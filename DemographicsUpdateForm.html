@@ -27,43 +27,118 @@
         <div class="form-group">
             <label for="patient.family_name">Family Name: <span class="required">*</span> </label>
             <input class="form-control" id="patient.family_name" name="patient.family_name" type="text"
-                   required="required">
+                   readonly="readonly" required="required">
         </div>
         <div class="form-group">
             <label for="patient.given_name">Given Name: <span class="required">*</span></label>
             <input class="form-control" id="patient.given_name" name="patient.given_name" type="text"
-                   required="required">
+                   readonly="readonly" required="required">
         </div>
         <div class="form-group">
             <label for="patient.middle_name">Middle Name:</label>
-            <input class="form-control" id="patient.middle_name" name="patient.middle_name" type="text">
+            <input class="form-control" id="patient.middle_name" name="patient.middle_name" type="text"
+            readonly="readonly">
         </div>
         <div class="form-group">
+            <label for="tmp.update_names">
+                <input id="tmp.update_names" name="tmp.update_names"
+                   type="checkbox">
+                   Will update names?
+            </label>
+        </div>
+    </div>
+    <div class="section" id="update_names">
+        <h3>Add Names</h3>
+        <div class="form-group">
+            <label for="demographicsupdate.family_name">New Family Name: <span class="required">*</span> </label>
+            <input class="form-control" id="demographicsupdate.family_name" name="demographicsupdate.family_name" type="text"
+                   required="required">
+        </div>
+        <div class="form-group">
+            <label for="demographicsupdate.given_name">New Given Name: <span class="required">*</span></label>
+            <input class="form-control" id="demographicsupdate.given_name" name="demographicsupdate.given_name" type="text"
+                   required="required">
+        </div>
+        <div class="form-group">
+            <label for="demographicsupdate.middle_name">New Middle Name:</label>
+            <input class="form-control" id="demographicsupdate.middle_name" name="demographicsupdate.middle_name" type="text">
+        </div>
+    </div>
+    <div class="section">
+        <div class="form-group">
             <label for="patient.mothers_name">Mother's Name: </label>
-            <input class="form-control" id="patient.mothers_name" name="patient.mothers_name" type="text">
+            <input class="form-control" id="patient.mothers_name" name="patient.mothers_name" type="text"
+            readonly="readonly">
+        </div>
+        <div class="form-group">
+            <label for="tmp.update_name_of_mother">
+                <input id="tmp.update_name_of_mother" name="tmp.update_name_of_mother"
+                   type="checkbox">
+                   Will update Mother's Name?
+            </label>
+        </div>
+        <div class="form-group" id="update_name_of_mother">
+            <label for="demographicsupdate.mothers_name">New Mother's Name: </label>
+            <input class="form-control" id="demographicsupdate.mothers_name" name="demographicsupdate.mothers_name" type="text">
         </div>
     </div>
     <div class="section">
         <h3>Address</h3>
         <div class="form-group">
-            <label for="patient.county">County: </label>
-            <input class="form-control" id="patient.county" name="patient.county" type="text">
+            <label for="demographicsupdate.county">County: </label>
+            <input class="form-control" id="demographicsupdate.county" name="demographicsupdate.county" type="text"
+            readonly="readonly">
         </div>
         <div class="form-group">
-            <label for="patient.location">Location: </label>
-            <input class="form-control" id="patient.location" name="patient.location" type="text">
+            <label for="demographicsupdate.location">Location: </label>
+            <input class="form-control" id="demographicsupdate.location" name="demographicsupdate.location" type="text"
+            readonly="readonly">
         </div>
         <div class="form-group">
-            <label for="patient.sub_location">Sub-location: </label>
-            <input class="form-control" id="patient.sub_location" name="patient.sub_location" type="text">
+            <label for="demographicsupdate.sub_location">Sub-location: </label>
+            <input class="form-control" id="demographicsupdate.sub_location" name="demographicsupdate.sub_location" type="text"
+            readonly="readonly">
         </div>
         <div class="form-group">
-            <label for="patient.village">Village: </label>
-            <input class="form-control" id="patient.village" name="patient.village" type="text">
+            <label for="demographicsupdate.village">Village: </label>
+            <input class="form-control" id="demographicsupdate.village" name="demographicsupdate.village" type="text"
+            readonly="readonly">
         </div>
         <div class="form-group">
-            <label for="patient.phone_number">Phone Number: </label>
-            <input class="form-control" id="patient.phone_number" name="patient.phone_number" type="tel">
+            <label for="demographicsupdate.phone_number">Phone Number: </label>
+            <input class="form-control" id="demographicsupdate.phone_number" name="demographicsupdate.phone_number" type="tel"
+            readonly="readonly">
+        </div>
+
+        <div class="form-group">
+            <label for="tmp.update_address">
+                <input id="tmp.update_address" name="tmp.update_address"
+                   type="checkbox">
+                   Will update Address?
+            </label>
+        </div>
+    </div>
+    <div class="section" id="update_address">
+        <h3>Add Address</h3>
+        <div class="form-group">
+            <label for="demographicsupdate.county">County: </label>
+            <input class="form-control" id="demographicsupdate.county" name="demographicsupdate.county" type="text">
+        </div>
+        <div class="form-group">
+            <label for="demographicsupdate.location">Location: </label>
+            <input class="form-control" id="demographicsupdate.location" name="demographicsupdate.location" type="text">
+        </div>
+        <div class="form-group">
+            <label for="demographicsupdate.sub_location">Sub-location: </label>
+            <input class="form-control" id="demographicsupdate.sub_location" name="demographicsupdate.sub_location" type="text">
+        </div>
+        <div class="form-group">
+            <label for="demographicsupdate.village">Village: </label>
+            <input class="form-control" id="demographicsupdate.village" name="demographicsupdate.village" type="text">
+        </div>
+        <div class="form-group">
+            <label for="demographicsupdate.phone_number">Phone Number: </label>
+            <input class="form-control" id="demographicsupdate.phone_number" name="demographicsupdate.phone_number" type="tel">
         </div>
     </div>
     <div class="section">
@@ -73,36 +148,42 @@
                     class="required">*</span></label>
 
             <div class="form-horizontal">
-                <input type="button" class='btn barcode_btn'>
+                <input type="button" class='btn barcode_btn' disabled="disabled">
                 <input class="barcode_text form-control checkDigit" id="patient.medical_record_number"
-                       name="patient.medical_record_number" type="text" required="required">
+                       name="patient.medical_record_number" type="text" required="required" disabled="disabled">
             </div>
         </div>
         <div class="form-group">
-           <label>Other Identifiers:</label>
+           <label>Add Identifiers:</label>
             <div class="section repeat other_identifiers" id="other_identifiers" data-name="other_identifiers">
                 <div class="form-group">
-                    <label for="patient.other_identifier_type">Identifier Type</label>
-                    <select class="form-control patient.other_identifier_type" name="patient.other_identifier_type" id="patient.other_identifier_type">
+                    <label for="demographicsupdate.other_identifier_type">Identifier Type:</label>
+                    <select class="form-control demographicsupdate.other_identifier_type"
+                    name="demographicsupdate.other_identifier_type" id="demographicsupdate.other_identifier_type">
                         <option value="">...</option>
-                        <option value="AMRS Medical Record Number">AMRS Medical Record Number</option>
+                        <option class="checkdigit" value="AMRS Universal ID">AMRS Universal ID</option>
+                        <option class="checkdigit" value="AMRS Medical Record Number">AMRS Medical Record Number</option>
                         <option value="CCC Number">CCC Number</option>
-                        <option value="HCT ID">HCT ID</option>
+                        <option class="checkdigit" value="HCT ID">HCT ID</option>
                         <option value="KENYAN NATIONAL ID NUMBER">KENYAN NATIONAL ID NUMBER</option>
                         <option value="MTCT Plus ID">MTCT Plus ID</option>
                         <option value="MTRH Hospital Number">MTRH Hospital Number</option>
                         <option value="Old AMPATH Medical Record Number">Old AMPATH Medical Record Number</option>
-                        <option value="pMTCT ID">pMTCT ID</option>
+                        <option class="checkdigit" value="pMTCT ID">pMTCT ID</option>
                     </select>
                 </div>
                 <div class="identifier_value_section">
                     <div class="form-group">
-                        <label for="patient.other_identifier_value">Enter Identifier</label>
-                        <input class="form-control check-other-identifier" id="patient.other_identifier_value" name="patient.other_identifier_value" type="text">
+                        <label for="demographicsupdate.other_identifier_value">Enter Identifier:</label>
+                        <input class="form-control check-other-identifier demographicsupdate.other_identifier_value"
+                        id="demographicsupdate.other_identifier_value"
+                        name="demographicsupdate.other_identifier_value" type="text">
                     </div>
                     <div class="form-group">
-                        <label for="patient.confirm_identifier_value">Confirm Identifier</label>
-                        <input class="form-control check-confirm-identifier" id="patient.confirm_identifier_value" name="patient.confirm_identifier_value" type="text">
+                        <label for="demographicsupdate.confirm_identifier_value">Confirm Identifier:</label>
+                        <input class="form-control check-confirm-identifier demographicsupdate.other_identifier_value"
+                        id="demographicsupdate.confirm_identifier_value"
+                        name="demographicsupdate.confirm_identifier_value" type="text">
                     </div>
                 </div>
             </div>
@@ -111,48 +192,76 @@
     <div class="section">
         <div class="form-group">
             <label for="patient.sex">Sex: <span class="required">*</span></label>
-            <select class="form-control" id="patient.sex" name="patient.sex" required="required">
+            <input id="patient.sex" name="patient.sex" type="hidden">
+            <input class="form-control" disabled id="tmp.patient.sex" name="tmp.patient.sex" type="text">
+        </div>
+        <div class="form-group">
+            <label for="tmp.update_sex">
+                <input id="tmp.update_sex" name="tmp.update_sex"
+                   type="checkbox">
+                   Will change Sex?
+            </label>
+        </div>
+        <div class="form-group sub-section" id="update_sex">
+            <label for="demographicsupdate.sex">Update Sex: <span class="required">*</span></label>
+            <select class="form-control" id="demographicsupdate.sex" name="demographicsupdate.sex">
                 <option value="">...</option>
                 <option value="M">Male</option>
                 <option value="F">Female</option>
             </select>
         </div>
-        <div class="form-group">
-            <label for="tmp.birthdate_type">Will Record Date of Birth... <span class="required">*</span></label>
-            <select class="form-control" name="tmp.birthdate_type" id="tmp.birthdate_type" required="required">
-                <option value="">...</option>
-                <option value="birthdate">By Birth-date</option>
-                <option value="age">By Age</option>
-            </select>
-        </div>
-        <div class="form-group show_birthdate">
-            <label for="patient.birth_date">Select Birthdate <span class="required">*</span></label>
+        <div class="form-group birthdate">
+            <label for="patient.birth_date">Birthdate <span class="required">*</span></label>
             <input class="form-control birth_date_picker nonFutureDate" id="patient.birth_date" name="patient.birth_date"
-                   type="text"
-                   required="required"
-                   readonly="readonly">
+                   type="text" disabled="disabled" readonly="readonly">
         </div>
-        <div class="form-group show_birthdate">
-            <label for="patient.birthdate_estimated">Is this birthdate an estimate? <span
-                    class="required">*</span></label>
-            <select class="form-control" id="patient.birthdate_estimated" name="patient.birthdate_estimated"
-                    required="required">
-                <option>...</option>
-                <option value="true">Yes</option>
-                <option value="false">No</option>
-            </select>
+        <div class="form-group">
+            <label for="tmp.update_birthdate">
+                <input id="tmp.update_birthdate" name="tmp.update_birthdate"
+                   type="checkbox">
+                   Will change Birth Date?
+            </label>
         </div>
-        <div class="form-group show_age">
-            <label for="tmp.age_in_years">How old are you in Years <span class="required">*</span></label>
-            <input class="form-control" id="tmp.age_in_years" name="tmp.age_in_years" type="number" required="required">
+        <div id="update_birthdate" class="sub-section">
+            <div class="form-group">
+                <label for="tmp.birthdate_type">Will Record Date of Birth... <span class="required">*</span></label>
+                <select class="form-control" name="tmp.birthdate_type" id="tmp.birthdate_type" required="required">
+                    <option value="">...</option>
+                    <option value="birthdate">By Birth-date</option>
+                    <option value="age">By Age</option>
+                </select>
+            </div>
+            <div class="form-group show_birthdate">
+                <label for="demographicsupdate.birth_date">Select New Birthdate <span class="required">*</span></label>
+                <input class="form-control birth_date_picker nonFutureDate" id="demographicsupdate.birth_date"
+                name="demographicsupdate.birth_date"
+                       type="text"
+                       required="required"
+                       readonly="readonly">
+            </div>
+            <div class="form-group show_birthdate">
+                <label for="demographicsupdate.birthdate_estimated">Is this birthdate an estimate? <span
+                        class="required">*</span></label>
+                <select class="form-control" id="demographicsupdate.birthdate_estimated" name="demographicsupdate.birthdate_estimated"
+                        required="required">
+                    <option value="">...</option>
+                    <option value="true">Yes</option>
+                    <option value="false">No</option>
+                </select>
+            </div>
+            <div class="form-group show_age">
+                <label for="tmp.age_in_years">How old are you in Years <span class="required">*</span></label>
+                <input class="form-control" id="tmp.age_in_years" name="tmp.age_in_years" type="number" required="required">
 
+            </div>
         </div>
     </div>
     <div class="section">
 
         <div class="form-group">
             <label for="encounter.location_id">Encounter Location:<span class="required">*</span></label>
-            <input class="form-control valid-location-only" id="encounter.location_id" type="text" placeholder="Start typing something..." required="required">
+            <input class="form-control valid-location-only" id="encounter.location_id" type="text"
+            placeholder="Start typing something..." required="required">
             <input class="form-control" name="encounter.location_id" type="hidden">
         </div>
 
@@ -164,7 +273,8 @@
         </div>
         <div class="form-group">
             <label for="encounter.provider_id_select">Provider Name:</label>
-            <input class="form-control valid-provider-only" id="encounter.provider_id_select" type="text" placeholder="Start typing something...">
+            <input class="form-control valid-provider-only" id="encounter.provider_id_select" type="text"
+            placeholder="Start typing something...">
             <input class="form-control" name="encounter.provider_id_select" type="hidden">
         </div>
         <div class="form-group hidden">
@@ -179,7 +289,7 @@
         </div>
         <div class="form-group">
             <label for="encounter.encounter_datetime">Encounter Date <span class="required">*</span></label>
-            <input class="form-control nonFutureDate past-date" readonly="readonly" id="encounter.encounter_datetime"
+            <input class="form-control datepicker nonFutureDate past-date" readonly="readonly" id="encounter.encounter_datetime"
                    name="encounter.encounter_datetime"
                    type="text" required="required">
         </div>
@@ -224,11 +334,65 @@
             $(this).prop('disabled', false);
         });
 
+        $('#tmp\\.update_names').change(function(){
+            if($(this).is(':checked')){
+                $('#update_names').show();
+            } else {
+                $('#update_names').hide();
+            }
+        });
+        $('#tmp\\.update_names').trigger('change');
+
+        $('#tmp\\.update_name_of_mother').change(function(){
+            if($(this).is(':checked')){
+                $('#update_name_of_mother').show();
+            } else {
+                $('#update_name_of_mother').hide();
+            }
+        });
+        $('#tmp\\.update_name_of_mother').trigger('change');
+
+        $('#tmp\\.update_address').change(function(){
+            if($(this).is(':checked')){
+                $('#update_address').show();
+            } else {
+                $('#update_address').hide();
+            }
+        });
+        $('#tmp\\.update_address').trigger('change');
+
+        $('#tmp\\.update_sex').change(function(){
+            if($(this).is(':checked')){
+                $('#update_sex').show();
+            } else {
+                $('#update_sex').hide();
+            }
+        });
+        $('#tmp\\.update_sex').trigger('change');
+
+        $('#tmp\\.update_birthdate').change(function(){
+            if($(this).is(':checked')){
+                $('#update_birthdate').show();
+            } else {
+                $('#update_birthdate').hide();
+            }
+        });
+        $('#tmp\\.update_birthdate').trigger('change');
+
+        $('#patient\\.sex').change(function(){
+            if($(this).val() == 'M'){
+                $('#tmp\\.patient\\.sex').val('Male');
+            } else if ($(this).val() == 'F') {
+                $('#tmp\\.patient\\.sex').val('Female');
+            }
+        });
+        $('#patient\\.sex').trigger('change');
+
         $.fn.calculateFields = function () {
             var tempAgeInYears = $.trim($("#tmp\\.age_in_years").val());
             if (tempAgeInYears != '') {
-                $('#patient\\.birthdate_estimated').val('true');
-                $('#patient\\.birth_date').val($.fn.getTempBirthDate(tempAgeInYears));
+                $('#demographicsupdate\\.birthdate_estimated').val('true');
+                $('#demographicsupdate\\.birth_date').val($.fn.getTempBirthDate(tempAgeInYears));
             }
             return true;
         };
@@ -273,24 +437,32 @@
             }
         });
 
-    $('.patient\\.other_identifier_type').change(function(){
+    $('.demographicsupdate\\.other_identifier_type').change(function(){
         if($(this).val() == ""){
             $(this).closest('.repeat').find('.identifier_value_section').hide();
         }else{
             $(this).closest('.repeat').find('.identifier_value_section').show();
+            if($('.demographicsupdate\\.other_identifier_type option:selected').hasClass("checkdigit")){
+                $(this).closest('.repeat').find('.demographicsupdate\\.other_identifier_value').addClass('checkDigit');
+                $(this).closest('.repeat').find('.demographicsupdate\\.confirm_identifier_value').addClass('checkDigit');
+            } else {
+                $(this).closest('.repeat').find('.demographicsupdate\\.other_identifier_value').removeClass('checkDigit');
+                $(this).closest('.repeat').find('.demographicsupdate\\.confirm_identifier_value').removeClass('checkDigit');
+            }
         }
 
     });
-    $('.patient\\.other_identifier_type').trigger('change');
+
+    $('.demographicsupdate\\.other_identifier_type').trigger('change');
 
       document.setupAutoCompleteData('encounter\\.location_id');
 
 
-	document.setupAutoCompleteDataForProvider('encounter\\.provider_id_select');
+    document.setupAutoCompleteDataForProvider('encounter\\.provider_id_select');
 
-	$('#demographics_update_form').validate({});
+    $('#demographics_update_form').validate({});
 
-   	document.setupValidationForProvider("$('#encounter\\.provider_id_select').val()","encounter\\.provider_id");
+    document.setupValidationForProvider("$('#encounter\\.provider_id_select').val()","encounter\\.provider_id");
 
     document.setupValidationForLocation("$('#encounter\\.location_id').val()","encounter\\.location_id");
 
