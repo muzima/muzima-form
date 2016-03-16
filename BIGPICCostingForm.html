@@ -3634,7 +3634,369 @@
 
     </div>
     <div class="section">
-        <h3>SECTION J - PHYSICAL MEASUREMENTS</h3>
+        <h3>SECTION L - HOUSEHOLD QUESTIONS</h3>
+        <div class="form-group">
+            <label for="obs.household_size">What is the size of your household?: </label>
+            <input class="form-control" id="obs.household_size" name="obs.household_size"
+                   type="number" placeholder="Household size" data-concept="9087^HOUSEHOLD SIZE^99DCT">
+        </div>
+        <div class="form-group">
+            <label for="obs.household_ownership">Does your household own or have the following items?: </label>
+            <div class="form-group" id="obs.household_ownership">
+                <div class="form-group sub-section">
+                    <div class="form-group">
+                        <label>
+                            TV
+                        </label>
+                    </div>
+                    <label class="font-normal">
+                        <input type="radio"
+                            data-concept="6397^PRESENCE OF HOUSEHOLD ITEMS^99DCT"
+                            class="obs.household_ownership.tv" value="6392^TELEVISION^99DCT">
+                            Yes &nbsp;&nbsp;&nbsp;
+                    </label>
+                    <label class="font-normal">
+                        <input type="radio"
+                            data-concept="6398^ABSENSE OF HOUSEHOLD ITEMS^99DCT"
+                            class="obs.household_ownership.tv" value="6392^TELEVISION^99DCT">
+                            No &nbsp;&nbsp;&nbsp;
+                    </label>
+                    <label class="font-normal">
+                        <input type="radio"
+                            data-concept="9243^DO NOT KNOW HOUSEHOLD ITEMS^99DCT"
+                            class="obs.household_ownership.tv" value="6392^TELEVISION^99DCT">
+                            Don't Know &nbsp;&nbsp;&nbsp;
+                    </label>
+                </div>
+                <div class="form-group sub-section">
+                    <div class="form-group">
+                        <label>
+                            Refrigerator
+                        </label>
+                    </div>
+                    <label class="font-normal">
+                        <input type="radio"
+                            data-concept="6397^PRESENCE OF HOUSEHOLD ITEMS^99DCT"
+                            class="obs.household_ownership.refrigerator" value="6393^REFRIGERATOR^99DCT">
+                            Yes &nbsp;&nbsp;&nbsp;
+                    </label>
+                    <label class="font-normal">
+                        <input type="radio"
+                            data-concept="6398^ABSENSE OF HOUSEHOLD ITEMS^99DCT"
+                            class="obs.household_ownership.refrigerator" value="6393^REFRIGERATOR^99DCT">
+                            No &nbsp;&nbsp;&nbsp;
+                    </label>
+                    <label class="font-normal">
+                        <input type="radio"
+                            data-concept="9243^DO NOT KNOW HOUSEHOLD ITEMS^99DCT"
+                            class="obs.household_ownership.refrigerator" value="6393^REFRIGERATOR^99DCT">
+                            Don't Know &nbsp;&nbsp;&nbsp;
+                    </label>
+                </div>
+                <div class="form-group sub-section">
+                    <div class="form-group">
+                        <label>
+                            Mobile phone
+                        </label>
+                    </div>
+                    <label class="font-normal">
+                        <input type="radio"
+                            data-concept="6397^PRESENCE OF HOUSEHOLD ITEMS^99DCT"
+                            class="obs.household_ownership.mobile_phone" value="6394^MOBILE PHONE^99DCT">
+                            Yes &nbsp;&nbsp;&nbsp;
+                    </label>
+                    <label class="font-normal">
+                        <input type="radio"
+                            data-concept="6398^ABSENSE OF HOUSEHOLD ITEMS^99DCT"
+                            class="obs.household_ownership.mobile_phone" value="6394^MOBILE PHONE^99DCT">
+                            No &nbsp;&nbsp;&nbsp;
+                    </label>
+                    <label class="font-normal">
+                        <input type="radio"
+                            data-concept="9243^DO NOT KNOW HOUSEHOLD ITEMS^99DCT"
+                            class="obs.household_ownership.mobile_phone" value="6394^MOBILE PHONE^99DCT">
+                            Don't Know &nbsp;&nbsp;&nbsp;
+                    </label>
+                </div>
+                <div class="form-group sub-section">
+                    <div class="form-group">
+                        <label>
+                            Bike
+                        </label>
+                    </div>
+                    <label class="font-normal">
+                        <input type="radio"
+                            data-concept="6397^PRESENCE OF HOUSEHOLD ITEMS^99DCT"
+                            class="obs.household_ownership.bike" value="6395^BICYCLE^99DCT">
+                            Yes &nbsp;&nbsp;&nbsp;
+                    </label>
+                    <label class="font-normal">
+                        <input type="radio"
+                            data-concept="6398^ABSENSE OF HOUSEHOLD ITEMS^99DCT"
+                            class="obs.household_ownership.bike" value="6395^BICYCLE^99DCT">
+                            No &nbsp;&nbsp;&nbsp;
+                    </label>
+                    <label class="font-normal">
+                        <input type="radio"
+                            data-concept="9243^DO NOT KNOW HOUSEHOLD ITEMS^99DCT"
+                            class="obs.household_ownership.bike" value="6395^BICYCLE^99DCT">
+                            Don't Know &nbsp;&nbsp;&nbsp;
+                    </label>
+                </div>
+                <div class="form-group sub-section">
+                    <div class="form-group">
+                        <label>
+                            Car
+                        </label>
+                    </div>
+                    <label class="font-normal">
+                        <input type="radio"
+                            data-concept="6397^PRESENCE OF HOUSEHOLD ITEMS^99DCT"
+                            class="obs.household_ownership.car" value="6471^PRIVATE CAR^99DCT">
+                            Yes &nbsp;&nbsp;&nbsp;
+                    </label>
+                    <label class="font-normal">
+                        <input type="radio"
+                            data-concept="6398^ABSENSE OF HOUSEHOLD ITEMS^99DCT"
+                            class="obs.household_ownership.car" value="6471^PRIVATE CAR^99DCT">
+                            No &nbsp;&nbsp;&nbsp;
+                    </label>
+                    <label class="font-normal">
+                        <input type="radio"
+                            data-concept="9243^DO NOT KNOW HOUSEHOLD ITEMS^99DCT"
+                            class="obs.household_ownership.car" value="6471^PRIVATE CAR^99DCT">
+                            Don't Know &nbsp;&nbsp;&nbsp;
+                    </label>
+                </div>
+                <div class="form-group sub-section">
+                    <div class="form-group">
+                        <label>
+                            Cheap utensils (< Ksh 5,000)
+                        </label>
+                    </div>
+                    <label class="font-normal">
+                        <input type="radio"
+                            data-concept="6397^PRESENCE OF HOUSEHOLD ITEMS^99DCT"
+                            class="obs.household_ownership.cheap_utensils" value="9241^UTENSILS LESS THAN 5000 KSH^99DCT">
+                            Yes &nbsp;&nbsp;&nbsp;
+                    </label>
+                    <label class="font-normal">
+                        <input type="radio"
+                            data-concept="6398^ABSENSE OF HOUSEHOLD ITEMS^99DCT"
+                            class="obs.household_ownership.cheap_utensils" value="9241^UTENSILS LESS THAN 5000 KSH^99DCT">
+                            No &nbsp;&nbsp;&nbsp;
+                    </label>
+                    <label class="font-normal">
+                        <input type="radio"
+                            data-concept="9243^DO NOT KNOW HOUSEHOLD ITEMS^99DCT"
+                            class="obs.household_ownership.cheap_utensils" value="9241^UTENSILS LESS THAN 5000 KSH^99DCT">
+                            Don't Know &nbsp;&nbsp;&nbsp;
+                    </label>
+                </div>
+                <div class="form-group sub-section">
+                    <div class="form-group">
+                        <label>
+                            Expensive utensil (> Ksh 30,000)
+                        </label>
+                    </div>
+                    <label class="font-normal">
+                        <input type="radio"
+                            data-concept="6397^PRESENCE OF HOUSEHOLD ITEMS^99DCT"
+                            class="obs.household_ownership.expensive_utensils" value="9242^UTENSILS MORE THAN 30000 KSH^99DCT">
+                            Yes &nbsp;&nbsp;&nbsp;
+                    </label>
+                    <label class="font-normal">
+                        <input type="radio"
+                            data-concept="6398^ABSENSE OF HOUSEHOLD ITEMS^99DCT"
+                            class="obs.household_ownership.expensive_utensils" value="9242^UTENSILS MORE THAN 30000 KSH^99DCT">
+                            No &nbsp;&nbsp;&nbsp;
+                    </label>
+                    <label class="font-normal">
+                        <input type="radio"
+                            data-concept="9243^DO NOT KNOW HOUSEHOLD ITEMS^99DCT"
+                            class="obs.household_ownership.expensive_utensils" value="9242^UTENSILS MORE THAN 30000 KSH^99DCT">
+                            Don't Know &nbsp;&nbsp;&nbsp;
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
+                    <label for="obs.primary_job">
+                        What is the quality of the:
+                    </label>
+                <div class="sub-section">
+                    <div class="form-group">
+                        <label for="obs.source_of_drinking_water">
+                            Main source drinking water? <span class="required">*</span>
+                        </label>
+                        <select class="form-control" id="obs.source_of_drinking_water" name="obs.source_of_drinking_water"
+                                data-concept="6386^SOURCE OF DRINKING WATER, HOME^99DCT" required="required">
+                            <option value="">...</option>
+                            <option value="6381^RIVER OR STREAM^99DCT">Unprotected well, spring, or surface water</option>
+                            <option value="6373^WATER PIPED INTO DWELLING^99DCT">
+                                Water piped into dwelling/premises, public tap, or protected well
+                            </option>
+                            <option value="6385^BOREHOLE^99DCT">Bottled/boiled water</option>
+                            <option value="1624^DO NOT KNOW^99DCT">Don't Know</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="obs.toilet_facility_used">
+                            Toilet facility usually used? <span class="required">*</span>
+                        </label>
+                        <select class="form-control" id="obs.toilet_facility_used" name="obs.toilet_facility_used"
+                                data-concept="6390^SOURCE OF DRINKING WATER, HOME^99DCT" required="required">
+                            <option value="">...</option>
+                            <option value="6388^PIT TOILET^99DCT">Traditional pit latrine or no toilet facility</option>
+                            <option value="6389^VENTILATED IMPROVED PIT LATRINE^99DCT">
+                                Public toilet or improved pit latrine
+                            </option>
+                            <option value="6387^FLUSH TOILET^99DCT">Flush toilet</option>
+                            <option value="1624^DO NOT KNOW^99DCT">Don't Know</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="obs.floor_material">
+                            Main floor material? <span class="required">*</span>
+                        </label>
+                        <select class="form-control" id="obs.floor_material" name="obs.floor_material"
+                                data-concept="6369^FLOOR MATERIAL, HOME^99DCT" required="required">
+                            <option value="">...</option>
+                            <option value="6361^EARTH OR MUD OR DUNG OR SAND^99DCT">None, earth, or dung</option>
+                            <option value="6364^CEMENT^99DCT">
+                                Cement, concrete, or wood
+                            </option>
+                            <option value="6365^CARPET^99DCT">Finished floor with carpet/tiles/linoleum, etc</option>
+                            <option value="1624^DO NOT KNOW^99DCT">Don't Know</option>
+                        </select>
+                    </div>
+                    <div class="form-group"></p>
+                        <label for="obs.bed_rooms">Number of rooms used for sleeping: <span class="required">*</span></label>
+                        <input class="form-control" id="obs.bed_rooms" name="obs.bed_rooms" required
+                            type="number" placeholder="# of rooms" data-concept="7542^NUMBER OF INHABITABLE ROOMS, HOME^99DCT">
+                    </div>
+                    <div class="form-group">
+                        <label for="obs.roof_material">
+                            What is the main material of the roof in your home?  <span class="required">*</span>
+                        </label>
+                        <select class="form-control" id="obs.roof_material" name="obs.roof_material"
+                                data-concept="1290^ROOF MATERIAL, HOME^99DCT" required="required">
+                            <option value="">...</option>
+                            <option value="6370^GRASS OR THATCH OR MAKUTI^99DCT">Grass/thatch/makuti</option>
+                            <option value="1291^TIN^99DCT">Tin cans</option>
+                            <option value="6371^CORRUGATED IRON^99DCT">Corrugated iron (mabati)</option>
+                            <option value="6372^ASBESTOS SHEETS^99DCT">Asbestos sheets</option>
+                            <option value="6364^CEMENT^99DCT">Concrete</option>
+                            <option value="6368^TILE^99DCT">Tiles</option>
+                            <option value="5622^OTHER NON-CODED^99DCT">Other</option>
+                            <option value="1624^DO NOT KNOW^99DCT">Don't Know</option>
+                            <option value="1958^REFUSED^99DCT">Refused</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="obs.highest_school">
+                        What is the highest year of school the head of your household completed?
+                        <span class="required">*</span>
+                    </label>
+                    <input type="hidden" id="obs.highest_school" name="obs.highest_school"
+                        data-concept="5607^YEARS OF SCHOOL COMPLETED^99DCT">
+                    <div class="form-group">
+                        <label class="font-normal">
+                            <input class="tmp.school_level" name="tmp.school_level.primary" 
+                            type="checkbox" value="primary">
+                            Primary
+                        </label>
+                        <div class="form-group sub-section" id="tmp.school_level.primary">
+                            <label for="tmp.school_level.primary.year">Select Year</label>
+                            <select class="form-control tmp.school_level.year" id="tmp.school_level.primary.year"
+                                name="tmp.school_level.primary.year" required="required">
+                                <option value="">...</option>
+                                <option>0</option>
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
+                                <option>6</option>
+                                <option>7</option>
+                                <option>8</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="font-normal">
+                            <input class="tmp.school_level" name="tmp.school_level.secondary" 
+                            type="checkbox" value="secondary">
+                            Secondary
+                        </label>
+                        <div class="form-group sub-section" id="tmp.school_level.secondary">
+                            <label for="tmp.school_level.secondary.year">Select Year</label>
+                            <select class="form-control tmp.school_level.year" id="tmp.school_level.secondary.year"
+                                name="tmp.school_level.secondary.year" required="required">
+                                <option value="">...</option>
+                                <option>9</option>
+                                <option>10</option>
+                                <option>11</option>
+                                <option>12</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="font-normal">
+                            <input class="tmp.school_level" name="tmp.school_level.university" 
+                            type="checkbox" value="university">
+                            University
+                        </label>
+                        <div class="form-group sub-section" id="tmp.school_level.university">
+                            <label for="tmp.school_level.university.year">Select Year</label>
+                            <select class="form-control tmp.school_level.year" id="tmp.school_level.university.year"
+                                name="tmp.school_level.university.year" required="required">
+                                <option value="">...</option>
+                                <option>13</option>
+                                <option>14</option>
+                                <option>15</option>
+                                <option>16</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="font-normal">
+                            <input class="tmp.school_level" name="tmp.school_level.postgrad" 
+                            type="checkbox" value="postgrad">
+                            Post-grad
+                        </label>
+                        <div class="form-group sub-section" id="tmp.school_level.postgrad">
+                            <label for="tmp.school_level.postgrad.year">Select Year</label>
+                            <select class="form-control tmp.school_level.year" id="tmp.school_level.postgrad.year"
+                                name="tmp.school_level.postgrad.year" required="required">
+                                <option value="">...</option>
+                                <option>17</option>
+                                <option>18</option>
+                                <option>19</option>
+                                <option>20</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="font-normal">
+                            <input class="tmp.school_level" name="tmp.school_level.dontknow" 
+                            type="checkbox" value="dontknow" id="tmp.school_level.dontknow_year">
+                            Don't know
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label class="font-normal">
+                            <input class="tmp.school_level" name="tmp.school_level.refused" 
+                            type="checkbox" value="refused" id="tmp.school_level.refused_year">
+                            Refused
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="section">
+        <h3>SECTION M - PHYSICAL MEASUREMENTS</h3>
         <div class="form-group"></p>
             <label for="obs.height">Height (CM): </label>
             <input class="form-control" id="obs.height" name="obs.height"
@@ -4032,12 +4394,46 @@
             setRankings($(v), $(v).find('.obs\\.microfinance_use_ranking :input[type="radio"]'));
 
         });
-
-        var rankings = ['.obs.microfinance_use_ranking.school_fees'];
-        $('.obs.microfinance_use_ranking')
-        
-
         /* END - MICROFINANCE */
+
+        /* START - HOUSEHOLD */
+        //reuse rankings functionn
+        setRankings($('#obs\\.household_ownership'), $('#obs\\.household_ownership :input[type="radio"]'));
+        $.each($('.tmp\\.school_level'), function(k,v){
+            $(v).change(function(){
+                if($(this).is(':checked')){
+                    $('.tmp\\.school_level').not($(this)).prop('disabled',true);
+                    $('#tmp\\.school_level\\.'+$(this).val()).show();
+                }else{
+                    $('.tmp\\.school_level').prop('disabled',false);
+                    $('#tmp\\.school_level\\.'+$(this).val()).hide();
+                    $('#tmp\\.school_level\\.'+$(this).val()+'\\.year').val('');
+                    $('#tmp\\.school_level\\.'+$(this).val()+'\\.year').trigger('change');
+                }
+            });$(v).trigger('change');
+        });
+
+        $('.tmp\\.school_level\\.year').change(function(k,v){
+            $('#obs\\.highest_school').val($(this).val());
+        });
+        $('.tmp\\.school_level\\.year').trigger('change');
+
+        $('#tmp\\.school_level\\.dontknow_year').change(function(k,v){
+            if($(this).is(':checked')){
+                $('#obs\\.highest_school').val('-77');
+            } else {
+                $('#obs\\.highest_school').val('');
+            }
+        });
+        $('#tmp\\.school_level\\.refused_year').change(function(k,v){
+            if($(this).is(':checked')){
+                $('#obs\\.highest_school').val('-99');
+            } else {
+                $('#obs\\.highest_school').val('');
+            }
+        });
+
+        /* END - HOUSEHOLD */
 
         /* START Outpatient */
 
@@ -4385,8 +4781,11 @@
 		        "obs.blood_pressure_systolic":{
                     range : [50, 300]
                 },
-		        "obs.blood_pressure_diastolic":{
+                "obs.blood_pressure_diastolic":{
                     range : [20, 150]
+                },
+		        "obs.household_size":{
+                    range : [0, 100]
                 }
             },
             submitHandler: function (form) {
