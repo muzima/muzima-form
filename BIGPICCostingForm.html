@@ -92,7 +92,7 @@
         <div class="form-group">
             <label for="encounter.encounter_datetime">Interview Date:<span class="required">*</span>
             </label>
-            <input class="form-control datepicker nonFutureDate past-date" id="encounter.encounter_datetime"
+            <input class="form-control" id="encounter.encounter_datetime"
                    name="encounter.encounter_datetime" type="text" readonly="readonly"
                    required="required">
         </div>
@@ -107,8 +107,14 @@
 
         <div class="form-group">
             <label for="obs.participant_id">Enter Participant ID:<span class="required">*</span></label>
-            <input class="form-control" id="obs.participant_id" name="participant_id"
+            <input class="form-control" id="obs.participant_id" name="obs.participant_id"
                    type="number" placeholder="Participant ID" data-concept="9084^PARTICIPANT ID^99DCT"
+                   required="required">
+        </div>
+        <div class="form-group">
+            <label for="tmp.participant_id">Confirm Participant ID:<span class="required">*</span></label>
+            <input class="form-control" id="tmp.participant_id" name="tmp.participant_id"
+                   type="number" placeholder="Confirm Participant ID"
                    required="required">
         </div>
 
@@ -127,7 +133,7 @@
         </div>
 
         <div class="form-group community_units">
-            <label for="obs.community_units">AMPATH Facility/BIGPIC Community Unit
+            <label for="obs.community_units">AMPATH Facility
                 [<span class="county"></span>]:<span class="required">*</span>
             </label>
             <select class="form-control" id="obs.community_units" name="obs.community_units"
@@ -358,7 +364,7 @@
                 </div>
             </div>
         </div>
-    	<div class="form-group">
+        <div class="form-group">
                 <label for="obs.health_conditions_told_by_health_worker">
                     During the past 12 months, have you seen a doctor or other health worker?
                     <span class="required">*</span>
@@ -411,7 +417,7 @@
                     <div class="alert alert-info" id="countVisits">Inpatient Admission 1</div>
                     <div class="form-group repeat_with_unique_element_attrs">
                         <label for="obs.admission_date">Approximate admission date:</label>
-                        <input class="form-control datepicker nonFutureDate past-date obs.admission_date"
+                        <input class="form-control datepicker-month-year-last12months nonFutureDate past-date obs.admission_date"
                         name="obs.admission_date" type="text"
                         readonly="readonly" data-concept="1868^ADMISSION DATE^99DCT">
                     </div>
@@ -432,7 +438,7 @@
                         <label>
                             What was the reason for admission? <span class="required">*</span>
                         </label>
-                        <div class="sub-section concept-set" data-concept="ww^ff^99DCT">
+                        <div class="sub-section admission_diseases">
                             <div class="form-group">
                                 <label class="font-normal">
                                     <input class="admission_disease disease_selection disease_selection_injury"
@@ -632,7 +638,7 @@
                     <label for="obs.means_to_hosp">
                         What means of transport did you use to get to the hospital?  <span class="required">*</span>
                     </label>
-    		        <div class="sub-section">
+                    <div class="sub-section">
                         <div class="form-group">
                             <label class="font-normal">
                                 <input id="obs.means_to_hosp_walking" class="means_to_hosp" type="checkbox"
@@ -688,7 +694,7 @@
                                 Refused
                             </label>
                         </div>
-    		        </div>              
+                    </div>              
                 </div>
                 <label for="obs.time_to_hospital_hours">
                     How much time did it take to reach the hospital?
@@ -699,7 +705,7 @@
                         <select class="form-control" name="obs.time_to_hospital_hours"
                         id="obs.time_to_hospital_hours">
                             <option value="">...</option>
-        		            <option value="0">0</option>
+                            <option value="0">0</option>
                             <option value="1">1</option>
                             <option value="2">2</option>
                             <option value="3">3</option>
@@ -719,7 +725,7 @@
                         <label class="font-normal">Minutes</label>
                         <select class="form-control" name="obs.time_to_hospital_mins" id="obs.time_to_hospital_mins">
                             <option value="">...</option>
-        	 	            <option value="0">0</option>
+                            <option value="0">0</option>
                             <option value="5">5</option>
                             <option value="10">10</option>
                             <option value="15">15</option>
@@ -734,7 +740,7 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="obs.transport_cost_to_hospital">Time to Hospital in minutes:
+                        <label for="obs.time_to_hosp">Time to Hospital in minutes:
                             <span class="required">*</span></label>
                         <input class="form-control" name="obs.time_to_hosp" id="obs.time_to_hosp" type="text"
                         data-concept="9133^NUMBER OF MINUTES TO REACH HOSPITAL^99DCT" disabled>
@@ -832,10 +838,10 @@
                 <div class="section outpatientvisits_repeat" id="outpatientvisits_repeat"
                     data-name="outpatientvisits_repeat"
                     data-concept="9229^OUTPATIENT SERVICES IN PAST THREE MONTHS, DETAILED^99DCT">
-                    <div class="alert alert-info" id="outpatientvisits_count">Outpatient center Visit 1</div>
+                    <div class="alert alert-info" id="outpatientvisits_count">Outpatient Visit 1</div>
                     <div class="form-group repeat_with_unique_element_attrs">
                         <label for="obs.admission_date">Approximate visit date:</label>
-                        <input class="form-control datepicker nonFutureDate past-date obs.admission_date"
+                        <input class="form-control datepicker-month-year-last3months nonFutureDate past-date obs.admission_date"
                         name="obs.admission_date" type="text"
                         readonly="readonly" data-concept="1868^ADMISSION DATE^99DCT">
                     </div>
@@ -1034,7 +1040,7 @@
                     <label for="obs.means_of_medication_visit">
                         What means of transport did you use to get there?<span class="required">*</span>
                     </label>
-        	        <div class="sub-section">
+                    <div class="sub-section">
                         <div class="form-group">
                             <label class="font-normal">
                                 <input id="obs.means_of_medication_visit_walking"
@@ -1099,7 +1105,7 @@
                                 Refused
                             </label>
                         </div>
-        	        </div>              
+                    </div>              
                 </div>
                 <div class="form-group">
                     <label for="time_to_medication_place">
@@ -1110,7 +1116,7 @@
                         <select class="form-control" id="obs.time_to_medication_place_hours"
                         name="obs.time_to_medication_place_hours">
                             <option value="">...</option>
-        		            <option value="0">0</option>
+                            <option value="0">0</option>
                             <option value="1">1</option>
                             <option value="2">2</option>
                             <option value="3">3</option>
@@ -1163,7 +1169,7 @@
                         </div>
                     </div>
                 </div>
-        		<div class="form-group">
+                <div class="form-group">
                     <label for="obs.outpatient_transport_cost_to_hospital">How much was the transport cost?</label>
                     <div class="sub-section form-group">
                         <input class="form-control" id="obs.outpatient_transport_cost_to_hospital"
@@ -1184,7 +1190,7 @@
                     </div>
                 </div>
             </div>
-		</div>
+        </div>
     </div>
     <div class="section">
         <h3>SECTION D - HERBAL MEDICINE/SPIRITUAL HEALER</h3>
@@ -1234,7 +1240,7 @@
                     <div class="alert alert-info" id="herbalistvisits_count">Herbalist visit 1</div>
                     <div class="form-group repeat_with_unique_element_attrs">
                         <label for="obs.admission_date">Approximate visit date:</label>
-                        <input class="form-control datepicker nonFutureDate past-date obs.admission_date"
+                        <input class="form-control datepicker-month-year-last3months nonFutureDate past-date obs.admission_date"
                         name="obs.admission_date" type="text"
                         readonly="readonly" data-concept="1868^ADMISSION DATE^99DCT">
                     </div>
@@ -1258,8 +1264,10 @@
                         <select class="form-control" name="obs.herbalist_visit_type" id="obs.herbalist_visit_type"
                             data-concept="9228^TYPE OF FACILITY^99DCT" required="required">
                             <option value="">...</option>
-                            <option value="9233^HERBAL MEDICINE SERVICE^99DCT">Herbalist</option>
-                            <option value="9234^SPIRITUAL HEALING SERVICES^99DCT">Spiritual Healer</option>
+                            <option class="herbalist_visit_type.herbalist" value="9233^HERBAL MEDICINE SERVICE^99DCT">
+                                Herbalist</option>
+                            <option class="herbalist_visit_type.healer" value="9234^SPIRITUAL HEALING SERVICES^99DCT">
+                                Spiritual Healer</option>
                             <option value="1624^DO NOT KNOW^99DCT">Don&#39;t Know</option>
                             <option value="1958^REFUSAL^99DCT">Refused</option>
                         </select>
@@ -1425,7 +1433,7 @@
                     <label for="obs.means_to_herbalist">
                         What means of transport did you use to get there?   <span class="required">*</span>
                     </label>
-		          <div class="sub-section">
+                  <div class="sub-section">
                     <div class="form-group">
                         <label class="font-normal">
                             <input id="obs.means_to_herbalist_walking" class="means_to_herbalist" type="checkbox"
@@ -1481,7 +1489,7 @@
                             Refused
                         </label>
                     </div>
-		          </div> 
+                  </div> 
                 </div>
 
                 <div class="form-group time_to_herbalist" id="time_to_herbalist">
@@ -1492,7 +1500,7 @@
                         <label>Hours</label>
                         <select class="form-control" id="obs.time_to_herbalist_hours" name="obs.time_to_herbalist_hours">
                             <option value="">...</option>
-    			             <option value="0">0</option>
+                             <option value="0">0</option>
                             <option value="1">1</option>
                             <option value="2">2</option>
                             <option value="3">3</option>
@@ -1509,7 +1517,7 @@
                         <label>Minutes</label>
                         <select  name="obs.time_to_herbalist_mins" class="form-control" id="obs.time_to_herbalist_mins">
                             <option value="">...</option>
-    			            <option value="0">0</option>
+                            <option value="0">0</option>
                             <option value="5">5</option>
                             <option value="10">10</option>
                             <option value="15">15</option>
@@ -1523,7 +1531,7 @@
                             <option value="55">55</option>
                         </select>
                         <div class="form-group">
-                            <label for="obs.time_to_herbalist">Time to Herbalist/Spiritual Leader LAST visit in minutes:
+                            <label for="obs.time_to_herbalist">Time taken to reach the GMV site in minutes:
                                 <span class="required">*</span></label>
                             <input class="form-control" name="obs.time_to_herbalist" id="obs.time_to_herbalist"
                             type="text" data-concept="9133^LAST TRAVEL TIME TO FACILITY IN MINUTES^99DCT" disabled>
@@ -1634,7 +1642,7 @@
                     <div class="alert alert-info" id="groupmedicalvisits_count">Group Medical visit 1</div>
                     <div class="form-group repeat_with_unique_element_attrs">
                         <label for="obs.admission_date">Approximate visit date:</label>
-                        <input class="form-control datepicker nonFutureDate past-date obs.admission_date"
+                        <input class="form-control datepicker-month-year-last3months nonFutureDate past-date obs.admission_date"
                         name="obs.admission_date" type="text"
                         readonly="readonly" data-concept="1868^ADMISSION DATE^99DCT">
                     </div>
@@ -2148,44 +2156,212 @@
                         <label for="obs.name_of_meds">
                             What is the name of the medicine? <span class="required">*</span>
                         </label>
-                        <select class="form-control obs.name_of_meds" name="obs.name_of_meds"
-                         required="required" data-concept="9217^NAME OF PRESCRIBED MEDICATION^99DCT">
-                            <option value="">...</option>
-                            <option value="6777^INSULIN^99DCT">Insulin(Lispro,NPH,70/30)</option>
-                            <option value="2257^GLIBENCLAMIDE^99DCT">Glibenclamide(Glyburide)</option>
-                            <option value="2260^GLIMEPIRIDE^99DCT">Glimepiride</option>
-                            <option value="2261^METFORMIN^99DCT">Metformin</option>
-                            <option value="1242^ENALAPRIL^99DCT">Enalapril</option>
-                            <option value="2265^LOSARTAN^99DCT">Losartan</option>
-                            <option value="2267^ATENOLOL^99DCT">Atenolol (Tenormin)</option>
-                            <option value="88^ASPIRIN^99DCT">Aspirin</option>
-                            <option value="1243^HCTZ^99DCT">HCTZ</option>
-                            <option value="99^FUROSEMIDE^99DCT">Furosemide</option>
-                            <option value="2270^PIOGLITAZONE^99DCT">Pioglitazone(Glustin/Actos/Zactos)</option>
-                            <option value="250^NIFEDIPINE^99DCT">Nifedipine(Adalat/Procardia)</option>
-                            <option value="2272^AMLODIPINE^99DCT">Amlodipine</option>
-                            <option value="2268^CARVEDILOL^99DCT">Carvedilol</option>
-                            <option value="2273^AMITRIPTYLINE^99DCT">Amitriptyline(Elavil)</option>
-                            <option value="920^CARBAMAZEPINE^99DCT">Carbamazepine(Equetro/Carbatrol/Tegretol)</option>
-                            <option value="1244^OMEPRAZOLE^99DCT">Omeprazole(Prilosec)</option>
-                            <option value="2276^ATORVASTATIN^99DCT">Atorvastatin(Lipitor)</option>
-                            <option value="89^PARACETAMOL^99DCT">Paracetamol(Calpal,Panadol)</option>
-                            <option value="912^IBUPROFEN^99DCT">Ibuprofen</option>
-                            <option value="436^DICLOFENAC^99DCT">Diclofenac</option>
-                            <option value="779^CETIRIZINE^99DCT">Cetirizine</option>
-                            <option value="5622^OTHER NON-CODED^99DCT">Other</option>
-                            <option value="1624^DO NOT KNOW^99DCT">Don&#39;t Know</option>
-                            <option value="1958^REFUSAL^99DCT">Refused</option>
-                        </select>
-                    </div>
-                    <div class="form-group name_of_meds_other">
-                        <label for = "obs.name_of_meds_other">
-                            Specify other medicine: <span class="required">*</span>
-                        </label>
-                        <input class="form-control obs.name_of_meds_other"
-                        name="obs.name_of_meds_other" type="text"
-                        data-concept="1915^FREETEXT GENERAL^99DCT"
-                        required="required">
+                        <div class="form-group sub-section">
+                            <label>
+                                DM Drugs
+                            </label>
+                            <div class="form-group sub-section">
+                                <div class="form-group">
+                                    <label class="font-normal">
+                                        <input class="obs.name_of_meds" type="checkbox"
+                                            data-concept="9217^NAME OF PRESCRIBED MEDICATION^99DCT"
+                                            value="2257^GLIBENCLAMIDE^99DCT"> Glibenclamide(Glyburide)
+                                    </label>
+                                </div>
+                                <div class="form-group">
+                                    <label class="font-normal">
+                                        <input class="obs.name_of_meds" type="checkbox"
+                                            data-concept="9217^NAME OF PRESCRIBED MEDICATION^99DCT"
+                                            value="2260^GLIMEPIRIDE^99DCT"> Glimepiride
+                                    </label>
+                                </div>
+                                <div class="form-group">
+                                    <label class="font-normal">
+                                        <input class="obs.name_of_meds" type="checkbox"
+                                            data-concept="9217^NAME OF PRESCRIBED MEDICATION^99DCT"
+                                            value="6777^INSULIN^99DCT"> Insulin(Lispro,NPH,70/30)
+                                    </label>
+                                </div>
+                                <div class="form-group">
+                                    <label class="font-normal">
+                                        <input class="obs.name_of_meds" type="checkbox"
+                                            data-concept="9217^NAME OF PRESCRIBED MEDICATION^99DCT"
+                                            value="2261^METFORMIN^99DCT"> Metformin
+                                    </label>
+                                </div>
+                                <div class="form-group">
+                                    <label class="font-normal">
+                                        <input class="obs.name_of_meds" type="checkbox"
+                                            data-concept="9217^NAME OF PRESCRIBED MEDICATION^99DCT"
+                                            value="2270^PIOGLITAZONE^99DCT"> Pioglitazone(Glustin/Actos/Zactos)
+                                    </label>
+                                </div>
+                            </div>
+                            <label>
+                                HTN Drugs
+                            </label>
+                            <div class="form-group sub-section">
+                                <div class="form-group">
+                                    <label class="font-normal">
+                                        <input class="obs.name_of_meds" type="checkbox"
+                                            data-concept="9217^NAME OF PRESCRIBED MEDICATION^99DCT"
+                                            value="2276^ATORVASTATIN^99DCT"> Atorvastatin(Lipitor)
+                                    </label>
+                                </div>
+                                <div class="form-group">
+                                    <label class="font-normal">
+                                        <input class="obs.name_of_meds" type="checkbox"
+                                            data-concept="9217^NAME OF PRESCRIBED MEDICATION^99DCT"
+                                            value="2272^AMLODIPINE^99DCT"> Amlodipine
+                                    </label>
+                                </div>
+                                <div class="form-group">
+                                    <label class="font-normal">
+                                        <input class="obs.name_of_meds" type="checkbox"
+                                            data-concept="9217^NAME OF PRESCRIBED MEDICATION^99DCT"
+                                            value="2267^ATENOLOL^99DCT"> Atenolol (Tenormin)
+                                    </label>
+                                </div>
+                                <div class="form-group">
+                                    <label class="font-normal">
+                                        <input class="obs.name_of_meds" type="checkbox"
+                                            data-concept="9217^NAME OF PRESCRIBED MEDICATION^99DCT"
+                                            value="2268^CARVEDILOL^99DCT"> Carvedilol
+                                    </label>
+                                </div>
+                                <div class="form-group">
+                                    <label class="font-normal">
+                                        <input class="obs.name_of_meds" type="checkbox"
+                                            data-concept="9217^NAME OF PRESCRIBED MEDICATION^99DCT"
+                                            value="1242^ENALAPRIL^99DCT"> Enalapril
+                                    </label>
+                                </div>
+                                <div class="form-group">
+                                    <label class="font-normal">
+                                        <input class="obs.name_of_meds" type="checkbox"
+                                            data-concept="9217^NAME OF PRESCRIBED MEDICATION^99DCT"
+                                            value="99^FUROSEMIDE^99DCT"> Furosemide
+                                    </label>
+                                </div>
+                                <div class="form-group">
+                                    <label class="font-normal">
+                                        <input class="obs.name_of_meds" type="checkbox"
+                                            data-concept="9217^NAME OF PRESCRIBED MEDICATION^99DCT"
+                                            value="1243^HCTZ^99DCT"> HCTZ
+                                    </label>
+                                </div>
+                                <div class="form-group">
+                                    <label class="font-normal">
+                                        <input class="obs.name_of_meds" type="checkbox"
+                                            data-concept="9217^NAME OF PRESCRIBED MEDICATION^99DCT"
+                                            value="2265^LOSARTAN^99DCT"> Losartan
+                                    </label>
+                                </div>
+                                <div class="form-group">
+                                    <label class="font-normal">
+                                        <input class="obs.name_of_meds" type="checkbox"
+                                            data-concept="9217^NAME OF PRESCRIBED MEDICATION^99DCT"
+                                            value="250^NIFEDIPINE^99DCT"> Nifedipine(Adalat/Procardia)
+                                    </label>
+                                </div>
+                            </div>
+                            <label>
+                                Anti-psychotics
+                            </label>
+                            <div class="form-group sub-section">
+                                <div class="form-group">
+                                    <label class="font-normal">
+                                        <input class="obs.name_of_meds" type="checkbox"
+                                            data-concept="9217^NAME OF PRESCRIBED MEDICATION^99DCT"
+                                            value="2273^AMITRIPTYLINE^99DCT"> Amitriptyline(Elavil)
+                                    </label>
+                                </div>
+                                <div class="form-group">
+                                    <label class="font-normal">
+                                        <input class="obs.name_of_meds" type="checkbox"
+                                            data-concept="9217^NAME OF PRESCRIBED MEDICATION^99DCT"
+                                            value="920^CARBAMAZEPINE^99DCT"> Carbamazepine(Equetro/Carbatrol/Tegretol)
+                                    </label>
+                                </div>
+                            </div>
+                            <label>
+                                Others
+                            </label>
+                            <div class="form-group sub-section">
+                                <div class="form-group">
+                                    <label class="font-normal">
+                                        <input class="obs.name_of_meds" type="checkbox"
+                                            data-concept="9217^NAME OF PRESCRIBED MEDICATION^99DCT"
+                                            value="88^ASPIRIN^99DCT"> Aspirin
+                                    </label>
+                                </div>
+                                <div class="form-group">
+                                    <label class="font-normal">
+                                        <input class="obs.name_of_meds" type="checkbox"
+                                            data-concept="9217^NAME OF PRESCRIBED MEDICATION^99DCT"
+                                            value="779^CETIRIZINE^99DCT"> Cetirizine
+                                    </label>
+                                </div>
+                                <div class="form-group">
+                                    <label class="font-normal">
+                                        <input class="obs.name_of_meds" type="checkbox"
+                                            data-concept="9217^NAME OF PRESCRIBED MEDICATION^99DCT"
+                                            value="436^DICLOFENAC^99DCT"> Diclofenac
+                                    </label>
+                                </div>
+                                <div class="form-group">
+                                    <label class="font-normal">
+                                        <input class="obs.name_of_meds" type="checkbox"
+                                            data-concept="9217^NAME OF PRESCRIBED MEDICATION^99DCT"
+                                            value="912^IBUPROFEN^99DCT"> Ibuprofen
+                                    </label>
+                                </div>
+                                <div class="form-group">
+                                    <label class="font-normal">
+                                        <input class="obs.name_of_meds" type="checkbox"
+                                            data-concept="9217^NAME OF PRESCRIBED MEDICATION^99DCT"
+                                            value="1244^OMEPRAZOLE^99DCT"> Omeprazole(Prilosec)
+                                    </label>
+                                </div>
+                                <div class="form-group">
+                                    <label class="font-normal">
+                                        <input class="obs.name_of_meds" type="checkbox"
+                                            data-concept="9217^NAME OF PRESCRIBED MEDICATION^99DCT"
+                                            value="89^PARACETAMOL^99DCT"> Paracetamol(Calpal,Panadol)
+                                    </label>
+                                </div>
+                                <div class="form-group">
+                                    <label class="font-normal">
+                                        <input class="obs.name_of_meds" type="checkbox"
+                                            data-concept="9217^NAME OF PRESCRIBED MEDICATION^99DCT"
+                                            value="5622^OTHER NON-CODED^99DCT"> Other
+                                    </label>
+                                </div>
+                                <div class="form-group name_of_meds_other sub-section">
+                                    <label for = "obs.name_of_meds_other">
+                                        Specify other medicine: <span class="required">*</span>
+                                    </label>
+                                    <input class="form-control obs.name_of_meds_other"
+                                    name="obs.name_of_meds_other" type="text"
+                                    data-concept="1915^FREETEXT GENERAL^99DCT"
+                                    required="required">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="font-normal">
+                                    <input class="obs.name_of_meds donotknow" type="checkbox"
+                                        data-concept="9217^NAME OF PRESCRIBED MEDICATION^99DCT"
+                                        value="1624^DO NOT KNOW^99DCT"> Don&#39;t Know
+                                </label>
+                            </div>
+                            <div class="form-group">
+                                <label class="font-normal">
+                                    <input class="obs.name_of_meds refusal" type="checkbox"
+                                        data-concept="9217^NAME OF PRESCRIBED MEDICATION^99DCT"
+                                        value="1958^REFUSAL^99DCT"> Refused
+                                </label>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <label>
@@ -2316,16 +2492,20 @@
                         <option value="2">Government chemist</option>
                         <option value="3">Dispensary/Health Center</option>
                         <option value="4">Revolving Fund Pharmacy</option>
+                        <option value="5">Other</option>
                         <option value="-77">Don&#39;t Know</option>
                         <option value="-99">refused</option>
                     </select>
                 </div>
                 <div class="form-group medication_purchase_bill repeat_with_unique_element_attrs">
-                    <label for="obs.medication_purchase_bill">How much did you pay for the medicine?
+                    <div class="form-group">
+                        <label for="obs.medication_purchase_bill">How much did you pay for the medicine?
                         <span class="required">*</span></label>
-                    <input class="form-control obs.medication_purchase_bill" type="number"
+                        <input class="form-control obs.medication_purchase_bill" type="number"
+                        id="obs.medication_purchase_bill"
                            data-concept="9142^MEDICATION PURCHASE COST^99DCT" required="required">
-                    <input class="form-control hiddenInput medication_purchase_bill_DK_RF" type="text">
+                       </div>
+                    <input class="form-control hiddenInput medication_purchase_bill_DK_RF" type="number">
                     <div class="form-group">
                         <fieldset name="obs.medication_purchase_bill_DR">
                             <input class="obs.medication_purchase_bill_DK" id="obs.medication_purchase_bill_DK"
@@ -2340,11 +2520,14 @@
                     </div>
                 </div>
                 <div class="form-group medication_lasting_period repeat_with_unique_element_attrs">
-                    <label for="obs.medication_lasting_period">How long was the medicine supposed to last?
+                    <div class="form-group">
+                        <label for="obs.medication_lasting_period">How long was the medicine supposed to last?
                         <span class="required">*</span></label>
-                    <input class="form-control obs.medication_lasting_period" type="number"
+                        <input class="form-control obs.medication_lasting_period"
+                        id="fobs.medication_lasting_period" type="number"
                            data-concept="9278^NUMBER OF DAYS SUPPLIED, MEDICINE^99DCT" required="required">
-                    <input class="form-control hiddenInput medication_lasting_period_DK_RF" type="text">
+                    </div>
+                        <input class="form-control hiddenInput medication_lasting_period_DK_RF" type="number">
                     <div class="form-group">
                         <fieldset name="obs.medication_lasting_period_DR">
                             <input class="obs.medication_lasting_period_DK" id="obs.medication_lasting_period_DK"
@@ -2555,8 +2738,8 @@
                 data-concept="9301^MICROFINANCE GROUP CURRENTLY INVOLVED^99DCT">
                     <div class="alert alert-info" id="microfinance_count">Microfinance Group 1</div>
                     <div class="form-group repeat_with_unique_element_attrs">
-                        <label for="obs.admission_date">Approximate admission date:</label>
-                        <input class="form-control datepicker nonFutureDate past-date obs.admission_date"
+                        <label for="obs.admission_date">Approximate start date:</label>
+                        <input class="form-control datepicker-month-year nonFutureDate past-date obs.admission_date"
                         name="obs.admission_date" type="text"
                         readonly="readonly" data-concept="1868^ADMISSION DATE^99DCT">
                     </div>
@@ -2580,12 +2763,13 @@
                         <select class="form-control" name="obs.microfinance_type" id="obs.microfinance_type"
                             data-concept="9285^MICROFINANCE GROUP TYPE^99DCT" required="required">
                             <option value="">...</option>
-                            <option value="9280^CHAMA^99DCT">Chama</option>
-                            <option value="9281^SACCO^99DCT">SACCO</option>
-                            <option value="9282^FORMAL MICROFINANCE^99DCT">Formal microfinance group</option>
-                            <option value="9283^TABLE BANKING^99DCT">Table-banking</option>
-                            <option value="9284^AMPATH GISE^99DCT">AMPATH GISE</option>
-                            <option value="5622^OTHER NON-CODED^99DCT">Other</option>
+                            <option class="microfinance_type.chama" value="9280^CHAMA^99DCT">Chama</option>
+                            <option class="microfinance_type.sacco" value="9281^SACCO^99DCT">SACCO</option>
+                            <option class="microfinance_type.fmg" value="9282^FORMAL MICROFINANCE^99DCT">
+                                Formal microfinance group</option>
+                            <option class="microfinance_type.tbanking" value="9283^TABLE BANKING^99DCT">Table-banking</option>
+                            <option class="microfinance_type.ampath" value="9284^AMPATH GISE^99DCT">AMPATH GISE</option>
+                            <option class="microfinance_type.other" value="5622^OTHER NON-CODED^99DCT">Other</option>
                         </select>
                     </div>
                     <div class="form-group">
@@ -2663,37 +2847,37 @@
                             <label for="obs.school_fees_ranking">School Fees: <span class="required">*</span></label>
                             <div class="form-group">
                                 <label>
-                                    <input type="radio"
+                                    <input type="checkbox"
                                         data-concept="9324^FIRST RANKING, USE OF BORROWED MONEY^99DCT"
                                         class="obs.microfinance_use_ranking.school_fees" value="8448^SCHOOL FEES^99DCT">
                                         1 &nbsp;&nbsp;&nbsp;
                                 </label>
                                 <label>
-                                    <input type="radio"
+                                    <input type="checkbox"
                                         data-concept="9325^SECOND RANKING, USE OF BORROWED MONEY^99DCT"
                                         class="obs.microfinance_use_ranking.school_fees" value="8448^SCHOOL FEES^99DCT">
                                         2 &nbsp;&nbsp;&nbsp;
                                 </label>
                                 <label>
-                                    <input type="radio"
+                                    <input type="checkbox"
                                         data-concept="9326^THIRD RANKING, USE OF BORROWED MONEY^99DCT"
                                         class="obs.microfinance_use_ranking.school_fees" value="8448^SCHOOL FEES^99DCT">
                                         3 &nbsp;&nbsp;&nbsp;
                                 </label>
                                 <label>
-                                    <input type="radio"
+                                    <input type="checkbox"
                                         data-concept="9327^FOURTH RANKING, USE OF BORROWED MONEY^99DCT"
                                         class="obs.microfinance_use_ranking.school_fees" value="8448^SCHOOL FEES^99DCT">
                                         4 &nbsp;&nbsp;&nbsp;
                                 </label>
                                 <label>
-                                    <input type="radio"
-                                        data-concept="9326^FIFTH RANKING, USE OF BORROWED MONEY^99DCT"
+                                    <input type="checkbox"
+                                        data-concept="9328^FIFTH RANKING, USE OF BORROWED MONEY^99DCT"
                                         class="obs.microfinance_use_ranking.school_fees" value="8448^SCHOOL FEES^99DCT">
                                         5 &nbsp;&nbsp;&nbsp;
                                 </label>
                                 <label>
-                                    <input type="radio"
+                                    <input type="checkbox"
                                         data-concept="9329^SIXTH RANKING, USE OF BORROWED MONEY^99DCT"
                                         class="obs.microfinance_use_ranking.school_fees" value="8448^SCHOOL FEES^99DCT">
                                         6
@@ -2704,37 +2888,37 @@
                             <label for="obs.medical_expenses_ranking">Medical expenses: <span class="required">*</span></label>
                             <div class="form-group">
                                 <label>
-                                    <input type="radio"
+                                    <input type="checkbox"
                                         data-concept="9324^FIRST RANKING, USE OF BORROWED MONEY^99DCT"
                                         class="obs.microfinance_use_ranking.medical_expenses" value="9093^MEDICAL BILL^99DCT">
                                         1 &nbsp;&nbsp;&nbsp;
                                 </label>
                                 <label>
-                                    <input type="radio"
+                                    <input type="checkbox"
                                         data-concept="9325^SECOND RANKING, USE OF BORROWED MONEY^99DCT"
                                         class="obs.microfinance_use_ranking.medical_expenses" value="9093^MEDICAL BILL^99DCT">
                                         2 &nbsp;&nbsp;&nbsp;
                                 </label>
                                 <label>
-                                    <input type="radio"
+                                    <input type="checkbox"
                                         data-concept="9326^THIRD RANKING, USE OF BORROWED MONEY^99DCT"
                                         class="obs.microfinance_use_ranking.medical_expenses" value="9093^MEDICAL BILL^99DCT">
                                         3 &nbsp;&nbsp;&nbsp;
                                 </label>
                                 <label>
-                                    <input type="radio"
+                                    <input type="checkbox"
                                         data-concept="9327^FOURTH RANKING, USE OF BORROWED MONEY^99DCT"
                                         class="obs.microfinance_use_ranking.medical_expenses" value="9093^MEDICAL BILL^99DCT">
                                         4 &nbsp;&nbsp;&nbsp;
                                 </label>
                                 <label>
-                                    <input type="radio"
-                                        data-concept="9326^FIFTH RANKING, USE OF BORROWED MONEY^99DCT"
+                                    <input type="checkbox"
+                                        data-concept="9328^FIFTH RANKING, USE OF BORROWED MONEY^99DCT"
                                         class="obs.microfinance_use_ranking.medical_expenses" value="9093^MEDICAL BILL^99DCT">
                                         5 &nbsp;&nbsp;&nbsp;
                                 </label>
                                 <label>
-                                    <input type="radio"
+                                    <input type="checkbox"
                                         data-concept="9329^SIXTH RANKING, USE OF BORROWED MONEY^99DCT"
                                         class="obs.microfinance_use_ranking.medical_expenses" value="9093^MEDICAL BILL^99DCT">
                                         6
@@ -2745,37 +2929,37 @@
                             <label for="obs.insurance_ranking">Insurance: <span class="required">*</span></label>
                             <div class="form-group">
                                 <label>
-                                    <input type="radio"
+                                    <input type="checkbox"
                                         data-concept="9324^FIRST RANKING, USE OF BORROWED MONEY^99DCT"
                                         class="obs.microfinance_use_ranking.insurance" value="6266^HEALTH INSURANCE^99DCT">
                                         1 &nbsp;&nbsp;&nbsp;
                                 </label>
                                 <label>
-                                    <input type="radio"
+                                    <input type="checkbox"
                                         data-concept="9325^SECOND RANKING, USE OF BORROWED MONEY^99DCT"
                                         class="obs.microfinance_use_ranking.insurance" value="6266^HEALTH INSURANCE^99DCT">
                                         2 &nbsp;&nbsp;&nbsp;
                                 </label>
                                 <label>
-                                    <input type="radio"
+                                    <input type="checkbox"
                                         data-concept="9326^THIRD RANKING, USE OF BORROWED MONEY^99DCT"
                                         class="obs.microfinance_use_ranking.insurance" value="6266^HEALTH INSURANCE^99DCT">
                                         3 &nbsp;&nbsp;&nbsp;
                                 </label>
                                 <label>
-                                    <input type="radio"
+                                    <input type="checkbox"
                                         data-concept="9327^FOURTH RANKING, USE OF BORROWED MONEY^99DCT"
                                         class="obs.microfinance_use_ranking.insurance" value="6266^HEALTH INSURANCE^99DCT">
                                         4 &nbsp;&nbsp;&nbsp;
                                 </label>
                                 <label>
-                                    <input type="radio"
-                                        data-concept="9326^FIFTH RANKING, USE OF BORROWED MONEY^99DCT"
+                                    <input type="checkbox"
+                                        data-concept="9328^FIFTH RANKING, USE OF BORROWED MONEY^99DCT"
                                         class="obs.microfinance_use_ranking.insurance" value="6266^HEALTH INSURANCE^99DCT">
                                         5 &nbsp;&nbsp;&nbsp;
                                 </label>
                                 <label>
-                                    <input type="radio"
+                                    <input type="checkbox"
                                         data-concept="9329^SIXTH RANKING, USE OF BORROWED MONEY^99DCT"
                                         class="obs.microfinance_use_ranking.insurance" value="6266^HEALTH INSURANCE^99DCT">
                                         6
@@ -2786,37 +2970,37 @@
                             <label for="obs.food_ranking">Food: <span class="required">*</span></label>
                             <div class="form-group">
                                 <label>
-                                    <input type="radio"
+                                    <input type="checkbox"
                                         data-concept="9324^FIRST RANKING, USE OF BORROWED MONEY^99DCT"
                                         class="obs.microfinance_use_ranking.food" value="6792^FOOD^99DCT">
                                         1 &nbsp;&nbsp;&nbsp;
                                 </label>
                                 <label>
-                                    <input type="radio"
+                                    <input type="checkbox"
                                         data-concept="9325^SECOND RANKING, USE OF BORROWED MONEY^99DCT"
                                         class="obs.microfinance_use_ranking.food" value="6792^FOOD^99DCT">
                                         2 &nbsp;&nbsp;&nbsp;
                                 </label>
                                 <label>
-                                    <input type="radio"
+                                    <input type="checkbox"
                                         data-concept="9326^THIRD RANKING, USE OF BORROWED MONEY^99DCT"
                                         class="obs.microfinance_use_ranking.food" value="6792^FOOD^99DCT">
                                         3 &nbsp;&nbsp;&nbsp;
                                 </label>
                                 <label>
-                                    <input type="radio"
+                                    <input type="checkbox"
                                         data-concept="9327^FOURTH RANKING, USE OF BORROWED MONEY^99DCT"
                                         class="obs.microfinance_use_ranking.food" value="6792^FOOD^99DCT">
                                         4 &nbsp;&nbsp;&nbsp;
                                 </label>
                                 <label>
-                                    <input type="radio"
-                                        data-concept="9326^FIFTH RANKING, USE OF BORROWED MONEY^99DCT"
+                                    <input type="checkbox"
+                                        data-concept="9328^FIFTH RANKING, USE OF BORROWED MONEY^99DCT"
                                         class="obs.microfinance_use_ranking.food" value="6792^FOOD^99DCT">
                                         5 &nbsp;&nbsp;&nbsp;
                                 </label>
                                 <label>
-                                    <input type="radio"
+                                    <input type="checkbox"
                                         data-concept="9329^SIXTH RANKING, USE OF BORROWED MONEY^99DCT"
                                         class="obs.microfinance_use_ranking.food" value="6792^FOOD^99DCT">
                                         6
@@ -2828,42 +3012,42 @@
                                 <span class="required">*</span></label>
                             <div class="form-group">
                                 <label>
-                                    <input type="radio"
-                                        data-concept="932^FIRST RANKING, USE OF BORROWED MONEY^99DCT"
+                                    <input type="checkbox"
+                                        data-concept="9324^FIRST RANKING, USE OF BORROWED MONEY^99DCT"
                                         class="obs.microfinance_use_ranking.financial_investment"
                                         value="9322^FINANCIAL INVESTMENT^99DCT">
                                         1 &nbsp;&nbsp;&nbsp;
                                 </label>
                                 <label>
-                                    <input type="radio"
+                                    <input type="checkbox"
                                         data-concept="9325^SECOND RANKING, USE OF BORROWED MONEY^99DCT"
                                         class="obs.microfinance_use_ranking.financial_investment"
                                         value="9322^FINANCIAL INVESTMENT^99DCT">
                                         2 &nbsp;&nbsp;&nbsp;
                                 </label>
                                 <label>
-                                    <input type="radio"
+                                    <input type="checkbox"
                                         data-concept="9326^THIRD RANKING, USE OF BORROWED MONEY^99DCT"
                                         class="obs.microfinance_use_ranking.financial_investment"
                                         value="9322^FINANCIAL INVESTMENT^99DCT">
                                         3 &nbsp;&nbsp;&nbsp;
                                 </label>
                                 <label>
-                                    <input type="radio"
+                                    <input type="checkbox"
                                         data-concept="9327^FOURTH RANKING, USE OF BORROWED MONEY^99DCT"
                                         class="obs.microfinance_use_ranking.financial_investment"
                                         value="9322^FINANCIAL INVESTMENT^99DCT">
                                         4 &nbsp;&nbsp;&nbsp;
                                 </label>
                                 <label>
-                                    <input type="radio"
-                                        data-concept="9326^FIFTH RANKING, USE OF BORROWED MONEY^99DCT"
+                                    <input type="checkbox"
+                                        data-concept="9328^FIFTH RANKING, USE OF BORROWED MONEY^99DCT"
                                         class="obs.microfinance_use_ranking.financial_investment"
                                         value="9322^FINANCIAL INVESTMENT^99DCT">
                                         5 &nbsp;&nbsp;&nbsp;
                                 </label>
                                 <label>
-                                    <input type="radio"
+                                    <input type="checkbox"
                                         data-concept="9329^SIXTH RANKING, USE OF BORROWED MONEY^99DCT"
                                         class="obs.microfinance_use_ranking.financial_investment"
                                         value="9322^FINANCIAL INVESTMENT^99DCT">
@@ -2875,37 +3059,37 @@
                             <label for="obs.pay_debt_ranking_ranking">Pay off debts: <span class="required">*</span></label>
                             <div class="form-group">
                                 <label>
-                                    <input type="radio"
-                                        data-concept="932^FIRST RANKING, USE OF BORROWED MONEY^99DCT"
+                                    <input type="checkbox"
+                                        data-concept="9324^FIRST RANKING, USE OF BORROWED MONEY^99DCT"
                                         class="obs.microfinance_use_ranking.pay_debt_ranking" value="9323^DEBT^99DCT">
                                         1 &nbsp;&nbsp;&nbsp;
                                 </label>
                                 <label>
-                                    <input type="radio"
+                                    <input type="checkbox"
                                         data-concept="9325^SECOND RANKING, USE OF BORROWED MONEY^99DCT"
                                         class="obs.microfinance_use_ranking.pay_debt_ranking" value="9323^DEBT^99DCT">
                                         2 &nbsp;&nbsp;&nbsp;
                                 </label>
                                 <label>
-                                    <input type="radio"
+                                    <input type="checkbox"
                                         data-concept="9326^THIRD RANKING, USE OF BORROWED MONEY^99DCT"
                                         class="obs.microfinance_use_ranking.pay_debt_ranking" value="9323^DEBT^99DCT">
                                         3 &nbsp;&nbsp;&nbsp;
                                 </label>
                                 <label>
-                                    <input type="radio"
+                                    <input type="checkbox"
                                         data-concept="9327^FOURTH RANKING, USE OF BORROWED MONEY^99DCT"
                                         class="obs.microfinance_use_ranking.pay_debt_ranking" value="9323^DEBT^99DCT">
                                         4 &nbsp;&nbsp;&nbsp;
                                 </label>
                                 <label>
-                                    <input type="radio"
-                                        data-concept="9326^FIFTH RANKING, USE OF BORROWED MONEY^99DCT"
+                                    <input type="checkbox"
+                                        data-concept="9328^FIFTH RANKING, USE OF BORROWED MONEY^99DCT"
                                         class="obs.microfinance_use_ranking.pay_debt_ranking" value="9323^DEBT^99DCT">
                                         5 &nbsp;&nbsp;&nbsp;
                                 </label>
                                 <label>
-                                    <input type="radio"
+                                    <input type="checkbox"
                                         data-concept="9329^SIXTH RANKING, USE OF BORROWED MONEY^99DCT"
                                         class="obs.microfinance_use_ranking.pay_debt_ranking" value="9323^DEBT^99DCT">
                                         6
@@ -3193,6 +3377,11 @@
                 <option value="3">3 servings</option>
                 <option value="4">4 servings</option>
                 <option value="5">5 servings</option>
+                <option value="6">6 servings</option>
+                <option value="7">7 servings</option>
+                <option value="8">8 servings</option>
+                <option value="9">9 servings</option>
+                <option value="10">10 servings</option>
                 <option value="-77">Don&#39;t Know</option>
                 <option value="-99">refused</option>
             </select>
@@ -3266,7 +3455,7 @@
                 <label for="obs.alcohol_currently_use">
                     what form of alcohol do you use? (choose all that apply)<span class="required">*</span>
                 </label>
-		      <div class="sub-section">
+              <div class="sub-section">
                     <div class="form-group">
                         <label class="font-normal">
                             <input id="obs.alcohol_currently_use_beer" type="checkbox"
@@ -3288,7 +3477,7 @@
                             <input id="obs.alcohol_currently_use_busaa" type="checkbox"
                                 data-concept="1685^TYPE OF ALCOHOL CONSUMPTION^99DCT"
                                 value="1683^BUSAA^99DCT">
-                            Local Brew
+                            Busaa
                         </label>
                     </div>
                     <div class="form-group">
@@ -3440,10 +3629,10 @@
             </select>
         </div>
         <div class="form-group">
-            <label for="obs.bothered_by_little_pleasure">
-                Little interest or pleasure in doing things. <span class="required">*</span>
+            <label for="obs.feeling_down">
+                Feeling down, depressed, or hopeless. <span class="required">*</span>
             </label>
-            <select class="form-control" id="obs.bothered_by_little_pleasure" name="obs.bothered_by_little_pleasure"
+            <select class="form-control" id="obs.feeling_down" name="obs.feeling_down"
                     data-concept="9263^FEELING DEPRESSED IN PAST TWO WEEKS, CODED^99DCT" required="required">
                 <option value="">...</option>
                 <option value="9258^NOT AT ALL^99DCT">Not at all</option>
@@ -3904,7 +4093,7 @@
                         <label class="font-normal">
                             <input class="tmp.school_level" name="tmp.school_level.primary" 
                             type="checkbox" value="primary">
-                            Primary
+                            Primary (Standard)
                         </label>
                         <div class="form-group sub-section" id="tmp.school_level.primary">
                             <label for="tmp.school_level.primary.year">Select Year</label>
@@ -3927,17 +4116,17 @@
                         <label class="font-normal">
                             <input class="tmp.school_level" name="tmp.school_level.secondary" 
                             type="checkbox" value="secondary">
-                            Secondary
+                            Secondary (Form)
                         </label>
                         <div class="form-group sub-section" id="tmp.school_level.secondary">
                             <label for="tmp.school_level.secondary.year">Select Year</label>
                             <select class="form-control tmp.school_level.year" id="tmp.school_level.secondary.year"
                                 name="tmp.school_level.secondary.year" required="required">
                                 <option value="">...</option>
-                                <option>9</option>
-                                <option>10</option>
-                                <option>11</option>
-                                <option>12</option>
+                                <option value="9">1</option>
+                                <option value="10">2</option>
+                                <option value="11">3</option>
+                                <option value="12">4</option>
                             </select>
                         </div>
                     </div>
@@ -3945,17 +4134,17 @@
                         <label class="font-normal">
                             <input class="tmp.school_level" name="tmp.school_level.university" 
                             type="checkbox" value="university">
-                            University
+                            University/College
                         </label>
                         <div class="form-group sub-section" id="tmp.school_level.university">
                             <label for="tmp.school_level.university.year">Select Year</label>
                             <select class="form-control tmp.school_level.year" id="tmp.school_level.university.year"
                                 name="tmp.school_level.university.year" required="required">
                                 <option value="">...</option>
-                                <option>13</option>
-                                <option>14</option>
-                                <option>15</option>
-                                <option>16</option>
+                                <option value="13">1</option>
+                                <option value="14">2</option>
+                                <option value="15">3</option>
+                                <option value="16">4</option>
                             </select>
                         </div>
                     </div>
@@ -3970,10 +4159,10 @@
                             <select class="form-control tmp.school_level.year" id="tmp.school_level.postgrad.year"
                                 name="tmp.school_level.postgrad.year" required="required">
                                 <option value="">...</option>
-                                <option>17</option>
-                                <option>18</option>
-                                <option>19</option>
-                                <option>20</option>
+                                <option value="17">1</option>
+                                <option value="18">2</option>
+                                <option value="19">3</option>
+                                <option value="20">4</option>
                             </select>
                         </div>
                     </div>
@@ -4018,25 +4207,25 @@
             <input class="form-control" id="obs.hip_circumference" name="obs.hip_circumference"
                    type="number" placeholder="Centimeters" data-concept="9175^HIP CIRCUMFERENCE^99DCT">
         </div>
-	   <label> Blood Pressure</label>
+       <label> Blood Pressure</label>
         <div class="sub-section">
-    		<div class="form-group">
-    		    </p><label for="obs.blood_pressure_systolic"> Systolic: <span class="required">*</span></label>
-    		    <input class="form-control" id="obs.blood_pressure_systolic" name="obs.blood_pressure_systolic"
-    			   type="number" placeholder="mm Hg" data-concept="5085^SYSTOLIC BLOOD PRESSURE^99DCT"  required="required">
-    		</div>
-    		<div class="form-group">
-    		    </p><label for="obs.blood_pressure_diastolic"> Diastolic: <span class="required">*</span></label>
-    		    <input class="form-control" id="obs.blood_pressure_diastolic" name="obs.blood_pressure_diastolic"
-    			   type="number" placeholder="mm Hg" data-concept="5086^DIASTOLIC BLOOD PRESSURE^99DCT"  required="required">
-    		</div>
+            <div class="form-group">
+                </p><label for="obs.blood_pressure_systolic"> Systolic: <span class="required">*</span></label>
+                <input class="form-control" id="obs.blood_pressure_systolic" name="obs.blood_pressure_systolic"
+                   type="number" placeholder="mm Hg" data-concept="5085^SYSTOLIC BLOOD PRESSURE^99DCT"  required="required">
+            </div>
+            <div class="form-group">
+                </p><label for="obs.blood_pressure_diastolic"> Diastolic: <span class="required">*</span></label>
+                <input class="form-control" id="obs.blood_pressure_diastolic" name="obs.blood_pressure_diastolic"
+                   type="number" placeholder="mm Hg" data-concept="5086^DIASTOLIC BLOOD PRESSURE^99DCT"  required="required">
+            </div>
         </div>
         <div class="form-group">
             </p><label for="obs.rbs">Random blood glucose:</label>
             <input class="form-control" id="obs.rbs" name="obs.rbs"
-                   type="number" placeholder="Centimeters" data-concept="9175^HIP CIRCUMFERENCE^99DCT">
+                   type="number" placeholder="mmol/L" data-concept="887^SERUM GLUCOSE^99DCT">
         </div>
-	</div>
+    </div>
 
     </div>
 </form>
@@ -4059,6 +4248,128 @@
 
     $(document).ready(function () {
     var dateFormat = "dd-mm-yy";
+
+    //pick todays date by default
+    var currentDate = $.datepicker.formatDate(dateFormat, new Date());
+    var $encounterDatetime = $('#encounter\\.encounter_datetime');
+    if ($encounterDatetime.val() == "") {
+        $encounterDatetime.val(currentDate);
+    }
+
+    $encounterDatetime.datepicker({
+        dateFormat: dateFormat,
+        changeMonth: true,
+        changeYear: true,
+        maxDate: new Date
+    });
+
+    var set_month_year_datepicker = function(min_date_offset,max_date_offset,$element){
+        var encounterdate = $encounterDatetime.val().split('-');
+        var date_offset = min_date_offset.split(',');
+        var minDate = new Date(parseInt(encounterdate[2]) + parseInt(date_offset[2]),
+            parseInt(encounterdate[1]) + parseInt(date_offset[1]) - 1,
+            parseInt(encounterdate[0]) + parseInt(date_offset[0]));
+        var date_offset = max_date_offset.split(',');
+        var maxDate = new Date(parseInt(encounterdate[2]) + parseInt(date_offset[2]),
+            parseInt(encounterdate[1]) + parseInt(date_offset[1]) - 1,
+            parseInt(encounterdate[0]) + parseInt(date_offset[0]));
+
+        $element.removeClass('hasDatepicker');
+        $element.removeAttr('id');
+        $element.datepicker({
+            dateFormat: dateFormat,
+            changeMonth: true,
+            changeYear: true,
+            minDate:minDate,
+            maxDate:maxDate,        
+            showButtonPanel: true,
+            onChangeMonthYear: function(year, month, widget) {
+                setTimeout(function() {
+                   $('.ui-datepicker-calendar').hide();
+                });
+            },
+            onClose: function(dateText, inst) {
+                var month = $("#ui-datepicker-div .ui-datepicker-month :selected").val();
+                var year = $("#ui-datepicker-div .ui-datepicker-year :selected").val();
+                $(this).datepicker('setDate', new Date(year, month, 1));
+                $('.ui-datepicker-calendar').show();
+            },
+            beforeShow : function(input, inst) {
+                setTimeout(function() {
+                   $('.ui-datepicker-calendar').hide();
+                });
+            }
+        });
+    }
+    $encounterDatetime.change(function(){
+        set_month_year_datepicker('0,0,-100','0,0,0', $('.datepicker-month-year'));
+        set_month_year_datepicker('0,-3,0','0,0,0', $('.datepicker-month-year-last3months'));
+        set_month_year_datepicker('0,-12,0','0,0,0', $('.datepicker-month-year-last12months'));
+    });
+    $encounterDatetime.trigger('change');
+
+    var show_or_hide_facility_option = function(total_count_selector,option_class,$section){
+        var total = parseInt($(total_count_selector).val()) || 0;
+        var selected_count = parseInt($('option[class="'+option_class+'"]:selected').length);
+        if(total <= selected_count){
+            $section.find('option[class="'+option_class+'"]').not(':selected').hide();
+        } else {
+            $section.find('option[class="'+option_class+'"]').show();
+        }
+
+    }
+
+    var show_or_hide_outpatient_facilities = function($section){
+        $.each($('.number_of_outpatient_visits'), function(k,v){
+        $(v).change(function(){
+                show_or_hide_facility_option('#obs\\.number_of_visits_health_center',
+                    'outpatient_facility_type.healthcenter',$section);
+                show_or_hide_facility_option('#obs\\.number_of_visits_dispensary',
+                    'outpatient_facility_type.dispensary',$section);
+                show_or_hide_facility_option('#obs\\.number_of_visits_private_clinic',
+                    'outpatient_facility_type.private_clinic',$section);
+                show_or_hide_facility_option('#obs\\.number_of_visits_outpatient_clinic',
+                    'outpatient_facility_type.outpatient_clinic',$section);
+                //$('.number_of_outpatient_visits').not($(v)).valid();
+            });$(v).trigger('change');
+        });
+    }
+    show_or_hide_outpatient_facilities($('#outpatientvisits_repeat'));
+
+    var show_or_hide_herbal_visit_types = function($section){
+        $.each($('.times_visited_herbalist_healer'), function(k,v){
+        $(v).change(function(){
+                show_or_hide_facility_option('#obs\\.times_visited_herbalist_in_3months',
+                    'herbalist_visit_type.herbalist',$section);
+                show_or_hide_facility_option('#obs\\.times_visited_healer_in_3months',
+                    'herbalist_visit_type.healer',$section);
+                //$('.times_visited_herbalist_healer').valid();
+            });$(v).trigger('change');
+        });
+    }
+    show_or_hide_herbal_visit_types($('#herbalistvisits_repeat'));
+
+    var show_or_hide_microfinance_types = function($section){
+        $.each($('.times_microfinance_member'), function(k,v){
+        $(v).change(function(){
+                show_or_hide_facility_option('#obs\\.times_microfinance_member_chama',
+                    'microfinance_type.chama',$section);
+                show_or_hide_facility_option('#obs\\.times_microfinance_member_fmg',
+                    'microfinance_type.fmg',$section);
+                show_or_hide_facility_option('#obs\\.times_microfinance_member_sacco',
+                    'microfinance_type.sacco',$section);
+                show_or_hide_facility_option('#obs\\.times_microfinance_member_tbanking',
+                    'microfinance_type.tbanking',$section);
+                show_or_hide_facility_option('#obs\\.times_microfinance_member_ampath',
+                    'microfinance_type.ampath',$section);
+                show_or_hide_facility_option('#obs\\.times_microfinance_member_other',
+                    'microfinance_type.other',$section);
+                //$('.times_microfinance_member').valid();
+            });$(v).trigger('change');
+        });
+    }
+    show_or_hide_microfinance_types($('#microfinance_repeat'));
+        
 
     $('.hiddenInput').hide();
 
@@ -4228,7 +4539,7 @@
 
     //function to enable/disable disease selection checkboxes based on selections
     $('.disease_selection').change(function() { 
-        var $sub_section = $(this).closest('.concept-set, .visit_diseases');
+        var $sub_section = $(this).closest('.concept-set, .visit_diseases, .admission_diseases');
         var $selected_elements = $sub_section.find('.disease_selection:checked');
         var $other_disease_selection = $sub_section.find('.other_disease_selection');
         $other_disease_selection.hide();
@@ -4256,6 +4567,7 @@
     /* START selection of county facility / community unit*/
 
         $('#tmp\\.county_select').change(function(){
+            $('#obs\\.community_units').val('');
             if($(this).val() != ''){
                 var data_class = $('#tmp\\.county_select option:selected').data('county');
                 $('.community_units').show();
@@ -4307,15 +4619,17 @@
         });
         $("#obs\\.admitted_select").trigger('change');
 
-        $('.obs\\.admission_date').change(function(){
-                var $section = $(this).closest('.section');
-                if($(this).val() == ''){
+        $.each($('.obs\\.admission_date'), function(k,v){
+            $(v).change(function(){ console.log('changing.........');
+                var $section = $(v).closest('.section');
+                if($(v).val() == ''){
                     $section.find('.reason_not_providing_admission_date').show();
                 } else {
                     $section.find('.reason_not_providing_admission_date').hide();
                 }
+            });
+            $(v).trigger('change');
         });
-        $('.obs\\.admission_date').trigger('change');
 
         $('.sources_of_payment').on('change', function() { 
             var $sub_section = $(this).closest('.cRepeat');
@@ -4373,10 +4687,19 @@
         var setRankings = function($section, $elements){
             $.each($elements, function(i,j){
                 $(j).change(function(){
+                    var className = $(this).attr('class');
+                    var dataConcept = $(this).attr('data-concept');
                     if($(this).is(':checked')){
-                        var className = $(this).attr('class');
                         className.replace('.','\\.');
-                        $section.find('input[class="'+className+'"]').not($(this)).prop('checked',false);
+                        var $selected = $section.find('input[class="'+className+'"]').not($(this)).filter(':checked');
+                        $.each($selected, function(k,v){
+                            var tempdataConcept = $(v).attr('data-concept');
+                            $section.find('input[data-concept="'+tempdataConcept+'"]').prop('disabled',false);
+                            $(v).prop('checked',false);
+                        });
+                        $section.find('input[data-concept="'+dataConcept+'"]').not($(this)).prop('disabled',true);
+                    }else{
+                        $section.find('input[data-concept="'+dataConcept+'"]').prop('disabled',false);
                     }
                 });
                 $(j).trigger('change');
@@ -4391,14 +4714,14 @@
             $(v).find('#tmp\\.microfinance_membership_duration\\.months').val(months);
 
             //set up rankings
-            setRankings($(v), $(v).find('.obs\\.microfinance_use_ranking :input[type="radio"]'));
+            setRankings($(v), $(v).find('.obs\\.microfinance_use_ranking :input[type="checkbox"]'));
 
         });
         /* END - MICROFINANCE */
 
         /* START - HOUSEHOLD */
         //reuse rankings functionn
-        setRankings($('#obs\\.household_ownership'), $('#obs\\.household_ownership :input[type="radio"]'));
+        setRankings($('#obs\\.household_ownership'), $('#obs\\.household_ownership :input[type="checkbox"]'));
         $.each($('.tmp\\.school_level'), function(k,v){
             $(v).change(function(){
                 if($(this).is(':checked')){
@@ -4508,9 +4831,9 @@
                 }
                 $clonedSection.attr("data-name", parentName);
 
-                $clonedSection.find(".datepicker").removeClass('hasDatepicker');
-                $clonedSection.find(".datepicker").removeAttr('id');
-                $clonedSection.find(".datepicker").datepicker({dateFormat: dateFormat, changeMonth: true, changeYear: true});
+                set_month_year_datepicker('0,-3,0','0,0,0', $clonedSection.find('.datepicker-month-year-last3months'));
+                show_or_hide_outpatient_facilities($clonedSection);
+                
 
                 /* clear values on cloned fields */
                 $clonedSection.find(':input:not(:button):not(:radio):not(:checkbox)').val('');
@@ -4644,6 +4967,13 @@
             $(this).prop('disabled', false);
         });
 
+        $.validator.addMethod("lessThanSystolic", function (value, element) {
+                if($.fn.isNotRequiredAndEmpty(value,element)) return true;
+                var systolicBloodPressure = parseInt($('#obs\\.blood_pressure_systolic').val());
+                return (parseInt(value) <= systolicBloodPressure);
+            }, "DBP cannot be more than Systolic Blood Pressure."
+        );
+
        $.validator.addMethod("requireInpatientTransportCost", function (value, element) {
             var selected_means_to_hosp_bodaboda = $('#obs\\.means_to_hosp_bodaboda').is(':checked');
             var selected_means_to_hosp_matatu= $('#obs\\.means_to_hosp_matatu').is(':checked');
@@ -4680,7 +5010,7 @@
             var transport_cost_amount = $('#obs\\.herbal_transport_cost').val();
             var transport_cost_text = $('#herbal_transport_cost_DK_RF').val();
             if((selected_herbal_visit_bodaboda || selected_herbal_visit_matatu)
-                && (transport_cost_amount == "" && transport_cost_text== "")){selected_herbal_visit_matatu
+                && (transport_cost_amount == "" && transport_cost_text== "")){
                return false;
             } else{ 
                 return true;
@@ -4690,14 +5020,101 @@
         );
 
        $.validator.addMethod("compareBillAmount", function (value, element) {
-            var d = $('#obs\\.medical_bill_self_paid').val();
-            var a = $('#obs\\.medical_bill').val();
-            if(d <= a || d == -77 || d == -99 || a == -77 || a == -99 )
+            $section = $(element).closest('.section');
+            var d = parseInt($section.find('.obs\\.medical_bill').val());
+            var a = parseInt($section.find('.obs\\.medical_bill_self_paid').val());
+            if(a <= d || d == -77 || d == -99 || a == -77 || a == -99
+                || $('.obs\\.medical_bill').val() == ''
+                || $section.find('.obs\\.medical_bill_self_paid').val() == '')
+                return true
+                else return false; 
+            },"Paid bill amount should be less or equal to total medical bill"
+        );
+
+       $.validator.addMethod("confirmParticipantId", function (value, element) {
+            var d = $('#obs\\.participant_id').val();
+            var a = $('#tmp\\.participant_id').val();
+            if(a == d )
                 return true;
             else
                 return false;
 
-            },"Paid bill amount should be less or equal to total medical bill"
+            },"Confirmation value must be equal to given Participant ID"
+        );
+
+       $.validator.addMethod("validateOutpatientVisitTypes", function (value, element) {
+            var total =0;
+            var terminate_validation = false;
+            $.each($('.number_of_outpatient_visits'),function(k,v){
+                var val = $(v).val();
+                if(val!=''){
+                    total+=val;
+                }else{
+                    terminate_validation = true;
+                    return true;
+                }
+            });
+            if(terminate_validation){
+                return true;
+            }
+            return total > 0;
+
+            },"ZERO cannot be accepted for all outpatient visit types"
+        );
+
+       $.validator.addMethod("validateHerbalVisitTypes", function (value, element) {
+            var total =0;
+            var terminate_validation = false;
+            $.each($('.times_visited_herbalist_healer'),function(k,v){
+                var val = $(v).val();
+                if(val != ''){
+                    total += val;
+                }else{
+                    terminate_validation = true;
+                    return true;
+                }
+            });
+            if(terminate_validation){
+                return true;
+            }
+            return total > 0;
+
+            },"ZERO cannot be accepted for all Herbal visit types"
+        );
+
+       $.validator.addMethod("validateMicrofinanceTypes", function (value, element) {
+            var total =0;
+            var terminate_validation = false;
+            $.each($('.times_microfinance_member'),function(k,v){
+                var val = $(v).val();
+                if(val != ''){
+                    total += val;
+                } else {
+                    terminate_validation = true;
+                    return true;
+                }
+            });
+            if(terminate_validation){
+                return true;
+            }
+            return total > 0;
+
+            },"ZERO cannot be accepted for all Microfinance Group types"
+        );
+
+       $.validator.addMethod("requireTimeToHospital", function (value, element) {
+            var selected_medication_visit_bodaboda = $('#obs\\.means_of_medication_visit_bodaboda').is(':checked');
+            var selected_medication_visit_matatu = $('#obs\\.means_of_medication_visit_matatu').is(':checked');
+            var transport_cost_amount = $('#obs\\.outpatient_transport_cost_to_hospital').val();
+            var transport_cost_text = $('#outpatient_transport_cost_to_hospital_DK_RF').val();
+            if((selected_medication_visit_bodaboda || selected_medication_visit_matatu)
+                && (transport_cost_amount == "" && transport_cost_text== "")){
+                return false;
+            } else{ 
+                return true;
+            }
+
+            },"Outpatient Transport cost is required if means of transport is <b>matatu</b> or <b>Boda Boda</b>"
         );
 
 
@@ -4707,90 +5124,116 @@
                 weight_kg: {
                     number: true,
                     range: [0, 250]
-                },
-                height_cm: {
-                    number: true,
-                    range: [10, 228]
-                },
-                "obs.hours_worked_typical_day":{
-                    range: [0, 24]
-                },
-                participant_id:{
-                    range: [101001, 225000]
-                },
-                "obs.size_of_house_hold":{
-                    min :1
-                },
-                "obs.no_admission_in_past_12_months":{
-                    range :[1,15]
-                },
-                "obs.medical_bill_self_paid":{
-                    compareBillAmount : true
-                },
-                "obs.times_visited_group_medical_care_in_3months":{
-                    range :[1,15]
-                },
-                "obs.herbal_transport_cost":{
-                    min :0,
-                    requireHerbalVisitTransportCost: true
-                },
-                "obs.outpatient_transport_cost_to_hospital":{
-                    min :0,
-                    requireOutpatientTransportCost: true
-                },
-                "obs.transport_cost_to_hospital":{
-                    min :0,
-                    requireInpatientTransportCost: true
-                },
-                "obs.number_of_meds":{
-                    min:1
-                },
-                "obs.medication_purchase_bill":{
-                    min :0
-                },
-                "obs.medication_lasting_period":{
-                    min :0
-                },
-                "obs.years_used_tobacco":{
-                    min : 1
-                },
-                "obs.health_status":{
-                    range: [0, 100]
-                },
-                "obs.hoursMissedWork":{
-                    range : [0, 168]
-                },
-                "obs.hours_attended_work_mins":{
-                    range : [0, 168]
-                },
-                "obs.hours_attended_work_hours":{
-                    range : [0, 168]
-                },
-                "obs.height":{
-                    range : [10, 228]
-                },
-                "obs.weight":{
-                    range : [0, 250]
-                },
-                "obs.hip_circumference":{
-                    range : [0, 300]
-                },
-                "obs.waist_circumference":{
-                    range : [0, 150]
-                },
-		        "obs.blood_pressure_systolic":{
-                    range : [50, 300]
-                },
-                "obs.blood_pressure_diastolic":{
-                    range : [20, 150]
-                },
-		        "obs.household_size":{
-                    range : [0, 100]
                 }
             },
             submitHandler: function (form) {
                 $('#result').html(JSON.stringify($('form').serializeEncounterForm(), undefined, 2));
             }
+        });
+        $("#obs\\.hours_worked_typical_day").rules('add',{
+            range: [0, 24]
+        });
+        $("#obs\\.participant_id").rules('add',{
+            range: [301001, 605999]
+        });
+        $("#tmp\\.participant_id").rules('add',{
+            confirmParticipantId:true
+        });
+        $("#obs\\.herbal_transport_cost").rules('add',{
+            min :0,
+            requireHerbalVisitTransportCost: true
+        });
+        $("#obs\\.outpatient_transport_cost_to_hospital").rules('add',{
+            min :0,
+            requireOutpatientTransportCost: true
+        });
+        $("#obs\\.transport_cost_to_hospital").rules('add',{
+            min :0,
+            requireInpatientTransportCost: true
+        });
+        $("#obs\\.number_of_meds").rules('add',{
+            min :1
+        });
+        $(".obs\\.medication_purchase_bill").rules('add',{
+            min :0
+        });
+        $("#obs\\.health_status").rules('add',{
+            range : [0,100]
+        });
+        $("#obs\\.household_size").rules('add',{
+            range : [0,100]
+        });
+        $("#obs\\.hip_circumference").rules('add',{
+            range : [40,300]
+        });
+        $("#obs\\.waist_circumference").rules('add',{
+            range : [40,150]
+        });
+        $("#obs\\.height").rules('add',{
+            range : [100,228]
+        });
+        $("#obs\\.weight").rules('add',{
+            range : [30,250]
+        });
+        $("#obs\\.blood_pressure_diastolic").rules('add',{
+            range : [10,150],
+            lessThanSystolic:true
+        });
+        $("#obs\\.blood_pressure_systolic").rules('add',{
+            range : [50,300]
+        });
+        $("#obs\\.rbs").rules('add',{
+            range : [3,30]
+        });
+        $("#obs\\.years_used_tobacco").rules('add',{
+            range : [0,100]
+        });
+        $(".obs\\.medical_bill_self_paid").rules('add',{
+            compareBillAmount : true
+        });
+        $("#obs\\.time_to_hosp").rules('add',{
+            required : true,
+            min:5
+        });
+        $("#obs\\.time_to_medication_place").rules('add',{
+            required : true,
+            min:5
+        });
+        $("#obs\\.time_to_herbalist").rules('add',{
+            required : true,
+            min:5
+        });
+        $("#obs\\.time_to_groupmedical").rules('add',{
+            required : true,
+            min:5
+        });
+        $("#obs\\.time_doing_vigorous_physical").rules('add',{
+            required : true,
+            min:5
+        });
+        $("#obs\\.time_doing_moderate_physical").rules('add',{
+            required : true,
+            min:5
+        });
+        $.each($('.number_of_outpatient_visits'), function(k,v){
+            $(v).rules('add',{
+                validateOutpatientVisitTypes : true
+            });
+        });
+        $.each($('.times_visited_herbalist_healer'), function(k,v){
+            $(v).rules('add',{
+                validateHerbalVisitTypes : true
+            });
+        });
+        $.each($('.times_microfinance_member'), function(k,v){
+            $(v).rules('add',{
+                validateMicrofinanceTypes: true
+            });
+        });
+        $.each($('.obs\\.medication_lasting_period'), function(k,v){
+            $(v).rules('add',{
+                range: [0,90]
+            });
         });
 
         $('.obs\\.medical_bill_DK').change(function(){
@@ -5109,9 +5552,11 @@
                 }
                 $clonedSection.attr("data-name", parentName);
 
-                $clonedSection.find(".datepicker").removeClass('hasDatepicker');
-                $clonedSection.find(".datepicker").removeAttr('id');
-                $clonedSection.find(".datepicker").datepicker({dateFormat: dateFormat, changeMonth: true, changeYear: true});
+                set_month_year_datepicker('0,-12,0','0,0,0', $clonedSection.find('.datepicker-month-year-last12months'));
+
+                $clonedSection.find(".obs\\.medical_bill_self_paid").rules('add',{
+                    compareBillAmount : true
+                });
 
                 /* clear values on cloned fields */
                 $clonedSection.find(':input:not(:button):not(:radio):not(:checkbox)').val('');
@@ -5210,6 +5655,7 @@
                 $('#obs\\.time_to_hosp').show();
                 $("#time_to_hospital_DK").prop('checked', false);
                 $("#time_to_hospital_RF").prop('checked', false);
+                $('#obs\\.time_to_hosp').valid();
             }
 
         });
@@ -5226,6 +5672,7 @@
                 $('#obs\\.time_to_hosp').show();
                 $("#time_to_hospital_DK").prop('checked', false);
                 $("#time_to_hospital_RF").prop('checked', false);
+                $('#obs\\.time_to_hosp').valid();
             }
         });
         $('#obs\\.time_to_hospital_mins').trigger('change');
@@ -5235,6 +5682,8 @@
                 setTextDataFor(this, $('#obs\\.time_to_hosp'), $('#time_to_hosp_DK_RF'));
                 $('#obs\\.time_to_hospital_hours').val("");
                 $('#obs\\.time_to_hospital_mins').val("");
+                console.log($('label[for="obs.time_to_hosp"]').filter('error'));
+                $('label[for="obs.time_to_hosp"]').filter('.error').hide();
             }
         });
         $("#time_to_hospital_DK").trigger('change');
@@ -5243,6 +5692,7 @@
                 setTextDataFor(this, $('#obs\\.time_to_hosp'), $('#time_to_hosp_DK_RF'));
                 $('#obs\\.time_to_hospital_hours').val("");
                 $('#obs\\.time_to_hospital_mins').val("");
+                $('label[for="obs.time_to_hosp"]').filter('.error').hide();
             }
         });
         $("#time_to_hospital_RF").trigger('change');
@@ -5273,6 +5723,7 @@
                 $('#obs\\.time_to_medication_place').show();
                 $("#obs\\.time_to_medication_place_RF").prop('checked', false);
                 $("#obs\\.time_to_medication_place_DK").prop('checked', false);
+                $("#obs\\.time_to_medication_place").valid();
             }
 
         });
@@ -5289,6 +5740,7 @@
                 $('#obs\\.time_to_medication_place').show();
                 $("#obs\\.time_to_medication_place_RF").prop('checked', false);
                 $("#obs\\.time_to_medication_place_DK").prop('checked', false);
+                $("#obs\\.time_to_medication_place").valid();
             }
         });
         $('#obs\\.time_to_medication_place_mins').trigger('change');
@@ -5298,6 +5750,7 @@
                 setTextDataFor(this, $('#obs\\.time_to_medication_place'), $('#time_to_medication_place_DK_RF'));
                 $('#obs\\.time_to_medication_place_hours').val("");
                 $('#obs\\.time_to_medication_place_mins').val("");
+                $("label[for='obs.time_to_medication_place']").filter('.error').remove();
             }
         });
         $("#obs\\.time_to_medication_place_RF").trigger('change');
@@ -5306,6 +5759,7 @@
                 setTextDataFor(this, $('#obs\\.time_to_medication_place'), $('#time_to_medication_place_DK_RF'));
                 $('#obs\\.time_to_medication_place_hours').val("");
                 $('#obs\\.time_to_medication_place_mins').val("");
+                $("label[for='obs.time_to_medication_place']").filter('.error').remove();
             }
         });
         $("#obs\\.time_to_medication_place_DK").trigger('change');
@@ -5335,6 +5789,7 @@
                 $('#obs\\.time_to_herbalist').show();
                 $("#obs\\.time_to_herbalist_RF").prop('checked', false);
                 $("#obs\\.time_to_herbalist_DK").prop('checked', false);
+                $("#obs\\.time_to_herbalist").valid();
             }
 
         });
@@ -5351,6 +5806,7 @@
                 $('#obs\\.time_to_herbalist').show();
                 $("#obs\\.time_to_herbalist_DK").prop('checked', false);
                 $("#obs\\.time_to_herbalist_RF").prop('checked', false);
+                $("#obs\\.time_to_herbalist").valid();
             }
         });
         $('#obs\\.time_to_herbalist_mins').trigger('change');
@@ -5360,6 +5816,7 @@
                 setTextDataFor(this, $('#obs\\.time_to_herbalist'), $('#time_to_herbalist_DK_RF'));
                 $('#obs\\.time_to_herbalist_hours').val("");
                 $('#obs\\.time_to_herbalist_mins').val("");
+                $("label[for='obs.time_to_herbalist']").filter('.error').remove();
             }
         });
         $("#obs\\.time_to_herbalist_RF").trigger('change');
@@ -5368,6 +5825,7 @@
                 setTextDataFor(this, $('#obs\\.time_to_herbalist'), $('#time_to_herbalist_DK_RF'));
                 $('#obs\\.time_to_herbalist_hours').val("");
                 $('#obs\\.time_to_herbalist_mins').val("");
+                $("label[for='obs.time_to_herbalist']").filter('.error').remove();
             }
         });
         $("#obs\\.time_to_herbalist_DK").trigger('change');
@@ -5397,6 +5855,7 @@
                 $('#obs\\.time_to_groupmedical').show();
                 $("#obs\\.time_to_groupmedical_RF").prop('checked', false);
                 $("#obs\\.time_to_groupmedical_DK").prop('checked', false);
+                $("#obs\\.time_to_groupmedical").valid();
             }
 
         });
@@ -5413,6 +5872,7 @@
                 $('#obs\\.time_to_groupmedical').show();
                 $("#obs\\.time_to_groupmedical_DK").prop('checked', false);
                 $("#obs\\.time_to_groupmedical_RF").prop('checked', false);
+                $("#obs\\.time_to_groupmedical").valid();
             }
         });
         $('#obs\\.time_to_groupmedical_mins').trigger('change');
@@ -5422,6 +5882,7 @@
                 setTextDataFor(this, $('#obs\\.time_to_groupmedical'), $('#time_to_groupmedical_DK_RF'));
                 $('#obs\\.time_to_groupmedical_hours').val("");
                 $('#obs\\.time_to_groupmedical_mins').val("");
+                $("label[for='obs.time_to_groupmedical']").filter('.error').remove();
             }
         });
         $("#obs\\.time_to_groupmedical_RF").trigger('change');
@@ -5430,6 +5891,7 @@
                 setTextDataFor(this, $('#obs\\.time_to_groupmedical'), $('#time_to_groupmedical_DK_RF'));
                 $('#obs\\.time_to_groupmedical_hours').val("");
                 $('#obs\\.time_to_groupmedical_mins').val("");
+                $("label[for='obs.time_to_groupmedical']").filter('.error').remove();
             }
         });
         $("#obs\\.time_to_groupmedical_DK").trigger('change');
@@ -5459,6 +5921,7 @@
                 $('#obs\\.time_doing_vigorous_physical').show();
                 $("#obs\\.time_doing_vigorous_physical_RF").prop('checked', false);
                 $("#obs\\.time_doing_vigorous_physical_DK").prop('checked', false);
+                $("#obs\\.time_doing_vigorous_physical").valid();
             }
 
         });
@@ -5475,6 +5938,7 @@
                 $('#obs\\.time_doing_vigorous_physical').show();
                 $("#obs\\.time_doing_vigorous_physical_DK").prop('checked', false);
                 $("#obs\\.time_doing_vigorous_physical_RF").prop('checked', false);
+                $("#obs\\.time_doing_vigorous_physical").valid();
             }
         });
         $('#obs\\.time_doing_vigorous_physical_mins').trigger('change');
@@ -5484,6 +5948,7 @@
                 setTextDataFor(this, $('#obs\\.time_doing_vigorous_physical'), $('#time_doing_vigorous_physical_DK_RF'));
                 $('#obs\\.time_doing_vigorous_physical_hours').val("");
                 $('#obs\\.time_doing_vigorous_physical_mins').val("");
+                $("label[for='obs.time_doing_vigorous_physical']").filter('.error').remove();
             }
         });
         $("#obs\\.time_doing_vigorous_physical_RF").trigger('change');
@@ -5492,6 +5957,7 @@
                 setTextDataFor(this, $('#obs\\.time_doing_vigorous_physical'), $('#time_doing_vigorous_physical_DK_RF'));
                 $('#obs\\.time_doing_vigorous_physical_hours').val("");
                 $('#obs\\.time_doing_vigorous_physical_mins').val("");
+                $("label[for='obs.time_doing_vigorous_physical']").filter('.error').remove();
             }
         });
         $("#obs\\.time_doing_vigorous_physical_DK").trigger('change');
@@ -5522,8 +5988,8 @@
                 $('#obs\\.time_doing_moderate_physical').show();
                 $("#obs\\.time_doing_moderate_physical_RF").prop('checked', false);
                 $("#obs\\.time_doing_moderate_physical_DK").prop('checked', false);
+                $("#obs\\.time_doing_moderate_physical").valid();
             }
-
         });
         $('#obs\\.time_doing_moderate_physical_hours').trigger('change');
 
@@ -5538,6 +6004,7 @@
                 $('#obs\\.time_doing_moderate_physical').show();
                 $("#obs\\.time_doing_moderate_physical_DK").prop('checked', false);
                 $("#obs\\.time_doing_moderate_physical_RF").prop('checked', false);
+                $("#obs\\.time_doing_moderate_physical").valid();
             }
         });
         $('#obs\\.time_doing_moderate_physical_mins').trigger('change');
@@ -5547,6 +6014,7 @@
                 setTextDataFor(this, $('#obs\\.time_doing_moderate_physical'), $('#time_doing_moderate_physical_DK_RF'));
                 $('#obs\\.time_doing_moderate_physical_hours').val("");
                 $('#obs\\.time_doing_moderate_physical_mins').val("");
+                $("label[for='obs.time_doing_moderate_physical']").filter('.error').remove();
             }
         });
         $("#obs\\.time_doing_moderate_physical_RF").trigger('change');
@@ -5555,6 +6023,7 @@
                 setTextDataFor(this, $('#obs\\.time_doing_moderate_physical'), $('#time_doing_moderate_physical_DK_RF'));
                 $('#obs\\.time_doing_moderate_physical_hours').val("");
                 $('#obs\\.time_doing_moderate_physical_mins').val("");
+                $("label[for='obs.time_doing_moderate_physical']").filter('.error').remove();
             }
         });
         $("#obs\\.time_doing_moderate_physical_DK").trigger('change');
@@ -5782,9 +6251,8 @@
                 }
                 $clonedSection.attr("data-name", parentName);
 
-                $clonedSection.find(".datepicker").removeClass('hasDatepicker');
-                $clonedSection.find(".datepicker").removeAttr('id');
-                $clonedSection.find(".datepicker").datepicker({dateFormat: dateFormat, changeMonth: true, changeYear: true});
+                set_month_year_datepicker('0,-3,0','0,0,0', $clonedSection.find('.datepicker-month-year-last3months'));
+                show_or_hide_herbal_visit_types($clonedSection);
 
                 /* clear values on cloned fields */
                 $clonedSection.find(':input:not(:button):not(:radio):not(:checkbox)').val('');
@@ -5842,9 +6310,8 @@
                 }
                 $clonedSection.attr("data-name", parentName);
 
-                $clonedSection.find(".datepicker").removeClass('hasDatepicker');
-                $clonedSection.find(".datepicker").removeAttr('id');
-                $clonedSection.find(".datepicker").datepicker({dateFormat: dateFormat, changeMonth: true, changeYear: true});
+                set_month_year_datepicker('0,0,-100','0,0,0', $clonedSection.find('.datepicker-month-year'));
+                show_or_hide_microfinance_types($clonedSection);
 
                 /* clear values on cloned fields */
                 $clonedSection.find(':input:not(:button):not(:radio):not(:checkbox)').val('');
@@ -5852,7 +6319,7 @@
                 $clonedSection.find(':checkbox').prop('checked',false);
                 $clonedSection.find(':input:not(:button)').trigger('change');
                 setCalculationMicrofinanceMembershipDuration($clonedSection);
-                setRankings($clonedSection, $clonedSection.find('.obs\\.microfinance_use_ranking :input[type="radio"]'));
+                setRankings($clonedSection, $clonedSection.find('.obs\\.microfinance_use_ranking :input[type="checkbox"]'));
             }
 
         });
@@ -5934,9 +6401,7 @@
                 }
                 $clonedSection.attr("data-name", parentName);
 
-                $clonedSection.find(".datepicker").removeClass('hasDatepicker');
-                $clonedSection.find(".datepicker").removeAttr('id');
-                $clonedSection.find(".datepicker").datepicker({dateFormat: dateFormat, changeMonth: true, changeYear: true});
+                set_month_year_datepicker('0,-3,0','0,0,0', $clonedSection.find('.datepicker-month-year-last3months'));
 
                 /* clear values on cloned fields */
                 $clonedSection.find(':input:not(:button):not(:radio):not(:checkbox)').val('');
@@ -5952,10 +6417,36 @@
 
         $('.obs\\.name_of_meds').change(function(){
             var selected_val = $(this).val();
-            if (selected_val == '5622^OTHER NON-CODED^99DCT'){
-                $(this).closest('.prescribed_meds_repeat').find('.name_of_meds_other').show();
-            } else {
-                $(this).closest('.prescribed_meds_repeat').find('.name_of_meds_other').hide();
+            var $section = $(this).closest('.prescribed_meds_repeat');
+            if(selected_val == '1624^DO NOT KNOW^99DCT' && $(this).is(':checked')){
+                $section.find('.obs\\.name_of_meds').not($(this)).prop('disabled',true);
+                console.log(1);
+            } else if(selected_val == '1624^DO NOT KNOW^99DCT' && $(this).not(':checked')){
+                $section.find('.obs\\.name_of_meds').not($(this)).prop('disabled',false);
+                console.log(12);
+            } else if(selected_val == '1958^REFUSAL^99DCT' && $(this).is(':checked')){
+                $section.find('.obs\\.name_of_meds').not($(this)).prop('disabled',true);
+                console.log(13);
+            } else if(selected_val == '1958^REFUSAL^99DCT' && $(this).not(':checked')){
+                $section.find('.obs\\.name_of_meds').not($(this)).prop('disabled',false);
+                console.log(14);
+            } else if (selected_val == '5622^OTHER NON-CODED^99DCT' && $(this).is(':checked')){
+                $section.find('.name_of_meds_other').show();
+                $section.find('.obs\\.name_of_meds').filter($('.refusal')).prop('disabled',true);
+                $section.find('.obs\\.name_of_meds').filter($('.donotknow')).prop('disabled',true);
+                console.log(15);
+            } else if(selected_val == '5622^OTHER NON-CODED^99DCT' && $(this).not(':checked')){
+                $section.find('.name_of_meds_other').hide();
+                $section.find('.obs\\.name_of_meds').filter($('.refusal')).prop('disabled',false);
+                $section.find('.obs\\.name_of_meds').filter($('.donotknow')).prop('disabled',false);
+                console.log(16);
+            } else if($section.find('.obs\\.name_of_meds').filter(':checked').length > 0){
+                $section.find('.obs\\.name_of_meds').filter($('.refusal')).prop('disabled',true);
+                $section.find('.obs\\.name_of_meds').filter($('.donotknow')).prop('disabled',true);
+                console.log(17);
+            } else if($section.find('.obs\\.name_of_meds').filter(':checked').length <= 0){
+                $section.find('.obs\\.name_of_meds').prop('disabled',false);
+                console.log(18);
             }
         });
         $('.obs\\.name_of_meds').trigger('change');
@@ -6062,9 +6553,7 @@
                 }
                 $clonedSection.attr("data-name", parentName);
 
-                $clonedSection.find(".datepicker").removeClass('hasDatepicker');
-                $clonedSection.find(".datepicker").removeAttr('id');
-                $clonedSection.find(".datepicker").datepicker({dateFormat: dateFormat, changeMonth: true, changeYear: true});
+                set_month_year_datepicker('0,-3,0','0,0,0', $clonedSection.find('.datepicker-month-year-last3months'));
 
                 /* clear values on cloned fields */
                 $clonedSection.find(':input:not(:button):not(:radio):not(:checkbox)').val('');
@@ -6271,14 +6760,6 @@
             resetTimeAW();
 
         });
-
-        //pick todays date by default
-        var currentDate = $.datepicker.formatDate(dateFormat, new Date());
-        var encounterDatetime = $('#encounter\\.encounter_datetime');
-        if ($(encounterDatetime).val() == "") {
-            $(encounterDatetime).val(currentDate);
-        }
-
 
     document.setupAutoCompleteData('encounter\\.location_id');
     document.setupAutoCompleteDataForProvider('encounter\\.provider_id_select');
