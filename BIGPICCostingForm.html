@@ -68,7 +68,7 @@
         <div class="form-group">
             <label for="encounter.provider_id_select">Name of Interviewer <span class="required">*</span></label>
             <input class="form-control valid-provider-only" id="encounter.provider_id_select" type="text"
-                   placeholder="Start typing provider name here ...">
+                   placeholder="Start typing provider name here ..." required="required">
             <input class="form-control" name="encounter.provider_id_select" type="hidden">
         </div>
         <div class="form-group hidden">
@@ -617,7 +617,8 @@
 
                         <div class="sub-section form-group repeat_with_unique_element_attrs">
                             <input class="form-control obs.medical_bill_self_paid" type="number"
-                                   data-concept="9094^MEDICAL BILL PAID BY OWN MONEY^99DCT" required="required">
+                                name="obs.medical_bill_self_paid"
+                                data-concept="9094^MEDICAL BILL PAID BY OWN MONEY^99DCT" required="required">
                             <input class="form-control hiddenInput medical_bill_self_paid_DK_RF" type="text">
                             <fieldset name="obs.medical_bill_self_paid_DR">
                                 <input class="obs.medical_bill_self_paid_DK" id="obs.medical_bill_self_paid_DK" 
@@ -2502,7 +2503,7 @@
                         <label for="obs.medication_purchase_bill">How much did you pay for the medicine?
                         <span class="required">*</span></label>
                         <input class="form-control obs.medication_purchase_bill" type="number"
-                        id="obs.medication_purchase_bill"
+                        id="obs.medication_purchase_bill" name="obs.medication_purchase_bill"
                            data-concept="9142^MEDICATION PURCHASE COST^99DCT" required="required">
                        </div>
                     <input class="form-control hiddenInput medication_purchase_bill_DK_RF" type="number">
@@ -2523,8 +2524,8 @@
                     <div class="form-group">
                         <label for="obs.medication_lasting_period">How long was the medicine supposed to last?
                         <span class="required">*</span></label>
-                        <input class="form-control obs.medication_lasting_period"
-                        id="fobs.medication_lasting_period" type="number"
+                        <input class="form-control obs.medication_lasting_period" name="obs.medication_lasting_period"
+                        id="obs.medication_lasting_period" type="number"
                            data-concept="9278^NUMBER OF DAYS SUPPLIED, MEDICINE^99DCT" required="required">
                     </div>
                         <input class="form-control hiddenInput medication_lasting_period_DK_RF" type="number">
@@ -3885,7 +3886,7 @@
                 <div class="form-group sub-section">
                     <div class="form-group">
                         <label>
-                            Mobile phone
+                            Phone
                         </label>
                     </div>
                     <label class="font-normal">
@@ -4293,6 +4294,7 @@
                 var year = $("#ui-datepicker-div .ui-datepicker-year :selected").val();
                 $(this).datepicker('setDate', new Date(year, month, 1));
                 $('.ui-datepicker-calendar').show();
+                $element.trigger('change')
             },
             beforeShow : function(input, inst) {
                 setTimeout(function() {
@@ -4620,7 +4622,7 @@
         $("#obs\\.admitted_select").trigger('change');
 
         $.each($('.obs\\.admission_date'), function(k,v){
-            $(v).change(function(){ console.log('changing.........');
+            $(v).change(function(){
                 var $section = $(v).closest('.section');
                 if($(v).val() == ''){
                     $section.find('.reason_not_providing_admission_date').show();
@@ -4720,8 +4722,20 @@
         /* END - MICROFINANCE */
 
         /* START - HOUSEHOLD */
-        //reuse rankings functionn
-        setRankings($('#obs\\.household_ownership'), $('#obs\\.household_ownership :input[type="checkbox"]'));
+        var setHouseholdOwnership = function($section, $elements){
+            $.each($elements, function(i,j){
+                $(j).change(function(){
+                    var className = $(this).attr('class');
+                    var dataConcept = $(this).attr('data-concept');
+                    if($(this).is(':checked')){
+                        className.replace('.','\\.');
+                        $section.find('input[class="'+className+'"]').not($(this)).prop('checked',false);
+                    }
+                });
+                $(j).trigger('change');
+            });
+        }
+        setHouseholdOwnership($('#obs\\.household_ownership'), $('#obs\\.household_ownership :input[type="radio"]'));
         $.each($('.tmp\\.school_level'), function(k,v){
             $(v).change(function(){
                 if($(this).is(':checked')){
@@ -5682,7 +5696,6 @@
                 setTextDataFor(this, $('#obs\\.time_to_hosp'), $('#time_to_hosp_DK_RF'));
                 $('#obs\\.time_to_hospital_hours').val("");
                 $('#obs\\.time_to_hospital_mins').val("");
-                console.log($('label[for="obs.time_to_hosp"]').filter('error'));
                 $('label[for="obs.time_to_hosp"]').filter('.error').hide();
             }
         });
@@ -6420,33 +6433,25 @@
             var $section = $(this).closest('.prescribed_meds_repeat');
             if(selected_val == '1624^DO NOT KNOW^99DCT' && $(this).is(':checked')){
                 $section.find('.obs\\.name_of_meds').not($(this)).prop('disabled',true);
-                console.log(1);
             } else if(selected_val == '1624^DO NOT KNOW^99DCT' && $(this).not(':checked')){
                 $section.find('.obs\\.name_of_meds').not($(this)).prop('disabled',false);
-                console.log(12);
             } else if(selected_val == '1958^REFUSAL^99DCT' && $(this).is(':checked')){
                 $section.find('.obs\\.name_of_meds').not($(this)).prop('disabled',true);
-                console.log(13);
             } else if(selected_val == '1958^REFUSAL^99DCT' && $(this).not(':checked')){
                 $section.find('.obs\\.name_of_meds').not($(this)).prop('disabled',false);
-                console.log(14);
             } else if (selected_val == '5622^OTHER NON-CODED^99DCT' && $(this).is(':checked')){
                 $section.find('.name_of_meds_other').show();
                 $section.find('.obs\\.name_of_meds').filter($('.refusal')).prop('disabled',true);
                 $section.find('.obs\\.name_of_meds').filter($('.donotknow')).prop('disabled',true);
-                console.log(15);
             } else if(selected_val == '5622^OTHER NON-CODED^99DCT' && $(this).not(':checked')){
                 $section.find('.name_of_meds_other').hide();
                 $section.find('.obs\\.name_of_meds').filter($('.refusal')).prop('disabled',false);
                 $section.find('.obs\\.name_of_meds').filter($('.donotknow')).prop('disabled',false);
-                console.log(16);
             } else if($section.find('.obs\\.name_of_meds').filter(':checked').length > 0){
                 $section.find('.obs\\.name_of_meds').filter($('.refusal')).prop('disabled',true);
                 $section.find('.obs\\.name_of_meds').filter($('.donotknow')).prop('disabled',true);
-                console.log(17);
             } else if($section.find('.obs\\.name_of_meds').filter(':checked').length <= 0){
                 $section.find('.obs\\.name_of_meds').prop('disabled',false);
-                console.log(18);
             }
         });
         $('.obs\\.name_of_meds').trigger('change');
@@ -6764,7 +6769,7 @@
     document.setupAutoCompleteData('encounter\\.location_id');
     document.setupAutoCompleteDataForProvider('encounter\\.provider_id_select');
 
-        $('#encounter\\.provider_id_select').change(function () {
+    $('#encounter\\.provider_id_select').change(function () {
         if ($('#encounter\\.provider_id_select').val() === '') {
             $('#encounter\\.provider_id').val('');
             $('.show_provider_id_text').show();
