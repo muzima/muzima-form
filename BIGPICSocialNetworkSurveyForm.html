@@ -1,0 +1,1601 @@
+<html xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
+<head>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/muzima.css" rel="stylesheet">
+    <link href="css/ui-darkness/jquery-ui-1.10.4.custom.min.css" rel="stylesheet">
+    <script src="js/jquery.min.js"></script>
+    <script src="js/jquery-ui-1.10.4.custom.min.js"></script>
+    <script src="js/jquery.validate.min.js"></script>
+    <script src="js/additional-methods.min.js"></script>
+    <script src="js/muzima.js"></script>
+    <title>BIGPIC Social Network Survey</title>
+</head>
+<body class="col-md-10 col-md-offset-1">
+<div id="pre_populate_data"></div>
+<form id="social_network_survey_form" name="social_network_survey_form">
+    <h2 class="text-center">BIGPIC SOCIAL NETWORK SURVEY</h2>
+    <div class="section">
+        <h3>Demographics</h3>
+        <div class="form-group">
+            <input class="form-control" id="patient.uuid"
+                   name="patient.uuid" type="hidden" readonly="readonly">
+        </div>
+
+        <div class="form-group">
+            <label for="patient.medical_record_number">AMRS ID Number:</label>
+            <input class="form-control" id="patient.medical_record_number"
+                   name="patient.medical_record_number" type="text"
+                   readonly="readonly">
+        </div>
+        <div class="form-group">
+            <label for="patient.family_name">Family Name:</label>
+            <input class="form-control" id="patient.family_name"
+                   name="patient.family_name" type="text" readonly="readonly">
+        </div>
+        <div class="form-group">
+            <label for="patient.given_name">Given Name:</label>
+            <input class="form-control" id="patient.given_name"
+                   name="patient.given_name" type="text" readonly="readonly">
+        </div>
+        <div class="form-group">
+            <label for="patient.middle_name">Middle Name:</label>
+            <input class="form-control" id="patient.middle_name"
+                   name="patient.middle_name" type="text" readonly="readonly">
+        </div>
+        <div class="form-group">
+            <label for="patient.sex">Gender:</label>
+            <select class="form-control" id="patient.sex" name="patient.sex" readonly="readonly">
+                <option value="">...</option>
+                <option value="M">Male</option>
+                <option value="F">Female</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="patient.birth_date">Date Of Birth:</label>
+            <input class="form-control" id="patient.birth_date"
+                   name="patient.birth_date" type="text" readonly="readonly">
+        </div>
+    </div>
+    <div class="section">
+        <h3>Encounter Details</h3>
+
+        <div class="form-group">
+            <label for="encounter.location_id">AMPATH Facility: <span class="required">*</span></label>
+            <input class="form-control valid-location-only" id="encounter.location_id" type="text"
+            placeholder="Start typing something..." required="required">
+            <input class="form-control" name="encounter.location_id" type="hidden">
+        </div>
+        <div class="form-group">
+            <label for="encounter.provider_id_select">Name of Interviewer: <span class="required">*</span></label>
+            <input class="form-control valid-provider-only" id="encounter.provider_id_select" type="text"
+                   placeholder="Start typing provider name here ...">
+            <input class="form-control" name="encounter.provider_id_select" type="hidden">
+        </div>
+        <div class="form-group show_provider_id_text">
+            <label for="encounter.provider_id">Interviewer ID:<span class="required">*</span></label>
+            <input class="form-control checkDigit" id="encounter.provider_id"
+            name="encounter.provider_id" type="text"
+               required="required" disabled="disabled">
+        </div>
+        <div class="form-group">
+            <label for="encounter.encounter_datetime">Interview Date:<span class="required">*</span>
+            </label>
+            <input class="form-control" id="encounter.encounter_datetime"
+               name="encounter.encounter_datetime" type="text" readonly="readonly"
+               required="required">
+        </div>
+        <div class="form-group">
+            <input class="form-control" id="encounter.form_uuid"
+                name="encounter.form_uuid" type="hidden" required="required">
+        </div>
+    </div>
+    <div class="section">
+        <h3>SECTION A - PARTICIPANT INFORMATION</h3>
+        <div class="form-group">
+            <label for="obs.participant_id">Enter Participant ID:<span class="required">*</span></label>
+            <input class="form-control" id="obs.participant_id" name="obs.participant_id"
+               type="number" placeholder="Participant ID" data-concept="9084^PARTICIPANT ID^99DCT"
+               required="required">
+        </div>
+        <div class="form-group">
+            <label for="obs.bigpic_group_id">BIGPIC Group ID:<span class="required">*</span></label>
+            <input class="form-control" id="obs.bigpic_group_id" name="obs.bigpic_group_id"
+               type="number" placeholder="BIGPIC Group ID" data-concept="9346^BIGPIC GROUP ID^99DCT"
+               required="required">
+        </div>
+    </div>
+    <div class="section">
+        <h3>SECTION B - IMPORTANT MATTERS</h3>
+        <label class="alert alert-info">
+            Please provide the following information of up to 5 people you talk to most frequently about
+            <u>important matters</u>.
+        </label>
+        <div class="section important_matters_repeat" id="important_matters_repeat"
+            data-name="important_matters_repeat"
+            data-concept="9348^PERSON WHO MOST FREQUENTLY DISCUSS ON IMPORTANT MATTERS, DETAILED^99DCT">
+            <div class="alert alert-info" id="important_matters_count">Person 1</div>
+            <div class="form-group">
+                <label for="obs.names_of_people_talked_to.im">
+                    Name of person:
+                    <span class="required">*</span>
+                </label>
+                <input class="form-control obs.names_of_people_talked_to.im" id="obs.names_of_people_talked_to.im"
+                    name="obs.names_of_people_talked_to.im"
+                   type="text" placeholder="Name of person" required="required"
+                   data-concept="9314^NAME OF PERSON WHO MOST FREQUENTLY DISCUSS ON IMPORTANT MATTERS^99DCT">
+            </div>
+            <div class="important_matters_details">
+            <div class="form-group">
+                <label for="obs.how_knows_person.im">
+                    How do you know <span class="person_name"></span>?
+                    <span class="required">*</span>
+                </label>
+                <select class="form-control obs.how_knows_person.im" id="obs.how_knows_person.im" name="obs.how_knows_person.im"
+                    data-concept="9315^HOW TO KNOW PERSON WHO MOST FREQUENTLY DISCUSS ON IMPORTANT MATTERS^99DCT">
+                    <option value="">...</option>
+                    <option value="9308^IMMEDIATE FAMILY MEMBER^99DCT">Immediate family member</option>
+                    <option value="9307^EXTENDED FAMILY MEMBER^99DCT">Extended family member</option>
+                    <option value="5618^FRIEND^99DCT">Friend</option>
+                    <option value="1411^NEIGHBOR^99DCT">Neighbor</option>
+                    <option value="9310^WORKMATE^99DCT">Work mate</option>
+                    <option value="5622^OTHER NON-CODED^99DCT">Other</option>
+                </select>
+            </div>
+            <div class="form-group sub-section how_knows_person_other.im">
+                <label for="obs.how_knows_person_other.im">
+                    Specify Other:
+                    <span class="required">*</span>
+                </label>
+                <input class="form-control" id="obs.how_knows_person_other.im" name="obs.how_knows_person_other.im"
+                   type="text" placeholder="How do you know him/her?" required="required"
+                   data-concept="9316^HOW TO KNOW PERSON WHO MOST FREQUENTLY DISCUSS ON IMPORTANT MATTERS, FREETEXT^99DCT">
+            </div>
+            <div class="form-group">
+                <label for="obs.person_gender.im">
+                    Is <span class="person_name"></span> Male or Female?
+                    <span class="required">*</span>
+                </label>
+                <select class="form-control" id="obs.person_gender.im" name="obs.person_gender.im"
+                    data-concept="9317^PERSON GENDER WHO MOST FREQUENTLY DISCUSS ON IMPORTANT MATTERS^99DCT">
+                    <option value="">...</option>
+                    <option value="6226^MALE^99DCT">Male</option>
+                    <option value="6227^FEMALE^99DCT">Female</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>How long have you known him/her? </label>
+                <input type="hidden" id="obs.person_known_duration.im"
+                    name="obs.person_known_duration.im" class="obs.person_known_duration.im"
+                    data-concept="9318^KNOWN PERSON WHO MOST FREQUENTLY DISCUSS ON IMPORTANT MATTERS, MONTH^99DCT">
+
+                <div class="sub-section">
+                    <div class="form-group">
+                        <label for="tmp.person_known_duration.im.years">Years:
+                            <span class="required">*</span>
+                        </label>
+                        <input class="form-control obs.person_known_duration.im.years person_known_duration"
+                        id="tmp.person_known_duration.im.years" 
+                            name="tmp.person_known_duration.im.years"
+                            type="number" placeholder="Years"
+                            required="required">
+                    </div>
+                    <div class="form-group">
+                        <label for="tmp.person_known_duration.im.months">Months:
+                            <span class="required">*</span>
+                        </label>
+                        <input class="form-control obs.person_known_duration.im.months person_known_duration"
+                        id="tmp.person_known_duration.im.months" 
+                            name="tmp.person_known_duration.im.months"
+                            type="number" placeholder="Months"
+                            required="required">
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="obs.frequency_speaking.im">
+                    How often do you speak with him/her?
+                    <span class="required">*</span>
+                </label>
+                <select class="form-control" id="obs.frequency_speaking.im" name="obs.frequency_speaking.im"
+                    data-concept="9319^HOW OFTEN SPEAK WITH PERSON WHO FREQUENTLY DISCUSS ON IMPORTANT MATTERS^99DCT">
+                    <option value="">...</option>
+                    <option value="9238^YEARLY^99DCT">Once/year</option>
+                    <option value="1098^MONTHLY^99DCT">1x/Month</option>
+                    <option value="1099^WEEKLY^99DCT">1x/Week</option>
+                    <option value="1891^ONCE A DAY^99DCT">Everyday</option>
+                </select>
+            </div>
+            <label>
+                Please indicate which groups or organization you participate in together (select all that apply).
+                <span class="required">*</span>
+            </label>
+            <div class="sub-section">
+                <div class="form-group">
+                    <label class="font-normal">
+                        <input class="obs.groups_participate_together.im" type="checkbox"
+                           data-concept="9347^GROUPS WITH PERSON WHO MOST FREQUENTLY DISCUSS ON IMPORTANT MATTERS^99DCT"
+                           value="9312^CHURCH^99DCT">
+                        Church
+                    </label>
+                </div>
+                <div class="form-group">
+                    <label class="font-normal">
+                        <input class="obs.groups_participate_together.im" type="checkbox"
+                           data-concept="9347^GROUPS WITH PERSON WHO MOST FREQUENTLY DISCUSS ON IMPORTANT MATTERS^99DCT"
+                           value="1947^WORK^99DCT">
+                        Work
+                    </label>
+                </div>
+                <div class="form-group">
+                    <label class="font-normal">
+                        <input class="obs.groups_participate_together.im" type="checkbox"
+                           data-concept="9347^GROUPS WITH PERSON WHO MOST FREQUENTLY DISCUSS ON IMPORTANT MATTERS^99DCT"
+                           value="9313^CLUB^99DCT">
+                        Club
+                    </label>
+                </div>
+                <div class="form-group">
+                    <label class="font-normal">
+                        <input class="obs.groups_participate_together.im" type="checkbox"
+                           data-concept="9347^GROUPS WITH PERSON WHO MOST FREQUENTLY DISCUSS ON IMPORTANT MATTERS^99DCT"
+                           value="9235^RECEIVED GROUP MEDICAL VISITS^99DCT">
+                        GMV
+                    </label>
+                </div>
+                <div class="form-group">
+                    <label class="font-normal">
+                        <input class="obs.groups_participate_together.im" type="checkbox"
+                           data-concept="9347^GROUPS WITH PERSON WHO MOST FREQUENTLY DISCUSS ON IMPORTANT MATTERS^99DCT"
+                           value="9283^TABLE BANKING^99DCT">
+                        Microfinance
+                    </label>
+                </div>
+                <div class="form-group">
+                    <label class="font-normal">
+                        <input class="obs.groups_participate_together.im" type="checkbox"
+                            data-concept="9347^GROUPS WITH PERSON WHO MOST FREQUENTLY DISCUSS ON IMPORTANT MATTERS^99DCT"
+                            value="5622^OTHER NON-CODED^99DCT">
+                        Other
+                    </label>
+                </div>
+                <div class="sub-section other_groups_participate_together.im">
+                    <div class="form-group">
+                        <label>
+                            Specify other group: <span class="required">*</span>
+                        </label>
+                        <input class="form-control obs.other_groups_participate_together.im"
+                            name="obs.other_groups_participate_together.im" type="text"
+                            data-concept="9344^OTHER GROUP PARTICIPATION WITH PERSON WHO MOST FREQUENTLY DISCUSS ON IMPORTANT MATTERS, FREETEXT^99DCT"
+                            required="required">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="font-normal">
+                        <input class="obs.groups_participate_together.im none" type="checkbox"
+                           data-concept="9347^GROUPS WITH PERSON WHO MOST FREQUENTLY DISCUSS ON IMPORTANT MATTERS^99DCT"
+                           value="1107^NONE^99DCT">
+                        None
+                    </label>
+                </div>
+            </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h3>SECTION C - HEALTH MATTERS</h3>
+        <label class="alert alert-info">
+            Please provide the following information of up to 5 people you talk to most frequently about
+            <u>health matters</u>.
+        </label>
+        <div class="section health_matters_repeat" id="health_matters_repeat"
+            data-name="health_matters_repeat"
+            data-concept="9351^PERSON WHO MOST FREQUENTLY DISCUSS ON HEALTH MATTERS, DETAILED^99DCT">
+            <div class="alert alert-info" id="health_matters_count">Person 1</div>
+            <div class="form-group">
+                <label for="obs.names_of_people_talked_to.hm">
+                    Name of person:
+                    <span class="required">*</span>
+                </label>
+                <input class="form-control obs.names_of_people_talked_to.hm" id="obs.names_of_people_talked_to.hm"
+                    name="obs.names_of_people_talked_to.hm"
+                   type="text" placeholder="Name of person" required="required"
+                   data-concept="9331^NAME OF PERSON WHO MOST FREQUENTLY DISCUSS ON HEALTH MATTERS^99DCT">
+            </div>
+            <div class="health_matters_details">
+            <div class="form-group">
+                <label for="obs.how_knows_person.hm">
+                    How do you know <span class="person_name"></span>?
+                    <span class="required">*</span>
+                </label>
+                <select class="form-control obs.how_knows_person.hm" id="obs.how_knows_person.hm" name="obs.how_knows_person.hm"
+                    data-concept="9349^HOW TO KNOW PERSON WHO MOST FREQUENTLY DISCUSS ON HEALTH MATTERS^99DCT">
+                    <option value="">...</option>
+                    <option value="9308^IMMEDIATE FAMILY MEMBER^99DCT">Immediate family member</option>
+                    <option value="9307^EXTENDED FAMILY MEMBER^99DCT">Extended family member</option>
+                    <option value="5618^FRIEND^99DCT">Friend</option>
+                    <option value="1411^NEIGHBOR^99DCT">Neighbor</option>
+                    <option value="9310^WORKMATE^99DCT">Work mate</option>
+                    <option value="5622^OTHER NON-CODED^99DCT">Other</option>
+                </select>
+            </div>
+            <div class="form-group sub-section how_knows_person_other.hm">
+                <label for="obs.how_knows_person_other.hm">
+                    Specify Other:
+                    <span class="required">*</span>
+                </label>
+                <input class="form-control" id="obs.how_knows_person_other.hm" name="obs.how_knows_person_other.hm"
+                   type="text" placeholder="How do you know him/her?" required="required"
+                   data-concept="9342^HOW TO KNOW PERSON WHO MOST FREQUENTLY DISCUSS ON HEALTH MATTERS, FREETEXT^99DCT">
+            </div>
+            <div class="form-group">
+                <label for="obs.person_gender.hm">
+                    Is <span class="person_name"></span> Male or Female?
+                    <span class="required">*</span>
+                </label>
+                <select class="form-control" id="obs.person_gender.hm" name="obs.person_gender.hm"
+                    data-concept="9332^PERSON GENDER WHO MOST FREQUENTLY DISCUSS ON HEALTH MATTERS^99DCT">
+                    <option value="">...</option>
+                    <option value="6226^MALE^99DCT">Male</option>
+                    <option value="6227^FEMALE^99DCT">Female</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>How long have you known him/her? </label>
+                <input type="hidden" id="obs.person_known_duration.hm"
+                    name="obs.person_known_duration.hm" class="obs.person_known_duration.hm"
+                    data-concept="9333^KNOWN PERSON WHO MOST FREQUENTLY DISCUSS ON HEALTH MATTERS, MONTH^99DCT">
+
+                <div class="sub-section">
+                    <div class="form-group">
+                        <label for="tmp.person_known_duration.hm.years">Years:
+                            <span class="required">*</span>
+                        </label>
+                        <input class="form-control person_known_duration obs.person_known_duration.hm.years"
+                        id="tmp.person_known_duration.hm.years" 
+                            name="tmp.person_known_duration.hm.years"
+                            type="number" placeholder="Years"
+                            required="required">
+                    </div>
+                    <div class="form-group">
+                        <label for="tmp.person_known_duration.hm.months">Months:
+                            <span class="required">*</span>
+                        </label>
+                        <input class="form-control person_known_duration obs.person_known_duration.hm.months"
+                        id="tmp.person_known_duration.hm.months" 
+                            name="tmp.person_known_duration.hm.months"
+                            type="number" placeholder="Months"
+                            required="required">
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="obs.frequency_speaking.hm">
+                    How often do you speak with him/her?
+                    <span class="required">*</span>
+                </label>
+                <select class="form-control" id="obs.frequency_speaking.hm" name="obs.frequency_speaking.hm"
+                    data-concept="9334^HOW OFTEN SPEAK WITH PERSON WHO FREQUENTLY DISCUSS ON HEALTH MATTERS^99DCT">
+                    <option value="">...</option>
+                    <option value="9238^YEARLY^99DCT">Once/year</option>
+                    <option value="1098^MONTHLY^99DCT">1x/Month</option>
+                    <option value="1099^WEEKLY^99DCT">1x/Week</option>
+                    <option value="1891^ONCE A DAY^99DCT">Everyday</option>
+                </select>
+            </div>
+            <label>
+                Please indicate which groups or organization you participate in together (select all that apply).
+                <span class="required">*</span>
+            </label>
+            <div class="sub-section">
+                <div class="form-group">
+                    <label class="font-normal">
+                        <input class="obs.groups_participate_together.hm" type="checkbox"
+                           data-concept="9350^GROUPS WITH PERSON WHO MOST FREQUENTLY DISCUSS ON HEALTH MATTERS^99DCT"
+                           value="9312^CHURCH^99DCT">
+                        Church
+                    </label>
+                </div>
+                <div class="form-group">
+                    <label class="font-normal">
+                        <input class="obs.groups_participate_together.hm" type="checkbox"
+                           data-concept="9350^GROUPS WITH PERSON WHO MOST FREQUENTLY DISCUSS ON HEALTH MATTERS^99DCT"
+                           value="1947^WORK^99DCT">
+                        Work
+                    </label>
+                </div>
+                <div class="form-group">
+                    <label class="font-normal">
+                        <input class="obs.groups_participate_together.hm" type="checkbox"
+                           data-concept="9350^GROUPS WITH PERSON WHO MOST FREQUENTLY DISCUSS ON HEALTH MATTERS^99DCT"
+                           value="9313^CLUB^99DCT">
+                        Club
+                    </label>
+                </div>
+                <div class="form-group">
+                    <label class="font-normal">
+                        <input class="obs.groups_participate_together.hm" type="checkbox"
+                           data-concept="9350^GROUPS WITH PERSON WHO MOST FREQUENTLY DISCUSS ON HEALTH MATTERS^99DCT"
+                           value="9235^RECEIVED GROUP MEDICAL VISITS^99DCT">
+                        GMV
+                    </label>
+                </div>
+                <div class="form-group">
+                    <label class="font-normal">
+                        <input class="obs.groups_participate_together.hm" type="checkbox"
+                           data-concept="9350^GROUPS WITH PERSON WHO MOST FREQUENTLY DISCUSS ON HEALTH MATTERS^99DCT"
+                           value="9283^TABLE BANKING^99DCT">
+                        Microfinance
+                    </label>
+                </div>
+                <div class="form-group">
+                    <label class="font-normal">
+                        <input class="obs.groups_participate_together.hm" type="checkbox"
+                            data-concept="9350^GROUPS WITH PERSON WHO MOST FREQUENTLY DISCUSS ON HEALTH MATTERS^99DCT"
+                            value="5622^OTHER NON-CODED^99DCT">
+                        Other
+                    </label>
+                </div>
+                <div class="sub-section other_groups_participate_together.hm">
+                    <div class="form-group">
+                        <label>
+                            Specify other group: <span class="required">*</span>
+                        </label>
+                        <input class="form-control obs.other_groups_participate_together.hm"
+                            name="obs.other_groups_participate_together.hm" type="text"
+                            data-concept="9344^OTHER GROUP PARTICIPATION WITH PERSON WHO MOST FREQUENTLY DISCUSS ON HEALTH MATTERS, FREETEXT^99DCT"
+                            required="required">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="font-normal">
+                        <input class="obs.groups_participate_together.hm none" type="checkbox"
+                           data-concept="9350^GROUPS WITH PERSON WHO MOST FREQUENTLY DISCUSS ON HEALTH MATTERS^99DCT"
+                           value="1107^NONE^99DCT">
+                        None
+                    </label>
+                </div>
+            </div>
+            </div>
+        </div>
+    </div>
+    <div class="section">
+        <h3>SECTION D - MICROFINANCE GROUP</h3>
+        <div class="form-group">
+            <label for="obs.belong_microfinance_group">Do you belong a <u>microfinance group</u>? <span class="required">*</span>
+            </label>
+            <select class="form-control" id="obs.belong_microfinance_group" name="obs.belong_microfinance_group"
+                    data-concept="9293^CURRENTLY IN GROUP BASED SAVING PROGRAM, MICROFINANCE^99DCT" required="required">
+                <option value="">...</option>
+                <option value="1065^YES^99DCT">Yes</option>
+                <option value="1066^NO^99DCT">No</option>
+            </select>
+        </div>
+        <div id="belong_microfinance_group_details">
+            <label class="alert alert-info">
+                For <u>microfinance group</u> you spend the most time with, please list the names of up to
+                7 people in this group you talk to most often.
+            </label>
+            <div class="section microfinance_group_repeat" id="microfinance_group_repeat"
+                data-name="microfinance_group_repeat"
+                data-concept="9356^PERSON FROM MICROFINANCE GROUP WHO SPEND THE MOST TIME WITH, DETAILED^99DCT">
+                <div class="alert alert-info" id="microfinance_group_count">Person 1</div>
+                <div class="form-group">
+                    <label for="obs.names_of_people_talked_to.microfinance_group">
+                        First and Last Name:
+                        <span class="required">*</span>
+                    </label>
+                    <input class="form-control obs.names_of_people_talked_to.microfinance_group"
+                        id="obs.names_of_people_talked_to.microfinance_group"
+                        name="obs.names_of_people_talked_to.microfinance_group"
+                       type="text" placeholder="Name of person" required="required"
+                       data-concept="9352^NAME OF PERSON FROM MICROFINANCE GROUP WHO SPENT MOST TIME WITH^99DCT">
+                </div>
+                <div class="microfinance_group_person_details">
+                    <div class="form-group">
+                        <label for="obs.talk_outside_meetings.microfinance_group">
+                            Do you talk to this person outside of group meetings?
+                            <span class="required">*</span>
+                        </label>
+                        <select class="form-control" id="obs.talk_outside_meetings.microfinance_group"
+                            name="obs.talk_outside_meetings.microfinance_group"
+                            data-concept="9353^TALK TO PERSON FROM MICROFINANCE GROUP OUTSIDE OF GROUP MEETINGS^99DCT"
+                            required="required">
+                            <option value="">...</option>
+                            <option value="1065^YES^99DCT">Yes</option>
+                            <option value="1066^NO^99DCT">No</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="obs.closeness_rating.microfinance_group">
+                            On a scale from 1 to 4, how close do you feel to this person?
+                            <span class="required">*</span>
+                        </label>
+                        <select class="form-control" id="obs.closeness_rating.microfinance_group"
+                            name="obs.closeness_rating.microfinance_group"
+                            data-concept="9354^FEELING CLOSE TO THE PERSON FROM MICROFINANCE GROUP^99DCT"
+                            required="required">
+                            <option value="">...</option>
+                            <option value="9258^NOT AT ALL^99DCT">1 = Not at all close</option>
+                            <option value="7641^SOME, NOT ALL^99DCT">2 = Somewhat close</option>
+                            <option value="9335^VERY^99DCT">3 = Very close</option>
+                            <option value="9336^EXTREMELY^99DCT">4 = Extremely close</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="obs.frequency_talk_health_matters.microfinance_group">
+                            On average, how often do you talk to this person about <u>health-matters</u>?
+                            <span class="required">*</span>
+                        </label>
+                        <select class="form-control" id="obs.frequency_talk_health_matters.microfinance_group"
+                            name="obs.frequency_talk_health_matters.microfinance_group"
+                            data-concept="9355^FREQUENCY TO TALK TO THE PERSON FROM MICROFINANCE GROUP ON HEALTH MATTERS^99DCT"
+                            required="required">
+                            <option value="">...</option>
+                            <option value="1090^NEVER^99DCT">Never</option>
+                            <option value="9311^EVERY TWO MONTHS^99DCT">Every couple of months</option>
+                            <option value="1098^MONTHLY^99DCT">Monthly</option>
+                            <option value="1099^WEEKLY^99DCT">Weekly</option>
+                            <option value="1891^ONCE A DAY^99DCT">Daily</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>
+                    <b>In my microfinance group, I...</b>
+                </label>
+            </div>
+            <div class="group_sense_of.microfinance_group sub-section">
+                <div class="form-group">
+                    <label for="obs.group_sense_of_belonging.microfinance_group">
+                        I feel a sense of belonging to my group:
+                        <span class="required">*</span>
+                    </label>
+                    <select class="form-control" id="obs.group_sense_of_belonging.microfinance_group"
+                        name="obs.group_sense_of_belonging.microfinance_group"
+                        data-concept="9357^SENSE OF BELONGING, MICROFINANCE^99DCT"
+                        required="required">
+                        <option value="">...</option>
+                        <option value="9337^STRONGLY DISAGREE^99DCT">Strongly Disagree</option>
+                        <option value="9338^DISAGREE^99DCT">Disagree</option>
+                        <option value="9339^NEUTRAL^99DCT">Neutral</option>
+                        <option value="9340^AGREE^99DCT">Agree</option>
+                        <option value="9341^STRONGLY AGREE">Strongly Agree</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="obs.group_sense_of_membership.microfinance_group">
+                        I feel that I am a member of my group:
+                        <span class="required">*</span>
+                    </label>
+                    <select class="form-control" id="obs.group_sense_of_membership.microfinance_group"
+                        name="obs.group_sense_of_membership.microfinance_group"
+                        data-concept="9358^MEMBER OF THE GROUP, MICROFINANCE^99DCT"
+                        required="required">
+                        <option value="">...</option>
+                        <option value="9337^STRONGLY DISAGREE^99DCT">Strongly Disagree</option>
+                        <option value="9338^DISAGREE^99DCT">Disagree</option>
+                        <option value="9339^NEUTRAL^99DCT">Neutral</option>
+                        <option value="9340^AGREE^99DCT">Agree</option>
+                        <option value="9341^STRONGLY AGREE">Strongly Agree</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="obs.group_sense_of_partnership.microfinance_group">
+                        I see myself as part of my group:
+                        <span class="required">*</span>
+                    </label>
+                    <select class="form-control" id="obs.group_sense_of_partnership.microfinance_group"
+                        name="obs.group_sense_of_partnership.microfinance_group"
+                        data-concept="9359^PART OF THE GROUP, MICROFINANCE^99DCT"
+                        required="required">
+                        <option value="">...</option>
+                        <option value="9337^STRONGLY DISAGREE^99DCT">Strongly Disagree</option>
+                        <option value="9338^DISAGREE^99DCT">Disagree</option>
+                        <option value="9339^NEUTRAL^99DCT">Neutral</option>
+                        <option value="9340^AGREE^99DCT">Agree</option>
+                        <option value="9341^STRONGLY AGREE">Strongly Agree</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="obs.group_sense_of_enthusiasm.microfinance_group">
+                        I am enthusiastic about my group:
+                        <span class="required">*</span>
+                    </label>
+                    <select class="form-control" id="obs.group_sense_of_enthusiasm.microfinance_group"
+                        name="obs.group_sense_of_enthusiasm.microfinance_group"
+                        data-concept="9360^ENTHUSIASTIC ABOUT THE GROUP, MICROFINANCE^99DCT"
+                        required="required">
+                        <option value="">...</option>
+                        <option value="9337^STRONGLY DISAGREE^99DCT">Strongly Disagree</option>
+                        <option value="9338^DISAGREE^99DCT">Disagree</option>
+                        <option value="9339^NEUTRAL^99DCT">Neutral</option>
+                        <option value="9340^AGREE^99DCT">Agree</option>
+                        <option value="9341^STRONGLY AGREE">Strongly Agree</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="obs.group_sense_of_happiness.microfinance_group">
+                        I am happy to be in my group:
+                        <span class="required">*</span>
+                    </label>
+                    <select class="form-control" id="obs.group_sense_of_happiness.microfinance_group"
+                        name="obs.group_sense_of_happiness.microfinance_group"
+                        data-concept="9361^HAPPY IN THE GROUP, MICROFINANCE^99DCT"
+                        required="required">
+                        <option value="">...</option>
+                        <option value="9337^STRONGLY DISAGREE^99DCT">Strongly Disagree</option>
+                        <option value="9338^DISAGREE^99DCT">Disagree</option>
+                        <option value="9339^NEUTRAL^99DCT">Neutral</option>
+                        <option value="9340^AGREE^99DCT">Agree</option>
+                        <option value="9341^STRONGLY AGREE">Strongly Agree</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="obs.group_sense_of_best_rating.microfinance_group">
+                        My group is one of the best microfinance programs anywhere:
+                        <span class="required">*</span>
+                    </label>
+                    <select class="form-control" id="obs.group_sense_of_best_rating.microfinance_group"
+                        name="obs.group_sense_of_best_rating.microfinance_group"
+                        data-concept="9362^BEST GROUP EVER, MICROFINANCE^99DCT"
+                        required="required">
+                        <option value="">...</option>
+                        <option value="9337^STRONGLY DISAGREE^99DCT">Strongly Disagree</option>
+                        <option value="9338^DISAGREE^99DCT">Disagree</option>
+                        <option value="9339^NEUTRAL^99DCT">Neutral</option>
+                        <option value="9340^AGREE^99DCT">Agree</option>
+                        <option value="9341^STRONGLY AGREE">Strongly Agree</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="section">
+        <h3>SECTION E - GROUP MEDICAL VISIT GROUP</h3>
+        <div class="form-group">
+            <label for="obs.belong_gmv">Do you belong a <u>group medical visit group</u>? <span class="required">*</span>
+            </label>
+            <select class="form-control" id="obs.belong_gmv" name="obs.belong_gmv"
+                    data-concept="9235^RECEIVED GROUP MEDICAL VISITS^99DCT" required="required">
+                <option value="">...</option>
+                <option value="1065^YES^99DCT">Yes</option>
+                <option value="1066^NO^99DCT">No</option>
+            </select>
+        </div>
+        <div id="belong_gmv_details">
+            <div class="form-group">
+                <label for="obs.specific_group.club_group_church">
+                    Please specify where/type:
+                    <span class="required">*</span>
+                </label>
+                <input class="form-control obs.specific_group.club_group_church"
+                    id="obs.specific_group.club_group_church"
+                    name="obs.specific_group.club_group_church"
+                   type="text" placeholder="Name" required="required"
+                   data-concept="9368^TYPE OF MEDICAL VISIT GROUP^99DCT">
+            </div>
+            <label class="alert alert-info">
+                For <u>group medical visit group</u> you spend the most time with, please list the names of up to
+                7 people in this group you talk to most often.
+            </label>
+            <div class="section gmv_repeat" id="gmv_repeat"
+                data-name="gmv_repeat"
+                data-concept="9368^PERSON FROM MEDICAL VISIT GROUP WHO SPEND THE MOST TIME WITH, DETAILED^99DCT">
+                <div class="alert alert-info" id="gmv_count">Person 1</div>
+                <div class="form-group">
+                    <label for="obs.names_of_people_talked_to.gmv">
+                        First and Last Name:
+                        <span class="required">*</span>
+                    </label>
+                    <input class="form-control obs.names_of_people_talked_to.gmv"
+                        id="obs.names_of_people_talked_to.gmv"
+                        name="obs.names_of_people_talked_to.gmv"
+                       type="text" placeholder="Name of person" required="required"
+                       data-concept="9364^NAME OF PERSON FROM MEDICAL VISIT GROUP WHO SPENT MOST TIME WITH^99DCT">
+                </div>
+                <div class="gmv_person_details">
+                    <div class="form-group">
+                        <label for="obs.talk_outside_meetings.gmv">
+                            Do you talk to this person outside of group meetings?
+                            <span class="required">*</span>
+                        </label>
+                        <select class="form-control" id="obs.talk_outside_meetings.gmv"
+                            name="obs.talk_outside_meetings.gmv"
+                            data-concept="9365^TALK TO PERSON FROM MEDICAL VISIT GROUP OUTSIDE OF GROUP MEETINGS^99DCT"
+                            required="required">
+                            <option value="">...</option>
+                            <option value="1065^YES^99DCT">Yes</option>
+                            <option value="1066^NO^99DCT">No</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="obs.closeness_rating.gmv">
+                            On a scale from 1 to 4, how close do you feel to this person?
+                            <span class="required">*</span>
+                        </label>
+                        <select class="form-control" id="obs.closeness_rating.gmv"
+                            name="obs.closeness_rating.gmv"
+                            data-concept="9366^FEELING CLOSE TO THE PERSON FROM MEDICAL VISIT GROUP^99DCT"
+                            required="required">
+                            <option value="">...</option>
+                            <option value="9258^NOT AT ALL^99DCT">1 = Not at all close</option>
+                            <option value="7641^SOME, NOT ALL^99DCT">2 = Somewhat close</option>
+                            <option value="9335^VERY^99DCT">3 = Very close</option>
+                            <option value="9336^EXTREMELY^99DCT">4 = Extremely close</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="obs.frequency_talk_health_matters.gmv">
+                            On average, how often do you talk to this person about <u>health-matters</u>?
+                            <span class="required">*</span>
+                        </label>
+                        <select class="form-control" id="obs.frequency_talk_health_matters.gmv"
+                            name="obs.frequency_talk_health_matters.gmv"
+                            data-concept="9367^FREQUENCY TO TALK TO THE PERSON FROM MEDICAL VISIT GROUP ON HEALTH MATTERS^99DCT"
+                            required="required">
+                            <option value="">...</option>
+                            <option value="1090^NEVER^99DCT">Never</option>
+                            <option value="9311^EVERY TWO MONTHS^99DCT">Every couple of months</option>
+                            <option value="1098^MONTHLY^99DCT">Monthly</option>
+                            <option value="1099^WEEKLY^99DCT">Weekly</option>
+                            <option value="1891^ONCE A DAY^99DCT">Daily</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>
+                    <b>In my group medical visit group, I...</b>
+                </label>
+            </div>
+            <div class="group_sense_of.gmv sub-section">
+                <div class="form-group">
+                    <label for="obs.group_sense_of_belonging.gmv">
+                        I feel a sense of belonging to my group:
+                        <span class="required">*</span>
+                    </label>
+                    <select class="form-control" id="obs.group_sense_of_belonging.gmv"
+                        name="obs.group_sense_of_belonging.gmv"
+                        data-concept="9369^SENSE OF BELONGING, MEDICAL VISIT GROUP^99DCT"
+                        required="required">
+                        <option value="">...</option>
+                        <option value="9337^STRONGLY DISAGREE^99DCT">Strongly Disagree</option>
+                        <option value="9338^DISAGREE^99DCT">Disagree</option>
+                        <option value="9339^NEUTRAL^99DCT">Neutral</option>
+                        <option value="9340^AGREE^99DCT">Agree</option>
+                        <option value="9341^STRONGLY AGREE">Strongly Agree</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="obs.group_sense_of_membership.gmv">
+                        I feel that I am a member of my group:
+                        <span class="required">*</span>
+                    </label>
+                    <select class="form-control" id="obs.group_sense_of_membership.gmv"
+                        name="obs.group_sense_of_membership.gmv"
+                        data-concept="9370^MEMBER OF THE GROUP, MEDICAL VISIT GROUP^99DCT"
+                        required="required">
+                        <option value="">...</option>
+                        <option value="9337^STRONGLY DISAGREE^99DCT">Strongly Disagree</option>
+                        <option value="9338^DISAGREE^99DCT">Disagree</option>
+                        <option value="9339^NEUTRAL^99DCT">Neutral</option>
+                        <option value="9340^AGREE^99DCT">Agree</option>
+                        <option value="9341^STRONGLY AGREE">Strongly Agree</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="obs.group_sense_of_partnership.gmv">
+                        I see myself as part of my group:
+                        <span class="required">*</span>
+                    </label>
+                    <select class="form-control" id="obs.group_sense_of_partnership.gmv"
+                        name="obs.group_sense_of_partnership.gmv"
+                        data-concept="9371^PART OF THE GROUP, MEDICAL VISIT GROUP^99DCT"
+                        required="required">
+                        <option value="">...</option>
+                        <option value="9337^STRONGLY DISAGREE^99DCT">Strongly Disagree</option>
+                        <option value="9338^DISAGREE^99DCT">Disagree</option>
+                        <option value="9339^NEUTRAL^99DCT">Neutral</option>
+                        <option value="9340^AGREE^99DCT">Agree</option>
+                        <option value="9341^STRONGLY AGREE">Strongly Agree</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="obs.group_sense_of_enthusiasm.gmv">
+                        I am enthusiastic about my group:
+                        <span class="required">*</span>
+                    </label>
+                    <select class="form-control" id="obs.group_sense_of_enthusiasm.gmv"
+                        name="obs.group_sense_of_enthusiasm.gmv"
+                        data-concept="9372^ENTHUSIASTIC ABOUT THE GROUP, MEDICAL VISIT GROUP^99DCT"
+                        required="required">
+                        <option value="">...</option>
+                        <option value="9337^STRONGLY DISAGREE^99DCT">Strongly Disagree</option>
+                        <option value="9338^DISAGREE^99DCT">Disagree</option>
+                        <option value="9339^NEUTRAL^99DCT">Neutral</option>
+                        <option value="9340^AGREE^99DCT">Agree</option>
+                        <option value="9341^STRONGLY AGREE">Strongly Agree</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="obs.group_sense_of_happiness.gmv">
+                        I am happy to be in my group:
+                        <span class="required">*</span>
+                    </label>
+                    <select class="form-control" id="obs.group_sense_of_happiness.gmv"
+                        name="obs.group_sense_of_happiness.gmv"
+                        data-concept="9373^HAPPY IN THE GROUP, MEDICAL VISIT GROUP^99DCT"
+                        required="required">
+                        <option value="">...</option>
+                        <option value="9337^STRONGLY DISAGREE^99DCT">Strongly Disagree</option>
+                        <option value="9338^DISAGREE^99DCT">Disagree</option>
+                        <option value="9339^NEUTRAL^99DCT">Neutral</option>
+                        <option value="9340^AGREE^99DCT">Agree</option>
+                        <option value="9341^STRONGLY AGREE">Strongly Agree</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="obs.group_sense_of_best_rating.gmv">
+                        My group is one of the best microfinance programs anywhere:
+                        <span class="required">*</span>
+                    </label>
+                    <select class="form-control" id="obs.group_sense_of_best_rating.gmv"
+                        name="obs.group_sense_of_best_rating.gmv"
+                        data-concept="9374^BEST GROUP EVER, MEDICAL VISIT GROUP^99DCT"
+                        required="required">
+                        <option value="">...</option>
+                        <option value="9337^STRONGLY DISAGREE^99DCT">Strongly Disagree</option>
+                        <option value="9338^DISAGREE^99DCT">Disagree</option>
+                        <option value="9339^NEUTRAL^99DCT">Neutral</option>
+                        <option value="9340^AGREE^99DCT">Agree</option>
+                        <option value="9341^STRONGLY AGREE">Strongly Agree</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="section">
+        <h3>SECTION F - CLUBS, GROUPS, CHURCHES</h3>
+        <div class="form-group">
+            <label for="obs.belong_club_group_church">Do you belong any <u>clubs, groups, or churches</u>? <span class="required">*</span>
+            </label>
+            <select class="form-control" id="obs.belong_club_group_church" name="obs.belong_club_group_church"
+                    data-concept="9375^BELONG TO CLUB, GROUP, OR CHURCH^99DCT" required="required">
+                <option value="">...</option>
+                <option value="1065^YES^99DCT">Yes</option>
+                <option value="1066^NO^99DCT">No</option>
+            </select>
+        </div>
+        <div id="belong_club_group_church_details">
+            <div class="form-group">
+                <label for="obs.specific_group.club_group_church">
+                    Please specify which club/group/church:
+                    <span class="required">*</span>
+                </label>
+                <input class="form-control obs.specific_group.club_group_church"
+                    id="obs.specific_group.club_group_church"
+                    name="obs.specific_group.club_group_church"
+                   type="text" placeholder="Name" required="required"
+                   data-concept="9376^TYPE OF CLUB, GROUP, OR CHURCH^99DCT">
+            </div>
+
+            <label class="alert alert-info">
+                For <u>club/group/church</u> you spend the most time with, please list the names of up to
+                7 people in this group you talk to most often.
+            </label>
+            <div class="section club_group_church_repeat" id="club_group_church_repeat"
+                data-name="club_group_church_repeat"
+                data-concept="9381^PERSON FROM CLUB, GROUP, OR CHURCH WHO SPEND THE MOST TIME WITH, DETAILED^99DCT">
+                <div class="alert alert-info" id="club_group_church_count">Person 1</div>
+                <div class="form-group">
+                    <label for="obs.names_of_people_talked_to.club_group_church">
+                        First and Last Name:
+                        <span class="required">*</span>
+                    </label>
+                    <input class="form-control obs.names_of_people_talked_to.club_group_church"
+                        id="obs.names_of_people_talked_to.club_group_church"
+                        name="obs.names_of_people_talked_to.club_group_church"
+                       type="text" placeholder="Name of person" required="required"
+                       data-concept="9377^PERSON FROM CLUB, GROUP, OR CHURCH WHO SPENT MOST TIME WITH^99DCT">
+                </div>
+                <div class="club_group_church_person_details">
+                    <div class="form-group">
+                        <label for="obs.talk_outside_meetings.club_group_church">
+                            Do you talk to this person outside of group meetings?
+                            <span class="required">*</span>
+                        </label>
+                        <select class="form-control" id="obs.talk_outside_meetings.club_group_church"
+                            name="obs.talk_outside_meetings.club_group_church"
+                            data-concept="9378^TALK TO PERSON FROM CLUB, GROUP, OR CHURCH OUTSIDE OF GROUP MEETINGS^99DCT"
+                            required="required">
+                            <option value="">...</option>
+                            <option value="1065^YES^99DCT">Yes</option>
+                            <option value="1066^NO^99DCT">No</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="obs.closeness_rating.club_group_church">
+                            On a scale from 1 to 4, how close do you feel to this person?
+                            <span class="required">*</span>
+                        </label>
+                        <select class="form-control" id="obs.closeness_rating.club_group_church"
+                            name="obs.closeness_rating.club_group_church"
+                            data-concept="9379^FEELING CLOSE TO THE PERSON FROM CLUB, GROUP, OR CHURCH^99DCT"
+                            required="required">
+                            <option value="">...</option>
+                            <option value="9258^NOT AT ALL^99DCT">1 = Not at all close</option>
+                            <option value="7641^SOME, NOT ALL^99DCT">2 = Somewhat close</option>
+                            <option value="9335^VERY^99DCT">3 = Very close</option>
+                            <option value="9336^EXTREMELY^99DCT">4 = Extremely close</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="obs.frequency_talk_health_matters.club_group_church">
+                            On average, how often do you talk to this person about <u>health-matters</u>?
+                            <span class="required">*</span>
+                        </label>
+                        <select class="form-control" id="obs.frequency_talk_health_matters.club_group_church"
+                            name="obs.frequency_talk_health_matters.club_group_church"
+                            data-concept="9380^FREQUENCY TO TALK TO THE PERSON FROM CLUB, GROUP, OR CHURCH ON HEALTH MATTERS^99DCT"
+                            required="required">
+                            <option value="">...</option>
+                            <option value="1090^NEVER^99DCT">Never</option>
+                            <option value="9311^EVERY TWO MONTHS^99DCT">Every couple of months</option>
+                            <option value="1098^MONTHLY^99DCT">Monthly</option>
+                            <option value="1099^WEEKLY^99DCT">Weekly</option>
+                            <option value="1891^ONCE A DAY^99DCT">Daily</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>
+                    <b>In this club/group/church, I...</b>
+                </label>
+            </div>
+            <div class="group_sense_of.club_group_church sub-section">
+                <div class="form-group">
+                    <label for="obs.group_sense_of_belonging.club_group_church">
+                        I feel a sense of belonging to my group:
+                        <span class="required">*</span>
+                    </label>
+                    <select class="form-control" id="obs.group_sense_of_belonging.club_group_church"
+                        name="obs.group_sense_of_belonging.club_group_church"
+                        data-concept="9382^SENSE OF BELONGING, CLUB, GROUP, OR CHURCH^99DCT"
+                        required="required">
+                        <option value="">...</option>
+                        <option value="9337^STRONGLY DISAGREE^99DCT">Strongly Disagree</option>
+                        <option value="9338^DISAGREE^99DCT">Disagree</option>
+                        <option value="9339^NEUTRAL^99DCT">Neutral</option>
+                        <option value="9340^AGREE^99DCT">Agree</option>
+                        <option value="9341^STRONGLY AGREE">Strongly Agree</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="obs.group_sense_of_membership.club_group_church">
+                        I feel that I am a member of my group:
+                        <span class="required">*</span>
+                    </label>
+                    <select class="form-control" id="obs.group_sense_of_membership.club_group_church"
+                        name="obs.group_sense_of_membership.club_group_church"
+                        data-concept="9383^MEMBER OF THE GROUP, CLUB, GROUP, OR CHURCH^99DCT"
+                        required="required">
+                        <option value="">...</option>
+                        <option value="9337^STRONGLY DISAGREE^99DCT">Strongly Disagree</option>
+                        <option value="9338^DISAGREE^99DCT">Disagree</option>
+                        <option value="9339^NEUTRAL^99DCT">Neutral</option>
+                        <option value="9340^AGREE^99DCT">Agree</option>
+                        <option value="9341^STRONGLY AGREE">Strongly Agree</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="obs.group_sense_of_partnership.club_group_church">
+                        I see myself as part of my group:
+                        <span class="required">*</span>
+                    </label>
+                    <select class="form-control" id="obs.group_sense_of_partnership.club_group_church"
+                        name="obs.group_sense_of_partnership.club_group_church"
+                        data-concept="9384^PART OF THE GROUP, CLUB, GROUP, OR CHURCH^99DCT"
+                        required="required">
+                        <option value="">...</option>
+                        <option value="9337^STRONGLY DISAGREE^99DCT">Strongly Disagree</option>
+                        <option value="9338^DISAGREE^99DCT">Disagree</option>
+                        <option value="9339^NEUTRAL^99DCT">Neutral</option>
+                        <option value="9340^AGREE^99DCT">Agree</option>
+                        <option value="9341^STRONGLY AGREE">Strongly Agree</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="obs.group_sense_of_enthusiasm.club_group_church">
+                        I am enthusiastic about my group:
+                        <span class="required">*</span>
+                    </label>
+                    <select class="form-control" id="obs.group_sense_of_enthusiasm.club_group_church"
+                        name="obs.group_sense_of_enthusiasm.club_group_church"
+                        data-concept="9385^ENTHUSIASTIC ABOUT THE GROUP, CLUB, GROUP, OR CHURCH^99DCT"
+                        required="required">
+                        <option value="">...</option>
+                        <option value="9337^STRONGLY DISAGREE^99DCT">Strongly Disagree</option>
+                        <option value="9338^DISAGREE^99DCT">Disagree</option>
+                        <option value="9339^NEUTRAL^99DCT">Neutral</option>
+                        <option value="9340^AGREE^99DCT">Agree</option>
+                        <option value="9341^STRONGLY AGREE">Strongly Agree</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="obs.group_sense_of_happiness.club_group_church">
+                        I am happy to be in my group:
+                        <span class="required">*</span>
+                    </label>
+                    <select class="form-control" id="obs.group_sense_of_happiness.club_group_church"
+                        name="obs.group_sense_of_happiness.club_group_church"
+                        data-concept="9386^HAPPY IN THE GROUP, CLUB, GROUP, OR CHURCH^99DCT"
+                        required="required">
+                        <option value="">...</option>
+                        <option value="9337^STRONGLY DISAGREE^99DCT">Strongly Disagree</option>
+                        <option value="9338^DISAGREE^99DCT">Disagree</option>
+                        <option value="9339^NEUTRAL^99DCT">Neutral</option>
+                        <option value="9340^AGREE^99DCT">Agree</option>
+                        <option value="9341^STRONGLY AGREE">Strongly Agree</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="obs.group_sense_of_best_rating.club_group_church">
+                        My group is one of the best programs anywhere:
+                        <span class="required">*</span>
+                    </label>
+                    <select class="form-control" id="obs.group_sense_of_best_rating.club_group_church"
+                        name="obs.group_sense_of_best_rating.club_group_church"
+                        data-concept="9387^BEST GROUP EVER, CLUB, GROUP, OR CHURCH^99DCT"
+                        required="required">
+                        <option value="">...</option>
+                        <option value="9337^STRONGLY DISAGREE^99DCT">Strongly Disagree</option>
+                        <option value="9338^DISAGREE^99DCT">Disagree</option>
+                        <option value="9339^NEUTRAL^99DCT">Neutral</option>
+                        <option value="9340^AGREE^99DCT">Agree</option>
+                        <option value="9341^STRONGLY AGREE">Strongly Agree</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+</body>
+<script type="text/javascript">
+$(document).ready(function() {
+    var dateFormat = "dd-mm-yy";
+
+    //pick todays date by default
+    var currentDate = $.datepicker.formatDate(dateFormat, new Date());
+    var $encounterDatetime = $('#encounter\\.encounter_datetime');
+    if ($encounterDatetime.val() == "") {
+        $encounterDatetime.val(currentDate);
+    }
+
+    $encounterDatetime.datepicker({
+        dateFormat: dateFormat,
+        changeMonth: true,
+        changeYear: true,
+        maxDate: new Date
+    });
+
+    document.setupAutoCompleteData('encounter\\.location_id');
+    document.setupAutoCompleteDataForProvider('encounter\\.provider_id_select');
+
+        $('#encounter\\.provider_id_select').change(function () {
+        if ($('#encounter\\.provider_id_select').val() === '') {
+            $('#encounter\\.provider_id').val('');
+            $('.show_provider_id_text').show();
+        }
+    });
+    document.setupValidationForLocation("$('#encounter\\.location_id').val()","encounter\\.location_id");
+    document.setupValidationForProvider("$('#encounter\\.provider_id_select').val()","encounter\\.provider_id");
+
+    $('.obs\\.how_knows_person\\.im').change(function(){
+        if($(this).val() == '5622^OTHER NON-CODED^99DCT'){
+            $(this).closest('.important_matters_repeat').find('.how_knows_person_other\\.im').show();
+        } else {
+            $(this).closest('.important_matters_repeat').find('.how_knows_person_other\\.im').hide();
+        }
+    });$('.obs\\.how_knows_person\\.im').trigger('change');
+
+    $('.obs\\.how_knows_person\\.hm').change(function(){
+        if($(this).val() == '5622^OTHER NON-CODED^99DCT'){
+            $(this).closest('.health_matters_repeat').find('.how_knows_person_other\\.hm').show();
+        } else {
+            $(this).closest('.health_matters_repeat').find('.how_knows_person_other\\.hm').hide();
+        }
+    });$('.obs\\.how_knows_person\\.hm').trigger('change');
+
+    $('.obs\\.groups_participate_together\\.im').change(function(){
+        var selected_val = $(this).val();
+        var $section = $(this).closest('.important_matters_repeat');
+        if(selected_val == '1107^NONE^99DCT' && $(this).is(':checked')){
+            $section.find('.obs\\.groups_participate_together\\.im').not($(this)).prop('disabled',true);
+        } else if(selected_val == '1107^NONE^99DCT' && $(this).not(':checked')){
+            $section.find('.obs\\.groups_participate_together\\.im').not($(this)).prop('disabled',false);
+        } else if (selected_val == '5622^OTHER NON-CODED^99DCT' && $(this).is(':checked')){
+            $section.find('.other_groups_participate_together\\.im').show();
+            $section.find('.obs\\.groups_participate_together\\.im').filter($('.none')).prop('disabled',true);
+        } else if(selected_val == '5622^OTHER NON-CODED^99DCT' && $(this).not(':checked')){
+            $section.find('.other_groups_participate_together\\.im').hide();
+            $section.find('.obs\\.groups_participate_together\\.im').filter($('.none')).prop('disabled',false);
+        } else if($section.find('.obs\\.groups_participate_together\\.im').filter(':checked').length > 0){
+            $section.find('.obs\\.groups_participate_together\\.im').filter($('.none')).prop('disabled',true);
+        } else if($section.find('.obs\\.groups_participate_together\\.im').filter(':checked').length <= 0){
+            $section.find('.obs\\.groups_participate_together\\.im').prop('disabled',false);
+        }
+    });
+    $('.obs\\.groups_participate_together\\.im').trigger('change');
+
+    $('.obs\\.groups_participate_together\\.hm').change(function(){
+        var selected_val = $(this).val();
+        var $section = $(this).closest('.health_matters_repeat');
+        if(selected_val == '1107^NONE^99DCT' && $(this).is(':checked')){
+            $section.find('.obs\\.groups_participate_together\\.hm').not($(this)).prop('disabled',true);
+        } else if(selected_val == '1107^NONE^99DCT' && $(this).not(':checked')){
+            $section.find('.obs\\.groups_participate_together\\.hm').not($(this)).prop('disabled',false);
+        } else if (selected_val == '5622^OTHER NON-CODED^99DCT' && $(this).is(':checked')){
+            $section.find('.other_groups_participate_together\\.hm').show();
+            $section.find('.obs\\.groups_participate_together\\.hm').filter($('.none')).prop('disabled',true);
+        } else if(selected_val == '5622^OTHER NON-CODED^99DCT' && $(this).not(':checked')){
+            $section.find('.other_groups_participate_together\\.hm').hide();
+            $section.find('.obs\\.groups_participate_together\\.hm').filter($('.none')).prop('disabled',false);
+        } else if($section.find('.obs\\.groups_participate_together\\.hm').filter(':checked').length > 0){
+            $section.find('.obs\\.groups_participate_together\\.hm').filter($('.none')).prop('disabled',true);
+        } else if($section.find('.obs\\.groups_participate_together\\.hm').filter(':checked').length <= 0){
+            $section.find('.obs\\.groups_participate_together\\.hm').prop('disabled',false);
+        }
+    });
+    $('.obs\\.groups_participate_together\\.hm').trigger('change');
+
+    var setPersonKnownDuration = function($known_duration_element,class_selector){
+        var $section = $known_duration_element.closest('.form-group');
+        $section.find('.person_known_duration').change(function(){ 
+            var years = parseFloat($section.find(class_selector+'\\.years').val()) || 0;
+            var months = parseFloat($section.find(class_selector+'\\.months').val()) || 0;
+            if(years > 0 || months > 0){
+                $known_duration_element.val(years*12 + months);
+            }
+        });$section.find('.person_known_duration').trigger('change');
+
+        var months = parseFloat($known_duration_element.val()) || 0;
+        if(months > 0){
+            var years = parseInt(months/12);
+            months = parseInt(months%12);
+            $section.find(class_selector+'\\.years').val(years);
+            $section.find(class_selector+'\\.months').val(months);
+        }
+    };
+    $.each($(".obs\\.person_known_duration\\.im"),function(k,v){
+        setPersonKnownDuration($(v),".obs\\.person_known_duration\\.im");
+    });
+    $.each($(".obs\\.person_known_duration\\.hm"),function(k,v){
+        setPersonKnownDuration($(v),".obs\\.person_known_duration\\.hm");
+    });
+
+    $('.important_matters_repeat')
+            .append("<p></p><input class='btn btn-primary add_sectionImportantMatters pull-left' \
+                type='button' value='Next Person'/>")
+            .append("<input class='btn btn-primary remove_sectionImportantMatters pull-right' \
+                type='button' value='Remove Person'/><span class='clear'></span>");
+    $(document.body).on('click', '.add_sectionImportantMatters', function () {
+        var importantMattersCount =$('.important_matters_repeat').length;
+        var $visitHitPurchaseMeds = $('.obs\\.number_of_meds');
+        var maxPersons = 5;
+        if(importantMattersCount < maxPersons) {
+            importantMattersCount = importantMattersCount + 1;
+            
+            var $clonedSection = $(this).parent().clone(true);
+            document.removeRepeatedSubSections($clonedSection);
+            
+            $clonedSection.insertAfter($(this).parent());
+            
+            var parentName = $clonedSection.attr("id");
+            $clonedSection.find('#important_matters_count').html("Person "
+                + importantMattersCount + " of " + maxPersons);
+            /* Get largest suffix so far */
+            var _id = $(this).parent().attr('id');
+            var $repeatedSections = $("." + _id);
+            var suffixInt=0;
+            $.each($repeatedSections, function (i, repeatedSection) {
+                var idnr = $(repeatedSection).attr("data-name").match(/\d+$/);
+                if (parseInt(idnr) > parseInt(suffixInt)){
+                    suffixInt= idnr;
+                }
+            });
+            //var $uniqueElements = $clonedSection.find(".repeat_with_unique_element_attrs");
+            if ( parseInt(suffixInt) == 0){
+                parentName += "1";
+                //updateRepeatUniqueElementAttrs($uniqueElements,1);
+            } else {
+                parentName +=  parseInt(suffixInt)+1;
+                //updateRepeatUniqueElementAttrs($uniqueElements,parseInt(suffixInt)+1);
+            }
+            $clonedSection.attr("data-name", parentName);
+
+            /* clear values on cloned fields */
+            $clonedSection.find(':input:not(:button):not(:radio):not(:checkbox)').val('');
+            $clonedSection.find(':radio').prop('checked',false);
+            $clonedSection.find(':checkbox').prop('checked',false);
+            $clonedSection.find(':input:not(:button)').trigger('change');
+            $clonedSection.find('.obs\\.names_of_people_talked_to\\.im').trigger('keyup');
+            setPersonKnownDuration($clonedSection.find(".obs\\.person_known_duration\\.im"),".obs\\.person_known_duration\\.im");
+        }
+
+    });
+    $(document.body).on('click', '.remove_sectionImportantMatters', function () {
+        document.removeIfRepeatedSection($(this));
+    });
+
+    $('.obs\\.names_of_people_talked_to\\.im').keyup(function(){
+        if($(this).val() != ''){
+            $(this).closest('.important_matters_repeat').find('.person_name').html('<u>'+$(this).val()+'</u>');
+            $(this).closest('.important_matters_repeat').find('.important_matters_details').show();
+            $('.add_sectionImportantMatters').attr('disabled',false);
+        } else {
+            $('.add_sectionImportantMatters').attr('disabled',true);
+            $(this).closest('.important_matters_repeat').find('.important_matters_details').hide();
+        }
+    });$('.obs\\.names_of_people_talked_to\\.im').trigger('keyup');
+
+    $('.health_matters_repeat')
+            .append("<p></p><input class='btn btn-primary add_sectionHealthMatters pull-left' \
+                type='button' value='Next Person'/>")
+            .append("<input class='btn btn-primary remove_sectionHealthMatters pull-right' \
+                type='button' value='Remove Person'/><span class='clear'></span>");
+    $(document.body).on('click', '.add_sectionHealthMatters', function () {
+        var healthMattersCount =$('.health_matters_repeat').length;
+        var $visitHitPurchaseMeds = $('.obs\\.number_of_meds');
+        var maxPersons = 5;
+        if(healthMattersCount < maxPersons) {
+            healthMattersCount = healthMattersCount + 1;
+            
+            var $clonedSection = $(this).parent().clone(true);
+            document.removeRepeatedSubSections($clonedSection);
+            
+            $clonedSection.insertAfter($(this).parent());
+            
+            var parentName = $clonedSection.attr("id");
+            $clonedSection.find('#health_matters_count').html("Person "
+                + healthMattersCount + " of " + maxPersons);
+            /* Get largest suffix so far */
+            var _id = $(this).parent().attr('id');
+            var $repeatedSections = $("." + _id);
+            var suffixInt=0;
+            $.each($repeatedSections, function (i, repeatedSection) {
+                var idnr = $(repeatedSection).attr("data-name").match(/\d+$/);
+                if (parseInt(idnr) > parseInt(suffixInt)){
+                    suffixInt= idnr;
+                }
+            });
+            //var $uniqueElements = $clonedSection.find(".repeat_with_unique_element_attrs");
+            if ( parseInt(suffixInt) == 0){
+                parentName += "1";
+                //updateRepeatUniqueElementAttrs($uniqueElements,1);
+            } else {
+                parentName +=  parseInt(suffixInt)+1;
+                //updateRepeatUniqueElementAttrs($uniqueElements,parseInt(suffixInt)+1);
+            }
+            $clonedSection.attr("data-name", parentName);
+
+            /* clear values on cloned fields */
+            $clonedSection.find(':input:not(:button):not(:radio):not(:checkbox)').val('');
+            $clonedSection.find(':radio').prop('checked',false);
+            $clonedSection.find(':checkbox').prop('checked',false);
+            $clonedSection.find(':input:not(:button)').trigger('change');
+            $clonedSection.find('.obs\\.names_of_people_talked_to\\.hm').trigger('keyup');
+            setPersonKnownDuration($clonedSection.find(".obs\\.person_known_duration\\.hm"),".obs\\.person_known_duration\\.hm");
+        }
+
+    });
+    $(document.body).on('click', '.remove_sectionHealthMatters', function () {
+        document.removeIfRepeatedSection($(this));
+    });
+
+    $('.obs\\.names_of_people_talked_to\\.hm').keyup(function(){
+        if($(this).val() != ''){
+            $(this).closest('.health_matters_repeat').find('.person_name').html('<u>'+$(this).val()+'</u>');
+            $(this).closest('.health_matters_repeat').find('.health_matters_details').show();
+            $('.add_sectionHealthMatters').attr('disabled',false);
+        } else {
+            $('.add_sectionHealthMatters').attr('disabled',true);
+            $(this).closest('.health_matters_repeat').find('.health_matters_details').hide();
+        }
+    });$('.obs\\.names_of_people_talked_to\\.hm').trigger('keyup');
+
+    $('.microfinance_group_repeat')
+            .append("<p></p><input class='btn btn-primary add_sectionMicrofinanceGroup pull-left' \
+                type='button' value='Next Person'/>")
+            .append("<input class='btn btn-primary remove_sectionMicrofinanceGroup pull-right' \
+                type='button' value='Remove Person'/><span class='clear'></span>");
+    $(document.body).on('click', '.add_sectionMicrofinanceGroup', function () {
+        var microfinanceGroupCount =$('.microfinance_group_repeat').length;
+        var maxPersons = 7;
+        if(microfinanceGroupCount < maxPersons) {
+            microfinanceGroupCount = microfinanceGroupCount + 1;
+            
+            var $clonedSection = $(this).parent().clone(true);
+            document.removeRepeatedSubSections($clonedSection);
+            
+            $clonedSection.insertAfter($(this).parent());
+            
+            var parentName = $clonedSection.attr("id");
+            $clonedSection.find('#microfinance_group_count').html("Person "
+                + microfinanceGroupCount + " of " + maxPersons);
+            /* Get largest suffix so far */
+            var _id = $(this).parent().attr('id');
+            var $repeatedSections = $("." + _id);
+            var suffixInt=0;
+            $.each($repeatedSections, function (i, repeatedSection) {
+                var idnr = $(repeatedSection).attr("data-name").match(/\d+$/);
+                if (parseInt(idnr) > parseInt(suffixInt)){
+                    suffixInt= idnr;
+                }
+            });
+            //var $uniqueElements = $clonedSection.find(".repeat_with_unique_element_attrs");
+            if ( parseInt(suffixInt) == 0){
+                parentName += "1";
+                //updateRepeatUniqueElementAttrs($uniqueElements,1);
+            } else {
+                parentName +=  parseInt(suffixInt)+1;
+                //updateRepeatUniqueElementAttrs($uniqueElements,parseInt(suffixInt)+1);
+            }
+            $clonedSection.attr("data-name", parentName);
+
+            /* clear values on cloned fields */
+            $clonedSection.find(':input:not(:button):not(:radio):not(:checkbox)').val('');
+            $clonedSection.find(':radio').prop('checked',false);
+            $clonedSection.find(':checkbox').prop('checked',false);
+            $clonedSection.find(':input:not(:button)').trigger('change');
+            $clonedSection.find('.obs\\.names_of_people_talked_to\\.microfinance_group').trigger('keyup');
+        }
+
+    });
+    $(document.body).on('click', '.remove_sectionMicrofinanceGroup', function () {
+        document.removeIfRepeatedSection($(this));
+    });
+
+    $('.obs\\.names_of_people_talked_to\\.microfinance_group').keyup(function(){
+        if($(this).val() != ''){
+            $(this).closest('.microfinance_group_repeat').find('.person_name').html('<u>'+$(this).val()+'</u>');
+            $(this).closest('.microfinance_group_repeat').find('.microfinance_group_person_details').show();
+            $('.add_sectionMicrofinanceGroup').attr('disabled',false);
+        } else {
+            $('.add_sectionMicrofinanceGroup').attr('disabled',true);
+            $(this).closest('.microfinance_group_repeat').find('.microfinance_group_person_details').hide();
+        }
+    });$('.obs\\.names_of_people_talked_to\\.microfinance_group').trigger('keyup');
+
+    $('.gmv_repeat')
+            .append("<p></p><input class='btn btn-primary add_sectionGMV pull-left' \
+                type='button' value='Next Person'/>")
+            .append("<input class='btn btn-primary remove_sectionGMV pull-right' \
+                type='button' value='Remove Person'/><span class='clear'></span>");
+    $(document.body).on('click', '.add_sectionGMV', function () {
+        var gMVCount =$('.gmv_repeat').length;
+        var maxPersons = 7;
+        if(gMVCount < maxPersons) {
+            gMVCount = gMVCount + 1;
+            
+            var $clonedSection = $(this).parent().clone(true);
+            document.removeRepeatedSubSections($clonedSection);
+            
+            $clonedSection.insertAfter($(this).parent());
+            
+            var parentName = $clonedSection.attr("id");
+            $clonedSection.find('#gmv_count').html("Person "
+                + gMVCount + " of " + maxPersons);
+            /* Get largest suffix so far */
+            var _id = $(this).parent().attr('id');
+            var $repeatedSections = $("." + _id);
+            var suffixInt=0;
+            $.each($repeatedSections, function (i, repeatedSection) {
+                var idnr = $(repeatedSection).attr("data-name").match(/\d+$/);
+                if (parseInt(idnr) > parseInt(suffixInt)){
+                    suffixInt= idnr;
+                }
+            });
+            //var $uniqueElements = $clonedSection.find(".repeat_with_unique_element_attrs");
+            if ( parseInt(suffixInt) == 0){
+                parentName += "1";
+                //updateRepeatUniqueElementAttrs($uniqueElements,1);
+            } else {
+                parentName +=  parseInt(suffixInt)+1;
+                //updateRepeatUniqueElementAttrs($uniqueElements,parseInt(suffixInt)+1);
+            }
+            $clonedSection.attr("data-name", parentName);
+
+            /* clear values on cloned fields */
+            $clonedSection.find(':input:not(:button):not(:radio):not(:checkbox)').val('');
+            $clonedSection.find(':radio').prop('checked',false);
+            $clonedSection.find(':checkbox').prop('checked',false);
+            $clonedSection.find(':input:not(:button)').trigger('change');
+            $clonedSection.find('.obs\\.names_of_people_talked_to\\.gmv').trigger('keyup');
+        }
+
+    });
+    $(document.body).on('click', '.remove_sectionGMV', function () {
+        document.removeIfRepeatedSection($(this));
+    });
+
+    $('.obs\\.names_of_people_talked_to\\.gmv').keyup(function(){
+        if($(this).val() != ''){
+            $(this).closest('.gmv_repeat').find('.person_name').html('<u>'+$(this).val()+'</u>');
+            $(this).closest('.gmv_repeat').find('.gmv_person_details').show();
+            $('.add_sectionGMV').attr('disabled',false);
+        } else {
+            $('.add_sectionGMV').attr('disabled',true);
+            $(this).closest('.gmv_repeat').find('.gmv_person_details').hide();
+        }
+    });$('.obs\\.names_of_people_talked_to\\.gmv').trigger('keyup');
+
+    $('.club_group_church_repeat')
+            .append("<p></p><input class='btn btn-primary add_sectionClubGroupChurch pull-left' \
+                type='button' value='Next Person'/>")
+            .append("<input class='btn btn-primary remove_sectionClubGroupChurch pull-right' \
+                type='button' value='Remove Person'/><span class='clear'></span>");
+    $(document.body).on('click', '.add_sectionClubGroupChurch', function () {
+        var clubGroupChurchCount =$('.club_group_church_repeat').length;
+        var maxPersons = 7;
+        if(clubGroupChurchCount < maxPersons) {
+            clubGroupChurchCount = clubGroupChurchCount + 1;
+            
+            var $clonedSection = $(this).parent().clone(true);
+            document.removeRepeatedSubSections($clonedSection);
+            
+            $clonedSection.insertAfter($(this).parent());
+            
+            var parentName = $clonedSection.attr("id");
+            $clonedSection.find('#club_group_church_count').html("Person "
+                + clubGroupChurchCount + " of " + maxPersons);
+            /* Get largest suffix so far */
+            var _id = $(this).parent().attr('id');
+            var $repeatedSections = $("." + _id);
+            var suffixInt=0;
+            $.each($repeatedSections, function (i, repeatedSection) {
+                var idnr = $(repeatedSection).attr("data-name").match(/\d+$/);
+                if (parseInt(idnr) > parseInt(suffixInt)){
+                    suffixInt= idnr;
+                }
+            });
+            //var $uniqueElements = $clonedSection.find(".repeat_with_unique_element_attrs");
+            if ( parseInt(suffixInt) == 0){
+                parentName += "1";
+                //updateRepeatUniqueElementAttrs($uniqueElements,1);
+            } else {
+                parentName +=  parseInt(suffixInt)+1;
+                //updateRepeatUniqueElementAttrs($uniqueElements,parseInt(suffixInt)+1);
+            }
+            $clonedSection.attr("data-name", parentName);
+
+            /* clear values on cloned fields */
+            $clonedSection.find(':input:not(:button):not(:radio):not(:checkbox)').val('');
+            $clonedSection.find(':radio').prop('checked',false);
+            $clonedSection.find(':checkbox').prop('checked',false);
+            $clonedSection.find(':input:not(:button)').trigger('change');
+            $clonedSection.find('.obs\\.names_of_people_talked_to\\.club_group_church').trigger('keyup');
+        }
+
+    });
+    $(document.body).on('click', '.remove_sectionClubGroupChurch', function () {
+        document.removeIfRepeatedSection($(this));
+    });
+
+    $('.obs\\.names_of_people_talked_to\\.club_group_church').keyup(function(){
+        if($(this).val() != ''){
+            $(this).closest('.club_group_church_repeat').find('.person_name').html('<u>'+$(this).val()+'</u>');
+            $(this).closest('.club_group_church_repeat').find('.club_group_church_person_details').show();
+            $('.add_sectionClubGroupChurch').attr('disabled',false);
+        } else {
+            $('.add_sectionClubGroupChurch').attr('disabled',true);
+            $(this).closest('.club_group_church_repeat').find('.club_group_church_person_details').hide();
+        }
+    });$('.obs\\.names_of_people_talked_to\\.club_group_church').trigger('keyup');
+
+    var updateRepeatedSections = function(){
+        var params = [
+        {'sectionClassSelector':'.important_matters_repeat', 'maxSectionCount':5,
+            'countDisplayElementSelector':'#important_matters_count', 'sectionDisplayName':'Person'},
+        {'sectionClassSelector':'.health_matters_repeat', 'maxSectionCount':5,
+            'countDisplayElementSelector':'#health_matters_count', 'sectionDisplayName':'Person'},
+        {'sectionClassSelector':'.microfinance_group_repeat', 'maxSectionCount':7,
+            'countDisplayElementSelector':'#microfinance_group_count', 'sectionDisplayName':'Person'},
+        {'sectionClassSelector':'.gmv_repeat', 'maxSectionCount':7,
+            'countDisplayElementSelector':'#gmv_count', 'sectionDisplayName':'Person'},
+        {'sectionClassSelector':'.club_group_church_repeat', 'maxSectionCount':7,
+            'countDisplayElementSelector':'#club_group_church_count', 'sectionDisplayName':'Person'},
+            ];
+
+        var count;
+        $.each(params, function(sectionIndex,sectionParams){
+            if( $(sectionParams.sectionClassSelector).length > 1){
+                $.each($(sectionParams.sectionClassSelector), function(k,v){
+                    count = k+1;
+                    var parentName = $(v).attr("id");
+                    $(v).find(sectionParams.countDisplayElementSelector).html('');
+                    $(v).find(sectionParams.countDisplayElementSelector)
+                        .append(sectionParams.sectionDisplayName + " " + count + " of " + sectionParams.maxSectionCount);
+                    /* Get largest suffix so far */
+                    var _id = $(v).attr('id');
+                    var $repeatedSections = $("." + _id);
+                    var suffixInt=0;
+                    $.each($repeatedSections, function (i, repeatedSection) {
+                        var idnr = $(repeatedSection).attr("data-name").match(/\d+$/);
+                        if (parseInt(idnr) > parseInt(suffixInt)){
+                            suffixInt= idnr;
+                        }
+                    });
+                    //var $uniqueElements = $(v).find('.repeat_with_unique_element_attrs');
+                    if ( parseInt(suffixInt) == 0){
+                        parentName += "1";
+                        //updateRepeatUniqueElementAttrs($uniqueElements,1);
+                    } else {
+                        parentName +=  parseInt(suffixInt)+1;
+                        //updateRepeatUniqueElementAttrs($uniqueElements,parseInt(suffixInt)+1);
+                    }
+                    $(v).attr("data-name", parentName);
+                    if(v == '.important_matters_repeat'){
+                        setPersonKnownDuration(
+                            $(this).find(".obs\\.person_known_duration\\.im"),".obs\\.person_known_duration\\.im");
+                    } else if(v == '.health_matters_repeat'){
+                        setPersonKnownDuration(
+                            $(this).find(".obs\\.person_known_duration\\.hm"),".obs\\.person_known_duration\\.hm");
+                    }
+                });
+            }
+        });
+    }
+    updateRepeatedSections();
+
+
+    var group_belong_vars = [{
+        "belong_question":"#obs\\.belong_microfinance_group",
+        "details_section":"#belong_microfinance_group_details"},
+        {
+        "belong_question":"#obs\\.belong_gmv",
+        "details_section":"#belong_gmv_details"},
+        {
+        "belong_question":"#obs\\.belong_club_group_church",
+        "details_section":"#belong_club_group_church_details"}
+    ];
+    $.each(group_belong_vars, function(k,v){
+        $(v.belong_question).change(function(){
+            if($(this).val() == '1065^YES^99DCT'){
+                $(v.details_section).show();
+            } else {
+                $(v.details_section).hide();
+            }
+        });$(v.belong_question).trigger('change');
+    });
+
+    $('#save_draft').click(function () {
+        $(this).prop('disabled', true);
+        document.saveDraft();
+        $(this).prop('disabled', false);
+    });
+
+    $('#submit_form').click(function () {
+        $(this).prop('disabled', true);
+        document.submit();
+        $(this).prop('disabled', false);
+    });
+
+    $('#social_network_survey_form').validate({
+
+        rules: {
+            weight_kg: {
+                number: true,
+                range: [0, 250]
+            }
+        },
+        submitHandler: function (form) {
+            $('#result').html(JSON.stringify($('form').serializeEncounterForm(), undefined, 2));
+        }
+    });
+
+});
+</script>
+</html>
