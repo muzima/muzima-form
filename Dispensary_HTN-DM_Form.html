@@ -253,7 +253,7 @@
     </label>
     <div class="form-group menstrualPeriod">
         <label for="obs.last_menstrual_period_qualitative">
-            How long ago was the first day of your menstrual period?
+            How long ago was the first day of your menstrual period? <span class="required lmp_required_marker">*</span>
         </label>
         <input class="form-control datepicker past-date nonFutureDate"
             id="obs.last_menstrual_period_qualitative"
@@ -278,8 +278,8 @@
             <label>URINALYSIS</label>
         </div>
         <div class="form-group">
-            <label for="urinalysis_result">Urinalysis Result:<span class="required">*</span></label>
-            <select class="form-control" id="urinalysis_result" name="tmp.urinalysis_result" required="required">
+            <label for="labs_urinalysis.result">Urinalysis Result:<span class="required">*</span></label>
+            <select class="form-control" id="labs_urinalysis.result" name="tmp.urinalysis_result" required="required">
                     <option value=""> ...</option>
                     <option value="Normal"> Normal</option>
                     <option value="Abnormal"> Abnormal</option>
@@ -485,33 +485,36 @@
             <input type="checkbox" name="tmp.labs" id="tmp.labs_blood_test"> Blood Test
         </label>
     </div>
-    <div class="section" id="labs_blood_test">   
+    <div class="section labs_blood_test">
         <div class="form-group">
             <label for="blood_test_fbs">Fasting Blood Sugar:</label>
-            <input class="form-control blood_test" id="blood_test_fbs" name="blood_test_fbs" type="number"
-                   data-concept="6252^SERUM GLUCOSE, FASTING^99DCT">
+            <input class="form-control blood_test labs_blood_test.result" id="blood_test_fbs"
+                name="blood_test_fbs" type="number"
+                data-concept="6252^SERUM GLUCOSE, FASTING^99DCT">
         </div>
         <div class="form-group blood_test_fbs_date_collected">
             <label class="font-normal" for="obs_datetime.blood_test_fbs_date_collected">Date Collected [FBS]</label>
             <input class="form-control datepicker blood_test_date_collected" id="obs_datetime.blood_test_fbs_date_collected"
-                    name="obs_datetime.blood_test_fbs_date_collected" type="text"
-                    data-obsdatetimefor="blood_test_fbs" readonly="readonly">
+                name="obs_datetime.blood_test_fbs_date_collected" type="text"
+                data-obsdatetimefor="blood_test_fbs" readonly="readonly">
         </div>
         <div class="form-group">
             <label for="blood_test_a1c">A1c:</label>
-            <input class="form-control blood_test" id="blood_test_a1c" name="blood_test_a1c" type="number"
-                   data-concept="6126^GLYCOSYLATED HEMOGLOBIN^99DCT">
+            <input class="form-control blood_test  labs_blood_test.result" id="blood_test_a1c"
+            name="blood_test_a1c" type="number"
+            data-concept="6126^GLYCOSYLATED HEMOGLOBIN^99DCT">
         </div>
         <div class="form-group blood_test_a1c_date_collected">
             <label class="font-normal" for="obs_datetime.blood_test_a1c_date_collected">Date Collected [A1c]</label>
             <input class="form-control datepicker blood_test_date_collected" id="obs_datetime.blood_test_a1c_date_collected"
-                    name="obs_datetime.blood_test_a1c_date_collected" type="text"
-                    data-obsdatetimefor="blood_test_a1c" readonly="readonly">
+                name="obs_datetime.blood_test_a1c_date_collected" type="text"
+                data-obsdatetimefor="blood_test_a1c" readonly="readonly">
         </div>
         <div class="form-group">
             <label for="blood_test_rbs">Random Blood Sugar:</label>
-            <input class="form-control blood_test" id="blood_test_rbs" name="blood_test_rbs" type="number"
-                   data-concept="887^SERUM GLUCOSE^99DCT">
+            <input class="form-control blood_test  labs_blood_test.result" id="blood_test_rbs"
+                name="blood_test_rbs" type="number"
+                data-concept="887^SERUM GLUCOSE^99DCT">
         </div>
         <div class="form-group blood_test_rbs_date_collected">
             <label class="font-normal" for="obs_datetime.blood_test_rbs_date_collected">Date Collected [RBS]</label>
@@ -525,8 +528,9 @@
         </label>
         <div class="form-group">
             <label for="blood_test_creatinine">Creatinine:</label>
-            <input class="form-control blood_test" id="blood_test_creatinine" name="blood_test_creatinine" type="number"
-                   placeholder="µmol/L" data-concept="790^SERUM CREATININE^99DCT">
+            <input class="form-control blood_test labs_blood_test.result" id="blood_test_creatinine"
+                name="blood_test_creatinine" type="number"
+                placeholder="&micro;mol/L" data-concept="790^SERUM CREATININE^99DCT">
         </div>
         <div class="form-group blood_test_creatinine_date_collected">
             <label class="font-normal" for="obs_datetime.blood_test_creatinine_date_collected">Date Collected [Creatinine]</label>
@@ -536,8 +540,9 @@
         </div>
         <div class="form-group">
             <label for="blood_test_haemoglobin">Haemoglobin:</label>
-            <input class="form-control blood_test" id="blood_test_haemoglobin" name="blood_test_haemoglobin" type="number"
-                   placeholder="mg/l" data-concept="21^HEMOGLOBIN^99DCT">
+            <input class="form-control blood_test labs_blood_test.result" id="blood_test_haemoglobin"
+                name="blood_test_haemoglobin" type="number"
+                placeholder="mg/l" data-concept="21^HEMOGLOBIN^99DCT">
         </div>
         <div class="form-group blood_test_haemoglobin_date_collected">
             <label class="font-normal" for="obs_datetime.blood_test_haemoglobin_date_collected">Date Collected [Haemoglobin]</label>
@@ -820,6 +825,12 @@
                 <li>Consult on phone 0718980323</li>
             </ul>
         </label>
+        <label class="alert alert-info htnColumnP">
+            <b>Consider Angioedema side effects due to ACEI/ARB</b>
+            <ul>
+                <li>Stop all ACEI/ARB medications</li>
+            </ul>
+        </label>
     </div>
 
     <div class="section" id="complaints_skin_rash_level" data-concept="9316^LEVEL OF SKIN RASH, DETAILED^99DCT">
@@ -1016,718 +1027,744 @@
     </div>
     <div class="form-group" id="current_medication">
         <label>Which medications are you currently taking?</label>
-        <div class="form-group tmp.current_medication.Metformin">
+        <div class="form-group tmp.current_medication.antidiabetic">
             <label class="font-normal">
-                <input id="tmp.current_medication.Metformin" type="checkbox" name="tmp.current_medication" value="metformin">
-                Metformin
+                <input id="tmp.current_medication.antidiabetic" type="checkbox"
+                name="tmp.current_medication_group" value="antidiabetic">
+                Anti-diabetic drugs
             </label>
         </div>
-        <div class="section" id="current_medication_metformin" data-concept="1919^PATIENT REPORTED CURRENT OTHER TREATMENT^99DCT^1">
-            <h3>Metformin</h3>
-            <input class="form-control" name="obs.current_medication_metformin.medication_added" type="hidden"
-                   data-concept="1895^MEDICATION ADDED^99DCT" value="2261^METFORMIN^99DCT">
-
-            <div class="form-group">
-                <label for="obs.current_medication_metformin.mg">
-                    Dosage:<span class="required">*</span>
-                </label>
-                <select class="form-control" id="obs.current_medication_metformin.mg" name="obs.current_medication_metformin.mg" 
-                    data-concept="1899^NUMBER OF MILLIGRAM^99DCT" required="required">
-                    <option value=""> ...</option>
-                    <option value="500"> 500mg</option>
-                    <option value="750"> 750mg</option>
-                    <option value="850"> 850mg</option>
-                    <option value="1000"> 1g</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="obs.current_medication_metformin.medication_frequency_per_day">
-                    Frequency per day:<span class="required">*</span>
-                </label>
-                <select class="form-control" id="obs.current_medication_metformin.medication_frequency_per_day"
-                        name="obs.current_medication_metformin.medication_frequency_per_day" required="required"
-                        data-concept="1896^MEDICATION FREQUENCY^99DCT">
-                    <option value="">...</option>
-                    <option value="1891^ONCE A DAY^99DCT">Once Daily</option>
-                    <option value="1888^TWICE A DAY^99DCT">Twice Daily</option>
-                </select>
-            </div>
-        <label class="alert alert-info stdColumnI">
-            <b>Possible Metformin side effects</b>
-            <ul>
-                <li>Refer to CO OR Reduce Metformin dose</li>
-            </ul>
-        </label>
-        </div>
-
-        <div class="form-group tmp.current_medication.Glibenclamide">
-            <label class="font-normal">
-                <input id="tmp.current_medication.Glibenclamide" type="checkbox" name="tmp.current_medication" value="glibenclamide">
-                Glibenclamide
-            </label>
-        </div>
-
-        <div class="sub-section" id="current_medication_glibenclamide">
-            <h3>Glibenclamide</h3>
-            <div class="form-group">
-                <label for="tmp.current_medication_glibenclamide.mg">
-                    Frequency and Dosage:<span class="required">*</span>
-                </label>
-                <select class="form-control" required="required" name="tmp.current_medication_glibenclamide.mg"
-                id="tmp.current_medication_glibenclamide.mg">
-                    <option value="">...</option>
-                    <option id="tmp.current_medication_glibenclamide.mg1"> 
-                            2.5mg Once Daily
-                    </option>
-                    <option id="tmp.current_medication_glibenclamide.mg2"> 
-                        5mg Once Daily
-                    </option>
-                    <option id="tmp.current_medication_glibenclamide.mg3"> 
-                        5mg AM, 2.5mg PM
-                    </option>
-                    <option id="tmp.current_medication_glibenclamide.mg4"> 
-                        10mg AM, 5mg PM
-                    </option>
-                </select>
-            </div>
-        <label class="alert alert-info stdColumnJ">
-            <b>Possible Hypoglycemia</b>
-            <ul>
-                <li>Reduce OR STOP dose of Glibenclamide</li>
-            </ul>
-        </label>
-            <div class="concept-set current_medication_glibenclamide.mg" id="current_medication_glibenclamide.mg1"
-            data-concept="1919^PATIENT REPORTED CURRENT OTHER TREATMENT^99DCT^2a">
-                <input class="form-control" name="obs.current_medication_glibenclamide.medication_added" type="hidden"
-                       data-concept="1895^MEDICATION ADDED^99DCT" value="2257^GLIBENCLAMIDE^99DCT">
-                <input class="form-control" id="obs.current_medication_glibenclamide.mg" name="obs.current_medication_glibenclamide.mg" type="hidden"
-                        data-concept="1899^NUMBER OF MILLIGRAM^99DCT" value="2.5">
-                <input class="form-control" name="obs.current_medication_glibenclamide.medication_frequency_per_day" type="hidden"
-                       data-concept="1896^MEDICATION FREQUENCY^99DCT" value="1891^ONCE A DAY^99DCT">
-            </div>
-            <div class="concept-set current_medication_glibenclamide.mg" id="current_medication_glibenclamide.mg2"
-            data-concept="1919^PATIENT REPORTED CURRENT OTHER TREATMENT^99DCT^2b">
-                <input class="form-control" name="obs.current_medication_glibenclamide.medication_added" type="hidden"
-                       data-concept="1895^MEDICATION ADDED^99DCT" value="2257^GLIBENCLAMIDE^99DCT">
-                <input class="form-control" name="obs.current_medication_glibenclamide.mg" type="hidden"
-                        data-concept="1899^NUMBER OF MILLIGRAM^99DCT" value="5">
-                <input class="form-control" name="obs.current_medication_glibenclamide.medication_frequency_per_day" type="hidden"
-                       data-concept="1896^MEDICATION FREQUENCY^99DCT" value="1891^ONCE A DAY^99DCT">
-            </div>
-            <div class="concept-set current_medication_glibenclamide.mg" id="current_medication_glibenclamide.mg3a"
-            data-concept="1919^PATIENT REPORTED CURRENT OTHER TREATMENT^99DCT^2c">
-                <input class="form-control" name="obs.current_medication_glibenclamide.medication_added" type="hidden"
-                       data-concept="1895^MEDICATION ADDED^99DCT" value="2257^GLIBENCLAMIDE^99DCT">
-                <input class="form-control" name="obs.current_medication_glibenclamide.mg" type="hidden"
-                        data-concept="1899^NUMBER OF MILLIGRAM^99DCT" value="5">
-                <input class="form-control" name="obs.current_medication_glibenclamide.medication_frequency_per_day" type="hidden"
-                       data-concept="1896^MEDICATION FREQUENCY^99DCT" value="1639^MORNING^99DCT">
-            </div>
-            <div class="concept-set current_medication_glibenclamide.mg" id="current_medication_glibenclamide.mg3b"
-            data-concept="1919^PATIENT REPORTED CURRENT OTHER TREATMENT^99DCT^2d">
-                <input class="form-control" name="obs.current_medication_glibenclamide.medication_added" type="hidden"
-                       data-concept="1895^MEDICATION ADDED^99DCT" value="2257^GLIBENCLAMIDE^99DCT">
-                <input class="form-control" name="obs.current_medication_glibenclamide.mg" type="hidden"
-                        data-concept="1899^NUMBER OF MILLIGRAM^99DCT" value="2.5">
-                <input class="form-control" name="obs.current_medication_glibenclamide.medication_frequency_per_day" type="hidden"
-                       data-concept="1896^MEDICATION FREQUENCY^99DCT" value="1641^AFTERNOON^99DCT">
-            </div>
-            <div class="concept-set current_medication_glibenclamide.mg" id="current_medication_glibenclamide.mg4a"
-            data-concept="1919^PATIENT REPORTED CURRENT OTHER TREATMENT^99DCT^2e">
-                <input class="form-control" name="obs.current_medication_glibenclamide.medication_added" type="hidden"
-                       data-concept="1895^MEDICATION ADDED^99DCT" value="2257^GLIBENCLAMIDE^99DCT">
-                <input class="form-control" name="obs.current_medication_glibenclamide.mg" type="hidden"
-                        data-concept="1899^NUMBER OF MILLIGRAM^99DCT" value="10">
-                <input class="form-control" name="obs.current_medication_glibenclamide.medication_frequency_per_day" type="hidden"
-                       data-concept="1896^MEDICATION FREQUENCY^99DCT" value="1639^MORNING^99DCT">
-            </div>
-            <div class="concept-set current_medication_glibenclamide.mg" id="current_medication_glibenclamide.mg4b"
-            data-concept="1919^PATIENT REPORTED CURRENT OTHER TREATMENT^99DCT^2f">
-                <input class="form-control" name="obs.current_medication_glibenclamide.medication_added" type="hidden"
-                       data-concept="1895^MEDICATION ADDED^99DCT" value="2257^GLIBENCLAMIDE^99DCT">
-                <input class="form-control" name="obs.current_medication_glibenclamide.mg" type="hidden"
-                        data-concept="1899^NUMBER OF MILLIGRAM^99DCT" value="5">
-                <input class="form-control" name="obs.current_medication_glibenclamide.medication_frequency_per_day" type="hidden"
-                       data-concept="1896^MEDICATION FREQUENCY^99DCT" value="1641^AFTERNOON^99DCT">
-            </div>
-        </div>
-        <div class="form-group current_medication.Enalapril">
-            <label class="font-normal">
-                <input id="tmp.current_medication.Enalapril" type="checkbox" name="tmp.current_medication" value="enalapril">
-                Enalapril
-            </label>
-        </div>
-        <div class="section" id="current_medication_enalapril" data-concept="1919^PATIENT REPORTED CURRENT OTHER TREATMENT^99DCT^3">
-            <h3>Enalapril</h3>
-            <input class="form-control" name="obs.current_medication_enalapril.medication_added" type="hidden"
-                   data-concept="1895^MEDICATION ADDED^99DCT" value="1242^ENALAPRIL^99DCT">
-
-            <div class="form-group">
-                <label for="obs.current_medication_enalapril.mg">
-                    Dosage:<span class="required">*</span>
-                </label>
-                <select id="obs.current_medication_enalapril.mg" name="obs.current_medication_enalapril.mg" required="required"
-                        class="form-control" data-concept="1899^NUMBER OF MILLIGRAM^99DCT">
-                    <option value="">...</option>
-                    <option value="5"> 5mg</option>
-                    <option value="10"> 10mg</option>
-                    <option value="20"> 20mg</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="obs.current_medication_enalapril.medication_frequency_per_day">
-                    Enalapril frequency per day:<span class="required">*</span>
-                </label>
-                <select class="form-control" id="obs.current_medication_enalapril.medication_frequency_per_day"
-                        name="obs.current_medication_enalapril.medication_frequency_per_day" required="required"
-                        data-concept="1896^MEDICATION FREQUENCY^99DCT">
-                    <option value="">...</option>
-                    <option value="1891^ONCE A DAY^99DCT">Once Daily</option>
-                    <option value="1888^TWICE A DAY^99DCT">Twice Daily</option>
-                </select>
-            </div>
-            <label class="alert alert-info">
-                <b>If patient on Enalapril or Losatarn for >=12 months</b>
-                <ul>
-                    <li>Check creatinine and potassium</li>
-                </ul>
-            </label>
-            <label class="alert alert-info stdColumnG">
-                <b>Patient on enalapril and has recurrent cough</b>
-                <ul>
-                    <li>Change Enalapril to Losartan and rule out TB</li>
-                </ul>
-            </label>
-        </div>
-        <div class="form-group tmp.current_medication.Lisinopril">
-            <label class="font-normal">
-                <input id="tmp.current_medication.Lisinopril" type="checkbox" name="tmp.current_medication" value="lisinopril">
-                Lisinopril
-            </label>
-        </div>
-        <div class="section" id="current_medication_lisinopril" data-concept="1919^PATIENT REPORTED CURRENT OTHER TREATMENT^99DCT^4">
-            <h3>Lisinopril</h3>
-            <input class="form-control" name="obs.current_medication_lisinopril.medication_added" type="hidden"
-                   data-concept="1895^MEDICATION ADDED^99DCT" value="2264^LISINOPRIL^99DCT">
-
-            <div class="form-group">
-                <label for="obs.current_medication_lisinopril.mg">
-                    Dosage:<span class="required">*</span>
-                </label>
-                <select class="form-control" id="obs.current_medication_lisinopril.mg"
-                name="obs.current_medication_lisinopril.mg" required="required"
-                        data-concept="1899^NUMBER OF MILLIGRAM^99DCT">
-                    <option value="">...</option>
-                    <option value="10"> 5mg</option>
-                    <option value="15"> 10mg</option>
-                    <option value="20"> 20mg</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="obs.current_medication_lisinopril.medication_frequency_per_day">
-                    Lisinopril frequency per day:<span class="required">*</span>
-                </label>
-                <select class="form-control" id="obs.current_medication_lisinopril.medication_frequency_per_day"
-                        name="obs.current_medication_lisinopril.medication_frequency_per_day" required="required"
-                        data-concept="1896^MEDICATION FREQUENCY^99DCT">
-                    <option value="">...</option>
-                    <option value="1891^ONCE A DAY^99DCT">Once Daily</option>
-                    <option value="1888^TWICE A DAY^99DCT">Twice Daily</option>
-                </select>
-            </div>
-        </div>
-        <div class="form-group tmp.current_medication.Lisinopril_HCTZ">
-            <label class="font-normal">
-                <input id="tmp.current_medication.Lisinopril_HCTZ" type="checkbox"
-                name="tmp.current_medication" value="lisinopril_hctz">
-                Lisinopril/HCTZ
-            </label>
-        </div>
-        <div class="section" id="current_medication_lisinopril_hctz"
-        data-concept="1919^PATIENT REPORTED CURRENT OTHER TREATMENT^99DCT^5">
-            <h3>Lisinopril/HCTZ</h3>
-            <input class="form-control" name="obs.current_medication_lisinopril_hctz.medication_added" type="hidden"
-                   data-concept="1895^MEDICATION ADDED^99DCT" value="8836^LISINOPRIL AND HYDROCLOTHIAZIDE^99DCT">
-
-            <div class="form-group">
-                <label for="obs.current_medication_lisinopril_hctz.mg">
-                    Dosage:<span class="required">*</span>
-                </label>
-                <select class="form-control" id="obs.current_medication_lisinopril_hctz.mg"
-                name="obs.current_medication_lisinopril_hctz.mg" required="required"
-                        data-concept="1899^NUMBER OF MILLIGRAM^99DCT">
-                    <option value="">...</option>
-                     <option value="5"> 5mg</option>
-                    <option value="10"> 10mg</option>
-                    <option value="20"> 20mg</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="obs.current_medication_lisinopril_hctz.medication_frequency_per_day">
-                    Lisinopril/HCTZ frequency per day:<span class="required">*</span>
-                </label>
-                <select class="form-control" id="obs.current_medication_lisinopril_hctz.medication_frequency_per_day"
-                        name="obs.current_medication_lisinopril_hctz.medication_frequency_per_day" required="required"
-                        data-concept="1896^MEDICATION FREQUENCY^99DCT">
-                    <option value="">...</option>
-                    <option value="1891^ONCE A DAY^99DCT">Once Daily</option>
-                    <option value="1888^TWICE A DAY^99DCT">Twice Daily</option>
-                </select>
-            </div>
-        </div>
-        <div class="form-group tmp.current_medication.HCTZ">
-            <label class="font-normal">
-                <input id="tmp.current_medication.HCTZ" type="checkbox" name="tmp.current_medication" value="hctz">
-                HCTZ
-            </label>
-        </div>
-        <div class="section" id="current_medication_hctz" data-concept="1919^PATIENT REPORTED CURRENT OTHER TREATMENT^99DCT^6">
-            <h3>HCTZ</h3>
-            <input class="form-control" name="obs.current_medication_hctz.medication_added" type="hidden"
-                   data-concept="1895^MEDICATION ADDED^99DCT" value="1243^HYDROCHLOROTHIAZIDE^99DCT">
-
-            <div class="form-group">
-                <label for="obs.current_medication_hctz.mg">
-                    Dosage:<span class="required">*</span>
-                </label>
-                <select class="form-control" id="obs.current_medication_hctz.mg" data-concept="1899^NUMBER OF MILLIGRAM^99DCT"
-                        name="obs.current_medication_hctz.mg" required="required">
-                    <option value="">...</option>
-                    <option value="12.5"> 12.5mg</option>
-                    <option value="25"> 25mg</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="obs.current_medication_hctz.medication_frequency_per_day">
-                    HCTZ frequency per day:<span class="required">*</span>
-                </label>
-                <select class="form-control" id="obs.current_medication_hctz.medication_frequency_per_day"
-                        name="obs.current_medication_hctz.medication_frequency_per_day" required="required"
-                        data-concept="1896^MEDICATION FREQUENCY^99DCT">
-                    <option value="">...</option>
-                    <option value="1891^ONCE A DAY^99DCT">Once Daily</option>
-                </select>
-            </div>
-        </div>
-        <div class="form-group tmp.current_medication.Losartan">
-            <label class="font-normal">
-                <input id="tmp.current_medication.Losartan" type="checkbox" name="tmp.current_medication" value="losartan">
-                Losartan
-            </label>
-        </div>
-        <div class="section" id="current_medication_losartan" data-concept="1919^PATIENT REPORTED CURRENT OTHER TREATMENT^99DCT^7">
-            <h3>Losartan</h3>
-            <input class="form-control" name="obs.current_medication_losartan.medication_added" type="hidden"
-                   data-concept="1895^MEDICATION ADDED^99DCT" value="2265^LOSARTAN^99DCT">
-
-            <div class="form-group">
-                <label for="obs.current_medication_losartan.mg">
-                    Dosage:<span class="required">*</span>
-                </label>
-                <select class="form-control" id="obs.current_medication_losartan.mg"
-                name="obs.current_medication_losartan.mg" required="required"
-                        data-concept="1899^NUMBER OF MILLIGRAM^99DCT">
-                    <option value="">...</option>
-                    <option value="25"> 25mg</option>
-                    <option value="50"> 50mg</option>
-                    <option value="100"> 100mg</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="obs.current_medication_losartan.medication_frequency_per_day">
-                    Losartan frequency per day:<span class="required">*</span>
-                </label>
-                <select class="form-control" id="obs.current_medication_losartan.medication_frequency_per_day"
-                        name="obs.current_medication_losartan.medication_frequency_per_day" required="required"
-                        data-concept="1896^MEDICATION FREQUENCY^99DCT">
-                    <option value="">...</option>
-                    <option value="1891^ONCE A DAY^99DCT">Once Daily</option>
-                </select>
-            </div>
-            <label class="alert alert-info">
-                <b>If patient on Enalapril or Losatarn for >=12 months</b>
-                <ul>
-                    <li>Check creatinine and potassium</li>
-                </ul>
-            </label>
-        </div>
-        <div class="form-group tmp.current_medication.Nifedipine">
-            <label class="font-normal">
-                <input id="tmp.current_medication.Nifedipine" type="checkbox" name="tmp.current_medication" value="nifedipine">
-                Nifedipine
-            </label>
-        </div>
-        <div class="section" id="current_medication_nifedipine" data-concept="1919^PATIENT REPORTED CURRENT OTHER TREATMENT^99DCT^8">
-            <h3>Nifedipine</h3>
-            <input class="form-control" name="obs.current_medication_nifedipine.medication_added" type="hidden"
-                   data-concept="1895^MEDICATION ADDED^99DCT" value="250^NIFEDIPINE^99DCT">
-
-            <div class="form-group">
-                <label for="obs.current_medication_nifedipine.mg">
-                    Dosage:<span class="required">*</span>
-                </label>
-                <select id="obs.current_medication_nifedipine.mg" name="obs.current_medication_nifedipine.mg" required="required"
-                        class="form-control" data-concept="1899^NUMBER OF MILLIGRAM^99DCT">
-                    <option value="">...</option>
-                    <option value="20"> 20mg</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="obs.current_medication_nifedipine.medication_frequency_per_day">
-                    Nifedipine frequency per day:<span class="required">*</span>
-                </label>
-                <select class="form-control" id="obs.current_medication_nifedipine.medication_frequency_per_day"
-                        name="obs.current_medication_nifedipine.medication_frequency_per_day" required="required"
-                        data-concept="1896^MEDICATION FREQUENCY^99DCT">
-                    <option value="">...</option>
-                    <option value="1888^TWICE A DAY^99DCT">Twice Daily</option>
-                </select>
-            </div>
-            <label class="alert alert-info stdColumnH">
-                <b>Possible Amlodipine or Nifedipine side effects</b>
-                <ul>
-                    <li>Stop Nifedipine or Amlodipine</li>
-                    <li>Refer to CO</li>
-                </ul>
-            </label>
-        </div>
-        <div class="form-group tmp.current_medication.Amlodipine">
-            <label class="font-normal">
-                <input id="tmp.current_medication.Amlodipine" type="checkbox" name="tmp.current_medication" value="amlodipine">
-                Amlodipine
-            </label>
-        </div>
-        <div class="section" id="current_medication_amlodipine" data-concept="1919^PATIENT REPORTED CURRENT OTHER TREATMENT^99DCT^9">
-            <h3>Amlodipine</h3>
-            <input class="form-control" name="obs.current_medication_amlodipine.medication_added" type="hidden"
-                   data-concept="1895^MEDICATION ADDED^99DCT" value="2272^AMLODIPINE^99DCT">
-
-            <div class="form-group">
-                <label for="obs.current_medication_amlodipine.mg">
-                    Dosage:<span class="required">*</span>
-                </label>
-                <select id="obs.current_medication_amlodipine.mg" name="obs.current_medication_amlodipine.mg" required="required"
-                        class="form-control" data-concept="1899^NUMBER OF MILLIGRAM^99DCT">
-                    <option value="">...</option>
-                    <option value="2.5"> 2.5mg</option>
-                    <option value="5"> 5mg</option>
-                    <option value="10"> 10mg</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="obs.current_medication_amlodipine.medication_frequency_per_day">
-                    Amlodipine frequency per day:<span class="required">*</span>
-                </label>
-                <select class="form-control" id="obs.current_medication_amlodipine.medication_frequency_per_day"
-                        name="obs.current_medication_amlodipine.medication_frequency_per_day" required="required"
-                        data-concept="1896^MEDICATION FREQUENCY^99DCT">
-                    <option value="">...</option>
-                    <option value="1891^ONCE A DAY^99DCT">Once Daily</option>
-                </select>
-            </div>
-            <label class="alert alert-info stdColumnH">
-                <b>Possible Amlodipine or Nifedipine side effects</b>
-                <ul>
-                    <li>Stop Nifedipine or Amlodipine</li>
-                    <li>Refer to CO</li>
-                </ul>
-            </label>
-        </div>
-        <div class="form-group tmp.current_medication.Felodipine">
-            <label class="font-normal">
-                <input id="tmp.current_medication.Felodipine" type="checkbox" name="tmp.current_medication" value="felodipine">
-                Felodipine
-            </label>
-        </div>
-        <div class="section" id="current_medication_felodipine" data-concept="1919^PATIENT REPORTED CURRENT OTHER TREATMENT^99DCT^10">
-            <h3>Felodipine</h3>
-            <input class="form-control" name="obs.current_medication_felodipine.medication_added" type="hidden"
-                   data-concept="1895^MEDICATION ADDED^99DCT" value="2272^AMLODIPINE^99DCT">
-
-            <div class="form-group">
-                <label for="obs.current_medication_felodipine.mg">
-                    Dosage:<span class="required">*</span>
-                </label>
-                <select id="obs.current_medication_felodipine.mg" name="obs.current_medication_felodipine.mg" required="required"
-                        class="form-control" data-concept="1899^NUMBER OF MILLIGRAM^99DCT">
-                    <option value="">...</option>
-                    <option value="2.5"> 2.5mg</option>
-                    <option value="5"> 5mg</option>
-                    <option value="10"> 10mg</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="obs.current_medication_felodipine.medication_frequency_per_day">
-                    Felodipine frequency per day:<span class="required">*</span>
-                </label>
-                <select class="form-control" id="obs.current_medication_felodipine.medication_frequency_per_day"
-                        name="obs.current_medication_felodipine.medication_frequency_per_day" required="required"
-                        data-concept="1896^MEDICATION FREQUENCY^99DCT">
-                    <option value="">...</option>
-                    <option value="1891^ONCE A DAY^99DCT">Once Daily</option>
-                </select>
-            </div>
-        </div>
-        <div class="form-group tmp.current_medication.Gliclazide">
-            <label class="font-normal">
-                <input id="tmp.current_medication.Gliclazide" type="checkbox" name="tmp.current_medication" value="gliclazide">
-                Gliclazide
-            </label>
-        </div>
-        <div class="section" id="current_medication_gliclazide" data-concept="1919^PATIENT REPORTED CURRENT OTHER TREATMENT^99DCT^3">
-            <h3>Gliclazide</h3>
-            <input class="form-control" name="obs.current_medication_gliclazide.medication_added" type="hidden"
-                   data-concept="1895^MEDICATION ADDED^99DCT" value="2258^GLICLAZIDE^99DCT">
-
-            <div class="form-group">
-                <label for="obs.current_medication_gliclazide.mg">
-                    Dosage:<span class="required">*</span>
-                </label>
-                <select id="obs.current_medication_gliclazide.mg" name="obs.current_medication_gliclazide.mg" required="required"
-                        class="form-control" data-concept="1899^NUMBER OF MILLIGRAM^99DCT">
-                    <option value="">...</option>
-                    <option value="40"> 40mg</option>
-                    <option value="80"> 80mg</option>
-                    <option value="160"> 160mg</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="obs.current_medication_gliclazide.medication_frequency_per_day">
-                    Gliclazide frequency per day:<span class="required">*</span>
-                </label>
-                <select class="form-control" id="obs.current_medication_gliclazide.medication_frequency_per_day"
-                        name="obs.current_medication_gliclazide.medication_frequency_per_day" required="required"
-                        data-concept="1896^MEDICATION FREQUENCY^99DCT">
-                    <option value="">...</option>
-                    <option value="1891^ONCE A DAY^99DCT">Once Daily</option>
-                    <option value="1888^TWICE A DAY^99DCT">Twice Daily</option>
-                </select>
-            </div>
-        </div>
-        <div class="form-group tmp.current_medication.Glimepiride">
-            <label class="font-normal">
-                <input id="tmp.current_medication.Glimepiride" type="checkbox" name="tmp.current_medication" value="glimepiride">
-                Glimepiride
-            </label>
-        </div>
-        <div class="section" id="current_medication_glimepiride" data-concept="1919^PATIENT REPORTED CURRENT OTHER TREATMENT^99DCT^10">
-            <h3>Glimepiride</h3>
-            <input class="form-control" name="obs.current_medication_glimepiride.medication_added" type="hidden"
-                   data-concept="1895^MEDICATION ADDED^99DCT" value="2260^GLIMEPIRIDE^99DCT">
-
-            <div class="form-group">
-                <label for="obs.current_medication_glimepiride.mg">
-                    Dosage:<span class="required">*</span>
-                </label>
-                <select id="obs.current_medication_glimepiride.mg" name="obs.current_medication_glimepiride.mg" required="required"
-                        class="form-control" data-concept="1899^NUMBER OF MILLIGRAM^99DCT">
-                    <option value="">...</option>
-                    <option value="1"> 1mg</option>
-                    <option value="2"> 2mg</option>
-                    <option value="3"> 3mg</option>
-                    <option value="4"> 4mg</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="obs.current_medication_glimepiride.medication_frequency_per_day">
-                    Glimepiride frequency per day:<span class="required">*</span>
-                </label>
-                <select class="form-control" id="obs.current_medication_glimepiride.medication_frequency_per_day"
-                        name="obs.current_medication_glimepiride.medication_frequency_per_day" required="required"
-                        data-concept="1896^MEDICATION FREQUENCY^99DCT">
-                    <option value="">...</option>
-                    <option value="1891^ONCE A DAY^99DCT">Once Daily</option>
-                </select>
-            </div>
-        </div>
-        <div class="form-group tmp.current_medication.Insulin">
-            <label class="font-normal">
-                <input id="tmp.current_medication.Insulin" type="checkbox" name="tmp.current_medication" value="insulin">
-                Insulin
-            </label>
-        </div>
-        <div class="section" id="current_medication_insulin">
-            <h3>70% NPH Insulin with 30% Regular Insulin</h3>
-            <div class="concept-set" data-concept="1919^PATIENT REPORTED CURRENT OTHER TREATMENT^99DCT^10">
-                <input class="form-control" name="obs.current_medication_insulin.medication_added.am" type="hidden"
-                   data-concept="1895^MEDICATION ADDED^99DCT" value="2254^INSULIN 70/30^99DCT">
-
-                <input class="form-control" name="obs.current_medication_insulin.frequency.am" type="hidden"
-                   data-concept="1896^MEDICATION FREQUENCY^99DCT" value="1639^MORNING^99DCT">
-
-                <div class="form-group">
-                    <label for="obs.current_medication_insulin.am">
-                        AM Units:<span class="required">*</span>
-                    </label>
-                    <input class="form-control"
-                           name="obs.current_medication_insulin.am" type="number" id="obs.current_medication_insulin.am"
-                           data-concept="7305^NUMBER OF INTERNATIONAL UNIT^99DCT" required="required">
-                </div>
-            </div>
-            <div class="concept-set" data-concept="1919^PATIENT REPORTED CURRENT OTHER TREATMENT^99DCT^11">
-                <input class="form-control" name="obs.current_medication_insulin.medication_added.pm" type="hidden"
-                   data-concept="1895^MEDICATION ADDED^99DCT" value="2254^INSULIN 70/30^99DCT">
-
-                <input class="form-control" name="obs.current_medication_insulin.frequency.pm" type="hidden"
-                   data-concept="1896^MEDICATION FREQUENCY^99DCT" value="1641^AFTERNOON^99DCT">
-
-                <div class="form-group">
-                    <label for="obs.current_medication_insulin.pm">
-                        PM Units:<span class="required">*</span>
-                    </label>
-                    <input class="form-control"
-                           name="obs.current_medication_insulin.pm" type="number" id="obs.current_medication_insulin.pm"
-                           data-concept="7305^NUMBER OF INTERNATIONAL UNIT^99DCT" required="required">
-                </div>
-            </div>
-        </div>
-            <div class="form-group">
+        <div class="form-group sub-section" id="current_medication_antidiabetic">
+            <div class="form-group tmp.current_medication.Metformin">
                 <label class="font-normal">
-                    <input id="tmp.current_medication.other" type="checkbox" name="tmp.current_medication"
-                    value="5622^OTHER NON-CODED^99DCT">
-                    Other
+                    <input id="tmp.current_medication.Metformin" type="checkbox" name="tmp.current_medication" value="metformin">
+                    Metformin
                 </label>
             </div>
-            <div class="section repeat current_medication_other" id="current_medication_other"
-                 data-concept="1919^PATIENT REPORTED CURRENT OTHER TREATMENT^99DCT">
-                <h3>Other Medication</h3>
-
-                <input class="form-control" name="medication_added" type="hidden"
-                       data-concept="1895^MEDICATION ADDED^99DCT" value="5622^OTHER NON-CODED^99DCT">
+            <div class="section" id="current_medication_metformin"
+                data-concept="1919^PATIENT REPORTED CURRENT OTHER TREATMENT^99DCT^1">
+                <h3>Metformin</h3>
+                <input class="form-control" name="obs.current_medication_metformin.medication_added" type="hidden"
+                       data-concept="1895^MEDICATION ADDED^99DCT" value="2261^METFORMIN^99DCT">
 
                 <div class="form-group">
-                    <label for="obs.current_medication_other.medication_name">Medication Name:</label>
-                    <input class="form-control" id="obs.current_medication_other.medication_name"
-                           name="obs.current_medication_other.medication_name" type="text"
-                           data-concept="1779^MEDICATION NAME, FREETEXT^99DCT">
-                </div>
-                <div class="form-group other_medication_number_of_milligram_group">
-                    <label for="other_medication_number_of_milligram">Dose in Milligrams (mg):</label>
-                    <input class="form-control isDecimal otherMedicationNumberOfMilligram" id="other_medication_number_of_milligram"
-                           name="other_medication_number_of_milligram" type="number"
-                           data-concept="1899^NUMBER OF MILLIGRAM^99DCT"
-                           placeholder="You MUST provide dosage">
-                </div>
-                <div class="form-group other_medication_number_of_milliliter_group">
-                    <label for="other_medication_number_of_milliliter">Dose in Milliliters (ml):</label>
-                    <input class="form-control isDecimal otherMedicationNumberOfMilliliter" id="other_medication_number_of_milliliter"
-                           name="other_medication_number_of_milliliter" type="number"
-                           data-Concept="1940^NUMBER OF MILLILITER^99DCT"
-                           placeholder="You MUST provide dosage">
+                    <label for="obs.current_medication_metformin.mg">
+                        Dosage:<span class="required">*</span>
+                    </label>
+                    <select class="form-control" id="obs.current_medication_metformin.mg"
+                        name="obs.current_medication_metformin.mg"
+                        data-concept="1899^NUMBER OF MILLIGRAM^99DCT" required="required">
+                        <option value=""> ...</option>
+                        <option value="500"> 500mg</option>
+                        <option value="750"> 750mg</option>
+                        <option value="850"> 850mg</option>
+                        <option value="1000"> 1g</option>
+                    </select>
                 </div>
                 <div class="form-group">
-                    <label for="obs.current_medication_other.medication_frequency_per_day">Frequency per day:</label>
-                    <select class="form-control" id="obs.current_medication_other.medication_frequency_per_day"
-                            name="obs.current_medication_other.medication_frequency_per_day"
+                    <label for="obs.current_medication_metformin.medication_frequency_per_day">
+                        Frequency per day:<span class="required">*</span>
+                    </label>
+                    <select class="form-control" id="obs.current_medication_metformin.medication_frequency_per_day"
+                            name="obs.current_medication_metformin.medication_frequency_per_day" required="required"
                             data-concept="1896^MEDICATION FREQUENCY^99DCT">
                         <option value="">...</option>
-                        <option value="1639^MORNING^99DCT">Every Morning</option>
-                        <option value="1730^EVENING^99DCT">Every Evening</option>
+                        <option value="1891^ONCE A DAY^99DCT">Once Daily</option>
+                        <option value="1888^TWICE A DAY^99DCT">Twice Daily</option>
+                    </select>
+                </div>
+            <label class="alert alert-info stdColumnI">
+                <b>Possible Metformin side effects</b>
+                <ul>
+                    <li>Refer to CO OR Reduce Metformin dose</li>
+                </ul>
+            </label>
+            </div>
+
+            <div class="form-group tmp.current_medication.Glibenclamide">
+                <label class="font-normal">
+                    <input id="tmp.current_medication.Glibenclamide" type="checkbox" name="tmp.current_medication" value="glibenclamide">
+                    Glibenclamide
+                </label>
+            </div>
+
+            <div class="sub-section" id="current_medication_glibenclamide">
+                <h3>Glibenclamide</h3>
+                <div class="form-group">
+                    <label for="tmp.current_medication_glibenclamide.mg">
+                        Frequency and Dosage:<span class="required">*</span>
+                    </label>
+                    <select class="form-control" required="required" name="tmp.current_medication_glibenclamide.mg"
+                    id="tmp.current_medication_glibenclamide.mg">
+                        <option value="">...</option>
+                        <option id="tmp.current_medication_glibenclamide.mg1">
+                                2.5mg Once Daily
+                        </option>
+                        <option id="tmp.current_medication_glibenclamide.mg2">
+                            5mg Once Daily
+                        </option>
+                        <option id="tmp.current_medication_glibenclamide.mg3">
+                            5mg AM, 2.5mg PM
+                        </option>
+                        <option id="tmp.current_medication_glibenclamide.mg4">
+                            10mg AM, 5mg PM
+                        </option>
+                    </select>
+                </div>
+            <label class="alert alert-info stdColumnJ">
+                <b>Possible Hypoglycemia</b>
+                <ul>
+                    <li>Reduce OR STOP dose of Glibenclamide</li>
+                </ul>
+            </label>
+                <div class="concept-set current_medication_glibenclamide.mg" id="current_medication_glibenclamide.mg1"
+                data-concept="1919^PATIENT REPORTED CURRENT OTHER TREATMENT^99DCT^2a">
+                    <input class="form-control" name="obs.current_medication_glibenclamide.medication_added" type="hidden"
+                           data-concept="1895^MEDICATION ADDED^99DCT" value="2257^GLIBENCLAMIDE^99DCT">
+                    <input class="form-control" id="obs.current_medication_glibenclamide.mg" name="obs.current_medication_glibenclamide.mg" type="hidden"
+                            data-concept="1899^NUMBER OF MILLIGRAM^99DCT" value="2.5">
+                    <input class="form-control" name="obs.current_medication_glibenclamide.medication_frequency_per_day" type="hidden"
+                           data-concept="1896^MEDICATION FREQUENCY^99DCT" value="1891^ONCE A DAY^99DCT">
+                </div>
+                <div class="concept-set current_medication_glibenclamide.mg" id="current_medication_glibenclamide.mg2"
+                data-concept="1919^PATIENT REPORTED CURRENT OTHER TREATMENT^99DCT^2b">
+                    <input class="form-control" name="obs.current_medication_glibenclamide.medication_added" type="hidden"
+                           data-concept="1895^MEDICATION ADDED^99DCT" value="2257^GLIBENCLAMIDE^99DCT">
+                    <input class="form-control" name="obs.current_medication_glibenclamide.mg" type="hidden"
+                            data-concept="1899^NUMBER OF MILLIGRAM^99DCT" value="5">
+                    <input class="form-control" name="obs.current_medication_glibenclamide.medication_frequency_per_day" type="hidden"
+                           data-concept="1896^MEDICATION FREQUENCY^99DCT" value="1891^ONCE A DAY^99DCT">
+                </div>
+                <div class="concept-set current_medication_glibenclamide.mg" id="current_medication_glibenclamide.mg3a"
+                data-concept="1919^PATIENT REPORTED CURRENT OTHER TREATMENT^99DCT^2c">
+                    <input class="form-control" name="obs.current_medication_glibenclamide.medication_added" type="hidden"
+                           data-concept="1895^MEDICATION ADDED^99DCT" value="2257^GLIBENCLAMIDE^99DCT">
+                    <input class="form-control" name="obs.current_medication_glibenclamide.mg" type="hidden"
+                            data-concept="1899^NUMBER OF MILLIGRAM^99DCT" value="5">
+                    <input class="form-control" name="obs.current_medication_glibenclamide.medication_frequency_per_day" type="hidden"
+                           data-concept="1896^MEDICATION FREQUENCY^99DCT" value="1639^MORNING^99DCT">
+                </div>
+                <div class="concept-set current_medication_glibenclamide.mg" id="current_medication_glibenclamide.mg3b"
+                data-concept="1919^PATIENT REPORTED CURRENT OTHER TREATMENT^99DCT^2d">
+                    <input class="form-control" name="obs.current_medication_glibenclamide.medication_added" type="hidden"
+                           data-concept="1895^MEDICATION ADDED^99DCT" value="2257^GLIBENCLAMIDE^99DCT">
+                    <input class="form-control" name="obs.current_medication_glibenclamide.mg" type="hidden"
+                            data-concept="1899^NUMBER OF MILLIGRAM^99DCT" value="2.5">
+                    <input class="form-control" name="obs.current_medication_glibenclamide.medication_frequency_per_day" type="hidden"
+                           data-concept="1896^MEDICATION FREQUENCY^99DCT" value="1641^AFTERNOON^99DCT">
+                </div>
+                <div class="concept-set current_medication_glibenclamide.mg" id="current_medication_glibenclamide.mg4a"
+                data-concept="1919^PATIENT REPORTED CURRENT OTHER TREATMENT^99DCT^2e">
+                    <input class="form-control" name="obs.current_medication_glibenclamide.medication_added" type="hidden"
+                           data-concept="1895^MEDICATION ADDED^99DCT" value="2257^GLIBENCLAMIDE^99DCT">
+                    <input class="form-control" name="obs.current_medication_glibenclamide.mg" type="hidden"
+                            data-concept="1899^NUMBER OF MILLIGRAM^99DCT" value="10">
+                    <input class="form-control" name="obs.current_medication_glibenclamide.medication_frequency_per_day" type="hidden"
+                           data-concept="1896^MEDICATION FREQUENCY^99DCT" value="1639^MORNING^99DCT">
+                </div>
+                <div class="concept-set current_medication_glibenclamide.mg" id="current_medication_glibenclamide.mg4b"
+                data-concept="1919^PATIENT REPORTED CURRENT OTHER TREATMENT^99DCT^2f">
+                    <input class="form-control" name="obs.current_medication_glibenclamide.medication_added" type="hidden"
+                           data-concept="1895^MEDICATION ADDED^99DCT" value="2257^GLIBENCLAMIDE^99DCT">
+                    <input class="form-control" name="obs.current_medication_glibenclamide.mg" type="hidden"
+                            data-concept="1899^NUMBER OF MILLIGRAM^99DCT" value="5">
+                    <input class="form-control" name="obs.current_medication_glibenclamide.medication_frequency_per_day" type="hidden"
+                           data-concept="1896^MEDICATION FREQUENCY^99DCT" value="1641^AFTERNOON^99DCT">
+                </div>
+            </div>
+            <div class="form-group tmp.current_medication.Gliclazide">
+                <label class="font-normal">
+                    <input id="tmp.current_medication.Gliclazide" type="checkbox" name="tmp.current_medication" value="gliclazide">
+                    Gliclazide
+                </label>
+            </div>
+            <div class="section" id="current_medication_gliclazide" data-concept="1919^PATIENT REPORTED CURRENT OTHER TREATMENT^99DCT^3">
+                <h3>Gliclazide</h3>
+                <input class="form-control" name="obs.current_medication_gliclazide.medication_added" type="hidden"
+                       data-concept="1895^MEDICATION ADDED^99DCT" value="2258^GLICLAZIDE^99DCT">
+
+                <div class="form-group">
+                    <label for="obs.current_medication_gliclazide.mg">
+                        Dosage:<span class="required">*</span>
+                    </label>
+                    <select id="obs.current_medication_gliclazide.mg" name="obs.current_medication_gliclazide.mg" required="required"
+                            class="form-control" data-concept="1899^NUMBER OF MILLIGRAM^99DCT">
+                        <option value="">...</option>
+                        <option value="40"> 40mg</option>
+                        <option value="80"> 80mg</option>
+                        <option value="160"> 160mg</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="obs.current_medication_gliclazide.medication_frequency_per_day">
+                        Gliclazide frequency per day:<span class="required">*</span>
+                    </label>
+                    <select class="form-control" id="obs.current_medication_gliclazide.medication_frequency_per_day"
+                            name="obs.current_medication_gliclazide.medication_frequency_per_day" required="required"
+                            data-concept="1896^MEDICATION FREQUENCY^99DCT">
+                        <option value="">...</option>
                         <option value="1891^ONCE A DAY^99DCT">Once Daily</option>
                         <option value="1888^TWICE A DAY^99DCT">Twice Daily</option>
                     </select>
                 </div>
             </div>
-        <label class="alert alert-info all_ACEI_ARBs_reminder">
-            Wrong combination of drugs, all ACEI/ARBs
-            <ul>
-                <li>SET: Lisinopril, Losartan, Enalapril</li>
-                <li>Patient can only be on one at any given time</li>
-            </ul>
-        </label>
-        <label class="alert alert-info all_CCBs_reminder">
-            Wrong combination of drugs, all CCBs
-            <ul>
-                <li>SET: Nifedipine, Amlodipine, Felodipine</li>
-                <li>Patient can only be on one at any given time</li>
-            </ul>
-        </label>
-        <label class="alert alert-info all_antidiabetic_drugs_reminder">
-            Wrong combination of drugs, all anti-diabetic medications
-            <ul>
-                <li>SET: Insulin, Glimepiride, Gliclazide, Glibenclamide</li>
-                <li>Patient can only be on one at any given time</li>
-            </ul>
-        </label>
-    </div>
-    <div id="adherence">
-        <label>Adherence:</label>
-        <div class="sub-section">
+            <div class="form-group tmp.current_medication.Glimepiride">
+                <label class="font-normal">
+                    <input id="tmp.current_medication.Glimepiride" type="checkbox" name="tmp.current_medication" value="glimepiride">
+                    Glimepiride
+                </label>
+            </div>
+            <div class="section" id="current_medication_glimepiride" data-concept="1919^PATIENT REPORTED CURRENT OTHER TREATMENT^99DCT^10">
+                <h3>Glimepiride</h3>
+                <input class="form-control" name="obs.current_medication_glimepiride.medication_added" type="hidden"
+                       data-concept="1895^MEDICATION ADDED^99DCT" value="2260^GLIMEPIRIDE^99DCT">
+
+                <div class="form-group">
+                    <label for="obs.current_medication_glimepiride.mg">
+                        Dosage:<span class="required">*</span>
+                    </label>
+                    <select id="obs.current_medication_glimepiride.mg" name="obs.current_medication_glimepiride.mg" required="required"
+                            class="form-control" data-concept="1899^NUMBER OF MILLIGRAM^99DCT">
+                        <option value="">...</option>
+                        <option value="1"> 1mg</option>
+                        <option value="2"> 2mg</option>
+                        <option value="3"> 3mg</option>
+                        <option value="4"> 4mg</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="obs.current_medication_glimepiride.medication_frequency_per_day">
+                        Glimepiride frequency per day:<span class="required">*</span>
+                    </label>
+                    <select class="form-control" id="obs.current_medication_glimepiride.medication_frequency_per_day"
+                            name="obs.current_medication_glimepiride.medication_frequency_per_day" required="required"
+                            data-concept="1896^MEDICATION FREQUENCY^99DCT">
+                        <option value="">...</option>
+                        <option value="1891^ONCE A DAY^99DCT">Once Daily</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group tmp.current_medication.Insulin">
+                <label class="font-normal">
+                    <input id="tmp.current_medication.Insulin" type="checkbox" name="tmp.current_medication" value="insulin">
+                    Insulin
+                </label>
+            </div>
+            <div class="section" id="current_medication_insulin">
+                <h3>70% NPH Insulin with 30% Regular Insulin</h3>
+                <div class="concept-set" data-concept="1919^PATIENT REPORTED CURRENT OTHER TREATMENT^99DCT^10">
+                    <input class="form-control" name="obs.current_medication_insulin.medication_added.am" type="hidden"
+                       data-concept="1895^MEDICATION ADDED^99DCT" value="2254^INSULIN 70/30^99DCT">
+
+                    <input class="form-control" name="obs.current_medication_insulin.frequency.am" type="hidden"
+                       data-concept="1896^MEDICATION FREQUENCY^99DCT" value="1639^MORNING^99DCT">
+
+                    <div class="form-group">
+                        <label for="obs.current_medication_insulin.am">
+                            AM Units:<span class="required">*</span>
+                        </label>
+                        <input class="form-control"
+                               name="obs.current_medication_insulin.am" type="number" id="obs.current_medication_insulin.am"
+                               data-concept="7305^NUMBER OF INTERNATIONAL UNIT^99DCT" required="required">
+                    </div>
+                </div>
+                <div class="concept-set" data-concept="1919^PATIENT REPORTED CURRENT OTHER TREATMENT^99DCT^11">
+                    <input class="form-control" name="obs.current_medication_insulin.medication_added.pm" type="hidden"
+                       data-concept="1895^MEDICATION ADDED^99DCT" value="2254^INSULIN 70/30^99DCT">
+
+                    <input class="form-control" name="obs.current_medication_insulin.frequency.pm" type="hidden"
+                       data-concept="1896^MEDICATION FREQUENCY^99DCT" value="1641^AFTERNOON^99DCT">
+
+                    <div class="form-group">
+                        <label for="obs.current_medication_insulin.pm">
+                            PM Units:<span class="required">*</span>
+                        </label>
+                        <input class="form-control"
+                               name="obs.current_medication_insulin.pm" type="number" id="obs.current_medication_insulin.pm"
+                               data-concept="7305^NUMBER OF INTERNATIONAL UNIT^99DCT" required="required">
+                    </div>
+                </div>
+            </div>
+            <label class="alert alert-info all_antidiabetic_drugs_reminder">
+                Wrong combination of anti-diabetic medications
+                <ul>
+                    <li>SET: Insulin, Glimepiride, Gliclazide, Glibenclamide</li>
+                    <li>Patient can only be on one at any given time</li>
+                </ul>
+            </label>
+        </div>
+        <div class="form-group tmp.current_medication.antihypertensive">
+            <label class="font-normal">
+                <input id="tmp.current_medication.antihypertensive" type="checkbox"
+                name="tmp.current_medication_group" value="antihypertensive">
+                Anti-hypertensive agents
+            </label>
+        </div>
+        <div class="form-group sub-section" id="current_medication_antihypertensive">
+            <div class="form-group current_medication.Enalapril">
+                <label class="font-normal">
+                    <input id="tmp.current_medication.Enalapril" type="checkbox" name="tmp.current_medication" value="enalapril">
+                    Enalapril
+                </label>
+            </div>
+            <div class="section" id="current_medication_enalapril" data-concept="1919^PATIENT REPORTED CURRENT OTHER TREATMENT^99DCT^3">
+                <h3>Enalapril</h3>
+                <input class="form-control" name="obs.current_medication_enalapril.medication_added" type="hidden"
+                       data-concept="1895^MEDICATION ADDED^99DCT" value="1242^ENALAPRIL^99DCT">
+
+                <div class="form-group">
+                    <label for="obs.current_medication_enalapril.mg">
+                        Dosage:<span class="required">*</span>
+                    </label>
+                    <select id="obs.current_medication_enalapril.mg" name="obs.current_medication_enalapril.mg" required="required"
+                            class="form-control" data-concept="1899^NUMBER OF MILLIGRAM^99DCT">
+                        <option value="">...</option>
+                        <option value="5"> 5mg</option>
+                        <option value="10"> 10mg</option>
+                        <option value="20"> 20mg</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="obs.current_medication_enalapril.medication_frequency_per_day">
+                        Enalapril frequency per day:<span class="required">*</span>
+                    </label>
+                    <select class="form-control" id="obs.current_medication_enalapril.medication_frequency_per_day"
+                            name="obs.current_medication_enalapril.medication_frequency_per_day" required="required"
+                            data-concept="1896^MEDICATION FREQUENCY^99DCT">
+                        <option value="">...</option>
+                        <option value="1891^ONCE A DAY^99DCT">Once Daily</option>
+                        <option value="1888^TWICE A DAY^99DCT">Twice Daily</option>
+                    </select>
+                </div>
+                <label class="alert alert-info">
+                    <b>If patient on Enalapril or Losatarn for >=12 months</b>
+                    <ul>
+                        <li>Check creatinine and potassium</li>
+                    </ul>
+                </label>
+                <label class="alert alert-info stdColumnG">
+                    <b>Patient on enalapril and has recurrent cough</b>
+                    <ul>
+                        <li>Change Enalapril to Losartan and rule out TB</li>
+                    </ul>
+                </label>
+            </div>
+            <div class="form-group tmp.current_medication.Lisinopril">
+                <label class="font-normal">
+                    <input id="tmp.current_medication.Lisinopril" type="checkbox" name="tmp.current_medication" value="lisinopril">
+                    Lisinopril
+                </label>
+            </div>
+            <div class="section" id="current_medication_lisinopril" data-concept="1919^PATIENT REPORTED CURRENT OTHER TREATMENT^99DCT^4">
+                <h3>Lisinopril</h3>
+                <input class="form-control" name="obs.current_medication_lisinopril.medication_added" type="hidden"
+                       data-concept="1895^MEDICATION ADDED^99DCT" value="2264^LISINOPRIL^99DCT">
+
+                <div class="form-group">
+                    <label for="obs.current_medication_lisinopril.mg">
+                        Dosage:<span class="required">*</span>
+                    </label>
+                    <select class="form-control" id="obs.current_medication_lisinopril.mg"
+                    name="obs.current_medication_lisinopril.mg" required="required"
+                            data-concept="1899^NUMBER OF MILLIGRAM^99DCT">
+                        <option value="">...</option>
+                        <option value="10"> 5mg</option>
+                        <option value="15"> 10mg</option>
+                        <option value="20"> 20mg</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="obs.current_medication_lisinopril.medication_frequency_per_day">
+                        Lisinopril frequency per day:<span class="required">*</span>
+                    </label>
+                    <select class="form-control" id="obs.current_medication_lisinopril.medication_frequency_per_day"
+                            name="obs.current_medication_lisinopril.medication_frequency_per_day" required="required"
+                            data-concept="1896^MEDICATION FREQUENCY^99DCT">
+                        <option value="">...</option>
+                        <option value="1891^ONCE A DAY^99DCT">Once Daily</option>
+                        <option value="1888^TWICE A DAY^99DCT">Twice Daily</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group tmp.current_medication.Lisinopril_HCTZ">
+                <label class="font-normal">
+                    <input id="tmp.current_medication.Lisinopril_HCTZ" type="checkbox"
+                    name="tmp.current_medication" value="lisinopril_hctz">
+                    Lisinopril/HCTZ
+                </label>
+            </div>
+            <div class="section" id="current_medication_lisinopril_hctz"
+            data-concept="1919^PATIENT REPORTED CURRENT OTHER TREATMENT^99DCT^5">
+                <h3>Lisinopril/HCTZ</h3>
+                <input class="form-control" name="obs.current_medication_lisinopril_hctz.medication_added" type="hidden"
+                       data-concept="1895^MEDICATION ADDED^99DCT" value="8836^LISINOPRIL AND HYDROCLOTHIAZIDE^99DCT">
+
+                <div class="form-group">
+                    <label for="obs.current_medication_lisinopril_hctz.mg">
+                        Dosage:<span class="required">*</span>
+                    </label>
+                    <select class="form-control" id="obs.current_medication_lisinopril_hctz.mg"
+                    name="obs.current_medication_lisinopril_hctz.mg" required="required"
+                            data-concept="1899^NUMBER OF MILLIGRAM^99DCT">
+                        <option value="">...</option>
+                         <option value="5"> 5mg</option>
+                        <option value="10"> 10mg</option>
+                        <option value="20"> 20mg</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="obs.current_medication_lisinopril_hctz.medication_frequency_per_day">
+                        Lisinopril/HCTZ frequency per day:<span class="required">*</span>
+                    </label>
+                    <select class="form-control" id="obs.current_medication_lisinopril_hctz.medication_frequency_per_day"
+                            name="obs.current_medication_lisinopril_hctz.medication_frequency_per_day" required="required"
+                            data-concept="1896^MEDICATION FREQUENCY^99DCT">
+                        <option value="">...</option>
+                        <option value="1891^ONCE A DAY^99DCT">Once Daily</option>
+                        <option value="1888^TWICE A DAY^99DCT">Twice Daily</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group tmp.current_medication.HCTZ">
+                <label class="font-normal">
+                    <input id="tmp.current_medication.HCTZ" type="checkbox" name="tmp.current_medication" value="hctz">
+                    HCTZ
+                </label>
+            </div>
+            <div class="section" id="current_medication_hctz" data-concept="1919^PATIENT REPORTED CURRENT OTHER TREATMENT^99DCT^6">
+                <h3>HCTZ</h3>
+                <input class="form-control" name="obs.current_medication_hctz.medication_added" type="hidden"
+                       data-concept="1895^MEDICATION ADDED^99DCT" value="1243^HYDROCHLOROTHIAZIDE^99DCT">
+
+                <div class="form-group">
+                    <label for="obs.current_medication_hctz.mg">
+                        Dosage:<span class="required">*</span>
+                    </label>
+                    <select class="form-control" id="obs.current_medication_hctz.mg" data-concept="1899^NUMBER OF MILLIGRAM^99DCT"
+                            name="obs.current_medication_hctz.mg" required="required">
+                        <option value="">...</option>
+                        <option value="12.5"> 12.5mg</option>
+                        <option value="25"> 25mg</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="obs.current_medication_hctz.medication_frequency_per_day">
+                        HCTZ frequency per day:<span class="required">*</span>
+                    </label>
+                    <select class="form-control" id="obs.current_medication_hctz.medication_frequency_per_day"
+                            name="obs.current_medication_hctz.medication_frequency_per_day" required="required"
+                            data-concept="1896^MEDICATION FREQUENCY^99DCT">
+                        <option value="">...</option>
+                        <option value="1891^ONCE A DAY^99DCT">Once Daily</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group tmp.current_medication.Losartan">
+                <label class="font-normal">
+                    <input id="tmp.current_medication.Losartan" type="checkbox" name="tmp.current_medication" value="losartan">
+                    Losartan
+                </label>
+            </div>
+            <div class="section" id="current_medication_losartan" data-concept="1919^PATIENT REPORTED CURRENT OTHER TREATMENT^99DCT^7">
+                <h3>Losartan</h3>
+                <input class="form-control" name="obs.current_medication_losartan.medication_added" type="hidden"
+                       data-concept="1895^MEDICATION ADDED^99DCT" value="2265^LOSARTAN^99DCT">
+
+                <div class="form-group">
+                    <label for="obs.current_medication_losartan.mg">
+                        Dosage:<span class="required">*</span>
+                    </label>
+                    <select class="form-control" id="obs.current_medication_losartan.mg"
+                    name="obs.current_medication_losartan.mg" required="required"
+                            data-concept="1899^NUMBER OF MILLIGRAM^99DCT">
+                        <option value="">...</option>
+                        <option value="25"> 25mg</option>
+                        <option value="50"> 50mg</option>
+                        <option value="100"> 100mg</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="obs.current_medication_losartan.medication_frequency_per_day">
+                        Losartan frequency per day:<span class="required">*</span>
+                    </label>
+                    <select class="form-control" id="obs.current_medication_losartan.medication_frequency_per_day"
+                            name="obs.current_medication_losartan.medication_frequency_per_day" required="required"
+                            data-concept="1896^MEDICATION FREQUENCY^99DCT">
+                        <option value="">...</option>
+                        <option value="1891^ONCE A DAY^99DCT">Once Daily</option>
+                    </select>
+                </div>
+                <label class="alert alert-info">
+                    <b>If patient on Enalapril or Losatarn for >=12 months</b>
+                    <ul>
+                        <li>Check creatinine and potassium</li>
+                    </ul>
+                </label>
+            </div>
+            <div class="form-group tmp.current_medication.Nifedipine">
+                <label class="font-normal">
+                    <input id="tmp.current_medication.Nifedipine" type="checkbox" name="tmp.current_medication" value="nifedipine">
+                    Nifedipine
+                </label>
+            </div>
+            <div class="section" id="current_medication_nifedipine" data-concept="1919^PATIENT REPORTED CURRENT OTHER TREATMENT^99DCT^8">
+                <h3>Nifedipine</h3>
+                <input class="form-control" name="obs.current_medication_nifedipine.medication_added" type="hidden"
+                       data-concept="1895^MEDICATION ADDED^99DCT" value="250^NIFEDIPINE^99DCT">
+
+                <div class="form-group">
+                    <label for="obs.current_medication_nifedipine.mg">
+                        Dosage:<span class="required">*</span>
+                    </label>
+                    <select id="obs.current_medication_nifedipine.mg" name="obs.current_medication_nifedipine.mg" required="required"
+                            class="form-control" data-concept="1899^NUMBER OF MILLIGRAM^99DCT">
+                        <option value="">...</option>
+                        <option value="20"> 20mg</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="obs.current_medication_nifedipine.medication_frequency_per_day">
+                        Nifedipine frequency per day:<span class="required">*</span>
+                    </label>
+                    <select class="form-control" id="obs.current_medication_nifedipine.medication_frequency_per_day"
+                            name="obs.current_medication_nifedipine.medication_frequency_per_day" required="required"
+                            data-concept="1896^MEDICATION FREQUENCY^99DCT">
+                        <option value="">...</option>
+                        <option value="1888^TWICE A DAY^99DCT">Twice Daily</option>
+                    </select>
+                </div>
+                <label class="alert alert-info stdColumnH">
+                    <b>Possible Amlodipine or Nifedipine side effects</b>
+                    <ul>
+                        <li>Stop Nifedipine or Amlodipine</li>
+                        <li>Refer to CO</li>
+                    </ul>
+                </label>
+            </div>
+            <div class="form-group tmp.current_medication.Amlodipine">
+                <label class="font-normal">
+                    <input id="tmp.current_medication.Amlodipine" type="checkbox" name="tmp.current_medication" value="amlodipine">
+                    Amlodipine
+                </label>
+            </div>
+            <div class="section" id="current_medication_amlodipine" data-concept="1919^PATIENT REPORTED CURRENT OTHER TREATMENT^99DCT^9">
+                <h3>Amlodipine</h3>
+                <input class="form-control" name="obs.current_medication_amlodipine.medication_added" type="hidden"
+                       data-concept="1895^MEDICATION ADDED^99DCT" value="2272^AMLODIPINE^99DCT">
+
+                <div class="form-group">
+                    <label for="obs.current_medication_amlodipine.mg">
+                        Dosage:<span class="required">*</span>
+                    </label>
+                    <select id="obs.current_medication_amlodipine.mg" name="obs.current_medication_amlodipine.mg" required="required"
+                            class="form-control" data-concept="1899^NUMBER OF MILLIGRAM^99DCT">
+                        <option value="">...</option>
+                        <option value="2.5"> 2.5mg</option>
+                        <option value="5"> 5mg</option>
+                        <option value="10"> 10mg</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="obs.current_medication_amlodipine.medication_frequency_per_day">
+                        Amlodipine frequency per day:<span class="required">*</span>
+                    </label>
+                    <select class="form-control" id="obs.current_medication_amlodipine.medication_frequency_per_day"
+                            name="obs.current_medication_amlodipine.medication_frequency_per_day" required="required"
+                            data-concept="1896^MEDICATION FREQUENCY^99DCT">
+                        <option value="">...</option>
+                        <option value="1891^ONCE A DAY^99DCT">Once Daily</option>
+                    </select>
+                </div>
+                <label class="alert alert-info stdColumnH">
+                    <b>Possible Amlodipine or Nifedipine side effects</b>
+                    <ul>
+                        <li>Stop Nifedipine or Amlodipine</li>
+                        <li>Refer to CO</li>
+                    </ul>
+                </label>
+            </div>
+            <div class="form-group tmp.current_medication.Felodipine">
+                <label class="font-normal">
+                    <input id="tmp.current_medication.Felodipine" type="checkbox" name="tmp.current_medication" value="felodipine">
+                    Felodipine
+                </label>
+            </div>
+            <div class="section" id="current_medication_felodipine" data-concept="1919^PATIENT REPORTED CURRENT OTHER TREATMENT^99DCT^10">
+                <h3>Felodipine</h3>
+                <input class="form-control" name="obs.current_medication_felodipine.medication_added" type="hidden"
+                       data-concept="1895^MEDICATION ADDED^99DCT" value="2272^AMLODIPINE^99DCT">
+
+                <div class="form-group">
+                    <label for="obs.current_medication_felodipine.mg">
+                        Dosage:<span class="required">*</span>
+                    </label>
+                    <select id="obs.current_medication_felodipine.mg" name="obs.current_medication_felodipine.mg" required="required"
+                            class="form-control" data-concept="1899^NUMBER OF MILLIGRAM^99DCT">
+                        <option value="">...</option>
+                        <option value="2.5"> 2.5mg</option>
+                        <option value="5"> 5mg</option>
+                        <option value="10"> 10mg</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="obs.current_medication_felodipine.medication_frequency_per_day">
+                        Felodipine frequency per day:<span class="required">*</span>
+                    </label>
+                    <select class="form-control" id="obs.current_medication_felodipine.medication_frequency_per_day"
+                            name="obs.current_medication_felodipine.medication_frequency_per_day" required="required"
+                            data-concept="1896^MEDICATION FREQUENCY^99DCT">
+                        <option value="">...</option>
+                        <option value="1891^ONCE A DAY^99DCT">Once Daily</option>
+                    </select>
+                </div>
+            </div>
+            <label class="alert alert-info all_ACEI_ARBs_reminder">
+                Wrong combination of drugs, all ACEI/ARBs
+                <ul>
+                    <li>SET: Lisinopril, Losartan, Enalapril</li>
+                    <li>Patient can only be on one at any given time</li>
+                </ul>
+            </label>
+            <label class="alert alert-info all_CCBs_reminder">
+                Wrong combination of drugs, all CCBs
+                <ul>
+                    <li>SET: Nifedipine, Amlodipine, Felodipine</li>
+                    <li>Patient can only be on one at any given time</li>
+                </ul>
+            </label>
+            <label class="alert alert-info htnColumnP">
+                <b>Consider Angioedema side effects due to ACEI/ARB</b>
+                <ul>
+                    <li>Stop all ACEI/ARB medications</li>
+                </ul>
+            </label>
+        </div>
+        <div class="form-group">
+            <label class="font-normal">
+                <input id="tmp.current_medication.other" type="checkbox" name="tmp.current_medication"
+                value="5622^OTHER NON-CODED^99DCT">
+                Other
+            </label>
+        </div>
+        <div class="section repeat current_medication_other" id="current_medication_other"
+             data-concept="1919^PATIENT REPORTED CURRENT OTHER TREATMENT^99DCT">
+            <h3>Other Medication</h3>
+
+            <input class="form-control" name="medication_added" type="hidden"
+                   data-concept="1895^MEDICATION ADDED^99DCT" value="5622^OTHER NON-CODED^99DCT">
+
             <div class="form-group">
-            <label>For the drugs you are currently taking, did you miss any doses in the last one week?<span class="required">*</span></label>
-                <select class="form-control" id="obs.drug_adherence" name="obs.drug_adherence" required="required"
-                    data-concept="1655^ADHERENCE WITH PAST MEDICINE^99DCT">
+                <label for="obs.current_medication_other.medication_name">Medication Name:</label>
+                <input class="form-control" id="obs.current_medication_other.medication_name"
+                       name="obs.current_medication_other.medication_name" type="text"
+                       data-concept="1779^MEDICATION NAME, FREETEXT^99DCT">
+            </div>
+            <div class="form-group other_medication_number_of_milligram_group">
+                <label for="other_medication_number_of_milligram">Dose in Milligrams (mg):</label>
+                <input class="form-control isDecimal otherMedicationNumberOfMilligram" id="other_medication_number_of_milligram"
+                       name="other_medication_number_of_milligram" type="number"
+                       data-concept="1899^NUMBER OF MILLIGRAM^99DCT"
+                       placeholder="You MUST provide dosage">
+            </div>
+            <div class="form-group other_medication_number_of_milliliter_group">
+                <label for="other_medication_number_of_milliliter">Dose in Milliliters (ml):</label>
+                <input class="form-control isDecimal otherMedicationNumberOfMilliliter" id="other_medication_number_of_milliliter"
+                       name="other_medication_number_of_milliliter" type="number"
+                       data-Concept="1940^NUMBER OF MILLILITER^99DCT"
+                       placeholder="You MUST provide dosage">
+            </div>
+            <div class="form-group">
+                <label for="obs.current_medication_other.medication_frequency_per_day">Frequency per day:</label>
+                <select class="form-control" id="obs.current_medication_other.medication_frequency_per_day"
+                        name="obs.current_medication_other.medication_frequency_per_day"
+                        data-concept="1896^MEDICATION FREQUENCY^99DCT">
                     <option value="">...</option>
-                    <option value="1065^YES^99DCT">Yes</option>
-                    <option value="1066^NO^99DCT">No</option>
+                    <option value="1639^MORNING^99DCT">Every Morning</option>
+                    <option value="1730^EVENING^99DCT">Every Evening</option>
+                    <option value="1891^ONCE A DAY^99DCT">Once Daily</option>
+                    <option value="1888^TWICE A DAY^99DCT">Twice Daily</option>
                 </select>
             </div>
-            <div class="form-group" id="drug_adherence_missed_doses">
-                <label>Specify the number of missed doses:<span class="required">*</span></label>
-                <select class="form-control" id="obs.drug_adherence_missed_doses"
-                        name="obs.drug_adherence_missed_doses" required="required"
-                        data-concept="8892^DRUG ADHERENCE IN PAST WEEK^99DCT">
-                    <option value="">...</option>
-                    <option value="1160^ALL^99DCT">Few</option>
-                    <option value="1161^HALF^99DCT">Half</option>
-                    <option value="1162^MOST^99DCT">Most</option>
-                    <option value="1163^ALL^99DCT">All</option>
-                </select>
-            </div>
-            <div class="form-group" id="drug_adherence_missed_medication_reason">
-                <label>Specify reason for non compliance:<span class="required">*</span></label>
-                <fieldset name="obs.drug_adherence_missed_medication_reason">
-                    <div class="form-group">
-                        <label class="font-normal">
-                            <input type="checkbox" data-concept="1668^MISSED MEDICATION REASON^99DCT"
-                             value="1448^MISSED APPOINTMENT^99DCT"> Missed Appointment
-                        </label>
-                    </div>
-                    <div class="form-group">
-                        <label class="font-normal">
-                            <input type="checkbox" data-concept="1668^MISSED MEDICATION REASON^99DCT"
-                             value="1587^HEALED BY FAITH^99DCT"> Healed by faith
-                        </label>
-                    </div>
-                    <div class="form-group">
-                        <label class="font-normal">
-                            <input type="checkbox" data-concept="1668^MISSED MEDICATION REASON^99DCT"
-                             value="1648^FORGOT TO TAKE MEDICINE^99DCT"> Forgot to take medicine
-                        </label>
-                    </div>
-                    <div class="form-group">
-                        <label class="font-normal">
-                            <input type="checkbox" data-concept="1668^MISSED MEDICATION REASON^99DCT"
-                             value="1663^MEDICATION NOT USEFUL^99DCT"> Medicine not useful
-                        </label>
-                    </div>
-                    <div class="form-group">
-                        <label class="font-normal">
-                            <input type="checkbox" data-concept="1668^MISSED MEDICATION REASON^99DCT"
-                             value="1664^SIDE EFFECTS FROM TAKING MEDICATIONS^99DCT"> Side effects
-                        </label>
-                    </div>
-                    <div class="form-group">
-                        <label class="font-normal">
-                            <input type="checkbox" data-concept="1668^MISSED MEDICATION REASON^99DCT"
-                             value="1665^TIME FOR A BREAK^99DCT"> Time for a break
-                        </label>
-                    </div>
-                    <div class="form-group">
-                        <label class="font-normal">
-                            <input type="checkbox" data-concept="1668^MISSED MEDICATION REASON^99DCT"
-                             value="9209^MEDICATION NOT DISPENSED^99DCT"> Medicine not dispensed
-                        </label>
-                    </div>
-                    <div class="form-group">
-                        <label class="font-normal">
-                            <input type="checkbox" data-concept="1668^MISSED MEDICATION REASON^99DCT"
-                             value="6100^RUN OUT DRUGS^99DCT"> Medication ran out
-                        </label>
-                    </div>
-                </fieldset>
-            </div>
-       </div>
+        </div>
+    </div>
+</div>
+<div class="section" id="adherence">
+    <h3>Adherence:</h3>
+    <div class="sub-section">
+        <div class="form-group">
+        <label>For the drugs you are currently taking, did you miss any doses in the last one week?<span class="required">*</span></label>
+            <select class="form-control" id="obs.drug_adherence" name="obs.drug_adherence" required="required"
+                data-concept="1655^ADHERENCE WITH PAST MEDICINE^99DCT">
+                <option value="">...</option>
+                <option value="1065^YES^99DCT">Yes</option>
+                <option value="1066^NO^99DCT">No</option>
+            </select>
+        </div>
+        <div class="form-group" id="drug_adherence_missed_doses">
+            <label>Specify the number of missed doses:<span class="required">*</span></label>
+            <select class="form-control" id="obs.drug_adherence_missed_doses"
+                    name="obs.drug_adherence_missed_doses" required="required"
+                    data-concept="8892^DRUG ADHERENCE IN PAST WEEK^99DCT">
+                <option value="">...</option>
+                <option value="1160^ALL^99DCT">Few</option>
+                <option value="1161^HALF^99DCT">Half</option>
+                <option value="1162^MOST^99DCT">Most</option>
+                <option value="1163^ALL^99DCT">All</option>
+            </select>
+        </div>
+        <div class="form-group" id="drug_adherence_missed_medication_reason">
+            <label>Specify reason for non compliance:<span class="required">*</span></label>
+            <fieldset name="obs.drug_adherence_missed_medication_reason">
+                <div class="form-group">
+                    <label class="font-normal">
+                        <input type="checkbox" data-concept="1668^MISSED MEDICATION REASON^99DCT"
+                         value="1448^MISSED APPOINTMENT^99DCT"> Missed Appointment
+                    </label>
+                </div>
+                <div class="form-group">
+                    <label class="font-normal">
+                        <input type="checkbox" data-concept="1668^MISSED MEDICATION REASON^99DCT"
+                         value="1587^HEALED BY FAITH^99DCT"> Healed by faith
+                    </label>
+                </div>
+                <div class="form-group">
+                    <label class="font-normal">
+                        <input type="checkbox" data-concept="1668^MISSED MEDICATION REASON^99DCT"
+                         value="1648^FORGOT TO TAKE MEDICINE^99DCT"> Forgot to take medicine
+                    </label>
+                </div>
+                <div class="form-group">
+                    <label class="font-normal">
+                        <input type="checkbox" data-concept="1668^MISSED MEDICATION REASON^99DCT"
+                         value="1663^MEDICATION NOT USEFUL^99DCT"> Medicine not useful
+                    </label>
+                </div>
+                <div class="form-group">
+                    <label class="font-normal">
+                        <input type="checkbox" data-concept="1668^MISSED MEDICATION REASON^99DCT"
+                         value="1664^SIDE EFFECTS FROM TAKING MEDICATIONS^99DCT"> Side effects
+                    </label>
+                </div>
+                <div class="form-group">
+                    <label class="font-normal">
+                        <input type="checkbox" data-concept="1668^MISSED MEDICATION REASON^99DCT"
+                         value="1665^TIME FOR A BREAK^99DCT"> Time for a break
+                    </label>
+                </div>
+                <div class="form-group">
+                    <label class="font-normal">
+                        <input type="checkbox" data-concept="1668^MISSED MEDICATION REASON^99DCT"
+                         value="9209^MEDICATION NOT DISPENSED^99DCT"> Medicine not dispensed
+                    </label>
+                </div>
+                <div class="form-group">
+                    <label class="font-normal">
+                        <input type="checkbox" data-concept="1668^MISSED MEDICATION REASON^99DCT"
+                         value="6100^RUN OUT DRUGS^99DCT"> Medication ran out
+                    </label>
+                </div>
+            </fieldset>
+        </div>
    </div>
 </div>
 <div class="section">
@@ -1782,7 +1819,13 @@
 </div>
 <div class="section">
     <h3>Medications dispensed</h3>
-    <div class="form-group">
+    <div class="form-group tmp.medication_dispensed.antidiabetic">
+        <label class="font-normal">
+            <input id="tmp.medication_dispensed.antidiabetic" type="checkbox" name="tmp.medication_dispensed" value="antidiabetic">
+            Anti-diabetic drugs
+        </label>
+    </div>
+    <div class="form-group sub-section" id="medication_dispensed_antidiabetic">
         <div class="form-group tmp.medication_dispensed.Metformin">
             <label class="font-normal">
                 <input id="tmp.medication_dispensed.Metformin" type="checkbox" name="tmp.medication_dispensed" value="metformin">
@@ -1798,7 +1841,8 @@
                 <label for="obs.medication_dispensed_metformin.mg">
                     Dosage:<span class="required">*</span>
                 </label>
-                <select class="form-control" id="obs.medication_dispensed_metformin.mg" name="obs.medication_dispensed_metformin.mg" 
+                <select class="form-control" id="obs.medication_dispensed_metformin.mg"
+                name="obs.medication_dispensed_metformin.mg" 
                     data-concept="1899^NUMBER OF MILLIGRAM^99DCT" required="required">
                     <option value=""> ...</option>
                     <option value="500"> 500mg</option>
@@ -1823,10 +1867,18 @@
 
         <div class="form-group tmp.medication_dispensed.Glibenclamide">
             <label class="font-normal">
-                <input id="tmp.medication_dispensed.Glibenclamide" type="checkbox" name="tmp.medication_dispensed" value="glibenclamide">
+                <input id="tmp.medication_dispensed.Glibenclamide" type="checkbox" name="tmp.medication_dispensed"
+                value="glibenclamide">
                 Glibenclamide
             </label>
         </div>
+        <label class="alert alert-info" id="tmp.medication_dispensed.Glibenclamide.disabled_reminder">
+            Wrong combination of anti-diabetic medications
+            <ul>
+                <li>SET: Insulin, Glimepiride, Gliclazide, Glibenclamide</li>
+                <li>Patient can only be on one at any given time</li>
+            </ul>
+        </label>
 
         <div class="sub-section" id="medication_dispensed_glibenclamide">
             <h3>Glibenclamide</h3>
@@ -1902,12 +1954,28 @@
                        data-concept="1896^MEDICATION FREQUENCY^99DCT" value="1641^AFTERNOON^99DCT">
             </div>
         </div>
+    </div>
+    <div class="form-group tmp.medication_dispensed.antihypertensive">
+        <label class="font-normal">
+            <input id="tmp.medication_dispensed.antihypertensive" type="checkbox"
+            name="tmp.medication_dispensed" value="antihypertensive">
+            Anti-hypertensive agents
+        </label>
+    </div>
+    <div class="form-group sub-section" id="medication_dispensed_antihypertensive">
         <div class="form-group tmp.medication_dispensed.Enalapril">
             <label class="font-normal">
                 <input id="tmp.medication_dispensed.Enalapril" type="checkbox" name="tmp.medication_dispensed" value="enalapril">
                 Enalapril
             </label>
         </div>
+        <label class="alert alert-info" id="tmp.medication_dispensed.Enalapril.disabled_reminder" style="display:none">
+            Wrong combination of drugs, all ACEI/ARBs
+            <ul>
+                <li>SET: Lisinopril, Losartan, Enalapril</li>
+                <li>Patient can only be on one at any given time</li>
+            </ul>
+        </label>
         <div class="section" id="medication_dispensed_enalapril" data-concept="8726^DRUG PLAN, DETAILED^99DCT^3">
             <h3>Enalapril</h3>
             <input class="form-control" name="obs.medication_dispensed_enalapril.medication_added" type="hidden"
@@ -1950,6 +2018,13 @@
                 Lisinopril
             </label>
         </div>
+        <label class="alert alert-info" id="tmp.medication_dispensed.Lisinopril.disabled_reminder" style="display:none">
+            Wrong combination of drugs, all ACEI/ARBs
+            <ul>
+                <li>SET: Lisinopril, Losartan, Enalapril</li>
+                <li>Patient can only be on one at any given time</li>
+            </ul>
+        </label>
         <div class="section" id="medication_dispensed_lisinopril" data-concept="8726^DRUG PLAN, DETAILED^99DCT^4">
             <h3>Lisinopril</h3>
             <input class="form-control" name="obs.medication_dispensed_lisinopril.medication_added" type="hidden"
@@ -1959,7 +2034,8 @@
                 <label for="obs.medication_dispensed_lisinopril.mg">
                     Dosage:<span class="required">*</span>
                 </label>
-                <select class="form-control" id="obs.medication_dispensed_lisinopril.mg" name="obs.medication_dispensed_lisinopril.mg" required="required"
+                <select class="form-control" id="obs.medication_dispensed_lisinopril.mg"
+                name="obs.medication_dispensed_lisinopril.mg" required="required"
                         data-concept="1899^NUMBER OF MILLIGRAM^99DCT">
                     <option value="">...</option>
                     <option value="10"> 5mg</option>
@@ -1982,8 +2058,26 @@
         </div>
         <div class="form-group tmp.medication_dispensed.Lisinopril_HCTZ">
             <label class="font-normal">
-                <input id="tmp.medication_dispensed.Lisinopril_HCTZ" type="checkbox" name="tmp.medication_dispensed" value="lisinopril_hctz">
+                <input id="tmp.medication_dispensed.Lisinopril_HCTZ" type="checkbox"
+                name="tmp.medication_dispensed" value="lisinopril_hctz" class="Lisinopril_HCTZ">
                 Lisinopril/HCTZ
+            </label>
+        </div>
+        <label class="alert alert-info" id="tmp.medication_dispensed.Lisinopril_HCTZ.disabled_reminder" style="display:none">
+            Wrong combination of drugs, all ACEI/ARBs
+            <ul>
+                <li>SET: Lisinopril, Losartan, Enalapril</li>
+                <li>Patient can only be on one at any given time</li>
+            </ul>
+        </label>
+        <div class="form-group">
+            <label class="alert alert-info Lisinopril_HCTZ.disabled_reminder">
+                Wrong combination of drugs
+                <ul>
+                    <li>SET1: Lisinopril, combined Lisinopril/HCTZ</li>
+                    <li>SET2: HCTZ, combined Lisinopril/HCTZ</li>
+                    <li>Patient can only be on one at any given time</li>
+                </ul>
             </label>
         </div>
         <div class="section" id="medication_dispensed_lisinopril_hctz" data-concept="8726^DRUG PLAN, DETAILED^99DCT^5">
@@ -1995,7 +2089,8 @@
                 <label for="obs.medication_dispensed_lisinopril_hctz.mg">
                     Dosage:<span class="required">*</span>
                 </label>
-                <select class="form-control" id="obs.medication_dispensed_lisinopril_hctz.mg" name="obs.medication_dispensed_lisinopril_hctz.mg" required="required"
+                <select class="form-control" id="obs.medication_dispensed_lisinopril_hctz.mg"
+                name="obs.medication_dispensed_lisinopril_hctz.mg" required="required"
                         data-concept="1899^NUMBER OF MILLIGRAM^99DCT">
                     <option value="">...</option>
                      <option value="5"> 5mg</option>
@@ -2018,8 +2113,19 @@
         </div>
         <div class="form-group tmp.medication_dispensed.HCTZ">
             <label class="font-normal">
-                <input id="tmp.medication_dispensed.HCTZ" type="checkbox" name="tmp.medication_dispensed" value="hctz">
+                <input id="tmp.medication_dispensed.HCTZ" type="checkbox" name="tmp.medication_dispensed"
+                class="HCTZ" value="hctz">
                 HCTZ
+            </label>
+        </div>
+        <div class="form-group">
+            <label class="alert alert-info HCTZ.disabled_reminder">
+                Wrong combination of drugs
+                <ul>
+                    <li>SET1: Lisinopril, combined Lisinopril/HCTZ</li>
+                    <li>SET2: HCTZ, combined Lisinopril/HCTZ</li>
+                    <li>Patient can only be on one at any given time</li>
+                </ul>
             </label>
         </div>
         <div class="section" id="medication_dispensed_hctz" data-concept="8726^DRUG PLAN, DETAILED^99DCT^6">
@@ -2056,6 +2162,13 @@
                 Losartan
             </label>
         </div>
+        <label class="alert alert-info" id="tmp.medication_dispensed.Losartan.disabled_reminder" style="display:none">
+            Wrong combination of drugs, all ACEI/ARBs
+            <ul>
+                <li>SET: Lisinopril, Losartan, Enalapril</li>
+                <li>Patient can only be on one at any given time</li>
+            </ul>
+        </label>
         <div class="section" id="medication_dispensed_losartan" data-concept="8726^DRUG PLAN, DETAILED^99DCT^7">
             <h3>Losartan</h3>
             <input class="form-control" name="obs.medication_dispensed_losartan.medication_added" type="hidden"
@@ -2097,6 +2210,13 @@
                 Nifedipine
             </label>
         </div>
+        <label class="alert alert-info" id="tmp.medication_dispensed.Nifedipine.disabled_reminder">
+            Wrong combination of drugs, all CCBs
+            <ul>
+                <li>SET: Nifedipine, Amlodipine, Felodipine</li>
+                <li>Patient can only be on one at any given time</li>
+            </ul>
+        </label>
         <div class="section" id="medication_dispensed_nifedipine" data-concept="8726^DRUG PLAN, DETAILED^99DCT^8">
             <h3>Nifedipine</h3>
             <input class="form-control" name="obs.medication_dispensed_nifedipine.medication_added" type="hidden"
@@ -2130,6 +2250,13 @@
                 Amlodipine
             </label>
         </div>
+        <label class="alert alert-info" id="tmp.medication_dispensed.Amlodipine.disabled_reminder">
+            Wrong combination of drugs, all CCBs
+            <ul>
+                <li>SET: Nifedipine, Amlodipine, Felodipine</li>
+                <li>Patient can only be on one at any given time</li>
+            </ul>
+        </label>
         <div class="section" id="medication_dispensed_amlodipine" data-concept="8726^DRUG PLAN, DETAILED^99DCT^9">
             <h3>Amlodipine</h3>
             <input class="form-control" name="obs.medication_dispensed_amlodipine.medication_added" type="hidden"
@@ -2165,6 +2292,13 @@
                 Felodipine
             </label>
         </div>
+        <label class="alert alert-info" id="tmp.medication_dispensed.Felodipine.disabled_reminder">
+            Wrong combination of drugs, all CCBs
+            <ul>
+                <li>SET: Nifedipine, Amlodipine, Felodipine</li>
+                <li>Patient can only be on one at any given time</li>
+            </ul>
+        </label>
         <div class="section" id="medication_dispensed_felodipine" data-concept="8726^DRUG PLAN, DETAILED^99DCT^10">
             <h3>Felodipine</h3>
             <input class="form-control" name="obs.medication_dispensed_felodipine.medication_added" type="hidden"
@@ -2194,6 +2328,21 @@
                 </select>
             </div>
         </div>
+    <label class="alert alert-info" id="obs.on_enalapril">
+        If patient has been on <span style="text-decoration: underline;">Enalapril</span> for over a year
+        <ul>
+            <li>Check creatinine and potasium</li>
+        </ul>
+    </label>
+    <label class="alert alert-info" id="obs.on_losartan">
+        If patient has been on <span style="text-decoration: underline;">Losartan</span> for over a year
+        <ul>
+            <li>Check creatinine and potasium</li>
+        </ul>
+    </label>
+    </div>
+
+    <div class="form-group">
         <div class="form-group tmp.medication_dispensed.Other">
             <label class="font-normal">
                 <input id="tmp.medication_dispensed.Other" type="checkbox" name="tmp.medication_dispensed" value="other">
@@ -2241,18 +2390,6 @@
             </div>
         </div>
     </div>
-    <label class="alert alert-info" id="obs.on_enalapril">
-        If patient has been on <span style="text-decoration: underline;">Enalapril</span> for over a year
-        <ul>
-            <li>Check creatinine and potasium</li>
-        </ul>
-    </label>
-    <label class="alert alert-info" id="obs.on_losartan">
-        If patient has been on <span style="text-decoration: underline;">Losartan</span> for over a year
-        <ul>
-            <li>Check creatinine and potasium</li>
-        </ul>
-    </label>
 </div>
 
 <div class="section">
@@ -2330,24 +2467,6 @@
                 </div>
             </div>
         </fieldset>
-    </div>
-</div>
-<div class="section" id="discharged_home">
-    <h3>Discharge Status</h3>
-    <div class="form-group">
-        <label for="obs.discharged_home">Discharged Home? <span class="required">*</span></label>
-        <select class="form-control" id="obs.discharged_home" name="obs.discharged_home"
-        data-concept="7087^DISCHARGE STATUS^99DCT">
-            <option value="">...</option>
-            <option value="1065^YES^99DCT">Yes</option>
-            <option value="1066^NO^99DCT">No</option>
-        </select>
-    </div>
-    <div class="form-group" id="date_discharged">
-        <label for="obs.date_discharged">Date discharged: <span class="required">*</span></label>
-        <input class="form-control datepicker" data-concept="1869^DISCHARGE DATE^99DCT"
-               id="obs.date_discharged" name="obs.date_discharged" type="text"
-               readonly="readonly" required="required">
     </div>
 </div>
 <div class="section transfer_to_other_center">
@@ -2586,12 +2705,6 @@
             <li>Reduce dose or change prescription</li>
         </ul>
     </label>
-    <label class="alert alert-info" id="htnColumnP">
-        <b>Possible angioedema from ACEi/ARB</b>
-        <ul>
-            <li>Stop these class of drugs immediately and consult</li>
-        </ul>
-    </label>
     <label class="alert alert-info" id="dmColumnC">
         <b>Patient does not have diabetes</b>
         <ul>
@@ -2783,9 +2896,11 @@ $(document).ready(function () {
             $('#reported_complaints').show();
             $('#no_reported_complaint').hide();
         } else if($(this).val() == $('#tmp\\.reported_complaint\\.no').val()){
+            $('input:checkbox[name="obs.complaints"]').attr('checked',false).trigger('change');
             $('#reported_complaints').hide();
             $('#no_reported_complaint').show();
         } else {
+            $('input:checkbox[name="obs.complaints"]').attr('checked',false).trigger('change');
             $('#reported_complaints').hide();
             $('#no_reported_complaint').hide();
         }
@@ -2840,6 +2955,8 @@ $(document).ready(function () {
         if($(this).is(":checked")){
             $('#patient_status_diabetes').show();
         }else{
+            $('#obs\\.patient_status_diabetes').val('');
+            $('#obs\\.patient_status_diabetes').trigger('change');
             $('#patient_status_diabetes').hide();
         }
      });
@@ -2848,6 +2965,8 @@ $(document).ready(function () {
         if($(this).is(":checked")){
             $('#patient_status_hypertension').show();
         }else{
+            $('#obs\\.patient_status_hypertension').val('');
+            $('#obs\\.patient_status_hypertension').trigger('change');
             $('#patient_status_hypertension').hide();
         }
      });
@@ -2934,7 +3053,7 @@ $(document).ready(function () {
     var selectCorrespondingLabs = function (selectedElement) {
         var drugsArray = {
             "#tmp\\.labs_urinalysis": "#labs_urinalysis",
-            "#tmp\\.labs_blood_test": "#labs_blood_test",
+            "#tmp\\.labs_blood_test": ".labs_blood_test",
             "#tmp\\.labs_urine_pregnancy_test": "#labs_urine_pregnancy_test"
         };
         $.each(drugsArray, function (k, v) {
@@ -2942,6 +3061,9 @@ $(document).ready(function () {
                 if ($(k).is(':checked')) {
                     $(v).show();
                 } else {
+                    $(v+'\\.result').val('');
+                    $(v+'\\.result').trigger('change');
+                    $(v+'\\.result').trigger('keyup');
                     $(v).hide();
                 }
             });
@@ -2949,7 +3071,7 @@ $(document).ready(function () {
         })
     };
     selectCorrespondingLabs();
-    $('#urinalysis_result').change(function(){
+    $('#labs_urinalysis\\.result').change(function(){
         var urinalysis_result_selected_value = $(this).val();
         var normal = 'Normal';
         var abnormal = 'Abnormal';
@@ -2968,15 +3090,16 @@ $(document).ready(function () {
             $('#urinalysis_test_results').show(); 
         }else if(urinalysis_result_selected_value == not_done){       
             $('#urinalysis_test_results').hide();
+            $('#tmp\\.urinalysis_result_date_collected').val('');
+            $('#tmp\\.urinalysis_result_date_collected').trigger('change');
             $('#urinalysis_result_date_collected').hide();
-            $('.urinalysis_result input:radio').not('#urinalysis_result_not_done')
-            .prop("checked",false).attr("disabled",true);
+            $('.urinalysis_result input:radio').prop("checked",false);
         }else{
             $('#urinalysis_test_results').hide();
             $('#urinalysis_result_date_collected').hide();
         }
      });
-    $('#urinalysis_result').trigger('change');
+    $('#labs_urinalysis\\.result').trigger('change');
 
     $('#tmp\\.urinalysis_result_date_collected').change(function(){
         $('.urinalysis_result_date_collected').val($(this).val()); 
@@ -3000,49 +3123,28 @@ $(document).ready(function () {
     });
     $('#obs\\.referrals_ordered').trigger('change');
 
+    var hide = function($element){
+        $element.find('select').val('').trigger('change');
+        $element.find('input[type="number"]').val('').trigger('change');
+        $element.find('input[type="text"]').val('').trigger('change');
+        $element.find('input[type="radio"]').attr('checked',false).trigger('change');
+        $element.find('input[type="checkbox"]').attr('checked',false).trigger('change');
+        $element.hide();
+    }
+
     $('#tmp\\.transfer_to_other_center').change(function(){
         if($(this).val() == "Yes"){
-            $('#referrals_ordered').hide();
+            hide($('#referrals_ordered'));
             $('#specify_transfer_center').show();
         } else if($(this).val() == "No"){
             $('#referrals_ordered').show();
-            $('#specify_transfer_center').hide();
+            hide($('#specify_transfer_center'));
         } else {
             $('#referrals_ordered').hide();
-            $('#specify_transfer_center').hide();
+            hide($('#specify_transfer_center'));
         }
     });
     $('#tmp\\.transfer_to_other_center').trigger('change');
-
-    $('#obs\\.discharged_home').change(function(){
-        if($(this).val() == "1065^YES^99DCT"){
-            $('.transfer_to_other_center').hide();
-            $('#date_discharged').show();
-        } else if($(this).val() == "1066^NO^99DCT"){
-            $('.transfer_to_other_center').show();
-            $('#date_discharged').hide();
-        } else {
-            $('#transfer_to_other_center').show();
-            $('#date_discharged').hide();
-        }
-    });
-    $('#obs\\.discharged_home').trigger('change');
-
-    var evaluateDischargeHome = function(){
-        var visit_type = $('#obs\\.current_visit_type').val();
-        var fbs = parseFloat($('#blood_test_fbs').val());
-        var rbs = parseFloat($('#blood_test_rbs').val());
-        var sbp = parseFloat($('#obs\\.systolic_blood_pressure').val());
-        var dbp = parseFloat($('#obs\\.diastolic_blood_pressure').val());
-        if(( visit_type == '9456^FIRST DISPENSARY VISIT AFTER SCREENING^99DCT'
-            || visit_type == '9457^SECOND DISPENSARY VISIT AFTER SCREENING^99DCT')
-            && sbp < 140 && dbp < 90 && fbs < 5.6 && rbs < 7.8){
-            $('#discharged_home').show();
-        }else{
-           $('#discharged_home').hide(); 
-        }
-
-    };
 
     $('.blood_test').change(function(){
 
@@ -3060,8 +3162,8 @@ $(document).ready(function () {
             $('#drug_adherence_missed_doses').show();
             $('#drug_adherence_missed_medication_reason').show();
         } else {
-            $('#drug_adherence_missed_doses').hide();
-            $('#drug_adherence_missed_medication_reason').hide();
+            hide($('#drug_adherence_missed_doses'));
+            hide($('#drug_adherence_missed_medication_reason'));
         }
     });
     $('#obs\\.drug_adherence').trigger('change');
@@ -3080,7 +3182,7 @@ $(document).ready(function () {
         if($(this).is(':checked')){
             $('#complaints_other_value').show();
         }else{
-            $('#complaints_other_value').hide();
+            hide($('#complaints_other_value'));
         }
      });
      $('#obs\\.complaints_other').trigger('change');
@@ -3089,7 +3191,7 @@ $(document).ready(function () {
         if($(this).is(':checked')){
             $('#complaints_skin_rash_level').show();
         }else{
-            $('#complaints_skin_rash_level').hide();
+            hide($('#complaints_skin_rash_level'));
         }
      });
      $('#obs\\.complaints_skin_rash').trigger('change');
@@ -3099,7 +3201,7 @@ $(document).ready(function () {
         if(drugToleranceSkinRashLevel.val() == '5622^OTHER NON-CODED^99DCT'){
             $('#skin_rash_level_other_value').show();
         }else{
-            $('#skin_rash_level_other_value').hide();
+            hide($('#skin_rash_level_other_value'));
         }
      });
      $('#obs\\.complaints_skin_rash').trigger('change');
@@ -3128,7 +3230,7 @@ $(document).ready(function () {
         if($(this).is(':checked')){
             $('#tests_ordered_other_value').show();
         }else{
-            $('#tests_ordered_other_value').hide();
+            hide($('#tests_ordered_other_value'));
         }
      });
      $('#obs\\.tests_ordered_other').trigger('change');
@@ -3265,17 +3367,23 @@ $(document).ready(function () {
     /*  Start - Based on medication prescribed show dosage fields */
     var selectCorrespondingCurrentMedication = function (selectedElement) {
         var drugsArray = {
+            "#tmp\\.medication_dispensed\\.antidiabetic": "#medication_dispensed_antidiabetic",
+            "#tmp\\.medication_dispensed\\.antihypertensive": "#medication_dispensed_antihypertensive",
             "#tmp\\.medication_dispensed\\.Metformin": "#medication_dispensed_metformin",
             "#tmp\\.medication_dispensed\\.Glibenclamide": "#medication_dispensed_glibenclamide",
             "#tmp\\.medication_dispensed\\.Enalapril": "#medication_dispensed_enalapril",
             "#tmp\\.medication_dispensed\\.Lisinopril": "#medication_dispensed_lisinopril",
             "#tmp\\.medication_dispensed\\.Lisinopril_HCTZ": "#medication_dispensed_lisinopril_hctz",
+            ".Lisinopril_HCTZ": "#medication_dispensed_lisinopril_hctz",
             "#tmp\\.medication_dispensed\\.HCTZ": "#medication_dispensed_hctz",
+            ".HCTZ": "#medication_dispensed_hctz",
             "#tmp\\.medication_dispensed\\.Losartan": "#medication_dispensed_losartan",
             "#tmp\\.medication_dispensed\\.Nifedipine": "#medication_dispensed_nifedipine",
             "#tmp\\.medication_dispensed\\.Amlodipine": "#medication_dispensed_amlodipine",
             "#tmp\\.medication_dispensed\\.Felodipine": "#medication_dispensed_felodipine",
             "#tmp\\.medication_dispensed\\.Other": "#medication_dispensed_other",
+            "#tmp\\.current_medication\\.antidiabetic": "#current_medication_antidiabetic",
+            "#tmp\\.current_medication\\.antihypertensive": "#current_medication_antihypertensive",
             "#tmp\\.current_medication\\.Metformin": "#current_medication_metformin",
             "#tmp\\.current_medication\\.Glibenclamide": "#current_medication_glibenclamide",
             "#tmp\\.current_medication\\.Enalapril": "#current_medication_enalapril",
@@ -3291,16 +3399,28 @@ $(document).ready(function () {
             "#tmp\\.current_medication\\.Insulin": "#current_medication_insulin",
             "#tmp\\.current_medication\\.other": "#current_medication_other"
         };
-        $.each(drugsArray, function (k, v) {
-            $(k).change(function () {
-                if ($(k).is(':checked')) {
-                    $(v).show();
-                } else {
-                    $(v).hide();
-                }
+        if(typeof selectedElement == 'undefined'){
+            $.each(drugsArray, function (k, v) {
+                $(k).change(function () {
+                    if ($(k).is(':checked')) {
+                        $(v).show();
+                    } else {
+                        $(v).find('select').val('').trigger('change');
+                        $(v).find('input[type="text"]').val('').trigger('change');
+                        $(v).find('input[type="number"]').val('').trigger('change');
+                        $(v).find('input[type="checkbox"]').attr('checked',false).trigger('change');
+                        $(v).hide();
+                    }
+                });
+                $(k).trigger('change');
             });
-            $(k).trigger('change');
-        })
+        } else {
+            if ($(selectedElement).is(':checked')) {
+                $(drugsArray[selectedElement]).show();
+            } else {
+                $(drugsArray[selectedElement]).hide();
+            }
+        }
     };
     selectCorrespondingCurrentMedication();
 
@@ -3324,7 +3444,7 @@ $(document).ready(function () {
         if($("input[name='tmp.current_medication']:checked").length > 0){
             $('#adherence').show();
         } else {
-            $('#adherence').hide();
+            hide($('#adherence'));
         }
     });
     $("input[name='tmp.current_medication']").trigger('change');
@@ -3334,6 +3454,8 @@ $(document).ready(function () {
         if($(this).val() == $('#tmp\\.taking_medication\\.yes').val()){
             $('#current_medication').show();
         } else {
+            $('input:checkbox[name="tmp.current_medication"]').attr('checked',false);
+            $('input:checkbox[name="tmp.current_medication"]').trigger('change');
             $('#current_medication').hide();
         }
     });
@@ -3354,31 +3476,9 @@ $(document).ready(function () {
                     $(v).hide();
                 }
             });
-            $(k).trigger('change');
         })
     };
     symptomsAndDrugReminders();
-    var enalaprilRecurrentCough = function (selectedElement) {
-        var newDrugArray = {
-            "#obs\\.review_of_systems_general\\.chronic_cough": "#obs\\.symptomReminders_enalapril_and_cough",
-            "#tmp\\.medication_dispensed\\.Enalapril": "#obs\\.symptomReminders_enalapril_and_cough"
-        };
-        $.each(newDrugArray, function (k, v) {
-            $(k).change(function () {
-                if ($(k).is(':checked')) {
-                    var enalpril = "#tmp\\.medication_dispensed\\.Enalapril"
-                    var recurrent_cough = "#obs\\.review_of_systems_general\\.chronic_cough"
-                    if ($(enalpril).is(':checked') && $(recurrent_cough).is(':checked')) {
-                        $(v).show();
-                    }
-                } else {
-                    $(v).hide();
-                }
-            });
-            $(k).trigger('change');
-        })
-    };
-    enalaprilRecurrentCough();
     /*  End - Based on Current medication prescribed show dosage fields */
 
     /* Start - Hide dosage of other medication in ml if it is not provided in mg and vice versa */
@@ -3420,7 +3520,17 @@ $(document).ready(function () {
         }
     });
     $patientSex.trigger('change');
-
+    $birthdate.change(function(){
+        var ageInYears = getAgeInYears($birthdate.val());
+        if (ageInYears > 15 && ageInYears < 50) {
+            $('#obs\\.last_menstrual_period_qualitative').attr('required','required');
+            $('.lmp_required_marker').show();
+        } else {
+            $('#obs\\.last_menstrual_period_qualitative').removeAttr('required');
+            $('.lmp_required_marker').hide();
+        }
+    });
+    $birthdate.trigger('change');
     $('#obs\\.last_menstrual_period_qualitative').change(function(){
         if($(this).val() != ''){
             var oneDayInMilliseconds = 24*60*60*1000;
@@ -3486,41 +3596,6 @@ $(document).ready(function () {
     /* End - disable medications if pregnant */
     $urinePregnancyTestQualitative.trigger('change');
 
-
-
-    var disable_wrong_medication_combination = function(){
-        var set = [['#tmp\\.medication_dispensed\\.Enalapril','#tmp\\.medication_dispensed\\.Losartan',
-        '#tmp\\.medication_dispensed\\.Lisinopril'],
-                ['#tmp\\.medication_dispensed\\.Nifedipine','#tmp\\.medication_dispensed\\.Amlodipine',
-                '#tmp\\.medication_dispensed\\.Felodipine'],
-                ['#tmp\\.medication_dispensed\\.Glibenclamide','#tmp\\.medication_dispensed\\.Gliclazide',
-                '#tmp\\.medication_dispensed\\.Glimepiride','#tmp\\.medication_dispensed\\.Insulin']];
-        $.each(set, function(k,v){
-            $.each(v, function(p,q){
-                $(q).change(function(){
-                    var checked = '';
-                    $.each(v,function(m,n){
-                        if($(n).is(':checked')){
-                            checked = n;
-                        }
-                    });
-                    if(checked != ''){
-                        $.each(v,function(m,n){
-                            if(n != checked){
-                                $(n).prop('disabled', true);
-                            }
-                        });
-                    } else {
-                        $.each(v,function(m,n){
-                            $(n).prop('disabled', false);
-                        });
-
-                    }
-                });$(q).trigger('change');
-            });
-        });
-    };disable_wrong_medication_combination();
-
     /* Start - Checks that a field is a decimal */
     $.validator.addClassRules({
         systolicBloodPressure: {
@@ -3585,41 +3660,6 @@ $(document).ready(function () {
     $height.trigger('change');
     /* End - Compute the BMI if the weight & height are provided */
 
-    /*  Start - Based on Current medication, and medication prescribed, show or hide "dosage changed" fields */
-    var showOrHideDosageChanged = function (drugCurrent, drugDispensed, dosageChanged) {
-        if ($(drugCurrent).is(':checked') && $(drugDispensed).is(':checked')) {
-            $(dosageChanged).show();
-        } else {
-            $(dosageChanged).find("select").val('');
-            $(dosageChanged).find("select").trigger('change');
-            $(dosageChanged).hide();
-        }
-    };
-
-    var selectCorrespondingDosageChanged = function (selectedElement) {
-        var drugsArray = {
-            "Metformin": "#metformin_dosage_changed",
-            "Glibenclamide": "#glibenclamide_dosage_changed",
-            "Enalapril": "#enalapril_dosage_changed",
-            "HCTZ": "#hctz_dosage_changed",
-            "Losartan": "#losartan_dosage_changed",
-            "Nifedipine": "#nifedipine_dosage_changed",
-            "Amlodipine": "#amlodipine_dosage_changed"
-        };
-        $.each(drugsArray, function (k, v) {
-            var drugCurrent = "#tmp\\.medication_dispensed\\." + k;
-            var drugDispensed = "#obs\\.drugs_dispensed\\." + k;
-            var dosageChanged = v;
-            $(drugCurrent).change(function () {
-                showOrHideDosageChanged(drugCurrent, drugDispensed, dosageChanged)
-            });
-            $(drugDispensed).change(function () {
-                showOrHideDosageChanged(drugCurrent, drugDispensed, dosageChanged)
-            });
-            $(drugCurrent).trigger('change');
-        })
-    };
-    selectCorrespondingDosageChanged();
     /*  End - Based on Current medication, and medication prescribed, show or hide "dosage changed" fields */
     $('#medication_dispensed_glibenclamide\\.tmp').change(function(){
         var medication_glibenclamide_selected = $(this).find(":selected");
@@ -4024,7 +4064,7 @@ $(document).ready(function () {
     } ;
     hTNReminderColumnO();
     var hTNReminderColumnP = function () {
-        var $htnColumnP = $('#htnColumnP');
+        var $htnColumnP = $('.htnColumnP');
         var chiefComplaint = getChiefComplaintValues();
         var currentMedication = getCurrentMedicationValues();
         if (
@@ -4924,6 +4964,45 @@ $(document).ready(function () {
     });
 
     /* End - Reminder triggers */
+
+    var medicationsDispensedReminders = function(){
+        stdReminderColumnE1();
+        stdReminderColumnE2();
+        symptomsAndDrugReminders();
+    }
+    var disable_wrong_medication_combination = function(){
+    var set = [['#tmp\\.medication_dispensed\\.Enalapril','#tmp\\.medication_dispensed\\.Losartan',
+        '#tmp\\.medication_dispensed\\.Lisinopril','#tmp\\.medication_dispensed\\.Lisinopril_HCTZ',],
+            ['#tmp\\.medication_dispensed\\.Nifedipine','#tmp\\.medication_dispensed\\.Amlodipine',
+            '#tmp\\.medication_dispensed\\.Felodipine'],
+            ['#tmp\\.medication_dispensed\\.Glibenclamide','#tmp\\.medication_dispensed\\.Gliclazide',
+            '#tmp\\.medication_dispensed\\.Glimepiride','#tmp\\.medication_dispensed\\.Insulin'],
+            ['.HCTZ','.Lisinopril_HCTZ']];
+    $.each(set, function(k,v){
+        $.each(v, function(p,q){
+            $(q).change(function(){
+                if($(q).is(':checked')){
+                    $.each(v,function(m,n){
+                        if($(n).is(':checked')){
+                            if(q != n){
+                                $(q).attr('checked',false);
+                                $(q + '\\.disabled_reminder').show();
+                                selectCorrespondingCurrentMedication(q);
+                                medicationsDispensedReminders();
+                            }
+                        }
+                    });
+                } else {
+                    $.each(v,function(m,n){
+                        $(n + '\\.disabled_reminder').hide();
+                    });
+                }
+            });$(q).trigger('change');
+        });
+    });
+    };disable_wrong_medication_combination();
+
+
 });
 
 </script>
