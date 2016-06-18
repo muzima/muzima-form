@@ -4659,6 +4659,21 @@ $(document).ready(function () {
         $(encounterDatetime).val(currentDate);
     }
 
+    document.setupAutoCompleteData('encounter\\.location_id');
+
+    document.setupAutoCompleteDataForProvider('encounter\\.provider_id_select');
+
+    $('#encounter\\.provider_id_select').change(function () {
+        if ($('#encounter\\.provider_id_select').val() === '') {
+            $('#encounter\\.provider_id').val('');
+            $('.show_provider_id_text').show();
+        }
+    });
+
+    document.setupValidationForProvider("$('#encounter\\.provider_id_select').val()","encounter\\.provider_id");
+
+    document.setupValidationForLocation("$('#encounter\\.location_id').val()","encounter\\.location_id");
+
     $('#save_draft').click(function () {
         $(this).prop('disabled', true);
         document.saveDraft(this);
@@ -4778,105 +4793,6 @@ $(document).ready(function () {
     var $hctzFrequencyPerDay = $('#obs\\.current_medication_hctz\\.medication_frequency_per_day');
     var $amlodipineFrequencyPerDay = $('#obs\\.current_medication_amlodipine\\.medication_frequency_per_day');
     var $felodipineFrequencyPerDay = $('#obs\\.current_medication_felodipine\\.medication_frequency_per_day');
-
-    var dispensaryName = [
-        {"val": "2", "label": "Mosoriot Health Centre"},
-        {"val": "3", "label": "Turbo Health Centre"},
-        {"val": "12", "label": "Teso District Hospital"},
-        {"val": "60", "label": "Chepsaita Dispensary"},
-        {"val": "65", "label": "Angurai Health Centre"},
-        {"val": "90", "label": "Changara Dispensary"},
-        {"val": "91", "label": "Malaba Dispensary"},
-        {"val": "106", "label": "Kamollo Dispensary"},
-        {"val": "110", "label": "Mogoget Dispensary"},
-        {"val": "111", "label": "Biribiriet Dispensary"},
-        {"val": "112", "label": "Itigo Dispensary"},
-        {"val": "113", "label": "Lelmokwo Dispensary"},
-        {"val": "114", "label": "Kokwet Dispensary"},
-        {"val": "115", "label": "Ngechek Dispensary"},
-        {"val": "116", "label": "Cheramei Dispensary"},
-        {"val": "117", "label": "Murgusi Dispensary"},
-        {"val": "118", "label": "Cheplasgei Dispensary"},
-        {"val": "119", "label": "Sigot Dispensary"},
-        {"val": "120", "label": "Sugoi A Dispensary"},
-        {"val": "121", "label": "Sugoi B Dispensary"},
-        {"val": "122", "label": "Chepkemel Dispensary"},
-        {"val": "124", "label": "Akichelesit Dispensary"},
-        {"val": "125", "label": "Aboloi Dispensary"},
-        {"val": "126", "label": "Moding Dispensary"},
-        {"val": "127", "label": "Sambut"},
-        {"val": "128", "label": "Ngenyilel"},
-        {"val": "129", "label": "Sosiani"}
-    ];
-    $('#encounter\\.location_id').autocomplete({
-        source: dispensaryName,
-        create: function(event,ui){
-            var location_val = $('input[name="encounter\\.location_id"]').val();
-            $.each(dispensaryName, function (i, elem) {
-                if (elem.val == location_val) {
-                    $('#encounter\\.location_id').val(elem.label)
-                }
-            });
-        },
-        select: function (event, ui) {
-            $('input[name="encounter\\.location_id"]').val(ui.item.val  );
-            $('#encounter\\.location_id').val(ui.item.label);
-            return false;
-        }
-    });
-
-    var provider = [{"val":"3356-3","label":"David S. Pamba"},
-        {"val":"237-8","label":"Ariya Patrick"},
-        {"val":"3331-6","label":"Benjamin Osiya Ekirapa"},
-        {"val":"3332-4","label":"Molly Omodek Aluku"},
-        {"val":"3333-2","label":"Mercyline Lubisya Omusolo"},
-        {"val":"3334-0","label":"Julita Auma Ndege"},
-        {"val":"3335-7","label":"Caroline Fedha Injete"},
-        {"val":"3336-5","label":"Nelly Nabwire Shiundu"},
-        {"val":"3337-3","label":"Nicholas Dekkers Shitaha"},
-        {"val":"3338-1","label":"Tezra Asangire Okaal"},
-        {"val":"3340-7","label":"Sophy Ikarot Idele"},
-        {"val":"3339-9","label":"Maureen Jacinta Muteitsi"},
-        {"val":"3341-5","label":"Gibson Musera Mutira"},
-        {"val":"3342-3","label":"Titus Chuma Khusua"},
-        {"val":"3343-1","label":"Pamela Ekuriai Emukule"},
-        {"val":"3344-9","label":"Rhoda Jeruto Kurgat"},
-        {"val":"3345-6","label":"Zaitun Hassan Mohamed"},
-        {"val":"3346-4","label":"Grace Gichanga Nyathogora"},
-        {"val":"3347-2","label":"Gabriel Silas Okapes"},
-        {"val":"3348-0","label":"Henry Samson Obonyo"},
-        {"val":"3349-8","label":"Rebecca M. Wambura"},
-        {"val":"3350-6","label":"Zeruya Amwatok Barua"},
-        {"val":"3351-4","label":"Immaculate Otengo Namibia"},
-        {"val":"3352-2","label":"Pamela Were Wamoyi"},
-        {"val":"3357-1","label":"Caroline Wafula Nandisi"},
-        {"val":"3353-0","label":"Markins Opuko Cresent"},
-        {"val":"3354-8","label":"Benedict Kifufuli Wafula"},
-        {"val":"3355-5","label":"Clementine Ingosi Osiel"}];
-
-    $('#encounter\\.provider_id_select').autocomplete({
-        source: provider,
-        create: function (event, ui) {
-            var provider_val = $('input[name="encounter\\.provider_id_select"]').val();
-            $.each(provider, function (i, elem) {
-                if (elem.val == provider_val) {
-                    $('#encounter\\.provider_id_select').val(elem.label)
-                }
-            });
-        },
-        select: function (event, ui) {
-            $('input[name="encounter\\.provider_id_select"]').val(ui.item.val);
-            $('#encounter\\.provider_id_select').val(ui.item.label);
-            $('#encounter\\.provider_id').val(ui.item.val);
-            return false;
-        }
-    });
-    $('#encounter\\.provider_id_select').change(function(){
-        if($('#encounter\\.provider_id_select').val() == ''){
-            $('#encounter\\.provider_id').val('');
-            $('.show_provider_id_text').show();
-        }
-    });
 
     var getAgeInYears = function(){
         var birthdate_arr = $birthdate.val().split("-");
