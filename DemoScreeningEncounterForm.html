@@ -96,17 +96,17 @@
 		    <div class="form-group">
 		        </p><label for="obs.weight">Weight (KG)  <span class="required">*</span></label>
 		        <input class="form-control" id="obs.weight" name="obs.weight"
-		               type="number" placeholder="Kilograms" data-concept="5089^WEIGHT (KG)^99DCT" required="required">
+		               type="number" placeholder="Kilograms" data-concept="5089^WEIGHT (KG)^99DCT" required="required" maxlength="6">
 		    </div>
 		    <div class="form-group"></p>
 		        <label for="obs.height">Height (CM)  <span class="required">*</span></label>
 		        <input class="form-control" id="obs.height" name="obs.height"
-		               type="number" placeholder="Centimeters" data-concept="5090^HEIGHT (CM)^99DCT" required="required">
+		               type="number" placeholder="Centimeters" data-concept="5090^HEIGHT (CM)^99DCT" required="required" maxlength="6">
 		    </div>
 		    <div class="form-group">
 		        </p><label for="obs.bmi">BMI (KG/M<sup>2</sup>)  <span class="required">*</span></label>
 		        <input class="form-control" id="obs.bmi" name="obs.bmi"
-		               type="number" data-concept="1342^BODY MASS INDEX^99DCT" disabled="disabled" required="required">
+		               type="number" data-concept="1342^BODY MASS INDEX^99DCT" disabled="disabled" required="required" maxlength="6">
 		    </div>
 		    <label id="bmi_out_of_range_message" style="display:none" class="alert alert-danger">
 		        BMI should be between 0 and 100. Check Weight and Height values.</label>
@@ -115,7 +115,7 @@
 		    <div class="form-group">
 		        </p><label for="obs.waist_circumference"> Waist circumference (CM)  <span class="required">*</span></label>
 		        <input class="form-control" id="obs.waist_circumference" name="obs.waist_circumference"
-		               type="number" placeholder="Centimeters" data-concept="7231^WAIST CIRCUMFERENCE (CM)^99DCT" required="required">
+		               type="number" placeholder="Centimeters" data-concept="7231^WAIST CIRCUMFERENCE (CM)^99DCT" required="required" maxlength="6">
 		    </div>
 		    <label id="waist_circumference_above_threshold_message" style="display:none" class="alert alert-info">
 		        Advice on weight loss, check Random Blood Sugar</label>
@@ -127,13 +127,13 @@
 		            Random Blood Sugar<span id="random_blood_sugar_label" style="display:none" class="required">*</span>
 		        </label>
 		        <input class="form-control" id="obs.random_blood_sugar" name="obs.random_blood_sugar"
-		               type="number" placeholder="mmoll/L" data-concept="887^SERUM GLUCOSE^99DCT">
+		               type="number" placeholder="mmoll/L" data-concept="887^SERUM GLUCOSE^99DCT" maxlength="6">
 		    </div>
 		    <label id="random_blood_sugar_above_threshold_message" style="display:none" class="alert alert-info">Refer to facility for FBS</label>
 		    <div class="form-group">
 		        </p><label for="obs.systolic_blood_pressure"> Systolic Blood Pressure <span class="required">*</span></label>
 		        <input class="form-control" id="obs.systolic_blood_pressure" name="obs.systolic_blood_pressure"
-		           type="number" placeholder="mmHg" data-concept="5085^SYSTOLIC BLOOD PRESSURE^99DCT"  required="required">
+		           type="number" placeholder="mmHg" data-concept="5085^SYSTOLIC BLOOD PRESSURE^99DCT"  required="required" maxlength="6">
 		    </div>
 		    <label id="systolic_blood_pressure_below_threshold_message" style="display:none" class="alert alert-info">
 		        <p>Low blood pressure. Refer for confirmation.</p>
@@ -145,7 +145,7 @@
 		    <div class="form-group">
 		        </p><label for="obs.diastolic_blood_pressure"> Diastolic Blood Pressure  <span class="required">*</span></label>
 		        <input class="form-control" id="obs.diastolic_blood_pressure" name="obs.diastolic_blood_pressure"
-		           type="number" placeholder="mmHg" data-concept="5086^DIASTOLIC BLOOD PRESSURE^99DCT"  required="required">
+		           type="number" placeholder="mmHg" data-concept="5086^DIASTOLIC BLOOD PRESSURE^99DCT"  required="required" maxlength="6">
 		    </div>
 		    <label id="diastolic_blood_pressure_below_threshold_message" style="display:none" class="alert alert-info">
 		        <p>Low blood pressure. Refer for confirmation.</p>
@@ -251,7 +251,7 @@
 			            If YES in question above, how many times have you been admitted?<span class="required">*</span>
 			        </label>
 			        <input class="form-control number_of_admission" id="obs.number_of_admission" name="obs.number_of_admission"
-			               type="number" placeholder="Number of Admission" data-concept="6114^NUMBER OF ADMISSION^99DCT" required="required" value="1">
+			               type="number" placeholder="Number of Admission" data-concept="6114^NUMBER OF ADMISSION^99DCT" required="required" value="1" maxlength="5">
 			    </div>
 
 
@@ -340,7 +340,7 @@
 				            How many days did you remain admitted?<span class="required">*</span>
 				        </label>
 				        <input class="form-control" id="obs.number_of_days_admitted" name="obs.number_of_days_admitted"
-				               type="number" placeholder="Number of Days Admitted" data-concept="6113^NUMBER OF DAYS ADMITTED^99DCT" required="required">
+				               type="number" placeholder="Number of Days Admitted" data-concept="6113^NUMBER OF DAYS ADMITTED^99DCT" required="required" maxlength="6">
 				    </div>
 				</div>
 			</div>
@@ -407,33 +407,80 @@ $(document).ready(function () {
 
         rules: {
             "obs.height":{
-                range : [10, 228]
+                range : [10, 228],
+                number: true,
+                maxlength: 6
             },
             "obs.weight":{
-                range : [0, 250]
+                range : [0, 250],
+                number: true,
+                maxlength: 6
             },
             "obs.bmi":{
-                range : [0, 100]
+                range : [0, 100],
+                number: true,
+                maxlength: 6
             },
             "obs.waist_circumference":{
-                range : [0, 150]
+                range : [0, 150],
+                number: true,
+                maxlength: 6
             },
             "obs.systolic_blood_pressure":{
-                range : [50, 250]
+                range : [50, 250],
+                number: true,
+                maxlength: 6
             },
             "obs.diastolic_blood_pressure":{
-                range : [20, 150]
+                range : [20, 150],
+                number: true,
+                maxlength: 6
             },
             "obs.random_blood_sugar":{
-                range : [0, 150]
+                range : [0, 150],
+                number: true,
+                maxlength: 6
             },
             "obs.number_of_admission":{
-                range : [1, 50]
+                range : [1, 50],
+                number: true,
+                maxlength: 5
             },
             "obs.number_of_days_admitted":{
-                range : [1, 300]
+                range : [1, 300],
+                number: true,
+                maxlength: 6
             }
         },
+	    messages: {
+	        "obs.height": {
+	            maxlength: "Please enter no more than 6 digit including maximum 2 digit fraction."
+	        },
+	        "obs.weight": {
+	            maxlength: "Please enter no more than 6 digit including maximum 2 digit fraction."
+	        },
+	        "obs.bmi": {
+	            maxlength: "Please enter no more than 6 digit including maximum 2 digit fraction."
+	        },
+	        "obs.waist_circumference": {
+	            maxlength: "Please enter no more than 6 digit including maximum 2 digit fraction."
+	        },
+	        "obs.systolic_blood_pressure": {
+	            maxlength: "Please enter no more than 6 digit including maximum 2 digit fraction."
+	        },
+	        "obs.diastolic_blood_pressure": {
+	            maxlength: "Please enter no more than 6 digit including maximum 2 digit fraction."
+	        },
+	        "obs.random_blood_sugar": {
+	            maxlength: "Please enter no more than 6 digit including maximum 2 digit fraction."
+	        },
+	        "obs.number_of_admission": {
+	            maxlength: "Please enter no more than 5 digit including maximum 2 digit fraction."
+	        },
+	        "obs.number_of_days_admitted": {
+	            maxlength: "Please enter no more than 6 digit including maximum 2 digit fraction."
+	        }
+	    },
         submitHandler: function (form) {
             $('#result').html(JSON.stringify($('form').serializeEncounterForm(), undefined, 2));
         }
