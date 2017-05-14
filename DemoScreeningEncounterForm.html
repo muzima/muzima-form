@@ -1,0 +1,669 @@
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/muzima.css" rel="stylesheet">
+    <link href="css/ui-darkness/jquery-ui-1.10.4.custom.min.css" rel="stylesheet">
+    <script src="js/jquery.min.js"></script>
+    <script src="js/jquery-ui-1.10.4.custom.min.js"></script>
+    <script src="js/jquery.validate.min.js"></script>
+    <script src="js/additional-methods.min.js"></script>
+    <script src="js/muzima.js"></script>
+
+    <title>Demo Screening Encounter Form V 0.02</title>
+</head>
+
+<body class="col-md-10 col-md-offset-1">
+	<div id="pre_populate_data"></div>
+	<h2 class="text-center">Demo Screening Encounter Form V 0.02</h2>
+
+	<form id="demo_screening_form" name="demo_screening_form">
+
+		<div class="section">
+		    <h3>Demographics</h3>
+
+		    <div class="form-group">
+		        <input class="form-control" id="patient.uuid" name="patient.uuid" type="hidden" readonly="readonly">
+		    </div>
+		    <div class="form-group">
+		        <label for="patient.medical_record_number">AMRS ID Number:</label>
+		        <input class="form-control" id="patient.medical_record_number" name="patient.medical_record_number" type="text"
+		               readonly="readonly" disabled="disabled">
+		    </div>
+		    <div class="form-group">
+		        <label for="patient.family_name">Family Name:</label>
+		        <input class="form-control" id="patient.family_name" name="patient.family_name" type="text" readonly="readonly"
+		               disabled="disabled">
+		    </div>
+		    <div class="form-group">
+		        <label for="patient.given_name">Given Name:</label>
+		        <input class="form-control" id="patient.given_name" name="patient.given_name" type="text" readonly="readonly"
+		               disabled="disabled">
+		    </div>
+		    <div class="form-group">
+		        <label for="patient.middle_name">Middle Name:</label>
+		        <input class="form-control" id="patient.middle_name" name="patient.middle_name" type="text" readonly="readonly"
+		               disabled="disabled">
+		    </div>
+		    <div class="form-group">
+		        <label for="patient.sex">Gender:</label>
+		        <select class="form-control" id="patient.sex" name="patient.sex"  readonly="readonly" disabled="disabled">
+		            <option value="">...</option>
+		            <option value="M">Male</option>
+		            <option value="F">Female</option>
+		        </select>
+		    </div>
+		    <div class="form-group">
+		        <label for="patient.birth_date">Date Of Birth:</label>
+		        <input class="form-control" id="patient.birth_date" name="patient.birth_date" type="text" readonly="readonly"
+		               disabled="disabled">
+		    </div>
+		</div>
+		<div class="section">
+		    <h3>Encounter Details</h3>
+
+		    <div class="form-group">
+		        <label for="encounter.location_id">Name of Health Center:<span class="required">*</span></label>
+		        <input class="form-control" id="encounter.location_id" type="text" placeholder="Start typing something...">
+		        <input class="form-control" name="encounter.location_id" type="hidden">
+		    </div>
+
+		    <div class="form-group">
+		        <label for="encounter.provider_id_select">Provider Name:<span class="required">*</span></label>
+		        <input class="form-control" id="encounter.provider_id_select" type="text" placeholder="Start typing something...">
+		        <input class="form-control" name="encounter.provider_id_select" type="hidden">
+		    </div>
+
+		    <div class="form-group show_provider_id_text">
+		        <label for="encounter.provider_id">Provider system-id:<span class="required">*</span></label>
+		        <input class="form-control checkDigit" id="encounter.provider_id" disabled name="encounter.provider_id"
+		               type="text" required="required"  placeholder="Provider Id">
+		    </div>
+		    <div class="form-group">
+		        <label for="encounter.encounter_datetime">Encounter Date:<span class="required">*</span></label>
+		        <input class="form-control datepicker nonFutureDate" id="encounter.encounter_datetime"
+		               name="encounter.encounter_datetime" type="text" readonly="readonly"
+		               required="required">
+		    </div>
+		    <div class="form-group">
+		        <input class="form-control" id="encounter.form_uuid" name="encounter.form_uuid"
+		               type="hidden" required="required">
+		    </div>
+		</div>
+
+		<div class="section">
+		    <div class="form-group">
+		        </p><label for="obs.weight">Weight (KG)  <span class="required">*</span></label>
+		        <input class="form-control" id="obs.weight" name="obs.weight"
+		               type="number" placeholder="Kilograms" data-concept="5089^WEIGHT (KG)^99DCT" required="required" maxlength="6">
+		    </div>
+		    <div class="form-group"></p>
+		        <label for="obs.height">Height (CM)  <span class="required">*</span></label>
+		        <input class="form-control" id="obs.height" name="obs.height"
+		               type="number" placeholder="Centimeters" data-concept="5090^HEIGHT (CM)^99DCT" required="required" maxlength="6">
+		    </div>
+		    <div class="form-group">
+		        </p><label for="obs.bmi">BMI (KG/M<sup>2</sup>)  <span class="required">*</span></label>
+		        <input class="form-control" id="obs.bmi" name="obs.bmi"
+		               type="number" data-concept="1342^BODY MASS INDEX^99DCT" disabled="disabled" required="required" maxlength="6">
+		    </div>
+		    <label id="bmi_out_of_range_message" style="display:none" class="alert alert-danger">
+		        BMI should be between 0 and 100. Check Weight and Height values.</label>
+		    <label id="bmi_above_threshold_message" style="display:none" class="alert alert-info">
+		        Advice on weight loss, check Random Blood Sugar</label>
+		    <div class="form-group">
+		        </p><label for="obs.waist_circumference"> Waist circumference (CM)  <span class="required">*</span></label>
+		        <input class="form-control" id="obs.waist_circumference" name="obs.waist_circumference"
+		               type="number" placeholder="Centimeters" data-concept="7231^WAIST CIRCUMFERENCE (CM)^99DCT" required="required" maxlength="6">
+		    </div>
+		    <label id="waist_circumference_above_threshold_message" style="display:none" class="alert alert-info">
+		        Advice on weight loss, check Random Blood Sugar</label>
+
+		</div>
+		<div class="section">
+		    <div class="form-group">
+		        <label for="obs.random_blood_sugar"> 
+		            Random Blood Sugar<span id="random_blood_sugar_label" style="display:none" class="required">*</span>
+		        </label>
+		        <input class="form-control" id="obs.random_blood_sugar" name="obs.random_blood_sugar"
+		               type="number" placeholder="mmoll/L" data-concept="887^SERUM GLUCOSE^99DCT" maxlength="6">
+		    </div>
+		    <label id="random_blood_sugar_above_threshold_message" style="display:none" class="alert alert-info">Refer to facility for FBS</label>
+		    <div class="form-group">
+		        </p><label for="obs.systolic_blood_pressure"> Systolic Blood Pressure <span class="required">*</span></label>
+		        <input class="form-control" id="obs.systolic_blood_pressure" name="obs.systolic_blood_pressure"
+		           type="number" placeholder="mmHg" data-concept="5085^SYSTOLIC BLOOD PRESSURE^99DCT"  required="required" maxlength="6">
+		    </div>
+		    <label id="systolic_blood_pressure_below_threshold_message" style="display:none" class="alert alert-info">
+		        <p>Low blood pressure. Refer for confirmation.</p>
+		    </label>
+		    <label id="systolic_blood_pressure_above_threshold_message" style="display:none" class="alert alert-info">
+		        <p>Refer to facility for hypertension screening</p>
+		        <p>Educate on salt reduction and lifestyle modifcation</p>
+		    </label>
+		    <div class="form-group">
+		        </p><label for="obs.diastolic_blood_pressure"> Diastolic Blood Pressure  <span class="required">*</span></label>
+		        <input class="form-control" id="obs.diastolic_blood_pressure" name="obs.diastolic_blood_pressure"
+		           type="number" placeholder="mmHg" data-concept="5086^DIASTOLIC BLOOD PRESSURE^99DCT"  required="required" maxlength="6">
+		    </div>
+		    <label id="diastolic_blood_pressure_below_threshold_message" style="display:none" class="alert alert-info">
+		        <p>Low blood pressure. Refer for confirmation.</p>
+		    </label>
+		    <label id="diastolic_blood_pressure_above_threshold_message" style="display:none" class="alert alert-info">
+		        <p>Refer to facility for hypertension screening</p>
+		        <p>Educate on salt reduction and lifestyle modifcation</p>
+		    </label>
+		</div>
+		<div class = "section">
+		    <div class="form-group">
+		        <label>What conditions have you ever been told that you have by a doctor or other health worker?</label>
+		        <fieldset name="6112^CONDITIONS TOLD BY DOCTORS^99DCT">
+		            <div class="form-group">
+		                <label class="font-normal">
+		                    <input id="conditions_told_by_doctors.diabetes" type="checkbox"
+		                           data-concept="6112^CONDITIONS TOLD BY DOCTORS^99DCT"
+		                           value="225^DIABETES^99DCT">
+		                    Diabetes
+		                </label>
+		            </div>
+		            <div class="form-group">
+		                <label class="font-normal">
+		                    <input id="conditions_told_by_doctors.heart_disease" type="checkbox"
+		                           data-concept="6112^CONDITIONS TOLD BY DOCTORS^99DCT"
+		                           value="221^HEART DISEASE^99DCT">
+		                    Heart disease
+		                </label>
+		            </div>
+		            <div class="form-group">
+		                <label class="font-normal">
+		                    <input id="conditions_told_by_doctors.hypertension" type="checkbox"
+		                           data-concept="6112^CONDITIONS TOLD BY DOCTORS^99DCT"
+		                           value="903^HYPERTENSION^99DCT">
+		                    Hypertension (high pressure)
+		                </label>
+		            </div>
+		            <div class="form-group">
+		                <label class="font-normal">
+		                    <input id="conditions_told_by_doctors.lung_disease" type="checkbox"
+		                           data-concept="6112^CONDITIONS TOLD BY DOCTORS^99DCT"
+		                           value="6107^LUNG DISEASE^99DCT">
+		                    Lung disease
+		                </label>
+		            </div>
+		            <div class="form-group">
+		                <label class="font-normal">
+		                    <input id="conditions_told_by_doctors.hyperlipidemia" type="checkbox"
+		                           data-concept="6112^CONDITIONS TOLD BY DOCTORS^99DCT"
+		                           value="6108^HYPERLIPIDEMIA^99DCT">
+		                    Hyperlipidemia
+		                </label>
+		            </div>
+		            <div class="form-group">
+		                <label class="font-normal">
+		                    <input id="conditions_told_by_doctors.hiv" type="checkbox"
+		                           data-concept="6112^CONDITIONS TOLD BY DOCTORS^99DCT"
+		                           value="884^HIV^99DCT">
+		                    HIV - HUMAN IMMUNODEFICIENCY VIRUS
+		                </label>
+		            </div>
+		            <div class="form-group">
+		                <label class="font-normal">
+		                    <input id="conditions_told_by_doctors.cancer" type="checkbox"
+		                           data-concept="6112^CONDITIONS TOLD BY DOCTORS^99DCT"
+		                           value="6109^CANCER^99DCT">
+		                    Cancer
+		                </label>
+		            </div>
+				    <div class="form-group">
+				        <label class="font-normal">
+				            <input id="conditions_told_by_doctors_other_non_coded" type="checkbox"
+				                   data-concept="6112^CONDITIONS TOLD BY DOCTORS^99DCT"
+				                   value="5622^OTHER NON-CODED^99DCT">
+				            Other
+				        </label>
+				    </div>
+				    <div class="form-group conditions_told_by_doctors_freetext" style="display: none;">
+				        <label for="conditions_told_by_doctors.freetext_general">Please Specify</label>
+				        <input class="form-control" id="conditions_told_by_doctors.freetext_general"
+				               name="conditions_told_by_doctors.freetext_general" type="text"
+				               data-concept="6110^FREETEXT GENERAL^99DCT">
+				    </div>
+
+		        </fieldset>
+		    </div>
+		</div>
+		<div class="section">
+		    <div class="form-group">
+		        <label for="obs.hospital_admission_status"> Have you at any time during the <u>past 12 months</u> been admitted to a hospital for at least one night? <span class="required">*</span></label>
+		        <fieldset id="obs.hospital_admission_status" name="6115^HOSPITAL ADMISSION STATUS^99DCT">
+		           <input id="hospital_admission_status_yes" type="radio" name="obs.hospital_admission_status" data-concept="6115^HOSPITAL ADMISSION STATUS^99DCT" value="1065^YES^99DCT" attr_value="YES" required="required">
+		           <label for="hospital_admission_status_yes">Yes</label>&nbsp;&nbsp;
+
+		           <input id="hospital_admission_status_no" type="radio" name="obs.hospital_admission_status" data-concept="6115^HOSPITAL ADMISSION STATUS^99DCT" attr_value="NO"
+		                value="1066^NO^99DCT" checked="checked" required="required">
+		           <label for="hospital_admission_status_no">No</label>
+		        </fieldset>
+		    </div>
+		    <div id="more_information" style="display: none;">
+			    <div class="form-group">
+			        <label for="obs.number_of_admission">
+			            If YES in question above, how many times have you been admitted?<span class="required">*</span>
+			        </label>
+			        <input class="form-control number_of_admission" id="obs.number_of_admission" name="obs.number_of_admission"
+			               type="number" placeholder="Number of Admission" data-concept="6114^NUMBER OF ADMISSION^99DCT" required="required" value="1" maxlength="5">
+			    </div>
+
+
+				<div class="repeat sub-section">
+				    <div class="form-group">
+				        <label for="gravida">
+				            What was the reason/disease for admission?<span class="required">*</span>
+				        </label>
+				        <div>
+				            <small><i>If in question above is more than 1, please use (+) plus sign use enter multiple disease</i></small>
+				        </div>
+				        <fieldset name="6111^DISEASE FOR ADMISSION^99DCT">
+				            <div class="form-group">
+				                <label class="font-normal">
+				                    <input id="disease_for_admission.diabetes" type="checkbox"
+				                           data-concept="6111^DISEASE FOR ADMISSION^99DCT"
+				                           value="225^DIABETES^99DCT">
+				                    Diabetes
+				                </label>
+				            </div>
+				            <div class="form-group">
+				                <label class="font-normal">
+				                    <input id="disease_for_admission.heart_disease" type="checkbox"
+				                           data-concept="6111^DISEASE FOR ADMISSION^99DCT"
+				                           value="221^HEART DISEASE^99DCT">
+				                    Heart disease
+				                </label>
+				            </div>
+				            <div class="form-group">
+				                <label class="font-normal">
+				                    <input id="disease_for_admission.hypertension" type="checkbox"
+				                           data-concept="6111^DISEASE FOR ADMISSION^99DCT"
+				                           value="903^HYPERTENSION^99DCT">
+				                    Hypertension (high pressure)
+				                </label>
+				            </div>
+				            <div class="form-group">
+				                <label class="font-normal">
+				                    <input id="disease_for_admission.lung_disease" type="checkbox"
+				                           data-concept="6111^DISEASE FOR ADMISSION^99DCT"
+				                           value="6107^LUNG DISEASE^99DCT">
+				                    Lung disease
+				                </label>
+				            </div>
+				            <div class="form-group">
+				                <label class="font-normal">
+				                    <input id="disease_for_admission.hyperlipidemia" type="checkbox"
+				                           data-concept="6111^DISEASE FOR ADMISSION^99DCT"
+				                           value="6108^HYPERLIPIDEMIA^99DCT">
+				                    Hyperlipidemia
+				                </label>
+				            </div>
+				            <div class="form-group">
+				                <label class="font-normal">
+				                    <input id="disease_for_admission.hiv" type="checkbox"
+				                           data-concept="6111^DISEASE FOR ADMISSION^99DCT"
+				                           value="884^HIV^99DCT">
+				                    HIV - HUMAN IMMUNODEFICIENCY VIRUS
+				                </label>
+				            </div>
+				            <div class="form-group">
+				                <label class="font-normal">
+				                    <input id="disease_for_admission.cancer" type="checkbox"
+				                           data-concept="6111^DISEASE FOR ADMISSION^99DCT"
+				                           value="6109^CANCER^99DCT">
+				                    Cancer
+				                </label>
+				            </div>
+						    <div class="form-group">
+						        <label class="font-normal">
+						            <input class="disease_for_admission_other_non_coded" id="disease_for_admission.other_non_coded" type="checkbox"
+						                   data-concept="6111^CONDITIONS TOLD BY DOCTORS^99DCT"
+						                   value="5622^OTHER NON-CODED^99DCT">
+						            Other
+						        </label>
+						    </div>
+						    <div class="form-group disease_for_admission_freetext" style="display: none;">
+						        <label for="disease_for_admission.freetext_general">Please Specify</label>
+						        <input class="form-control" id="disease_for_admission.freetext_general"
+						               name="disease_for_admission.freetext_general" type="text"
+						               data-concept="6110^FREETEXT GENERAL^99DCT">
+						    </div>
+
+				        </fieldset>
+				        <label for="gravida">
+				            How many days did you remain admitted?<span class="required">*</span>
+				        </label>
+				        <input class="form-control" id="obs.number_of_days_admitted" name="obs.number_of_days_admitted"
+				               type="number" placeholder="Number of Days Admitted" data-concept="6113^NUMBER OF DAYS ADMITTED^99DCT" required="required" maxlength="6">
+				    </div>
+				</div>
+			</div>
+
+		</div>
+
+	</form>
+</body>
+
+<script type="text/javascript">
+
+$(document).ready(function () {
+	$('#more_information').hide();
+	$('.conditions_told_by_doctors_freetext').hide();
+	$('.disease_for_admission_freetext').hide();
+	$('.add_section, .remove_section').hide();
+
+    $('#save_draft').click(function () {
+        $(this).prop('disabled', true);
+        document.saveDraft(this);
+        $(this).prop('disabled', false);
+    });
+
+    $('#submit_form').click(function () {
+        $(this).prop('disabled', true);
+        document.submit();
+        $(this).prop('disabled', false);
+    });
+
+    $('#conditions_told_by_doctors_other_non_coded').click(function () {
+
+	    $('.conditions_told_by_doctors_freetext').toggle();
+    });
+
+    $('.disease_for_admission_other_non_coded').click(function () {
+
+	    $(this).parent().parent().parent().find('.disease_for_admission_freetext').toggle();
+    });
+
+    $('#hospital_admission_status_yes, #hospital_admission_status_no').click(function () {
+
+	    if ($('input:radio[name="obs.hospital_admission_status"]:checked').attr('attr_value') === "YES")
+	    {
+    	    $('#more_information').show();
+	    }
+	    else {
+    	    $('#more_information').hide();
+	    }
+    });
+
+    $('.number_of_admission').blur(function () {
+
+	    if ($(this).val() >= 2)
+	    {
+    	    $('.add_section, .remove_section').show();
+	    }
+	    else {
+    	    $('.add_section, .remove_section').hide();
+	    }
+    });
+
+
+    $('#demo_screening_form').validate({
+
+        rules: {
+            "obs.height":{
+                range : [10, 228],
+                number: true,
+                maxlength: 6
+            },
+            "obs.weight":{
+                range : [0, 250],
+                number: true,
+                maxlength: 6
+            },
+            "obs.bmi":{
+                range : [0, 100],
+                number: true,
+                maxlength: 6
+            },
+            "obs.waist_circumference":{
+                range : [0, 150],
+                number: true,
+                maxlength: 6
+            },
+            "obs.systolic_blood_pressure":{
+                range : [50, 250],
+                number: true,
+                maxlength: 6
+            },
+            "obs.diastolic_blood_pressure":{
+                range : [20, 150],
+                number: true,
+                maxlength: 6
+            },
+            "obs.random_blood_sugar":{
+                range : [0, 150],
+                number: true,
+                maxlength: 6
+            },
+            "obs.number_of_admission":{
+                range : [1, 50],
+                number: true,
+                maxlength: 5
+            },
+            "obs.number_of_days_admitted":{
+                range : [1, 300],
+                number: true,
+                maxlength: 6
+            }
+        },
+	    messages: {
+	        "obs.height": {
+	            maxlength: "Please enter no more than 6 digit including maximum 2 digit fraction."
+	        },
+	        "obs.weight": {
+	            maxlength: "Please enter no more than 6 digit including maximum 2 digit fraction."
+	        },
+	        "obs.bmi": {
+	            maxlength: "Please enter no more than 6 digit including maximum 2 digit fraction."
+	        },
+	        "obs.waist_circumference": {
+	            maxlength: "Please enter no more than 6 digit including maximum 2 digit fraction."
+	        },
+	        "obs.systolic_blood_pressure": {
+	            maxlength: "Please enter no more than 6 digit including maximum 2 digit fraction."
+	        },
+	        "obs.diastolic_blood_pressure": {
+	            maxlength: "Please enter no more than 6 digit including maximum 2 digit fraction."
+	        },
+	        "obs.random_blood_sugar": {
+	            maxlength: "Please enter no more than 6 digit including maximum 2 digit fraction."
+	        },
+	        "obs.number_of_admission": {
+	            maxlength: "Please enter no more than 5 digit including maximum 2 digit fraction."
+	        },
+	        "obs.number_of_days_admitted": {
+	            maxlength: "Please enter no more than 6 digit including maximum 2 digit fraction."
+	        }
+	    },
+        submitHandler: function (form) {
+            $('#result').html(JSON.stringify($('form').serializeEncounterForm(), undefined, 2));
+        }
+    });
+
+    $.validator.addMethod("compareBloodPressure", function (value, element) {
+            var systolic_blood_pressure = $('#obs\\.systolic_blood_pressure').val();
+            var diastolic_blood_pressure = $('#obs\\.diastolic_blood_pressure').val();
+            if(systolic_blood_pressure < diastolic_blood_pressure)
+                return false;
+            else
+                return true;
+
+            },"Systolic blood pressue can not be less than Diastolic blood pressure"
+        );
+
+    var show_message=function(element_id){
+        $(element_id).show();
+    }
+    var hide_message=function(element_id){
+        $(element_id).hide();
+    }
+    var evaluate_bmi_and_bmi_logic=function(){
+        var weight = $('#obs\\.weight').val();
+        var height_in_meters = $('#obs\\.height').val()/100;
+        var bmi=+((weight/(height_in_meters*height_in_meters)).toFixed(2));
+        $('#obs\\.bmi').attr('value',bmi);
+
+        evaluate_bmi_logic();
+
+    };
+    var evaluate_bmi_logic=function(){
+        if(bmi_is_out_of_range()){
+            show_message('#bmi_out_of_range_message');
+        }else{
+            hide_message('#bmi_out_of_range_message');
+        }
+        if(bmi_is_above_threshold()){
+            show_message('#bmi_above_threshold_message');
+            set_require_random_blood_sugar(true);
+        }else{
+            hide_message('#bmi_above_threshold_message');
+            evaluate_require_random_blood_sugar();
+        }
+    };
+    var bmi_is_out_of_range=function(){
+        var bmi = $('#obs\\.bmi').val();
+        if(bmi<0 || bmi>100){
+            return true;
+        }
+    }
+    var bmi_is_above_threshold=function(){
+        var bmi = $('#obs\\.bmi').val();
+        var weight = $('#obs\\.weight').val();
+        var height_in_meters = $('#obs\\.height').val()/100;
+        if(weight>0 && height_in_meters>0 && bmi>25){
+            return true;
+        }else{
+            return false;
+        }
+    }
+    var age_is_above_threshold=function(){
+        var age_threshold=40;
+        var date_of_birth_arr=$('#patient\\.birth_date').val().split("-");
+        var birthDate = new Date(date_of_birth_arr[2], date_of_birth_arr[1] - 1, date_of_birth_arr[0]);
+        var today = new Date();
+        var age = today.getFullYear() - birthDate.getFullYear();
+        var m = today.getMonth() - birthDate.getMonth();
+          if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+            age--;
+          }
+        return age >= age_threshold;
+    }
+    var evaluate_require_random_blood_sugar=function(){
+        if(age_is_above_threshold() || bmi_is_above_threshold()||waist_circumference_is_above_threshold()){
+            set_require_random_blood_sugar(true);
+        }else{
+            set_require_random_blood_sugar(false);
+        }
+    }
+    var set_require_random_blood_sugar=function(require_random_blood_sugar){
+        if(require_random_blood_sugar==true){
+            $('#obs\\.random_blood_sugar').attr('required','required');
+            $('#random_blood_sugar_label').show();
+        } else {
+            $('#obs\\.random_blood_sugar').removeAttr('required');
+            $('#random_blood_sugar_label').hide();
+        }
+    }
+    var is_gender=function(gender){
+        return $('#patient\\.sex').val() == gender;
+    }
+    var is_female=function(){
+        return is_gender('F');
+    }
+    var is_male=function(){
+        return is_gender('M');
+    }
+    var waist_circumference_is_above_female_threshold=function(){
+        return $('#obs\\.waist_circumference').val() >88;
+    }
+    var waist_circumference_is_above_male_threshold=function(){
+        return $('#obs\\.waist_circumference').val() >102;
+    }
+    var waist_circumference_is_above_threshold=function(){
+        return is_female() && waist_circumference_is_above_female_threshold() || is_male() && waist_circumference_is_above_male_threshold();
+    }
+    var random_blood_sugar_is_above_threshold=function(){
+        return $('#obs\\.random_blood_sugar').val() > 7.8;
+    }
+    var systolic_blood_pressure_is_above_threshold=function(){
+        return $('#obs\\.systolic_blood_pressure').val() >140;
+    }
+    var systolic_blood_pressure_is_below_threshold=function(){
+        return $('#obs\\.systolic_blood_pressure').val() < 80;
+    }
+    var diastolic_blood_pressure_is_above_threshold=function(){
+        return $('#obs\\.diastolic_blood_pressure').val() >90;
+    }
+    var diastolic_blood_pressure_is_below_threshold=function(){
+        return $('#obs\\.diastolic_blood_pressure').val() < 60;
+    }
+
+    var evaluate_waist_circumference_logic=function(){
+        if(waist_circumference_is_above_threshold()){
+            show_message('#waist_circumference_above_threshold_message');
+            set_require_random_blood_sugar(true);
+        }else{
+            hide_message('#waist_circumference_above_threshold_message');
+            evaluate_require_random_blood_sugar();
+        }
+    }
+    var evaluate_random_blood_sugar_logic=function(){
+        if( random_blood_sugar_is_above_threshold() ){
+            show_message('#random_blood_sugar_above_threshold_message');
+        }else{
+            hide_message('#random_blood_sugar_above_threshold_message');
+        }
+    }
+    var evaluate_systolic_blood_pressure_logic=function(){
+        if(systolic_blood_pressure_is_below_threshold()){
+            show_message('#systolic_blood_pressure_below_threshold_message');
+        }else{
+            hide_message('#systolic_blood_pressure_below_threshold_message');
+        }
+        if(systolic_blood_pressure_is_above_threshold()){
+            show_message('#systolic_blood_pressure_above_threshold_message');
+        }else{
+            hide_message('#systolic_blood_pressure_above_threshold_message');
+        }
+    }
+    var evaluate_diastolic_blood_pressure_logic=function(){
+        if(diastolic_blood_pressure_is_below_threshold()){
+            show_message('#diastolic_blood_pressure_below_threshold_message');
+        }else{
+            hide_message('#diastolic_blood_pressure_below_threshold_message');
+        }
+        if(diastolic_blood_pressure_is_above_threshold()){
+            show_message('#diastolic_blood_pressure_above_threshold_message');
+        }else{
+            hide_message('#diastolic_blood_pressure_above_threshold_message');
+        }
+    }
+    $('#obs\\.weight').change(function(){
+        evaluate_bmi_and_bmi_logic();
+    });
+    $('#obs\\.height').change(function(){
+        evaluate_bmi_and_bmi_logic();
+    });
+    $('#obs\\.waist_circumference').change(function(){
+        evaluate_waist_circumference_logic();
+    });
+    $('#obs\\.random_blood_sugar').change(function(){
+        evaluate_random_blood_sugar_logic();
+    });
+    $('#obs\\.systolic_blood_pressure').change(function(){
+        evaluate_systolic_blood_pressure_logic();
+    });
+    $('#obs\\.diastolic_blood_pressure').change(function(){
+        evaluate_diastolic_blood_pressure_logic();
+    });
+
+});
+</script>
+
+</html>
