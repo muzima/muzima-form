@@ -70,7 +70,6 @@
                readonly="readonly" value="01-01-1972">
     </div>
 </div>
-<div id="console"></div>
 <div class="section">
     <h3>Encounter Details</h3>
 
@@ -122,6 +121,22 @@
     </div>
 </div>
 <div id="main_observations_section">
+<div class="section">
+	<h3>Health Insurance</h3>
+    <div class="form-group">
+        <label for="obs.has_nhif">Do you have NHIF?<span class="required">*</span></label>
+        <select class="form-control" id="obs.has_nhif" name="obs.has_nhif"
+                data-concept="6266^HEALTH INSURANCE^99DCT" required="required">
+            <option value="">...</option>
+            <option value="6815^KENYA NATIONAL HEALTH INSURANCE FUND^99DCT">
+                Yes
+            </option>
+            <option value="1066^NO^99DCT">
+                No
+            </option>
+        </select>
+    </div>
+</div>
 <div class="section">
     <h3>Status of patient</h3>
     <div class="form-group concept-set" data-concept="9168^TYPE OF FOLLOW-UP,DETAILED^99DCT">
@@ -3156,14 +3171,13 @@ $(document).ready(function () {
             }
         });
         if(provider_id_matched){
-            DISPLAY_REMINDERS = true;$('#console').html("Matched");
+            DISPLAY_REMINDERS = true;
         } else {
-            DISPLAY_REMINDERS = false;$('#console').html("Not matched");
+            DISPLAY_REMINDERS = false;
         }
     }
 
     $('#encounter\\.provider_id').change(function(){
-        $('#console').html("Provider ID");
         if($(this).val() == ''){
             $('#main_observations_section').hide();
         } else {
@@ -3174,7 +3188,6 @@ $(document).ready(function () {
     $('#encounter\\.provider_id').trigger('change');
 
     $('#encounter\\.provider_id_select').change(function(){
-        $('#console').html("Searching");
         if($('#encounter\\.provider_id_select').val() == ''){
             $('#encounter\\.provider_id').val('');
             $('.show_provider_id_text').show();
