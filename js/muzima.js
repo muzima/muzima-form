@@ -158,14 +158,16 @@ $(document).ready(function () {
 
     /* Start - Function to save the form */
     document.submit = function () {
-        var validForm = $("form").valid();
+        var repeatingSections = $('.repeat');
+        var showErrorMessageIfInvalid = true;
+        var validForm = document.multipleSectionRepeatsValidationCheck(repeatingSections,showErrorMessageIfInvalid);
         if (typeof $.fn.customValidationCheck !== 'undefined' && typeof $.fn.customValidationCheck === 'function') {
             validForm = validForm && $.fn.customValidationCheck();
         }
         if (validForm) {
-	    $(this).find('input:text').each(function(){
-		$(this).val($.trim($(this).val()));
-	    });
+    	    $(this).find('input:text').each(function(){
+    		$(this).val($.trim($(this).val()));
+    	    });
             save("complete", false);
         } else {
             addValidationMessage();
@@ -492,6 +494,11 @@ $(document).ready(function () {
         $clonedSection.attr("data-name", parentName);
 
         document.clearValuesOnClonedFields($clonedSection);
+        if(document.isMaxRepeatsReached($clonedSection)){
+            $('.add_section').prop('disabled', true);
+        }
+        var showErrorMessageIfInvalid = false;
+        document.multipleSectionRepeatsValidationCheck($("." + $clonedSection.attr("id")),showErrorMessageIfInvalid);
     });
 
     $(document.body).on('click', '.remove_section', function () {
@@ -514,11 +521,14 @@ $(document).ready(function () {
     document.removeIfRepeatedSection = function($element){
         var $parent = $element.parent();
         var _id = $parent.attr('id');
-        if ($parent.parent().find("." + _id).length > 1) {
+        var similarElements = $parent.parent().find("." + _id);
+        if (similarElements.length > 1) {
             $parent.remove();
+            if(!document.isMaxRepeatsReached($(similarElements[0]))){
+               similarElements.find('.add_section').prop('disabled',false); 
+            }
         }
     }
-
     /* remove any nested cloned subsections.
         This function is reusable with custom cloning
         @param removalClickElementSelector is optional*/
@@ -544,6 +554,73 @@ $(document).ready(function () {
                }
             );
         }
+    }
+
+    document.isMaxRepeatsReached = function($section){
+        var _id = $section.attr('id');
+        var sectionCount = $section.parent().find("." + _id).length;
+        var repeatParams = $section.attr('data-repeatparams');
+        if(repeatParams != null){
+            repeatParams = $.parseJSON(repeatParams);
+            if(typeof repeatParams.max != 'undefined'){
+                var maxRepeats=repeatParams.max;
+                return sectionCount >= maxRepeats;
+            }
+        } else {
+            return false;
+        }
+    }
+
+    document.getCurrentAndMinimumRepeats = function($section){
+        var _id = $section.attr('id');
+        var sectionCount = $section.parent().find("." + _id).length;
+        var repeatParams = $section.attr('data-repeatparams');
+        var minRepeatsParams = null;
+        if(repeatParams != null){
+            repeatParams = $.parseJSON(repeatParams);
+            if(typeof repeatParams.min != 'undefined'){
+                var minRepeats=repeatParams.min;
+                minRepeatsParams = {};
+                minRepeatsParams['current_repeats'] = sectionCount;
+                minRepeatsParams['minimum_repeats'] = minRepeats;
+            }
+        } 
+        return minRepeatsParams;
+    }
+
+    document.repeatValidationCheck = function($section,showErrorMessageIfInvalid) {
+        var validSection = true;
+        var minRepeatsParams = document.getCurrentAndMinimumRepeats($section);
+        if(minRepeatsParams != null && minRepeatsParams.current_repeats < minRepeatsParams.minimum_repeats){
+            validSection = false;
+            if(showErrorMessageIfInvalid){
+                var $validationError = $section.find('.repeat-error');
+                if($validationError.length>0){
+                    $validationError.html("Minimum repeats not satisfied. Needs at least "+minRepeatsParams.minimum_repeats);
+                    $validationError.show();
+                } else {
+                    $validationError = '<div class="error repeat-error">Minimum repeats is not satisfied. Needs at least ' + minRepeatsParams.minimum_repeats + '. </div>';
+                    $section.append($validationError);
+                }
+            }
+        } else {
+            var $validationError = $section.find('.repeat-error');
+            if($validationError.length>0){
+                $validationError.hide();
+            }
+        }
+        return validSection;
+    }
+    document.multipleSectionRepeatsValidationCheck = function($selector, showErrorMessageIfInvalid) {
+        var validForm = true;
+        $.each($selector,function(k,v){ 
+            if(validForm){
+                validForm = document.repeatValidationCheck($(v),showErrorMessageIfInvalid);
+            } else {
+                document.repeatValidationCheck($(v),showErrorMessageIfInvalid);
+            }
+        });
+        return validForm;
     }
 
     /* End - Used for Sub-Forms */
@@ -985,24 +1062,23 @@ $(document).ready(function () {
 
 
     document.setupValidationForConsultation = function(value, element, listOfConsultants) {
-            /* Start - Checking that the user entered consultant exists in the list of possible consultant */
-            $.validator.addMethod("validConsultantOnly", function(value, element) {
-                if ($.fn.isNotRequiredAndEmpty(value, element)) return true;
-                var locationEnteredByUser = $('#consultation\\.recipient').val();
-                for (var i = 0; i < listOfConsultants.length; i++) {
-                    if (locationEnteredByUser == listOfConsultants[i].label) {
-                        return true;
-                    }
+        /* Start - Checking that the user entered consultant exists in the list of possible consultant */
+        $.validator.addMethod("validConsultantOnly", function(value, element) {
+            if ($.fn.isNotRequiredAndEmpty(value, element)) return true;
+            var locationEnteredByUser = $('#consultation\\.recipient').val();
+            for (var i = 0; i < listOfConsultants.length; i++) {
+                if (locationEnteredByUser == listOfConsultants[i].label) {
+                    return true;
                 }
-                return false;
-            }, "Please provide a consultant from the list of possible consultants.");
+            }
+            return false;
+        }, "Please provide a consultant from the list of possible consultants.");
 
-        }
+    }
 
         // attach 'validConsultantOnly' class to perform validation.
-            jQuery.validator.addClassRules({
-                "valid-consultant-only": { validConsultantOnly: true }
-            });
-            /* End - validConsultantOnly*/
-
+    jQuery.validator.addClassRules({
+        "valid-consultant-only": { validConsultantOnly: true }
+    });
+    /* End - validConsultantOnly*/
 });
