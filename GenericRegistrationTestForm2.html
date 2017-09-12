@@ -41,22 +41,26 @@
             <input class="form-control" id="patient.middle_name" name="patient.middle_name" type="text">
         </div>
     </div>
-    <div class="section">
+    <div class="section repeat" data-group="patient.personattribute">
       <h3>Attributes</h3>
-      <div class="form-group group-set" data-group="patient.personattribute^1">
-          <label for="patient.phone_number">Phone Number: </label>
-          <input class="form-control phoneNumber" id="patient.phone_number" name="attribute_value" type="tel">
-          <input type="hidden" id="attribute_type_name" name="attribute_type_name" value="Contact Phone Number">
-          <input type="hidden" id="attribute_type_uuid" name="attribute_type_uuid" value="8037ba06-fc79-4244-9d14-687baa44bd81">
+      <div class="form-group group-set other_identifier_type" id="other_identifier_type">
+          <label for="attribute_type_uuid">Attribute Type</label>
+          <select class="form-control attribute_type_uuid" name="attribute_type_uuid"  id="attribute_type_uuid">
+              <option value="">...</option>
+              <option value="8d871d18-c2cc-11de-8d13-0010c6dffd0f">Mother's Name</option>
+              <option value="8037ba06-fc79-4244-9d14-687baa44bd81">Contact Phone Number</option>
+          </select>
       </div>
-      <div class="form-group group-set" data-group="patient.personattribute^2">
-          <label for="patient.mothers_name">Mother's Name: </label>
-          <input class="form-control" id="patient.mothers_name" name="attribute_value" type="text">
-          <input type="hidden" id="attribute_type_name" name="attribute_type_name" value="Mother's Name">
-          <input type="hidden" id="attribute_type_uuid" name="attribute_type_uuid" value="8d871d18-c2cc-11de-8d13-0010c6dffd0f">
+      <div class="form-group phone_number">
+        <label for="patient.phone_number">Attribute Value: </label>
+        <input class="form-control phoneNumber" id="patient.phone_number" name="attribute_value" type="tel">
+      </div>
+      <div class="form-group mothers_name">
+        <label for="patient.mothers_name">Attribute Value: </label>
+        <input class="form-control mothers_name" id="patient.mothers_name" name="attribute_value" type="text">
       </div>
     </div>
-    <div class="section group-set" data-group="patient.personaddress">
+    <div class="section group-set repeat" data-group="patient.personaddress">
       <h3>Address</h3>
       <div class="form-group">
           <label for="patient.county">County: </label>
