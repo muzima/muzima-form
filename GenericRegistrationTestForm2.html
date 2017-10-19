@@ -90,7 +90,7 @@
                   <input type="button" class='btn barcode_btn'>
                   <input class="barcode_text form-control checkDigit" id="identifier_value"
                        name="identifier_value" type="text" required="required">
-                     <input type="hidden" id="identifier_type_uuid" name="identifier_type_uuid" value="12345">
+                       <input data-metadata-for="identifier_value" type="hidden" id="identifier_type_uuid" name="identifier_type_uuid" value="8d793bee-c2cc-11de-8d13-0010c6dffd0f">
                 </div>
             </div>
         </div>
@@ -213,6 +213,15 @@
             $(encounterDatetime).val(currentDate);
         }
 
+        var requireMedicalRecordNumber = htmlDataStore.isMedicalRecordNumberRequired();
+        if(requireMedicalRecordNumber){
+          $(".require_medical_record_number_hint").show();
+          $("#identifier_value").attr("required","required");
+        } else {
+          $(".require_medical_record_number_hint").hide();
+          $("#identifier_value").removeAttr("required","required");
+        }
+
         var currentYear = new Date().getFullYear();
         var birthdate_start_year = currentYear - 140;
         $('.birth_date_picker').datepicker({
@@ -221,7 +230,6 @@
             changeYear: true,
             yearRange: birthdate_start_year + ':' + currentYear,
         });
-
 
         $('#save_draft').click(function () {
             // pre process the medications

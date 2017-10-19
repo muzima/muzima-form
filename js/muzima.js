@@ -744,7 +744,6 @@ $(document).ready(function () {
             if (value instanceof Object) {
                 // check if this is a grouping observation.
                 var $div = $parentDiv.find('div[data-group="' + key + '"]');
-                console.log(key);
                 if ($div.length > 0) {
                     // we are dealing with grouping
                     if (value instanceof Array) {
@@ -795,7 +794,6 @@ $(document).ready(function () {
                 }
             }
             else {
-              console.log("mm::"+key);
                 var $elements = $parentDiv.find('[name="' + key + '"]');
                 $.each($elements, function (i, element) {
                     applyValue(element, value);
@@ -946,6 +944,7 @@ $(document).ready(function () {
             } else {
                 var $allNonConcepts = $(element).find('*[name]');
                 result = pushIntoArray(result, $(element).attr('data-group'), jsonifyNonConcepts($allNonConcepts));
+
             }
         });
         return result;
@@ -1011,15 +1010,29 @@ $(document).ready(function () {
     var jsonifyNonConcepts = function ($allNonConcepts) {
         var o = {};
         $.each($allNonConcepts, function (i, element) {
-            if ($(element).is(':checkbox') || $(element).is(':radio')) {
-                if ($(element).is(':checked')) {
-                    o = pushIntoArray(o, $(element).attr('name'), $(element).val());
-                }
-            } else {
-                o = pushIntoArray(o, $(element).attr('name'), $(element).val());
-            }
+          //if element is metadata check whether corresponding value is present
+          if(typeof $(element).attr('data-metadata-for') !== 'undefined'){
+             var correspondingValueElementName = $(element).attr('data-metadata-for');
+             var value = $(element).closest('div[data-group]').find('[name="' + correspondingValueElementName + '"]').val();
+             if(value != ''){
+               jsonifyNonConcept(o,element);
+             }
+          } else {
+            jsonifyNonConcept(o,element);
+          }
         });
         return o;
+    };
+
+    var jsonifyNonConcept = function(object,element){
+      if ($(element).is(':checkbox') || $(element).is(':radio')) {
+          if ($(element).is(':checked')) {
+              object = pushIntoArray(object, $(element).attr('name'), $(element).val());
+          }
+      } else {
+          object = pushIntoArray(object, $(element).attr('name'), $(element).val());
+      }
+      return object;
     };
 
     var pushIntoArray = function (object, key, value) {
