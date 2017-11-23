@@ -47,19 +47,13 @@
           <label for="patient.phone_number">Phone Number: </label>
           <input class="form-control phoneNumber" id="patient.phone_number" name="attribute_value" type="tel">
           <input type="hidden" data-metadata-for="attribute_value" id="attribute_type_name" name="attribute_type_name" value="Contact Phone Number">
-          <input type="hidden" data-metadata-for="attribute_value" id="attribute_type_uuid" name="attribute_type_uuid" value="6952cdbf-2633-40b5-bea2-1b79f2f68805">
+          <input type="hidden" data-metadata-for="attribute_value" id="attribute_type_uuid" name="attribute_type_uuid" value="72a759a8-1359-11df-a1f1-0026b9348838">
       </div>
       <div class="form-group group-set" data-group="patient.personattribute^2">
           <label for="patient.mothers_name">Mother's Name: </label>
           <input class="form-control" id="patient.mothers_name" name="attribute_value" type="text">
           <input type="hidden" data-metadata-for="attribute_value" id="attribute_type_name" name="attribute_type_name" value="Mother's Name">
           <input type="hidden" data-metadata-for="attribute_value" id="attribute_type_uuid" name="attribute_type_uuid" value="8d871d18-c2cc-11de-8d13-0010c6dffd0f">
-      </div>
-      <div class="form-group group-set" data-group="patient.personattribute^3">
-          <label for="patient.race">Race: </label>
-          <input class="form-control" id="patient.race" name="attribute_value" type="text">
-          <input type="hidden" data-metadata-for="attribute_value" id="attribute_type_name" name="attribute_type_name" value="Race">
-          <input type="hidden" data-metadata-for="attribute_value" id="attribute_type_uuid" name="attribute_type_uuid" value="8d871386-c2cc-11de-8d13-0010c6dffd0f">
       </div>
     </div>
     </div>
@@ -208,7 +202,7 @@
 </body>
 <script type="text/javascript">
     $(document).ready(function () {
-        var requireMedicalRecordNumber = true;
+        var requireMedicalRecordNumber = htmlDataStore.isMedicalRecordNumberRequired();
         if(requireMedicalRecordNumber){
           $(".require_medical_record_number_hint").show();
           $("#identifier_value").attr("required","required");
