@@ -3191,7 +3191,7 @@ $(document).ready(function () {
         if($('#encounter\\.provider_id_select').val() == ''){
             $('#encounter\\.provider_id').val('');
             $('.show_provider_id_text').show();
-        }        
+        }
     });
 
     var REMINDER_LOGIC_FULFILLED = 'reminder_logic_fulfilled';
@@ -3797,9 +3797,9 @@ $(document).ready(function () {
         $.each(objectArray, function (k, v) {
             $(k).change(function () {
                 if ($(k).is(':checked')) {
-                    $(v).show();
+                    triggerAndLogReminderStatus($(v),v,REMINDER_LOGIC_FULFILLED);
                 } else {
-                    $(v).hide();
+                    triggerAndLogReminderStatus($(v),v,REMINDER_LOGIC_NOT_FULFILLED);
                 }
             });
         })
@@ -4235,7 +4235,7 @@ $(document).ready(function () {
         var currentMedication = getCurrentMedicationValues();
         var sex = $patientSex.val();
         if (((systolicBloodValue >= 140 && systolicBloodValue < 180 && diastolicBloodValue < 110) || (diastolicBloodValue >= 90 && diastolicBloodValue < 110 && systolicBloodValue < 180))
-                
+
                 && isAtLeast35YearsOld()
                 && (currentMedication.indexOf("hctz") >= 0 &&
                 hctzNumberOfMilligram == 25 && (hctzFrequencyPerDay == '1639^MORNING^99DCT'
@@ -4379,7 +4379,7 @@ $(document).ready(function () {
         var sex = $patientSex.val();
         if (isAtLeast35YearsOld()
             &&((systolicBloodValue >= 140 && systolicBloodValue < 180 && diastolicBloodValue < 110) && (diastolicBloodValue >= 90 && diastolicBloodValue < 110 && systolicBloodValue < 180))
-            
+
             && (currentMedication.indexOf("hctz") >= 0 &&
                     hctzNumberOfMilligram == 25 && (hctzFrequencyPerDay == '1639^MORNING^99DCT'
                     || hctzFrequencyPerDay == '1730^EVENING^99DCT' || hctzFrequencyPerDay == '1891^ONCE A DAY^99DCT' ))
