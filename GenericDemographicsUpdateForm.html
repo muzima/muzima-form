@@ -77,9 +77,11 @@
                    Will update Mother's Name?
             </label>
         </div>
-        <div class="form-group" id="update_name_of_mother">
-            <label for="demographicsupdate.mothers_name">New Mother's Name: </label>
-            <input class="form-control" id="demographicsupdate.mothers_name" name="demographicsupdate.mothers_name" type="text">
+        <div class="form-group group-set" id="update_name_of_mother" data-group="demographicsupdate.personattribute">
+            <label for="patient.mothers_name">Mother's Name: </label>
+            <input class="form-control" id="demographicsupdate.mothers_name" name="attribute_value" type="text">
+            <input type="hidden" data-metadata-for="attribute_value" id="attribute_type_name" name="attribute_type_name" value="Mother's Name">
+            <input type="hidden" data-metadata-for="attribute_value" id="attribute_type_uuid" name="attribute_type_uuid" value="8d871d18-c2cc-11de-8d13-0010c6dffd0f">
         </div>
     </div>
     <div class="section">
@@ -118,72 +120,67 @@
             </label>
         </div>
     </div>
-    <div class="section" id="update_address">
-        <h3>Add Address</h3>
-        <div class="form-group">
-            <label for="demographicsupdate.county">County: </label>
-            <input class="form-control" id="demographicsupdate.county" name="demographicsupdate.county" type="text">
-        </div>
-        <div class="form-group">
-            <label for="demographicsupdate.location">Location: </label>
-            <input class="form-control" id="demographicsupdate.location" name="demographicsupdate.location" type="text">
-        </div>
-        <div class="form-group">
-            <label for="demographicsupdate.sub_location">Sub-location: </label>
-            <input class="form-control" id="demographicsupdate.sub_location" name="demographicsupdate.sub_location" type="text">
-        </div>
-        <div class="form-group">
-            <label for="demographicsupdate.village">Village: </label>
-            <input class="form-control" id="demographicsupdate.village" name="demographicsupdate.village" type="text">
-        </div>
-        <div class="form-group">
-            <label for="demographicsupdate.phone_number">Phone Number: </label>
-            <input class="form-control" id="demographicsupdate.phone_number" name="demographicsupdate.phone_number" type="tel">
-        </div>
+    <div class="section group-set" id="update_address" data-group="demographicsupdate.personaddress">
+      <h3>Add Address</h3>
+      <div class="form-group">
+          <label for="patient.county">County: </label>
+          <input class="form-control" id="countyDistrict" name="countyDistrict" type="text">
+      </div>
+      <div class="form-group">
+          <label for="patient.location">Location: </label>
+          <input class="form-control" id="address6" name="address6" type="text">
+      </div>
+      <div class="form-group">
+          <label for="patient.sub_location">Sub-location: </label>
+          <input class="form-control" id="address5" name="address5" type="text">
+      </div>
+      <div class="form-group">
+          <label for="patient.village">Village: </label>
+          <input class="form-control" id="cityVillage" name="cityVillage" type="text">
+      </div>
     </div>
     <div class="section">
         <h3>Identifiers</h3>
         <div class="form-group">
-            <label for="patient.medical_record_number">AMRS Universal ID: <span
-                    class="required">*</span></label>
+            <label for="patient.medical_record_number">Medical Record Number : <span class="required require_medical_record_number_hint">*</span></label>
 
             <div class="form-horizontal">
-                <input type="button" class='btn barcode_btn' disabled="disabled">
-                <input class="barcode_text form-control checkDigit" id="patient.medical_record_number"
-                       name="patient.medical_record_number" type="text" required="required" disabled="disabled">
+                <div class="group-set" data-group="patient.medical_record_number">
+                  <input type="button" class='btn barcode_btn'>
+                  <input class="barcode_text form-control" id="identifier_value"
+                       name="identifier_value" type="text" disabled="disabled">
+                     <input data-metadata-for="identifier_value" type="hidden" id="identifier_type_uuid"
+                     name="identifier_type_uuid" value="8d793bee-c2cc-11de-8d13-0010c6dffd0f">
+                </div>
             </div>
         </div>
         <div class="form-group">
-           <label>Add Identifiers:</label>
-            <div class="section repeat other_identifiers" id="other_identifiers" data-name="other_identifiers">
-                <div class="form-group">
-                    <label for="demographicsupdate.other_identifier_type">Identifier Type:</label>
-                    <select class="form-control demographicsupdate.other_identifier_type"
-                    name="demographicsupdate.other_identifier_type" id="demographicsupdate.other_identifier_type">
+           <label>Other Identifiers:</label>
+            <div class="section repeat other_identifier" id="other_identifier" data-name="other_identifier" data-group="demographicsupdate.otheridentifier">
+                <div class="form-group group-set other_identifier_type" id="other_identifier_type">
+                    <label for="identifier_type_name">Identifier Type</label>
+                    <select class="form-control identifier_type_name" name="identifier_type_name"  id="identifier_type_name">
                         <option value="">...</option>
-                        <option class="checkdigit" value="AMRS Universal ID">AMRS Universal ID</option>
-                        <option class="checkdigit" value="AMRS Medical Record Number">AMRS Medical Record Number</option>
+                        <option id="amrs_medical_record_number" value="AMRS Medical Record Number">AMRS Medical Record Number</option>
                         <option value="CCC Number">CCC Number</option>
-                        <option class="checkdigit" value="HCT ID">HCT ID</option>
+                        <option id="hct_id" value="HCT ID">HCT ID</option>
                         <option value="KENYAN NATIONAL ID NUMBER">KENYAN NATIONAL ID NUMBER</option>
                         <option value="MTCT Plus ID">MTCT Plus ID</option>
                         <option value="MTRH Hospital Number">MTRH Hospital Number</option>
                         <option value="Old AMPATH Medical Record Number">Old AMPATH Medical Record Number</option>
-                        <option class="checkdigit" value="pMTCT ID">pMTCT ID</option>
+                        <option id="pmtct_id" value="pMTCT ID">pMTCT ID</option>
                     </select>
                 </div>
                 <div class="identifier_value_section">
                     <div class="form-group">
-                        <label for="demographicsupdate.other_identifier_value">Enter Identifier:</label>
-                        <input class="form-control check-other-identifier demographicsupdate.other_identifier_value"
-                        id="demographicsupdate.other_identifier_value"
-                        name="demographicsupdate.other_identifier_value" type="text">
+                        <label for="other_identifier_value">Enter Identifier</label>
+                        <input class="form-control check-other-identifier" id="other_identifier_value" required
+                        name="identifier_value" type="text">
                     </div>
                     <div class="form-group">
-                        <label for="demographicsupdate.confirm_identifier_value">Confirm Identifier:</label>
-                        <input class="form-control check-confirm-identifier demographicsupdate.other_identifier_value"
-                        id="demographicsupdate.confirm_identifier_value"
-                        name="demographicsupdate.confirm_identifier_value" type="text">
+                        <label for="confirm_other_identifier_value">Confirm Identifier</label>
+                        <input class="form-control check-confirm-identifier" id="confirm_other_identifier_value" required
+                        name="confirm_other_identifier_value" type="text">
                     </div>
                 </div>
             </div>
@@ -303,6 +300,15 @@
 </body>
 <script type="text/javascript">
     $(document).ready(function () {
+        var requireMedicalRecordNumber = htmlDataStore.isMedicalRecordNumberRequired();
+        if(requireMedicalRecordNumber){
+          $(".require_medical_record_number_hint").show();
+          $("#identifier_value").attr("required","required");
+        } else {
+          $(".require_medical_record_number_hint").hide();
+          $("#identifier_value").removeAttr("required");
+        }
+        
         var dateFormat = "dd-mm-yy";
         var currentDate = $.datepicker.formatDate(dateFormat, new Date());
         var encounterDatetime = $('#encounter\\.encounter_datetime');

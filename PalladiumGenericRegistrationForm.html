@@ -1,0 +1,515 @@
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/muzima.css" rel="stylesheet">
+    <link href="css/ui-darkness/jquery-ui-1.10.4.custom.min.css" rel="stylesheet">
+
+    <script src="js/jquery.min.js"></script>
+    <script src="js/jquery-ui-1.10.4.custom.min.js"></script>
+    <script src="js/jquery.validate.min.js"></script>
+    <script src="js/additional-methods.min.js"></script>
+    <script src="js/muzima.js"></script>
+
+    <title>Registration Form</title>
+</head>
+<body class="col-md-8 col-md-offset-2">
+<div id="result"></div>
+<form id="registration_form" name="registration_form">
+    <h2 class="text-center">Registration Form</h2>
+
+    <div class="section">
+        <h3>Names</h3>
+        <div class="form-group">
+            <input class="form-control" id="patient.uuid"
+                   name="patient.uuid" type="hidden" readonly="readonly">
+        </div>
+        <div class="form-group">
+            <label for="patient.family_name">Family Name: <span class="required">*</span> </label>
+            <input class="form-control" id="patient.family_name" name="patient.family_name" type="text"
+                   required="required">
+        </div>
+        <div class="form-group">
+            <label for="patient.given_name">Given Name: <span class="required">*</span></label>
+            <input class="form-control" id="patient.given_name" name="patient.given_name" type="text"
+                   required="required">
+        </div>
+        <div class="form-group">
+            <label for="patient.middle_name">Middle Name:</label>
+            <input class="form-control" id="patient.middle_name" name="patient.middle_name" type="text">
+        </div>
+        <div class="form-group group-set" data-group="patient.personattribute^1">
+            <label for="patient.mothers_name">Mother's Name: <span class="required">*</span></label>
+            <input class="form-control" id="patient.mothers_name" name="attribute_value" type="text" required="required">
+            <input type="hidden" data-metadata-for="attribute_value" id="attribute_type_name" name="attribute_type_name" value="Mother's Name">
+        </div>
+    </div>
+
+    <div class="section">
+        <h3>Identifiers</h3>
+        <div class="form-group">
+          <label>National ID<span
+                  class="required">*</span></label>
+
+            <div class="form-horizontal">
+                <div class="group-set" data-group="patient.medical_record_number">
+                  <input class="form-control" id="identifier_value"
+                       name="identifier_value" type="text" required="required">
+                   <input data-metadata-for="identifier_value" type="hidden" id="identifier_type_name"
+                   name="identifier_type_name" value="National ID">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="section">
+        <div class="form-group">
+            <label>Sex: <span class="required">*</span></label>
+            <select class="form-control" id="patient.sex" name="patient.sex" required="required">
+                <option value="">...</option>
+                <option value="M">Male</option>
+                <option value="F">Female</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Record Date of Birth... <span class="required">*</span></label>
+            <select class="form-control" name="tmp.birthdate_type" id="tmp.birthdate_type" required="required">
+                <option value="">...</option>
+                <option value="birthdate">By Birth-date</option>
+                <option value="age">By Age</option>
+            </select>
+        </div>
+        <div class="form-group show_birthdate">
+            <label>Select birthdate <span class="required">*</span></label>
+            <input class="form-control birth_date_picker nonFutureDate past-date" id="patient.birth_date" name="patient.birth_date"
+                   type="text" required="required" readonly="readonly">
+        </div>
+        <div class="form-group show_birthdate">
+            <label>Is this birthdate an estimate? <span
+                    class="required">*</span></label>
+            <select class="form-control" id="patient.birthdate_estimated" name="patient.birthdate_estimated"
+                    required="required">
+                <option>...</option>
+                <option value="true">Yes</option>
+                <option value="false">No</option>
+            </select>
+        </div>
+        <div class="form-group show_age">
+            <label for="tmp.age_in_years">How old are you in Years <span class="required">*</span></label>
+            <input class="form-control" id="tmp.age_in_years" name="tmp.age_in_years" type="number" required="required">
+        </div>
+    </div>
+
+    <div class="section group-set" data-group="patient.personaddress">
+        <h3>Address</h3>
+
+        <div class="form-group">
+            <label for="county_to_refer">County:<span class="required">*</span></label>
+            <div class="indent">
+                <small><i>( Select a county to narrow down on the preferred sub county )</i></small>
+            </div>
+            <select class="form-control" id="county_to_refer" name="countyDistrict" readonly="readonly">
+                <option value="">...</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="sub_county">Sub county:<span class="required">*</span></label>
+            <div class="indent">
+                <small><i>( Select a sub county to narrow down on the preferred facility ) </i></small>
+            </div>
+            <select class="form-control" id="sub_county" name="address4" readonly="readonly">
+                <option value="">...</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="county_facility">Ward:<span class="required">*</span></label>
+            <div class="indent">
+                <small><i>( Select on the preferred facility to refer ) </i></small>
+            </div>
+            <select class="form-control" id="county_facility" name="address3" readonly="readonly">
+                <option value="">...</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="patient.location">Location: </label>
+            <input class="form-control" id="address6" name="address6" type="text">
+        </div>
+        <div class="form-group">
+            <label for="patient.sub_location">Sub-location: </label>
+            <input class="form-control" id="address5" name="address5" type="text">
+        </div>
+        <div class="form-group">
+            <label for="patient.village">Village: </label>
+            <input class="form-control" id="cityVillage" name="cityVillage" type="text">
+        </div>
+
+        <div class="form-group">
+            <label for="patient.landmark">Landmark: </label>
+            <input class="form-control" id="patient.landmark" name="address2" type="text">
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="form-group group-set" data-group="patient.personattribute^2">
+            <label for="patient.phone_number">Phone Number: </label>
+            <input class="form-control phoneNumber" id="patient.phone_number" name="attribute_value" type="tel">
+            <input type="hidden" data-metadata-for="attribute_value" id="attribute_type_uuid" name="attribute_type_uuid" value="b2c38640-2603-4629-aebd-3b54f33f1e3a">
+        </div>
+        <div class="form-group group-set" data-group="patient.personattribute^3">
+            <label for="patient.alternate_phone_contact">Alternate Phone Number: </label>
+            <input class="form-control phoneNumber" id="patient.alternate_phone_contact" name="attribute_value" type="tel">
+            <input type="hidden" data-metadata-for="attribute_value" id="attribute_type_uuid" name="attribute_type_uuid" value="94614350-84c8-41e0-ac29-86bc107069be">
+        </div>
+        <div class="form-group">
+            <label for="patient.postal_address">Postal Address: </label>
+            <input class="form-control" id="patient.postal_address" name="address1" type="text">
+        </div>
+    </div>
+    <div class="section">
+        <h3>Guardian Details</h3>
+        <div class="form-group group-set" data-group="patient.personattribute^4">
+            <label for="patient.guardian_first_name">First Name: </label>
+            <input class="form-control" id="patient.guardian_first_name" name="attribute_value" type="text">
+            <input type="hidden" data-metadata-for="attribute_value" id="attribute_type_uuid" name="attribute_type_uuid" value="8caf6d06-9070-49a5-b715-98b45e5d427b">
+        </div>
+        <div class="form-group">
+            <label for="patient.guardian_last_name">Last Name: </label>
+            <input class="form-control" id="patient.guardian_last_name" name="patient.guardian_last_name" type="text">
+        </div>
+        <div class="form-group group-set" data-group="patient.personattribute^5">
+            <label for="patient.guardian_last_name">Last Name: </label>
+            <input class="form-control" id="patient.guardian_last_name" name="attribute_value" type="text">
+            <input type="hidden" data-metadata-for="attribute_value" id="attribute_type_uuid" name="attribute_type_uuid" value="0803abbd-2be4-4091-80b3-80c6940303df">
+        </div>
+    </div>
+
+    <div class="section">
+        <h3>Next of Kin Details</h3>
+        <div class="form-group group-set" data-group="patient.personattribute^6">
+            <label for="patient.next_of_kin_name">Next of kin name: </label>
+            <input class="form-control" id="patient.next_of_kin_name" name="attribute_value" type="text">
+            <input type="hidden" data-metadata-for="attribute_value" id="attribute_type_uuid" name="attribute_type_uuid" value="830bef6d-b01f-449d-9f8d-ac0fede8dbd3">
+        </div>
+
+        <div class="form-group group-set" data-group="patient.personattribute^7">
+            <label for="patient.sex">Relationship <span class="required">*</span></label>
+            <select class="form-control" id="patient.next_of_kin_relationship"
+                    name="attribute_value" required="required">
+                <option value="">...</option>
+                <option value="Mother">Mother</option>
+                <option value="Father">Father</option>
+                <option value="Sibling">Sibling</option>
+                <option value="Child">Child</option>
+                <option value="Spouse">Spouse</option>
+                <option value="Partner">Partner</option>
+                <option value="Co-Wife">Co-Wife</option>
+            </select>
+            <input type="hidden" data-metadata-for="attribute_value" id="attribute_type_uuid" name="attribute_type_uuid" value="d0aa9fd1-2ac5-45d8-9c5e-4317c622c8f5">
+        </div>
+        <div class="form-group group-set" data-group="patient.personattribute^8">
+            <label for="patient.next_of_kin_contact">Next of kin contact: </label>
+            <input class="form-control" id="patient.next_of_kin_contact" name="attribute_value" type="text">
+            <input type="hidden" data-metadata-for="attribute_value" id="attribute_type_uuid" name="attribute_type_uuid" value="342a1d39-c541-4b29-8818-930916f4c2dc">
+        </div>
+        <div class="form-group group-set" data-group="patient.personattribute^9">
+            <label for="patient.next_of_kin_address">Next of kin address: </label>
+            <input class="form-control" id="patient.next_of_kin_address" name="attribute_value" type="text">
+            <input type="hidden" data-metadata-for="attribute_value" id="attribute_type_uuid" name="attribute_type_uuid" value="7cf22bec-d90a-46ad-9f48-035952261294">
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="form-group">
+            <label for="encounter.location_id">Encounter Location:<span class="required">*</span></label>
+            <input class="form-control valid-location-only" id="encounter.location_id" type="text" placeholder="Start typing something..." required="required">
+            <input class="form-control" name="encounter.location_id" type="hidden">
+        </div>
+
+        <div class="form-group hidden">
+            <label for="encounter.location_id_select">Encounter Location <span class="required">*</span></label>
+            <select class="form-control" id="encounter.location_id_select" required="required">
+                <option>...</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="encounter.provider_id_select">Provider Name:</label>
+            <input class="form-control valid-provider-only" id="encounter.provider_id_select" type="text" placeholder="Start typing something...">
+            <input class="form-control" name="encounter.provider_id_select" type="hidden">
+        </div>
+        <div class="form-group hidden">
+            <select id="select_providers">
+            </select>
+        </div>
+        <div class="form-group show_provider_id_text">
+            <label for="encounter.provider_id">Provider's system-id:<span class="required">*</span></label>
+            <input class="form-control checkDigit" id="encounter.provider_id" name="encounter.provider_id"
+                   type="text" required="required" disabled="disabled">
+        </div>
+        <div class="form-group">
+            <label for="encounter.encounter_datetime">Encounter Date <span class="required">*</span></label>
+            <input class="form-control nonFutureDate past-date datepicker" readonly="readonly" id="encounter.encounter_datetime"
+                   name="encounter.encounter_datetime" type="text" required="required">
+        </div>
+        <div class="form-group">
+            <input class="form-control" id="encounter.form_uuid" name="encounter.form_uuid"
+                   type="hidden" required="required">
+        </div>
+    </div>
+
+
+</form>
+
+</body>
+<script type="text/javascript">
+    $(document).ready(function () {
+        var dateFormat = "dd-mm-yy";
+        var currentDate = $.datepicker.formatDate(dateFormat, new Date());
+        var encounterDatetime = $('#encounter\\.encounter_datetime');
+        if ($(encounterDatetime).val() == "") {
+            $(encounterDatetime).val(currentDate);
+        }
+
+        var currentYear = new Date().getFullYear();
+        var birthdate_start_year = currentYear - 140;
+        $('.birth_date_picker').datepicker({
+            dateFormat: dateFormat,
+            changeMonth: true,
+            changeYear: true,
+            yearRange: birthdate_start_year + ':' + currentYear,
+        });
+
+
+        $('#save_draft').click(function () {
+            // pre process the medications
+            $(this).prop('disabled', true);
+            document.saveDraft(this);
+            $(this).prop('disabled', false);
+        });
+
+        $('#submit_form').click(function () {
+            // pre process the medications
+            $(this).prop('disabled', true);
+            document.submit();
+            $(this).prop('disabled', false);
+        });
+
+        $.fn.calculateFields = function () {
+            var tempAgeInYears = $.trim($("#tmp\\.age_in_years").val());
+            if (tempAgeInYears != '') {
+                $('#patient\\.birthdate_estimated').val('true');
+                $('#patient\\.birth_date').val($.fn.getTempBirthDate(tempAgeInYears));
+            }
+            return true;
+        };
+
+        $.fn.customValidationCheck = function () {
+            return $.fn.calculateFields();
+        };
+
+        var dobType = $('#tmp\\.birthdate_type');
+        dobType.change(function () {
+            var $show_birth_date = $('.show_birthdate');
+            var $show_age = $('.show_age');
+            if ($('#tmp\\.birthdate_type').val() == 'age') {
+                $show_age.show();
+                $show_birth_date.find('input').val('');
+                $show_birth_date.hide();
+            } else {
+                $show_age.hide();
+                $show_age.find('input').val('');
+                $show_birth_date.show();
+            }
+        });
+        dobType.trigger('change');
+
+
+        jQuery.validator.addClassRules({
+            'check-confirm-identifier':{
+                validateConfirmIdentifierElement: true
+            }
+        });
+
+
+        document.setupAutoCompleteData('encounter\\.location_id');
+
+
+        document.setupAutoCompleteDataForProvider('encounter\\.provider_id_select');
+
+        $('#registration_form').validate({rules: {
+            'tmp.age_in_years': {
+                range: [0, 120]
+            }
+        }
+        });
+
+
+
+        var counties={
+            "Homa-Bay":
+                {
+                    "Homa bay town":
+                        [
+                            {"facility":"Central","id":"Central"},
+                            {"facility":"Central Kasipul","id":"Central Kasipul"},
+                            {"facility":"East Gem","id":"East Gem"},
+                            {"facility":"East Kamagak","id":"East Kamagak"},
+                            {"facility":"Gwassi North","id":"Gwassi North"},
+                            {"facility":"Gwassi South","id":"Gwassi South"},
+                            {"facility":"Kabondo East","id":"Kabondo East"},
+                            {"facility":"Kanyikale","id":"Kanyikale"},
+                            {"facility":"Kabondo West","id":"Kabondo West"},
+                            {"facility":"Kibiri","id":"Kibiri"},
+                            {"facility":"Labwe","id":"Labwe"}
+                        ],
+                    "Kasipul":
+                        [
+                            {"facility":"East Gem","id":"East Gem"},
+                            {"facility":"Kagen","id":"Kagen"},
+                            {"facility":"Kochia","id":"Kochia"},
+                            {"facility":"West Gem","id":"West Gem"}
+                        ],
+                    "Rangwe":
+                        [
+                            {"facility":"East Gem","id":"East Gem"},
+                            {"facility":"Kagen","id":"Kagen"},
+                            {"facility":"Kochia","id":"Kochia"},
+                            {"facility":"West Gem","id":"West Gem"}
+                        ],
+                    "Riana":
+                        [
+                            {"facility":"East Gem","id":"East Gem"},
+                            {"facility":"Kagen","id":"Kagen"},
+                            {"facility":"Kochia","id":"Kochia"},
+                            {"facility":"West Gem","id":"West Gem"}
+                        ],
+                    "Ndhiwa":
+                        [
+                            {"facility":"East Gem","id":"East Gem"},
+                            {"facility":"Kagen","id":"Kagen"},
+                            {"facility":"Kochia","id":"Kochia"},
+                            {"facility":"West Gem","id":"West Gem"}
+                        ]
+
+                },
+
+            "Busia":
+                {
+                    "Busia":
+                        [
+                            {"facility":"East Gem","id":"East Gem"},
+                            {"facility":"Kagen","id":"Kagen"},
+                            {"facility":"Kochia","id":"Kochia"},
+                            {"facility":"West Gem","id":"West Gem"}
+                        ],
+                    "Teso":
+                        [
+                            {"facility":"East Gem","id":"East Gem"},
+                            {"facility":"Kagen","id":"Kagen"},
+                            {"facility":"Kochia","id":"Kochia"},
+                            {"facility":"West Gem","id":"West Gem"}
+                        ]
+                },
+
+            "Elgeyo":
+                {
+                    "Keiyo":
+                        [
+                            {"facility":"East Gem","id":"East Gem"},
+                            {"facility":"Kagen","id":"Kagen"},
+                            {"facility":"Kochia","id":"Kochia"},
+                            {"facility":"West Gem","id":"West Gem"}
+
+                        ],
+                    "Marakwet":
+                        [
+                            {"facility":"East Gem","id":"East Gem"},
+                            {"facility":"Kagen","id":"Kagen"},
+                            {"facility":"Kochia","id":"Kochia"},
+                            {"facility":"West Gem","id":"West Gem"}
+                        ]
+                },
+
+
+            "Kisumu":
+                {
+                    "Kisumu":
+                        [
+                            {"facility":"Chulaimbo SDH","id":"Chulaimbo SDH"},
+                            {"facility":"Riat dispensary","id":"Riat dispensary"},
+                            {"facility":"Siriba Dispensary","id":"Siriba"},
+                            {"facility":"Sunga Dispensary","id":"Sunga"}
+
+                        ]
+
+                },
+
+            "Trans N":
+                {
+                    "Trans Nzoia":
+                        [
+                            {"facility":"Bikeke Health Centre","id":"Bikeke"},
+                            {"facility":"Chepchoina Dispensary","id":"Chepchoina"},
+                            {"facility":"Tulwet HC","id":"Tulwet"}
+
+                        ]
+
+                },
+
+
+            "West Po":
+                {
+                    "West Pokot":
+                        [
+                            {"facility":"East Gem","id":"East Gem"},
+                            {"facility":"Kagen","id":"Kagen"},
+                            {"facility":"Kochia","id":"Kochia"},
+                            {"facility":"West Gem","id":"West Gem"}
+                        ]
+                }
+
+        };
+        var key1,key2,key3;
+        var hold_locations = [];
+        var hold_divisions =[];
+        var selectedDistrict,selectedDivision;
+        for (key1 in counties) {
+            $("#county_to_refer").append("<option value='"+key1+"'>"+key1+"</option>");
+        }
+        $("#county_to_refer").change(function () {
+            selectedDistrict = this.value;
+            $("#sub_county").empty();
+            $("#sub_county").append("<option value='...'>...</option>");
+            $("#county_facility").empty();
+            $("#county_facility").append("<option value='...'>...</option>");
+            for (key2 in counties[selectedDistrict]) {
+                if(!hold_divisions.indexOf(key2)> -1){
+                    hold_divisions.push(key2);
+                    $("#sub_county").append("<option value='"+key2+"'>"+key2+"</option>");
+                }
+            }
+
+        });
+        $("#sub_county").change(function () {
+            selectedDivision = this.value;
+            $("#county_facility").empty();
+            $("#county_facility").append("<option value='...'>...</option>");
+            for (key3 in counties[selectedDistrict][selectedDivision]) {
+                if(!hold_locations.indexOf(key3)> -1){
+                    hold_locations.push(key3);
+                    $("#county_facility").append("<option value='"+counties[selectedDistrict][selectedDivision][key3].id+"'>"+counties[selectedDistrict][selectedDivision][key3].facility+"</option>");
+
+                }
+            }
+
+        });
+
+        document.setupValidationForProvider("$('#encounter\\.provider_id_select').val()","encounter\\.provider_id");
+
+        document.setupValidationForLocation("$('#encounter\\.location_id').val()","encounter\\.location_id");
+
+    });
+</script>
+
+</html>

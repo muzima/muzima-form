@@ -41,22 +41,26 @@
             <input class="form-control" id="patient.middle_name" name="patient.middle_name" type="text">
         </div>
     </div>
-    <div class="section">
+    <div class="section repeat" data-group="patient.personattribute">
       <h3>Attributes</h3>
-      <div class="form-group group-set" data-group="patient.personattribute^1">
-          <label for="patient.phone_number">Phone Number: </label>
-          <input class="form-control phoneNumber" id="patient.phone_number" name="attribute_value" type="tel">
-          <input type="hidden" id="attribute_type_name" name="attribute_type_name" value="Contact Phone Number">
-          <input type="hidden" id="attribute_type_uuid" name="attribute_type_uuid" value="8037ba06-fc79-4244-9d14-687baa44bd81">
+      <div class="form-group group-set other_identifier_type" id="other_identifier_type">
+          <label for="attribute_type_uuid">Attribute Type</label>
+          <select class="form-control attribute_type_uuid" name="attribute_type_uuid"  id="attribute_type_uuid">
+              <option value="">...</option>
+              <option value="8d871d18-c2cc-11de-8d13-0010c6dffd0f">Mother's Name</option>
+              <option value="8037ba06-fc79-4244-9d14-687baa44bd81">Contact Phone Number</option>
+          </select>
       </div>
-      <div class="form-group group-set" data-group="patient.personattribute^2">
-          <label for="patient.mothers_name">Mother's Name: </label>
-          <input class="form-control" id="patient.mothers_name" name="attribute_value" type="text">
-          <input type="hidden" id="attribute_type_name" name="attribute_type_name" value="Mother's Name">
-          <input type="hidden" id="attribute_type_uuid" name="attribute_type_uuid" value="8d871d18-c2cc-11de-8d13-0010c6dffd0f">
+      <div class="form-group phone_number">
+        <label for="patient.phone_number">Attribute Value: </label>
+        <input class="form-control phoneNumber" id="patient.phone_number" name="attribute_value" type="tel">
+      </div>
+      <div class="form-group mothers_name">
+        <label for="patient.mothers_name">Attribute Value: </label>
+        <input class="form-control mothers_name" id="patient.mothers_name" name="attribute_value" type="text">
       </div>
     </div>
-    <div class="section group-set" data-group="patient.personaddress">
+    <div class="section group-set repeat" data-group="patient.personaddress">
       <h3>Address</h3>
       <div class="form-group">
           <label for="patient.county">County: </label>
@@ -86,7 +90,7 @@
                   <input type="button" class='btn barcode_btn'>
                   <input class="barcode_text form-control checkDigit" id="identifier_value"
                        name="identifier_value" type="text" required="required">
-                     <input type="hidden" id="identifier_type_uuid" name="identifier_type_uuid" value="12345">
+                       <input data-metadata-for="identifier_value" type="hidden" id="identifier_type_uuid" name="identifier_type_uuid" value="8d793bee-c2cc-11de-8d13-0010c6dffd0f">
                 </div>
             </div>
         </div>
@@ -209,6 +213,15 @@
             $(encounterDatetime).val(currentDate);
         }
 
+        var requireMedicalRecordNumber = htmlDataStore.isMedicalRecordNumberRequired();
+        if(requireMedicalRecordNumber){
+          $(".require_medical_record_number_hint").show();
+          $("#identifier_value").attr("required","required");
+        } else {
+          $(".require_medical_record_number_hint").hide();
+          $("#identifier_value").removeAttr("required","required");
+        }
+
         var currentYear = new Date().getFullYear();
         var birthdate_start_year = currentYear - 140;
         $('.birth_date_picker').datepicker({
@@ -217,7 +230,6 @@
             changeYear: true,
             yearRange: birthdate_start_year + ':' + currentYear,
         });
-
 
         $('#save_draft').click(function () {
             // pre process the medications
