@@ -1,0 +1,487 @@
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/muzima.css" rel="stylesheet">
+    <link href="css/ui-darkness/jquery-ui-1.10.4.custom.min.css" rel="stylesheet">
+
+    <script src="js/jquery.min.js"></script>
+    <script src="js/jquery-ui-1.10.4.custom.min.js"></script>
+    <script src="js/jquery.validate.min.js"></script>
+    <script src="js/additional-methods.min.js"></script>
+    <script src="js/muzima.js"></script>
+
+    <title>Registration Form</title>
+</head>
+<body class="col-md-8 col-md-offset-2">
+<div id="result"></div>
+<form id="registration_form" name="registration_form">
+    <h2 class="text-center">HTS CLIENT REGISTRATION FORM v1.0</h2>
+
+    <div class="section">
+        <h3>Names</h3>
+        <div class="form-group">
+            <input class="form-control" id="patient.uuid"
+                   name="patient.uuid" type="hidden" readonly="readonly">
+        </div>
+        <div class="form-group">
+            <label for="patient.family_name">Family Name: <span class="required">*</span> </label>
+            <input class="form-control" id="patient.family_name" name="patient.family_name" type="text"
+                   required="required">
+        </div>
+        <div class="form-group">
+            <label for="patient.given_name">Given Name: <span class="required">*</span></label>
+            <input class="form-control" id="patient.given_name" name="patient.given_name" type="text"
+                   required="required">
+        </div>
+        <div class="form-group">
+            <label for="patient.middle_name">Middle Name:</label>
+            <input class="form-control" id="patient.middle_name" name="patient.middle_name" type="text">
+        </div>
+        <div class="form-group">
+            <label for="patient.mothers_name">Mother's Name: <span class="required">*</span></label>
+            <input class="form-control" id="patient.mothers_name" name="patient.mothers_name" type="text">
+        </div>
+    </div>
+
+    <div class="section">
+        <h3>Identifiers</h3>
+        <div class="form-group">
+            <label>FACES-HTS ID<span class="required">*</span></label>
+            <div class="form-horizontal">
+                <div class="group-set" data-group="patient.medical_record_number">
+                  <input class="form-control" id="identifier_value"
+                       name="identifier_value" type="text" required="required">
+                   <input data-metadata-for="identifier_value" type="hidden" id="identifier_type_name"
+                   name="identifier_type_name" value="HTS ID">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="section">
+        <div class="form-group">
+            <label>Sex: <span class="required">*</span></label>
+            <select class="form-control" id="patient.sex" name="patient.sex" required="required">
+                <option value="">...</option>
+                <option value="M">Male</option>
+                <option value="F">Female</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Record Date of Birth... <span class="required">*</span></label>
+            <select class="form-control" name="tmp.birthdate_type" id="tmp.birthdate_type" required="required">
+                <option value="">...</option>
+                <option value="birthdate">By Birth-date</option>
+                <option value="age">By Age</option>
+            </select>
+        </div>
+        <div class="form-group show_birthdate">
+            <label>Select birthdate <span class="required">*</span></label>
+            <input class="form-control birth_date_picker nonFutureDate past-date" id="patient.birth_date" name="patient.birth_date"
+                   type="text" required="required" readonly="readonly">
+        </div>
+        <div class="form-group show_birthdate">
+            <label>Is this birthdate an estimate? <span
+                    class="required">*</span></label>
+            <select class="form-control" id="patient.birthdate_estimated" name="patient.birthdate_estimated"
+                    required="required">
+                <option>...</option>
+                <option value="true">Yes</option>
+                <option value="false">No</option>
+            </select>
+        </div>
+        <div class="form-group show_age">
+            <label for="tmp.age_in_years">How old are you in Years <span class="required">*</span></label>
+            <input class="form-control" id="tmp.age_in_years" name="tmp.age_in_years" type="number" required="required">
+        </div>
+    </div>
+
+    <div class="section">
+        <h3>Address</h3>
+        <div class="form-group">
+            <label for="patient.county">County: </label>
+            <input class="form-control" id="patient.county" name="patient.county" type="text">
+        </div>
+        <div class="form-group">
+            <label for="patient.sub_county">Sub County: </label>
+            <input class="form-control" id="patient.sub_county" name="patient.sub_county" type="text">
+        </div>
+        <div class="form-group">
+            <label for="patient.ward">Ward: </label>
+            <input class="form-control" id="patient.ward" name="patient.ward" type="text">
+        </div>
+        <div class="form-group">
+            <label for="patient.location">Location: </label>
+            <input class="form-control" id="patient.location" name="patient.location" type="text">
+        </div>
+        <div class="form-group">
+            <label for="patient.sub_location">Sub-location: </label>
+            <input class="form-control" id="patient.sub_location" name="patient.sub_location" type="text">
+        </div>
+        <div class="form-group">
+            <label for="patient.village">Village: </label>
+            <input class="form-control" id="patient.village" name="patient.village" type="text">
+        </div>
+        <div class="form-group">
+            <label for="patient.landmark">Landmark: </label>
+            <input class="form-control" id="patient.landmark" name="patient.landmark" type="text">
+        </div>
+        <div class="form-group">
+            <label for="patient.phone_number">Phone Number: </label>
+            <input class="form-control phoneNumber" id="patient.phone_number" name="patient.phone_number" type="tel">
+        </div>
+        <div class="form-group">
+            <label for="patient.alternate_phone_contact">Alternate Phone Number: </label>
+            <input class="form-control phoneNumber" id="patient.alternate_phone_contact" name="patient.alternate_phone_contact" type="tel">
+        </div>
+        <div class="form-group">
+            <label for="patient.postal_address">Postal Address: </label>
+            <input class="form-control" id="patient.postal_address" name="patient.postal_address" type="text">
+        </div>
+    </div>
+    <br/>
+    <div class="section">
+        <h3>Marital Status</h3>
+        <fieldset name="1054^CIVIL STATUS^99DCT">
+        <div class="form-group">
+            <label>Marital Status:<span class="required">*</span></label>
+            <div class="form-group">
+                <label class="font-normal">
+                    <input name="marital_status"  id="married_polygamous" type="radio"
+                           data-concept="1054^CIVIL STATUS^99DCT"
+                           value="6163^Married polygamous^99DCT">
+                    Married Polygamous
+                </label>
+            </div>
+            <div class="form-group">
+                <label class="font-normal">
+                    <input name="marital_status" id="married_monogamous" type="radio"
+                           data-concept="1054^CIVIL STATUS^99DCT"
+                           value="5555^Married monogamous^99DCT">
+                    Married Monogamous
+                </label>
+            </div>
+
+            <div class="form-group">
+                <label class="font-normal">
+                    <input name="marital_status"  id="divorced" type="radio"
+                           data-concept="1054^CIVIL STATUS^99DCT"
+                           value="1058^Divorced^99DCT">
+                    Divorced
+                </label>
+            </div>
+            <div class="form-group">
+                <label class="font-normal">
+                    <input name="marital_status" id="widowed" type="radio"
+                           data-concept="1054^CIVIL STATUS^99DCT"
+                           value="1059^Widowed^99DCT">
+                    Widowed
+                </label>
+            </div>
+
+            <div class="form-group">
+                <label class="font-normal">
+                    <input name="marital_status"  id="living_with_partner" type="radio"
+                           data-concept="1054^CIVIL STATUS^99DCT"
+                           value="1060^Living with Partner^99DCT">
+                    Living with Partner
+                </label>
+            </div>
+
+            <div class="form-group">
+                <label class="font-normal">
+                    <input name="marital_status"  id="never_married" type="radio"
+                           data-concept="1054^CIVIL STATUS^99DCT"
+                           value="1057^Never Married^99DCT">
+                    Never Married
+                </label>
+            </div>
+        </div>
+        </fieldset>
+    </div>
+
+    <div class="section">
+        <h3>Occupation</h3>
+        <fieldset name="1364^OCCUPATION^99DCT">
+            <div class="form-group">
+                <label>Occupation:<span class="required">*</span></label>
+                <div class="form-group">
+                    <label class="font-normal">
+                        <input name="occupation"  id="farmer" type="radio"
+                               data-concept="1364^OCCUPATION^99DCT"
+                               value="1504^FARMER^99DCT">
+                        Farmer
+                    </label>
+                </div>
+                <div class="form-group">
+                    <label class="font-normal">
+                        <input name="occupation" id="trader" type="radio"
+                               data-concept="1364^OCCUPATION^99DCT"
+                               value="1611^BUSINESS^99DCT">
+                        Trader
+                    </label>
+                </div>
+
+                <div class="form-group">
+                    <label class="font-normal">
+                        <input name="occupation"  id="employee" type="radio"
+                               data-concept="1364^OCCUPATION^99DCT"
+                               value="8165^Employee^99DCT">
+                        Employee
+                    </label>
+                </div>
+                <div class="form-group">
+                    <label class="font-normal">
+                        <input name="occupation" id="student" type="radio"
+                               data-concept="1364^OCCUPATION^99DCT"
+                               value="7586^Student^99DCT">
+                        Student
+                    </label>
+                </div>
+
+                <div class="form-group">
+                    <label class="font-normal">
+                        <input name="occupation"  id="driver" type="radio"
+                               data-concept="1364^OCCUPATION^99DCT"
+                               value="6178^DRIVER^99DCT">
+                        Driver
+                    </label>
+                </div>
+				<div class="form-group">
+                    <label class="font-normal">
+                        <input name="occupation"  id="none" type="radio"
+                               data-concept="1364^OCCUPATION^99DCT"
+                               value="1107^NONE^99DCT">
+                        None
+                    </label>
+                </div>
+				<div class="form-group">
+                    <label class="font-normal">
+                        <input name="occupation"  id="other" type="radio"
+                               data-concept="1364^OCCUPATION^99DCT"
+                               value="5622^OTHER NON-CODED^99DCT">
+                        Other
+                    </label>
+                </div>
+
+
+            </div>
+			<div id="specify_other" style="display:none">
+				<div class="form-group">
+				     <label for="specify">Specify:</label>
+				     <input class="form-control" id="specify" name="specify" type="text"
+					   data-concept="7918^Other(Specify)^99DCT"
+					   placeholder="specify the other occupation">
+                </div>
+			</div>
+        </fieldset>
+    </div>
+    <div class="section">
+        <h3>Education Level</h3>
+
+        <fieldset name="1368^HIGHEST EDUCATION LEVEL^99DCT">
+            <div class="form-group">
+                <label>Education<span class="required">*</span></label>
+                <div class="form-group">
+                    <label class="font-normal">
+                        <input name="education"  id="no_education" type="radio"
+                               data-concept="1368^HIGHEST EDUCATION LEVEL^99DCT"
+                               value="1107^NONE^99DCT">
+                        None
+                    </label>
+                </div>
+                <div class="form-group">
+                    <label class="font-normal">
+                        <input name="education" id="primary" type="radio"
+                               data-concept="1368^HIGHEST EDUCATION LEVEL^99DCT"
+                               value="6329^PRIMARY COMPLETED^99DCT">
+                        Primary School Education
+                    </label>
+                </div>
+
+                <div class="form-group">
+                    <label class="font-normal">
+                        <input name="education"  id="secondary" type="radio"
+                               data-concept="1368^HIGHEST EDUCATION LEVEL^99DCT"
+                               value="6330^SECONDARY COMPLETED^99DCT">
+                        Secondary School Education
+                    </label>
+                </div>
+                <div class="form-group">
+                    <label class="font-normal">
+                        <input name="education" id="college" type="radio"
+                               data-concept="1368^HIGHEST EDUCATION LEVEL^99DCT"
+                               value="1371^SOME COLLEGE/UNIVERSITY^99DCT">
+                        College,University or Polytechnic
+                    </label>
+                </div>
+            </div>
+        </fieldset>
+
+    </div>
+
+    <div class="section">
+        <h3>Guardian Details</h3>
+        <div class="form-group">
+            <label for="patient.guardian_first_name">First Name: </label>
+            <input class="form-control" id="patient.guardian_first_name" name="patient.guardian_first_name" type="text">
+        </div>
+        <div class="form-group">
+            <label for="patient.guardian_last_name">Last Name: </label>
+            <input class="form-control" id="patient.guardian_last_name" name="patient.guardian_last_name" type="text">
+        </div>
+    </div>
+
+    <div class="section">
+        <h3>Next of Kin Details</h3>
+        <div class="form-group">
+            <label for="patient.next_of_kin_name">Next of kin name: </label>
+            <input class="form-control" id="patient.next_of_kin_name" name="patient.next_of_kin_name" type="text">
+        </div>
+        <div class="form-group">
+            <label for="patient.next_of_kin_relationship">Next of kin relationship: </label>
+            <input class="form-control" id="patient.next_of_kin_relationship" name="patient.next_of_kin_relationship" type="text">
+        </div>
+        <div class="form-group">
+            <label for="patient.next_of_kin_contact">Next of kin contact: </label>
+            <input class="form-control" id="patient.next_of_kin_contact" name="patient.next_of_kin_contact" type="text">
+        </div>
+        <div class="form-group">
+            <label for="patient.next_of_kin_name">Next of kin address: </label>
+            <input class="form-control" id="patient.next_of_kin_address" name="patient.next_of_kin_address" type="text">
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="form-group">
+            <label for="encounter.location_id">Facility Name:<span class="required">*</span></label>
+            <input class="form-control valid-location-only" id="encounter.location_id" type="text" placeholder="Start typing something..." required="required">
+            <input class="form-control" name="encounter.location_id" type="hidden">
+        </div>
+
+        <div class="form-group hidden">
+            <label for="encounter.location_id_select">Facility Name: <span class="required">*</span></label>
+            <select class="form-control" id="encounter.location_id_select" required="required">
+                <option>...</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="encounter.provider_id_select">Provider Name:<span class="required">*</span></label>
+            <input class="form-control valid-provider-only" id="encounter.provider_id_select" type="text" placeholder="Start typing something...">
+            <input class="form-control" name="encounter.provider_id_select" type="hidden">
+        </div>
+        <div class="form-group hidden">
+            <select id="select_providers">
+            </select>
+        </div>
+        <div class="form-group show_provider_id_text">
+            <label for="encounter.provider_id">Provider's system-id:<span class="required">*</span></label>
+            <input class="form-control checkDigit" id="encounter.provider_id" name="encounter.provider_id"
+                   type="text" required="required" disabled="disabled">
+        </div>
+        <div class="form-group">
+            <label for="encounter.encounter_datetime">Encounter Date <span class="required">*</span></label>
+            <input class="form-control nonFutureDate past-date datepicker" readonly="readonly" id="encounter.encounter_datetime"
+                   name="encounter.encounter_datetime" type="text" required="required">
+        </div>
+        <div class="form-group">
+            <input class="form-control" id="encounter.form_uuid" name="encounter.form_uuid"
+                   type="hidden" required="required">
+        </div>
+    </div>
+</form>
+
+</body>
+<script type="text/javascript">
+    $(document).ready(function () {
+        var dateFormat = "dd-mm-yy";
+        var currentDate = $.datepicker.formatDate(dateFormat, new Date());
+        var encounterDatetime = $('#encounter\\.encounter_datetime');
+        if ($(encounterDatetime).val() == "") {
+            $(encounterDatetime).val(currentDate);
+        }
+
+        var currentYear = new Date().getFullYear();
+        var birthdate_start_year = currentYear - 140;
+        $('.birth_date_picker').datepicker({
+            dateFormat: dateFormat,
+            changeMonth: true,
+            changeYear: true,
+            yearRange: birthdate_start_year + ':' + currentYear,
+        });
+
+
+        $('#save_draft').click(function () {
+            // pre process the medications
+            $(this).prop('disabled', true);
+            document.saveDraft(this);
+            $(this).prop('disabled', false);
+        });
+
+        $('#submit_form').click(function () {
+            // pre process the medications
+            $(this).prop('disabled', true);
+            document.submit();
+            $(this).prop('disabled', false);
+        });
+
+        $.fn.calculateFields = function () {
+            var tempAgeInYears = $.trim($("#tmp\\.age_in_years").val());
+            if (tempAgeInYears != '') {
+                $('#patient\\.birthdate_estimated').val('true');
+                $('#patient\\.birth_date').val($.fn.getTempBirthDate(tempAgeInYears));
+            }
+            return true;
+        };
+
+        $.fn.customValidationCheck = function () {
+            return $.fn.calculateFields();
+        };
+
+        var dobType = $('#tmp\\.birthdate_type');
+        dobType.change(function () {
+            var $show_birth_date = $('.show_birthdate');
+            var $show_age = $('.show_age');
+            if ($('#tmp\\.birthdate_type').val() == 'age') {
+                $show_age.show();
+                $show_birth_date.find('input').val('');
+                $show_birth_date.hide();
+            } else {
+                $show_age.hide();
+                $show_age.find('input').val('');
+                $show_birth_date.show();
+            }
+        });
+        dobType.trigger('change');
+
+
+        jQuery.validator.addClassRules({
+            'check-confirm-identifier':{
+                validateConfirmIdentifierElement: true
+            }
+        });
+        $("input[name='occupation']:radio")
+            .change(function () {
+                $("#specify_other").toggle($(this).val() == "5622^OTHER NON-CODED^99DCT");
+            });
+
+        document.setupAutoCompleteData('encounter\\.location_id');
+
+
+        document.setupAutoCompleteDataForProvider('encounter\\.provider_id_select');
+
+        $('#registration_form').validate({rules: {
+            'tmp.age_in_years': {
+                range: [0, 120]
+            }
+        }
+        });
+
+        document.setupValidationForProvider("$('#encounter\\.provider_id_select').val()","encounter\\.provider_id");
+
+        document.setupValidationForLocation("$('#encounter\\.location_id').val()","encounter\\.location_id");
+
+    });
+</script>
+
+</html>
