@@ -186,6 +186,7 @@
 					  displayObs(historyByData);
 				 }else if(searchtype==="encountertypeid"){
 					  var historyByData = htmlDataStore.getObsByEncounterType(patientuuid,searchid);
+					  document.getElementById("historicaldata").innerHTML=historyByData;
 					  displayObs(historyByData);
 				 }else{
 					 var historyByData = htmlDataStore.getObsByEncounterId(searchid);
@@ -196,8 +197,6 @@
 		function displayObs(historyByData){
 			  document.getElementById("historicaldata").innerHTML="";
 			  historyByData = JSON.parse(historyByData);
-			  var levelone;
-			  var observationdate;
 			  var j=0;
 			  var table = document.createElement('table');
 			  table.setAttribute('border','1');
@@ -206,23 +205,40 @@
 			  var cell = row.insertCell(0);
 			  cell.appendChild(document.createTextNode("Date"));
 			  var cell = row.insertCell(1);
+			  cell.appendChild(document.createTextNode("Concept"));
+			  var cell = row.insertCell(2);
 			  cell.appendChild(document.createTextNode("Obs"));
 			  $.each(historyByData, function (i,ob) {
-					  observationdate = ob.observationDatetime;
-					  levelone = JSON.stringify(ob.valueCoded);
-					  levelone = JSON.parse(levelone);
-					  levelone = JSON.stringify(levelone.conceptNames);
-					  levelone = JSON.parse(levelone);
-					   $.each(levelone, function (key,value) {
-							if(value.preferred){
-								  j=j+1;
-								  var row = table.insertRow(j);
-								  var cell = row.insertCell(0);
-								  cell.appendChild(document.createTextNode(observationdate));
-								  var cell = row.insertCell(1);
-								  cell.appendChild(document.createTextNode(value.name));
-							 }
-					  });
+                                    if(ob.valueCoded){
+                                                j=j+1;
+                                                var row = table.insertRow(j);
+                                                var cell = row.insertCell(0);
+                                                cell.appendChild(document.createTextNode(ob.obsDate));
+                                                var cell = row.insertCell(1);
+                                                cell.appendChild(document.createTextNode(ob.conceptName));
+                                                var cell = row.insertCell(2);
+                                                cell.appendChild(document.createTextNode(ob.valueCoded));
+                                        }
+                                        if(!isNaN(ob.valueNumeric) && (parseFloat(ob.valueNumeric)<0 || parseFloat(ob.valueNumeric)>0)){
+                                                j=j+1;
+                                                var row = table.insertRow(j);
+                                                var cell = row.insertCell(0);
+                                                cell.appendChild(document.createTextNode(ob.obsDate));
+                                                var cell = row.insertCell(1);
+                                                cell.appendChild(document.createTextNode(ob.conceptName));
+                                                var cell = row.insertCell(2);
+                                                cell.appendChild(document.createTextNode(ob.valueNumeric));
+                                        }
+                                        if(ob.valueText){
+                                                j=j+1;
+                                                var row = table.insertRow(j);
+                                                var cell = row.insertCell(0);
+                                                cell.appendChild(document.createTextNode(ob.obsDate));
+                                                var cell = row.insertCell(1);
+                                                cell.appendChild(document.createTextNode(ob.conceptName));
+                                                var cell = row.insertCell(2);
+                                                cell.appendChild(document.createTextNode(ob.valueText));
+                                        }
 			  });
 			  document.getElementById("historicaldata").appendChild(table);
 		}
