@@ -1,0 +1,279 @@
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/muzima.css" rel="stylesheet">
+    <link href="css/ui-darkness/jquery-ui-1.10.4.custom.min.css" rel="stylesheet">
+    <script src="js/jquery.min.js"></script>
+    <script src="js/jquery-ui-1.10.4.custom.min.js"></script>
+    <script src="js/jquery.validate.min.js"></script>
+    <script src="js/additional-methods.min.js"></script>
+    <script src="js/muzima.js"></script>
+	<style>
+		 tr:nth-child(even) {background-color: #f2f2f2;}
+		 td{padding-top: 10px; padding-bottom: 10px;}
+		 th{ background-color: green; color: white; }
+	</style>
+    <title>PHR Registration Details Form</title>
+</head>
+<body class="col-md-8 col-md-offset-2">
+<div id="pre_populate_data">
+
+</div>
+<form id="registration_form" name="registration_form">
+    <div class="section">
+        <h3>REGISTRATION DETAILS</h3>
+		<div class="concept-set" data-concept="51^REGISTRATION^99DCT">
+            <div class="form-group">
+                <input class="form-control" id="patient.uuid" name="patient.uuid" type="hidden" readonly="readonly">
+            </div>
+            <div class="form-group">
+                <label for="patient.age">AGE <span class="required">*</span></label>
+                <input class="form-control"  id="patient.age"  name="patient.age"  data-concept="46^AGE^99DCT" required>
+            </div>
+            <div class="form-group">
+                <label for="patient.participant_id_no">PARTICIPANT ID NO<span class="required">*</span></label>
+                <input class="form-control"  id="patient.participant_id_no"  name="patient.participant_id_no"  data-concept="59^PARTICIPANT ID NO^99DCT" required>
+            </div>
+            <div class="form-group">
+                <label for="patient.marital_status">MARITAL STATUS: <span class="required">*</span></label>
+                <input class="form-control"  id="patient.marital_status"  name="patient.marital_status"  data-concept="47^MARITAL STATUS^99DCT" required>
+            </div>
+            <div class="form-group">
+                <label for="patient.contact_number">CONTACT NUMBER: <span class="required">*</span></label>
+                <input class="form-control"  id="patient.contact_number"  name="patient.contact_number"  data-concept="48^CONTACT^99DCT" required>
+            </div>
+            <div class="form-group">
+                <label for="patient.residence">RESIDENCE: <span class="required">*</span></label>
+                <input class="form-control"  id="patient.residence"  name="patient.residence"  data-concept="49^RESIDENCE^99DCT" required>
+            </div>
+            <div class="form-group">
+                <label for="patient.next_of_kin">NEXT OF KIN NAME: <span class="required">*</span></label>
+                <input class="form-control"  id="patient.next_of_kin"  name="patient.next_of_kin"  data-concept="50^NEXT OF KIN^99DCT" required>
+            </div>
+            <div class="form-group">
+                <label for="patient.next_of_kin_contact">NEXT OF KIN CONTACT: <span class="required">*</span></label>
+                <input class="form-control"  id="patient.next_of_kin_contact"  name="patient.next_of_kin_contact"  data-concept="60^NEXT OF KIN CONTACT^99DCT" required>
+            </div>
+            <div class="form-group">
+                <label for="patient.primary_maternity_assistant_name">PRIMARY MATERNITY ASSISTANT NAME: <span class="required">*</span></label>
+                <input class="form-control"  id="patient.primary_maternity_assistant_name"  name="patient.primary_maternity_assistant_name"  data-concept="62^PRIMARY MATERNITY ASSISTANT NAME^99DCT" required>
+            </div>
+            <div class="form-group">
+                <label for="patient.primary_maternity_assistant_contact">CONTACT NO OF PRIMARY ASSISTANT: <span class="required">*</span></label>
+                <input class="form-control"  id="patient.primary_maternity_assistant_contact"  name="patient.primary_maternity_assistant_contact"  data-concept="61^CONTACT  NO OF PRIMARY ASSISTANT^99DCT" required>
+            </div>  
+            <div class="form-group">
+                    <label for="patient.last_monthly_period">LAST MONTHLY PERIOD (LMP): <span class="required">*</span></label>
+                    <input class="form-control datepicker past-date nonFutureDate"  id="patient.last_monthly_period"  name="patient.last_monthly_period"  data-concept="40^DATE^99DCT" readonly="readonly" required>
+            </div>
+            <div class="form-group">
+                    <label for="patient.allergies">
+                            DO YOU HAVE ANY ALLERGIES? <span class="required">*</span>
+                    </label>
+                    <select class="form-control" id="patient.allergies" required
+                            name="patient.allergies" data-concept="38^ALLERGY^99DCT">
+                            <option value="">...</option>
+                            <option value="1^YES^99DCT">Yes</option>
+                            <option value="2^No^99DCT">No</option>
+                    </select>
+            </div>
+            <div class="form-group specify_allergy" id="specify_allergy">
+                    <label for="patient.specify_allergy">SPECIFY ALLERGIES: <span class="required">*</span></label>
+                    <input class="form-control" type="text"  id="patient.specify_allergy"  name="patient.specify_allergy" data-concept="39^SPECIFY ALLEGIES^99DCT" required>
+            </div>   
+         </div>
+    </div>   
+    <div class="section">
+        <h3>HEALTH HISTORY</h3>        
+        <h4>HAVE YOU HAD ANY OF THE FOLLOWING CONDITIONS </h4>
+		<div class="form-group" data-concept="52^HEALTH HISTORY^99DCT">	
+			<table border="1" width="100%">
+				<thead>
+					<tr>
+						<th  width="60%">Condition</th>
+						<th  width="20%" class="text-center">Yes</th>
+						<th  width="20%" class="text-center">No</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td width="60%">PAST HISTORY OF ASTHMA<span class="required"></span></td>
+						<td width="20%" align="center"><input type="radio" data-concept="52^HEALTH HISTORY^99DCT" value="3^ASTHMA^99DCT" name="obs.personal_history.asthma"></td>
+						<td width="20%" align="center"><input type="radio"  name="obs.personal_history.asthma"> </td>
+					</tr>
+					<tr>
+						<td width="60%">RESPIRATORY DISEASE<span class="required"></span></td>
+						<td width="20%" align="center"><input type="radio" data-concept="52^HEALTH HISTORY^99DCT" value="4^RESPIRATORY DISEASE^99DCT" name="obs.personal_history.respiratory_diseases"></td>
+						<td width="20%" align="center"><input type="radio"  name="obs.personal_history.respiratory_diseases"> </td>
+					</tr>
+					<tr>
+						<td width="60%">HIGH BLOOD PRESSURE<span class="required"></span></td>
+						<td width="20%" align="center"><input type="radio" data-concept="52^HEALTH HISTORY^99DCT" value="5^HIGH BLOOD PRESSURE^99DCT" name="obs.personal_history.high_blood_pressure"></td>
+						<td width="20%" align="center"><input type="radio"  name="obs.personal_history.high_blood_pressure"> </td>
+					</tr>					
+					<tr>
+						<td width="60%">HEART DISEASE<span class="required"></span></td>
+						<td width="20%" align="center"><input type="radio" data-concept="52^HEALTH HISTORY^99DCT" value="6^HEART DISEASE^99DCT" name="obs.personal_history.heart_disease"></td>
+						<td width="20%" align="center"><input type="radio"  name="obs.personal_history.heart_disease"> </td>
+					</tr>
+					<tr>
+						<td width="60%">KIDNEY DISEASE<span class="required"></span></td>
+						<td width="20%" align="center"><input type="radio" data-concept="52^HEALTH HISTORY^99DCT" value="7^KIDNEY DISEASE^99DCT" name="obs.personal_history.kidney_disease"></td>
+						<td width="20%" align="center"><input type="radio"  name="obs.personal_history.kidney_disease"> </td>
+					</tr>
+					<tr>
+						<td width="60%">SEXUALLY TRANSMITTED INFECTION<span class="required"></span></td>
+						<td width="20%" align="center"><input type="radio" data-concept="52^HEALTH HISTORY^99DCT" value="8^SEXUALLY TRANSMITTED INFECTION^99DCT" name="obs.personal_history.sexually_transmitted_infection"></td>
+						<td width="20%" align="center"><input type="radio"  name="obs.personal_history.sexually_transmitted_infection"> </td>
+					</tr>
+					<tr>
+						<td width="60%">DIABETES<span class="required"></span></td>
+						<td width="20%" align="center"><input type="radio" data-concept="52^HEALTH HISTORY^99DCT" value="9^DIABETES^99DCT" name="obs.personal_history.diabetes"></td>
+						<td width="20%" align="center"><input type="radio"  name="obs.personal_history.diabetes"> </td>
+					</tr>
+					<tr>
+						<td width="60%">EPILEPSY<span class="required"></span></td>
+						<td width="20%" align="center"><input type="radio" data-concept="52^HEALTH HISTORY^99DCT" value="10^EPILEPSY^99DCT" name="obs.personal_history.epilepsy"></td>
+						<td width="20%" align="center"><input type="radio"  name="obs.personal_history.epilepsy"> </td>
+					</tr>
+					<tr>
+						<td width="60%">GENETIC DISORDER<span class="required"></span></td>
+						<td width="20%" align="center"><input type="radio" data-concept="52^HEALTH HISTORY^99DCT" value="11^GENETIC DISORDER^99DCT" name="obs.personal_history.genetic_disorder"></td>
+						<td width="20%" align="center"><input type="radio"  name="obs.personal_history.genetic_disorder"> </td>
+					</tr>					
+					<tr>
+						<td width="60%">CEASERIAN SECTION<span class="required"></span></td>
+						<td width="20%" align="center"><input type="radio" data-concept="52^HEALTH HISTORY^99DCT" value="13^CEASERIAN SECTION ^99DCT" name="obs.personal_history.ceaserian_section"></td>
+						<td width="20%" align="center"><input type="radio"  name="obs.personal_history.ceaserian_section"> </td>
+					</tr>
+					<tr>
+						<td width="60%">DO YOU SMOKE CIGARRETTE<span class="required"></span></td>
+						<td width="20%" align="center"><input type="radio" data-concept="52^HEALTH HISTORY^99DCT" value="14^SMOKER^99DCT" name="obs.personal_history.cigarette_smoking"></td>
+						<td width="20%" align="center"><input type="radio"  name="obs.personal_history.cigarette_smoking"> </td>
+					</tr>
+					<tr>
+						<td width="60%">DO YOU DRINK ALCOHOL<span class="required"></span></td>
+						<td width="20%" align="center"><input type="radio" data-concept="52^HEALTH HISTORY^99DCT" value="15^ALCOHOLIC^99DCT" name="obs.personal_history.alcohol_consumption"></td>
+						<td width="20%" align="center"><input type="radio"  name="obs.personal_history.alcohol_consumption"> </td>
+					</tr>
+				<tbody>				
+			</table>         
+		</div>            
+    </div>    
+    
+	<div class="section">
+        <h3>FAMILY HEALTH HISTORY</h3>
+        <h4>DOES ANY OF THE FOLLOWING CONDITIONS OCCUR IN YOUR FAMILY OR THE BABY’S FATHER FAMILY</h4>
+        <div class="concept-set" data-concept="53^FAMILY HISTORY^99DCT">
+			<table border="1" width="100%">
+				<thead>
+					<tr>
+						<th  width="60%">Condition</th>
+						<th  width="20%" class="text-center">Yes</th>
+						<th  width="20%" class="text-center">No</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td width="60%">MULTIPLE PREGNANCIES<span class="required"></span></td>
+						<td width="20%" align="center"><input type="radio" data-concept="53^FAMILY HISTORY^99DCT" value="16^MULTIPLE PREGNANCIES^99DCT" name="obs.family_history.multiple_pregnancies"></td>
+						<td width="20%" align="center"><input type="radio"  name="obs.family_history.multiple_pregnancies"> </td>
+					</tr>					
+					<tr>
+						<td width="60%">GENETIC DISORDERS<span class="required"></span></td>
+						<td width="20%" align="center"><input type="radio" data-concept="53^FAMILY HISTORY^99DCT" value="17^GENETIC DISORDERS^99DCT" name="obs.family_history.genetic_disorders"></td>
+						<td width="20%" align="center"><input type="radio"  name="obs.family_history.genetic_disorders"> </td>
+					</tr>
+					<tr>
+						<td width="60%">CONGENITAL ANOMALIES<span class="required"></span></td>
+						<td width="20%" align="center"><input type="radio" data-concept="53^FAMILY HISTORY^99DCT" value="18^CONGENITAL ANOMALIES^99DCT" name="obs.family_history.congenital_anomalies"></td>
+						<td width="20%" align="center"><input type="radio"  name="obs.family_history.congenital_anomalies"> </td>
+					</tr>
+					<tr>
+						<td width="60%">HEART DISEASE<span class="required"></span></td>
+						<td width="20%" align="center"><input type="radio" data-concept="53^FAMILY HISTORY^99DCT" value="19^HEART DISEASES^99DCT" name="obs.family_history.heart_disease"></td>
+						<td width="20%" align="center"><input type="radio"  name="obs.family_history.heart_disease"> </td>
+					</tr>
+					<tr>
+						<td width="60%">DEPRESSION<span class="required"></span></td>
+						<td width="20%" align="center"><input type="radio" data-concept="53^FAMILY HISTORY^99DCT" value="20^DEPRESSION^99DCT" name="obs.family_history.depression"></td>
+						<td width="20%" align="center"><input type="radio"  name="obs.family_history.depression"> </td>
+					</tr>
+					<tr>
+						<td width="60%">BIPOLAR DISORDER<span class="required"></span></td>
+						<td width="20%" align="center"><input type="radio" data-concept="53^FAMILY HISTORY^99DCT" value="21^BIPOLAR DISORDER^99DCT" name="obs.family_history.bipolar_disorder"></td>
+						<td width="20%" align="center"><input type="radio"  name="obs.family_history.bipolar_disorder"> </td>
+					</tr>
+					<tr>
+						<td width="60%">HIGH BLOOD PRESSURE<span class="required"></span></td>
+						<td width="20%" align="center"><input type="radio" data-concept="53^FAMILY HISTORY^99DCT" value="5^HIGH BLOOD PRESSURE^99DCT" name="obs.family_history.high_blood_pressure"></td>
+						<td width="20%" align="center"><input type="radio"  name="obs.family_history.high_blood_pressure"> </td>
+					</tr>
+					<tr>
+						<td width="60%">SICKLE CELL DISEASE<span class="required"></span></td>
+						<td width="20%" align="center"><input type="radio" data-concept="53^FAMILY HISTORY^99DCT" value="23^SICKLE CELL DISEASE^99DCT" name="obs.family_history.sickle_cell_disease"></td>
+						<td width="20%" align="center"><input type="radio"  name="obs.family_history.sickle_cell_disease"> </td>
+					</tr>
+					<tr>
+						<td width="60%">EPILEPSY<span class="required"></span></td>
+						<td width="20%" align="center"><input type="radio" data-concept="53^FAMILY HISTORY^99DCT" value="10^EPILEPSY^99DCT" name="obs.family_history.epilepsy"></td>
+						<td width="20%" align="center"><input type="radio"  name="obs.family_history.epilepsy"> </td>
+					</tr>
+				<tbody>				
+			</table>   
+        </div>
+    </div>    
+    <div class="section">
+        <h3>Encounter Details</h3>
+        <div class="form-group">
+            <label for="encounter.location_id">Encounter Location:<span class="required">*</span></label>
+            <input class="form-control valid-location-only" id="encounter.location_id" type="text"
+            placeholder="Start typing something..." required="required">
+            <input class="form-control" name="encounter.location_id" type="hidden">
+        </div>
+        <div class="form-group">
+            <label for="encounter.provider_id_select">Provider Name:<span class="required">*</span></label>
+            <input class="form-control valid-provider-only" id="encounter.provider_id_select"
+            type="text" placeholder="Start typing something...">
+            <input class="form-control" name="encounter.provider_id_select" type="hidden">
+        </div>
+
+        <div class="form-group show_provider_id_text">
+            <label for="encounter.provider_id">Provider system-id:<span class="required">*</span></label>
+            <input class="form-control checkDigit" id="encounter.provider_id" disabled name="encounter.provider_id"
+                type="text" required="required"  placeholder="Provider Id">
+        </div>
+        <div class="form-group">
+            <label for="encounter.encounter_datetime">Encounter Date:<span class="required">*</span></label>
+            <input class="form-control datepicker nonFutureDate past-date" id="encounter.encounter_datetime"
+                name="encounter.encounter_datetime" type="text" readonly="readonly"
+                required="required">
+        </div>
+        <div class="form-group">
+            <input class="form-control" id="encounter.form_uuid" name="encounter.form_uuid"
+                type="hidden" required="required">
+            <input class="form-control" id="encounter.user_system_id" name="encounter.user_system_id" type="hidden">
+        </div>    
+    </div>
+</form>
+</body>
+<script type="text/javascript">
+$(document).ready(function () {   
+    $('#patient\\.allergies').change(function(){
+        if($(this).val() == "1^YES^99DCT"){
+            $('#specify_allergy').show();
+        } else {
+            $('#specify_allergy').hide();
+        }
+    });
+    
+    $('#patient\\.allergies').trigger('change');
+    
+    document.setupAutoCompleteDataForProvider('encounter\\.provider_id_select');
+    document.setupAutoCompleteData('encounter\\.location_id');
+    document.setupValidationForProvider($('#encounter\\.provider_id_select').val(),$("#encounter\\.provider_id"));
+    document.setupValidationForLocation($('#encounter\\.location_id').val(),$("encounter\\.location_id"));
+});
+</script>
+</html>
