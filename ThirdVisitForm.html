@@ -16,9 +16,25 @@
     </style>
 </head>
 <body class="col-md-10 col-md-offset-1">
+  <div class="section">
+      <h3>Demographics</h3>
+
+      <div class="form-group">
+          <input class="form-control" id="patient.uuid" name="patient.uuid" type="hidden" readonly="readonly">
+      </div>
+      <div class="form-group">
+          <label for="patient.medical_record_number">AMRS ID Number:</label>
+          <input class="form-control" id="patient.medical_record_number" name="patient.medical_record_number" type="text"
+                 readonly="readonly" disabled="disabled">
+      </div>
+      <div class="form-group">
+          <label for="patient.family_name">Family Name:</label>
+          <input class="form-control" id="patient.family_name" name="patient.family_name" type="text" readonly="readonly"
+                 disabled="disabled">
+      </div>
 <div id="pre_populate_data"></div>
 <form id="third_visit_form" name="third_visit_form">
-<div class="section">   
+<div class="section">
     <div class="concept-set" data-concept="56^THIRD VISIT^99DCT">
         <h3>THIRD VISIT</h3>
         <div class="form-group">
@@ -54,7 +70,7 @@
             <label for="obs.third_visit.counselling_done">
                 COUNSELLING DONE? <span class="required">*</span>
             </label>
-            <select class="form-control" id="obs.third_visit.counselling_done" 
+            <select class="form-control" id="obs.third_visit.counselling_done"
                 name="obs.third_visit.counselling_done" data-concept="26^COUNSELLING DONE^99DCT" required>
                 <option value="">...</option>
                 <option value="1^YES^99DCT">Yes</option>
@@ -84,7 +100,7 @@
             </select>
         </div>
     </div>
-</div> 
+</div>
 <div class="section">
     <h3>Encounter Details</h3>
     <div class="form-group">
@@ -114,7 +130,7 @@
         <input class="form-control" id="encounter.form_uuid" name="encounter.form_uuid"
             type="hidden" required="required">
         <input class="form-control" id="encounter.user_system_id" name="encounter.user_system_id" type="hidden">
-    </div>    
+    </div>
 </div>
 </form>
 </body>
