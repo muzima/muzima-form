@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <link href="css/muzima.css" rel="stylesheet">
+        <link href="css/ui-darkness/jquery-ui-1.10.4.custom.min.css" rel="stylesheet">
+        <script src="js/jquery.min.js"></script>
+        <script src="js/jquery-ui-1.10.4.custom.min.js"></script>
+        <script src="js/jquery.validate.min.js"></script>
+        <script src="js/additional-methods.min.js"></script>
+        <script src="js/muzima.js"></script>
+
+        <title>Group 4</title>
+    </head>
+    <body class="col-md-10 col-md-offset-1">
+        <div id="pre_populate_data"></div>
+        <h2 class="text-center">Group 4</h2>
+        <form>
+            <div class="section">
+                <h3>Demographics</h3>
+
+                <div class="form-group">
+                    <input class="form-control" id="patient.uuid"
+                           name="patient.uuid" type="hidden" readonly="readonly">
+                </div>
+                <div class="form-group">
+                    <label for="patient.medical_record_number">AMRS ID Number:</label>
+                    <input class="form-control" id="patient.medical_record_number"
+                           name="patient.medical_record_number" type="text"
+                           readonly="readonly" disabled="disabled">
+                </div>
+                <div class="form-group">
+                    <label for="patient.family_name">Family Name:</label>
+                    <input class="form-control" id="patient.family_name"
+                           name="patient.family_name" type="text" readonly="readonly"
+                           disabled="disabled">
+                </div>
+                <div class="form-group">
+                    <label for="patient.given_name">Given Name:</label>
+                    <input class="form-control" id="patient.given_name"
+                           name="patient.given_name" type="text" readonly="readonly"
+                           disabled="disabled">
+                </div>
+                <div class="form-group">
+                    <label for="patient.middle_name">Middle Name:</label>
+                    <input class="form-control" id="patient.middle_name"
+                           name="patient.middle_name" type="text" readonly="readonly"
+                           disabled="disabled">
+                </div>
+                <div class="form-group">
+                    <label for="patient.sex">Gender:</label>
+                    <select class="form-control" id="patient.sex" name="patient.sex">
+                        <option value="">...</option>
+                        <option value="M">Male</option>
+                        <option value="F">Female</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="patient.birthdate">Date Of Birth:</label>
+                    <input class="form-control datepicker nonFutureDate"
+                           id="patient.birthdate" name="patient.birthdate" type="date"
+                           readonly="readonly" disabled="disabled">
+                </div>
+            </div>
+
+            <div class="section">
+                <div class="form-group">
+                    </p><label for="obs.counselling_done"> Counselling Done?  <span class="required">*</span></label>
+                    <fieldset id="obs.counselling_done" name="obs.counselling_done">
+                        <input id="counselling_done_yes" type="radio" name="obs.counselling_done" data-concept="1065^COUNSELLING DONE^99DCT"
+                               value="1065^NEW COUNSELLING DONE^99DCT" required="required">
+                        <label for="counselling_done_yes">Yes</label>&nbsp;&nbsp;
+                        <input id="known_diabetic_no" type="radio" name="obs.counselling_done" data-concept="1066^COUNSELLING DONE^99DCT"
+                               value="1066^NEW COUNSELLING DONE^99DCT" required="required">
+                        <label for="known_diabetic_no">No</label>
+                    </fieldset>
+                </div>
+                <div class="form-group">
+                    </p><label for="obs.birth_preparation_discussed"> Birth preparation discussed?  <span class="required">*</span></label>
+                    <fieldset id="obs.birth_preparation_discussed"  name="obs.birth_preparation_discussed">
+                        <input id="birth_preparation_discussed_yes" name="obs.birth_preparation_discussed" type="radio" data-concept="1065^BIRTH PREPARATION DISCUSSED^99DCT"
+                               value="1065^BIRTH PREPARATION DISCUSSED^99DCT" required="required">
+                        <label for="birth_preparation_discussed_yes">Yes</label>&nbsp;&nbsp;
+                        <input id="birth_preparation_discussed_no" name="obs.birth_preparation_discussed" type="radio" data-concept="1066^BIRTH PREPARATION DISCUSSED^99DCT"
+                               value="1066^BIRTH PREPARATION DISCUSSED^99DCT" required="required">
+                        <label for="birth_preparation_discussed_no">No</label>
+                    </fieldset>
+                </div>
+
+                <div class="form-group">
+                    </p><label for="obs.baby_mvt"> Baby movement and monitoring done?  <span class="required">*</span></label>
+                    <fieldset id="obs.baby_mvt"  name="obs.baby_mvt">
+                        <input id="baby_mvt_yes" name="obs.baby_mvt" type="radio" data-concept="1065^BABY MOVEMENT AND MONITORING DONE^99DCT"
+                               value="1065^BABY MOVEMENT AND MONITORING DONE^99DCT" required="required">
+                        <label for="baby_mvt_yes">Yes</label>&nbsp;&nbsp;
+                        <input id="baby_mvt_no" name="obs.baby_mvt" type="radio" data-concept="1066^BABY MOVEMENT AND MONITORING DONE^99DCT"
+                               value="1066^BABY MOVEMENT AND MONITORING DONE^99DCT" required="required">
+                        <label for="baby_mvt_no">No</label>
+                    </fieldset>
+                </div>
+
+                <div class="form-group">
+                    </p><label for="obs.breast_feeding_reviewed"> Breast feeding education reviewed?  <span class="required">*</span></label>
+                    <fieldset id="obs.breast_feeding_reviewed"  name="obs.breast_feeding_reviewed">
+                        <input id="breast_feeding_reviewed_yes" name="obs.breast_feeding_reviewed" type="radio" data-concept="1065^BREASTFEEDING EDUCATION REVIEWED^99DCT"
+                               value="1065^BREASTFEEDING EDUCATION REVIEWED^99DCT" required="required">
+                        <label for="breast_feeding_reviewed_yes">Yes</label>&nbsp;&nbsp;
+                        <input id="breast_feeding_reviewed_no" name="obs.breast_feeding_reviewed" type="radio" data-concept="1066^BREASTFEEDING EDUCATION REVIEWED^99DCT"
+                               value="1066^BREASTFEEDING EDUCATION REVIEWED^99DCT" required="required">
+                        <label for="breast_feeding_reviewed_no">No</label>
+                    </fieldset>
+                </div>
+
+                <div class="form-group">
+                    </p><label for="obs.labour_signed_reviewed"> Labour signs reviewed?  <span class="required">*</span></label>
+                    <fieldset id="obs.labour_signed_reviewed"  name="obs.labour_signed_reviewed">
+                        <input id="labour_signed_reviewed_yes" name="obs.labour_signed_reviewed" type="radio" data-concept="1065^LABOR SIGNS REVIEWED^99DCT"
+                               value="1065^BIRTH PREPARATION DISCUSSED^99DCT" required="required">
+                        <label for="labour_signed_reviewed_yes">Yes</label>&nbsp;&nbsp;
+                        <input id="labour_signed_reviewed_no" name="obs.labour_signed_reviewed" type="radio" data-concept="1066^LABOR SIGNS REVIEWED^99DCT"
+                               value="1066^BIRTH PREPARATION DISCUSSED^99DCT" required="required">
+                        <label for="labour_signed_reviewed_no">No</label>
+                    </fieldset>
+                </div>
+            </div>
+        </form>
+
+    </body>
+</html>
