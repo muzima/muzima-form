@@ -157,4 +157,12 @@
         </form>
 
     </body>
+
+<script>
+    document.setupAutoCompleteDataForProvider('encounter\\.provider_id_select');
+    document.setupAutoCompleteData('encounter\\.location_id');
+    document.setupValidationForProvider($('#encounter\\.provider_id_select').val(),$("#encounter\\.provider_id"));
+    document.setupValidationForLocation($('#encounter\\.location_id').val(),$("encounter\\.location_id"));
+</script>
+
 </html>
