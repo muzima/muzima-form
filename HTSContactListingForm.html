@@ -129,9 +129,23 @@
 
 
         <div class="form-group">
-            <h5><strong>Relationship to index client:</strong></h5>
             <fieldset name="6415^FAMILY MEMBER'S RELATIONSHIP 1^99DCT">
-                <div class="form-group">
+
+            <div class="form-group">
+            <label for="relationship_index">Relationship to index client:</label>
+            <select class="form-control" id="relationship_index" name="relationship_index" data-concept="6415^FAMILY MEMBER'S RELATIONSHIP 1^99DCT">
+                <option value="">...</option>
+                <option value="970^MOTHER^99DCT">Mother</option>
+                <option value="971^FATHER^99DCT">Father</option>
+                <option value="6413^CHILD^99DCT">Sibling</option>
+                <option value="5617^SPOUSE^99DCT">Child</option>
+                <option value="8160^PARTNER^99DCT">Spouse</option>
+                <option value="6414^CO-WIFE^99DCT">Partner</option>
+                <option value="6414^CO-WIFE^99DCT">Co-Wife</option>
+            </select>
+        </div>
+
+                <!--<div class="form-group">
                     <label class="font-normal">
                         <input  type="radio" class="repeat_radio_relationship"
                                 data-concept="6415^FAMILY MEMBER'S RELATIONSHIP 1^99DCT"
@@ -188,9 +202,20 @@
                     </label>
                 </div>
             </fieldset>
-        </div>
+        </div> -->
 
         <div class="form-group">
+            <fieldset name="8163^RELATIONSHIP STATUS^99DCT">
+
+            <div class="form-group">
+            <label for="relationship_status">Relationship status:</label>
+            <select class="form-control" id="relationship_status" name="relationship_status" data-concept="8163^RELATIONSHIP STATUS^99DCT">
+                <option value="">...</option>
+                <option value="8161^CURRENT RELATIONSHIP^99DCT">Current</option>
+                <option value="8162^DECEASED2^99DCT">Deceased</option>
+            </select>
+            </div>
+            <!--
             <h5><strong>Relationship status:</strong></h5>
             <fieldset name="8163^RELATIONSHIP STATUS^99DCT">
                 <div class="form-group">
@@ -211,8 +236,25 @@
                 </div>
             </fieldset>
         </div>
-	
-	
+        -->
+        <div class="form-group">
+            <fieldset name="1169^CONFIRMED HIV INFECTED^99DCT">
+
+            <div class="form-group">
+            <label for="hiv_status">HIV status:</label>
+            <select class="form-control" id="hiv_status" name="hiv_status" data-concept="1169^CONFIRMED HIV INFECTED^99DCT">
+                <option value="">...</option>
+                <option value="703^POSITIVE^99DCT">Positive</option>
+                <option value="664^NEGATIVE^99DCT">Negative</option>
+                <option value="8164^EXPOSED INFANT^99DCT">Exposed Infant</option>
+                <option value="8164^EXPOSED INFANT^99DCT">Unknown</option>
+            </select>
+        </div>
+
+
+
+
+	     <!--
         <div class="form-group">
             <h5><strong>HIV status:</strong></h5>
             <fieldset name="1169^CONFIRMED HIV INFECTED^99DCT">
@@ -251,27 +293,18 @@
                 </div>
             </fieldset>
         </div>
-
-        <div class="form-group show-positive">
-            <h5><strong>Enrolled in Care:</strong></h5>
+        -->
+        <!
+         <div class="form-group show-positive">
             <fieldset name="6777^ENROLLED IN CARE^99DCT">
-                <div class="form-group">
-                    <label class="font-normal">
-                        <input type="radio" class="repeat_in_care"
-                               data-concept="6777^ENROLLED IN CARE^99DCT"
-                               value="1065^Yes^99DCT">
-                        Yes
-                    </label>
-                </div>
-                <div class="form-group">
-                    <label class="font-normal">
-                        <input type="radio" class="repeat_in_care"
-                               data-concept="6777^ENROLLED IN CARE^99DCT"
-                               value="1066^No^99DCT">
-                        No
-                    </label>
-                </div>
-            </fieldset>
+
+            <div class="form-group">
+            <label>Enrolled in Care:</label>
+            <select class="form-control" id="enrolled_for_care" name="enrolled_for_care" data-concept="6777^ENROLLED IN CARE^99DCT">
+                <option value="">...</option>
+                <option value="1065^Yes^99DCT"">Yes</option>
+                <option value="1066^No^99DCT">No</option>
+            </select>
 
             <div class="in_care">
                 <div class="form-group">
