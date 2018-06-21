@@ -41,9 +41,10 @@ input.error {
     display: inline-block;
     line-height: 18px;
     padding: 16px 23px;
+    margin: 4px;
     margin-right: 4px !important;
     border-radius: 4px;
-    background: #ffffff url("../images/imaging_icon.png") no-repeat center;
+    background: #ffffff url("../images/camera_mg.png") no-repeat center;
 }
 
 .image_text {
@@ -59,7 +60,7 @@ input.error {
     padding: 16px 23px;
     margin-right: 4px !important;
     border-radius: 4px;
-    background: rgba(0, 0, 0, 0.09) url("../images/audio_record_icon.png") no-repeat center;
+    background: url("../images/record_img.png") no-repeat center;
 }
 
 .audio_record_text {
