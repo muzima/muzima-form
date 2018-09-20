@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<head>
+    <link href="./css/bootstrap.min.css" rel="stylesheet">
+    <link href="./css/muzima.css" rel="stylesheet">
+    <link href="./css/ui-darkness/jquery-ui-1.10.4.custom.min.css" rel="stylesheet">
+
+    <script type="text/javascript" src="./js/jquery.min.js"></script>
+
+</head>
+
+<body>
+<h2>Encounter Summary</h2>
+<table class="table tbl-bordered">
+    <tr>
+        <td>Total screened</td><td id="totalTested">--</td>
+    </tr>
+    <tr>
+        <td>New Diabetic</td><td id="totalPositive">--</td>
+    </tr>
+    <tr>
+        <td>New Hypertensive</td><td id="totalLinked">--</td>
+    </tr>
+    <tr>
+        <td>Overweight (BMI above 25)</td><td id="totalIdentified">--</td>
+    </tr>
+</table>
+
+</body>
+<script>
+    $(document).ready(function () {
+        var completeFormData = formDataInterface.getCompleteFormData();
+
+        var totalTested = 0;
+        var totalPositive = 0;
+        var totalLinked = 0;
+        var totalIdentified = 0;
+        if(completeFormData != null){
+            var formData = JSON.parse(completeFormData);
+            $.each(formData,function(k,v){
+              var payload = JSON.parse(v.jsonPayload);
+              var encounter = payload.encounter;
+              var formUuid =encounter['encounter.form_uuid'];
+              if(formUuid == "e8875938-1a04-49a2-a6f2-aaac5ac5d077"){
+                totalTested++;
+
+                var obs = payload.observation;
+                if(obs['7287^DIABETES STATUS^99DCT'] == '7281^NEW DIABETIC PATIENT^99DCT'){
+                  totalPositive++;
+                }
+                if(obs['7288^HYPERTENSION STATUS^99DCT'] == '7285^NEW HYPERTENSIVE PATIENT^99DCT'){
+                  totalLinked++;
+                }
+                console.log(obs['162084^TYPE OF TEST^99DCT']);
+                if(obs['1342^BODY MASS INDEX^99DCT'] > 25){
+                  totalIdentified++;
+                }
+              }
+            });
+        }
+
+        $('#totalTested').html(totalTested);
+        $('#totalPositive').html(totalPositive);
+        $('#totalLinked').html(totalLinked);
+        $('#totalIdentified').html(totalIdentified);
+    });
+</script>
+</html>

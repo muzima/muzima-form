@@ -3102,7 +3102,9 @@ $(document).ready(function () {
     //document.setupAutoCompleteDataForProvider('encounter\\.provider_id_select');
 
 
-    var providerNamesResults = [{"identifier":"3-4","name":"Ateya Mike","id":4},{"identifier":"5-9","name":"Marina Wild","id":6},{"identifier":"admin","name":"Super User","id":1}];
+    var providerNamesResults = htmlDataStore.getProviderNamesFromDevice();
+    providerNamesResults = JSON.parse(providerNamesResults);
+    //[{"identifier":"3-4","name":"Ateya Mike","id":4},{"identifier":"5-9","name":"Marina Wild","id":6},{"identifier":"admin","name":"Super User","id":1}];
     var setupAutoCompleteForProvider = function (elementName, providers) {
         $("#" + elementName).autocomplete({
             source: providers,
