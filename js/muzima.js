@@ -184,6 +184,14 @@ $(document).ready(function () {
     };
 
     var save = function (status, keepFormOpen) {
+        if(status=="complete"){
+           /*Start of populating data entry completion timestamp before serializing the form*/
+            if($('.dataEntryCompletionTimeStamp').length){
+                var date = new Date();
+                $('.dataEntryCompletionTimeStamp').val(date);
+            }
+            /*Start of populating data entry completion timestamp*/
+        }
         var jsonData = JSON.stringify($('form').serializeEncounterForm(), null, '\t');
         var pre = $("#json-output");
         if (pre.length == 0) {
@@ -1198,4 +1206,10 @@ $(document).ready(function () {
         "valid-consultant-only": { validConsultantOnly: true }
     });
     /* End - validConsultantOnly*/
+    /*Start of populating initial form opening timestamp*/
+    if($('.initialFormOpeningTimestamp').length && !$('.initialFormOpeningTimestamp').val().length){
+        var date = new Date();
+        $('.initialFormOpeningTimestamp').val(date);
+    }
+    /*end of populating initial form opening timestamp*/
 });
