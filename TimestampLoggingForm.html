@@ -14,17 +14,18 @@
 </head>
 <body class="col-md-10 col-md-offset-1">
 <div id="pre_populate_data">
-
 </div>
 <form id="timestamp" name="imestamp">
     <h2 class="text-center">Timestamp Logs</h2>
+	<div class="section">
+			<B><p style="font-size:18px;text-align:center">NOTE: This is a demo/test form whose purpose is demonstrate timestamp logging for the time taken between opening the form and data entry completion time(when form is saved as complete), It is not for data entry/collection purpose.</p></B>
+	</div>
     <div class="section">
         <h3>Demographics</h3>
         <div class="form-group">
             <input class="form-control" id="patient.uuid"
                    name="patient.uuid" type="hidden" readonly="readonly">
         </div>
-
         <div class="form-group">
             <label for="patient.medical_record_number">Medical Record Number:</label>
             <input class="form-control" id="patient.medical_record_number"
@@ -59,55 +60,50 @@
             <input class="form-control" id="patient.birth_date"
                    name="patient.birth_date" type="text" readonly="readonly">
         </div>
-    </div>
-    
-	
-	
-	
-	
-<div class="section">
-    <h3>Encounter Details</h3>
-    <div class="form-group">
-        <label for="encounter.location_id">Name of Dispensary:<span class="required">*</span></label>
-        <input class="form-control valid-location-only" id="encounter.location_id" type="text"
-        placeholder="Start typing something..." required="required">
-        <input class="form-control" name="encounter.location_id" type="hidden">
-    </div>
-    <div class="form-group">
-        <label for="encounter.provider_id_select">Provider Name:<span class="required">*</span></label>
-        <input class="form-control valid-provider-only" id="encounter.provider_id_select"
-        type="text" placeholder="Start typing something...">
-        <input class="form-control" name="encounter.provider_id_select" type="hidden">
-    </div>
+    </div>	
+	<div class="section">
+		<h3>Encounter Details</h3>
+		<div class="form-group">
+			<label for="encounter.location_id">Name of Dispensary:<span class="required">*</span></label>
+			<input class="form-control valid-location-only" id="encounter.location_id" type="text"
+			placeholder="Start typing something..." required="required">
+			<input class="form-control" name="encounter.location_id" type="hidden">
+		</div>
+		<div class="form-group">
+			<label for="encounter.provider_id_select">Provider Name:<span class="required">*</span></label>
+			<input class="form-control valid-provider-only" id="encounter.provider_id_select"
+			type="text" placeholder="Start typing something...">
+			<input class="form-control" name="encounter.provider_id_select" type="hidden">
+		</div>
 
-    <div class="form-group show_provider_id_text">
-        <label for="encounter.provider_id">Provider system-id:<span class="required">*</span></label>
-        <input class="form-control checkDigit" id="encounter.provider_id" disabled name="encounter.provider_id"
-               type="text" required="required"  placeholder="Provider Id">
-    </div>
-    <div class="form-group">
-        <label for="encounter.encounter_datetime">Encounter Date:<span class="required">*</span></label>
-        <input class="form-control datetimepicker nonFutureDate past-date" id="encounter.encounter_datetime"
-               name="encounter.encounter_datetime" type="text" readonly="readonly"
-               required="required">
-    </div>
-	<div class="form-group">
-        <label for="initialFormOpeningTimestamp">Initial Form Opening Timestamp:<span class="required">*</span></label>
-        <input class="form-control initialFormOpeningTimestamp" id="encounter.initialFormOpeningTimestamp"
-               name="encounter.initialFormOpeningTimestamp" type="text" readonly="readonly"
-               required="required">
-    </div>
-	<div class="form-group">
-        <label for="dataEntryCompletionTimeStamp">Data Entry Completion TimeStamp:</label>
-        <input class="form-control dataEntryCompletionTimeStamp" id="encounter.dataEntryCompletionTimeStamp"
-               name="encounter.dataEntryCompletionTimeStamp" type="text" readonly="readonly">
-    </div>
-    <div class="form-group">
-        <input class="form-control" id="encounter.form_uuid" name="encounter.form_uuid"
-               type="hidden" required="required">
-        <input class="form-control" id="encounter.user_system_id" name="encounter.user_system_id" type="hidden">
-    </div>
-</div>
+		<div class="form-group show_provider_id_text">
+			<label for="encounter.provider_id">Provider system-id:<span class="required">*</span></label>
+			<input class="form-control checkDigit" id="encounter.provider_id" disabled name="encounter.provider_id"
+				   type="text" required="required"  placeholder="Provider Id">
+		</div>
+		<div class="form-group">
+			<label for="encounter.encounter_datetime">Encounter Date:<span class="required">*</span></label>
+			<input class="form-control datetimepicker nonFutureDate past-date" id="encounter.encounter_datetime"
+				   name="encounter.encounter_datetime" type="text" readonly="readonly"
+				   required="required">
+		</div>
+		<div class="form-group">
+			<label for="initialFormOpeningTimestamp">Initial Form Opening Timestamp:<span class="required">*</span></label>
+			<input class="form-control initialFormOpeningTimestamp" id="encounter.initialFormOpeningTimestamp"
+				   name="encounter.initialFormOpeningTimestamp" type="text" readonly="readonly"
+				   required="required">
+		</div>
+		<div class="form-group">
+			<label for="dataEntryCompletionTimeStamp">Data Entry Completion TimeStamp:</label>
+			<input class="form-control dataEntryCompletionTimeStamp" id="encounter.dataEntryCompletionTimeStamp"
+				   name="encounter.dataEntryCompletionTimeStamp" type="text" readonly="readonly">
+		</div>
+		<div class="form-group">
+			<input class="form-control" id="encounter.form_uuid" name="encounter.form_uuid"
+				   type="hidden" required="required">
+			<input class="form-control" id="encounter.user_system_id" name="encounter.user_system_id" type="hidden">
+		</div>
+	</div>
 </form>
 </body>
 <script type="text/javascript">
