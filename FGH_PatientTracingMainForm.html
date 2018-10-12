@@ -1,0 +1,417 @@
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/muzima.css" rel="stylesheet">
+    <link href="css/ui-darkness/jquery-ui-1.10.4.custom.min.css" rel="stylesheet">
+    <script src="js/jquery.min.js"></script>
+    <script src="js/jquery-ui-1.10.4.custom.min.js"></script>
+    <script src="js/jquery.validate.min.js"></script>
+    <script src="js/additional-methods.min.js"></script>
+    <script src="js/muzima.js"></script>
+
+    <title>Patient Tracing Main Form V 1.0</title>
+</head>
+
+<body class="col-md-10 col-md-offset-1">
+<div id="pre_populate_data">
+    {"patient.personattribute":[{"attribute_type_uuid":"8d871d18-c2cc-11de-8d13-0010c6dffd0f","attribute_type_name":"Mother's Name","attribute_value":"Vinolia"}],"patient.personaddress":[{"address1":"address","address2":"homestead","address3":"estate","address4":"division","address5":"sublocation","address6":"location","cityVillage":"town\/village","stateProvince":"province","country":"country","postalCode":"postalcode","countyDistrict":"district","preferred":true,"uuid":"ddc9e83c-1691-11df-97a5-7038c432aabf"}],"patient":{"patient.given_name":"Mitchell","patient.middle_name":"Yebei","patient.family_name":"Cherwon","patient.sex":"F","patient.uuid":"dd5541e2-1691-11df-97a5-7038c432aabf","patient.birth_date":"1978-09-05","patient.medical_record_number":"27KT-7","patient.otheridentifier":[]},"encounter":{"encounter.form_uuid":"cf5b5902-a3b3-4fa3-a414-ad696a035aab","encounter.user_system_id":"admin"}}
+</div>
+<h2 class="text-center">Patient Tracing Main Form V 1.0</h2>
+
+<form id="patient_tracing_form" name="patient_tracing_form">
+
+    <div class="section">
+        <h3>Demographics</h3>
+
+        <div class="form-group">
+            <input class="form-control" id="patient.uuid" name="patient.uuid" type="hidden" readonly="readonly">
+        </div>
+        <div class="form-group">
+            <label for="patient.medical_record_number">NID:</label>
+            <input class="form-control" id="patient.medical_record_number" name="patient.medical_record_number" type="text"
+                   readonly="readonly" disabled="disabled">
+        </div>
+        <div class="form-group">
+            <label for="patient.family_name">Family Name:</label>
+            <input class="form-control" id="patient.family_name" name="patient.family_name" type="text" readonly="readonly"
+                   disabled="disabled">
+        </div>
+        <div class="form-group">
+            <label for="patient.given_name">Given Name:</label>
+            <input class="form-control" id="patient.given_name" name="patient.given_name" type="text" readonly="readonly"
+                   disabled="disabled">
+        </div>
+        <div class="form-group">
+            <label for="patient.middle_name">Middle Name:</label>
+            <input class="form-control" id="patient.middle_name" name="patient.middle_name" type="text" readonly="readonly"
+                   disabled="disabled">
+        </div>
+        <div class="form-group">
+            <label for="patient.sex">Gender:</label>
+            <select class="form-control" id="patient.sex" name="patient.sex"  readonly="readonly" disabled="disabled">
+                <option value="">...</option>
+                <option value="M">Male</option>
+                <option value="F">Female</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="patient.birth_date">Date Of Birth:</label>
+            <input class="form-control" id="patient.birth_date" name="patient.birth_date" type="text" readonly="readonly"
+                   disabled="disabled">
+        </div>
+        <div class="form-group group-set" data-group="patient.personattribute">
+            <label for="patient.phone_number">Phone Number: </label>
+            <input class="form-control phoneNumber" id="patient.phone_number" name="attribute_value" type="tel">
+            <input type="hidden" data-metadata-for="attribute_value" id="attribute_type_name" name="attribute_type_name" value="Contact Phone Number">
+            <input type="hidden" data-metadata-for="attribute_value" id="attribute_type_uuid" name="attribute_type_uuid" value="6952cdbf-2633-40b5-bea2-1b79f2f68805">
+        </div>
+
+        <div class="section group-set repeat" data-group="patient.personaddress">
+            <h3>Address</h3>
+            <div class="form-group">
+                <label for="address1">Address 1: </label>
+                <input class="form-control" id="address1" name="address1" type="text">
+            </div>
+            <div class="form-group">
+                <label for="address2">Address 2: </label>
+                <input class="form-control" id="address2" name="address2" type="text">
+            </div>
+            <div class="form-group">
+                <label for="cityVillage">Village: </label>
+                <input class="form-control" id="cityVillage" name="cityVillage" type="text">
+            </div>
+            <div class="form-group">
+                <label for="neighborhoodcell">neighborhoodcell: </label>
+                <input class="form-control" id="neighborhoodcell" name="neighborhoodcell" type="text">
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="form-group">
+            <label for="encounter.provider_id_select">Volunteer’s Name:</label>
+            <input class="form-control valid-provider-only" id="encounter.provider_id_select" type="text"
+                   placeholder="Start typing provider name here ...">
+            <input class="form-control" name="encounter.provider_id_select" type="hidden">
+        </div>
+        <div class="form-group hidden">
+            <select id="select_providers">
+                <option value="">...</option>
+            </select>
+        </div>
+        <div class="form-group show_provider_id_text">
+            <label for="encounter.provider_id">Volunteer's system-id:<span class="required">*</span></label>
+            <input class="form-control checkDigit" id="encounter.provider_id" name="encounter.provider_id" type="text"
+                   required="required" disabled="disabled" >
+        </div>
+        <div class="form-group">
+            <label for="encounter.location_id">Location:<span class="required">*</span></label>
+            <input class="form-control valid-location-only" id="encounter.location_id" type="text" placeholder="Start typing something..." required="required">
+            <input class="form-control" name="encounter.location_id" type="hidden">
+        </div>
+
+        <div class="form-group hidden">
+            <label for="encounter.location_id_select">Location:<span class="required">*</span></label>
+            <select class="form-control"  id="encounter.location_id_select" required="required">
+                <option>...</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="encounter.encounter_datetime">
+                Data de visita:<span class="required">*</span>
+            </label>
+            <input class="form-control datepicker nonFutureDate past-date" id="encounter.encounter_datetime"
+                   name="encounter.encounter_datetime" type="text" readonly="readonly"
+                   required="required">
+        </div>
+        <div class="form-group">
+            <input class="form-control" id="encounter.form_uuid" name="encounter.form_uuid" type="hidden"
+                   required="required">
+        </div>
+    </div>
+    <div class="section">
+        <div class="form-group">
+            <label for="obs.visit_type">Tipo de visita:<span class="required">*</span></label>
+            <select class="form-control" id="obs.visit_type" name="obs.visit_type"
+                    data-concept="1981^TIPO DE ATENDIMENTO FAMILIAR^99DCT" required="required">
+                <option value="">...</option>
+                <option value="2161^VISITA DE APOIO^99DCT">Visita de Apoio</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="obs.attempt_number">Número de tentativas:<span class="required">*</span></label>
+            <select class="form-control" id="obs.attempt_number" name="obs.attempt_number"
+                    data-concept="21181^NÚMERO DE TENTATIVAS^99DCT" required="required">
+                <option value="">...</option>
+                <option value="6440^PRIMEIRO^99DCT">Visita de Apoio</option>
+                <option value="6254^SEGUNDA^99DCT">Visita de Apoio</option>
+                <option value="6255^TERCEIRA^99DCT">Visita de Apoio</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="obs.patient_found">Encontrou o Paciente? :<span class="required">*</span></label>
+            <select class="form-control" id="obs.patient_found" name="obs.patient_found"
+                    data-concept="2003^ENCONTROU O PACIENTE^99DCT" required="required">
+                <option value="">...</option>
+                <option value="1065^SIM^99DCT">Sim</option>
+                <option value="1066^NAO^99DCT">Nao</option>
+            </select>
+        </div>
+        <div id="patient_found">
+            <div class="section" id="reason_for_failure_detailed" data-concept="xx^MOTIVOS DA FALTA, DETAILED^99DCT">
+                <div class="form-group">
+                    <label for="obs.reason_for_failure">Motivos da falta:<span class="required">*</span></label>
+                    <select class="form-control" id="obs.reason_for_failure" name="obs.reason_for_failure"
+                            data-concept="2016^MOTIVOS DA FALTAMODERATE^99DCT" required="required">
+                        <option value="">
+                            ...
+                        </option>
+                        <option value="2005^ESQUECEU A DATA^99DCT">
+                            Esqueceu a data
+                        </option>
+                        <option value="2006^ESTÁ DOENTE^99DCT">
+                            Está doente
+                        </option>
+                        <option value="2007^PROBLEMA DE TRANSPORTE^99DCT">
+                            Problema de transporte
+                        </option>
+                        <option value="2008^FALTA DE ALIMENTAÇÃO^99DCT">
+                            Falta de alimentação
+                        </option>
+                        <option value="2014^AUSÊNCIA DO PROFISSIONAL^99DCT">
+                            Ausência do profissional
+                        </option>
+                        <option value="2010^MAU ATENDIMENTO^99DCT">
+                            Mau atendimento
+                        </option>
+                        <option value="2015^EFEITOS SECUNDÁRIOS TRANSFERIDO^99DCT">
+                            Efeitos secundários transferido
+                        </option>
+                        <option value="2013^TRATAMENTO TRADICIONAL^99DCT">
+                            Tratamento tradicional
+                        </option>
+                        <option value="2012^ABANDONOU / DESISTIU^99DCT">
+                            Abandonou / desistiu
+                        </option>
+                        <option value="2012^AUTO TRANSFERÊNCIA^99DCT">
+                            Auto transferência
+                        </option>
+                        <option value="2017^OUTRO^99DCT">
+                            Outro
+                        </option>
+                    </select>
+                </div>
+                <div class="form-group" style="display:none" id="skin_rash_level_other_value">
+                    <label class="font-normal" for="obs.skin_rash_level_other_value">
+                        Specify Other level of skin rash:<span class="required">*</span>
+                    </label>
+                    <input class="form-control" id="obs.skin_rash_level_other_value" type="text" name="obs.skin_rash_level_other_value"
+                           required = "required" data-concept="1915^FREETEXT GENERAL^99DCT">
+                </div>
+
+            </div>
+            <div class="form-group">
+                <label for="obs.visit_report">Relatorio da visita:<span class="required">*</span></label>
+                <select class="form-control" id="obs.visit_report" name="obs.visit_report"
+                        data-concept="2158^RELATÓRIO DA VISITA^99DCT" required="required">
+                    <option value="">
+                        ...
+                    </option>
+                    <option value="1383^O PACIENTE ESTÁ BEM^99DCT">
+                        O paciente está bem
+                    </option>
+                    <option value="2157^O PACIENTE APRESENTOU DIFICULDADES^99DCT">
+                        O paciente apresentou dificuldades
+                    </option>
+                </select>
+            </div>
+            <div class="form-group" id="difficulties_detail">
+                <label for="obs.difficulties_detail">O paciente apresentou dificuldades:<span class="required">*</span></label>
+                <select class="form-control" id="obs.difficulties_detail" name="obs.difficulties_detail"
+                        data-concept="2157^O PACIENTE APRESENTOU DIFICULDADES^99DCT" required="required">
+                    <option value="">
+                        ...
+                    </option>
+                    <option value="2156^PREOCUPAÇÕES COM A FAMÍLIA^99DCT">
+                        Preocupações com a família
+                    </option>
+                    <option value="XXX^MEDICAMENTO ESTA A FAZER MAL^99DCT">
+                        Medicamento esta a fazer mal
+                    </option>
+                    <option value="2153^FALTA DE APOIO^99DCT">
+                        Falta de apoio
+                    </option>
+                    <option value="2154^PROBLEMAS EM TOMAR OS MEDICAMENTOS^99DCT">
+                        Problemas em tomar os medicamentos
+                    </option>
+                    <option value="2155^NÃO REVELOU DIAGNÓSTICO^99DCT">
+                        Não revelou Diagnóstico
+                    </option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="obs.referrals_ordered">ENCAMINHAMENTO DO PACIENTE ENCONTRADO:<span class="required">*</span></label>
+                <select class="form-control" id="obs.referrals_ordered" name="obs.referrals_ordered"
+                        data-concept="1272^ENCAMINHAMENTO DO PACIENTE ENCONTRADO^99DCT" required="required">
+                    <option value="">
+                        ...
+                    </option>
+                    <option value="1797^ENCAMINHADO PARA A US^99DCT">
+                        Encaminhado para a US
+                    </option>
+                    <option value="1977^ENCAMINHADO PARA OS GRUPOS DE APOIO^99DCT">
+                        Encaminhado para os grupos de apoio
+                    </option>
+                    <option value="XX^FAMILIAR OU CUIDADOR DA CRIANÇA FOI REFERIDO PARA A US^99DCT">
+                        Familiar ou cuidador da criança foi referido para a US
+                    </option>
+                    <option value="2159^FAMILIAR REFERIDO PARA US^99DCT">
+                        Familiar referido para US
+                    </option>
+                    <option value="2040^OUTRO^99DCT">
+                        Outro
+                    </option>
+                </select>
+            </div>
+        </div>
+        <div id="patient_not_found">
+            <div class="form-group">
+                <label for="obs.reason_not_found">MOTIVO DA RAZÃO NÃO ENCONTRADO PELO ACTIVISTAr:<span class="required">*</span></label>
+                <select class="form-control" id="obs.reason_not_found" name="obs.reason_not_found"
+                        data-concept="2031^MOTIVO DA RAZÃO NÃO ENCONTRADO PELO ACTIVISTA^99DCT" required="required">
+                    <option value="">...</option>
+                    <option value="2024^ENDEREÇO ERRADO^99DCT">
+                        Endereço errado
+                    </option>
+                    <option value="2026^MUDOU^99DCT">
+                        Mudou
+                    </option>
+                    <option value="2011^VIAJOU^99DCT">
+                        Viajou
+                    </option>
+                    <option value="1383^ÓBITO^99DCT">
+                        Óbito
+                    </option>
+                    <option value="2032^OUTRO^99DCT">
+                        Outro
+                    </option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="obs.information_given_by"  style="text-transform:lowercase">Informação foi dado por:<span class="required">*</span></label>
+                <select class="form-control" id="obs.information_given_by" name="obs.information_given_by"
+                        data-concept="2031^INFORMAÇÃO FOI DADO POR^99DCT" required="required">
+                    <option value="">
+                        ...
+                    </option>
+                    <option value="2034^VIZINHO^99DCT">
+                        Vizinho
+                    </option>
+                    <option value="2033^CONFIDANT^99DCT">
+                        Confidente
+                    </option>
+                    <option value="2035^FAMILIAR^99DCT">
+                        Familiar
+                    </option>
+                    <option value="2036^SECRETARIO DO BAIRRO^99DCT">
+                        Secretário do Bairro
+                    </option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="obs.informant_contact">Informant contact:<span class="required">*</span></label>
+                <input class="form-control" id="obs.informant_contact" name="obs.informant_contact"
+                       data-concept="2031^informant_contact^99DCT" required="required">
+
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="encounter.initialFormOpeningTimestamp">Initial Form Opening Timestamp:<span class="required">*</span></label>
+        <input class="form-control initialFormOpeningTimestamp" id="encounter.initialFormOpeningTimestamp"
+               name="encounter.initialFormOpeningTimestamp" type="text" readonly="readonly">
+    </div>
+    <div class="form-group">
+        <label for="encounter.dataEntryCompletionTimeStamp">Data Entry Completion TimeStamp:</label>
+        <input class="form-control dataEntryCompletionTimeStamp" id="encounter.dataEntryCompletionTimeStamp"
+               name="encounter.dataEntryCompletionTimeStamp" type="text" readonly="readonly">
+    </div>
+    <div class="form-group">
+        <label for="encounter.cumulativeDataEntryGPSData">Data Entry GPS:</label>
+        <input class="form-control cumulativeDataEntryGPSData" id="encounter.cumulativeDataEntryGPSData"
+               name="encounter.cumulativeDataEntryGPSData" type="text" readonly="readonly">
+    </div>
+</form>
+</body>
+<script type="text/javascript">
+
+    $(document).ready(function () {
+
+        var dateFormat = "dd-mm-yy";
+        var currentDate = $.datepicker.formatDate(dateFormat, new Date());
+        var encounterDatetime = $('#encounter\\.encounter_datetime');
+        if ($(encounterDatetime).val() == "") {
+            $(encounterDatetime).val(currentDate);
+        }
+
+        $('#save_draft').click(function () {
+            $(this).prop('disabled', true);
+            document.saveDraft(this);
+            $(this).prop('disabled', false);
+        });
+
+        $('#submit_form').click(function () {
+            $(this).prop('disabled', true);
+            document.submit();
+            $(this).prop('disabled', false);
+        });
+
+        $('#patient_tracing_form').validate({
+            rules: {
+                "obs.height":{
+                    range : [10, 228]
+                },
+            },
+            submitHandler: function (form) {
+                $('#result').html(JSON.stringify($('form').serializeEncounterForm(), undefined, 2));
+            }
+        });
+
+        $('#obs\\.patient_found').change(function(k,v){
+            var obsValue = $(this).val();
+            if(obsValue == '1065^SIM^99DCT' ){
+                $('#patient_found').show();
+                $('#patient_not_found').hide();
+            } else if(obsValue == '1065^NAO^99DCT' ){
+                $('#patient_found').hide();
+                $('#patient_not_found').show();
+            } else {
+                $('#patient_found').hide();
+                $('#patient_not_found').hide();
+            }
+        });
+        $('#obs\\.patient_found').trigger('change');
+
+        document.setupAutoCompleteData('encounter\\.location_id');
+
+        document.setupAutoCompleteDataForProvider('encounter\\.provider_id_select');
+
+        $('#encounter\\.provider_id_select').change(function () {
+            if ($('#encounter\\.provider_id_select').val() === '') {
+                $('#encounter\\.provider_id').val('');
+                $('.show_provider_id_text').show();
+            }
+        });
+
+        document.setupValidationForProvider("$('#encounter\\.provider_id_select').val()","encounter\\.provider_id");
+
+        document.setupValidationForLocation("$('#encounter\\.location_id').val()","encounter\\.location_id");
+
+    });
+</script>
+
+</html>
