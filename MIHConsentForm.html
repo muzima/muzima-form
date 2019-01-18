@@ -1,0 +1,307 @@
+<html>
+<head>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/muzima.css" rel="stylesheet">
+    <link href="css/ui-darkness/jquery-ui-1.10.4.custom.min.css" rel="stylesheet">
+    <script src="js/jquery.min.js"></script>
+    <script src="js/jquery-ui-1.10.4.custom.min.js"></script>
+    <script src="js/jquery.validate.min.js"></script>
+    <script src="js/additional-methods.min.js"></script>
+    <script src="js/muzima.js"></script>
+    <title>MIH Consent Form</title>
+</head>
+<body class="col-md-8 col-md-offset-2">
+<div id="pre_populate_data">
+</div>
+<form id="mih_consent_form" name="mih_consent_form">
+<h2 class="text-center">MIH Consent Form</h2>
+<div class="section">
+    <h3>Demographics</h3>
+    <div class="form-group">
+        <input class="form-control" id="patient.uuid"
+               name="patient.uuid" type="hidden" readonly="readonly">
+    </div>
+    <div class="form-group">
+        <label for="patient.family_name">Family Name:</label>
+        <input class="form-control" id="patient.family_name"
+               name="patient.family_name" type="text" readonly="readonly">
+    </div>
+    <div class="form-group">
+        <label for="patient.given_name">Given Name:</label>
+        <input class="form-control" id="patient.given_name"
+               name="patient.given_name" type="text" readonly="readonly">
+    </div>
+    <div class="form-group">
+        <label for="patient.middle_name">Middle Name:</label>
+        <input class="form-control" id="patient.middle_name"
+               name="patient.middle_name" type="text" readonly="readonly">
+    </div>
+    <div class="form-group">
+        <label for="patient.sex">Gender:</label>
+        <select class="form-control" id="patient.sex" name="patient.sex" disabled="disabled" readonly="readonly">
+            <option value="">...</option>
+            <option value="M">Male</option>
+            <option value="F">Female</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="patient.birth_date">Date Of Birth:</label>
+        <input class="form-control" id="patient.birth_date" name="patient.birth_date" type="text"
+               readonly="readonly" disabled="disabled">
+    </div>
+</div>
+<div class="section">
+    <h3>Consent Details</h3>
+
+    <div class="form-group">
+        <label for="obs.consent_subject_signature"> I, [First & Last Name]
+            <span class="required">*</span>
+        </label>
+        <input class="form-control" id="obs.consent_subject_signature"
+               name="obs.consent_subject_signature" type="text" required="required"
+               data-concept="3^Consent Subject Signature^99DCT"><br />
+    </div>
+
+    <div class="form-group">
+        <label>Give consent to MIH to send me: <span class="required">*</span></label>
+
+        <fieldset required="required">
+            <div class="form-group">
+                <label class="font-normal">
+                  <input type="checkbox" class="give_consent_contacting require_consent_contacting"
+                           data-concept="9^Consent Contact PurposeE^99DCT"
+                           value="4^More information on cervical cancer^99DCT">
+                    More information on cervical cancer
+                </label>
+            </div>
+        <fieldset>
+            <div class="form-group">
+                <label class="font-normal">
+                  <input type="checkbox" class="give_consent_contacting require_consent_contacting"
+                           data-concept="9^Consent Contact Purpose^99DCT"
+                           value="5^Notification should more self-test kits be available^99DCT">
+                    Notification when self-test kits become available
+                </label>
+            </div>
+            <div class="form-group">
+                <label class="font-normal">
+                  <input type="checkbox" class="give_consent_contacting require_consent_contacting"
+                           data-concept="9^Consent Contact Purpose^99DCT"
+                           value="6^Notification when vaccinations are available^99DCT">
+                    Notification when vaccinations are available
+                </label>
+            </div>
+            <div class="form-group">
+                <label class="font-normal">
+                    <input type="checkbox" class="give_consent_contacting require_consent_contacting"
+                           data-concept="9^Consent Contact Purpose^99DCT"
+                           value="7^Future events from us or our sponsors^99DCT">
+                    Information on future events by MIH or their sponsors
+                </label>
+            </div>
+            <div><br></div>
+            <div class="form-group">
+                <label class="font-normal">
+                    <input id="decline_consent_contacting" type="checkbox"
+                           data-concept="9^REASONS FOR SEEKING CARE^99DCT"
+                           value="8^Decline to give any consent for contacting me^99DCT"
+                           class="require_consent_contacting">
+                    Decline to give any consent for contacting me
+                </label>
+            </div>
+        </fieldset>
+    </div>
+
+    <div class="form-group">
+        <label>Permissions <span class="required">*</span></label>
+        <fieldset>
+            <div class="form-group">
+                <label class="font-normal">
+                  <input type="checkbox" class="give_consent_data_collection require_consent_data_collection"
+                           data-concept="14^Consent Permission^99DCT"
+                           value="10^Given permission to MIH and its affiliates^99DCT">
+                    I am giving permission to MIH and its affiliates to use collected information for analysis purposes in an anonymous manner
+                </label>
+            </div>
+            <div class="form-group">
+                <label class="font-normal">
+                  <input type="checkbox" class="give_consent_data_collection require_consent_data_collection"
+                           data-concept="14^Consent Permission^99DCT"
+                           value="11^Understood privacy and security measures put in place^99DCT">
+                    I understand that appropriate safety measures have been put in place by MIH to protect the privacy and security of my information.
+                </label>
+            </div>
+            <div class="form-group">
+                <label class="font-normal">
+                    <input type="checkbox" class="give_consent_data_collection require_consent_data_collection"
+                           data-concept="14^Consent Permission^99DCT"
+                           value="12^Made aware I can cancel consent at any time^99DCT">
+                    I am made aware that I can cancel my consent at any time without giving reason or without disadvantage to any services.
+                </label>
+            </div>
+            <div><br></div>
+            <div class="form-group">
+                <label class="font-normal">
+                    <input id="decline_consent_data_collection" type="checkbox"
+                           data-concept="14^Consent Permission^99DCT"
+                           value="13^Decline to all consents listed above^99DCT"
+                           class="require_consent_data_collection">
+                    Decline to all consents listed above
+                </label>
+            </div>
+        </fieldset>
+    </div>
+</div>
+
+<div class="section">
+
+    <div class="form-group">
+        <label for="encounter.location_id">Encounter Location:<span class="required">*</span></label>
+        <input class="form-control valid-location-only" id="encounter.location_id" type="text" placeholder="Start typing something..." required="required">
+        <input class="form-control" name="encounter.location_id" type="hidden">
+    </div>
+
+    <div class="form-group hidden">
+        <label for="encounter.location_id_select">Encounter Location <span class="required">*</span></label>
+        <select class="form-control" id="encounter.location_id_select" required="required">
+            <option>...</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="encounter.provider_id_select">Provider Name: <span class="required">*</span></label>
+        <input class="form-control valid-provider-only" id="encounter.provider_id_select"
+        type="text" placeholder="Start typing something..."  required="required">
+        <input class="form-control" name="encounter.provider_id_select" type="hidden">
+    </div>
+    <div class="form-group hidden">
+        <select id="select_providers">
+        </select>
+    </div>
+    <div class="form-group show_provider_id_text">
+        <label for="encounter.provider_id">Provider's system-id:<span class="required">*</span></label>
+        <input class="form-control checkDigit" id="encounter.provider_id" name="encounter.provider_id"
+           type="text" required="required" disabled="disabled">
+    </div>
+    <div class="form-group">
+        <label for="encounter.encounter_datetime">Encounter Date <span class="required">*</span></label>
+        <input class="form-control nonFutureDate past-date datepicker" readonly="readonly" id="encounter.encounter_datetime"
+               name="encounter.encounter_datetime" type="text" required="required">
+    </div>
+    <div class="form-group">
+        <input class="form-control" id="encounter.form_uuid" name="encounter.form_uuid"
+               type="hidden" required="required">
+    </div>
+</div>
+</body>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+      patientAddress = undefined;
+      if(patientAddress == undefined){
+        patientAddress = {"country":"","district":"",};
+       }
+
+console.log(patientAddress['country']);
+console.log(patientAddress['district']);
+      $('#save_draft').click(function () {
+          $(this).prop('disabled', true);
+          document.saveDraft(this);
+          $(this).prop('disabled', false);
+      });
+
+      $('#submit_form').click(function () {
+          $(this).prop('disabled', true);
+          document.submit();
+          $(this).prop('disabled', false);
+      });
+
+      $('.give_consent_contacting').change(function(){
+        if($('.give_consent_contacting:checked').length > 0){
+          $('#decline_consent_contacting').attr("disabled","disabled");
+        } else {
+          $('#decline_consent_contacting').removeAttr("disabled");
+        }
+      });
+      $('.give_consent_contacting').trigger("change");
+
+      $('#decline_consent_contacting').change(function(){
+        if($(this).is(":checked")){
+          $('.give_consent_contacting').attr("disabled","disabled");
+        } else {
+          $('.give_consent_contacting').removeAttr("disabled");
+        }
+      });
+
+      $('#decline_consent_data_collection').trigger("change");
+
+        $('.give_consent_data_collection').change(function(){
+          if($('.give_consent_data_collection:checked').length > 0){
+            $('#decline_consent_data_collection').attr("disabled","disabled");
+          } else {
+            $('#decline_consent_data_collection').removeAttr("disabled");
+          }
+        });
+        $('.give_consent_data_collection').trigger("change");
+
+        $('#decline_consent_data_collection').change(function(){
+          if($(this).is(":checked")){
+            $('.give_consent_data_collection').attr("disabled","disabled");
+          } else {
+            $('.give_consent_data_collection').removeAttr("disabled");
+          }
+        });
+        $('#decline_consent_data_collection').trigger("change");
+
+    document.setupAutoCompleteDataForProvider('encounter\\.provider_id_select');
+
+    $('#encounter\\.provider_id_select').change(function () {
+        if ($('#encounter\\.provider_id_select').val() === '') {
+            $('#encounter\\.provider_id').val('');
+            $('.show_provider_id_text').show();
+        }
+    });
+
+    document.setupAutoCompleteData('encounter\\.location_id');
+
+    document.setupValidationForProvider("$('#encounter\\.provider_id_select').val()","encounter\\.provider_id");
+
+    document.setupValidationForLocation("$('#encounter\\.location_id').val()","encounter\\.location_id");
+
+
+    var dateFormat = "dd-mm-yy";
+    var currentDate = $.datepicker.formatDate(dateFormat, new Date());
+    var encounterDatetime = $('#encounter\\.encounter_datetime');
+    if ($(encounterDatetime).val() == "") {
+        $(encounterDatetime).val(currentDate);
+    }
+
+    //pick todays date by default
+    var dateFormat = "dd-mm-yy";
+    var currentDate = $.datepicker.formatDate(dateFormat, new Date());
+    var encounterDatetime = $('#encounter\\.encounter_datetime');
+    if ($(encounterDatetime).val() == "") {
+        $(encounterDatetime).val(currentDate);
+    }
+
+    $.validator.addMethod('requireConsentContacting', function(value) {
+        return $('.consent_data_collection:checked').size() > 0;
+      }, 'Please select option for data collection permission consent.');
+
+    $.validator.addMethod('requireConsentDataCollection', function(value) {
+        return $('.consent_data_collection:checked').size() > 0;
+      }, 'Please select option for contact purpose consent.');
+
+    $('#mih_consent_form').validate({rules: {
+              '.require_consent_contacting': {
+                  requireConsentContacting:true
+              },
+              '.require_consent_data_collection':{
+                  requireConsentDataCollection:true
+              },
+          }
+      });
+
+  });
+
+</script>
+</html>
