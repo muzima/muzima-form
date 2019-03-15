@@ -77,10 +77,10 @@
 			Estado do paciente de triangulação<span class="required">*</span>
 			</label>
 			<select class="form-control" id="obs.patient_triangulation_status" required
-				name="obs.patient_triangulation_status" data-concept="21187^Patient Triangulation Status^99DCT">
+				name="obs.patient_triangulation_status" data-concept="23848^Patient Triangulation Status^99DCT">
 				<option value="">...</option>
-				<option value="21185^Need Outreach^99DCT">Sim, precisa de rastreamento</option>
-				<option value="21186^No patient tracing^99DCT">não há necessidade de rastreamento paciente</option>
+				<option value="23846^Need Outreach^99DCT">Sim, precisa de rastreamento</option>
+				<option value="23847^No patient tracing^99DCT">não há necessidade de rastreamento paciente</option>
 			</select>
         </div> 		
 		<div class="form-group sub-section" id="no_tracking_needed">
@@ -92,21 +92,21 @@
 					<div class="form-group">
 						<label class="font-normal">
 							<input id="obs.reason_for_not_tracing_patient.clin" type="checkbox" name="obs.reason_for_not_tracing_patient"
-							data-concept="21191^Reason for not tracing patient^99DCT" value="21188^Clinical Visit Recorded on Charts^99DCT">
+							data-concept="23852^Reason for not tracing patient^99DCT" value="23849^Clinical Visit Recorded on Charts^99DCT">
 							Visita clínica registada
 						</label>
 					</div>	
 					<div class="form-group">
 						<label class="font-normal">
 							<input id="obs.reason_for_not_tracing_patient.drug" type="checkbox" name="obs.reason_for_not_tracing_patient"
-							data-concept="21191^Reason for not tracing patient^99DCT" value="21189^Drug Pickup from iDART^99DCT">
+							data-concept="23852^Reason for not tracing patient^99DCT" value="23850^Drug Pickup from iDART^99DCT">
 							FILA registado
 						</label>
 					</div>	
 					<div class="form-group">
 						<label class="font-normal">
 							<input id="obs.reason_for_not_tracing_patient.other" type="checkbox" name="obs.reason_for_not_tracing_patient"
-							data-concept="21191^Reason for not tracing patient^99DCT" value="21190^Other reason not tracing^99DCT">
+							data-concept="23852^Reason for not tracing patient^99DCT" value="23851^Other reason not tracing^99DCT">
 							Outra razão de não rastrear
 						</label>
 					</div>	
@@ -116,7 +116,7 @@
 						Outro:<span class="required"></span>
 					</label>
 						<input class="form-control" id="obs.other_reason_for_not_tracing_patient" type="text" required="required"
-						name="obs.other_reason_for_not_tracing_patient" data-concept="21190^Other reason not tracing^99DCT">
+						name="obs.other_reason_for_not_tracing_patient" data-concept="23851^Other reason not tracing^99DCT">
 				</div>
 			</div>
 		</div>
@@ -166,7 +166,7 @@
 					Profissional que refere:<span class="required"></span>
 				</label>
 					<input class="form-control" id="obs.professional_referral_name" type="text" required="required"
-					name="obs.professional_referral_name" data-concept="21192^Professional Referral Name^99DCT">
+					name="obs.professional_referral_name" data-concept="23853^Professional Referral Name^99DCT">
 			</div>
 			<div class="form-group sub-section">
 				<label for="obs.health_worker">Nome do trabalhador de campo:<span class="required"></span></label>
@@ -224,9 +224,9 @@
             <input class="form-control valid-location-only" id="encounter.location_id" type="text" required="required" readonly="readonly">
             <input class="form-control" name="encounter.location_id" type="hidden">						
 			<input class="form-control" id="encounter.form_uuid" name="encounter.form_uuid" type="hidden" required="required">
-			<input class="form-control initialFormOpeningTimestamp serializable"  id="obs.initialFormOpeningTimestamp"  name="obs.initialFormOpeningTimestamp"  data-concept="21183^Outreach Form Start Datetime Stamp^99DCT" type="hidden">			
-			<input class="form-control dataEntryCompletionTimeStamp serializable"  id="obs.dataEntryCompletionTimeStamp"  name="obs.dataEntryCompletionTimeStamp"  data-concept="21184^Outreach Form End Datetime Stamp^99DCT" type="hidden">
-			<input class="form-control cummulativeFormOpeningGPSData serializable"  id="obs.cummulativeFormOpeningGPSData"  name="obs.cummulativeFormOpeningGPSData"  data-concept="21182^Outreach GPS Coordinates^99DCT" type="hidden">
+			<input class="form-control initialFormOpeningTimestamp serializable"  id="obs.initialFormOpeningTimestamp"  name="obs.initialFormOpeningTimestamp"  data-concept="23844^Outreach Form Start Datetime Stamp^99DCT" type="hidden">			
+			<input class="form-control dataEntryCompletionTimeStamp serializable"  id="obs.dataEntryCompletionTimeStamp"  name="obs.dataEntryCompletionTimeStamp"  data-concept="23845^Outreach Form End Datetime Stamp^99DCT" type="hidden">
+			<input class="form-control cummulativeFormOpeningGPSData serializable"  id="obs.cummulativeFormOpeningGPSData"  name="obs.cummulativeFormOpeningGPSData"  data-concept="23843^Outreach GPS Coordinates^99DCT" type="hidden">
 		</div>
     </div>
 </form>
@@ -265,10 +265,10 @@
     $('#obs\\.reason_for_visit').trigger('change');
 	   
 	$('#obs\\.patient_triangulation_status').change(function(){
-        if($(this).val() == "21185^Need Outreach^99DCT"){
+        if($(this).val() == "23846^Need Outreach^99DCT"){
             $('#tracking_needed').show();
 			$('#no_tracking_needed').hide();
-        } else if($(this).val() == "21186^No patient tracing^99DCT"){
+        } else if($(this).val() == "23847^No patient tracing^99DCT"){
 			$('#tracking_needed').hide();
 			$('#no_tracking_needed').show();
 		} else{
