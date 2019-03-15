@@ -1,0 +1,399 @@
+<html xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
+<head>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/muzima.css" rel="stylesheet">
+    <link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+    <link href="css/ui-darkness/jquery-ui-1.10.4.custom.min.css" rel="stylesheet">
+
+    <script src="js/jquery.min.js"></script>
+    <script src="js/jquery-ui-1.10.4.custom.min.js"></script>
+    <script src="js/jquery.validate.min.js"></script>
+    <script src="js/additional-methods.min.js"></script>
+    <script src="js/bootstrap-datetimepicker.min.js"></script>
+    <script src="js/muzima.js"></script>
+    <title>Formulário de Triangulação</title>
+</head>
+<body class="col-md-10 col-md-offset-1">
+<div id="pre_populate_data">
+
+</div>
+<form id="triangulation_form" name="triangulation_form">
+    <h2 class="text-center">Formulário de Triangulação</h2>
+    <div class="section">
+        <h3>Demografia</h3>
+        <div class="form-group">
+            <input class="form-control" id="patient.uuid"
+                   name="patient.uuid" type="hidden" readonly="readonly">
+        </div>
+        <div class="form-group">
+            <label for="patient.names">Nome do Paciente:</label>
+            <input class="form-control" id="patient.names"
+                   name="patient.names" type="text" readonly="readonly">
+        </div>
+		<div class="form-group">
+            <label for="patient.birth_date">Data de nascimento:</label>
+            <input class="form-control" id="patient.birth_date"
+                   name="patient.birth_date" type="text" readonly="readonly">
+        </div>
+		<div class="form-group">
+            <label for="patient.birth_date">Idade:</label>
+            <input class="form-control" id="patient.age"
+                   name="patient.age" type="text" readonly="readonly">
+        </div>
+        <div class="form-group">
+            <label for="patient.sex">Sexo:</label>
+            <input type="text" class="form-control" id="patient.sex" name="patient.sex" readonly="readonly">
+        </div>
+		<div class="form-group">
+            <label for="patient.medical_record_number">NID </label>
+            <input class="form-control" id="patient.medical_record_number" name="patient.medical_record_number" type="text" readonly="readonly">
+        </div> 
+		<div class="section">
+			<div class="section group-set" data-group="patient.personaddress">
+				<h3>Address</h3>
+				<div class="form-group">
+					<label for="address1">Avenida/Rua: </label>
+					<input class="form-control" id="address1" name="address1" type="text" readonly="readonly">
+				</div>
+				<div class="form-group">
+					<label for="address2">Casa Nº: </label>
+					<input class="form-control" id="address2" name="address2" type="text" readonly="readonly">
+				</div>
+				<div class="form-group">
+					<label for="address5">Unidade Comunal: </label>
+					<input class="form-control" id="address5" name="address5" type="text" readonly="readonly">
+				</div>
+				<div class="form-group">
+					<label for="address3">Quarteirão: </label>
+					<input class="form-control" id="address3" name="address3" type="text" readonly="readonly">
+				</div>
+			</div>
+		</div>
+    </div>
+    <div class="section">
+        <h3>SECÇÃO DE TRIANGULAÇÃO</h3>
+		<div class="form-group">
+			<label for="obs.patient_triangulation_status">
+			Estado do paciente de triangulação<span class="required">*</span>
+			</label>
+			<select class="form-control" id="obs.patient_triangulation_status" required
+				name="obs.patient_triangulation_status" data-concept="21187^Patient Triangulation Status^99DCT">
+				<option value="">...</option>
+				<option value="21185^Need Outreach^99DCT">Sim, precisa de rastreamento</option>
+				<option value="21186^No patient tracing^99DCT">não há necessidade de rastreamento paciente</option>
+			</select>
+        </div> 		
+		<div class="form-group sub-section" id="no_tracking_needed">
+			<div class="form-group concept-set">
+				<div class="form-group">
+					<label for="obs.reason_for_not_tracing_patient">
+						razão para não rastrear paciente
+					</label>
+					<div class="form-group">
+						<label class="font-normal">
+							<input id="obs.reason_for_not_tracing_patient.clin" type="checkbox" name="obs.reason_for_not_tracing_patient"
+							data-concept="21191^Reason for not tracing patient^99DCT" value="21188^Clinical Visit Recorded on Charts^99DCT">
+							Visita clínica registada
+						</label>
+					</div>	
+					<div class="form-group">
+						<label class="font-normal">
+							<input id="obs.reason_for_not_tracing_patient.drug" type="checkbox" name="obs.reason_for_not_tracing_patient"
+							data-concept="21191^Reason for not tracing patient^99DCT" value="21189^Drug Pickup from iDART^99DCT">
+							FILA registado
+						</label>
+					</div>	
+					<div class="form-group">
+						<label class="font-normal">
+							<input id="obs.reason_for_not_tracing_patient.other" type="checkbox" name="obs.reason_for_not_tracing_patient"
+							data-concept="21191^Reason for not tracing patient^99DCT" value="21190^Other reason not tracing^99DCT">
+							Outra razão de não rastrear
+						</label>
+					</div>	
+				</div>
+				<div class="form-group sub-section" id="other_reason_for_not_tracing_patient">
+					<label class="font-normal" for="obs.other_reason_for_not_tracing_patient">
+						Outro:<span class="required"></span>
+					</label>
+						<input class="form-control" id="obs.other_reason_for_not_tracing_patient" type="text" required="required"
+						name="obs.other_reason_for_not_tracing_patient" data-concept="21190^Other reason not tracing^99DCT">
+				</div>
+			</div>
+		</div>
+		<div class="form-group sub-section" id="tracking_needed">
+			<div class="form-group">
+				<label for="obs.reason_for_visit">
+				Motivo de visita<span class="required">*</span>
+				</label>
+				<select class="form-control" id="obs.reason_for_visit" required
+					name="obs.reason_for_visit" data-concept="2172^MOTIVO DE VISITA/BUSCA DO PACIENTE^99DCT">
+					<option value="">...</option>
+					<option value="2163^TESTADO HIV+ MAS SEM ABERTURA DE PROCESSO CLINICO NO SERVICO TARV^99DCT">Testado + sem abertura de processo</option>
+					<option value="2164^SEM ACONSELHAMENTO PRE-TARV^99DCT">Sem aconselhamento</option>
+					<option value="2165^SEM PRIMEIRA CONSULTA (TRIAGEM)^99DCT">Sem 1ª consulta (triagem)</option>
+					<option value="2166^SEM CD4 INICIAL^99DCT">Sem CD4 inicial</option>
+					<option value="2167^RESULTADO DE CD4 SEM CONSULTA^99DCT">Resultado CD4 sem consulta </option>
+					<option value="1359^ELEGÍVEL^99DCT">Elegivel para TARV</option>
+					<option value="2168^AUSENTE^99DCT">Ausente ao levantamento do TARV</option>
+					<option value="2169^BACILOSCOPIA POSITIVA SEM TRATAMENTO^99DCT">BK+ sem tratamento</option>
+					<option value="2170^CRIANÇA EXPOSTA^99DCT">Criança exposta</option>
+					<option value="2161^VISITA DE APOIO^99DCT">Visita de apoio</option>
+					<option value="2171^OUTRO MOTIVO DE VISITA AO PACIENTE^99DCT">Outros</option>
+				</select>
+			</div> 
+			<div class="form-group sub-section" id="other_reason_for_visit">
+				<label class="font-normal" for="obs.other_reason_for_visit">
+					Outro:<span class="required"></span>
+				</label>
+					<input class="form-control" id="obs.other_reason_for_visit" type="text" required="required"
+					name="obs.other_reason_for_visit" data-concept="2171^OUTRO MOTIVO DE VISITA AO PACIENTE^99DCT">
+			</div>
+			<div class="form-group">
+				<label for="obs.home_visit_service">
+				Serviço que refere<span class="required">*</span>
+				</label>
+				<select class="form-control" id="obs.home_visit_service" required
+					name="obs.home_visit_service" data-concept="2176^SERVIÇO QUE REFERE A VISITA DOMICILIARIA^99DCT">
+					<option value="">...</option>
+					<option value="2175^SERVIÇO TARV ADULTO^99DCT">TARV Adulto</option>
+					<option value="2174^SERVIÇO TARV PEDIATRICO^99DCT">TARV Pediatrico</option>
+					<option value="1598^PREVENCAO DE TRANSMISSAO VERTICAL^99DCT">PTV</option>
+					<option value="1414^PLANO NACIONAL PARA COMBATE TUBERCULOSE^99DCT">PNCT</option>				
+				</select>
+			</div> 
+			<div class="form-group" id="professional_referral_name">
+				<label for="obs.professional_referral_name">
+					Profissional que refere:<span class="required"></span>
+				</label>
+					<input class="form-control" id="obs.professional_referral_name" type="text" required="required"
+					name="obs.professional_referral_name" data-concept="21192^Professional Referral Name^99DCT">
+			</div>
+			<div class="form-group sub-section">
+				<label for="obs.health_worker">Nome do trabalhador de campo:<span class="required"></span></label>
+					<input class="form-control" id="obs.health_worker" name="obs.health_worker" type="text" required="required" data-concept="1912^TRABALHADOR DE SAÚDE^99DCT" placeholder="Start typing something...">
+			</div>
+			<div class="form-group" id="home_visit_date">
+				<label for="obs.home_visit_date">
+					Data de entrega ao voluntário:<span class="required">*</span>
+				</label>
+				 <input class="form-control datePicker validDeliveryDateOnly validateDeliveryDate" id="obs.home_visit_date"
+					   name="obs.home_visit_date" data-concept="2173^DATA DE ENTREGA AO VOLUNTARIO DO CARTÃO DE VISITA^99DCT" type="text" readonly="readonly"
+					   required="required">
+			</div>
+		</div>
+		<div id="missed_consultation_div">
+			<div class="form-group" id="missed_consultation">
+				<label for="obs.missed_consultation">
+					Data da consulta perdida:<span class="required"></span>
+				</label>
+				 <input class="form-control" id="obs.missed_consultation" name="obs.missed_consultation" type="text" readonly="readonly">
+			</div>
+			<div class="form-group" id="missed_consultation_days">
+				<label for="obs.missed_consultation_days">
+					Diferença dias:<span class="required"></span>
+				</label>
+				 <input class="form-control" id="obs.missed_consultation_days" name="obs.missed_consultation_days" type="text" readonly="readonly">
+			</div>
+	    </div>
+		<div class="form-group" id="return_visit_date">
+			<label for="obs.return_visit_date">
+				Data de proxima consulta:<span class="required">*</span>
+			</label>
+			 <input class="form-control datePicker checkFutureDate future-date" id="obs.return_visit_date"
+                   name="obs.return_visit_date" data-concept="1410^DATA DE PROXIMA CONSULTA^99DCT" type="text" readonly="readonly"
+                   required="required">
+		</div>
+		<div class="form-group">
+            <label for="encounter.encounter_datetime">Data de visita:<span class="required">*</span>
+            </label>
+            <input class="form-control datetimepicker nonFutureDate past-date" id="encounter.encounter_datetime"
+                   name="encounter.encounter_datetime" type="text" readonly="readonly"
+                   required="required">
+        </div>
+		<div class="form-group">
+			<label for="encounter.provider_id_select">Nome do Conselheiro:<span class="required">*</span></label>
+			<input class="form-control valid-provider-only" id="encounter.provider_id_select" type="text" readonly="readonly">
+			<input class="form-control" name="encounter.provider_id_select" type="hidden">
+		</div>
+		<div class="form-group show_provider_id_text">
+			<label for="encounter.provider_id">ID do sistema do provedor:<span class="required">*</span></label>
+			<input class="form-control checkDigit" id="encounter.provider_id" disabled name="encounter.provider_id" type="text" required="required"  placeholder="Provider Id">
+		</div>
+		<div class="form-group">
+            <label for="encounter.location_id">Unidade Sanitaria:<span class="required">*</span></label>
+            <input class="form-control valid-location-only" id="encounter.location_id" type="text" required="required" readonly="readonly">
+            <input class="form-control" name="encounter.location_id" type="hidden">						
+			<input class="form-control" id="encounter.form_uuid" name="encounter.form_uuid" type="hidden" required="required">
+			<input class="form-control initialFormOpeningTimestamp serializable"  id="obs.initialFormOpeningTimestamp"  name="obs.initialFormOpeningTimestamp"  data-concept="21183^Outreach Form Start Datetime Stamp^99DCT" type="hidden">			
+			<input class="form-control dataEntryCompletionTimeStamp serializable"  id="obs.dataEntryCompletionTimeStamp"  name="obs.dataEntryCompletionTimeStamp"  data-concept="21184^Outreach Form End Datetime Stamp^99DCT" type="hidden">
+			<input class="form-control cummulativeFormOpeningGPSData serializable"  id="obs.cummulativeFormOpeningGPSData"  name="obs.cummulativeFormOpeningGPSData"  data-concept="21182^Outreach GPS Coordinates^99DCT" type="hidden">
+		</div>
+    </div>
+</form>
+</body>
+<script type="text/javascript">
+   $(document).ready(function () {
+	        
+        $('#save_draft').click(function () {
+            $(this).prop('disabled', true);
+            document.saveDraft();
+            $(this).prop('disabled', false);
+        });
+
+        $('#submit_form').click(function () {
+            $(this).prop('disabled', true);
+            document.submit();
+            $(this).prop('disabled', false);
+        });
+	    
+	$('#obs\\.reason_for_not_tracing_patient\\.other').change(function(){
+        if($(this).prop( "checked" )){
+            $('#other_reason_for_not_tracing_patient').show();
+        } else{
+			$('#other_reason_for_not_tracing_patient').hide();
+		}
+    });    
+    $('#obs\\.reason_for_not_tracing_patient\\.other').trigger('change');
+	   
+	$('#obs\\.reason_for_visit').change(function(){
+        if($(this).val() == "2171^OUTRO MOTIVO DE VISITA AO PACIENTE^99DCT"){
+            $('#other_reason_for_visit').show();
+        } else{
+			$('#other_reason_for_visit').hide();
+		}
+    });    
+    $('#obs\\.reason_for_visit').trigger('change');
+	   
+	$('#obs\\.patient_triangulation_status').change(function(){
+        if($(this).val() == "21185^Need Outreach^99DCT"){
+            $('#tracking_needed').show();
+			$('#no_tracking_needed').hide();
+        } else if($(this).val() == "21186^No patient tracing^99DCT"){
+			$('#tracking_needed').hide();
+			$('#no_tracking_needed').show();
+		} else{
+			$('#tracking_needed').hide();
+			$('#no_tracking_needed').hide();
+		}
+    });    
+    $('#obs\\.patient_triangulation_status').trigger('change');  
+	  
+    document.setupAutoCompleteData('encounter\\.location_id');
+    document.setupAutoCompleteDataForProvider('encounter\\.provider_id_select');
+    document.setupValidationForLocation("$('#encounter\\.location_id').val()","encounter\\.location_id");
+    document.setupValidationForProvider("$('#encounter\\.provider_id_select').val()","encounter\\.provider_id");
+		   
+	document.setupAutoCompleteDataForTheForm('obs\\.health_worker');
+	document.setupAutoCompleteDataForTheForm('obs\\.professional_referral_name');	  
+	   	   
+/* Start - Toggle validateDeliveryDate date validation */
+$('.validateDeliveryDate').change(function () {
+	if ($(this).is(':visible') && $(this).val() != '') {
+		var errors = {};
+		var pattern = /(\d{2})-(\d{2})-(\d{4})/g;
+		var pattern2 = /(\d{2})-(\d{2})-(\d{4}) (\d{2}):(\d{2})/g;
+		var matches = pattern.exec($(this).val());
+		var enteredDate = new Date(matches[3], matches[2] - 1, matches[1]);
+		var datetime = $('#encounter\\.encounter_datetime').val();
+	    var datetimeBits = datetime.split(/\D/);
+		var encounterDate = new Date(datetimeBits[2], datetimeBits[1] - 1, datetimeBits[0]);
+		if (enteredDate < encounterDate) {
+			errors[$(this).attr('name')] = "A data de entrega ao voluntário não pode ser anterior à data da visita.";
+		}
+		toggleValidationMessages(errors);
+	}
+});
+
+$.validator.addMethod("validDeliveryDateOnly", function (value, element) {
+    if ($.fn.isNotRequiredAndEmpty(value, element)) return true;
+	var pattern = /(\d{2})-(\d{2})-(\d{4})/g;
+	var matches = pattern.exec(value);
+	var enteredDate = new Date(matches[3], matches[2] - 1, matches[1]);
+	var s = $('#encounter\\.encounter_datetime').val();
+	var bits = s.split(/\D/);
+	var encounterDate = new Date(bits[2], bits[1] - 1, bits[0]);
+	return enteredDate >= encounterDate; 
+}, "A data de entrega ao voluntário não pode ser anterior à data da visita."
+);
+
+// attach 'nonFutureDate' class to perform validation.
+jQuery.validator.addClassRules({
+	validDeliveryDateOnly: { validDeliveryDateOnly: true }
+});
+	   
+var prePopulateData = $.trim($('#pre_populate_data').html());
+var prePopulateJSON = JSON.parse(prePopulateData);
+$.each(prePopulateJSON, function(key, value) {
+	if (key === 'patient') {
+		var names = "";
+		$.each(value, function(keys, values) {
+			if(keys === 'patient.given_name' || keys === 'patient.middle_name' || keys === 'patient.family_name' || keys === 'patient.names'){
+			   names=names+" "+values;
+			}
+
+			if(keys === "patient.birth_date"){
+				var birthDate = new Date(values);
+				var today = new Date();
+				var milliSecondsInAYear = 1000 * 60 * 60 * 24 * 365.26;
+				var age = (today - birthDate) / milliSecondsInAYear;
+				$('#patient\\.age').val((Math.floor(age)+" Anos "));
+			}
+		});
+		$('#patient\\.names').val(names);
+	}
+});
+
+	 
+var patientuuid = $('#patient\\.uuid').val();
+var historyByData = htmlDataStore.getObsByConceptId(patientuuid,1410); 
+historyByData = JSON.parse(historyByData);
+var historyByDataSize = historyByData.length-1;
+if(historyByDataSize==-1){
+  $("#missed_consultation_div").hide(); 
+} else {
+  var missedDate = new Date(historyByData[historyByData.length-1].valueText.replace( /(\d{2})-(\d{2})-(\d{4})/, "$2/$1/$3"));
+  var today = new Date();
+  var milliSecondsInAYear = 1000 * 60 * 60 * 24;
+  var days = (today - missedDate) / milliSecondsInAYear;
+  if(days>0){
+	  $("#missed_consultation_div").show(); 
+	  $("#obs\\.missed_consultation_days").val(Math.floor(days));
+	  $("#obs\\.missed_consultation").val(historyByData[historyByData.length-1].valueText);
+  }else{
+	  $("#missed_consultation_div").hide();
+  }
+}
+	   
+});
+
+document.setupAutoCompleteDataForTheForm = function(elementName) {
+	var providersDictionary = [];
+	var providerNamesResults = htmlDataStore.getProviderNamesFromDevice();
+	providerNamesResults = JSON.parse(providerNamesResults);
+	$.each(providerNamesResults, function (key, providerName) {
+		providersDictionary.push({"val": providerName.identifier, "label": providerName.name});
+	});
+	document.setupAutoCompleteForTheForm(elementName, providersDictionary);
+};
+
+	
+//Set up auto complete for the provider element.
+document.setupAutoCompleteForTheForm = function(elementName, providers) {
+	$("#" + elementName).autocomplete({
+		source: providers,
+		create: function(event, ui) {
+			var provider_val = $('input[name="' + elementName + '"]').val();
+			$.each(providers, function(i, elem) {
+				if (elem.val == provider_val) {
+					$("#" + elementName).val(elem.label);
+				}
+			});
+		},
+		select: function(event, ui) {
+			$("#" + elementName).val(ui.item.label);
+			return false;
+		}
+	});
+}
+</script>
+</html>
