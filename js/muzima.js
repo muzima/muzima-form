@@ -182,18 +182,46 @@ $(document).ready(function () {
         save("incomplete", false);
         return false;
     };
+    document.preSaveScheduledTasks = [];
+
+    var runPreSaveScheduledTasks = function(){
+      console.log("Resolving registered tasks");
+      var nextTask = null;
+      $.each(document.preSaveScheduledTasks, function(k,v){
+        if(nextTask != null){
+          new Promise((resolve, reject)=>{
+            nextTask();
+            resolve();
+          }).then(function(){
+            nextTask = v;
+          });
+        } else {
+          nextTask = v;
+        }
+      });
+      nextTask();
+    }
 
     var save = function (status, keepFormOpen) {
-        var jsonData = JSON.stringify($('form').serializeEncounterForm(), null, '\t');
-        var pre = $("#json-output");
-        if (pre.length == 0) {
-            pre = document.createElement("pre");
-            $(pre).attr("id", "json-output");
-            $(pre).append(jsonData);
-            $('body').append(pre);
-        } else {
-            pre.html(jsonData);
+      new Promise((resolve, reject) => {
+        console.log(status);
+        if(document.preSaveScheduledTasks.length > 0 && status == "complete"){
+          runPreSaveScheduledTasks();
         }
+        resolve();
+      }).then(function(){
+        console.log("Saving as ::"+status);
+          var jsonData = JSON.stringify($('form').serializeEncounterForm(), null, '\t');
+          var pre = $("#json-output");
+          if (pre.length == 0) {
+              pre = document.createElement("pre");
+              $(pre).attr("id", "json-output");
+              $(pre).append(jsonData);
+              $('body').append(pre);
+          } else {
+              pre.html(jsonData);
+          }
+      });
     };
 
     var addValidationMessage = function () {
