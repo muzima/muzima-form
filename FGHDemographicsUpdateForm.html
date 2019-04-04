@@ -21,7 +21,7 @@
 	
 </div>
 <div id="pre_populate_data">
-
+	
 </div>
 <form id="demographics_update_form" name="demographics_update_form">
     <h2 class="text-center">Actualizar Dados Pessoais</h2>
@@ -72,33 +72,30 @@
             <input class="form-control" id="demographicsupdate.middle_name" name="demographicsupdate.middle_name" type="text">
         </div>
     </div>
-    <div class="section">
-		<h3>Endereço</h3>
-        <div class="form-group">
-            <label for="patient_address.address1">Avenida/Rua: </label>
-            <input class="form-control" id="address1" name="address1" type="text"
-            readonly="readonly">
-        </div>
-        <div class="form-group">
-            <label for="patient_address.address5">Unidade Comunal: </label>
-            <input class="form-control" id="address5" name="address5" type="text"
-            readonly="readonly">
-        </div>
-        <div class="form-group">
-            <label for="patient_address.address3">Quarteirão: </label>
-            <input class="form-control" id="address3" name="address3" type="text"
-            readonly="readonly">
-        </div>
-        <div class="form-group">
-            <label for="patient_address.address2">Casa Nº: </label>
-            <input class="form-control" id="address2" name="address2" type="text"
-            readonly="readonly">
-        </div>		
-        <div class="form-group">
-            <label for="phone_number">Contacto do Paciente: </label>
-            <input class="form-control" id="phone_number" name="phone_number" type="tel" disabled="disabled">
-        </div>
-
+	<div class="section">
+		<div class="section group-set" data-group="patient.personaddress">
+			<h3>Endereço</h3>
+			<div class="form-group">
+				<label for="address1">Avenida/Rua: </label>
+				<input class="form-control" id="address1" name="address1" type="text" readonly="readonly">
+			</div>
+			<div class="form-group">
+				<label for="address2">Casa Nº: </label>
+				<input class="form-control" id="address2" name="address2" type="text" readonly="readonly">
+			</div>
+			<div class="form-group">
+				<label for="address5">Unidade Comunal: </label>
+				<input class="form-control" id="address5" name="address5" type="text" readonly="readonly">
+			</div>
+			<div class="form-group">
+				<label for="address3">Quarteirão: </label>
+				<input class="form-control" id="address3" name="address3" type="text" readonly="readonly">
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="patient.phone_number">Contacto do Paciente</label>
+			<input class="form-control" id="patient.phone_number" name="patient.phone_number" type="tel" disabled="disabled">
+		</div>			
         <div class="form-group">
             <label for="tmp.update_address">
                 <input id="tmp.update_address" name="tmp.update_address"
@@ -106,7 +103,7 @@
                    Vai atualizar o endereço?
             </label>
         </div>
-    </div>
+	</div>
     <div class="section" id="update_address">
         <h3>Novo endereço</h3>
 		<div class="group-set" data-group="demographicsupdate.personaddress">
@@ -311,7 +308,7 @@
                 $('#update_name_of_mother').hide();
             }
         });
-        $('#tmp\\.update_name_of_mother').trigger('change');
+        $('#tmp\\.update_patient_phone_number').trigger('change');
 
         $('#tmp\\.update_address').change(function(){
             if($(this).is(':checked')){
@@ -377,47 +374,22 @@
             }
         });
         dobType.trigger('change');
-
-        $.validator.addMethod(
-            "validateConfirmIdentifierElement",
-            function(confirm_identifier_value, confirm_identifier_element){
-                var other_identifier_value = $(confirm_identifier_element).closest('.repeat').find('.check-other-identifier').val();
-                if (other_identifier_value == confirm_identifier_value) {
-
-                    return true;
-                } else {
-                    return false;
-                }
-            },
-            "Other Identifiers do not match."
-        );
-
-        jQuery.validator.addClassRules({
-            'check-confirm-identifier':{
-                validateConfirmIdentifierElement: true
-            }
-        });
-
-    $('.demographicsupdate\\.other_identifier_type').change(function(){
-        if($(this).val() == ""){
-            $(this).closest('.repeat').find('.identifier_value_section').hide();
-        }else{
-            $(this).closest('.repeat').find('.identifier_value_section').show();
-            if($('.demographicsupdate\\.other_identifier_type option:selected').hasClass("checkdigit")){
-                $(this).closest('.repeat').find('.demographicsupdate\\.other_identifier_value').addClass('checkDigit');
-                $(this).closest('.repeat').find('.demographicsupdate\\.confirm_identifier_value').addClass('checkDigit');
-            } else {
-                $(this).closest('.repeat').find('.demographicsupdate\\.other_identifier_value').removeClass('checkDigit');
-                $(this).closest('.repeat').find('.demographicsupdate\\.confirm_identifier_value').removeClass('checkDigit');
-            }
-        }
-
+		
+	var patient_data = JSON.parse($("#pre_populate_data").text());
+	var patient_payload = patient_data.patient;
+	$.each(patient_payload, function (key, value) {
+		if (value instanceof Object) {
+			if (value instanceof Array) {
+				$.each(value, function (i, element) {	
+					  if(element.attribute_type_uuid=="e2e3fd64-1d5f-11e0-b929-000c29ad1d07"){
+						  $("#patient\\.phone_number").val(element.attribute_value);
+					  }
+				});
+			} 
+		}        
     });
 
-    $('.demographicsupdate\\.other_identifier_type').trigger('change');
-
-      document.setupAutoCompleteData('encounter\\.location_id');
-
+    document.setupAutoCompleteData('encounter\\.location_id');
 
     document.setupAutoCompleteDataForProvider('encounter\\.provider_id_select');
 
