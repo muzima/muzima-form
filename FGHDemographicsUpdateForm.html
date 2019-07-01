@@ -33,12 +33,12 @@
                    name="patient.uuid" type="hidden" readonly="readonly">
         </div>
         <div class="form-group">
-            <label for="patient.family_name">Sobrenome: <span class="required">*</span> </label>
+            <label for="patient.family_name">Apelido: <span class="required">*</span> </label>
             <input class="form-control" id="patient.family_name" name="patient.family_name" type="text"
                    readonly="readonly" required="required">
         </div>
         <div class="form-group">
-            <label for="patient.given_name">Nome dado: <span class="required">*</span></label>
+            <label for="patient.given_name">Nome: <span class="required">*</span></label>
             <input class="form-control" id="patient.given_name" name="patient.given_name" type="text"
                    readonly="readonly" required="required">
         </div>
@@ -58,12 +58,12 @@
     <div class="section" id="update_names">
         <h3>Add Names</h3>
         <div class="form-group">
-            <label for="demographicsupdate.family_name">Novo Sobrenome: <span class="required">*</span> </label>
+            <label for="demographicsupdate.family_name">Novo Apelido: <span class="required">*</span> </label>
             <input class="form-control" id="demographicsupdate.family_name" name="demographicsupdate.family_name" type="text"
                    required="required">
         </div>
         <div class="form-group">
-            <label for="demographicsupdate.given_name">Novo nome dado: <span class="required">*</span></label>
+            <label for="demographicsupdate.given_name">Novo Nome: <span class="required">*</span></label>
             <input class="form-control" id="demographicsupdate.given_name" name="demographicsupdate.given_name" type="text"
                    required="required">
         </div>
@@ -217,14 +217,13 @@
     <div class="section">
 
         <div class="form-group">
-            <label for="encounter.location_id">Encontro Local:<span class="required">*</span></label>
+            <label for="encounter.location_id">US onde esta afecto o voluntário:<span class="required">*</span></label>
             <input class="form-control valid-location-only" id="encounter.location_id" type="text"
             placeholder="Start typing something..." required="required">
             <input class="form-control" name="encounter.location_id" type="hidden">
         </div>
 
         <div class="form-group hidden">
-            <label for="encounter.location_id_select">Encontro Local<span class="required">*</span></label>
             <select class="form-control" id="encounter.location_id_select" required="required">
                 <option>...</option>
             </select>
