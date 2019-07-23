@@ -1273,7 +1273,7 @@ $(document).ready(function () {
 	$.validator.addMethod("eligibleAgeOnly", function (value, element) {
 		if ($.fn.isNotRequiredAndEmpty(value, element)) return true;
 		return value > 14; 
-	}, "A data de entrega do cartão deve ser anterior à data da visita.."
+	}, " "
 	);
 
 	// attach 'nonFutureDate' class to perform validation.
