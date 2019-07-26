@@ -88,27 +88,28 @@
 					<label>Dados vitais: TA:</label>
 					<div class="form-group">
 						<input class="" style="width:49%;" id="obs.dados_vitais_ta" name="obs.dados_vitais_ta" data-concept="5085^PRESSUO ARTERIAL SISTOLICA^99DCT" 
-								   type="text" required="required">
+								   type="number" required="required">
 					/
 						<input class="" style="width:49%;" id="obs.dados_vitais_ta" name="obs.dados_vitais_ta" data-concept="5086^PRESSUO ARTERIAL DIASTOLICA^99DCT" 
-								   type="text" required="required">
+								   type="number" required="required">
 					</div>
 				</div>
 				<div class="form-group">
 					<label>Temp.: <span class="required">*</span></label>
-					<input class="form-control" id="obs.temp" name="obs.temp" data-concept="5088^TEMPERATURA (C)^99DCT" type="text" required="required">
+					<input class="form-control" id="obs.temp" name="obs.temp" data-concept="5088^TEMPERATURA (C)^99DCT" type="number" step=".01" required="required">
 				</div>
 				<div class="form-group">
 					<label>Peso: <span class="required">*</span></label>
-					<input class="form-control" id="obs.peso" name="obs.peso" data-concept="5089^PESO (KG)^99DCT" type="text" required="required">
+					<input class="form-control" id="obs.peso" name="obs.peso" data-concept="5089^PESO (KG)^99DCT" type="number" step=".01" required="required">
 				</div>
 				<div class="form-group">
 					<label>Altura: <span class="required">*</span></label>
-					<input class="form-control" id="obs.altura" name="obs.altura" data-concept="5090^ALTURA (CM)^99DCT" type="text" required="required">
+					<input class="form-control" id="obs.altura" name="obs.altura" data-concept="5090^ALTURA (CM)^99DCT" type="number" required="required">
 				</div>
 				<div class="form-group">
 					<label>IMC: <span class="required">*</span></label>
-					<input class="form-control" id="obs.imc" name="obs.imc" data-concept="1342^INDICE MASSA CORPORAL^99DCT" type="text" required="required">
+					<input class="form-control" id="obs.imc" name="obs.imc" data-concept="1342^INDICE MASSA CORPORAL^99DCT" type="number" step=".01"
+						   required="required">
 				</div>      
 				<div class="form-group">
 					<label for="">Mucosas:</label>
@@ -298,7 +299,7 @@
 				</div>
 				<div class="form-group">
 					<label for="">FR:/Min</label><br/>
-					<input class="form-control" name="obs.tipo_de_exame_da_pele" data-concept="1423^TIPO DE LESOES DA PELE^99DCT" type="text">
+					<input class="form-control" name="obs.tipo_de_exame_da_pele" data-concept="1423^TIPO DE LESOES DA PELE^99DCT" type="number">
 				</div>
 				<div class="form-group">
 					<label for="">Auscultação:</label>
@@ -334,7 +335,7 @@
 			<div class="form-group concept-set" data-concept="1676^EXAME CARDIOLOGICO^99DCT">
 				<div class="form-group">
 					<label for="">F.C.:/Min</label><br/>
-					<input class="form-control" name="obs.exame_cardiologico_fc" data-concept="5087^FREQUENCIA CARDIACA^99DCT" type="text">
+					<input class="form-control" name="obs.exame_cardiologico_fc" data-concept="5087^FREQUENCIA CARDIACA^99DCT" type="number">
 				</div>
 				<div class="form-group">
 					<label for="">Auscultação:</label>
