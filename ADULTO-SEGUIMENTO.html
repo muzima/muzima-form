@@ -142,13 +142,13 @@
 			<label>Temperatura (ºC) <span class="required">*</span></label>
 			<input class="form-control" id="obs.temperatura" name="obs.temperatura" data-concept="5088^TEMPERATURA^99DCT" type="number" step=".01" required="required">
 		</div> 
-		<div class="form-group">
+		<div class="sub-section form-group">
 			<label>Tensão Arterial (TA):</label>
 			<div class="form-group">
-				<input class="" style="width:49%;" id="obs.tensao_arterial" name="obs.tensao_arterial" data-concept="5085^PRESSUO ARTERIAL SISTOLICA^99DCT" 
+				<input class="form-control" id="obs.tensao_arterial" name="obs.tensao_arterial" data-concept="5085^PRESSUO ARTERIAL SISTOLICA^99DCT" 
 						   type="number" required="required">
 			/
-				<input class="" style="width:49%;" id="obs.tensao_arterial" name="obs.tensao_arterial" data-concept="5086^PRESSUO ARTERIAL DIASTOLICA^99DCT" 
+				<input class="form-control" id="obs.tensao_arterial" name="obs.tensao_arterial" data-concept="5086^PRESSUO ARTERIAL DIASTOLICA^99DCT" 
 						   type="number" required="required">
 			</div>
 		</div>
@@ -211,41 +211,41 @@
 			<input class="form-control datepicker nonFutureDate past-date" id="obs.data_de_cd4_processamento" name="obs.data_de_cd4_processamento" 
 				   data-concept="6256^DATA DE PROCESSAMENTO DE CD4^99DCT" type="text" readonly>
 		</div>
-		<div class="form-group">
+		<div class="sub-section form-group">
 			<label>CD4 (/mm) / CD4 (%):</label>
 			<div class="form-group">
-				<input class="" style="width:49%;" id="obs.cd4_mm" name="obs.cd4_mm" data-concept="1695^CD4 ABSOLUTO OBS^99DCT" 
+				<input class="form-control" id="obs.cd4_mm" name="obs.cd4_mm" data-concept="1695^CD4 ABSOLUTO OBS^99DCT" 
 						   type="number" required="required">
 			/
-				<input class="" style="width:49%;" id="obs.cd4_per" name="obs.cd4_per" data-concept="730^CD4%^99DCT" 
+				<input class="form-control" id="obs.cd4_per" name="obs.cd4_per" data-concept="730^CD4%^99DCT" 
 						   type="number" required="required">
 			</div>
 		</div>
 		<div class="form-group">
 			<label for="">Carga Viral (CV):</label>
-			<input class="form-control" id="obs.carga_viral" name="obs.carga_viral" data-concept="856^CARGA VIRAL^99DCT" type="text">
+			<input class="form-control" id="obs.carga_viral" name="obs.carga_viral" data-concept="856^CARGA VIRAL^99DCT" type="number">
 		</div>
 		<div class="form-group">
 			<label for="">Globulos Brancos (GB):</label>
-			<input class="form-control" id="obs.globulos_brancos" name="obs.g_brancos" data-concept="678^GLOBULOS BRANCOS^99DCT" type="text">
+			<input class="form-control" id="obs.globulos_brancos" name="obs.g_brancos" data-concept="678^GLOBULOS BRANCOS^99DCT" type="number">
 		</div>
-		<div class="form-group">
+		<div class="sub-section form-group">
 			<label>Neutrofilos (N) (l/mm3 e %):</label>
 			<div class="form-group">
-				<input class="" style="width:49%;" id="obs.neutrofilos_abs_obs" name="obs.neutrofilos_abs_obs" data-concept="1690^NEUTROFILOS ABSOLUTO OBS^99DCT" 
+				<input class="form-control" id="obs.neutrofilos_abs_obs" name="obs.neutrofilos_abs_obs" data-concept="1690^NEUTROFILOS ABSOLUTO OBS^99DCT" 
 						   type="number" required="required">
 			/
-				<input class="" style="width:49%;" id="obs.neutrofilos" name="obs.neutrofilos" data-concept="1022^NEUTROFILOS^99DCT" 
+				<input class="form-control" id="obs.neutrofilos" name="obs.neutrofilos" data-concept="1022^NEUTROFILOS^99DCT" 
 						   type="number" required="required">
 			</div>
 		</div>
-		<div class="form-group">
+		<div class="sub-section form-group">
 			<label>Linfócitos (L) (l/mm3 e %):</label>
 			<div class="form-group">
-				<input class="" style="width:49%;" id="obs.linfocitos_abs_obs" name="obs.linfocitos_abs_obs" data-concept="1691^LINFOCITOS ABSOLUTO OBS^99DCT" 
+				<input class="form-control" id="obs.linfocitos_abs_obs" name="obs.linfocitos_abs_obs" data-concept="1691^LINFOCITOS ABSOLUTO OBS^99DCT" 
 						   type="number" required="required">
 			/
-				<input class="" style="width:49%;" id="obs.linfocitos" name="obs.linfocitos" data-concept="1021^LINFOCITOS^99DCT" 
+				<input class="form-control" id="obs.linfocitos" name="obs.linfocitos" data-concept="1021^LINFOCITOS^99DCT" 
 						   type="number" required="required">
 			</div>
 		</div>
@@ -253,30 +253,30 @@
 			<label for="">Hemoglobina (HgB) (g/dl):</label>
 			<input class="form-control" id="obs.hemoglobina" name="obs.hemoglobina" data-concept="1692^HEMOGLOBINA OBS^99DCT" type="number" step=".01">
 		</div>
-		<div class="form-group">
+		<div class="sub-section form-group">
 			<label>Provas hepáticas - ALT / AST (U/L):</label>
 			<div class="form-group">
-				<input class="" style="width:49%;" id="obs.alt_obs" name="obs.alt_obs" data-concept="1694^ALT OBS^99DCT" type="number" step=".01">
+				<input class="form-control" id="obs.alt_obs" name="obs.alt_obs" data-concept="1694^ALT OBS^99DCT" type="number" step=".01">
 			/
-				<input class="" style="width:49%;" id="obs.ast_obs" name="obs.ast_obs" data-concept="1693^AST OBS^99DCT" type="number" step=".01">
+				<input class="form-control" id="obs.ast_obs" name="obs.ast_obs" data-concept="1693^AST OBS^99DCT" type="number" step=".01">
 			</div>
 		</div>
 		<div class="form-group">
 			<label for="">Glicémia (GL) (g/dl):</label>
 			<input class="form-control" id="obs.glicemia_gl" name="obs.glicemia_gl" data-concept="887^GLC^99DCT" type="number" step=".01">
 		</div>
-		<div class="form-group">
+		<div class="sub-section form-group">
 			<label>Ureia (UR) (mg/dl)/Creatinina (CR) (mmol/L):</label>
 			<div class="form-group">
-				<input class="" style="width:49%;" id="obs.ureia_ur" name="obs.ureia_ur" data-concept="857^UREIA^99DCT" type="number" step=".01">
+				<input class="form-control" id="obs.ureia_ur" name="obs.ureia_ur" data-concept="857^UREIA^99DCT" type="number" step=".01">
 			/
-				<input class="" style="width:49%;" id="obs.creatinina_cr" name="obs.creatinina_cr" data-concept="1011^CREATININA QUINASE^99DCT" type="number"
+				<input class="form-control" id="obs.creatinina_cr" name="obs.creatinina_cr" data-concept="1011^CREATININA QUINASE^99DCT" type="number"
 					   step=".01">
 			</div>
 		</div>
 		<div class="form-group">
 			<label for="">Amilase:</label>
-			<input class="form-control" id="obs.amilase" name="obs.amilase" data-concept="1299^AMILASE^99DCT" type="text">
+			<input class="form-control" id="obs.amilase" name="obs.amilase" data-concept="1299^AMILASE^99DCT" type="number">
 		</div>
 		<div class="female_gender_check_div">
 			<div class="sub-section">
@@ -299,7 +299,7 @@
 		</div>
 		<div class="form-group">
 			<label for="">Plaquetas:</label>
-			<input class="form-control" id="obs.plaquetas" name="obs.plaquetas" data-concept="729^PLAQUETES^99DCT" type="text">
+			<input class="form-control" id="obs.plaquetas" name="obs.plaquetas" data-concept="729^PLAQUETES^99DCT" type="number">
 		</div>
 		<div class="sub-section">
 			<h4>RPR:</h4>
@@ -653,9 +653,9 @@
 		</div>
 		<div class="sub-section"> 
 			<h3>Outros Medicamentos</h3>
-			<div class="sub-section repeat" data-concept="1719^TRATAMENTO PRESCRITO^99DCT">
+			<div class="section repeat">
 				<div class="form-group">
-					<select class="form-control" id="obs.outros_medicamentos" name="obs.outros_medicamentos" data-concept="1792^JUSTIFICATIVE PARA MUDANCA DO TRATAMENTO ANTI-RETROVIRAL^99DCT">
+					<select class="form-control" id="obs.outros_medicamentos" name="obs.outros_medicamentos" data-concept="1719^TRATAMENTO PRESCRITO^99DCT">
 						<option value="">...</option>
 						<option value="22426^AC.SALICILICO+AC. LACT+5FU^99DCT">AC.SALICILICO+AC. LACT+5FU</option>
 						<option value="22495^ACARBOSE^99DCT">ACARBOSE</option>

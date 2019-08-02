@@ -189,7 +189,7 @@
 					<div class="form-group">
 						<label>Cônjuge(s)? Nº: <span class="required">*</span></label>
 						<input class="form-control" id="obs.conjuge" name="obs.conjuge" data-concept="5557^NUMERO DE ESPOSAS^99DCT" 
-							   type="text" required="required">
+							   type="number" required="required">
 					</div>
 				</div>
 				<div class="form-group">
@@ -454,22 +454,22 @@
 				<div class="form-group">
 					<label for="gesta_g">Gesta(G):</label>
 					<input class="form-control" id="obs.gesta_g" name="obs.gesta_g" data-concept="5624^CODE DE ANTECEDENTE GINECOLOGICOS, GESTANTE^99DCT"
-					   type="text">
+					   type="number">
 				</div>		
 				<div class="form-group">
 					<label for="para_p">Para(P):</label>
 					<input class="form-control" id="obs.para_p" name="obs.para_p" data-concept="1392^CODE DE ANTECEDENTE GINECOLOGICOS, PARA^99DCT"
-					   type="text">
+					   type="number">
 				</div>	
 				<div class="form-group">
 					<label for="aborto_a">Aborto(A):</label>
 					<input class="form-control" id="obs.aborto_a" name="obs.aborto_a" data-concept="1390^CODE DE ANTECEDENTE GINECOLOGICOS, ABORTO^99DCT"
-					   type="text">
+					   type="number">
 				</div>	
 				<div class="form-group">
 					<label for="vivos_v">Vivos(V):</label>
 					<input class="form-control" id="obs.vivos_v" name="obs.vivos_v" data-concept="1391^CODE DE ANTECEDENTE GINECOLOGICOS, VIVOS^99DCT"
-					   type="text">
+					   type="number">
 				</div>	
 				<div class="form-group">
 					<label for="outros_antecedentes">Outros Antecedentes:</label>
@@ -561,18 +561,18 @@
 						<div class="form-group">
 							<label for="semanas_de_gestacao">Semanas de Gestação:</label>
 							<input class="form-control" id="obs.semanas_de_gestacao" name="obs.semanas_de_gestacao"
-								   data-concept="1279^SEMANAS DE GESTACAO^99DCT" type="text">
+								   data-concept="1279^SEMANAS DE GESTACAO^99DCT" type="number">
 						</div>
 						<div class="form-group">
 							<label for="data_prevista_do_parto">Data prevista do parto:</label>
 							<input class="form-control datepicker checkFutureDate" id="obs.data_prevista_do_parto" name="obs.data_prevista_do_parto"
-								   data-concept="1600^DATA GRAVIDEZ^99DCT" type="text">
+								   data-concept="1600^DATA GRAVIDEZ^99DCT" type="text" readonly>
 						</div>
 					</div>
 					<div class="form-group">
 						<label for="mulher_puerpera">Mulher puérpera; Data do parto:</label>
 						<input class="form-control  datepicker nonFutureDate past-date" id="obs.mulher_puerpera" name="obs.mulher_puerpera"
-							   data-concept="5599^DATA DO PARTO^99DCT" type="text">
+							   data-concept="5599^DATA DO PARTO^99DCT" type="text" readonly>
 					</div>
 					<div class="form-group">
 						<label>Tipo de Aleitamento</label>
@@ -1000,7 +1000,7 @@
 			</div>
 			<div class="form-group intervencoes_cirurgicas_div">
 				<label for="">Quais:</label>
-				<input class="form-control" name="obs.quais_intervencoes_cirurgicas" data-concept="1685^DESCRITIO DA INTERVENTIO CIRURGICA^99DCT" type="text">
+				<input class="form-control" name="obs.quais_intervencoes_cirurgicas" data-concept="1473^DESCRITIO DA INTERVENTIO CIRURGICA^99DCT" type="text">
 			</div>
 			<div class="form-group concept-set" data-concept="1686^EXPOSICAO AO HIV POR TRANSFUSIO DE SANGUE^99DCT">
 				<div class="form-group">
