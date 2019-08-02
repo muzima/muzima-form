@@ -51,27 +51,39 @@
             <input class="form-control eligibleAgeOnly" id="patient.age" name="patient.age" type="text" readonly="readonly" required>
         </div>        
 		<div class="form-group">
-            <label for="patient.medical_record_number">Nº de BI</label>
+            <label for="patient.no_de_bi">Nº de BI</label>
+            <input class="form-control" id="patient.no_de_bi" name="patient.no_de_bi" type="text" readonly="readonly">
+        </div>  
+		<div class="form-group">
+            <label for="patient.no_de_bi">Outra identificação</label>
+            <input class="form-control" id="patient.outra_identificacao" name="patient.outra_identificacao" type="text" readonly="readonly">
+        </div>  
+		<div class="form-group">
+            <label for="patient.medical_record_number">NID/HDD</label>
             <input class="form-control" id="patient.medical_record_number" name="patient.medical_record_number" type="text" readonly="readonly">
         </div>  
 		<div class="section">
 			<div class="section group-set" data-group="patient.personaddress">
-				<h3>Address</h3>
+				<h3>Endereço</h3>
 				<div class="form-group">
-					<label for="address1">Avenida/Rua: </label>
-					<input class="form-control" id="address1" name="address1" type="text" readonly="readonly">
-				</div>
-				<div class="form-group">
-					<label for="address2">Casa Nº: </label>
+					<label for="address2">Distrito/Cidade: </label>
 					<input class="form-control" id="address2" name="address2" type="text" readonly="readonly">
 				</div>
 				<div class="form-group">
-					<label for="address5">Unidade Comunal: </label>
+					<label for="address6">Localidade: </label>
+					<input class="form-control" id="address6" name="address6" type="text" readonly="readonly">
+				</div>
+				<div class="form-group">
+					<label for="address5">Bairro: </label>
 					<input class="form-control" id="address5" name="address5" type="text" readonly="readonly">
 				</div>
 				<div class="form-group">
-					<label for="address3">Quarteirão: </label>
+					<label for="address3">Célula/Quarteirão: </label>
 					<input class="form-control" id="address3" name="address3" type="text" readonly="readonly">
+				</div>
+				<div class="form-group">
+					<label for="address1">Avenida/Rua/Casa: </label>
+					<input class="form-control" id="address1" name="address1" type="text" readonly="readonly">
 				</div>
 			</div>
 		</div>
@@ -122,10 +134,13 @@
 				</select>
 			</div> 
 			<div class="form-group">
+				<label for="telefone_de_contacto">Telefone de contacto:</label>
+				<input class="form-control" id="patient.telefone_de_contacto" name="patient.telefone_de_contacto" type="text" readonly>
+			</div>	
+			<div class="form-group">
 				<label for="conviventes">Nº de conviventes: <span class="required">*</span></label>
-				<input class="form-control" id="obs.conviventes"
-                   name="obs.conviventes" data-concept="1656^NUMERO DE CONVIVENTES^99DCT" type="number" 
-				   required="required">
+				<input class="form-control" id="obs.conviventes" name="obs.conviventes" data-concept="1656^NUMERO DE CONVIVENTES^99DCT" 
+					   type="number" required="required">
 			</div>	
 		</div>
 	</div>
@@ -1297,6 +1312,26 @@ $(document).ready(function () {
 				if(keys === 'patient.given_name' || keys === 'patient.middle_name' || keys === 'patient.family_name' || keys === 'patient.names'){
 				   names=names+" "+values;
 				}
+				
+				if(keys === 'patient.otheridentifier'){
+					var otheridentifierJson = values;
+					for (var identifierKey in otheridentifierJson) {
+						if (otheridentifierJson[identifierKey].identifier_type_uuid === 'e2b9682e-1d5f-11e0-b929-000c29ad1d07') {
+						  $('#patient\\.no_de_bi').val(otheridentifierJson[identifierKey].identifier_value);
+						}
+						if (otheridentifierJson[identifierKey].identifier_type_uuid === '8d793bee-c2cc-11de-8d13-0010c6dffd0f') {
+						  $('#patient\\.outra_identificacao').val(otheridentifierJson[identifierKey].identifier_value);
+						}						
+					}
+				}
+				
+				if(keys === 'patient.personattribute'){
+					for (var personattributeKey in values) {
+						if (values[personattributeKey].attribute_type_uuid === 'e2e3fd64-1d5f-11e0-b929-000c29ad1d07') {
+						  $('#patient\\.telefone_de_contacto').val(values[personattributeKey].attribute_value);
+						}
+					}
+				}
 
 				if(keys === "patient.birth_date"){
 					var tmp = values.split('-');
@@ -1316,7 +1351,7 @@ $(document).ready(function () {
 				}
 			});
 			$('#patient\\.names').val(names);
-		}
+		}		
 	});
 });
 </script>
