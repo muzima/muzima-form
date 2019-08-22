@@ -1,0 +1,559 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Frameset//EN" "http://www.w3.org/TR/html4/frameset.dtd">
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link href="css/bootstrap.min.css" rel="stylesheet">
+	<link href="css/muzima.css" rel="stylesheet">
+	<link href="css/ui-darkness/jquery-ui-1.10.4.custom.min.css" rel="stylesheet">
+
+	<script src="js/jquery.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/jquery-ui-1.10.4.custom.min.js"></script>
+	<script src="js/jquery.validate.min.js"></script>
+	<script src="js/additional-methods.min.js"></script>
+	<script src="js/jquery-autocomplete-min.js"></script>
+	<title>Clinical Summary v0.3</title>
+	<style type="text/css">
+		.well-blue {
+			background: rgb(91,192, 222);
+		}
+		.text-white {
+			color: rgb(255, 255, 255);
+		}
+		.text-brown {
+			color: rgb(90, 90, 90);
+		}
+		.table-borderless > tbody > tr > td,
+		.table-borderless > tbody > tr > th,
+		.table-borderless > tfoot > tr > td,
+		.table-borderless > tfoot > tr > th,
+		.table-borderless > thead > tr > td,
+		.table-borderless > thead > tr > th {
+			border: none;
+		}
+
+		.table td.fit,
+		.table th.fit {
+			width: 1%;
+		}
+
+		.table-fit {
+			width: 100%;
+			table-layout: auto !important;;
+		}
+		.table-fit th:first-child,
+		.table-fit td:first-child {
+			width: 1%;
+		}
+		.table-fit td, .table-fit th {
+			overflow: hidden;
+			text-overflow: ellipsis;
+			white-space: nowrap;
+		}
+		.nav-tabs > li > a {
+			border: 1px solid rgb(91,192, 222);
+		}
+		.nav-tabs > li.active > a {
+			background-color: rgb(91,192, 222) !important;
+			color: rgb(255, 255, 255) !important;
+		}
+		.label.label-outlined {
+			border-width: 1px;
+			border-style: solid;
+			background-color: transparent
+		}
+		.label.label-outlined.label-default {
+			border-color: rgb(88, 95, 98);
+			color: rgb(88, 95, 98)
+		}
+		.bg-light-gray {
+			background-color: rgb(173, 173, 173) !important;
+		}
+		.bg-light-gray-1 {
+			background-color: rgb(211, 211, 211) !important;
+		}
+		.bg-3 {
+			background-color: rgb(127, 223, 247) !important;
+		}
+		.bg-4 {
+			background-color: rgb(0, 115, 183) !important;
+		}
+		.bg-5 {
+			background-color: rgb(0, 166, 90) !important;
+		}
+		.bg-7 {
+			background-color: rgb(136, 224, 224) !important;
+		}
+		.bg-8 {
+			background-color: rgb(61, 153, 112) !important;
+		}
+		.bg-9 {
+			background-color: rgb(1, 255, 112) !important;
+		}
+		.bg-10 {
+			background-color: rgb(235, 204, 204) !important;
+		}
+	</style>
+</head>
+<body>
+	<%
+		patient = reportData.dataSets.get("Patient");
+		def ageYears = patient.getColumnValue(1, "ageYears");
+		def ageMonths = patient.getColumnValue(1, "ageMonths");
+		def ageDays = patient.getColumnValue(1, "ageDays");
+		def gender = patient.getColumnValue(1, "gender");
+		obs = reportData.dataSets.get("Obs");
+		allergies = reportData.dataSets.get("Allergies");
+	%>
+	<div class="container">
+		<div class="row">
+			<div class="table-responsive">
+				<table class="table table-borderless" width="100%">
+					<tr>
+						<td colspan="2"><span class="label label-info pull-left" style="font-size: 28px;"><% print patient.getColumnValue(1, "patientName") %></span></td>
+						<td><span class="label label-info pull-right" style="font-size: 24px;"><% print patient.getColumnValue(1, "identifier1") %></span></td>
+					</tr>
+					<tr>
+						<td colspan="2"><span class="label label-outlined label-default pull-left " style="font-size: 14px;"><%= msg.translate(gender == "M" ? "Patient.gender.male" : "Patient.gender.female") %> <% if (ageYears == 0 && ageMonths == 0) { %> $ageDays days <%} else {%> $ageYears years, $ageMonths months (<% } %><%= util.format(patient.getColumnValue(1, "birthdate"), "dd-MMM-yyyy") %>)</span></td>
+						<td class="pull-right">
+							<button type="button" class="btn btn-info" data-toggle="modal" data-target="&num;myModal">...</button>
+							<div class="modal fade" id="myModal" role="dialog">
+								<div class="modal-dialog">
+									<div class="modal-content">
+										<div class="modal-header">
+											<button type="button" class="close" data-dismiss="modal">&times;</button>
+											<h4 class="modal-title">Summary Info</h4>
+										</div>
+										<div class="modal-body">
+											<p>Summary Generated on: <% print "<b>" + util.format(new Date(), "dd-MMM-yyyy hh:mm:ss") + "</b>" %></p>
+											<p>Missing information could be because:
+											<ul>
+												<li>Data on mobile devices have not been synchronized to server</li>
+												<li>Data has not been processed on the server</li>
+											</ul>
+											</p>
+											<p>Please contact your mUzima or KenyaEMR administrator with any issues</p>
+										</div>
+										<div class="modal-footer">
+											<button type="button" class="btn btn-default" data-dismiss="modal">Ok</button>
+										</div>
+									</div>
+								</div>
+							</div>
+						</td>
+					</tr>
+				</table>
+			</div>
+			<div class="col-md-12">
+				<div class="nav-tabs-custom">
+					<ul class="nav nav-tabs" role="tablist">
+						<li class="active"><a href="&num;clinical" data-toggle="tab">Clinical</a></li>
+						<li><a href="&num;hts" data-toggle="tab">HTS</a></li>
+						<li><a href="&num;medication" data-toggle="tab">Medication</a></li>
+						<li><a href="&num;care" data-toggle="tab"> Care</a></li>
+					</ul>
+					<div class="tab-content">
+						<div class="tab-pane active" role="tab" id="clinical">
+							<div class="col-md-12 row"><br>
+								<div class="panel panel-warning bg-7">
+									<div class="table-responsive">
+										<table class="table table-borderless table-fit">
+											<tr>
+												<th>HIV Status</th>
+												<td colspan="2"><% displayConcept(1169) %></td>
+											</tr>
+											<tr>
+												<td class="fit">Date of HIV Diagnosis:</td>
+												<td><% displayConcept(160554, false, false) %></td>
+											</tr>
+											<tr>
+												<td>Enrollment Date:</td>
+												<td><% displayConcept(160555, false, false) %></td>
+											</tr>
+											<tr>
+												<td>Reason HIV care discontinuation:</td>
+												<td><% displayConcept(161555, false, false) %></td>
+											</tr>
+											<tr>
+												<td>Highest WHO Stage:</td>
+												<td><% displayConcept(5356) %></td>
+											</tr>
+											<tr>
+												<th>TB Status</th>
+												<td colspan="3"><% displayConcept(1659) %></td>
+											</tr>
+											<% if (gender == "F") { %>
+											<tr>
+												<th>Pregnancy Status</th>
+												<td colspan="3"><% displayConcept(5272) %></td>
+											</tr>
+											<% } %>
+										</table>
+									</div>
+								</div>
+								<div class="panel panel-warning bg-7">
+									<div class="table-responsive">
+										<table class="table table-borderless table-fit">
+											<tr>
+												<th colspan="2" style="background: rgb(221, 221, 221)">CLIENT RISK POPULATION</th>
+											</tr>
+											<% displayConcept(160581, false, true, true) %>
+											<tr>
+												<th colspan="2" style="background: rgb(221, 221, 221)">DIAGNOSES</th>
+											</tr>
+											<% displayConcept(6042, false, true, true) %>
+										</table>
+									</div>
+								</div>
+								<div class="panel panel-warning">
+									<p style="font-size: 18px; background: rgb(221, 221, 221)"><b><u>Flowsheet (Initial + Last Four Value)</u></b></p>
+									<div class="table-responsive">
+										<table class="table table-bordered table-striped table-fit">
+											<tr>
+												<th>WEIGHT (KG)</th>
+												<% displayConcept(5089, false, true, false, true) %>
+											</tr>
+											<tr>
+												<th>HEIGHT (CM)</th>
+												<% displayConcept(5090, false, true, false, true) %>
+											</tr>
+											<tr>
+												<th>CD4 COUNT</th>
+												<% displayConcept(5497, false, true, false, true) %>
+											</tr>
+											<tr>
+												<th>VIRAL-LD</th>
+												<% displayConcept(856, false, true, false, true) %>
+											</tr>
+											<tr>
+												<th>DNA PCR</th>
+												<% displayConcept(1030, false, true, false, true) %>
+											</tr>
+											<tr>
+												<th>ELISA</th>
+												<% displayConcept(1042, false, true, false, true) %>
+											</tr>
+											<tr>
+												<th>CREAT (Umol/L)</th>
+												<% displayConcept(790, false, true, false, true) %>
+											</tr>
+											<tr>
+												<th>ALT (SGPT) (IU/L)</th>
+												<% displayConcept(654, false, true, false, true) %>
+											</tr>
+											<tr>
+												<th>HEMOGLOBIN (g/dL)</th>
+												<% displayConcept(21, false, true, false, true) %>
+											</tr>
+											<tr>
+												<th>TB SPUTUM</th>
+												<% displayConcept(307, false, true, false, true) %>
+											</tr>
+										</table>
+									</div>
+								</div>
+								<div class="panel panel-warning bg-3">
+									<div class="table-responsive">
+										<p style="font-size: 16px;"><b><u>Referrals Ordered</u></b></p>
+										<table class="table table-borderless table-fit">
+											<% displayConcept(1272, false, true, true) %>
+										</table>
+									</div>
+								</div>
+								<div class="panel panel-warning bg-10">
+									<div class="table-responsive">
+										<p style="font-size: 16px;"><b><u>PwP Services Received</u></b></p>
+										<table class="table table-borderless table-fit">
+											<% displayConcept(163560, false, true, true) %>
+										</table>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-12 small well">
+								Return Visit Date: <% displayConcept(5096, true, false) %>
+							</div>
+						</div>
+						<div class="tab-pane" role="tab" id="hts">
+							<div class="col-md-12 row">
+								<div class="table-responsive"><br>
+									<div class="panel panel-warning bg-7">
+										<table class="table table-borderless table-fit">
+											<tr>
+												<th colspan="2">PRIOR HIV TESTS</th>
+											</tr>
+											<tr>
+												<td>Ever tested for HIV</td>
+												<td><% displayConcept(164401, true, true) %></td>
+											</tr>
+											<tr>
+												<td>Test Results</td>
+												<td><% displayConcept(1169, true, true) %></td>
+											</tr>
+										</table>
+									</div>
+									<div class="panel panel-warning bg-10">
+										<table class="table table-borderless table-fit">
+											<tr>
+												<th colspan="2">LATEST SCREENING</th>
+											</tr>
+											<tr>
+												<td>HIV Test 1</td>
+												<td><% displayConcept(1040, true, true) %></td>
+											</tr>
+											<tr>
+												<td>HIV Test 2</td>
+												<td><% displayConcept(1326, true, true) %></td>
+											</tr>
+											<tr>
+												<td>Final Results</td>
+												<td><% displayConcept(159427, true, true) %></td>
+											</tr>
+											<tr>
+												<td>Self-test last 12 months</td>
+												<td><% displayConcept(164952, true, true) %></td>
+											</tr>
+											<tr>
+												<td>Discordant Couple</td>
+												<td><% displayConcept(6096, true, true) %></td>
+											</tr>
+											<tr>
+												<td>Partner referred for testing</td>
+												<td><% displayConcept(159381, true, true) %></td>
+											</tr>
+											<tr>
+												<td>TB Screening Results</td>
+												<td><% displayConcept(160108, true, true) %></td>
+											</tr>
+										</table>
+									</div>
+									<div class="panel panel-warning bg-7">
+										<table class="table table-borderless table-fit">
+											<tr>
+												<th colspan="2">LINKAGE</th>
+											</tr>
+											<tr>
+												<td>ART Start Date</td>
+												<td><% displayConcept(159599) %></td>
+											</tr>
+											<tr>
+												<td>Facility Linked To</td>
+												<td><% displayConcept(162724) %></td>
+											</tr>
+											<tr>
+												<td>Health Worker Handed To</td>
+												<td><% displayConcept(1473) %></td>
+											</tr>
+											<tr>
+												<td>Date Enrolled</td>
+												<td><% displayConcept(160555) %></td>
+											</tr>
+											<tr>
+												<td>Return Visit Date</td>
+												<td><% displayConcept(5096) %></td>
+											</tr>
+										</table>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="tab-pane" id="medication">
+							<div class="col-md-12 row"><br>
+								<div class="panel panel-body bg-7">
+									<div class="col-md-3 col-xs-6">Previous ARV Treatment</div>
+									<div class="col-md-9 col-xs-6"><% displayConcept(160108, false, true) %></div>
+								</div>
+								<div class="panel panel-body bg-10">
+									<div class="col-md-3 col-xs-6"><b>ARV Adherence Past Month</b></div>
+									<div class="col-md-9 col-xs-6"><% displayConcept(1658, false, true) %></div>
+								</div>
+								<div class="panel panel-warning bg-7">
+									<div class="table-responsive">
+										<table class="table table-borderless table-fit">
+											<tr>
+												<th colspan="4">Medication Dispensed</th>
+											</tr>
+											<tr>
+												<th>Medication</th>
+												<th>Strength</th>
+												<th>Indication</th>
+												<th>Date Recorded</th>
+											</tr>
+											<% displayMeds(160741) %>
+										</table>
+									</div>
+								</div>
+								<div class="panel panel-warning bg-light-gray-1">
+									<div class="table-responsive">
+										<table class="table table-borderless table-fit">
+											<tr>
+												<th colspan="4">Allergy List</th>
+											</tr>
+											<% if (allergies) { %>
+											<tr>
+												<th>Allergen</th>
+												<th>Reaction</th>
+												<th>Severity</th>
+												<th>Date Recorded</th>
+											</tr>
+											<% displayAllergies() %>
+											<% } else { %>
+											<tr>
+												<td>None recorded</td>
+											</tr>
+											<% } %>
+										</table>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="tab-pane" id="care"><br>
+							<div class="col-md-12 row">
+								<div class="panel panel-warning bg-light-gray-1">
+									<div class="table-responsive">
+										<table class="table table-borderless table-fit">
+											<tr>
+												<th>Treatment Supporter Name</th>
+												<td><% displayConcept(160638, false, false) %></td>
+											</tr>
+											<tr>
+												<th>Relationship</th>
+												<td><% displayConcept(160640, false, false) %></td>
+											</tr>
+											<tr>
+												<th>Treatment Supporter Telephone number</th>
+												<td><% displayConcept(160642, false, false) %></td>
+											</tr>
+										</table>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
+
+<%
+	def displayConcept(conceptId, isBold = true, withDate = true, withRow=false, isFlowSheet=false) {
+		cells = 0;
+		found = false;
+
+		for (row in obs) {
+			colConcept = row.getColumnValue("concept");
+			colValue = util.format(row.getColumnValue("valNum"));
+			if (!colValue) {
+				colValue = row.getColumnValue("valText");
+				if (!colValue) {
+					colValue = row.getColumnValue("valCoded");
+					if (!colValue) {
+						colValue = util.format(Date.parse('yyyy-MM-dd', row.getColumnValue("valDate")), 'dd-MMM-yyyy');
+					}
+				}
+			}
+
+			if ( colConcept == conceptId ) {
+				values= colValue.split(',');
+				found = true;
+
+				if (isFlowSheet) {
+					colDate = row.getColumnValue("obsDate");
+					dates = colDate.split(',');
+					for (val in values) {
+						colDate = Date.parse('yyyy-MM-dd', dates[cells]);
+						colDate = util.format(colDate, 'dd-MMM-yyyy');
+						cells++;
+						println "<td valign=\"top\" style=\"text-align: center;\">";
+						println val + "<br>";
+						println "<small class=\"text-brown\">(" + colDate + ")</small>";
+						println "</td>";
+					}
+
+					for (i = cells; i < 5; i++) {
+						println "<td></td>";
+					}
+				} else {
+					for (val in values) {
+						cells++;
+						if (withRow) {print "<tr><td>";}
+						println isBold ? "<b>" + val + "</b>" : val;
+						if (withRow) {print "</td>";}
+						if (withDate) {
+							colDate = Date.parse('yyyy-MM-dd', row.getColumnValue("obsDate"));
+							colDate = util.format(colDate, 'dd-MMM-yyyy');
+							if (withRow) {
+								println "<td>" + colDate + "</td></tr>";
+							} else {
+								println "<small class=\"text-brown\">(" + colDate + ")</small>";
+							}
+						}
+					}
+				}
+			}
+		}
+		if (!found) {
+			if (isFlowSheet) {
+				for (i = cells; i < 5; i++) {
+					println "<td></td>";
+				}
+			} else {
+				if (withRow) {print "<tr><td>";}
+				println isBold ? "<b>NO EMR DATA</b>" : "NO EMR DATA";
+				if (withRow) {print "</td>";}
+			}
+		}
+	}
+%>
+
+<%
+	def displayAllergies() {
+		found = false;
+		for (row in allergies) {
+			found = true;
+			colAllergy = row.getColumnValue("allergy");
+			colReaction = row.getColumnValue("reaction");
+			colSeverity = row.getColumnValue("severity");
+			colDate = row.getColumnValue("aDate");
+			colDate = util.format(colDate, 'dd-MMM-yyyy');
+
+			println "<tr><td>" + colAllergy + "</td>"
+			println "<td>" + colReaction + "</td>"
+			println "<td>" + colSeverity + "</td>"
+			println "<td>" + colDate + "</td></tr>"
+		}
+
+		if (!found) {
+			println "<tr><td>NO EMR DATA</td></tr>"
+		}
+	}
+%>
+
+<%
+	def displayMeds(conceptId) {
+		found = false;
+		for (row in obs) {
+			colConcept = row.getColumnValue("concept");
+
+			if ( colConcept == conceptId ) {
+				found = true;
+				colMed = row.getColumnValue("valText");
+				colStrength = row.getColumnValue("valNum");
+				colIndication = row.getColumnValue("valCoded");
+				colDate = Date.parse('yyyy-MM-dd', row.getColumnValue("obsDate"));
+				colDate = util.format(colDate, 'dd-MMM-yyyy');
+
+				println "<tr><td>" + colMed + "</td>"
+				println "<td>" + colStrength + "</td>"
+				println "<td>" + colIndication + "</td>"
+				println "<td>" + colDate + "</td></tr>"
+			}
+		}
+
+		if (!found) {
+			println "<tr><td>NO EMR DATA</td></tr>"
+		}
+	}
+%>​
