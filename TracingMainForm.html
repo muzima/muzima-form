@@ -22,8 +22,9 @@
     <div class="section">
         <h3>Demografia</h3>
         <div class="form-group">
-            <input class="form-control" id="patient.uuid"
-                   name="patient.uuid" type="hidden" readonly="readonly">
+            <input class="form-control" id="patient.uuid" name="patient.uuid" type="hidden" readonly="readonly">
+			<input class="form-control" name="patient.tagName" name="patient.tagName" value="traced" type="hidden">
+			<input class="form-control" name="patient.tagUuid" name="patient.tagUuid" value="32809438-e45b-11e9-b737-c8d3ffd477a6f" type="hidden">
         </div>
         <div class="form-group">
             <label for="patient.names">Nome do Paciente:</label>
@@ -58,7 +59,7 @@
                    name="encounter.encounter_datetime" type="text" readonly="readonly"
                    required="required">
         </div>
-		<div class="form-group">
+		<div class="form-group type_of_visit">
 			<label for="obs.type_of_visit">
 			TIPO DE VISITA<span class="required">*</span>
 			</label>
@@ -354,7 +355,7 @@
             <label for="encounter.location_id">Unidade Sanitaria:<span class="required">*</span></label>
             <input class="form-control valid-location-only" id="encounter.location_id" type="text" placeholder="Start typing something..." required="required" readonly>
             <input class="form-control" name="encounter.location_id" type="hidden">
-        </div>		
+        </div>	
     </div>
 </form>
 </body>
@@ -478,16 +479,33 @@ $(document).ready(function () {
 	});
 	
    var patientuuid = $('#patient\\.uuid').val();
-   var historyByData = htmlDataStore.getObsByConceptId(patientuuid,23842);  
-   historyByData = JSON.parse(historyByData);
-   var historyByDataSize = historyByData.length-1;
-   if(historyByDataSize==-1){
-   	  $("#obs\\.attempt_number option[value='6440^DATA DA PRIMEIRA TENTATIVA DE BUSCA^99DCT']").attr('selected','selected'); 
-   }else if(historyByData[historyByData.length-1].valueCoded=="DATA DA PRIMEIRA TENTATIVA DE BUSCA"){
-	  $("#obs\\.attempt_number option[value='6254^DATA DA SEGUNDA TENTATIVA DE BUSCA^99DCT").attr('selected','selected');
-   }else if(historyByData[historyByData.length-1].valueCoded=="DATA DA SEGUNDA TENTATIVA DE BUSCA"){
-	  $("#obs\\.attempt_number option[value='6255^DATA DA TERCEIRA TENTATIVA DE BUSCA^99DCT']").attr('selected','selected');
-   }
+   var attemptNumber = htmlDataStore.getObsByConceptId(patientuuid,23842);  
+   attemptNumber = JSON.parse(attemptNumber);
+   var attemptcount = attemptNumber.length-1;
+   if(attemptcount==-1){
+	  $("#obs\\.attempt_number").val("6440^DATA DA PRIMEIRA TENTATIVA DE BUSCA^99DCT");
+	  $('#obs\\.attempt_number').prop('disabled', 'disabled');
+   }else if(attemptNumber[attemptNumber.length-1].valueCoded=="DATA DA PRIMEIRA TENTATIVA DE BUSCA"){
+	  $("#obs\\.attempt_number").val("6254^DATA DA SEGUNDA TENTATIVA DE BUSCA^99DCT");
+	  $('#obs\\.attempt_number').prop('disabled', 'disabled');
+   }else if(attemptNumber[attemptNumber.length-1].valueCoded=="DATA DA SEGUNDA TENTATIVA DE BUSCA"){
+	  $("#obs\\.attempt_number").val("6255^DATA DA TERCEIRA TENTATIVA DE BUSCA^99DCT^99DCT");
+	  $('#obs\\.attempt_number').prop('disabled', 'disabled');
+   } 
+	
+   var patientuuid = $('#patient\\.uuid').val();
+   var visitType = htmlDataStore.getObsByConceptId(patientuuid,1981);  
+   visitType = JSON.parse(visitType);
+   var visitTypeSize = visitType.length-1;
+   if(parseInt(visitTypeSize)>-1){
+		if(visitType[visitType.length-1].valueCoded=="VISITA DE APOIO" || visitType[visitType.length-1].valueCoded=="SUPPORT VISIT"){
+			$("#obs\\.type_of_visit").val("2161^VISITA DE APOIO^99DCT");
+			$('#obs\\.type_of_visit').prop('disabled', 'disabled');
+		}else if(visitType[visitType.length-1].valueCoded=="VISITA DE BUSCA" || visitType[visitType.length-1].valueCoded=="MISSED VISIT"){
+			$("#obs\\.type_of_visit").val("2160^VISITA DE BUSCA^99DCT");
+			$('#obs\\.type_of_visit').prop('disabled', 'disabled');
+		}
+	}
 });
 </script>
 </html>

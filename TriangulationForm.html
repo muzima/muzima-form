@@ -24,6 +24,8 @@
         <div class="form-group">
             <input class="form-control" id="patient.uuid"
                    name="patient.uuid" type="hidden" readonly="readonly">
+			<input class="form-control" name="patient.tagName" name="patient.tagName" value="triangulated" type="hidden">
+			<input class="form-control" name="patient.tagUuid" name="patient.tagUuid" value="8e9f1920-e5db-11e9-9098-c8d3ffd477a6" type="hidden">
         </div>
         <div class="form-group">
             <label for="patient.names">Nome do Paciente:</label>
@@ -72,6 +74,17 @@
     </div>
     <div class="section">
         <h3>SECÇÃO DE TRIANGULAÇÃO</h3>
+		<div class="form-group">
+			<label for="obs.type_of_visit">
+			TIPO DE VISITA<span class="required">*</span>
+			</label>
+			<select class="form-control" id="obs.type_of_visit" required
+				name="obs.type_of_visit" data-concept="1981^TIPO DE ATENDIMENTO FAMILIAR^99DCT">
+				<option value="">...</option>
+				<option value="2161^VISITA DE APOIO^99DCT">VISITA DE APOIO</option>
+				<option value="2160^VISITA DE BUSCA^99DCT">VISITA DE BUSCA</option>
+			</select>
+        </div> 
 		<div class="form-group">
 			<label for="obs.patient_triangulation_status">
 			Estado do paciente de triangulação<span class="required">*</span>
@@ -125,21 +138,83 @@
 				<label for="obs.reason_for_visit">
 				Motivo de visita<span class="required">*</span>
 				</label>
-				<select class="form-control" id="obs.reason_for_visit" required
-					name="obs.reason_for_visit" data-concept="2172^MOTIVO DE VISITA/BUSCA DO PACIENTE^99DCT">
-					<option value="">...</option>
-					<option value="2163^TESTADO HIV+ MAS SEM ABERTURA DE PROCESSO CLINICO NO SERVICO TARV^99DCT">Testado + sem abertura de processo</option>
-					<option value="2164^SEM ACONSELHAMENTO PRE-TARV^99DCT">Sem aconselhamento</option>
-					<option value="2165^SEM PRIMEIRA CONSULTA (TRIAGEM)^99DCT">Sem 1ª consulta (triagem)</option>
-					<option value="2166^SEM CD4 INICIAL^99DCT">Sem CD4 inicial</option>
-					<option value="2167^RESULTADO DE CD4 SEM CONSULTA^99DCT">Resultado CD4 sem consulta </option>
-					<option value="1359^ELEGÍVEL^99DCT">Elegivel para TARV</option>
-					<option value="2168^AUSENTE^99DCT">Ausente ao levantamento do TARV</option>
-					<option value="2169^BACILOSCOPIA POSITIVA SEM TRATAMENTO^99DCT">BK+ sem tratamento</option>
-					<option value="2170^CRIANÇA EXPOSTA^99DCT">Criança exposta</option>
-					<option value="2161^VISITA DE APOIO^99DCT">Visita de apoio</option>
-					<option value="2171^OUTRO MOTIVO DE VISITA AO PACIENTE^99DCT">Outros</option>
-				</select>
+				<div class="form-group">
+					<label class="font-normal">
+						<input id="obs.reason_for_visit.testado" type="checkbox" name="obs.reason_for_visit"
+						data-concept="2172^MOTIVO DE VISITA/BUSCA DO PACIENTE^99DCT" value="2163^TESTADO HIV+ MAS SEM ABERTURA DE PROCESSO CLINICO NO SERVICO TARV^99DCT">
+						Testado + sem abertura de processo
+					</label>
+				</div>
+				<div class="form-group">
+					<label class="font-normal">
+						<input id="obs.reason_for_visit.aconselhamento" type="checkbox" name="obs.reason_for_visit"
+						data-concept="2172^MOTIVO DE VISITA/BUSCA DO PACIENTE^99DCT" value="2164^SEM ACONSELHAMENTO PRE-TARV^99DCT">
+						Sem aconselhamento
+					</label>
+				</div>
+				<div class="form-group">
+					<label class="font-normal">
+						<input id="obs.reason_for_visit.triagem" type="checkbox" name="obs.reason_for_visit"
+						data-concept="2172^MOTIVO DE VISITA/BUSCA DO PACIENTE^99DCT" value="2165^SEM PRIMEIRA CONSULTA (TRIAGEM)^99DCT">
+						Sem 1ª consulta (triagem)
+					</label>
+				</div>
+				<div class="form-group">
+					<label class="font-normal">
+						<input id="obs.reason_for_visit.inicial" type="checkbox" name="obs.reason_for_visit"
+						data-concept="2172^MOTIVO DE VISITA/BUSCA DO PACIENTE^99DCT" value="2166^SEM CD4 INICIAL^99DCT">
+						Sem CD4 inicial
+					</label>
+				</div>
+				<div class="form-group">
+					<label class="font-normal">
+						<input id="obs.reason_for_visit.consulta" type="checkbox" name="obs.reason_for_visit"
+						data-concept="2172^MOTIVO DE VISITA/BUSCA DO PACIENTE^99DCT" value="2167^RESULTADO DE CD4 SEM CONSULTA^99DCT">
+						Resultado CD4 sem consulta
+					</label>
+				</div>
+				<div class="form-group">
+					<label class="font-normal">
+						<input id="obs.reason_for_visit.para" type="checkbox" name="obs.reason_for_visit"
+						data-concept="2172^MOTIVO DE VISITA/BUSCA DO PACIENTE^99DCT" value="1359^ELEGÍVEL^99DCT">
+						Elegivel para TARV
+					</label>
+				</div>
+				<div class="form-group">
+					<label class="font-normal">
+						<input id="obs.reason_for_visit.levantamento" type="checkbox" name="obs.reason_for_visit"
+						data-concept="2172^MOTIVO DE VISITA/BUSCA DO PACIENTE^99DCT" value="2168^AUSENTE^99DCT">
+						Ausente ao levantamento do TARV
+					</label>
+				</div>
+				<div class="form-group">
+					<label class="font-normal">
+						<input id="obs.reason_for_visit.tratamento" type="checkbox" name="obs.reason_for_visit"
+						data-concept="2172^MOTIVO DE VISITA/BUSCA DO PACIENTE^99DCT" value="2169^BACILOSCOPIA POSITIVA SEM TRATAMENTO^99DCT">
+						BK+ sem tratamento
+					</label>
+				</div>
+				<div class="form-group">
+					<label class="font-normal">
+						<input id="obs.reason_for_visit.exposta" type="checkbox" name="obs.reason_for_visit"
+						data-concept="2172^MOTIVO DE VISITA/BUSCA DO PACIENTE^99DCT" value="2170^CRIANÇA EXPOSTA^99DCT">
+						Criança exposta
+					</label>
+				</div>
+				<div class="form-group">
+					<label class="font-normal">
+						<input id="obs.reason_for_visit.apoio" type="checkbox" name="obs.reason_for_visit"
+						data-concept="2172^MOTIVO DE VISITA/BUSCA DO PACIENTE^99DCT" value="2161^VISITA DE APOIO^99DCT">
+						Visita de apoio
+					</label>
+				</div>
+				<div class="form-group">
+					<label class="font-normal">
+						<input id="obs.reason_for_visit.outros" type="checkbox" name="obs.reason_for_visit"
+						data-concept="2172^MOTIVO DE VISITA/BUSCA DO PACIENTE^99DCT" value="2171^OUTRO MOTIVO DE VISITA AO PACIENTE^99DCT">
+						Outros
+					</label>
+				</div>				
 			</div> 
 			<div class="form-group sub-section" id="other_reason_for_visit">
 				<label class="font-normal" for="obs.other_reason_for_visit">
@@ -166,11 +241,12 @@
 					Profissional que refere:<span class="required"></span>
 				</label>
 					<input class="form-control" id="obs.professional_referral_name" type="text" required="required"
-					name="obs.professional_referral_name" data-concept="23853^Professional Referral Name^99DCT" readonly="readonly">
+					name="obs.professional_referral_name" data-concept="23853^NOME DO PROFISSIONAL QUE REFERIU^99DCT" readonly="readonly">
 			</div>
 			<div class="form-group sub-section">
 				<label for="obs.health_worker">Nome do trabalhador de campo:<span class="required"></span></label>
-					<input class="form-control" id="obs.health_worker" name="obs.health_worker" type="text" required="required" data-concept="1912^TRABALHADOR DE SAÚDE^99DCT" placeholder="Start typing something...">
+					<input class="form-control" id="temp.health_worker" name="temp.health_worker" type="text" required="required" placeholder="Start typing something...">
+				    <input class="form-control" id="obs.health_worker_id" name="obs.health_worker_id" type="text" required="required" data-concept="1912^TRABALHADOR DE SAÚDE^99DCT" readonly>
 			</div>
 			<div class="form-group" id="home_visit_date">
 				<label for="obs.home_visit_date">
@@ -183,16 +259,16 @@
 		</div>
 		<div id="missed_consultation_div">
 			<div class="form-group" id="missed_consultation">
-				<label for="obs.missed_consultation">
+				<label for="temp.missed_consultation">
 					Data da consulta perdida:<span class="required"></span>
 				</label>
-				 <input class="form-control" id="obs.missed_consultation" name="obs.missed_consultation" type="text" readonly="readonly">
+				 <input class="form-control" id="temp.missed_consultation" name="temp.missed_consultation" type="text" readonly="readonly">
 			</div>
 			<div class="form-group" id="missed_consultation_days">
-				<label for="obs.missed_consultation_days">
+				<label for="temp.missed_consultation_days">
 					Diferença dias:<span class="required"></span>
 				</label>
-				 <input class="form-control" id="obs.missed_consultation_days" name="obs.missed_consultation_days" type="text" readonly="readonly">
+				 <input class="form-control" id="temp.missed_consultation_days" name="temp.missed_consultation_days" type="text" readonly="readonly">
 			</div>
 	    </div>
 		<div class="form-group" id="return_visit_date">
@@ -255,14 +331,14 @@
     });    
     $('#obs\\.reason_for_not_tracing_patient\\.other').trigger('change');
 	   
-	$('#obs\\.reason_for_visit').change(function(){
-        if($(this).val() == "2171^OUTRO MOTIVO DE VISITA AO PACIENTE^99DCT"){
+	$('#obs\\.reason_for_visit\\.outros').change(function(){
+        if($(this).prop( "checked" )){
             $('#other_reason_for_visit').show();
         } else{
 			$('#other_reason_for_visit').hide();
 		}
     });    
-    $('#obs\\.reason_for_visit').trigger('change');
+    $('#obs\\.reason_for_visit\\.outros').trigger('change');
 	   
 	$('#obs\\.patient_triangulation_status').change(function(){
         if($(this).val() == "23846^Need Outreach^99DCT"){
@@ -283,7 +359,7 @@
     document.setupValidationForLocation("$('#encounter\\.location_id').val()","encounter\\.location_id");
     document.setupValidationForProvider("$('#encounter\\.provider_id_select').val()","encounter\\.provider_id");
 		   
-	document.setupAutoCompleteDataForTheForm('obs\\.health_worker');
+	document.setupAutoCompleteDataForTheForm('temp\\.health_worker');
 	document.setupAutoCompleteDataForTheForm('obs\\.professional_referral_name');	  
 	   	   
 /* Start - Toggle validateDeliveryDate date validation */
@@ -354,19 +430,32 @@ var historyByDataSize = historyByData.length-1;
 if(historyByDataSize==-1){
   $("#missed_consultation_div").hide(); 
 } else {
-  var missedDate = new Date(historyByData[historyByData.length-1].valueText.replace( /(\d{2})-(\d{2})-(\d{4})/, "$2/$1/$3"));
+  var missedDate = new Date(historyByData[historyByData.length-1].obsDate.replace( /(\d{2})-(\d{2})-(\d{4})/, "$2/$1/$3"));
   var today = new Date();
   var milliSecondsInAYear = 1000 * 60 * 60 * 24;
   var days = (today - missedDate) / milliSecondsInAYear;
   if(days>0){
 	  $("#missed_consultation_div").show(); 
-	  $("#obs\\.missed_consultation_days").val(Math.floor(days));
-	  $("#obs\\.missed_consultation").val(historyByData[historyByData.length-1].valueText);
+	  $("#temp\\.missed_consultation_days").val(Math.floor(days));
+	  $("#temp\\.missed_consultation").val(historyByData[historyByData.length-1].obsDate);
   }else{
 	  $("#missed_consultation_div").hide();
   }
+} 
+
+var cohortMembership = htmlDataStore.getCohortMembershipByPatientUuid(patientuuid);
+var cohortMembershipJson =  JSON.parse(cohortMembership);
+if(parseInt(cohortMembershipJson.length)==1){
+	$.each(cohortMembershipJson, function (i,obj) {
+		if(obj.cohortName.includes("_SV")){
+			$("#obs\\.type_of_visit").val("2161^VISITA DE APOIO^99DCT");
+			$('#obs\\.type_of_visit').prop('disabled', 'disabled');
+		}else if(obj.cohortName.includes("_LTFU")){
+			$("#obs\\.type_of_visit").val("2160^VISITA DE BUSCA^99DCT");
+			$('#obs\\.type_of_visit').prop('disabled', 'disabled');
+		}
+	});
 }
-	   
 });
 
 document.setupAutoCompleteDataForTheForm = function(elementName) {
@@ -389,11 +478,17 @@ document.setupAutoCompleteForTheForm = function(elementName, providers) {
 			$.each(providers, function(i, elem) {
 				if (elem.val == provider_val) {
 					$("#" + elementName).val(elem.label);
+					if(elementName == 'temp\\.health_worker'){
+						$("#obs\\.health_worker_id").val(elem.val);
+					}
 				}
 			});
 		},
 		select: function(event, ui) {
 			$("#" + elementName).val(ui.item.label);
+			if(elementName == 'temp\\.health_worker'){
+				$("#obs\\.health_worker_id").val(ui.item.val);
+			}
 			return false;
 		}
 	});
