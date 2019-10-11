@@ -485,10 +485,10 @@ $(document).ready(function () {
    if(attemptcount==-1){
 	  $("#obs\\.attempt_number").val("6440^DATA DA PRIMEIRA TENTATIVA DE BUSCA^99DCT");
 	  $('#obs\\.attempt_number').prop('disabled', 'disabled');
-   }else if(attemptNumber[attemptNumber.length-1].valueCoded=="DATA DA PRIMEIRA TENTATIVA DE BUSCA"){
+   }else if(attemptNumber[0].valueCoded=="DATA DA PRIMEIRA TENTATIVA DE BUSCA"){
 	  $("#obs\\.attempt_number").val("6254^DATA DA SEGUNDA TENTATIVA DE BUSCA^99DCT");
 	  $('#obs\\.attempt_number').prop('disabled', 'disabled');
-   }else if(attemptNumber[attemptNumber.length-1].valueCoded=="DATA DA SEGUNDA TENTATIVA DE BUSCA"){
+   }else if(attemptNumber[0].valueCoded=="DATA DA SEGUNDA TENTATIVA DE BUSCA"){
 	  $("#obs\\.attempt_number").val("6255^DATA DA TERCEIRA TENTATIVA DE BUSCA^99DCT^99DCT");
 	  $('#obs\\.attempt_number').prop('disabled', 'disabled');
    } 
@@ -498,10 +498,10 @@ $(document).ready(function () {
    visitType = JSON.parse(visitType);
    var visitTypeSize = visitType.length-1;
    if(parseInt(visitTypeSize)>-1){
-		if(visitType[visitType.length-1].valueCoded=="VISITA DE APOIO" || visitType[visitType.length-1].valueCoded=="SUPPORT VISIT"){
+		if(visitType[0].valueCoded=="VISITA DE APOIO" || visitType[0].valueCoded=="SUPPORT VISIT"){
 			$("#obs\\.type_of_visit").val("2161^VISITA DE APOIO^99DCT");
 			$('#obs\\.type_of_visit').prop('disabled', 'disabled');
-		}else if(visitType[visitType.length-1].valueCoded=="VISITA DE BUSCA" || visitType[visitType.length-1].valueCoded=="MISSED VISIT"){
+		}else if(visitType[0].valueCoded=="VISITA DE BUSCA" || visitType[0].valueCoded=="MISSED VISIT"){
 			$("#obs\\.type_of_visit").val("2160^VISITA DE BUSCA^99DCT");
 			$('#obs\\.type_of_visit').prop('disabled', 'disabled');
 		}

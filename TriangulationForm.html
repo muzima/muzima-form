@@ -437,7 +437,7 @@ if(historyByDataSize==-1){
   if(days>0){
 	  $("#missed_consultation_div").show(); 
 	  $("#temp\\.missed_consultation_days").val(Math.floor(days));
-	  $("#temp\\.missed_consultation").val(historyByData[historyByData.length-1].obsDate);
+	  $("#temp\\.missed_consultation").val(historyByData[0].obsDate);
   }else{
 	  $("#missed_consultation_div").hide();
   }
