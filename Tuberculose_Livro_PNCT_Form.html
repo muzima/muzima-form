@@ -1,0 +1,436 @@
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/muzima.css" rel="stylesheet">
+    <link href="css/ui-darkness/jquery-ui-1.10.4.custom.min.css" rel="stylesheet">
+
+    <script src="js/jquery.min.js"></script>
+    <script src="js/jquery-ui-1.10.4.custom.min.js"></script>
+    <script src="js/jquery.validate.min.js"></script>
+    <script src="js/additional-methods.min.js"></script>
+    <script src="js/muzima.js"></script>
+    <title>TUBERCULOSE: LIVRO</title>
+    <style>
+    </style>
+</head>
+<body class="col-md-10 col-md-offset-1">
+    <div id="pre_populate_data">
+    </div>
+    <form id="tuberculose_livro_form" name="tuberculose_livro_form">
+
+        <h2 class="text-center">FGH TUBERCULOSE: LIVRO V1</h2>
+
+        <div class="section">
+            <h3>FICHA DE TUBERCULOSE</h3>
+            <div class="form-group">
+                <input class="form-control" id="patient.uuid"
+                       name="patient.uuid" type="hidden" readonly="readonly">
+            </div>
+            <div class="form-group">
+                <label for="patient.full_name">Nome:</label>
+                <input class="form-control" id="patient.full_name" name="patient.family_name" type="text"
+                       readonly="readonly">
+            </div>
+            <div class="form-group">
+                <label for="patient.sex">Sexo:</label>
+                <select class="form-control" id="patient.sex" name="patient.sex" disabled="disabled">
+                    <option value="">...</option>
+                    <option value="M">M</option>
+                    <option value="F">F</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="patient.birth_date">Data Nascimento:</label>
+                <input class="form-control" id="patient.birth_date" name="patient.birth_date" type="text"
+                       readonly="readonly" value="">
+            </div>
+            <div class="form-group">
+                <label for="patient.age">Idade:</label>
+                <input class="form-control" id="patient.age" name="patient.age" type="text"
+                       readonly="readonly" value="">
+            </div>
+
+            <div class="form-group">
+                <label for="patient.addr.subregion">Morada (Bairro):</label>
+                <input class="form-control" id="patient.addr.subregion" name="patient.addr.subregion" type="text"
+                       readonly="readonly" value="">
+            </div>
+            <div class="form-group">
+                <label for="patient.addr.address1">Local de Referência:</label>
+                <input class="form-control" id="patient.addr.address1" name="patient.addr.address1" type="text"
+                       readonly="readonly" value="">
+            </div>
+            <div class="form-group">
+                <label for="patient.attr_11">Local de Trabalho:</label>
+                <input class="form-control" id="patient.attr_11" name="patient.attr_11" type="text"
+                       readonly="readonly" value="">
+            </div>
+            <div class="form-group">
+                <label for="patient.medical_record_number">NIT:</label>
+                <input class="form-control" id="patient.medical_record_number"
+                       name="patient.medical_record_number" type="text" readonly="readonly">
+            </div>
+        </div>
+        <div class="section">
+            <div class="form-group">
+                <label for="encounter.encounter_datetime">Data:<span class="required">*</span></label>
+                <input class="form-control datepicker nonFutureDate" id="encounter.encounter_datetime"
+                       name="encounter.encounter_datetime" type="text" readonly="readonly"
+                       required="required">
+            </div>
+            <div class="form-group">
+                <label for="encounter.location_id">Unidade Sanitária:<span class="required">*</span></label>
+                <input class="form-control" id="encounter.location_id" type="text" placeholder="Comece a digitar alguma coisa...">
+                <input class="form-control" name="encounter.location_id" type="hidden">
+            </div>
+
+            <div class="form-group">
+                <label for="encounter.provider_id_select">Provedor:<span class="required">*</span></label>
+                <input class="form-control" id="encounter.provider_id_select" type="text" placeholder="Comece a digitar alguma coisa...">
+                <input class="form-control" name="encounter.provider_id_select" type="hidden">
+            </div>
+            <div class="form-group">
+                <input class="form-control" id="encounter.form_uuid" name="encounter.form_uuid"
+                       type="hidden" required="required">
+            </div>
+        </div>
+        <div class="section">
+            <div class="form-group" id="hiv_referral_type">
+                <label for="obs.hiv_referral_type">Proveniência:</label>
+                <select class="form-control" id="obs.hiv_referral_type"
+                        name="obs.hiv_referral_type"
+                        data-concept="1594^ENTRY POINT INTO HIV CARE, REFERAL TYPE^99DCT">
+                    <option value="">...</option>
+                    <option value="978^SELF^99DCT">PROP</option>
+                    <option value="1596^EXTERNAL CONSULTATION^99DCT">CONS</option>
+                    <option value="1597^VOLUNTARY COUNCELING AND TESTING^99DCT">GATV/ATS/UATS</option>
+                    <option value="1797^DAY HOSPITAL^99DCT">HdD</option>
+                    <option value="5622^OTHER NON-CODED^99DCT">OUTRO</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <span><strong>Tipo de Tubeculose:</strong></span>
+                <fieldset name="1784^TYPE OF TUBERCULOSIS^99DCT">
+                        <label class="font-normal">
+                            <input name="tuberculosis_type" type="radio"
+                                   data-concept="1784^TYPE OF TUBERCULOSIS^99DCT"
+                                   value="42^PNEUMONIA, TUBERCULOUS^99DCT">
+                            Pulmonar
+                        </label>
+                        <label class="font-normal">
+                            <input name="tuberculosis_type" type="radio"
+                                   data-concept="1784^TYPE OF TUBERCULOSIS^99DCT"
+                                   value="1779^EXTRA-PULMONARY^99DCT">
+                            Extra-Pulmonar
+                        </label>
+                </fieldset>
+            </div>
+            <div class="form-group" id="tuberculosis_treatment_plan">
+                <label for="obs.tuberculosis_treatment_plan">Categoria:</label>
+                <select class="form-control" id="obs.tuberculosis_treatment_plan"
+                        name="obs.tuberculosis_treatment_plan"
+                        data-concept="1268^TUBERCULOSIS TREATMENT PLAN^99DCT">
+                    <option value="">...</option>
+                    <option value="1256^START DRUGS^99DCT">NOVO</option>
+                    <option value="1705^RESTART^99DCT">RECAIDA</option>
+                    <option value="2055^TREATMENT AFTER DROP^99DCT">Tto. APOS ABANDONO</option>
+                    <option value="843^REGIMEN FAILURE^99DCT">FALÊNCIA TERAPÉUTICA</option>
+                    <option value="1369^TRANSFER FROM OTHER FACILITY^99DCT">TRANSFERIDO DE</option>
+                    <option value="5622^OTHER NON-CODED^99DCT">OUTROS</option>
+                </select>
+            </div>
+        </div>
+        <div class="section">
+            <h3>Tratamento da Tuberculose</h3>
+
+            <div class="form-group">
+                <label for="obs.tuberculosis_treatment_start_date">Data Inicio:</label>
+                <input class="form-control datepicker nonFutureDate" data-concept="1113^TUBERCULOSIS DRUG TREATMENT START DATE^99DCT"
+                       id="obs.tuberculosis_treatment_start_date" name="obs.tuberculosis_treatment_start_date" type="text"
+                       readonly="readonly">
+            </div>
+            <div class="form-group" id="tuberculosis_treatment">
+                <label for="obs.tuberculosis_treatment">Regime:</label>
+                <select class="form-control" id="obs.tuberculosis_treatment"
+                        name="obs.tuberculosis_treatment"
+                        data-concept="1270^TUBERCULOSIS TREATMENT^99DCT">
+                    <option value="">...</option>
+                    <option value="1131^RIFAMPICIN ISONIAZID PYRAZINAMIDE AND ETHAMBUTOL^99DCT">4-DFC(EHRZ)</option>
+                    <option value="2057^SHRZE^99DCT">SHRZE</option>
+                    <option value="768^RIFAMPICIN ISONIAZID AND PYRAZINAMIDE^99DCT">HRZ(3DFC)</option>
+                    <option value="1194^RIFAMPICIN AND ISONIAZID^99DCT">HR</option>
+                    <option value="1108^ETHAMBUTOL AND ISONIZAID^99DCT">2DFC</option>
+                    <option value="656^ISONIAZID^99DCT">INH</option>
+                </select>
+            </div>
+            <div class="form-group" id="transfer_facility_name">
+                <label>U.S. da Fase de Manutenção:</label>
+                <input class="form-control" name="obs.transfer_facility_name"
+                       id="obs.transfer_facility_name" data-concept="2059^TRANSFERRED OUT TO ANOTHER FACILITY, FACILITY NAME^99DCT" >
+            </div>
+        </div>
+        <div class="section">
+            <h3>HIV</h3>
+            <div class="form-group">
+                <span><strong>Resultado do teste:</strong></span>
+                <fieldset name="1040^HIV RAPID TEST 1, QUALITATIVE^99DCT">
+                    <label class="font-normal">
+                        <input name="hiv_test_qualitative" type="radio"
+                               data-concept="1040^HIV RAPID TEST 1, QUALITATIVE^99DCT"
+                               value="703^POSITIVE^99DCT">
+                        Positivo
+                    </label>
+                    <label class="font-normal">
+                        <input name="hiv_test_qualitative" type="radio"
+                               data-concept="1040^HIV RAPID TEST 1, QUALITATIVE^99DCT"
+                               value="664^NEGATIVE^99DCT">
+                        Negativo
+                    </label>
+                </fieldset>
+            </div>
+        </div>
+        <div class="section">
+            <div class="form-group">
+                <span><strong>Tratamento profilactico com CTZ:</strong></span>
+                <fieldset name="6121^COTRIMOXAZOLE PROPYLAXIS^99DCT">
+                    <label class="font-normal">
+                        <input name="cotrimoxazole_propylaxis" type="radio"
+                               data-concept="6121^COTRIMOXAZOLE PROPYLAXIS^99DCT"
+                               value="1065^YES^99DCT">
+                        Sim
+                    </label>
+                    <label class="font-normal">
+                        <input name="cotrimoxazole_propylaxis" type="radio"
+                               data-concept="6121^COTRIMOXAZOLE PROPYLAXIS^99DCT"
+                               value="1066^NO^99DCT">
+                        Não
+                    </label>
+                </fieldset>
+            </div>
+            <div class="form-group">
+                <span><strong>Tratamento profilactico com INH:</strong></span>
+                <fieldset name="6122^ISONIAZID PROPYLAXIS^99DCT">
+                    <label class="font-normal">
+                        <input name="isoniazid_propylaxis" type="radio"
+                               data-concept="6122^ISONIAZID PROPYLAXIS^99DCT"
+                               value="1065^YES^99DCT">
+                        Sim
+                    </label>
+                    <label class="font-normal">
+                        <input name="isoniazid_propylaxis" type="radio"
+                               data-concept="6122^ISONIAZID PROPYLAXIS^99DCT"
+                               value="1066^NO^99DCT">
+                        Não
+                    </label>
+                </fieldset>
+            </div>
+        </div>
+        <div class="section">
+            <h3>H.d.D</h3>
+
+            <div class="form-group">
+                <label for="obs.referrals_ordered">Data referido para H.d.D:</label>
+                <input class="form-control datepicker nonFutureDate" data-concept="1272^REFERRALS ORDERED^99DCT"
+                       id="obs.referrals_ordered" name="obs.referrals_ordered" type="text"
+                       readonly="readonly">
+            </div>
+            <div class="form-group">
+                <label for="obs.historical_drug_start_date">Data inicio TARV:</label>
+                <input class="form-control datepicker nonFutureDate" data-concept="1190^HISTORICAL DRUG START DATE^99DCT"
+                       id="obs.historical_drug_start_date" name="obs.historical_drug_start_date" type="text"
+                       readonly="readonly">
+            </div>
+        </div>
+        <div class="section">
+            <h3>Quimio-profilaxia nas criancas contacto</h3>
+
+            <div class="form-group">
+                <label for="no_of_children">Quantas criancas menores de 5 anos iniciaram:</label>
+                <input class="form-control" id="no_of_children" name="no_of_children" type="number"
+                       placeholder="Por favor, indique o número de crianças"
+                       data-concept="5573^NUMBER OF CHILDREN^99DCT">
+            </div>
+        </div>
+        <div class="section">
+            <h3>Resultado das Baciloscópias</h3>
+
+            <div class="section repeat sputum_smear_results" id="sputum_smear_results" data-name="sputum_smear_results"
+                 data-repeatparams='{"max":5, "min":3}'>
+                <div class="form-group">
+                    <label class="font-normal" for="obs.bailey_months">Meses:</label>
+                    <select class="form-control" id="obs.bailey_months"
+                            name="obs.bailey_months"
+                            data-concept="1515^BAILEY MONTHS^99DCT">
+                        <option value="">...</option>
+                        <option value="0">Bk inicial</option>
+                        <option value="2">2 meses</option>
+                        <option value="3">3 meses</option>
+                        <option value="5">5 meses</option>
+                        <option value="7">7 meses</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="font-normal" for="obs.sputum_bacilli">Resul.:</label>
+                    <select class="form-control" id="obs.sputum_bacilli"
+                            name="obs.sputum_bacilli"
+                            data-concept="307^SPUTUM FOR ACID FAST BACILLI^99DCT">
+                        <option value="">...</option>
+                        <option value="703^POSITIVE^99DCT">Positivo</option>
+                        <option value="664^NEGATIVE^99DCT">Negativo</option>
+                        <option value="1067^UNKNOWN^99DCT">SI</option>
+                    </select>
+                </div>
+                <div class="sub-section" id="sputum_bacilli_result">
+                    <label class="font-normal" for="obs_datetime.sputum_bacilli_date_collected">Data:<span class="required">*</span></label>
+                    <input class="form-control datepicker nonFutureDate" id="obs_datetime.sputum_bacilli_date_collected"
+                           name="obs_datetime.sputum_bacilli_date_collected" type="text"
+                           data-obsdatetimefor="obs.sputum_bacilli" readonly="readonly">
+                </div>
+                <div class="form-group">
+                    <label class="font-normal" for="no_of_layers">Número:</label>
+                    <input class="form-control" id="no_of_layers" name="no_of_layers" type="number"
+                           data-concept="2056^NUMBER OF LAYERS^99DCT">
+                </div>
+                <div class="form-group">
+                    <label class="font-normal" for="weight_kgs">Peso:</label>
+                    <input class="form-control" id="weight_kgs" name="weight_kgs" type="number"
+                           data-concept="5089^WEIGHT (KG)^99DCT">
+                </div>
+            </div>
+        </div>
+        <div class="section">
+            <h3>Resultado do tratamento</h3>
+
+            <div class="form-group">
+                <label class="font-normal" for="obs.reason_tb_treatment_stopped">Resultado:</label>
+                <select class="form-control" id="obs.reason_tb_treatment_stopped"
+                        name="obs.reason_tb_treatment_stopped"
+                        data-concept="1269^REASON TUBERCULOSIS TREATMENT STOPPED^99DCT">
+                    <option value="">...</option>
+                    <option value="664^NEGATIVE^99DCT">CURADO</option>
+                    <option value="1267^COMPLETED^99DCT">Tto. COMPLETO</option>
+                    <option value="703^POSITIVE^99DCT">POSITIVO</option>
+                    <option value="1707^DROPPED FROM TREATMENT^99DCT">ABANDONO</option>
+                    <option value="1366^PATIENT HAS DIED^99DCT">ÓBITO</option>
+                    <option value="1706^TRANSFERRED OUT TO ANOTHER FACILITY^99DCT">TRANSFERIDO PARA</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="obs.tb_drug_treatment_end_date">Data:</label>
+                <input class="form-control datepicker nonFutureDate" data-concept="6120^TUBERCULOSIS DRUG TREATMENT END DATE^99DCT"
+                       id="obs.tb_drug_treatment_end_date" name="obs.tb_drug_treatment_end_date" type="text"
+                       readonly="readonly">
+            </div>
+    </div>
+        <div class="section">
+            <div class="form-group">
+                <label for="obs.other_problems">Notificação:</label>
+                <textarea class="form-control" id="obs.other_problems"
+                          name="obs.other_problems" type="text" required="required" rows="1"
+                          data-concept="1748^OTHER PROBLEMS^99DCT"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="obs.non_coded_diagnosis">Avaliação:</label>
+                <textarea class="form-control" id="obs.non_coded_diagnosis"
+                          name="obs.non_coded_diagnosis" type="text" required="required" rows="1"
+                          data-concept="1649^NON CODED DIAGNOSIS^99DCT"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="obs.non_coded_observations">Observacoes:</label>
+                <textarea class="form-control" id="obs.non_coded_observations"
+                          name="obs.non_coded_observations" type="text" required="required" rows="1"
+                          data-concept="5622^OTHER NON-CODED^99DCT"></textarea>
+            </div>
+        </div>
+    </form>
+</body>
+<script type="text/javascript">
+
+    $(document).ready(function () {
+
+        var dateFormat = "dd-mm-yy";
+        var currentDate = $.datepicker.formatDate(dateFormat, new Date());
+        var encounterDatetime = $('#encounter\\.encounter_datetime');
+        if ($(encounterDatetime).val() == "") {
+            $(encounterDatetime).val(currentDate);
+        }
+
+        document.setupAutoCompleteData('encounter\\.location_id');
+        document.setupAutoCompleteDataForProvider('encounter\\.provider_id_select');
+
+        $('#encounter\\.provider_id_select').change(function () {
+            if ($('#encounter\\.provider_id_select').val() === '') {
+                $('#encounter\\.provider_id').val('');
+                $('.show_provider_id_text').show();
+            }
+        });
+
+        document.setupValidationForProvider("$('#encounter\\.provider_id_select').val()","encounter\\.provider_id");
+        document.setupValidationForLocation("$('#encounter\\.location_id').val()","encounter\\.location_id");
+
+        $('#save_draft').click(function () {
+            $(this).prop('disabled', true);
+            document.saveDraft(this);
+            $(this).prop('disabled', false);
+        });
+
+        $('#submit_form').click(function () {
+            $(this).prop('disabled', true);
+            document.submit();
+            $(this).prop('disabled', false);
+        });
+
+        $('#tuberculose_livro_form').validate({
+            rules: {
+                weight_kgs: {
+                    number: true,
+                    range: [0, 250]
+                }
+            }
+        });
+
+        var getAgeInYears = function(){
+            var birthdate_arr = $birthdate.val().split("-");
+            var birthdate = new Date(birthdate_arr[2],birthdate_arr [1]-1,birthdate_arr[0]);
+            var today = new Date();
+            var milliSecondsInAYear = 1000 * 60 * 60 * 24 * 365.26;
+            return Math.round(Math.abs(birthdate.getTime() - today.getTime()) / milliSecondsInAYear);
+        };
+        var hide_count=0;
+        var hide = function($element){
+            var start = new Date();
+                $element.find('select').val('');
+                $element.find('input[type="number"]').val('').trigger('change');
+                $element.find('input[type="text"]').val('');
+                $element.find('input[type="radio"]').attr('checked',false);
+                $element.find('input[type="checkbox"]').attr('checked',false).trigger('change');
+                $element.hide();
+        };
+
+        var getCurrentFormattedDate = function(){
+            var d = new Date();
+            var curr_date = d.getDate();
+            var curr_month = d.getMonth();
+            var curr_year = d.getFullYear();
+            var months = ['01','02','03','04','05','06','07','08','09','10','11','12'];
+            return curr_date +'-'+months[curr_month] +'-' +curr_year;
+        };
+
+        $('#obs\\.sputum_bacilli').change(function(){
+            var sputum_bacilli_selected_value = $(this).val();
+
+            if(sputum_bacilli_selected_value == '703^POSITIVE^99DCT' || sputum_bacilli_selected_value == '664^NEGATIVE^99DCT' ){
+                $('#obs_datetime\\.sputum_bacilli_date_collected').show();
+                $('#sputum_bacilli_result').show();
+            }else{
+                hide($('#sputum_bacilli_result'));
+                hide($('#obs_datetime\\.sputum_bacilli_date_collected'));
+            }
+        });
+        $('#obs\\.sputum_bacilli').trigger('change');
+
+    });
+
+</script>
+</html>
