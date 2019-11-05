@@ -1,0 +1,153 @@
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/muzima.css" rel="stylesheet">
+    <link href="css/ui-darkness/jquery-ui-1.10.4.custom.min.css" rel="stylesheet">
+    <script src="js/jquery.min.js"></script>
+    <script src="js/jquery-ui-1.10.4.custom.min.js"></script>
+    <script src="js/jquery.validate.min.js"></script>
+    <script src="js/additional-methods.min.js"></script>
+    <script src="js/muzima.js"></script>
+
+    <title>Basic Encounter Form</title>
+</head>
+
+<body class="col-md-10 col-md-offset-1">
+<div id="pre_populate_data"></div>
+<h2 class="text-center">Basic Encounter Form</h2>
+
+<form id="Basic_encounter_form_with_prior_date_validation" name="Basic_encounter_form_with_prior_date_validation">
+    <div class="section">
+        <h3>Demographics</h3>
+
+        <div class="form-group">
+            <input class="form-control" id="patient.uuid" name="patient.uuid" type="hidden" readonly="readonly">
+        </div>
+        <div class="form-group">
+            <label for="patient.medical_record_number">Medical Record Number:</label>
+            <input class="form-control" id="patient.medical_record_number" name="patient.medical_record_number"
+                   type="text" readonly="readonly" disabled="disabled">
+        </div>
+        <div class="form-group">
+            <label for="patient.family_name">Family Name:</label>
+            <input class="form-control" id="patient.family_name" name="patient.family_name" type="text"
+                   readonly="readonly" disabled="disabled">
+        </div>
+        <div class="form-group">
+            <label for="patient.given_name">Given Name:</label>
+            <input class="form-control" id="patient.given_name" name="patient.given_name" type="text"
+                   readonly="readonly" disabled="disabled">
+        </div>
+        <div class="form-group">
+            <label for="patient.middle_name">Middle Name:</label>
+            <input class="form-control" id="patient.middle_name" name="patient.middle_name" type="text"
+                   readonly="readonly" disabled="disabled">
+        </div>
+        <div class="form-group">
+            <label for="patient.sex">Gender:</label>
+            <select class="form-control" id="patient.sex" name="patient.sex" readonly="readonly"
+                    disabled="disabled">
+                <option value="">...</option>
+                <option value="M">Male</option>
+                <option value="F">Female</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="patient.birthdate">Date Of Birth:</label>
+            <input class="form-control datepicker nonFutureDate" id="patient.birthdate" name="patient.birthdate"
+                   type="date" readonly="readonly" disabled="disabled">
+        </div>
+    </div>
+
+    <div class="section">
+        <h3>Encounter Details</h3>
+
+        <div class="form-group">
+            <label for="encounter.location_id">Encounter Location:<span class="required">*</span></label>
+            <input class="form-control valid-location-only" id="encounter.location_id" type="text"
+                   placeholder="Start typing something..." required="required">
+            <input class="form-control" name="encounter.location_id" type="hidden">
+        </div>
+        <div class="form-group hidden">
+            <label for="encounter.location_id_select">Encounter Location <span class="required">*</span></label>
+            <select class="form-control" id="encounter.location_id_select" required="required">
+                <option>...</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="encounter.provider_id_select">Provider Name:</label>
+            <input class="form-control valid-provider-only" id="encounter.provider_id_select" type="text"
+                   placeholder="Start typing something...">
+            <input class="form-control" name="encounter.provider_id_select" type="hidden">
+        </div>
+        <div class="form-group hidden">
+            <select id="select_providers">
+            </select>
+        </div>
+        <div class="form-group show_provider_id_text">
+            <label for="encounter.provider_id">Provider id:<span class="required">*</span></label>
+            <input class="form-control checkDigit" id="encounter.provider_id" name="encounter.provider_id"
+                   type="text" required="required" disabled="disabled">
+        </div>
+
+        <!-- <div class="form-group">
+            <label for="encounter.encounter_datetime">Encounter Date:<span class="required">*</span></label>
+            <input class="form-control datepicker nonFutureDate past-date" id="encounter.encounter_datetime"
+                name="encounter.encounter_datetime" type="text" readonly="readonly" required="required"
+                data-concept="1113^TB DRUG START DATE^99DCT">
+        </div> -->
+
+        <div class="form-group hidden">
+            <label for="encounter.encounter_datetime">Encounter Date:<span class="required">*</span></label>
+            <input class="form-control" id="encounter.encounter_datetime"
+                   name="encounter.encounter_datetime" type="text" readonly="readonly" required="required">
+        </div>
+
+        <div class="form-group">
+            <label for="startDate">Encounter Date:<span class="required">*</span></label>
+            <input class="form-control datepicker nonFutureDate past-date" id="startDate" name="startDate" type="text" readonly="readonly"
+                   required="required" data-concept="1113^TB DRUG START DATE^99DCT">
+        </div>
+
+        <div class="form-group">
+            <input class="form-control" id="encounter.form_uuid" name="encounter.form_uuid" type="hidden"
+                   required="required">
+            <input class="form-control" id="encounter.user_system_id" name="encounter.user_system_id" type="hidden">
+        </div>
+    </div>
+</form>
+</body>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        $('#save_draft').click(function () {
+            $(this).prop('disabled', true);
+            document.saveDraft(this);
+            $(this).prop('disabled', false);
+        });
+
+        $('#submit_form').click(function () {
+            $(this).prop('disabled', true);
+            document.submit();
+            $(this).prop('disabled', false);
+        });
+
+        document.setupAutoCompleteData('encounter\\.location_id');
+        document.setupAutoCompleteDataForProvider('encounter\\.provider_id_select');
+
+        document.setupValidationForLocation("$('#encounter\\.location_id').val()", "encounter\\.location_id");
+        document.setupValidationForProvider("$('#encounter\\.provider_id_select').val()","encounter\\.provider_id");
+
+        var $encounterDatetime = $('#encounter\\.encounter_datetime');
+        var $startDate = $('#startDate');
+
+        $startDate.change(function(){
+            $encounterDatetime.val($startDate.val());
+        });
+        $startDate.trigger('change');
+    });
+</script>
