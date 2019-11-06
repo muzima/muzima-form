@@ -1,0 +1,607 @@
+<html xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
+<head>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/muzima.css" rel="stylesheet">
+    <link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+    <link href="css/ui-darkness/jquery-ui-1.10.4.custom.min.css" rel="stylesheet">
+
+    <script src="js/jquery.min.js"></script>
+    <script src="js/jquery-ui-1.10.4.custom.min.js"></script>
+    <script src="js/jquery.validate.min.js"></script>
+    <script src="js/additional-methods.min.js"></script>
+    <script src="js/bootstrap-datetimepicker.min.js"></script>
+    <script src="js/muzima.js"></script>
+    <title>Formulário de Visita Domiciliária</title>
+</head>
+<body class="col-md-10 col-md-offset-1">
+<div id="pre_populate_data">
+
+</div>
+<form id="tracing_main_form" name="tracing_main_form">
+    <h2 class="text-center">Formulário de Visita Domiciliária</h2>
+    <div class="section">
+        <h3>Demografia</h3>
+        <div class="form-group">
+            <input class="form-control" id="patient.uuid" name="patient.uuid" type="hidden" readonly="readonly">
+			<input class="form-control" name="patient.tagName" name="patient.tagName" value="traced" type="hidden">
+			<input class="form-control" name="patient.tagUuid" name="patient.tagUuid" value="32809438-e45b-11e9-b737-c8d3ffd477a6f" type="hidden">
+        </div>
+        <div class="form-group">
+            <label for="patient.names">Nome do Paciente:</label>
+            <input class="form-control" id="patient.names"
+                   name="patient.names" type="text" readonly="readonly">
+        </div>
+		<div class="form-group">
+            <label for="patient.birth_date">Data de nascimento:</label>
+            <input class="form-control" id="patient.birth_date"
+                   name="patient.birth_date" type="text" readonly="readonly">
+        </div>
+		<div class="form-group">
+            <label for="patient.birth_date">Idade:</label>
+            <input class="form-control" id="patient.age"
+                   name="patient.age" type="text" readonly="readonly">
+        </div>
+        <div class="form-group">
+            <label for="patient.sex">Sexo:</label>
+            <input class="form-control" id="patient.sex" name="patient.sex" type="text" readonly="readonly">
+        </div>
+		<div class="form-group">
+            <label for="patient.medical_record_number">NID </label>
+            <input class="form-control" id="patient.medical_record_number" name="patient.medical_record_number" type="text" readonly="readonly">
+        </div>        
+    </div>
+    <div class="section">
+        <h3>SECÇÃO DE VISITA</h3>
+        <div class="form-group">
+            <label for="encounter.encounter_datetime">Data de visita:<span class="required">*</span>
+            </label>
+            <input class="form-control datetimepicker nonFutureDate past-date" id="encounter.encounter_datetime"
+                   name="encounter.encounter_datetime" type="text" readonly="readonly"
+                   required="required">
+        </div>
+		<div class="form-group type_of_visit">
+			<label for="obs.type_of_visit">
+			TIPO DE VISITA<span class="required">*</span>
+			</label>
+			<select class="form-control" id="obs.type_of_visit" required
+				name="obs.type_of_visit" data-concept="1981^TIPO DE ATENDIMENTO FAMILIAR^99DCT">
+				<option value="">...</option>
+				<option value="2161^VISITA DE APOIO^99DCT">Visita preventiva</option>
+				<option value="2160^VISITA DE BUSCA^99DCT">Visita de Reintegração</option>
+				<option value="23914^VISITA AOS CASOS ESPECIAIS^99DCT">Visita aos casos especiais</option>
+			</select>
+        </div> 
+		<div class="form-group">
+			<label for="obs.attempt_number">			
+				Número de Tentativa
+			<span class="required">*</span>
+			</label>
+			<select class="form-control" id="obs.attempt_number" required
+				name="obs.attempt_number" data-concept="23842^Number of outreach attempts^99DCT">
+				<option value="">...</option>
+				<option value="6440^DATA DA PRIMEIRA TENTATIVA DE BUSCA^99DCT">PRIMEIRA</option>
+				<option value="6254^DATA DA SEGUNDA TENTATIVA DE BUSCA^99DCT">SEGUNDA</option>
+				<option value="6255^DATA DA TERCEIRA TENTATIVA DE BUSCA^99DCT">TERCEIRA</option>
+			</select>
+        </div>
+		<div class="form-group">
+			<label for="obs.patient_found">
+			Encontrou o Paciente<span class="required">*</span>
+			</label>
+			<select class="form-control" id="obs.patient_found" required
+				name="obs.patient_found" data-concept="2003^ACTIVISTA ENCONTROU A PESSOA^99DCT">
+				<option value="">...</option>	
+				<option value="1065^SIM^99DCT">SIM</option>
+				<option value="1066^NAO^99DCT">NAO</option>
+			</select>
+        </div>
+		<div class="form-group section patient_found_div_2160" id="patient_found_div_2160">
+			<div class="form-group concept-set">
+				<div class="form-group">
+					<label for="obs.reason_for_failure">
+						Visita de reintegração – Motivos de falta:
+					</label>
+					<div class="form-group">
+						<label class="font-normal">
+							<input id="obs.reason_for_failure.esqueceu" type="checkbox" name="obs.reason_for_failure"
+							data-concept="2016^MOTIVO DE FALTA^99DCT" value="2005^ESQUECEU A DATA^99DCT">
+							Esqueceu a data
+						</label>
+					</div>
+					<div class="form-group">
+						<label class="font-normal">
+							<input id="obs.reason_for_failure.esta" type="checkbox" name="obs.reason_for_failure"
+							data-concept="2016^MOTIVO DE FALTA^99DCT" value="2006^ESTÁ ACAMADO EM CASA^99DCT">
+							Está doente 
+						</label>
+					</div>
+					<div class="form-group">
+						<label class="font-normal">
+							<input id="obs.reason_for_failure.distancia" type="checkbox" name="obs.reason_for_failure"
+							data-concept="2016^MOTIVO DE FALTA^99DCT" value="2007^DISTANCIA OU DINHEIRO TRANSPORTE^99DCT">
+							Problema de transporte
+
+						</label>
+					</div>
+					<div class="form-group">
+						<label class="font-normal">
+							<input id="obs.reason_for_failure.insatisfaccao" type="checkbox" name="obs.reason_for_failure"
+							data-concept="2016^MOTIVO DE FALTA^99DCT" value="2010^INSATISFACÇAO SERVIÇO NO HDD^99DCT">
+							 Mau atendimento na US
+						</label>
+					</div>
+					<div class="form-group">
+						<label class="font-normal">
+							<input id="obs.reason_for_failure.insatisfaccao" type="checkbox" name="obs.reason_for_failure"
+							data-concept="2016^MOTIVO DE FALTA^99DCT" value="23915^MEDO DO PROVEDOR^99DCT">
+							Medo do Provedor de Saúde da US
+						</label>
+					</div>
+					<div class="form-group">
+						<label class="font-normal">
+							<input id="obs.reason_for_failure.Ausencia" type="checkbox" name="obs.reason_for_failure"
+							data-concept="2016^MOTIVO DE FALTA^99DCT" value="2014^TRABALHO^99DCT">
+							Ausência do Provedor na US
+						</label>
+					</div>
+					<div class="form-group">
+						<label class="font-normal">
+							<input id="obs.reason_for_failure.efeitos" type="checkbox" name="obs.reason_for_failure"
+							data-concept="2016^MOTIVO DE FALTA^99DCT" value="2015^EFEITOS SECUNDARIOS ARV^99DCT">
+							Efeitos secundários 
+						</label>
+					</div>
+					<div class="form-group">
+						<label class="font-normal">
+							<input id="obs.reason_for_failure.tratamento" type="checkbox" name="obs.reason_for_failure"
+							data-concept="2016^MOTIVO DE FALTA^99DCT" value="2013^TRATAMENTO TRADICIONAL^99DCT">
+							Tratamento tradicional
+						</label>
+					</div>
+					<div class="form-group">
+						<label class="font-normal">
+							<input id="obs.reason_for_failure.transferido" type="checkbox" name="obs.reason_for_failure"
+							data-concept="2016^MOTIVO DE FALTA^99DCT" value="1706^TRANSFERIDO PARA^99DCT">
+							Transferido para outra US
+						</label>
+					</div>
+					<div class="form-group">
+						<label class="font-normal">
+							<input id="obs.reason_for_failure.auto_transferência" type="checkbox" name="obs.reason_for_failure"
+							data-concept="2016^MOTIVO DE FALTA^99DCT" value="23863^AUTO TRANSFERÊNCIA^99DCT">
+							Auto transferência
+						</label>
+					</div>
+					<div class="form-group">
+						<label class="font-normal">
+							<input id="obs.reason_for_failure.desmotivacao" type="checkbox" name="obs.reason_for_failure"
+							data-concept="2016^MOTIVO DE FALTA^99DCT" value="2012^DESMOTIVAÇAO^99DCT">
+							 Abandono ao TARV
+						</label>
+					</div>	
+					<div class="form-group">
+						<label class="font-normal">
+							<input id="obs.reason_for_failure.other" type="checkbox" name="obs.reason_for_failure"
+							data-concept="2016^MOTIVO DE FALTA^99DCT" value="2017^OUTRO MOTIVO DE FALTA^99DCT">
+							Outro
+						</label>
+					</div>	
+				</div>
+			</div>
+		</div>	
+		<div class="form-group section patient_found_div_2161" id="patient_found_div_2161">
+			<div class="form-group">
+				<div class="form-group">
+					<label for="obs.visit_report">
+					Visita preventiva - Relatório da visita<span class="required">*</span>
+					</label>
+					<select class="form-control" id="obs.visit_report" required
+						name="obs.visit_report" data-concept="2158^RELATORIO DA VISITA DE APOIO^99DCT">
+						<option value="">...</option>
+						<option value="1383^BOM^99DCT">O paciente está bem</option>
+						<option value="2157^O PACIENTE APRESENTOU DIFICULDADES^99DCT">O paciente apresentou dificuldades</option>
+					</select>
+					<div class="form-group sub-section" id="patient_had_difficulties">
+						<div class="form-group concept-set">
+							<div class="form-group">
+								<label for="obs.patient_had_difficulties">
+									MOTIVOS DA FALTA:
+								</label>
+								<div class="form-group">
+									<label class="font-normal">
+										<input id="obs.patient_had_difficulties.preocupacoes" type="checkbox" name="obs.patient_had_difficulties"
+										data-concept="2157^O PACIENTE APRESENTOU DIFICULDADES^99DCT" value="2156^PREOCUPAÇÕES COM A FAMILIA^99DCT">
+										 Preocupações com a família
+									</label>
+								</div>		
+								<div class="form-group">
+									<label class="font-normal">
+										<input id="obs.patient_had_difficulties.efeitos" type="checkbox" name="obs.patient_had_difficulties"
+										data-concept="2157^O PACIENTE APRESENTOU DIFICULDADES^99DCT" value="2015^EFEITOS SECUNDARIOS ARV^99DCT">
+										 Medicamento esta a fazer mal
+									</label>
+								</div>	
+								<div class="form-group">
+									<label class="font-normal">
+										<input id="obs.patient_had_difficulties.falta" type="checkbox" name="obs.patient_had_difficulties"
+										data-concept="2157^O PACIENTE APRESENTOU DIFICULDADES^99DCT" value="2153^FALTA DE APOIO^99DCT">
+										 Falta de apoio familiar
+									</label>
+								</div>	
+								<div class="form-group">
+									<label class="font-normal">
+										<input id="obs.patient_had_difficulties.problemas" type="checkbox" name="obs.patient_had_difficulties"
+										data-concept="2157^O PACIENTE APRESENTOU DIFICULDADES^99DCT" value="2154^PROBLEMAS EM TOMAR MEDICAMENTOS^99DCT">
+										Problemas em tomar os medicamentos
+									</label>
+								</div>
+								<div class="form-group">
+									<label class="font-normal">
+										<input id="obs.patient_had_difficulties.problemas" type="checkbox" name="obs.patient_had_difficulties"
+										data-concept="2157^O PACIENTE APRESENTOU DIFICULDADES^99DCT" value="2155^NÃO REVELOU SEU DIAGNOSTICO^99DCT">
+										 Não revelou o diagnóstico
+									</label>
+								</div>
+								<div class="form-group">
+									<label class="font-normal">
+										<input id="obs.patient_had_difficulties.problemas" type="checkbox" name="obs.patient_had_difficulties"
+										data-concept="2157^O PACIENTE APRESENTOU DIFICULDADES^99DCT" value="1748^OUTROS PROBLEMAS^99DCT">
+										 Outro
+									</label>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>			
+		</div>
+		<div class="form-group section patient_found_div" id="patient_found_div">
+			<div class="form-group concept-set">
+				<div class="form-group">
+					<label for="obs.referencias">
+						Encaminhamento do paciente encontrado
+					</label>
+					<div class="form-group">
+						<label class="font-normal">
+							<input id="obs.referencias.auto_transferência" type="checkbox" name="obs.referencias"
+							data-concept="1272^REFERENCIAS^99DCT" value="2179^AUTO TRANSFERÊNCIA^99DCT">
+							Encaminhado para a US
+						</label>
+					</div>
+					<div class="form-group">
+						<label class="font-normal">
+							<input id="obs.referencias.esqueceu" type="checkbox" name="obs.referencias"
+							data-concept="1272^REFERENCIAS^99DCT" value="1977^PVHS^99DCT">
+							 Encaminhado para os grupos de apoio
+						</label>
+					</div>
+					<div class="form-group">
+						<label class="font-normal">
+							<input id="obs.referencias.esqueceu" type="checkbox" name="obs.referencias"
+							data-concept="1272^REFERENCIAS^99DCT" value="23755^PAIS E CUIDADORES (PC)^99DCT">
+							Familiar ou cuidador da criança foi referido para a US
+						</label>
+					</div>
+					<div class="form-group">
+						<label class="font-normal">
+							<input id="obs.referencias.esqueceu" type="checkbox" name="obs.referencias"
+							data-concept="1272^REFERENCIAS^99DCT" value="2159^FAMILIAR FOI REFERIDO PARA A UNIDADE SANITARIA^99DCT">
+							 Familiar referidopara US
+						</label>
+					</div>
+					<div class="form-group">
+						<label class="font-normal">
+							<input id="obs.referencias.other" type="checkbox" name="obs.referencias"
+							data-concept="2016^MOTIVO DE FALTA^99DCT" value="2040^REFERRAL, OTHER^99DCT">
+							Outro
+						</label>
+					</div>	
+				</div>
+				<div class="form-group" id="other_referencias">
+					<label class="font-normal" for="obs.other_referencias">
+						Outro:<span class="required"></span>
+					</label>
+						<input class="form-control" id="obs.other_referencias" type="text" required="required"
+						name="obs.other_referencias" data-concept="2040^REFERRAL, OTHER^99DCT">
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="obs.data_combinada">Data combinada para retorno a US:<span class="required">*</span>
+				</label>
+				<input class="form-control datepicker" id="obs.data_combinada" type="text" required="required"
+						name="obs.data_combinada" data-concept="23933^Data combinada na primeira visita para retorno a US^99DCT">
+			</div>
+			
+			
+		</div> 		
+		<div class="form-group section patient_not_found_div" id="patient_not_found_div">
+			<div class="form-group concept-set">
+				<div class="form-group">
+					<label for="obs.patient_not_found_reason">
+						Motivo de não encontrar
+					</label>
+					<div class="form-group">
+						<label class="font-normal">
+							<input id="obs.patient_not_found_reason.obito" type="checkbox" name="obs.patient_not_found_reason"
+							data-concept="2031^MOTIVO^99DCT" value="1383^Óbito^99DCT">
+							 Óbito
+						</label>
+					</div>	
+					<div class="form-group">
+						<label class="font-normal">
+							<input id="obs.patient_not_found_reason.endereco" type="checkbox" name="obs.patient_not_found_reason"
+							data-concept="2031^MOTIVO^99DCT" value="2024^ENDEREÇO ERRADO^99DCT">
+							 Endereço errado
+						</label>
+					</div>	
+					<div class="form-group">
+						<label class="font-normal">
+							<input id="obs.patient_not_found_reason.mudou" type="checkbox" name="obs.patient_not_found_reason"
+							data-concept="2031^MOTIVO^99DCT" value="2026^MUDOU DE CASA^99DCT">
+							  Mudou
+						</label>
+					</div>	
+					<div class="form-group">
+						<label class="font-normal">
+							<input id="obs.patient_not_found_reason.viajou" type="checkbox" name="obs.patient_not_found_reason"
+							data-concept="2031^MOTIVO^99DCT" value="2011^VIAJOU^99DCT">
+							  Viajou
+						</label>
+					</div>	
+					<div class="form-group">
+						<label class="font-normal">
+							<input id="obs.patient_not_found_reason.outros" type="checkbox" name="obs.patient_not_found_reason"
+							data-concept="2031^MOTIVO^99DCT" value="2032^OUTROS MOTIVOS^99DCT">
+							  Outro
+						</label>
+					</div>	
+				</div>
+			</div>
+			<div class="form-group sub-section" id="patient_not_found_reason_other">
+				<label class="font-normal" for="obs.patient_not_found_reason_other">
+					Outro:<span class="required"></span>
+				</label>
+					<input class="form-control" id="obs.patient_not_found_reason_other" type="text" required="required"
+					name="obs.patient_not_found_reason_other" data-concept="2032^OUTROS MOTIVOS^99DCT">
+			</div>
+			<div class="form-group concept-set">
+				<div class="form-group">
+					<label for="information_given_by">
+						Informação dada por
+					</label>
+					<div class="form-group">
+						<label class="font-normal">
+							<input id="obs.information_given_by.vizinho" type="checkbox" name="obs.information_given_by"
+							data-concept="2037^INFORMAÇAO DADA POR^99DCT" value="2034^VIZINHO^99DCT">
+							   Vizinho
+						</label>
+					</div>	
+					<div class="form-group">
+						<label class="font-normal">
+							<input id="obs.information_given_by.confidante" type="checkbox" name="obs.information_given_by"
+							data-concept="2037^INFORMAÇAO DADA POR^99DCT" value="2033^CONFIDENTE^99DCT">
+							   Confidente
+						</label>
+					</div>	
+					<div class="form-group">
+						<label class="font-normal">
+							<input id="obs.information_given_by.familiar" type="checkbox" name="obs.information_given_by"
+							data-concept="2037^INFORMAÇAO DADA POR^99DCT" value="2035^FAMILIAR^99DCT">
+							    Familiar
+						</label>
+					</div>	
+					<div class="form-group">
+						<label class="font-normal">
+							<input id="obs.information_given_by.lider" type="checkbox" name="obs.information_given_by"
+							data-concept="2037^INFORMAÇAO DADA POR^99DCT" value="2036^CHEFE DE BAIRRO^99DCT">
+							 Lider Comunitário
+						</label>
+					</div>	
+				</div>	
+			</div>
+			<div class="form-group sub-section" id="information_given_by_details_div">
+				<label class="font-normal" for="obs.information_given_by_details">
+					Especificar:<span class="required"></span>
+				</label>
+					<input class="form-control" id="obs.information_given_by_details" type="text" required="required"
+					name="obs.information_given_by_details" data-concept="2038^OUTROS INFORMAÇÃO DADA POR^99DCT">
+			</div>
+		</div>		
+		<div class="form-group">
+			<label for="encounter.provider_id_select">Nome do voluntário:<span class="required">*</span></label>
+			<input class="form-control valid-provider-only" id="encounter.provider_id_select" type="text" placeholder="Start typing something..." readonly>
+			<input class="form-control" name="encounter.provider_id_select" type="hidden">
+		</div>
+		<div class="form-group show_provider_id_text">
+			<label for="encounter.provider_id">ID do sistema do provedor:<span class="required">*</span></label>
+			<input class="form-control" id="encounter.provider_id" disabled name="encounter.provider_id" type="text" required="required"  placeholder="Provider Id">
+		</div>
+        <div class="form-group">
+            <input class="form-control" id="encounter.form_uuid" name="encounter.form_uuid" type="hidden" required="required">           			
+			<input class="form-control initialFormOpeningTimestamp serializable"  id="obs.initialFormOpeningTimestamp"  name="obs.initialFormOpeningTimestamp"  data-concept="23844^Outreach Form Start Datetime Stamp^99DCT" type="hidden">			
+			<input class="form-control dataEntryCompletionTimeStamp serializable"  id="obs.dataEntryCompletionTimeStamp"  name="obs.dataEntryCompletionTimeStamp"  data-concept="23845^Outreach Form End Datetime Stamp^99DCT" type="hidden">
+			<input class="form-control cummulativeFormOpeningGPSData serializable"  id="obs.cummulativeFormOpeningGPSData"  name="obs.cummulativeFormOpeningGPSData"  data-concept="23843^Outreach GPS Coordinates^99DCT" type="hidden">
+		</div>
+		<div class="form-group">
+            <label for="encounter.location_id">Unidade Sanitaria:<span class="required">*</span></label>
+            <input class="form-control valid-location-only" id="encounter.location_id" type="text" placeholder="Start typing something..." required="required" readonly>
+            <input class="form-control" name="encounter.location_id" type="hidden">
+        </div>	
+    </div>
+</form>
+</body>
+<script type="text/javascript">
+$(document).ready(function () {
+	$('#save_draft').click(function () {
+		$(this).prop('disabled', true);
+		document.saveDraft();
+		$(this).prop('disabled', false);
+	});
+
+	$('#submit_form').click(function () {
+		$(this).prop('disabled', true);
+		document.submit();
+		$(this).prop('disabled', false);
+	});
+
+	$('#obs\\.patient_found').change(function(){
+		if($(this).val() == "1065^SIM^99DCT"){
+			$('#patient_found_div').show();
+			$('#patient_not_found_div').hide();
+		} else if($(this).val() == "1066^NAO^99DCT") {
+			$('#patient_not_found_div').show();
+			$('#patient_found_div').hide();
+		}else{
+			$('#patient_not_found_div').hide();
+			$('#patient_found_div').hide();
+		}
+		
+	   if($(this).val() == "1065^SIM^99DCT" &&  $('#obs\\.type_of_visit').val()=="2160^VISITA DE BUSCA^99DCT"){
+		   $('#patient_found_div_2160').show();
+	   }else{
+		   $('#patient_found_div_2160').hide();
+	   }
+		
+	   if($(this).val() == "1065^SIM^99DCT" &&  $('#obs\\.type_of_visit').val()=="2161^VISITA DE APOIO^99DCT"){
+		   $('#patient_found_div_2161').show();
+	   }else{
+		   $('#patient_found_div_2161').hide();
+	   }
+	});    
+	$('#obs\\.patient_found').trigger('change'); 
+	
+	$('#obs\\.type_of_visit').change(function(){		
+	   if($('#obs\\.patient_found').val() == "1065^SIM^99DCT" &&  $(this).val()=="2160^VISITA DE BUSCA^99DCT"){
+		   $('#patient_found_div_2160').show();
+	   }else{
+		   $('#patient_found_div_2160').hide();
+	   }
+		
+	   if($('#obs\\.patient_found').val() == "1065^SIM^99DCT" &&  $(this).val()=="2161^VISITA DE APOIO^99DCT"){
+		   $('#patient_found_div_2161').show();
+	   }else{
+		   $('#patient_found_div_2161').hide();
+	   }
+	});  
+	
+	$('#obs\\.type_of_visit').trigger('change'); 
+	
+	
+	
+
+	$('#obs\\.visit_report').change(function(){
+		if($(this).val() == "2157^O PACIENTE APRESENTOU DIFICULDADES^99DCT"){
+			$('#patient_had_difficulties').show();
+		} else{
+			$('#patient_had_difficulties').hide();
+		}
+	});    
+	$('#obs\\.visit_report').trigger('change');
+
+	$('#obs\\.patient_not_found_reason\\.outros').change(function(){
+		if($(this).prop("checked")){
+			$('#patient_not_found_reason_other').show();
+		} else{
+			$('#patient_not_found_reason_other').hide();
+		}
+	});    
+	$('#obs\\.patient_not_found_reason\\.outros').trigger('change');
+	
+	$('#obs\\.information_given_by\\.familiar').change(function(){
+		if($(this).prop("checked")){
+			$('#information_given_by_details_div').show();
+		} else{
+			$('#information_given_by_details_div').hide();
+		}
+	});    
+	$('#obs\\.information_given_by\\.familiar').trigger('change');
+
+	$('#obs\\.referencias\\.other').change(function(){
+		if($(this).prop( "checked" )){
+			$('#other_referencias').show();
+		} else{
+			$('#other_referencias').hide();
+		}
+	});    
+	$('#obs\\.referencias\\.other').trigger('change');
+
+	$.validator.addMethod("validDeliveryDateOnly", function (value, element) {
+		if ($.fn.isNotRequiredAndEmpty(value, element)) return true;
+		var pattern = /(\d{2})-(\d{2})-(\d{4})/g;
+		var matches = pattern.exec(value);
+		var enteredDate = new Date(matches[3], matches[2] - 1, matches[1]);
+		var s = $('#encounter\\.encounter_datetime').val();
+		var bits = s.split(/\D/);
+		var encounterDate = new Date(bits[2], bits[1] - 1, bits[0]);
+		return enteredDate < encounterDate; 
+	}, "A data de entrega do cartão deve ser anterior à data da visita.."
+	);
+
+	// attach 'nonFutureDate' class to perform validation.
+	jQuery.validator.addClassRules({
+		validDeliveryDateOnly: { validDeliveryDateOnly: true }
+	});
+
+
+	document.setupAutoCompleteData('encounter\\.location_id');
+	document.setupAutoCompleteDataForProvider('encounter\\.provider_id_select');
+	document.setupValidationForLocation("$('#encounter\\.location_id').val()","encounter\\.location_id");
+	document.setupValidationForProvider("$('#encounter\\.provider_id_select').val()","encounter\\.provider_id");
+
+	var prePopulateData = $.trim($('#pre_populate_data').html());
+	var prePopulateJSON = JSON.parse(prePopulateData);
+	$.each(prePopulateJSON, function(key, value) {
+		if (key === 'patient') {
+			var names = "";
+			$.each(value, function(keys, values) {
+				if(keys === 'patient.given_name' || keys === 'patient.middle_name' || keys === 'patient.family_name' || keys === 'patient.names'){
+				   names=names+" "+values;
+				}
+
+				if(keys === "patient.birth_date"){
+					var tmp = values.split('-');
+                    var birthDate = new Date(tmp[2],tmp[1]-1,tmp[0]);
+					var today = new Date();
+					var milliSecondsInAYear = 1000 * 60 * 60 * 24 * 365.26;
+					var age = (today - birthDate) / milliSecondsInAYear;
+					$('#patient\\.age').val((Math.floor(age)+" Anos "));
+				}
+			});
+			$('#patient\\.names').val(names);
+		}
+	});
+
+   var patientuuid = $('#patient\\.uuid').val();
+   var attemptNumber = htmlDataStore.getObsByConceptId(patientuuid,23842);  
+   attemptNumber = JSON.parse(attemptNumber);
+   var attemptcount = attemptNumber.length-1;
+   if(attemptcount==-1){
+	  $("#obs\\.attempt_number").val("6440^DATA DA PRIMEIRA TENTATIVA DE BUSCA^99DCT");
+	  $('#obs\\.attempt_number').prop('disabled', 'disabled');
+   }else if(parseInt(attemptNumber[0].valueCoded.id)==6440){
+	  $("#obs\\.attempt_number").val("6254^DATA DA SEGUNDA TENTATIVA DE BUSCA^99DCT");
+	  $('#obs\\.attempt_number').prop('disabled', 'disabled');
+   }else if(parseInt(attemptNumber[0].valueCoded.id)==6254){
+	  $("#obs\\.attempt_number").val("6255^DATA DA TERCEIRA TENTATIVA DE BUSCA^99DCT");
+	  $('#obs\\.attempt_number').prop('disabled', 'disabled');
+   }
+	
+   var patientuuid = $('#patient\\.uuid').val();
+   var visitType = htmlDataStore.getObsByConceptId(patientuuid,1981);  
+   visitType = JSON.parse(visitType);
+   var visitTypeSize = visitType.length-1;
+   if(parseInt(visitTypeSize)>-1){
+		if(parseInt(visitType[0].valueCoded.id)==2161){
+			$("#obs\\.type_of_visit").val("2161^VISITA DE APOIO^99DCT");
+			$('#obs\\.type_of_visit').prop('disabled', 'disabled');
+		}else if(parseInt(visitType[0].valueCoded.id)==2160){
+			$("#obs\\.type_of_visit").val("2160^VISITA DE BUSCA^99DCT");
+			$('#obs\\.type_of_visit').prop('disabled', 'disabled');
+		}else if(parseInt(visitType[0].valueCoded.id)==23914){
+			$("#obs\\.type_of_visit").val("23914^VISITA AOS CASOS ESPECIAIS^99DCT");
+			$('#obs\\.type_of_visit').prop('disabled', 'disabled');	 
+	    }
+	}
+});
+</script>
+</html>
