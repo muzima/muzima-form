@@ -318,6 +318,27 @@ $(document).ready(function () {
     });
 
     /* Start - Initialize jQuery DatePicker */
+    
+    /*Start - Initialize jQuery DateTimePicker */
+    if ($.fn.datetimepicker) {
+        $('.datetimepicker').datetimepicker({
+           format:'dd-mm-yyyy hh:ii',
+           changeMonth: true,
+           changeYear: true,
+           step : 5,
+           autoclose : true
+       });
+       var dt = new Date();
+       var time = dt.getHours() + ":" + dt.getMinutes();
+       var dateFormat = "dd-mm-yy";
+       var currentDate = $.datepicker.formatDate(dateFormat, new Date());
+
+       var encounterDatetime = $('#encounter\\.encounter_datetime');
+       if ($(encounterDatetime).val() == "") {
+           $(encounterDatetime).val(currentDate+' '+time);
+       }
+    }
+    /*End - Initialize jQuery DateTimePicker */
 
     /* Start - CheckDigit algorithm Source: https://wiki.openmrs.org/display/docs/Check+Digit+Algorithm */
 
