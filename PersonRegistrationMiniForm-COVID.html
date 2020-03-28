@@ -95,6 +95,34 @@
                 <input class="form-control" id="encounter.form_uuid" name="encounter.form_uuid" type="hidden" required="required">
             </div>
         </div>
+        <div class="section group-set repeat" data-group="patient.personaddress">
+            <h3>Address</h3>
+            <div class="form-group">
+                <label for="countyDistrict">County: </label>
+                <input class="form-control" id="countyDistrict" name="countyDistrict" type="text">
+            </div>
+            <div class="form-group">
+                <label for="address6">Location: </label>
+                <input class="form-control" id="address6" name="address6" type="text">
+            </div>
+            <div class="form-group">
+                <label for="address5">Sub-location: </label>
+                <input class="form-control" id="address5" name="address5" type="text">
+            </div>
+            <div class="form-group">
+                <label for="cityVillage">Village: </label>
+                <input class="form-control" id="cityVillage" name="cityVillage" type="text">
+            </div>
+        </div>
+        <div class="section">
+            <h3>Attributes</h3>
+            <div class="form-group group-set" data-group="patient.personattribute^1">
+                <label for="patient.phone_number">Phone Number: </label>
+                <input class="form-control phoneNumber" id="patient.phone_number" name="attribute_value" type="tel">
+                <input type="hidden" data-metadata-for="attribute_value" id="attribute_type_name" name="attribute_type_name" value="Contact Phone Number">
+                <input type="hidden" data-metadata-for="attribute_value" id="attribute_type_uuid" name="attribute_type_uuid" value="6952cdbf-2633-40b5-bea2-1b79f2f68805">
+            </div>
+        </div>
     </form>
 </body>
 <script type="text/javascript">
