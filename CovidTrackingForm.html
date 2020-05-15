@@ -1,0 +1,706 @@
+<html xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
+<head>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/muzima.css" rel="stylesheet">
+    <link href="css/ui-darkness/jquery-ui-1.10.4.custom.min.css" rel="stylesheet">
+    <script src="js/jquery.min.js"></script>
+    <script src="js/jquery-ui-1.10.4.custom.min.js"></script>
+    <script src="js/jquery.validate.min.js"></script>
+    <script src="js/additional-methods.min.js"></script>
+    <script src="js/muzima.js"></script>
+    <title>Tracing Form</title>
+</head>
+<body class="col-md-10 col-md-offset-1">
+<div id="pre_populate_data">
+
+</div>
+<form id="tracking_form" name="tracking_form">
+    <h2 class="text-center">Tracing Form</h2>
+    <div class="section">
+        <h3>Demographics</h3>
+        <div class="form-group">
+            <input class="form-control" id="patient.uuid"
+                   name="patient.uuid" type="hidden" readonly="readonly">
+        </div>
+        <div class="form-group" style="display:none">
+            <label for="patient.family_name">Family Name:</label>
+            <input class="form-control" id="patient.family_name"
+                   name="patient.family_name" type="text" readonly="readonly">
+        </div>
+        <div class="form-group" style="display:none">
+            <label for="patient.given_name">Given Name:</label>
+            <input class="form-control" id="patient.given_name"
+                   name="patient.given_name" type="text" readonly="readonly">
+        </div>
+        <div class="form-group" style="display:none">
+            <label for="patient.middle_name">Middle Name:</label>
+            <input class="form-control" id="patient.middle_name"
+                   name="patient.middle_name" type="text" readonly="readonly">
+        </div>
+		<div class="form-group">
+            <label for="patient.names">Name:</label>
+            <input class="form-control" id="patient.names"
+                   name="patient.names" type="text" readonly="readonly">
+        </div>
+        <div class="form-group">
+            <label for="patient.sex">Gender:</label>
+            <select class="form-control" id="patient.sex" name="patient.sex" readonly="readonly" disabled>
+                <option value="">...</option>
+                <option value="M">Male</option>
+                <option value="F">Female</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="patient.birth_date">Date of birth:</label>
+            <input class="form-control" id="patient.birth_date"
+                   name="patient.birth_date" type="text" readonly="readonly">
+        </div>
+		<div class="form-group" style="display:none">
+            <label for="patient.birth_date">Age:</label>
+            <input class="form-control" id="patient.age"
+                   name="patient.age" type="text" readonly="readonly">
+        </div>
+		<div class="form-group">
+            <label for="patient.phone_number">Telephone (mobile) number:</label>
+            <input class="form-control" id="patient.phone_number"
+                   name="patient.phone_number" type="text" readonly="readonly">
+        </div>
+		<div class="form-group">
+            <label for="patient.email">Email:</label>
+            <input class="form-control" id="patient.email"
+                   name="patient.email" type="text" readonly="readonly">
+        </div>
+		<div class="form-group">
+			<label for="tmp.address">Show address:</label>
+			<input type="checkbox" name="temp.address" id="temp.address" >
+        </div>
+		<div id="displayaddress">
+			<div class="section group-set" data-group="patient.personaddress" data-name="patient.personaddress">
+				<h3>Address</h3> 
+				<div class="form-group">
+					<label for="address1">Address 1: </label>
+					<input class="form-control" id="address1" name="address1" type="text" readonly="readonly">
+				</div>
+				<div class="form-group">
+					<label for="address2">Address 2: </label>
+					<input class="form-control" id="address2" name="address2" type="text" readonly="readonly">
+				</div>
+				<div class="form-group">
+					<label for="city_village">City/Village: </label>
+					<input class="form-control" id="cityVillage" name="cityVillage" type="text" readonly="readonly">
+				</div>
+				<div class="form-group">
+					<label for="state">State/Province: </label>
+					<input class="form-control" id="stateProvince" name="stateProvince" type="text" readonly="readonly">
+				</div>
+				<div class="form-group">
+					<label for="county">County/District: </label>
+					<input class="form-control" id="countyDistrict" name="countyDistrict" type="text" readonly="readonly">
+				</div>	
+				<div class="form-group">
+					<label for="county">Postal Code: </label>
+					<input class="form-control" id="postalCode" name="postalCode" type="text" readonly="readonly">
+				</div>				
+				<div class="form-group">
+					<label for="county">Country </label>
+					<input class="form-control" id="country" name="country" type="text" readonly="readonly">
+				</div>
+				<div class="form-group">
+					<label for="tmp.at_home_location">Are you currently at the home location of the Covid case?
+						<span class="required">*</span></label>
+					<select class="form-control" name="tmp.at_home_location"  id="tmp.at_home_location" required="required">
+						<option value="">...</option>
+						<option value="Yes">Yes</option>
+						<option value="No">No</option>
+					</select>
+				</div>
+				<div class="form-group" id="pick-gps-button-div">
+					<button onclick="return false" class="form-control btn btn-primary gps-location-picker"
+							data-zoomlevel="9" data-create-demographics-update="true">Pick GPS address</button>
+				</div>
+				<div class="form-group gps-details">
+					<label for="latitude">Latitude: <span class="required">*</span> </label>
+					<input class="form-control latitude" id="latitude" name="latitude"
+						   required="required" type="text" readonly="readonly">
+				</div>
+				<div class="form-group gps-details">
+					<label for="longitude">Longitude: <span class="required">*</span></label>
+					<input class="form-control longitude" id="longitude" name="longitude"
+						   required="required" type="text" readonly="readonly">
+				</div>
+			</div>
+		</div>
+    </div>
+    <div class="section">
+		<div class="form-group">
+			<label for="obs.location_of_event">			
+				Location where the data collection is/was done
+			<span class="required">*</span>
+			</label>
+			<select class="form-control" id="obs.location_of_event" required
+				name="obs.location_of_event" data-concept="161010^Location of event^99DCT">
+				<option value="">...</option>
+				<option value="1650^MOBILE PHONE^99DCT">Mobile phone</option>
+				<option value="1537^HEALTH FACILITY^99DCT">Health facility</option>
+				<option value="1588^HEALTH CLINIC/POST^99DCT">Health clinic</option>
+				<option value="1589^HOSPITAL^99DCT">Hospital</option>
+				<option value="1536^HOME^99DCT">Home</option>
+				<option value="1601^EN ROUTE TO HEALTH FACILITY^99DCT">En route to health facility</option>	
+				<option value="5622^Other^99DCT">Other</option>
+				<option value="1067^Unknown^99DCT">Unknown</option>
+			</select>	
+        </div>
+		<div class="form-group">
+			<label for="obs.attempt_number">			
+				Number of attempts
+			<span class="required">*</span>
+			</label>
+			<select class="form-control" id="obs.attempt_number" required
+				name="obs.attempt_number" data-concept="165946^Tracking attempt^99DCT">
+				<option value="">...</option>
+				<option value="165943^First^99DCT">First attempt </option>
+				<option value="165944^Second^99DCT">Second attempt </option>
+				<option value="165945^Third^99DCT">Third attempt</option>
+			</select>	
+        </div>
+		<div class="form-group">
+			<label for="obs.tracking_method">			
+			Tracking method
+			<span class="required">*</span>
+			</label>
+			<div class="form-group">	
+				<label for="obs.tracking_method_phone" style="font-weight: normal;">
+					<input type="checkbox" data-concept="165949^Tracking method^99DCT" value="1605^Mobile phone^99DCT" name="obs.tracking_method" id="obs.tracking_method_phone" required>&nbsp;Phone
+				</label>
+			</div>
+			<div class="form-group">
+				<label for="obs.tracking_method_email" style="font-weight: normal;">
+					<input type="checkbox" data-concept="165949^Tracking method^99DCT" value="165947^Email Address^99DCT" name="obs.tracking_method" id="obs.tracking_method_email" required>&nbsp;Email
+				</label>
+			</div>
+			<div class="form-group">
+				<label for="obs.tracking_method_person" style="font-weight: normal;">
+					<input type="checkbox" data-concept="165949^Tracking method^99DCT" value="165948^In person^99DCT" name="obs.tracking_method" id="obs.tracking_method_person" required>&nbsp;In person
+				</label>
+			</div>
+			<div class="form-group">
+				<label for="obs.tracking_method_no_contact_info" style="font-weight: normal;">
+					<input type="checkbox" data-concept="165949^Tracking method^99DCT" value="165955^No contact information^99DCT" name="obs.tracking_method" id="obs.tracking_method_no_contact_info" required>&nbsp;No contact information
+				</label>
+			</div>
+			<div class="form-group">
+				<label for="obs.tracking_method_other" style="font-weight: normal;">
+					<input type="checkbox" data-concept="165949^Tracking method^99DCT" value="5622^Other^99DCT" name="obs.tracking_method" id="obs.tracking_method_other" required>&nbsp;Other
+				</label>
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="obs.tracking_results">			
+			Has the close contact person been found?
+			<span class="required">*</span>
+			</label>
+			<div class="form-group">	
+				<label for="obs.tracking_results_yes" style="font-weight: normal;">
+					<input type="radio" data-concept="165950^Patient found^99DCT" value="1065^Yes^99DCT" name="obs.tracking_results" id="obs.tracking_results_yes" required>&nbsp;Yes
+				</label>
+			</div>
+			<div class="form-group">
+				<label for="obs.tracking_results_no" style="font-weight: normal;">
+					<input type="radio" data-concept="165950^Patient found^99DCT" value="1066^No^99DCT" name="obs.tracking_results" id="obs.tracking_results_no" required>&nbsp;No
+				</label>
+			</div>
+		</div>
+		<div class="form-group patient_found_div" id="patient_found_div">
+			<div class="form-group">
+				<label for="obs.tracking_outcome">			
+				Outcome
+				<span class="required">*</span>
+				</label>	 
+				<div class="form-group">	
+					<label for="obs.tracking_outcome_dta" style="font-weight: normal;">
+						<input type="radio" data-concept="165951^Patient's response^99DCT" value="162570^Declined to answer^99DCT" name="obs.tracking_outcome" id="obs.tracking_outcome_dta" required>&nbsp;Declined to answer
+					</label>
+				</div>
+				<div class="form-group">
+					<label for="obs.tracking_outcome_rdbp" style="font-weight: normal;">
+						<input type="radio" data-concept="165951^Patient's response^99DCT" value="165306^Referral declined by patient^99DCT" name="obs.tracking_outcome" id="obs.tracking_outcome_rdbp" required>&nbsp;Referral declined by patient
+					</label>
+				</div>
+				<div class="form-group">	
+					<label for="obs.tracking_outcome_aws" style="font-weight: normal;">
+						<input type="radio" data-concept="165951^Patient's response^99DCT" value="159413^Agree^99DCT" name="obs.tracking_outcome" id="obs.tracking_outcome_aws" required>&nbsp;Agree with screening
+					</label>
+				</div>
+				<div class="form-group">
+					<label for="obs.tracking_outcome_other" style="font-weight: normal;">
+						<input type="radio" data-concept="165951^Patient's response^99DCT" value="5622^Other^99DCT" name="obs.tracking_outcome" id="obs.tracking_outcome_other" required>&nbsp;Other
+					</label>
+				</div>
+			</div>
+			<label class="alert alert-info" id="outcome_alert">
+				<b>Please proceed with guideline with filling out demographic update form and screening form..</b>
+			</label>
+			<div class="form-group">
+				<label for="obs.testing_status">			
+				Testing status
+				<span class="required">*</span>
+				</label>	 
+				<div class="form-group">	
+					<label for="obs.testing_status_positive" style="font-weight: normal;">
+						<input type="radio" data-concept="165952^Testing status^99DCT" value="703^POSITIVE^99DCT" name="obs.testing_status" id="obs.testing_status_positive" required>&nbsp;Positive
+					</label>
+				</div>
+				<div class="form-group">
+					<label for="obs.testing_status_negative" style="font-weight: normal;">
+						<input type="radio" data-concept="165952^Testing status^99DCT" value="664^Negative^99DCT" name="obs.testing_status" id="obs.testing_status_negative" required>&nbsp;Negative
+					</label>
+				</div>
+				<div class="form-group">	
+					<label for="obs.testing_status_unknown" style="font-weight: normal;">
+						<input type="radio" data-concept="165952^Testing status^99DCT" value="1067^Unknown^99DCT" name="obs.testing_status" id="obs.testing_status_unknown" required>&nbsp;Unknown
+					</label>
+				</div>
+				<div class="form-group">
+					<label for="obs.testing_status_wfr" style="font-weight: normal;">
+						<input type="radio" data-concept="165952^Testing status^99DCT" value="159971^waiting for test results^99DCT" name="obs.testing_status" id="obs.testing_status_wfr" required>&nbsp;Waiting for result
+					</label>
+				</div>
+				<div class="form-group">	
+					<label for="obs.testing_status_other" style="font-weight: normal;">
+						<input type="radio" data-concept="165952^Testing status^99DCT" value="5622^Other^99DCT" name="obs.testing_status" id="obs.testing_status_other" required>&nbsp;Other
+					</label>
+				</div>
+				<div class="form-group">
+					<label for="obs.testing_status_nt" style="font-weight: normal;">
+						<input type="radio" data-concept="165952^Testing status^99DCT" value="1107^None^99DCT" name="obs.testing_status" id="obs.testing_status_nt" required>&nbsp;Not tested
+					</label>
+				</div>
+			</div>
+		</div>
+		<div class="form-group patient_not_found_div" id="patient_not_found_div">
+			<div class="form-group">
+				<label for="obs.patient_need_tracking">			
+				Should patient be tracked again
+				<span class="required">*</span>
+				</label>
+				<div class="form-group">	
+					<label for="obs.patient_need_tracking_yes" style="font-weight: normal;">
+						<input type="radio" data-concept="165953^Track patient again^99DCT" value="1065^Yes^99DCT" name="obs.patient_need_tracking" id="obs.patient_need_tracking_yes" required>&nbsp;Yes
+					</label>
+				</div>
+				<div class="form-group">
+					<label for="obs.patient_need_tracking_no" style="font-weight: normal;">
+						<input type="radio" data-concept="165953^Track patient again^99DCT" value="1066^No^99DCT" name="obs.patient_need_tracking" id="obs.patient_need_tracking_no" required>&nbsp;No
+					</label>
+				</div>
+			</div>
+			<div class="form-group reason_no_tracking_needed" id="reason_no_tracking_needed">
+				<label for="obs.reason_no_need_of_tracking">			
+			     Reason:
+				<span class="required">*</span>
+				</label>
+				<div class="form-group">	
+					<label for="obs.reason_no_need_of_tracking_dead" style="font-weight: normal;">
+						<input type="radio" data-concept="165979^Reason(s) not tracking^99DCT" value="160432^Dead^99DCT" name="obs.reason_no_need_of_tracking" id="obs.reason_no_need_of_tracking_dead" required>&nbsp;Dead
+					</label>
+				</div>
+				<div class="form-group">
+					<label for="obs.reason_no_need_of_tracking_ema" style="font-weight: normal;">
+						<input type="radio" data-concept="165979^Reason(s) not tracking^99DCT" value="165954^Exceed^99DCT" name="obs.reason_no_need_of_tracking" id="obs.reason_no_need_of_tracking_ema" required>&nbsp;Exceed maximum attempts
+					</label>
+				</div>
+				<div class="form-group">
+					<label for="obs.reason_no_need_of_tracking_nci" style="font-weight: normal;">
+						<input type="radio" data-concept="165979^Reason(s) not tracking^99DCT" value="165955^No contact information^99DCT" name="obs.reason_no_need_of_tracking" id="obs.reason_no_need_of_tracking_nci" required>&nbsp;No contact information
+					</label>
+				</div>
+				<div class="form-group">
+					<label for="obs.reason_no_need_of_tracking_other" style="font-weight: normal;">
+						<input type="radio" data-concept="165979^Reason(s) not tracking^99DCT" value="5622^Other^99DCT" name="obs.reason_no_need_of_tracking" id="obs.reason_no_need_of_tracking_other" required>&nbsp;Other
+					</label>
+				</div>				
+			</div>
+		</div>
+    </div>
+	<div class="section">
+		<div class="form-group">
+			<label for="obs.covid_19_plan">			
+				COVID-19 plan
+			<span class="required">*</span>
+			</label>
+			<div class="form-group">	
+				<label for="obs.covid_19_plan_none" style="font-weight: normal;">
+					<input type="checkbox" data-concept="165936^Covid-19 Plan^99DCT" value="1107^None^99DCT" name="obs.covid_19_plan" id="obs.covid_19_plan_none" required>&nbsp;None
+				</label>
+			</div>
+			<div class="form-group">	
+				<label for="obs.covid_19_plan_screening" style="font-weight: normal;">
+					<input type="checkbox" data-concept="165936^Covid-19 Plan^99DCT" value="165937^Complete COVID-19 screening form^99DCT" name="obs.covid_19_plan" id="obs.covid_19_plan_screening" required>&nbsp;Complete COVID-19 screening form
+				</label>
+			</div>
+			<div class="sub-section" id="fill_screening_form">
+				<div class="form-group">	
+					<label for="">			
+						Do yo want to fill screening form now or later
+					<span class="required">*</span>
+					</label>
+					<div class="form-group">
+						<label for="tmp.fill_screening_form_now" style="font-weight: normal;">
+							<input type="radio"  value="now" name="tmp.fill_screening_form" id="tmp.fill_screening_form_now"  required>&nbsp;Now&nbsp;&nbsp;
+						</label>
+						<label for="tmp.fill_screening_form_later" style="font-weight: normal;">
+							<input type="radio"  value="later" name="tmp.fill_screening_form"  id="tmp.fill_screening_form_later" required>&nbsp;	Later&nbsp;&nbsp;
+						</label>
+					</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="obs.covid_19_plan_collect_lab" style="font-weight: normal;">
+					<input type="checkbox" data-concept="165936^Covid-19 Plan^99DCT" value="165938^Collect laboratory sample^99DCT" name="obs.covid_19_plan" id="obs.covid_19_plan_collect_lab" required>&nbsp;Collect laboratory sample
+				</label>
+			</div>
+			<div class="sub-section" id="collect_laboratory_sample">
+				<div class="form-group">	
+					<label for="">			
+						Do yo want to complete laboratory form now or later
+					<span class="required">*</span>
+					</label>
+					<div class="form-group">	
+						<label for="tmp.fill_form_now" style="font-weight: normal;">
+							<input type="radio"  value="now" name="tmp.fill_form" id="tmp.fill_form_now"  required>&nbsp;Now&nbsp;&nbsp;
+						</label>
+						<label for="tmp.fill_form_later" style="font-weight: normal;">
+							<input type="radio"  value="later" name="tmp.fill_form" id="tmp.fill_form_later" required>&nbsp;	Later&nbsp;&nbsp;
+						</label>
+					</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="obs.covid_19_plan_refer_lab" style="font-weight: normal;">
+					<input type="checkbox" data-concept="165936^Covid-19 Plan^99DCT" value="165939^Refer to laboratory for sample collection^99DCT" name="obs.covid_19_plan" id="obs.covid_19_plan_refer_lab" required>&nbsp;Refer to laboratory for sample collection
+				</label>
+			</div>
+			<div class="form-group">
+				<label for="obs.covid_19_plan_contact_tracing" style="font-weight: normal;">
+					<input type="checkbox" data-concept="165936^Covid-19 Plan^99DCT" value="165940^Contact Tracing^99DCT" name="obs.covid_19_plan" id="obs.covid_19_plan_contact_tracing" required>&nbsp;Track close contacts
+				</label>
+			</div>
+			<label class="alert alert-info" id="track_close_contacts_alert">
+				<b>Please add contacts by selecting <img border="0" src="file:///android_res/drawable/ic_relationship.png" alt="nothing" width="40" height="40" />  under Client Summary page</b>
+			</label>
+			<div class="form-group">
+				<label for="obs.covid_19_plan_social_isolation" style="font-weight: normal;">
+					<input type="checkbox" data-concept="165936^Covid-19 Plan^99DCT" value="126311^Social isolation^99DCT" name="obs.covid_19_plan" id="obs.covid_19_plan_social_isolation" required>&nbsp;Isolation recommended
+				</label>
+			</div>
+			<div class="form-group">
+				<label for="obs.covid_19_plan_quarantine" style="font-weight: normal;">
+					<input type="checkbox" data-concept="165936^Covid-19 Plan^99DCT" value="165941^Quarantine^99DCT" name="obs.covid_19_plan" id="obs.covid_19_plan_quarantine" required>&nbsp;Quarantine
+				</label>
+			</div>
+			<div class="form-group">
+				<label for="obs.covid_19_plan_admit" style="font-weight: normal;">
+					<input type="checkbox" data-concept="165936^Covid-19 Plan^99DCT" value="165942^Admit to Hospital^99DCT" name="obs.covid_19_plan" id="obs.covid_19_plan_admit" required>&nbsp;Refer for admission
+				</label>
+			</div>
+        </div>
+    </div>
+    <div class="section">
+        <div class="form-group">
+		<label for="encounter.location_id">Encounter Location:<span class="required">*</span></label>
+		<input class="form-control valid-location-only" id="encounter.location_id" type="text"
+		placeholder="Start typing something..." required="required">
+		<input class="form-control" name="encounter.location_id" type="hidden">
+        </div>
+	<div class="form-group">
+		<label for="encounter.provider_id_select">Provider Name:<span class="required">*</span></label>
+		<input class="form-control valid-provider-only" id="encounter.provider_id_select"
+		type="text" placeholder="Start typing something...">
+		<input class="form-control" name="encounter.provider_id_select" type="hidden">
+	</div>
+
+	<div class="form-group show_provider_id_text">
+		<label for="encounter.provider_id">Provider’s System ID:<span class="required">*</span></label>
+		<input class="form-control checkDigit" id="encounter.provider_id" disabled name="encounter.provider_id"
+	       type="text" required="required"  placeholder="Provider Id">
+	</div>
+	<div class="form-group">
+		<label for="encounter.encounter_datetime">Encounter Date:<span class="required">*</span></label>
+		<input class="form-control datepicker nonFutureDate past-date" id="encounter.encounter_datetime"
+	       name="encounter.encounter_datetime" type="text" readonly="readonly"
+	       required="required">
+	</div>
+	<div class="form-group">
+		<input class="form-control" id="encounter.form_uuid" name="encounter.form_uuid"
+	       type="hidden" required="required">
+		<input class="form-control" id="encounter.user_system_id" name="encounter.user_system_id" type="hidden">
+	</div>
+    </div>
+</form>
+</body>
+<script type="text/javascript">
+$(document).ready(function () {
+	$('#save_draft').click(function () {
+	    $(this).prop('disabled', true);
+	    document.saveDraft();
+	    $(this).prop('disabled', false);
+	});
+
+	$('#submit_form').click(function () {
+	    $(this).prop('disabled', true);
+	    document.submit();
+	    $(this).prop('disabled', false);
+	});
+
+	var prePopulateData = $.trim($('#pre_populate_data').html());
+	if(prePopulateData !== ""){
+		var prePopulateJSON = JSON.parse(prePopulateData);
+		$.each(prePopulateJSON, function(key, value) {
+			if (key === 'patient') {
+			    var names = "";
+				$.each(value, function(keys, values) {
+				if(keys === 'patient.given_name' || keys === 'patient.middle_name' || keys === 'patient.family_name' || keys === 'patient.names'){
+					   names=names+" "+values;
+				}				
+				if(keys === "patient.birth_date"){
+						var tmp = values.split('-');
+						if(tmp[2].length===4){
+						var birthDate = new Date(tmp[2],tmp[1]-1,tmp[0]);
+						}else{
+						var birthDate = new Date(values);
+						}
+						var today = new Date();
+						var milliSecondsInAYear = 1000 * 60 * 60 * 24 * 365.26;
+						var milliSecondsInAMonth = 1000 * 60 * 60 * 24 * 365.26/12;
+						var age = (today.getTime() - birthDate.getTime()) / milliSecondsInAYear; 
+						var months = ((age-Math.floor(age))*milliSecondsInAYear)/milliSecondsInAMonth;
+						$('#patient\\.age').val((Math.floor(age)+" Years "+ Math.floor(months)+" Months"));
+					}
+				});
+				$('#patient\\.names').val(names);
+			}  
+		});
+	}
+	
+	var prePopulateData = $.trim($('#pre_populate_data').html());
+	if(prePopulateData !== ""){
+		var prePopulateJSON = JSON.parse(prePopulateData);
+		$.each(prePopulateJSON, function(keys, value) {
+			if (keys === 'patient.personattribute') {
+				$.each(value, function (key, values) {
+					if(values.attribute_type_uuid === "50eacf4d-b65c-4773-a408-fa32fe36e97b"){
+						 $("#patient\\.phone_number").val(values.attribute_value);
+					}
+					if(values.attribute_type_uuid === "30fbab3b-de64-4263-ae8b-7e44b3a8c7f7"){
+						$("#patient\\.email").val(values.attribute_value);
+					}
+				});		
+			}		
+		});
+	}
+	
+	var $patientFound = $(':radio[data-concept="165950^Patient found^99DCT"]');
+	$patientFound.change(function(){
+		var $activeOpt = $(':radio[data-concept="165950^Patient found^99DCT"]:checked').val();
+		if($activeOpt == "1065^Yes^99DCT"){
+			$('#patient_found_div').show();
+			$('#patient_not_found_div').hide();
+		}else if($activeOpt == "1066^No^99DCT"){
+			$('#patient_found_div').hide();
+			$('#patient_not_found_div').show();
+		}else{
+			$('#patient_found_div').hide();
+			$('#patient_not_found_div').hide();
+		}		
+	});
+	$patientFound.trigger('change');
+	
+	var $patientTrackingNotNeeded = $(':radio[data-concept="165953^Track patient again^99DCT"]');
+	$patientTrackingNotNeeded.change(function(){
+		var $activeOpt = $(':radio[data-concept="165953^Track patient again^99DCT"]:checked').val();
+		if($activeOpt == "1066^No^99DCT"){
+			$('#reason_no_tracking_needed').show();
+		}else{
+			$('#reason_no_tracking_needed').hide();
+		}		
+	});
+	$patientTrackingNotNeeded.trigger('change');
+	
+	var $trackingOutcome = $(':radio[data-concept="165951^Patient\'s response^99DCT"]');
+	$trackingOutcome.change(function(){
+		var $activeOpt = $(':radio[data-concept="165951^Patient\'s response^99DCT"]:checked').val();
+		if($activeOpt == "159413^Agree^99DCT"){
+			$('#outcome_alert').show();
+		}else{
+			$('#outcome_alert').hide();
+		}		
+	});
+	$trackingOutcome.trigger('change');
+	
+	var $contactInfoLogic = $(':checkbox[data-concept="165949^Tracking method^99DCT"]');
+        $contactInfoLogic.change(function(){
+        var $selectedOptions = $(':checkbox[data-concept="165949^Tracking method^99DCT"]:checked');
+        var noneValue = $('#obs\\.tracking_method_no_contact_info').val();
+        if($selectedOptions.length > 0){
+		$.each($selectedOptions, function(k,v){
+			if($(v).val() != noneValue){
+				 $("#obs\\.tracking_method_no_contact_info").attr("disabled","disabled");
+			}else{
+		        	var $contactInfo = $contactInfoLogic.not('#obs\\.tracking_method_no_contact_info');
+		        	$contactInfo.attr("disabled","disabled");
+			}
+		});
+		}else{
+		    $contactInfoLogic.removeAttr('disabled');
+		}
+	});
+	$contactInfoLogic.trigger('change');
+	
+	$('#temp\\.address').change(function(){
+		if($(this).prop( "checked" )){
+			$('#displayaddress').show();
+		} else{
+			$('#displayaddress').hide();
+		}
+	}); 
+    $('#temp\\.address').trigger('change');
+	
+	var $covidPlan = $(':checkbox[data-concept="165936^Covid-19 Plan^99DCT"]');
+        $covidPlan.change(function(){
+        var $selectedOptions = $(':checkbox[data-concept="165936^Covid-19 Plan^99DCT"]:checked');
+        var refusalValue = $('#obs\\.covid_19_plan_none').val();
+        if($selectedOptions.length > 0){
+		$.each($selectedOptions, function(k,v){
+			if($(v).val() != refusalValue){
+				 $("#obs\\.covid_19_plan_none").attr("disabled","disabled");
+			}else{
+		        	var $tests = $covidPlan.not('#obs\\.covid_19_plan_none');
+		        	$tests.attr("disabled","disabled");
+			}
+		});
+		}else{
+		    $covidPlan.removeAttr('disabled');
+		}
+	});
+	$covidPlan.trigger('change');
+	
+	$('#obs\\.covid_19_plan_screening').change(function(){
+		if($(this).prop( "checked" )){
+			$('#fill_screening_form').show();
+		} else{
+			$('#fill_screening_form').hide();
+		}
+	}); 
+    $('#obs\\.covid_19_plan_screening').trigger('change');
+
+	$('#obs\\.covid_19_plan_collect_lab').change(function(){
+		if($(this).prop( "checked" )){
+			$('#obs\\.covid_19_plan_refer_lab').attr("disabled","disabled");
+			$('#collect_laboratory_sample').show();
+		} else{
+			$('#obs\\.covid_19_plan_refer_lab').removeAttr("disabled");
+			$('#collect_laboratory_sample').hide();
+		}
+	}); 
+    $('#obs\\.covid_19_plan_collect_lab').trigger('change');
+
+	$('#obs\\.covid_19_plan_refer_lab').change(function(){
+		if($(this).prop( "checked" )){
+			$('#obs\\.covid_19_plan_collect_lab').attr("disabled","disabled");
+		} else{
+			$('#obs\\.covid_19_plan_collect_lab').removeAttr("disabled");
+		}
+	}); 
+    $('#obs\\.covid_19_plan_refer_lab').trigger('change');
+
+	$('#obs\\.covid_19_plan_social_isolation').change(function(){
+		if($(this).prop( "checked" )){
+			$('#obs\\.covid_19_plan_quarantine').attr("disabled","disabled");
+		} else{
+			$('#obs\\.covid_19_plan_quarantine').removeAttr("disabled");
+		}
+	}); 
+    $('#obs\\.covid_19_plan_social_isolation').trigger('change');
+
+	$('#obs\\.covid_19_plan_quarantine').change(function(){
+		if($(this).prop( "checked" )){
+			$('#obs\\.covid_19_plan_social_isolation').attr("disabled","disabled");
+		} else{
+			$('#obs\\.covid_19_plan_social_isolation').removeAttr("disabled");
+		}
+	}); 
+    $('#obs\\.covid_19_plan_quarantine').trigger('change');
+	
+	var $fillForm = $(':radio[name="tmp\\.fill_form"]');
+	$fillForm.change(function(){
+		var $activeOpt = $(':radio[name="tmp\\.fill_form"]:checked').val();
+		if($activeOpt == "now"){
+			document.launchEncounterMiniForm( $("#patient\\.uuid").val(),"55de3229-4f10-4c8b-9620-c6be405bb043");
+		}	
+	});
+	$fillForm.trigger('change');
+	
+	var $fillscreeningForm = $(':radio[name="tmp\\.fill_screening_form"]');
+	$fillscreeningForm.change(function(){
+		var $activeOpt = $(':radio[name="tmp\\.fill_screening_form"]:checked').val();
+		if($activeOpt == "now"){
+			document.launchEncounterMiniForm( $("#patient\\.uuid").val(),"f314c905-0bd0-4333-99de-921e6ee23b7f");
+		}	
+	});
+	$fillscreeningForm.trigger('change');
+
+	$('#tmp\\.at_home_location').change(function(){
+		var selected_val = $(this).val();
+		if(selected_val == 'Yes'){
+			$('#pick-gps-button-div').show();
+			$('.gps-details').show();
+			$('.gps-location-picker').attr('data-zoomlevel',14);
+		} else if(selected_val == 'No'){
+			$('.gps-location-picker').attr('data-zoomlevel',9);
+			//show button to trigger GPS
+			$('#pick-gps-button-div').show();
+			//show location fields
+			$('.gps-details').show();
+		} else {
+			//hide button
+			$('#pick-gps-button-div').hide();
+			$('.gps-details').hide();
+		}
+	});
+	$('#tmp\\.at_home_location').trigger('change');
+	
+	
+	$("form[name='tracking_form']").validate({
+        errorElement: "div",
+        wrapper: "div",  // a wrapper around the error message
+        errorPlacement: function(error, element) {
+			if ( element.is(":radio") ) {                   
+				error.insertBefore( element.parent().parent());
+			}
+			else if ( element.is(":checkbox") ) {                   
+				error.insertBefore( element.parent().parent());
+			}
+			else { // This is the default behavior of the script for all fields
+				error.insertAfter( element );
+			}
+	 }
+});
+	
+	$('#obs\\.covid_19_plan_contact_tracing').change(function(){
+		if($(this).prop( "checked" )){
+			$('#track_close_contacts_alert').show();
+		} else{
+			$('#track_close_contacts_alert').hide();
+		}
+	}); 
+	$('#obs\\.covid_19_plan_contact_tracing').trigger('change');
+	
+	document.setupAutoCompleteDataForProvider('encounter\\.provider_id_select');
+
+	document.setupAutoCompleteData('encounter\\.location_id');
+	document.setupValidationForProvider($('#encounter\\.provider_id_select').val(),$("#encounter\\.provider_id"));
+	document.setupValidationForLocation($('#encounter\\.location_id').val(),$("encounter\\.location_id"));
+
+});
+</script>
+</html>
