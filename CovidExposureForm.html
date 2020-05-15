@@ -1,0 +1,1110 @@
+<html xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
+<head>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/muzima.css" rel="stylesheet">
+    <link href="css/ui-darkness/jquery-ui-1.10.4.custom.min.css" rel="stylesheet">
+    <script src="js/jquery.min.js"></script>
+    <script src="js/jquery-ui-1.10.4.custom.min.js"></script>
+    <script src="js/jquery.validate.min.js"></script>
+    <script src="js/additional-methods.min.js"></script>
+    <script src="js/muzima.js"></script>
+    <title>Exposure Form</title>
+</head>
+<body class="col-md-10 col-md-offset-1">
+<div id="pre_populate_data">
+
+</div>
+<form id="exposure_form" name="exposure_form">
+    <h2 class="text-center">Exposure Form</h2>
+    <div class="section">
+        <h3>Demographics</h3>
+        <div class="form-group">
+            <input class="form-control" id="patient.uuid"
+                   name="patient.uuid" type="hidden" readonly="readonly">
+        </div>
+
+        <div class="form-group">
+            <label for="patient.medical_record_number">Unique case id:</label>
+            <input class="form-control" id="patient.medical_record_number"
+                   name="patient.medical_record_number" type="text"
+                   readonly="readonly">
+        </div>
+        <div class="form-group" style="display:none;">
+            <label for="patient.family_name">Family Name:</label>
+            <input class="form-control" id="patient.family_name"
+                   name="patient.family_name" type="text" readonly="readonly">
+        </div>
+        <div class="form-group" style="display:none;">
+            <label for="patient.given_name">Given Name:</label>
+            <input class="form-control" id="patient.given_name"
+                   name="patient.given_name" type="text" readonly="readonly">
+        </div>
+        <div class="form-group" style="display:none;">
+            <label for="patient.middle_name">Middle Name:</label>
+            <input class="form-control" id="patient.middle_name"
+                   name="patient.middle_name" type="text" readonly="readonly">
+        </div>
+		<div class="form-group">
+            <label for="patient.names">Name:</label>
+            <input class="form-control" id="patient.names"
+                   name="patient.names" type="text" readonly="readonly">
+        </div>
+        <div class="form-group">
+            <label for="patient.sex">Gender:</label>
+            <select class="form-control" id="patient.sex" name="patient.sex" readonly="readonly" disabled>
+                <option value="">...</option>
+                <option value="M">Male</option>
+                <option value="F">Female</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="patient.birth_date">Date of birth:</label>
+            <input class="form-control" id="patient.birth_date"
+                   name="patient.birth_date" type="text" readonly="readonly">
+        </div>
+    </div>
+    <div class="section">
+	<div class="form-group">
+		<label for="obs.location_of_event">			
+			Location where the data collection is/was done
+		<span class="required">*</span>
+		</label>
+		<select class="form-control" id="obs.location_of_event" required
+			name="obs.location_of_event" data-concept="161010^Location of event^99DCT">
+			<option value="">...</option>
+			<option value="1537^HEALTH FACILITY^99DCT">Health facility</option>
+			<option value="1588^HEALTH CLINIC/POST^99DCT">Health clinic</option>
+			<option value="1589^HOSPITAL^99DCT">Hospital</option>
+			<option value="1536^HOME^99DCT">Home</option>
+			<option value="1601^EN ROUTE TO HEALTH FACILITY^99DCT">En route to health facility</option>	
+			<option value="5622^Other^99DCT">Other</option>
+			<option value="1067^Unknown^99DCT">Unknown</option>
+		</select>
+        </div>
+
+    </div>
+    <div class="section">
+	<h3>Domestic travel</h3>
+	<div class="form-group concept-set" data-concept="165911^Domestic travel, detailed^99DCT">
+		<div class="form-group">
+			<label for="">			
+				Have you travelled within the last 14 days domestically?
+			<span class="required">*</span>
+			</label>
+			<div class="form-group">	
+				<label for="obs.local_travel_yes" style="font-weight: normal;">
+					<input type="radio" data-concept="165907^Domestic travel within past 14 days^99DCT" value="1065^Yes^99DCT" name="obs.local_travel" id="obs.local_travel_yes" required>&nbsp;Yes&nbsp;&nbsp;
+				</label>
+				<label for="obs.local_travel_no" style="font-weight: normal;">
+					<input type="radio" data-concept="165907^Domestic travel within past 14 days^99DCT" value="1066^No^99DCT" name="obs.local_travel" id="obs.local_travel_no" required>&nbsp;No&nbsp;&nbsp;
+				</label>
+				<label for="obs.local_travel_unknown" style="font-weight: normal;">
+					<input type="radio" data-concept="165907^Domestic travel within past 14 days^99DCT" value="1067^Unknown^99DCT" name="obs.local_travel" id="obs.local_travel_unknown" required>&nbsp;Unknown
+				</label>
+			</div>
+        	</div>
+		<div class="form-group" id="local_travel_yes">
+			<div class="form-group">
+				<label for="obs.local_travel_start_date">			
+					From date:
+				<span class="required">*</span>
+				</label>
+				<div class="form-group">		
+					<input type="text" class="form-control datepicker nonFutureDate past-date" data-concept="165909^Travel start date/time^99DCT" name="obs.local_travel_start_date" readonly="readonly" required="required">
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="obs.local_travel_end_date">			
+					To date:
+				<span class="required">*</span>
+				</label>
+				<div class="form-group">		
+					<input type="text" class="form-control datepicker nonFutureDate past-date" data-concept="165910^Travel end date/time^99DCT" name="obs.local_travel_end_date" readonly="readonly" required="required">
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="obs.local_travel_regions">			
+					Regions visited:
+				<span class="required">*</span>
+				</label>
+				<div class="form-group">		
+					<input type="text" class="form-control" data-concept="165908^Region visited^99DCT" name="obs.local_travel_regions" required="required">
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="obs.local_travel_cities">			
+					Cities visited:
+				<span class="required">*</span>
+				</label>
+				<div class="form-group">		
+					<input type="text" class="form-control" data-concept="165645^City visited^99DCT" name="obs.local_travel_regions" required="required">
+				</div>
+			</div>
+		</div>
+	</div>
+    </div>
+    <div class="section">
+	<h3>International travel</h3>
+	<div class="form-group concept-set" data-concept="165913^International travel, detailed^99DCT">
+		<div class="form-group">
+			<label for="obs.international_travel">			
+				Have you travelled within the last 14 days internationally?
+			<span class="required">*</span>
+			</label>
+			<div class="form-group">	
+				<label for="obs.internatinal_travel_yes" style="font-weight: normal;">
+					<input type="radio" data-concept="165912^International travel within past 14 days^99DCT" value="1065^Yes^99DCT" name="obs.internatinal_travel" id="obs.internatinal_travel_yes" required>&nbsp;Yes&nbsp;&nbsp;
+				</label>
+				<label for="obs.internatinal_travel_no" style="font-weight: normal;">
+					<input type="radio" data-concept="165912^International travel within past 14 days^99DCT" value="1066^No^99DCT" name="obs.internatinal_travel" id="obs.internatinal_travel_no" required>&nbsp;No&nbsp;&nbsp;
+				</label>
+				<label for="obs.internatinal_travel_unknown" style="font-weight: normal;">
+					<input type="radio" data-concept="165912^International travel within past 14 days^99DCT" value="1067^Unknown^99DCT" name="obs.internatinal_travel" id="obs.internatinal_travel_unknown" required>&nbsp;Unknown
+				</label>
+			</div>
+        	</div>
+		<div class="form-group" id="internatinal_travel_yes">
+			<div class="form-group">
+				<label for="obs.internatinal_travel_start_date">			
+					From date:
+				<span class="required">*</span>
+				</label>
+				<div class="form-group">		
+					<input type="text" class="form-control datepicker nonFutureDate past-date" data-concept="165909^Travel start date/time^99DCT" name="obs.internatinal_travel_start_date" readonly="readonly" required="required">
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="obs.internatinal_travel_end_date">			
+					To date:
+				<span class="required">*</span>
+				</label>
+				<div class="form-group">		
+					<input type="text" class="form-control datepicker nonFutureDate past-date" data-concept="165910^Travel end date/time^99DCT" name="obs.internatinal_travel_end_date" readonly="readonly" required="required">
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="obs.internatinal_travel_regions">			
+					Country visited:
+				<span class="required">*</span>
+				</label>
+				<div class="form-group">		
+					<input type="text" class="form-control" data-concept="162604^Country visited^99DCT" name="obs.internatinal_travel_countries" id="obs.internatinal_travel_countries" required="required">
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="obs.internatinal_travel_cities">			
+					Cities visited:
+				<span class="required">*</span>
+				</label>
+				<div class="form-group">		
+					<input type="text" class="form-control" data-concept="165645^City visited^99DCT" name="obs.internatinal_travel_regions" required="required">
+				</div>
+			</div>
+		</div>
+	</div>
+    </div>
+    <div class="section">
+        <div class="sub-section">
+		<div class="form-group concept-set" data-concept="165915^Close contact with person with acute respiratory infection 14 days prior to developing symptoms, detailed^99DCT">
+			<div class="form-group">
+				<label for="">			
+					In the past 14 days, have you had contact with anyone with suspected or confirmed COVID-19 infection?
+				<span class="required">*</span>
+				</label>
+				<div class="form-group">	
+					<label for="obs.close_contact_yes" style="font-weight: normal;">
+						<input type="radio" data-concept="165850^Close contact with person with acute respiratory infection 14 days prior to developing symptoms^99DCT" value="1065^Yes^99DCT" name="obs.close_contact" id="obs.close_contact_yes" required>&nbsp;Yes&nbsp;&nbsp;
+					</label>
+					<label for="obs.close_contact_no" style="font-weight: normal;">
+						<input type="radio" data-concept="165850^Close contact with person with acute respiratory infection 14 days prior to developing symptoms^99DCT" value="1066^No^99DCT" name="obs.close_contact" id="obs.close_contact_no" required>&nbsp;No&nbsp;&nbsp;
+					</label>
+					<label for="obs.close_contact_unknown" style="font-weight: normal;">
+						<input type="radio" data-concept="165850^Close contact with person with acute respiratory infection 14 days prior to developing symptoms^99DCT" value="1067^Unknown^99DCT" name="obs.close_contact" id="obs.close_contact_unknown" required>&nbsp;Unknown
+					</label>
+				</div>
+			</div>
+		        <div class="form-group" id="close_contact_yes">
+				<label for="obs.local_travel_end_date">			
+					Date of last contact:
+				<span class="required">*</span>
+				</label>
+				<div class="form-group">		
+					<input type="text" class="form-control datepicker nonFutureDate past-date" data-concept="165914^Date of last contact^99DCT" name="obs.date_of_last_contact" readonly="readonly" required="required">
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="sub-section">
+		<div class="form-group concept-set" data-concept="165918^Attended festival or mass gathering in the past 14 days, detailed^99DCT">
+			<div class="form-group">
+				<label for="">			
+					Patient attended festival or mass gathering in the past 14 days?
+				<span class="required">*</span>
+				</label>
+				<div class="form-group">	
+					<label for="obs.mass_gathering_yes" style="font-weight: normal;">
+						<input type="radio" data-concept="165916^Attended festival or mass gathering in the past 14 days^99DCT" value="1065^Yes^99DCT" name="obs.mass_gathering" id="obs.mass_gathering_yes" required>&nbsp;Yes&nbsp;&nbsp;
+					</label>
+					<label for="obs.mass_gathering_no" style="font-weight: normal;">
+						<input type="radio" data-concept="165916^Attended festival or mass gathering in the past 14 days^99DCT" value="1066^No^99DCT" name="obs.mass_gathering" id="obs.mass_gathering_no" required>&nbsp;No&nbsp;&nbsp;
+					</label>
+					<label for="obs.mass_gathering_unknown" style="font-weight: normal;">
+						<input type="radio" data-concept="165916^Attended festival or mass gathering in the past 14 days^99DCT" value="1067^Unknown^99DCT" name="obs.mass_gathering" id="obs.mass_gathering_unknown" required>&nbsp;Unknown
+					</label>
+				</div>
+			</div>
+		        <div class="form-group" id="mass_gathering_yes">
+				<label for="obs.mass_gathering_type">			
+					Specify:
+				<span class="required">*</span>
+				</label>
+				<div class="form-group">		
+					<input type="text" class="form-control" data-concept="165917^Attended festival or mass gathering in the past 14 days, specify^99DCT" name="obs.mass_gathering_type" required="required">
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="form-group">
+		<label for="">			
+			Patient exposed to person with similar illness in the past 14 days?
+		<span class="required">*</span>
+		</label>
+		<div class="form-group">
+			<label for="obs.patient_exposed_yes" style="font-weight: normal;">
+				<input type="radio" data-concept="165919^Exposed to person with similar illness in the past 14 days^99DCT" value="1065^Yes^99DCT" name="obs.patient_exposed" id="obs.patient_exposed_yes" required>&nbsp;Yes&nbsp;&nbsp;
+			</label>
+			<label for="obs.patient_exposed_no" style="font-weight: normal;">
+				<input type="radio" data-concept="165919^Exposed to person with similar illness in the past 14 days^99DCT" value="1066^No^99DCT" name="obs.patient_exposed" id="obs.patient_exposed_no" required>&nbsp;No&nbsp;&nbsp;
+			</label>
+			<label for="obs.patient_exposed_unknown" style="font-weight: normal;">
+				<input type="radio" data-concept="165919^Exposed to person with similar illness in the past 14 days^99DCT" value="1067^Unknown^99DCT" name="obs.patient_exposed" id="obs.patient_exposed_unknown" required>&nbsp;Unknown
+			</label>
+		</div>
+	</div>
+	<div class="sub-section">
+		<div class="form-group concept-set" data-concept="165923^Location of exposure in past 14 days, detailed^99DCT">
+			<label for="obs.location_of_exposure">			
+				Location of exposure in past 14 days
+			<span class="required">*</span>
+			</label>
+			<div class="form-group">	
+				<label for="obs.location_of_exposure_home" style="font-weight: normal;">
+					<input type="checkbox" data-concept="165921^Location of exposure in past 14 days^99DCT" value="1536^Home^99DCT" name="obs.location_of_exposure" id="obs.location_of_exposure_home" required>&nbsp;Home
+				</label>
+			</div>
+			<div class="form-group">
+				<label for="obs.location_of_exposure_hos" style="font-weight: normal;">
+					<input type="checkbox" data-concept="165921^Location of exposure in past 14 days^99DCT" value="1589^Hospital^99DCT" name="obs.location_of_exposure" id="obs.location_of_exposure_hos" required>&nbsp;Hospital
+				</label>
+			</div>
+			<div class="form-group">
+				<label for="obs.location_of_exposure_work" style="font-weight: normal;">
+					<input type="checkbox" data-concept="165921^Location of exposure in past 14 days^99DCT" value="164406^Workplace^99DCT" name="obs.location_of_exposure" id="obs.location_of_exposure_work" required>&nbsp;Workplace
+				</label>
+			</div>
+			<div class="form-group">
+				<label for="obs.location_of_exposure_tg" style="font-weight: normal;">
+					<input type="checkbox" data-concept="165921^Location of exposure in past 14 days^99DCT" value="165920^Tour Group^99DCT" name="obs.location_of_exposure" id="obs.location_of_exposure_tg" required>&nbsp;Tour Group
+				</label>
+			</div>
+			<div class="form-group">
+				<label for="obs.location_of_exposure_school" style="font-weight: normal;">
+					<input type="checkbox" data-concept="165921^Location of exposure in past 14 days^99DCT" value="159928^School^99DCT" name="obs.location_of_exposure" id="obs.location_of_exposure_school" required>&nbsp;School
+				</label>
+			</div>	
+			<div class="form-group">
+				<label for="obs.location_of_exposure_unknown" style="font-weight: normal;">
+					<input type="checkbox" data-concept="165921^Location of exposure in past 14 days^99DCT" value="1067^UnKnown^99DCT" name="obs.location_of_exposure" id="obs.location_of_exposure_unknown" required>&nbsp;Unknown
+				</label>
+			</div>	
+			<div class="form-group">
+				<label for="obs.location_other" style="font-weight: normal;">
+					<input type="checkbox" data-concept="165921^Location of exposure in past 14 days^99DCT" value="5622^Other^99DCT" name="obs.location_of_exposure" id="obs.location_other" required>&nbsp;Other
+				</label>
+			</div>	
+            <div class="form-group" id="location_other">
+				<label for="obs.location_specify">			
+					Specify:
+				<span class="required">*</span>
+				</label>
+				<input type="text" class="form-control" data-concept="165922^Location of exposure in past 14 days, specify^99DCT" name="obs.location_specify" required="required">
+			</div>												
+		</div>
+	</div>
+	<div class="sub-section">
+		<div class="form-group concept-set" data-concept="165926^Visited or admitted to inpatient health facility in past 14 days, detailed^99DCT">
+			<div class="form-group">
+				<label for="">			
+					Patient visited or was admitted to inpatient health facility in the past 14 days?
+				<span class="required">*</span>
+				</label>
+				<div class="form-group">	
+					<label for="obs.visited_inpatient_facility_yes" style="font-weight: normal;">
+						<input type="radio" data-concept="165924^Visited or admitted to inpatient health facility in past 14 days^99DCT" value="1065^Yes^99DCT" name="obs.visited_inpatient_facility" id="obs.visited_inpatient_facility_yes" required>&nbsp;Yes&nbsp;&nbsp;
+					</label>
+					<label for="obs.visited_inpatient_facility_no" style="font-weight: normal;">
+						<input type="radio" data-concept="165924^Visited or admitted to inpatient health facility in past 14 days^99DCT" value="1066^No^99DCT" name="obs.visited_inpatient_facility" id="obs.visited_inpatient_facility_no" required>&nbsp;No&nbsp;&nbsp;
+					</label>
+					<label for="obs.visited_inpatient_facility_unknown" style="font-weight: normal;">
+						<input type="radio" data-concept="165924^Visited or admitted to inpatient health facility in past 14 days^99DCT" value="1067^Unknown^99DCT" name="obs.visited_inpatient_facility" id="obs.visited_inpatient_facility_unknown" required>&nbsp;Unknown
+					</label>
+				</div>
+			</div>
+		        <div class="form-group" id="visited_inpatient_facility_yes">
+				<label for="obs.inpatient_facility_specify">			
+					Specify:
+				<span class="required">*</span>
+				</label>
+				<div class="form-group">		
+					<input type="text" class="form-control" data-concept="165925^Visited or admitted to inpatient health facility in past 14 days, specify^99DCT" name="obs.inpatient_facility_specify" required="required">
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="sub-section">
+		<div class="form-group concept-set" data-concept="165928^Visited health facility in past 14 days, detailed^99DCT">
+			<div class="form-group">
+				<label for="">			
+					Patient visited outpatient treatment facilities in the past 14 days?
+				<span class="required">*</span>
+				</label>
+				<div class="form-group">	
+					<label for="obs.visited_outpatient_facility_yes" style="font-weight: normal;">
+						<input type="radio" data-concept="165833^Visited health facility in past two weeks^99DCT" value="1065^Yes^99DCT" name="obs.visited_outpatient_facility" id="obs.visited_outpatient_facility_yes" required>&nbsp;Yes&nbsp;&nbsp;
+					</label>
+					<label for="obs.visited_outpatient_facility_no" style="font-weight: normal;">
+						<input type="radio" data-concept="165833^Visited health facility in past two weeks^99DCT" value="1066^No^99DCT" name="obs.visited_outpatient_facility" id="obs.visited_outpatient_facility_no" required>&nbsp;No&nbsp;&nbsp;
+					</label>
+					<label for="obs.visited_outpatient_facility_unknown" style="font-weight: normal;">
+						<input type="radio" data-concept="165833^Visited health facility in past two weeks^99DCT" value="1067^Unknown^99DCT" name="obs.visited_outpatient_facility" id="obs.visited_outpatient_facility_unknown" required>&nbsp;Unknown
+					</label>
+				</div>
+			</div>
+		        <div class="form-group" id="visited_outpatient_facility_yes">
+				<label for="obs.outpatient_facility_specify">			
+					Specify:
+				<span class="required">*</span>
+				</label>
+				<div class="form-group">		
+					<input type="text" class="form-control" data-concept="165927^Visited health facility in past two weeks, specify^99DCT" name="obs.outpatient_facility_specify" required="required">
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="sub-section">
+		<div class="form-group concept-set" data-concept="165930^Visited traditional healer in past 14 days, detailed^99DCT">
+			<div class="form-group">
+				<label for="">			
+					Patient visited traditional healers in past 14 days?
+				<span class="required">*</span>
+				</label>
+				<div class="form-group">	
+					<label for="obs.visited_traditional_healer_yes" style="font-weight: normal;">
+						<input type="radio" data-concept="165906^Visited traditional healer in past 14 days^99DCT" value="1065^Yes^99DCT" name="obs.visited_traditional_healer" id="obs.visited_traditional_healer_yes" required>&nbsp;Yes&nbsp;&nbsp;
+					</label>
+					<label for="obs.visited_traditional_healer_no" style="font-weight: normal;">
+						<input type="radio" data-concept="165906^Visited traditional healer in past 14 days^99DCT" value="1066^No^99DCT" name="obs.visited_traditional_healer" id="obs.visited_traditional_healer_no" required>&nbsp;No&nbsp;&nbsp;
+					</label>
+					<label for="obs.visited_traditional_healer_unknown" style="font-weight: normal;">
+						<input type="radio" data-concept="165906^Visited traditional healer in past 14 days^99DCT" value="1067^Unknown^99DCT" name="obs.visited_traditional_healer" id="obs.visited_traditional_healer_unknown" required>&nbsp;Unknown
+					</label>
+				</div>
+			</div>
+		    <div class="form-group" id="visited_traditional_healer_yes">
+				<label for="obs.traditional_healer_specify">			
+					Specify:
+				<span class="required">*</span>
+				</label>
+				<div class="form-group">		
+					<input type="text" class="form-control" data-concept="165929^Visited traditional healer in past 14 days, specify^99DCT" name="obs.traditional_healer_specify" required="required">
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="sub-section">
+		<div class="form-group concept-set" data-concept="165932^Occupation, detailed^99DCT">
+			<label for="obs.covid_19_plan">			
+				Occupation
+			<span class="required">*</span>
+			</label>
+			<div class="form-group">	
+				<label for="obs.occupation_hw" style="font-weight: normal;">
+					<input type="checkbox" data-concept="1542^Occupation^99DCT" value="5619^Health care provider^99DCT" name="obs.occupation" id="obs.occupation_hw" required>&nbsp;Health worker
+				</label>
+			</div>
+			<div class="form-group">
+				<label for="obs.occupation_wwa" style="font-weight: normal;">
+					<input type="checkbox" data-concept="1542^Occupation^99DCT" value="165834^Works with animals^99DCT" name="obs.occupation" id="obs.occupation_wwa" required>&nbsp;Works with animals
+				</label>
+			</div>
+			<div class="form-group">
+				<label for="obs.occupation_hlw" style="font-weight: normal;">
+					<input type="checkbox" data-concept="1542^Occupation^99DCT" value="165796^Medical laboratory technician^99DCT" name="obs.occupation" id="obs.occupation_hlw" required>&nbsp;Health laboratory worker
+				</label>
+			</div>
+			<div class="form-group">
+				<label for="obs.occupation_student" style="font-weight: normal;">
+					<input type="checkbox" data-concept="1542^Occupation^99DCT" value="159465^Student^99DCT" name="obs.occupation" id="obs.occupation_student" required>&nbsp;Student
+				</label>
+			</div>
+			<div class="form-group">
+				<label for="obs.occupation_other" style="font-weight: normal;">
+					<input type="checkbox" data-concept="1542^Occupation^99DCT" value="5622^Other non-coded^99DCT" name="obs.occupation" id="obs.occupation_other" required>&nbsp;Other
+				</label>
+			</div>	
+            <div class="form-group" id="occupation_other">
+				<label for="obs.occupation_other_specify">			
+					Specify:
+				<span class="required">*</span>
+				</label>
+				<input type="text" class="form-control" data-concept="165931^Occupation, specify^99DCT" name="obs.occupation_other_specify" required="required">
+			</div>												
+		</div>
+	</div>
+    </div>
+    <div class="section">
+	<div class="form-group">
+		<label for="obs.covid_19_plan">			
+			COVID-19 plan
+		<span class="required">*</span>
+		</label>
+		<div class="form-group">	
+			<label for="obs.covid_19_plan_none" style="font-weight: normal;">
+				<input type="checkbox" data-concept="165936^Covid-19 Plan^99DCT" value="1107^None^99DCT" name="obs.covid_19_plan" id="obs.covid_19_plan_none" required>&nbsp;None
+			</label>
+		</div>
+		<div class="form-group">
+			<label for="obs.covid_19_plan_screening" style="font-weight: normal;">
+				<input type="checkbox" data-concept="165936^Covid-19 Plan^99DCT" value="165937^Complete COVID-19 screening form^99DCT" name="obs.covid_19_plan" id="obs.covid_19_plan_screening" required>&nbsp;Complete COVID-19 screening form
+			</label>
+		</div>
+		<div class="sub-section" id="fill_screening_form">
+			<div class="form-group">	
+				<label for="">			
+					Do yo want to fill screening form now or later
+				<span class="required">*</span>
+				</label>
+				<div class="form-group">	
+					<label for="tmp.fill_screening_form_now" style="font-weight: normal;">
+						<input type="radio"  value="now" name="tmp.fill_screening_form" id="tmp.fill_screening_form_now" required>&nbsp;Now&nbsp;&nbsp;
+					</label>
+					<label for="tmp.fill_screening_form_later" style="font-weight: normal;">
+						<input type="radio"  value="later" name="tmp.fill_screening_form" id="tmp.fill_screening_form_later" required>&nbsp;Later&nbsp;&nbsp;
+					</label>
+				</div>
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="obs.covid_19_plan_collect_lab" style="font-weight: normal;">
+				<input type="checkbox" data-concept="165936^Covid-19 Plan^99DCT" value="165938^Collect laboratory sample^99DCT" name="obs.covid_19_plan" id="obs.covid_19_plan_collect_lab" required>&nbsp;Collect laboratory sample
+			</label>
+		</div>
+		<div class="sub-section" id="collect_laboratory_sample">
+			<div class="form-group">	
+				<label for="">			
+					Do yo want to complete laboratory form now or later
+				<span class="required">*</span>
+				</label>
+				<div class="form-group">	
+					<label for="tmp.fill_form_now" style="font-weight: normal;">
+						<input type="radio"  value="now" name="tmp.fill_form" id="tmp.fill_form_now"  required>&nbsp;Now&nbsp;&nbsp;
+					</label>
+					<label for="tmp.fill_form_later" style="font-weight: normal;">
+						<input type="radio"  value="later" name="tmp.fill_form" id="tmp.fill_form_later" required>&nbsp;Later&nbsp;&nbsp;
+					</label>
+				</div>
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="obs.covid_19_plan_refer_lab" style="font-weight: normal;">
+				<input type="checkbox" data-concept="165936^Covid-19 Plan^99DCT" value="165939^Refer to laboratory for sample collection^99DCT" name="obs.covid_19_plan" id="obs.covid_19_plan_refer_lab" required>&nbsp;Refer to laboratory for sample collection
+			</label>
+		</div>
+		<div class="form-group">
+			<label for="obs.covid_19_plan_contact_tracing" style="font-weight: normal;">
+				<input type="checkbox" data-concept="165936^Covid-19 Plan^99DCT" value="165940^Contact Tracing^99DCT" name="obs.covid_19_plan" id="obs.covid_19_plan_contact_tracing" required>&nbsp;Track close contacts
+			</label>
+		</div>
+		<label class="alert alert-info" id="track_close_contacts_alert">
+			<b>Please add contacts by selecting <img border="0" src="file:///android_res/drawable/ic_relationship.png" alt="nothing" width="40" height="40" />  under Client Summary page</b>
+		</label>
+		<div class="form-group">
+			<label for="obs.covid_19_plan_social_isolation" style="font-weight: normal;">
+				<input type="checkbox" data-concept="165936^Covid-19 Plan^99DCT" value="126311^Social isolation^99DCT" name="obs.covid_19_plan" id="obs.covid_19_plan_social_isolation" required>&nbsp;Isolation recommended
+			</label>
+		</div>
+		<div class="form-group">
+			<label for="obs.covid_19_plan_quarantine" style="font-weight: normal;">
+				<input type="checkbox" data-concept="165936^Covid-19 Plan^99DCT" value="165941^Quarantine^99DCT" name="obs.covid_19_plan" id="obs.covid_19_plan_quarantine" required>&nbsp;Quarantine
+			</label>
+		</div>
+		<div class="form-group">
+			<label for="obs.covid_19_plan_admit" style="font-weight: normal;">
+				<input type="checkbox" data-concept="165936^Covid-19 Plan^99DCT" value="165942^Admit to Hospital^99DCT" name="covid_19_plan" id="obs.covid_19_plan_admit" required>&nbsp;Refer for admission
+			</label>
+		</div>
+        </div>
+    </div>
+    <div class="section">
+        <div class="form-group">
+		<label for="encounter.location_id">Encounter Location:<span class="required">*</span></label>
+		<input class="form-control valid-location-only" id="encounter.location_id" type="text"
+		placeholder="Start typing something..." required="required">
+		<input class="form-control" name="encounter.location_id" type="hidden">
+        </div>
+	<div class="form-group">
+		<label for="encounter.provider_id_select">Provider Name:<span class="required">*</span></label>
+		<input class="form-control valid-provider-only" id="encounter.provider_id_select"
+		type="text" placeholder="Start typing something...">
+		<input class="form-control" name="encounter.provider_id_select" type="hidden">
+	</div>
+
+	<div class="form-group show_provider_id_text">
+		<label for="encounter.provider_id">Provider’s System ID:<span class="required">*</span></label>
+		<input class="form-control checkDigit" id="encounter.provider_id" disabled name="encounter.provider_id"
+	       type="text" required="required"  placeholder="Provider Id">
+	</div>
+	<div class="form-group">
+		<label for="encounter.encounter_datetime">Encounter Date:<span class="required">*</span></label>
+		<input class="form-control datepicker nonFutureDate past-date" id="encounter.encounter_datetime"
+	       name="encounter.encounter_datetime" type="text" readonly="readonly"
+	       required="required">
+	</div>
+	<div class="form-group">
+		<input class="form-control" id="encounter.form_uuid" name="encounter.form_uuid"
+	       type="hidden" required="required">
+		<input class="form-control" id="encounter.user_system_id" name="encounter.user_system_id" type="hidden">
+	</div>
+    </div>
+</form>
+</body>
+<script type="text/javascript">
+$(document).ready(function () {
+	$('#save_draft').click(function () {
+	    $(this).prop('disabled', true);
+	    document.saveDraft();
+	    $(this).prop('disabled', false);
+	});
+
+	$('#submit_form').click(function () {
+	    $(this).prop('disabled', true);
+	    document.submit();
+	    $(this).prop('disabled', false);
+	});
+
+     var prePopulateData = $.trim($('#pre_populate_data').html());
+	if(prePopulateData !=="" ){
+		var prePopulateJSON = JSON.parse(prePopulateData);
+		$.each(prePopulateJSON, function(key, value) {
+			if (key === 'patient') {
+				var names = "";
+				$.each(value, function(keys, values) {
+					if(keys === 'patient.given_name' || keys === 'patient.middle_name' || keys === 'patient.family_name' || keys === 'patient.names'){
+					   names=names+" "+values;
+					}
+				});
+				$('#patient\\.names').val(names);
+			}
+		});
+	}
+	
+	$('#obs\\.local_travel_yes').change(function(){
+		if($(this).prop( "checked" )){
+			$('#local_travel_yes').show();
+		} else{
+			$('#local_travel_yes').hide();
+		}
+	});    
+	$('#obs\\.local_travel_yes').trigger('change');
+
+	$('#obs\\.local_travel_no').change(function(){
+		if($(this).prop( "checked" )){
+			$('#local_travel_yes').hide();
+		} 
+	});    
+	$('#obs\\.local_travel_no').trigger('change');
+
+	$('#obs\\.local_travel_unknown').change(function(){
+		if($(this).prop( "checked" )){
+			$('#local_travel_yes').hide();
+		} 
+	});    
+	$('#obs\\.local_travel_unknown').trigger('change');
+
+	$('#obs\\.internatinal_travel_yes').change(function(){
+		if($(this).prop( "checked" )){
+			$('#internatinal_travel_yes').show();
+		} else{
+			$('#internatinal_travel_yes').hide();
+		}
+	});    
+	$('#obs\\.internatinal_travel_yes').trigger('change');
+
+	$('#obs\\.internatinal_travel_no').change(function(){
+		if($(this).prop( "checked" )){
+			$('#internatinal_travel_yes').hide();
+		} 
+	});    
+	$('#obs\\.internatinal_travel_no').trigger('change');
+
+	$('#obs\\.internatinal_travel_unknown').change(function(){
+		if($(this).prop( "checked" )){
+			$('#internatinal_travel_yes').hide();
+		} 
+	});    
+	$('#obs\\.internatinal_travel_unknown').trigger('change');
+
+	$('#obs\\.close_contact_yes').change(function(){
+		if($(this).prop( "checked" )){
+			$('#close_contact_yes').show();
+		} else{
+			$('#close_contact_yes').hide();
+		}
+	});    
+	$('#obs\\.close_contact_yes').trigger('change');
+
+	$('#obs\\.close_contact_no').change(function(){
+		if($(this).prop( "checked" )){
+			$('#close_contact_yes').hide();
+		} 
+	});    
+	$('#obs\\.close_contact_no').trigger('change');
+
+	$('#obs\\.close_contact_unknown').change(function(){
+		if($(this).prop( "checked" )){
+			$('#close_contact_yes').hide();
+		} 
+	});    
+	$('#obs\\.close_contact_unknown').trigger('change');
+
+	$('#obs\\.mass_gathering_yes').change(function(){
+		if($(this).prop( "checked" )){
+			$('#mass_gathering_yes').show();
+		} else{
+			$('#mass_gathering_yes').hide();
+		}
+	});    
+	$('#obs\\.mass_gathering_yes').trigger('change');
+
+	$('#obs\\.mass_gathering_no').change(function(){
+		if($(this).prop( "checked" )){
+			$('#mass_gathering_yes').hide();
+		} 
+	});    
+	$('#obs\\.mass_gathering_no').trigger('change');
+
+	$('#obs\\.mass_gathering_unknown').change(function(){
+		if($(this).prop( "checked" )){
+			$('#mass_gathering_yes').hide();
+		} 
+	});    
+	$('#obs\\.mass_gathering_unknown').trigger('change');
+
+	$('#obs\\.location_other').change(function(){
+		if($(this).prop( "checked" )){
+			$('#location_other').show();
+		} else{
+			$('#location_other').hide();
+		}
+	}); 
+        $('#obs\\.location_other').trigger('change');
+
+	$('#obs\\.visited_inpatient_facility_yes').change(function(){
+		if($(this).prop( "checked" )){
+			$('#visited_inpatient_facility_yes').show();
+		} else{
+			$('#visited_inpatient_facility_yes').hide();
+		}
+	});    
+	$('#obs\\.visited_inpatient_facility_yes').trigger('change');
+
+	$('#obs\\.visited_inpatient_facility_no').change(function(){
+		if($(this).prop( "checked" )){
+			$('#visited_inpatient_facility_yes').hide();
+		} 
+	});    
+	$('#obs\\.visited_inpatient_facility_no').trigger('change');
+
+	$('#obs\\.visited_inpatient_facility_unknown').change(function(){
+		if($(this).prop( "checked" )){
+			$('#visited_inpatient_facility_yes').hide();
+		} 
+	});    
+	$('#obs\\.visited_inpatient_facility_unknown').trigger('change');
+
+
+	$('#obs\\.visited_outpatient_facility_yes').change(function(){
+	if($(this).prop( "checked" )){
+		$('#visited_outpatient_facility_yes').show();
+	} else{
+		$('#visited_outpatient_facility_yes').hide();
+	}
+	});    
+	$('#obs\\.visited_outpatient_facility_yes').trigger('change');
+
+	$('#obs\\.visited_outpatient_facility_no').change(function(){
+		if($(this).prop( "checked" )){
+			$('#visited_outpatient_facility_yes').hide();
+		} 
+	});    
+	$('#obs\\.visited_outpatient_facility_no').trigger('change');
+
+	$('#obs\\.visited_outpatient_facility_unknown').change(function(){
+		if($(this).prop( "checked" )){
+			$('#visited_outpatient_facility_yes').hide();
+		} 
+	});    
+	$('#obs\\.visited_outpatient_facility_unknown').trigger('change');
+
+	$('#obs\\.visited_traditional_healer_yes').change(function(){
+		if($(this).prop( "checked" )){
+			$('#visited_traditional_healer_yes').show();
+		} else{
+			$('#visited_traditional_healer_yes').hide();
+		}
+	});    
+	$('#obs\\.visited_traditional_healer_yes').trigger('change');
+
+	$('#obs\\.visited_traditional_healer_no').change(function(){
+		if($(this).prop( "checked" )){
+			$('#visited_traditional_healer_yes').hide();
+		} 
+	});    
+	$('#obs\\.visited_traditional_healer_no').trigger('change');
+
+	$('#obs\\.visited_traditional_healer_unknown').change(function(){
+		if($(this).prop( "checked" )){
+			$('#visited_traditional_healer_yes').hide();
+		} 
+	});    
+	$('#obs\\.visited_traditional_healer_unknown').trigger('change');
+
+	$('#obs\\.occupation_other').change(function(){
+		if($(this).prop( "checked" )){
+			$('#occupation_other').show();
+		} else{
+			$('#occupation_other').hide();
+		}
+	}); 
+        $('#obs\\.occupation_other').trigger('change');
+
+	var $covidPlan = $(':checkbox[data-concept="165936^Covid-19 Plan^99DCT"]');
+        $covidPlan.change(function(){
+        var $selectedOptions = $(':checkbox[data-concept="165936^Covid-19 Plan^99DCT"]:checked');
+        var refusalValue = $('#obs\\.covid_19_plan_none').val();
+        if($selectedOptions.length > 0){
+		$.each($selectedOptions, function(k,v){
+			if($(v).val() != refusalValue){
+				 $("#obs\\.covid_19_plan_none").attr("disabled","disabled");
+			}else{
+		        	var $tests = $covidPlan.not('#obs\\.covid_19_plan_none');
+		        	$tests.attr("disabled","disabled");
+			}
+		});
+		}else{
+		    $covidPlan.removeAttr('disabled');
+		}
+	});
+	$covidPlan.trigger('change');
+	
+	$('#obs\\.covid_19_plan_screening').change(function(){
+		if($(this).prop( "checked" )){
+			$('#fill_screening_form').show();
+		} else{
+			$('#fill_screening_form').hide();
+		}
+	}); 
+    $('#obs\\.covid_19_plan_screening').trigger('change');
+
+	$('#obs\\.covid_19_plan_collect_lab').change(function(){	
+		if($(this).prop( "checked" )){
+			$('#obs\\.covid_19_plan_refer_lab').attr("disabled","disabled");
+			$('#collect_laboratory_sample').show();
+		} else{
+			$('#obs\\.covid_19_plan_refer_lab').removeAttr("disabled");
+			$('#collect_laboratory_sample').hide();
+		}
+	}); 
+    $('#obs\\.covid_19_plan_collect_lab').trigger('change');
+
+	$('#obs\\.covid_19_plan_refer_lab').change(function(){
+		if($(this).prop( "checked" )){
+			$('#obs\\.covid_19_plan_collect_lab').attr("disabled","disabled");
+		} else{
+			$('#obs\\.covid_19_plan_collect_lab').removeAttr("disabled");
+		}
+	}); 
+        $('#obs\\.covid_19_plan_refer_lab').trigger('change');
+
+	$('#obs\\.covid_19_plan_social_isolation').change(function(){
+		if($(this).prop( "checked" )){
+			$('#obs\\.covid_19_plan_quarantine').attr("disabled","disabled");
+		} else{
+			$('#obs\\.covid_19_plan_quarantine').removeAttr("disabled");
+		}
+	}); 
+        $('#obs\\.covid_19_plan_social_isolation').trigger('change');
+
+	$('#obs\\.covid_19_plan_quarantine').change(function(){
+		if($(this).prop( "checked" )){
+			$('#obs\\.covid_19_plan_social_isolation').attr("disabled","disabled");
+		} else{
+			$('#obs\\.covid_19_plan_social_isolation').removeAttr("disabled");
+		}
+	}); 
+        $('#obs\\.covid_19_plan_quarantine').trigger('change');
+		
+	var $fillForm = $(':radio[name="tmp\\.fill_form"]');
+	$fillForm.change(function(){
+		var $activeOpt = $(':radio[name="tmp\\.fill_form"]:checked').val();
+		if($activeOpt == "now"){
+			document.launchEncounterMiniForm( $("#patient\\.uuid").val(),"55de3229-4f10-4c8b-9620-c6be405bb043");
+		}	
+	});
+	$fillForm.trigger('change');
+	
+	var $fillscreeningForm = $(':radio[name="tmp\\.fill_screening_form"]');
+	$fillscreeningForm.change(function(){
+		var $activeOpt = $(':radio[name="tmp\\.fill_screening_form"]:checked').val();
+		if($activeOpt == "now"){
+			document.launchEncounterMiniForm( $("#patient\\.uuid").val(),"f314c905-0bd0-4333-99de-921e6ee23b7f");
+		}	
+	});
+	$fillscreeningForm.trigger('change');
+	
+	$("form[name='exposure_form']").validate({
+        errorElement: "div",
+        wrapper: "div",  // a wrapper around the error message
+        errorPlacement: function(error, element) {
+			if ( element.is(":radio") ) {                   
+				error.insertBefore( element.parent().parent());
+			}
+			else if ( element.is(":checkbox") ) {                   
+				error.insertBefore( element.parent().parent());
+			}
+			else { // This is the default behavior of the script for all fields
+				error.insertAfter( element );
+			}
+	 }
+});
+
+	$('#obs\\.covid_19_plan_contact_tracing').change(function(){
+		if($(this).prop( "checked" )){
+			$('#track_close_contacts_alert').show();
+		} else{
+			$('#track_close_contacts_alert').hide();
+		}
+	}); 
+	$('#obs\\.covid_19_plan_contact_tracing').trigger('change');
+		
+	document.setupAutoCompleteForCountry("obs\\.internatinal_travel_countries");
+
+	document.setupAutoCompleteDataForProvider('encounter\\.provider_id_select');
+
+	document.setupAutoCompleteData('encounter\\.location_id');
+	document.setupValidationForProvider($('#encounter\\.provider_id_select').val(),$("#encounter\\.provider_id"));
+	document.setupValidationForLocation($('#encounter\\.location_id').val(),$("encounter\\.location_id"));
+});
+
+document.setupAutoCompleteForCountry = function(elementName) {
+	var dataDictionary = [
+		{"val": "Afghanistan", "label": "Afghanistan"},
+		{"val": "Albania", "label": "Albania"},
+		{"val": "Algeria", "label": "Algeria"},
+		{"val": "Andorra", "label": "Andorra"},
+		{"val": "Angola", "label": "Angola"},
+		{"val": "Antigua and Barbuda", "label": "Antigua and Barbuda"},
+		{"val": "Argentina", "label": "Argentina"},
+		{"val": "Armenia", "label": "Armenia"},
+		{"val": "Australia", "label": "Australia"},
+		{"val": "Austria", "label": "Austria"},
+		{"val": "Azerbaijan", "label": "Azerbaijan"},
+		{"val": "Bahamas", "label": "Bahamas"},
+		{"val": "Bahrain", "label": "Bahrain"},
+		{"val": "Bangladesh", "label": "Bangladesh"},
+		{"val": "Barbados", "label": "Barbados"},
+		{"val": "Belarus", "label": "Belarus"},
+		{"val": "Belgium", "label": "Belgium"},
+		{"val": "Belize", "label": "Belize"},
+		{"val": "Benin", "label": "Benin"},
+		{"val": "Bhutan", "label": "Bhutan"},
+		{"val": "Bolivia", "label": "Bolivia"},
+		{"val": "Bosnia and Herzegovina", "label": "Bosnia and Herzegovina"},
+		{"val": "Botswana", "label": "Botswana"},
+		{"val": "Brazil", "label": "Brazil"},
+		{"val": "Brunei", "label": "Brunei"},
+		{"val": "Bulgaria", "label": "Bulgaria"},
+		{"val": "Burkina Faso", "label": "Burkina Faso"},
+		{"val": "Burundi", "label": "Burundi"},
+		{"val": "Côte d'Ivoire", "label": "Côte d'Ivoire"},
+		{"val": "Cabo Verde", "label": "Cabo Verde"},
+		{"val": "Cambodia", "label": "Cambodia"},
+		{"val": "Cameroon", "label": "Cameroon"},
+		{"val": "Canada", "label": "Canada"},
+		{"val": "Central African Republic", "label": "Central African Republic"},
+		{"val": "Chad", "label": "Chad"},
+		{"val": "Chile", "label": "Chile"},
+		{"val": "China", "label": "China"},
+		{"val": "Colombia", "label": "Colombia"},
+		{"val": "Comoros", "label": "Comoros"},
+		{"val": "Congo (Congo-Brazzaville)", "label": "Congo (Congo-Brazzaville)"},
+		{"val": "Costa Rica", "label": "Costa Rica"},
+		{"val": "Croatia", "label": "Croatia"},
+		{"val": "Cuba", "label": "Cuba"},
+		{"val": "Cyprus", "label": "Cyprus"},
+		{"val": "Czechia (Czech Republic)", "label": "Czechia (Czech Republic)"},
+		{"val": "Democratic Republic of the Congo", "label": "Democratic Republic of the Congo"},
+		{"val": "Denmark", "label": "Denmark"},
+		{"val": "Djibouti", "label": "Djibouti"},
+		{"val": "Dominica", "label": "Dominica"},
+		{"val": "Dominican Republic", "label": "Dominican Republic"},
+		{"val": "Ecuador", "label": "Ecuador"},
+		{"val": "Egypt", "label": "Egypt"},
+		{"val": "El Salvador", "label": "El Salvador"},
+		{"val": "Equatorial Guinea", "label": "Equatorial Guinea"},
+		{"val": "Eritrea", "label": "Eritrea"},
+		{"val": "Estonia", "label": "Estonia"},
+		{"val": "Eswatini (fmr. Swaziland)", "label": "Eswatini (fmr. Swaziland)"},
+		{"val": "Ethiopia", "label": "Ethiopia"},
+		{"val": "Fiji", "label": "Fiji"},
+		{"val": "Finland", "label": "Finland"},
+		{"val": "France", "label": "France"},
+		{"val": "Gabon", "label": "Gabon"},
+		{"val": "Gambia", "label": "Gambia"},
+		{"val": "Georgia", "label": "Georgia"},
+		{"val": "Germany", "label": "Germany"},
+		{"val": "Ghana", "label": "Ghana"},
+		{"val": "Greece", "label": "Greece"},
+		{"val": "Grenada", "label": "Grenada"},
+		{"val": "Guatemala", "label": "Guatemala"},
+		{"val": "Guinea", "label": "Guinea"},
+		{"val": "Guinea-Bissau", "label": "Guinea-Bissau"},
+		{"val": "Guyana", "label": "Guyana"},
+		{"val": "Haiti", "label": "Haiti"},
+		{"val": "Holy See", "label": "Holy See"},
+		{"val": "Honduras", "label": "Honduras"},
+		{"val": "Hungary", "label": "Hungary"},
+		{"val": "Iceland", "label": "Iceland"},
+		{"val": "India", "label": "India"},        
+		{"val": "Indonesia", "label": "Indonesia"},        
+		{"val": "Iran", "label": "Iran"},        
+		{"val": "Iraq", "label": "Iraq"},        
+		{"val": "Ireland", "label": "Ireland"},        
+		{"val": "Israel", "label": "Israel"},        
+		{"val": "Italy", "label": "Italy"},        
+		{"val": "Jamaica", "label": "Jamaica"},        
+		{"val": "Japan", "label": "Japan"},        
+		{"val": "Jordan", "label": "Jordan"},        
+		{"val": "Kazakhstan", "label": "Kazakhstan"},        
+		{"val": "Kenya", "label": "Kenya"},        
+		{"val": "Kiribati", "label": "Kiribati"},        
+		{"val": "Kuwait", "label": "Kuwait"},        
+		{"val": "Kyrgyzstan", "label": "Kyrgyzstan"},        
+		{"val": "Laos", "label": "Laos"},        
+		{"val": "Latvia", "label": "Latvia"},        
+		{"val": "Lebanon", "label": "Lebanon"},        
+		{"val": "Lesotho", "label": "Lesotho"},        
+		{"val": "Liberia", "label": "Liberia"},        
+		{"val": "Libya", "label": "Libya"},        
+		{"val": "Liechtenstein", "label": "Liechtenstein"},        
+		{"val": "Lithuania", "label": "Lithuania"},        
+		{"val": "Luxembourg", "label": "Luxembourg"},        
+		{"val": "Madagascar", "label": "Madagascar"},        
+		{"val": "Malawi", "label": "Malawi"},        
+		{"val": "Malaysia", "label": "Malaysia"},        
+		{"val": "Maldives", "label": "Maldives"},        
+		{"val": "Mali", "label": "Mali"},        
+		{"val": "Malta", "label": "Malta"},        
+		{"val": "Marshall Islands", "label": "Marshall Islands"},        
+		{"val": "Mauritania", "label": "Mauritania"},        
+		{"val": "Mauritius", "label": "Mauritius"},        
+		{"val": "Mexico", "label": "Mexico"},        
+		{"val": "Micronesia", "label": "Micronesia"},        
+		{"val": "Moldova", "label": "Moldova"},        
+		{"val": "Monaco", "label": "Monaco"},        
+		{"val": "Mongolia", "label": "Mongolia"},        
+		{"val": "Montenegro", "label": "Montenegro"},        
+		{"val": "Morocco", "label": "Morocco"},        
+		{"val": "Mozambique", "label": "Mozambique"},        
+		{"val": "Myanmar (formerly Burma)", "label": "Myanmar (formerly Burma)"},        
+		{"val": "Namibia", "label": "Namibia"},        
+		{"val": "Nauru", "label": "Nauru"},        
+		{"val": "Nepal", "label": "Nepal"},        
+		{"val": "Netherlands", "label": "Netherlands"},        
+		{"val": "New Zealand", "label": "New Zealand"},        
+		{"val": "Nicaragua", "label": "Nicaragua"},        
+		{"val": "Niger", "label": "Niger"},        
+		{"val": "Nigeria", "label": "Nigeria"},        
+		{"val": "North Korea", "label": "North Korea"},        
+		{"val": "North Macedonia", "label": "North Macedonia"},        
+		{"val": "Norway", "label": "Norway"},        
+		{"val": "Oman", "label": "Oman"},        
+		{"val": "Pakistan", "label": "Pakistan"},        
+		{"val": "Palau", "label": "Palau"},        
+		{"val": "Palestine State", "label": "Palestine State"},        
+		{"val": "Panama", "label": "Panama"},        
+		{"val": "Papua New Guinea", "label": "Papua New Guinea"},        
+		{"val": "Paraguay", "label": "Paraguay"},        
+		{"val": "Peru", "label": "Peru"},        
+		{"val": "Philippines", "label": "Philippines"},        
+		{"val": "Poland", "label": "Poland"},        
+		{"val": "Portugal", "label": "Portugal"},        
+		{"val": "Qatar", "label": "Qatar"},        
+		{"val": "Romania", "label": "Romania"},        
+		{"val": "Russia", "label": "Russia"},        
+		{"val": "Rwanda", "label": "Rwanda"},        
+		{"val": "Saint Kitts and Nevis", "label": "Saint Kitts and Nevis"},        
+		{"val": "Saint Lucia", "label": "Saint Lucia"},        
+		{"val": "Saint Vincent and the Grenadines", "label": "Saint Vincent and the Grenadines"},        
+		{"val": "Samoa", "label": "Samoa"},        
+		{"val": "San Marino", "label": "San Marino"},        
+		{"val": "Sao Tome and Principe", "label": "Sao Tome and Principe"},        
+		{"val": "Saudi Arabia", "label": "Saudi Arabia"},        
+		{"val": "Senegal", "label": "Senegal"},        
+		{"val": "Serbia", "label": "Serbia"},        
+		{"val": "Seychelles", "label": "Seychelles"},        
+		{"val": "Sierra Leone", "label": "Sierra Leone"},        
+		{"val": "Singapore", "label": "Singapore"},        
+		{"val": "Slovakia", "label": "Slovakia"},        
+		{"val": "Slovenia", "label": "Slovenia"},        
+		{"val": "Solomon Islands", "label": "Solomon Islands"},        
+		{"val": "Somalia", "label": "Somalia"},        
+		{"val": "South Africa", "label": "South Africa"},        
+		{"val": "South Korea", "label": "South Korea"},        
+		{"val": "South Sudan", "label": "South Sudan"},        
+		{"val": "Spain", "label": "Spain"},        
+		{"val": "Sri Lanka", "label": "Sri Lanka"},        
+		{"val": "Sudan", "label": "Sudan"},        
+		{"val": "Suriname", "label": "Suriname"},        
+		{"val": "Sweden", "label": "Sweden"},        
+		{"val": "Switzerland", "label": "Switzerland"},        
+		{"val": "Syria", "label": "Syria"},        
+		{"val": "Tajikistan", "label": "Tajikistan"},        
+		{"val": "Tanzania", "label": "Tanzania"},        
+		{"val": "Thailand", "label": "Thailand"},        
+		{"val": "Timor-Leste", "label": "Timor-Leste"},        
+		{"val": "Togo", "label": "Togo"},        
+		{"val": "Tonga", "label": "Tonga"},        
+		{"val": "Trinidad and Tobago", "label": "Trinidad and Tobago"},        
+		{"val": "Tunisia", "label": "Tunisia"},        
+		{"val": "Turkey", "label": "Turkey"},        
+		{"val": "Turkmenistan", "label": "Turkmenistan"},        
+		{"val": "Tuvalu", "label": "Tuvalu"},        
+		{"val": "Uganda", "label": "Uganda"},        
+		{"val": "Ukraine", "label": "Ukraine"},        
+		{"val": "United Arab Emirates", "label": "United Arab Emirates"},        
+		{"val": "United Kingdom", "label": "United Kingdom"},        
+		{"val": "United States of America", "label": "United States of America"},        
+		{"val": "Uruguay", "label": "Uruguay"},        
+		{"val": "Uzbekistan", "label": "Uzbekistan"},        
+		{"val": "Vanuatu", "label": "Vanuatu"},        
+		{"val": "Venezuela", "label": "Venezuela"},        
+		{"val": "Vietnam", "label": "Vietnam"},        
+		{"val": "Yemen", "label": "Yemen"},        
+		{"val": "Zambia", "label": "Zambia"},        
+		{"val": "Zimbabwe", "label": "Zimbabwe"}       
+		];
+	document.setupAutoComplete('obs\\.internatinal_travel_countries', dataDictionary);
+	};
+</script>
+</html>

@@ -1,0 +1,994 @@
+<html xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
+<head>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/muzima.css" rel="stylesheet">
+    <link href="css/ui-darkness/jquery-ui-1.10.4.custom.min.css" rel="stylesheet">
+    <script src="js/jquery.min.js"></script>
+    <script src="js/jquery-ui-1.10.4.custom.min.js"></script>
+    <script src="js/jquery.validate.min.js"></script>
+    <script src="js/additional-methods.min.js"></script>
+    <script src="js/muzima.js"></script>
+    <title>Screening Form</title>
+</head>
+<body class="col-md-10 col-md-offset-1">
+<div id="pre_populate_data">
+
+</div>
+<form id="screening_form" name="screening_form">
+    <h2 class="text-center">Screening Form</h2>
+    <div class="section">
+        <h3>Demographics</h3>
+        <div class="form-group">
+            <input class="form-control" id="patient.uuid"
+                   name="patient.uuid" type="hidden" readonly="readonly">
+        </div>
+
+        <div class="form-group">
+            <label for="patient.medical_record_number">Unique case id:</label>
+            <input class="form-control" id="patient.medical_record_number"
+                   name="patient.medical_record_number" type="text"
+                   readonly="readonly">
+        </div>
+        <div class="form-group" style="display:none">
+            <label for="patient.family_name">Family Name:</label>
+            <input class="form-control" id="patient.family_name"
+                   name="patient.family_name" type="text" readonly="readonly">
+        </div>
+        <div class="form-group" style="display:none">
+            <label for="patient.given_name">Given Name:</label>
+            <input class="form-control" id="patient.given_name"
+                   name="patient.given_name" type="text" readonly="readonly">
+        </div>
+        <div class="form-group" style="display:none">
+            <label for="patient.middle_name">Middle Name:</label>
+            <input class="form-control" id="patient.middle_name"
+                   name="patient.middle_name" type="text" readonly="readonly">
+        </div>
+		<div class="form-group">
+            <label for="patient.middle_name">Name:</label>
+            <input class="form-control" id="patient.names"
+                   name="patient.names" type="text" readonly="readonly">
+        </div>
+        <div class="form-group">
+            <label for="patient.sex">Gender:</label>
+            <select class="form-control" id="patient.sex" name="patient.sex" readonly="readonly" disabled>
+                <option value="">...</option>
+                <option value="M">Male</option>
+                <option value="F">Female</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="patient.birth_date">Date of birth:</label>
+            <input class="form-control" id="patient.birth_date"
+                   name="patient.birth_date" type="text" readonly="readonly">
+        </div>
+    </div>
+    <div class="section">
+		<div class="form-group">
+			<label for="obs.location_of_event">			
+				Location where the data collection is/was done
+			<span class="required">*</span>
+			</label>
+			<select class="form-control" id="obs.location_of_event" required
+				name="obs.location_of_event" data-concept="161010^Location of event^99DCT">
+				<option value="">...</option>
+				<option value="1537^HEALTH FACILITY^99DCT">Health facility</option>
+				<option value="1588^HEALTH CLINIC/POST^99DCT">Health clinic</option>
+				<option value="1589^HOSPITAL^99DCT">Hospital</option>
+				<option value="1536^HOME^99DCT">Home</option>
+				<option value="1601^EN ROUTE TO HEALTH FACILITY^99DCT">En route to health facility</option>	
+				<option value="5622^Other^99DCT">Other</option>
+				<option value="1067^Unknown^99DCT">Unknown</option>
+			</select>
+        </div>
+		<div class="form-group">
+			<label for="obs.any_symptoms">			
+				Any symptoms
+			<span class="required">*</span>
+			</label>
+			<div class="form-group">	
+				<label for="obs.any_symptoms_yes" style="font-weight: normal;">	
+					<input type="radio" data-concept="1729^SIGN/SYMPTOM PRESENT^99DCT" value="1065^Yes^99DCT" name="obs.any_symptoms" id="obs.any_symptoms_yes" required>&nbsp;Yes
+				</label>
+				<label for="obs.any_symptoms_no" style="font-weight: normal;">	
+					<input type="radio" data-concept="1729^SIGN/SYMPTOM PRESENT^99DCT" value="1066^No^99DCT" name="obs.any_symptoms"  id="obs.any_symptoms_no" required>&nbsp;No
+				</label>
+				<label for="obs.any_symptoms_unknown" style="font-weight: normal;">	
+					<input type="radio" data-concept="1729^SIGN/SYMPTOM PRESENT^99DCT" value="1067^Unknown^99DCT" name="obs.any_symptoms" id="obs.any_symptoms_unknown" required>&nbsp;Unknown
+				</label>
+			</div>
+        </div>
+		<div class="form-group" id="date_of_first_symptom">
+			<label for="obs.date_of_first_symptom">			
+				Date of first symptom
+			<span class="required">*</span>
+			</label>
+			<div class="form-group">		
+				<input type="text" class="form-control datepicker nonFutureDate past-date" data-concept="1730^Sign/symptom start date^99DCT" name="obs.date_of_first_symptom" id="obs.date_of_first_symptom" readonly="readonly"
+			   required="required">
+			</div>
+        </div>
+		<div class="form-group">
+			<h5><label>We have to ask about some specific symptoms individually</label></h5>
+		</div>
+		<div class="form-group">
+			<label for="obs.fever">			
+				Fever(>=38 or history of fever)
+			<span class="required">*</span>
+			</label>
+			<div class="form-group">	
+				<label for="obs.fever_yes" style="font-weight: normal;">	
+					<input type="radio" data-concept="140238^Fever^99DCT" value="1065^Yes^99DCT" name="obs.fever" id="obs.fever_yes" required>&nbsp;Yes&nbsp;&nbsp;
+				</label>
+				<label for="obs.fever_no" style="font-weight: normal;">	
+					<input type="radio" data-concept="140238^Fever^99DCT" value="1066^No^99DCT" name="obs.fever" id="obs.fever_no" required>&nbsp;No&nbsp;&nbsp;
+				</label>
+				<label for="obs.fever_unknown" style="font-weight: normal;">	
+					<input type="radio" data-concept="140238^Fever^99DCT" value="1067^Unknown^99DCT" name="obs.fever" id="obs.fever_unknown" required>&nbsp;Unknown
+				</label>
+			</div>
+		</div>
+		<div class="form-group" id="date_of_fever_symptom">
+			<label for="obs.date_of_fever_symptom">			
+				Date:
+			<span class="required">*</span>
+			</label>
+			<div class="form-group">		
+				<input type="text" class="form-control datepicker nonFutureDate past-date" name="obs_datetime.date_of_fever_symptom" readonly="readonly" data-obsdatetimefor="obs.fever"  id="obs_datetime.date_of_fever_symptom" required="required">
+			</div>
+        </div>
+		<div class="form-group">
+			<label for="obs.sore_throat">			
+				Sore throat
+			<span class="required">*</span>
+			</label>
+			<div class="form-group">	
+				<label for="obs.sore_throat_yes" style="font-weight: normal;">	
+					<input type="radio" data-concept="158843^Sore throat^99DCT" value="1065^Yes^99DCT" name="obs.sore_throat" id="obs.sore_throat_yes" required>&nbsp;Yes&nbsp;&nbsp;
+				</label>
+				<label for="obs.sore_throat_no" style="font-weight: normal;">	
+					<input type="radio" data-concept="158843^Sore throat^99DCT" value="1066^No^99DCT" name="obs.sore_throat" id="obs.sore_throat_no" required>&nbsp;No&nbsp;&nbsp;
+				</label>
+				<label for="obs.sore_throat_unknown" style="font-weight: normal;">	
+					<input type="radio" data-concept="158843^Sore throat^99DCT" value="1067^Unknown^99DCT" name="obs.sore_throat" id="obs.sore_throat_unknown" required>&nbsp;Unknown
+				</label>
+			</div>
+        </div>
+		<div class="form-group" id="date_of_sore_throat_symptom">
+			<label for="obs.date_of_sore_throat_symptom">			
+				Date:
+			<span class="required">*</span>
+			</label>
+			<div class="form-group">		
+				<input type="text" class="form-control datepicker nonFutureDate past-date" name="obs_datetime.date_of_sore_throat_symptom" readonly="readonly" data-obsdatetimefor="obs.sore_throat"  id="obs_datetime.date_of_sore_throat_symptom" required="required">
+			</div>
+        </div>
+		<div class="form-group">
+			<label for="obs.runny_nose">			
+				Runny nose
+			<span class="required">*</span>
+			</label>
+			<div class="form-group">	
+				<label for="obs.runny_nose_yes" style="font-weight: normal;">	
+					<input type="radio" data-concept="165501^Runny nose^99DCT" value="1065^Yes^99DCT" name="obs.runny_nose" id="obs.runny_nose_yes" required>&nbsp;Yes&nbsp;&nbsp;
+				</label>
+				<label for="obs.runny_nose_no" style="font-weight: normal;">	
+					<input type="radio" data-concept="165501^Runny nose^99DCT" value="1066^No^99DCT" name="obs.runny_nose" id="obs.runny_nose_no" required>&nbsp;No&nbsp;&nbsp;
+				</label>
+				<label for="obs.runny_nose_unknown" style="font-weight: normal;">	
+					<input type="radio" data-concept="165501^Runny nose^99DCT" value="1067^Unknown^99DCT" name="obs.runny_nose" id="obs.runny_nose_unknown" required>&nbsp;Unknown
+				</label>
+			</div>
+        </div>
+		<div class="form-group" id="date_of_runny_nose_symptom">
+			<label for="obs.date_of_runny_nose_symptom">			
+				Date:
+			<span class="required">*</span>
+			</label>
+			<div class="form-group">		
+				<input type="text" class="form-control datepicker nonFutureDate past-date" name="obs_datetime.date_of_runny_nose_symptom" readonly="readonly" data-obsdatetimefor="obs.runny_nose"  id="obs_datetime.date_of_runny_nose_symptom" required="required">
+			</div>
+        </div>
+		<div class="form-group">
+			<label for="obs.cough">			
+				Cough
+			<span class="required">*</span>
+			</label>
+			<div class="form-group">	
+				<label for="obs.cough_yes" style="font-weight: normal;">	
+					<input type="radio" data-concept="143264^Cough^99DCT" value="1065^Yes^99DCT" name="obs.cough" id="obs.cough_yes" required>&nbsp;Yes&nbsp;&nbsp;
+				</label>
+				<label for="obs.cough_no" style="font-weight: normal;">	
+					<input type="radio" data-concept="143264^Cough^99DCT" value="1066^No^99DCT" name="obs.cough" id="obs.cough_no" required>&nbsp;No&nbsp;&nbsp;
+				</label>
+				<label for="obs.cough_unknown" style="font-weight: normal;">	
+					<input type="radio" data-concept="143264^Cough^99DCT" value="1067^Unknown^99DCT" name="obs.cough" id="obs.cough_unknown" required>&nbsp;Unknown
+				</label>
+			</div>
+        </div>
+		<div class="form-group" id="date_of_cough_symptom">
+			<label for="obs.date_of_cough_symptom">			
+				Date:
+			<span class="required">*</span>
+			</label>
+			<div class="form-group">		
+				<input type="text" class="form-control datepicker nonFutureDate past-date" name="obs_datetime.date_of_cough_symptom" readonly="readonly" data-obsdatetimefor="obs.cough"  id="obs_datetime.date_of_cough_symptom" required="required">
+			</div>
+        </div>
+		<div class="form-group">
+			<label for="obs.shortness_of_breath">			
+				Shortness of breath
+			<span class="required">*</span>
+			</label>
+			<div class="form-group">	
+				<label for="obs.shortness_of_breath_yes" style="font-weight: normal;">	
+					<input type="radio" data-concept="141600^Shortness of breath^99DCT" value="1065^Yes^99DCT" name="obs.shortness_of_breath" id="obs.shortness_of_breath_yes" required>&nbsp;Yes&nbsp;&nbsp;
+				</label>
+				<label for="obs.shortness_of_breath_no" style="font-weight: normal;">	
+					<input type="radio" data-concept="141600^Shortness of breath^99DCT" value="1066^No^99DCT" name="obs.shortness_of_breath" id="obs.shortness_of_breath_no" required>&nbsp;No&nbsp;&nbsp;
+				</label>
+				<label for="obs.shortness_of_breath_unknown" style="font-weight: normal;">	
+					<input type="radio" data-concept="141600^Shortness of breath^99DCT" value="1067^Unknown^99DCT" name="obs.shortness_of_breath" id="obs.shortness_of_breath_unknown" required>&nbsp;Unknown
+				</label>
+			</div>
+        </div>
+		<div class="form-group" id="date_of_shortnessOfBreath_symptom">
+			<label for="obs.date_of_shortnessOfBreath_symptom">			
+				Date:
+			<span class="required">*</span>
+			</label>
+			<div class="form-group">		
+				<input type="text" class="form-control datepicker nonFutureDate past-date" name="obs_datetime.date_of_shortnessOfBreath_symptom" readonly="readonly" data-obsdatetimefor="obs.shortness_of_breath"  id="obs_datetime.date_of_shortnessOfBreath_symptom" required="required">
+			</div>
+        </div>
+		<div class="form-group">
+			<label for="obs.vomiting">			
+				Vomiting
+			<span class="required">*</span>
+			</label>
+			<div class="form-group">	
+				<label for="obs.vomiting_yes" style="font-weight: normal;">	
+					<input type="radio" data-concept="122983^Vomiting^99DCT" value="1065^Yes^99DCT" name="obs.vomiting" id="obs.vomiting_yes" required>&nbsp;Yes&nbsp;&nbsp;
+				</label>
+				<label for="obs.vomiting_no" style="font-weight: normal;">	
+					<input type="radio" data-concept="122983^Vomiting^99DCT" value="1066^No^99DCT" name="obs.vomiting" id="obs.vomiting_no" required>&nbsp;No&nbsp;&nbsp;
+				</label>
+				<label for="obs.vomiting_unknown" style="font-weight: normal;">	
+					<input type="radio" data-concept="122983^Vomiting^99DCT" value="1067^Unknown^99DCT" name="obs.vomiting" id="obs.vomiting_unknown" required>&nbsp;Unknown
+				</label>
+			</div>
+        </div>
+		<div class="form-group" id="date_of_vomiting_symptom">
+			<label for="obs.date_of_vomiting_symptom">			
+				Date:
+			<span class="required">*</span>
+			</label>
+			<div class="form-group">		
+				<input type="text" class="form-control datepicker nonFutureDate past-date" name="obs_datetime.date_of_vomiting_symptom" readonly="readonly" data-obsdatetimefor="obs.vomiting"  id="obs_datetime.date_of_vomiting_symptom" required="required">
+			</div>
+        </div>
+		<div class="form-group">
+			<label for="obs.nausea">			
+				Nausea
+			<span class="required">*</span>
+			</label>
+			<div class="form-group">	
+				<label for="obs.nausea_yes" style="font-weight: normal;">	
+					<input type="radio" data-concept="5978^Nausea^99DCT" value="1065^Yes^99DCT" name="obs.nausea" id="obs.nausea_yes" required>&nbsp;Yes&nbsp;&nbsp;
+				</label>
+				<label for="obs.nausea_no" style="font-weight: normal;">	
+					<input type="radio" data-concept="5978^Nausea^99DCT" value="1066^No^99DCT" name="obs.nausea" id="obs.nausea_no" required>&nbsp;No&nbsp;&nbsp;
+				</label>
+				<label for="obs.nausea_unknown" style="font-weight: normal;">	
+					<input type="radio" data-concept="5978^Nausea^99DCT" value="1067^Unknown^99DCT" name="obs.nausea" id="obs.nausea_unknown" required>&nbsp;Unknown
+				</label>
+			</div>
+        </div>
+		<div class="form-group" id="date_of_nausea_symptom">
+			<label for="obs.date_of_nausea_symptom">			
+				Date:
+			<span class="required">*</span>
+			</label>
+			<div class="form-group">		
+				<input type="text" class="form-control datepicker nonFutureDate past-date" name="obs_datetime.date_of_nausea_symptom" readonly="readonly" data-obsdatetimefor="obs.nausea"  id="obs_datetime.date_of_nausea_symptom" required="required">
+			</div>
+        </div>
+		<div class="form-group">
+			<label for="obs.diarrhoea">			
+				Diarrhoea
+			<span class="required">*</span>
+			</label>
+			<div class="form-group">	
+				<label for="obs.diarrhoea_yes" style="font-weight: normal;">
+					<input type="radio" data-concept="142412^Diarrhoea^99DCT" value="1065^Yes^99DCT" name="obs.diarrhoea" id="obs.diarrhoea_yes" required>&nbsp;Yes&nbsp;&nbsp;
+				</label>
+				<label for="obs.diarrhoea_no" style="font-weight: normal;">
+					<input type="radio" data-concept="142412^Diarrhoea^99DCT" value="1066^No^99DCT" name="obs.diarrhoea" id="obs.diarrhoea_no" required>&nbsp;No&nbsp;&nbsp;
+				</label>
+				<label for="obs.diarrhoea_unknown" style="font-weight: normal;">
+					<input type="radio" data-concept="142412^Diarrhoea^99DCT" value="1067^Unknown^99DCT" name="obs.diarrhoea" id="obs.diarrhoea_unknown" required>&nbsp;Unknown
+				</label>
+			</div>
+        </div>
+		<div class="form-group" id="date_of_diarrhoea_symptom">
+			<label for="obs.date_of_diarrhoea_symptom">			
+				Date:
+			<span class="required">*</span>
+			</label>
+			<div class="form-group">		
+				<input type="text" class="form-control datepicker nonFutureDate past-date" name="obs_datetime.date_of_diarrhoea_symptom" readonly="readonly" data-obsdatetimefor="obs.diarrhoea"  id="obs_datetime.date_of_diarrhoea_symptom" required="required">
+			</div>
+        </div>
+		<div class="form-group">
+			<label for="obs.loss_of_smell">			
+				Loss of smell
+			<span class="required">*</span>
+			</label>
+			<div class="form-group">
+				<label for="obs.loss_of_smell_yes" style="font-weight: normal;">
+					<input type="radio" data-concept="135589^Loss of sense of smell^99DCT" value="1065^Yes^99DCT" name="obs.loss_of_smell" id="obs.loss_of_smell_yes" required>&nbsp;Yes&nbsp;&nbsp;
+				</label>
+				<label for="obs.loss_of_smell_no" style="font-weight: normal;">
+					<input type="radio" data-concept="135589^Loss of sense of smell^99DCT" value="1066^No^99DCT" name="obs.loss_of_smell"  id="obs.loss_of_smell_no" required>&nbsp;No&nbsp;&nbsp;
+				</label>
+				<label for="obs.loss_of_smell_unknown" style="font-weight: normal;">
+					<input type="radio" data-concept="135589^Loss of sense of smell^99DCT" value="1067^Unknown^99DCT" name="obs.loss_of_smell"  id="obs.loss_of_smell_unknown" required>&nbsp;Unknown
+				</label>
+			</div>
+        </div>
+		<div class="form-group" id="date_of_losos_symptom">
+			<label for="obs.date_of_losos_symptom">			
+				Date:
+			<span class="required">*</span>
+			</label>
+			<div class="form-group">		
+				<input type="text" class="form-control datepicker nonFutureDate past-date" name="obs_datetime.date_of_losos_symptom" readonly="readonly" data-obsdatetimefor="obs.loss_of_smell"  id="obs_datetime.date_of_losos_symptom" required="required">
+			</div>
+        </div>
+	    <label class="alert alert-info" id="symptoms_alert">
+        	<b>Patient has a positive screen. Please follow standard guidelines on testing.</b>
+        </label>
+    </div>
+    <div class="section">
+		<div style="text-align:center;"><h3>Sample Collection</h3></div>
+		<div class="form-group">
+			<label for="tmp.has_sample_been_collected">			
+				Has sample been collected
+			<span class="required">*</span>
+			</label>
+			<div class="form-group">	
+				<label for="tmp.has_sample_been_collected_yes" style="font-weight: normal;">
+					<input type="radio" name="tmp.has_sample_been_collected" id="tmp.has_sample_been_collected_yes" value="Yes" required>&nbsp;Yes&nbsp;&nbsp;
+				</label>
+				<label for="tmp.has_sample_been_collected_no" style="font-weight: normal;">
+					<input type="radio" name="tmp.has_sample_been_collected" id="tmp.has_sample_been_collected_no" value="No" required>&nbsp;No&nbsp;&nbsp;
+				</label>
+				<label for="tmp.has_sample_been_collected_unknown" style="font-weight: normal;">
+					<input type="radio" name="tmp.has_sample_been_collected" id="tmp.has_sample_been_collected_unknown" value="Unknown" required>&nbsp;Unknown
+				</label>
+			</div>
+        </div>	
+		<div class="form-group" id="type_of_sample">
+			<label for="obs.type_of_sample">			
+				What type of sample was collected
+			<span class="required">*</span>
+			</label>
+			<div class="form-group">	
+				<label for="obs.type_of_sample_ns" style="font-weight: normal;">
+					<input type="checkbox" data-concept="162476^Specimen sources^99DCT" value="163363^Nasal swab specimen^99DCT" name="obs.type_of_sample" id="obs.type_of_sample_ns"  required>&nbsp;Nasal swab
+				</label>
+			</div>
+			<div class="form-group">
+				<label for="obs.type_of_sample_ts" style="font-weight: normal;">
+					<input type="checkbox" data-concept="162476^Specimen sources^99DCT" value="163362^Oropharyngeal swab specimen^99DCT" name="obs.type_of_sample" id="obs.type_of_sample_ts" required>&nbsp;Throat swab
+				</label>
+			</div>
+			<div class="form-group">
+				<label for="obs.type_of_sample_nps" style="font-weight: normal;">
+					<input type="checkbox" data-concept="162476^Specimen sources^99DCT" value="163364^Nasopharyngeal Swab^99DCT" name="obs.type_of_sample" id="obs.type_of_sample_nps" required>&nbsp;Nasopharyngeal swab
+				</label>
+			</div>
+			<div class="form-group">
+				<label for="obs.type_of_sample_serum" style="font-weight: normal;">
+					<input type="checkbox" data-concept="162476^Specimen sources^99DCT" value="1001^Serum^99DCT" name="obs.type_of_sample" id="obs.type_of_sample_serum" required>&nbsp;Serum
+				</label>
+			</div>
+			<div class="form-group">
+				<label for="obs.type_of_sample.other" style="font-weight: normal;">
+					<input type="checkbox" data-concept="162476^Specimen sources^99DCT" value="5622^OTHER NON-CODED^99DCT" name="obs.type_of_sample" id="obs.type_of_sample.other"  required>&nbsp;Other
+				</label>
+			</div>
+			<div class="form-group">
+				<label for="obs.type_of_sample_none" style="font-weight: normal;">
+					<input type="checkbox" data-concept="162476^Specimen sources^99DCT" value="1107^None^99DCT" name="obs.type_of_sample" id="obs.type_of_sample_none" required>&nbsp;None
+				</label>
+			</div>
+			<div class="form-group">	
+				<label for="obs.type_of_sample_unkown" style="font-weight: normal;">
+					<input type="checkbox" data-concept="162476^Specimen sources^99DCT" value="1067^Unknown^99DCT" name="obs.type_of_sample" id="obs.type_of_sample_unkown" required>&nbsp;Unknown
+				</label>
+			</div>		
+			<div class="form-group type_of_sample_other" id="type_of_sample_other">
+				<label for="obs.other_sample_types">			
+					Specify
+				<span class="required">*</span>
+				</label>
+				<div class="form-group">		
+					<input type="text" class="form-control" data-concept="165902^Other specimen, specify^99DCT" name="obs.other_sample_types" required="required">
+				</div>
+			</div>
+			<div class="form-group" id="date_of_sample_collection">
+				<label for="obs.date_of_sample_collection">			
+					Date sample collected
+				<span class="required">*</span>
+				</label>
+				<div class="form-group">		
+					<input type="text" class="form-control datepicker nonFutureDate past-date" data-concept="159951^Specimen collection date^99DCT" name="obs.date_of_sample_collection" readonly="readonly" required>
+				</div>
+			</div>
+		</div>
+    </div>
+	<div class="section">
+		<div class="form-group">
+			<label for="obs.case_status">			
+				Case status
+			<span class="required">*</span>
+			</label>  
+			<div class="form-group">	
+				<label for="obs.case_status_suspected" style="font-weight: normal;">
+					<input type="radio" data-concept="165793^Case classification^99DCT" value="162743^Suspected^99DCT" name="obs.case_status" id="obs.case_status_suspected" required>&nbsp;Suspected
+				</label>
+			</div>
+			<div class="form-group">	
+				<label for="obs.case_status_probable" style="font-weight: normal;">
+					<input type="radio" data-concept="165793^Case classification^99DCT" value="162863^Probable^99DCT" name="obs.case_status" id="obs.case_status_probable" required>&nbsp;Probable
+				</label>
+			</div>
+			<div class="form-group">	
+				<label for="obs.case_status_confirmed" style="font-weight: normal;">
+					<input type="radio" data-concept="165793^Case classification^99DCT" value="165792^Confirmed present^99DCT" name="obs.case_status" id="obs.case_status_confirmed" required>&nbsp;Confirmed
+				</label>
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="obs.covid_19_plan">			
+				COVID-19 plan
+			<span class="required">*</span>
+			</label>
+			<div class="form-group">	
+				<label for="obs.covid_19_plan_none" style="font-weight: normal;">
+					<input type="checkbox" data-concept="165936^Covid-19 Plan^99DCT" value="1107^None^99DCT" name="obs.covid_19_plan" id="obs.covid_19_plan_none" required>&nbsp;None
+				</label>
+			</div>
+			<div class="form-group">
+				<label for="obs.covid_19_plan_collect_lab" style="font-weight: normal;">
+					<input type="checkbox" data-concept="165936^Covid-19 Plan^99DCT" value="165938^Collect laboratory sample^99DCT" name="obs.covid_19_plan" id="obs.covid_19_plan_collect_lab" required>&nbsp;Collect laboratory sample
+				</label>
+			</div>
+			<div class="sub-section" id="collect_laboratory_sample">
+				<div class="form-group">	
+					<label for="">			
+						Do yo want to complete laboratory form now or later
+					<span class="required">*</span>
+					</label>
+					<div class="form-group">	
+						<label for="tmp.fill_form_now" style="font-weight: normal;">
+							<input type="radio"  value="now" name="tmp.fill_form" id="tmp.fill_form_now"  required>&nbsp;Now&nbsp;&nbsp;
+						</label>
+						<label for="tmp.fill_form_later" style="font-weight: normal;">
+							<input type="radio"  value="later" name="tmp.fill_form" id="tmp.fill_form_later" required>&nbsp;Later&nbsp;&nbsp;
+						</label>
+					</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="obs.covid_19_plan_refer_lab" style="font-weight: normal;">
+					<input type="checkbox" data-concept="165936^Covid-19 Plan^99DCT" value="165939^Refer to laboratory for sample collection^99DCT" name="obs.covid_19_plan" id="obs.covid_19_plan_refer_lab" required>&nbsp;Refer to laboratory for sample collection
+				</label>
+			</div>
+			<div class="form-group">
+				<label for="obs.covid_19_plan_contact_tracing" style="font-weight: normal;">
+					<input type="checkbox" data-concept="165936^Covid-19 Plan^99DCT" value="165940^Contact Tracing^99DCT" name="obs.covid_19_plan" id="obs.covid_19_plan_contact_tracing" required>&nbsp;Track close contacts
+				</label>
+			</div>
+			<label class="alert alert-info" id="track_close_contacts_alert">
+				<b>Please add contacts by selecting <img border="0" src="file:///android_res/drawable/ic_relationship.png" alt="nothing" width="40" height="40" />  under Client Summary page</b>
+			</label>
+			<div class="form-group">
+				<label for="obs.covid_19_plan_social_isolation" style="font-weight: normal;">
+					<input type="checkbox" data-concept="165936^Covid-19 Plan^99DCT" value="126311^Social isolation^99DCT" name="obs.covid_19_plan" id="obs.covid_19_plan_social_isolation" required>&nbsp;Isolation recommended
+				</label>
+			</div>
+			<div class="form-group">
+				<label for="obs.covid_19_plan_quarantine" style="font-weight: normal;">
+					<input type="checkbox" data-concept="165936^Covid-19 Plan^99DCT" value="165941^Quarantine^99DCT" name="obs.covid_19_plan" id="obs.covid_19_plan_quarantine" required>&nbsp;Quarantine
+				</label>
+			</div>
+			<div class="form-group">
+				<label for="obs.covid_19_plan_admit" style="font-weight: normal;">
+					<input type="checkbox" data-concept="165936^Covid-19 Plan^99DCT" value="165942^Admit to Hospital^99DCT" name="obs.covid_19_plan" id="obs.covid_19_plan_admit" required>&nbsp;Refer for admission
+				</label>
+			</div>
+		</div>
+	</div>
+    <div class="section">
+        <div class="form-group">
+		<label for="encounter.location_id">Encounter Location:<span class="required">*</span></label>
+		<input class="form-control valid-location-only" id="encounter.location_id" type="text"
+		placeholder="Start typing something..." required="required">
+		<input class="form-control" name="encounter.location_id" type="hidden">
+        </div>
+	<div class="form-group">
+		<label for="encounter.provider_id_select">Provider Name:<span class="required">*</span></label>
+		<input class="form-control valid-provider-only" id="encounter.provider_id_select"
+		type="text" placeholder="Start typing something...">
+		<input class="form-control" name="encounter.provider_id_select" type="hidden">
+	</div>
+
+	<div class="form-group show_provider_id_text">
+		<label for="encounter.provider_id">Provider’s System ID:<span class="required">*</span></label>
+		<input class="form-control checkDigit" id="encounter.provider_id" disabled name="encounter.provider_id"
+	       type="text" required="required"  placeholder="Provider Id">
+	</div>
+	<div class="form-group">
+		<label for="encounter.encounter_datetime">Encounter Date:<span class="required">*</span></label>
+		<input class="form-control datepicker nonFutureDate past-date" id="encounter.encounter_datetime"
+	       name="encounter.encounter_datetime" type="text" readonly="readonly"
+	       required="required">
+	</div>
+	<div class="form-group">
+		<input class="form-control" id="encounter.form_uuid" name="encounter.form_uuid"
+	       type="hidden" required="required">
+		<input class="form-control" id="encounter.user_system_id" name="encounter.user_system_id" type="hidden">
+	</div>
+    </div>
+</form>
+</body>
+<script type="text/javascript">
+$(document).ready(function () {
+	$('#save_draft').click(function () {
+	    $(this).prop('disabled', true);
+	    document.saveDraft();
+	    $(this).prop('disabled', false);
+	});
+
+	$('#submit_form').click(function () {
+	    $(this).prop('disabled', true);
+	    document.submit();
+	    $(this).prop('disabled', false);
+	});
+
+        var $feverTrigger = $(':radio[data-concept="140238^Fever^99DCT"]');
+        $feverTrigger.change(function(){
+        var $feverOptions = $(':radio[data-concept="140238^Fever^99DCT"]:checked').val();
+		var $stOptions = $(':radio[data-concept="158843^Sore throat^99DCT"]:checked').val();
+		var $rnOptions = $(':radio[data-concept="165501^Runny nose^99DCT"]:checked').val();
+		var $cOptions = $(':radio[data-concept="143264^Cough^99DCT"]:checked').val();
+		var $sobOptions = $(':radio[data-concept="141600^Shortness of breath^99DCT"]:checked').val();
+		var $vOptions = $(':radio[data-concept="122983^Vomiting^99DCT"]:checked').val();
+		var $nOptions = $(':radio[data-concept="5978^Nausea^99DCT"]:checked').val();
+		var $dOptions = $(':radio[data-concept="142412^Diarrhoea^99DCT"]:checked').val();
+		var $lososOptions = $(':radio[data-concept="135589^Loss of sense of smell^99DCT"]:checked').val();
+		if($feverOptions == "1065^Yes^99DCT"){
+			$('#date_of_fever_symptom').show();
+			if($("#obs_datetime\\.date_of_fever_symptom").val()===""){
+				$("#obs_datetime\\.date_of_fever_symptom").val($("#obs\\.date_of_first_symptom").val());
+			}
+		}else{
+			$("#obs_datetime\\.date_of_fever_symptom").val("");
+			$('#date_of_fever_symptom').hide();
+		}
+		if($feverOptions == "1065^Yes^99DCT" || $stOptions == "1065^Yes^99DCT" ||  $rnOptions == "1065^Yes^99DCT" ||  $cOptions == "1065^Yes^99DCT" ||  $sobOptions == "1065^Yes^99DCT" ||  $vOptions == "1065^Yes^99DCT" ||  $nOptions == "1065^Yes^99DCT" || $dOptions == "1065^Yes^99DCT" || $lososOptions == "1065^Yes^99DCT"){
+			$('#symptoms_alert').show();
+		}else{
+			$('#symptoms_alert').hide();
+		}
+	});
+	$feverTrigger.trigger('change');
+
+	var $sorethroat = $(':radio[data-concept="158843^Sore throat^99DCT"]');
+        $sorethroat.change(function(){
+        var $feverOptions = $(':radio[data-concept="140238^Fever^99DCT"]:checked').val();
+		var $stOptions = $(':radio[data-concept="158843^Sore throat^99DCT"]:checked').val();
+		var $rnOptions = $(':radio[data-concept="165501^Runny nose^99DCT"]:checked').val();
+		var $cOptions = $(':radio[data-concept="143264^Cough^99DCT"]:checked').val();
+		var $sobOptions = $(':radio[data-concept="141600^Shortness of breath^99DCT"]:checked').val();
+		var $vOptions = $(':radio[data-concept="122983^Vomiting^99DCT"]:checked').val();
+		var $nOptions = $(':radio[data-concept="5978^Nausea^99DCT"]:checked').val();
+		var $dOptions = $(':radio[data-concept="142412^Diarrhoea^99DCT"]:checked').val();
+		var $lososOptions = $(':radio[data-concept="135589^Loss of sense of smell^99DCT"]:checked').val();
+		if($stOptions == "1065^Yes^99DCT"){
+			$('#date_of_sore_throat_symptom').show();
+			if($("#obs_datetime\\.date_of_sore_throat_symptom").val()===""){
+				$("#obs_datetime\\.date_of_sore_throat_symptom").val($("#obs\\.date_of_first_symptom").val());
+			}
+		}else{
+			$("#obs_datetime\\.date_of_sore_throat_symptom").val("");
+			$('#date_of_sore_throat_symptom').hide();
+		}
+		if($feverOptions == "1065^Yes^99DCT" || $stOptions == "1065^Yes^99DCT" ||  $rnOptions == "1065^Yes^99DCT" ||  $cOptions == "1065^Yes^99DCT" ||  $sobOptions == "1065^Yes^99DCT" ||  $vOptions == "1065^Yes^99DCT" ||  $nOptions == "1065^Yes^99DCT" || $dOptions == "1065^Yes^99DCT" || $lososOptions == "1065^Yes^99DCT"){
+		$('#symptoms_alert').show();
+		}else{
+		$('#symptoms_alert').hide();
+		}
+	});
+	$sorethroat.trigger('change');
+
+	var $runnynose = $(':radio[data-concept="165501^Runny nose^99DCT"]');
+        $runnynose.change(function(){
+        var $feverOptions = $(':radio[data-concept="140238^Fever^99DCT"]:checked').val();
+		var $stOptions = $(':radio[data-concept="158843^Sore throat^99DCT"]:checked').val();
+		var $rnOptions = $(':radio[data-concept="165501^Runny nose^99DCT"]:checked').val();
+		var $cOptions = $(':radio[data-concept="143264^Cough^99DCT"]:checked').val();
+		var $sobOptions = $(':radio[data-concept="141600^Shortness of breath^99DCT"]:checked').val();
+		var $vOptions = $(':radio[data-concept="122983^Vomiting^99DCT"]:checked').val();
+		var $nOptions = $(':radio[data-concept="5978^Nausea^99DCT"]:checked').val();
+		var $dOptions = $(':radio[data-concept="142412^Diarrhoea^99DCT"]:checked').val();
+		var $lososOptions = $(':radio[data-concept="135589^Loss of sense of smell^99DCT"]:checked').val();
+		if($rnOptions == "1065^Yes^99DCT"){
+			$('#date_of_runny_nose_symptom').show();
+			if($("#obs_datetime\\.date_of_runny_nose_symptom").val()===""){
+				$("#obs_datetime\\.date_of_runny_nose_symptom").val($("#obs\\.date_of_first_symptom").val());
+			}
+		}else{
+			$("#obs_datetime\\.date_of_runny_nose_symptom").val("");
+			$('#date_of_runny_nose_symptom').hide();
+		}
+		if($feverOptions == "1065^Yes^99DCT" || $stOptions == "1065^Yes^99DCT" ||  $rnOptions == "1065^Yes^99DCT" ||  $cOptions == "1065^Yes^99DCT" ||  $sobOptions == "1065^Yes^99DCT" ||  $vOptions == "1065^Yes^99DCT" ||  $nOptions == "1065^Yes^99DCT" || $dOptions == "1065^Yes^99DCT" || $lososOptions == "1065^Yes^99DCT"){
+		$('#symptoms_alert').show();
+		}else{
+		$('#symptoms_alert').hide();
+		}
+	});
+	$runnynose.trigger('change');
+
+	var $cough = $(':radio[data-concept="143264^Cough^99DCT"]');
+        $cough.change(function(){
+        var $feverOptions = $(':radio[data-concept="140238^Fever^99DCT"]:checked').val();
+		var $stOptions = $(':radio[data-concept="158843^Sore throat^99DCT"]:checked').val();
+		var $rnOptions = $(':radio[data-concept="165501^Runny nose^99DCT"]:checked').val();
+		var $cOptions = $(':radio[data-concept="143264^Cough^99DCT"]:checked').val();
+		var $sobOptions = $(':radio[data-concept="141600^Shortness of breath^99DCT"]:checked').val();
+		var $vOptions = $(':radio[data-concept="122983^Vomiting^99DCT"]:checked').val();
+		var $nOptions = $(':radio[data-concept="5978^Nausea^99DCT"]:checked').val();
+		var $dOptions = $(':radio[data-concept="142412^Diarrhoea^99DCT"]:checked').val();
+		var $lososOptions = $(':radio[data-concept="135589^Loss of sense of smell^99DCT"]:checked').val();
+		if($cOptions == "1065^Yes^99DCT"){
+			$('#date_of_cough_symptom').show();
+			if($("#obs_datetime\\.date_of_cough_symptom").val()===""){
+				$("#obs_datetime\\.date_of_cough_symptom").val($("#obs\\.date_of_first_symptom").val());
+			}
+		}else{
+			$("#obs_datetime\\.date_of_cough_symptom").val("");
+			$('#date_of_cough_symptom').hide();
+		}
+		if($feverOptions == "1065^Yes^99DCT" || $stOptions == "1065^Yes^99DCT" ||  $rnOptions == "1065^Yes^99DCT" ||  $cOptions == "1065^Yes^99DCT" ||  $sobOptions == "1065^Yes^99DCT" ||  $vOptions == "1065^Yes^99DCT" ||  $nOptions == "1065^Yes^99DCT" || $dOptions == "1065^Yes^99DCT" || $lososOptions == "1065^Yes^99DCT"){
+		$('#symptoms_alert').show();
+		}else{
+		$('#symptoms_alert').hide();
+		}
+	});
+	$cough.trigger('change');
+
+	var $shortnessOfBreath = $(':radio[data-concept="141600^Shortness of breath^99DCT"]');
+        $shortnessOfBreath.change(function(){
+        var $feverOptions = $(':radio[data-concept="140238^Fever^99DCT"]:checked').val();
+		var $stOptions = $(':radio[data-concept="158843^Sore throat^99DCT"]:checked').val();
+		var $rnOptions = $(':radio[data-concept="165501^Runny nose^99DCT"]:checked').val();
+		var $cOptions = $(':radio[data-concept="143264^Cough^99DCT"]:checked').val();
+		var $sobOptions = $(':radio[data-concept="141600^Shortness of breath^99DCT"]:checked').val();
+		var $vOptions = $(':radio[data-concept="122983^Vomiting^99DCT"]:checked').val();
+		var $nOptions = $(':radio[data-concept="5978^Nausea^99DCT"]:checked').val();
+		var $dOptions = $(':radio[data-concept="142412^Diarrhoea^99DCT"]:checked').val();
+		var $lososOptions = $(':radio[data-concept="135589^Loss of sense of smell^99DCT"]:checked').val();
+		if($sobOptions == "1065^Yes^99DCT"){
+			$('#date_of_shortnessOfBreath_symptom').show();
+			if($("#obs_datetime\\.date_of_shortnessOfBreath_symptom").val()===""){
+				$("#obs_datetime\\.date_of_shortnessOfBreath_symptom").val($("#obs\\.date_of_first_symptom").val());
+			}
+		}else{
+			$("#obs_datetime\\.date_of_shortnessOfBreath_symptom").val("");
+			$('#date_of_shortnessOfBreath_symptom').hide();
+		}
+		if($feverOptions == "1065^Yes^99DCT" || $stOptions == "1065^Yes^99DCT" ||  $rnOptions == "1065^Yes^99DCT" ||  $cOptions == "1065^Yes^99DCT" ||  $sobOptions == "1065^Yes^99DCT" ||  $vOptions == "1065^Yes^99DCT" ||  $nOptions == "1065^Yes^99DCT" || $dOptions == "1065^Yes^99DCT" || $lososOptions == "1065^Yes^99DCT"){
+		$('#symptoms_alert').show();
+		}else{
+		$('#symptoms_alert').hide();
+		}
+	});
+	$shortnessOfBreath.trigger('change');
+
+	var $vomiting = $(':radio[data-concept="122983^Vomiting^99DCT"]');
+	$vomiting.change(function(){
+        var $feverOptions = $(':radio[data-concept="140238^Fever^99DCT"]:checked').val();
+		var $stOptions = $(':radio[data-concept="158843^Sore throat^99DCT"]:checked').val();
+		var $rnOptions = $(':radio[data-concept="165501^Runny nose^99DCT"]:checked').val();
+		var $cOptions = $(':radio[data-concept="143264^Cough^99DCT"]:checked').val();
+		var $sobOptions = $(':radio[data-concept="141600^Shortness of breath^99DCT"]:checked').val();
+		var $vOptions = $(':radio[data-concept="122983^Vomiting^99DCT"]:checked').val();
+		var $nOptions = $(':radio[data-concept="5978^Nausea^99DCT"]:checked').val();
+		var $dOptions = $(':radio[data-concept="142412^Diarrhoea^99DCT"]:checked').val();
+		var $lososOptions = $(':radio[data-concept="135589^Loss of sense of smell^99DCT"]:checked').val();
+		if($vOptions == "1065^Yes^99DCT"){
+			$('#date_of_vomiting_symptom').show();
+			if($("#obs_datetime\\.date_of_vomiting_symptom").val()===""){
+				$("#obs_datetime\\.date_of_vomiting_symptom").val($("#obs\\.date_of_first_symptom").val());
+			}
+		}else{
+			$("#obs_datetime\\.date_of_vomiting_symptom").val("");
+			$('#date_of_vomiting_symptom').hide();
+		}
+		if($feverOptions == "1065^Yes^99DCT" || $stOptions == "1065^Yes^99DCT" ||  $rnOptions == "1065^Yes^99DCT" ||  $cOptions == "1065^Yes^99DCT" ||  $sobOptions == "1065^Yes^99DCT" ||  $vOptions == "1065^Yes^99DCT" ||  $nOptions == "1065^Yes^99DCT" || $dOptions == "1065^Yes^99DCT" || $lososOptions == "1065^Yes^99DCT"){
+		$('#symptoms_alert').show();
+		}else{
+		$('#symptoms_alert').hide();
+		}
+	});
+	$vomiting.trigger('change');
+
+	var $nausea = $(':radio[data-concept="5978^Nausea^99DCT"]');
+        $nausea.change(function(){
+        var $feverOptions = $(':radio[data-concept="140238^Fever^99DCT"]:checked').val();
+		var $stOptions = $(':radio[data-concept="158843^Sore throat^99DCT"]:checked').val();
+		var $rnOptions = $(':radio[data-concept="165501^Runny nose^99DCT"]:checked').val();
+		var $cOptions = $(':radio[data-concept="143264^Cough^99DCT"]:checked').val();
+		var $sobOptions = $(':radio[data-concept="141600^Shortness of breath^99DCT"]:checked').val();
+		var $vOptions = $(':radio[data-concept="122983^Vomiting^99DCT"]:checked').val();
+		var $nOptions = $(':radio[data-concept="5978^Nausea^99DCT"]:checked').val();
+		var $dOptions = $(':radio[data-concept="142412^Diarrhoea^99DCT"]:checked').val();
+		var $lososOptions = $(':radio[data-concept="135589^Loss of sense of smell^99DCT"]:checked').val();
+		if($nOptions == "1065^Yes^99DCT"){
+			$('#date_of_nausea_symptom').show();
+			if($("#obs_datetime\\.date_of_nausea_symptom").val()===""){
+				$("#obs_datetime\\.date_of_nausea_symptom").val($("#obs\\.date_of_first_symptom").val());
+			}
+		}else{
+			$('#date_of_nausea_symptom').hide();
+			$("#obs_datetime\\.date_of_nausea_symptom").val("");
+		}
+		if($feverOptions == "1065^Yes^99DCT" || $stOptions == "1065^Yes^99DCT" ||  $rnOptions == "1065^Yes^99DCT" ||  $cOptions == "1065^Yes^99DCT" ||  $sobOptions == "1065^Yes^99DCT" ||  $vOptions == "1065^Yes^99DCT" ||  $nOptions == "1065^Yes^99DCT" || $dOptions == "1065^Yes^99DCT" || $lososOptions == "1065^Yes^99DCT"){
+		$('#symptoms_alert').show();
+		}else{
+		$('#symptoms_alert').hide();
+		}
+	});
+	$nausea.trigger('change');
+
+	var $diarrhoea = $(':radio[data-concept="142412^Diarrhoea^99DCT"]');
+        $diarrhoea.change(function(){
+        var $feverOptions = $(':radio[data-concept="140238^Fever^99DCT"]:checked').val();
+		var $stOptions = $(':radio[data-concept="158843^Sore throat^99DCT"]:checked').val();
+		var $rnOptions = $(':radio[data-concept="165501^Runny nose^99DCT"]:checked').val();
+		var $cOptions = $(':radio[data-concept="143264^Cough^99DCT"]:checked').val();
+		var $sobOptions = $(':radio[data-concept="141600^Shortness of breath^99DCT"]:checked').val();
+		var $vOptions = $(':radio[data-concept="122983^Vomiting^99DCT"]:checked').val();
+		var $nOptions = $(':radio[data-concept="5978^Nausea^99DCT"]:checked').val();
+		var $dOptions = $(':radio[data-concept="142412^Diarrhoea^99DCT"]:checked').val();
+		var $lososOptions = $(':radio[data-concept="135589^Loss of sense of smell^99DCT"]:checked').val();
+		if($dOptions == "1065^Yes^99DCT"){
+			$('#date_of_diarrhoea_symptom').show();
+			if($("#obs_datetime\\.date_of_diarrhoea_symptom").val()===""){
+				$("#obs_datetime\\.date_of_diarrhoea_symptom").val($("#obs\\.date_of_first_symptom").val());
+			}
+		}else{
+			$('#date_of_diarrhoea_symptom').hide();
+			$("#obs_datetime\\.date_of_diarrhoea_symptom").val("");
+		}
+		if($feverOptions == "1065^Yes^99DCT" || $stOptions == "1065^Yes^99DCT" ||  $rnOptions == "1065^Yes^99DCT" ||  $cOptions == "1065^Yes^99DCT" ||  $sobOptions == "1065^Yes^99DCT" ||  $vOptions == "1065^Yes^99DCT" ||  $nOptions == "1065^Yes^99DCT" || $dOptions == "1065^Yes^99DCT" || $lososOptions == "1065^Yes^99DCT"){
+		$('#symptoms_alert').show();
+		}else{
+		$('#symptoms_alert').hide();
+		}
+	});
+	$diarrhoea.trigger('change');
+
+	var $losos = $(':radio[data-concept="135589^Loss of sense of smell^99DCT"]');
+        $losos.change(function(){
+        var $feverOptions = $(':radio[data-concept="140238^Fever^99DCT"]:checked').val();
+		var $stOptions = $(':radio[data-concept="158843^Sore throat^99DCT"]:checked').val();
+		var $rnOptions = $(':radio[data-concept="165501^Runny nose^99DCT"]:checked').val();
+		var $cOptions = $(':radio[data-concept="143264^Cough^99DCT"]:checked').val();
+		var $sobOptions = $(':radio[data-concept="141600^Shortness of breath^99DCT"]:checked').val();
+		var $vOptions = $(':radio[data-concept="122983^Vomiting^99DCT"]:checked').val();
+		var $nOptions = $(':radio[data-concept="5978^Nausea^99DCT"]:checked').val();
+		var $dOptions = $(':radio[data-concept="142412^Diarrhoea^99DCT"]:checked').val();
+		var $lososOptions = $(':radio[data-concept="135589^Loss of sense of smell^99DCT"]:checked').val();
+		if($lososOptions == "1065^Yes^99DCT"){
+			$('#date_of_losos_symptom').show();
+			if($("#obs_datetime\\.date_of_losos_symptom").val()===""){
+				$("#obs_datetime\\.date_of_losos_symptom").val($("#obs\\.date_of_first_symptom").val());
+			}
+		}else{
+			$('#date_of_losos_symptom').hide();
+			$("#obs_datetime\\.date_of_losos_symptom").val("");
+		}
+		if($feverOptions == "1065^Yes^99DCT" || $stOptions == "1065^Yes^99DCT" ||  $rnOptions == "1065^Yes^99DCT" ||  $cOptions == "1065^Yes^99DCT" ||  $sobOptions == "1065^Yes^99DCT" ||  $vOptions == "1065^Yes^99DCT" ||  $nOptions == "1065^Yes^99DCT" || $dOptions == "1065^Yes^99DCT" || $lososOptions == "1065^Yes^99DCT"){
+		$('#symptoms_alert').show();
+		}else{
+		$('#symptoms_alert').hide();
+		}
+	});
+	$losos.trigger('change');
+
+	$('#obs\\.type_of_sample\\.other').change(function(){
+		if($(this).prop( "checked" )){
+			$('#type_of_sample_other').show();
+		} else{
+			$('#type_of_sample_other').hide();
+		}
+	});    
+	$('#obs\\.type_of_sample\\.other').trigger('change');
+
+	var $covidPlan = $(':checkbox[data-concept="165936^Covid-19 Plan^99DCT"]');
+        $covidPlan.change(function(){
+        var $selectedOptions = $(':checkbox[data-concept="165936^Covid-19 Plan^99DCT"]:checked');
+        var noneValue = $('#obs\\.covid_19_plan_none').val();
+        if($selectedOptions.length > 0){
+		$.each($selectedOptions, function(k,v){
+			if($(v).val() != noneValue){
+				 $("#obs\\.covid_19_plan_none").attr("disabled","disabled");
+			}else{
+		        	var $plan = $covidPlan.not('#obs\\.covid_19_plan_none');
+		        	$plan.attr("disabled","disabled");
+			}
+		});
+		}else{
+		    $covidPlan.removeAttr('disabled');
+		}
+	});
+	$covidPlan.trigger('change');
+
+	$('#obs\\.covid_19_plan_collect_lab').change(function(){
+		if($(this).prop( "checked" )){
+			$('#obs\\.covid_19_plan_refer_lab').attr("disabled","disabled");
+			$('#collect_laboratory_sample').show();
+		} else{
+			$('#obs\\.covid_19_plan_refer_lab').removeAttr("disabled");
+			$('#collect_laboratory_sample').hide();
+		}
+	}); 
+   $('#obs\\.covid_19_plan_collect_lab').trigger('change');
+
+	$('#obs\\.covid_19_plan_refer_lab').change(function(){
+		if($(this).prop( "checked" )){
+			$('#obs\\.covid_19_plan_collect_lab').attr("disabled","disabled");
+		} else{
+			$('#obs\\.covid_19_plan_collect_lab').removeAttr("disabled");
+		}
+	}); 
+        $('#obs\\.covid_19_plan_refer_lab').trigger('change');
+
+	$('#obs\\.covid_19_plan_social_isolation').change(function(){
+		if($(this).prop( "checked" )){
+			$('#obs\\.covid_19_plan_quarantine').attr("disabled","disabled");
+		} else{
+			$('#obs\\.covid_19_plan_quarantine').removeAttr("disabled");
+		}
+	}); 
+        $('#obs\\.covid_19_plan_social_isolation').trigger('change');
+
+	$('#obs\\.covid_19_plan_quarantine').change(function(){
+		if($(this).prop( "checked" )){
+			$('#obs\\.covid_19_plan_social_isolation').attr("disabled","disabled");
+		} else{
+			$('#obs\\.covid_19_plan_social_isolation').removeAttr("disabled");
+		}
+	}); 
+    $('#obs\\.covid_19_plan_quarantine').trigger('change');
+	
+	var prePopulateData = $.trim($('#pre_populate_data').html());
+	if(prePopulateData !=="" ){
+		var prePopulateJSON = JSON.parse(prePopulateData);
+		$.each(prePopulateJSON, function(key, value) {
+			if (key === 'patient') {
+				var names = "";
+				$.each(value, function(keys, values) {
+					if(keys === 'patient.given_name' || keys === 'patient.middle_name' || keys === 'patient.family_name' || keys === 'patient.names'){
+					   names=names+" "+values;
+					}
+				});
+				$('#patient\\.names').val(names);
+			}
+		});
+	}
+	
+	var $fillForm = $(':radio[name="tmp\\.fill_form"]');
+	$fillForm.change(function(){
+		var $activeOpt = $(':radio[name="tmp\\.fill_form"]:checked').val();
+		if($activeOpt == "now"){
+			document.launchEncounterMiniForm( $("#patient\\.uuid").val(),"55de3229-4f10-4c8b-9620-c6be405bb043");
+		}	
+	});
+	$fillForm.trigger('change');
+	
+	var $anySymptoms = $(':radio[name="obs\\.any_symptoms"]');
+	$anySymptoms.change(function(){
+		var $activeOpt = $(':radio[name="obs\\.any_symptoms"]:checked').val();
+		if($activeOpt == "1065^Yes^99DCT"){
+			$("#date_of_first_symptom").show();
+		}else{
+			$("#date_of_first_symptom").hide();
+		}
+	});
+	$anySymptoms.trigger('change');
+	
+	var $sampleBeenCollected = $(':radio[name="tmp\\.has_sample_been_collected"]');
+	$sampleBeenCollected.change(function(){
+		var $activeOpt = $(':radio[name="tmp\\.has_sample_been_collected"]:checked').val();
+		if($activeOpt == "Yes"){
+			$("#type_of_sample").show();
+		}else{
+			$("#type_of_sample").hide();
+		}
+	});
+	$sampleBeenCollected.trigger('change');
+	
+	var $sampleType = $(':checkbox[name="obs\\.type_of_sample"]');
+    $sampleType.change(function(){
+        var $selectedOptions = $(':checkbox[name="obs\\.type_of_sample"]:checked');
+        var noneValue = $('#obs\\.type_of_sample_none').val();
+        if($selectedOptions.length > 0){
+		$.each($selectedOptions, function(k,v){
+			if($(v).val() != noneValue){
+				$("#obs\\.type_of_sample_none").attr("disabled","disabled");			
+			}else{
+		        	var $plan = $sampleType.not('#obs\\.type_of_sample_none');
+		        	$plan.attr("disabled","disabled");
+			}
+		});
+		}else{
+		    $sampleType.removeAttr('disabled');
+			$("#date_of_sample_collection").hide();
+		}
+	});
+	$sampleType.trigger('change');
+	
+	var $sampleTypes = $(':checkbox[name="obs\\.type_of_sample"]');
+    $sampleTypes.change(function(){
+        var $nsValue = $(':checkbox[id="obs\\.type_of_sample_ns"]:checked').val(); 
+		var $tsValue = $(':checkbox[id="obs\\.type_of_sample_ts"]:checked').val();
+		var $npsValue = $(':checkbox[id="obs\\.type_of_sample_nps"]:checked').val();
+		var $serumValue = $(':checkbox[id="obs\\.type_of_sample_serum"]:checked').val();
+		var $otherValue = $(':checkbox[id="obs\\.type_of_sample\\.other"]:checked').val();
+		if($nsValue=="163363^Nasal swab specimen^99DCT" || $tsValue=="163362^Oropharyngeal swab specimen^99DCT" || $npsValue== "163364^Nasopharyngeal Swab^99DCT" ||  $serumValue=="1001^Serum^99DCT" || $otherValue=="5622^OTHER NON-CODED^99DCT"){
+			$("#date_of_sample_collection").show();
+		}else{
+			$("#date_of_sample_collection").hide();
+		}
+	});
+	$sampleTypes.trigger('change');
+		
+	$("form[name='screening_form']").validate({
+			errorElement: "div",
+			wrapper: "div",  // a wrapper around the error message
+			errorPlacement: function(error, element) {
+				if (element.is(":radio") ) {                   
+					error.insertBefore(element.parent().parent());
+				}
+				else if (element.is(":checkbox") ) {                   
+					error.insertBefore(element.parent().parent());
+				}
+				else { // This is the default behavior of the script for all fields
+					error.insertAfter( element );
+				}
+		 }
+	});
+
+	$('#obs\\.covid_19_plan_contact_tracing').change(function(){
+		if($(this).prop( "checked" )){
+			$('#track_close_contacts_alert').show();
+		} else{
+			$('#track_close_contacts_alert').hide();
+		}
+	}); 
+	$('#obs\\.covid_19_plan_contact_tracing').trigger('change');
+
+	document.setupAutoCompleteDataForProvider('encounter\\.provider_id_select');
+
+	document.setupAutoCompleteData('encounter\\.location_id');
+	document.setupValidationForProvider($('#encounter\\.provider_id_select').val(),$("#encounter\\.provider_id"));
+	document.setupValidationForLocation($('#encounter\\.location_id').val(),$("encounter\\.location_id"));
+
+});
+</script>
+</html>
