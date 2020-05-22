@@ -1,0 +1,564 @@
+<html xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
+<head>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/muzima.css" rel="stylesheet">
+    <link href="css/ui-darkness/jquery-ui-1.10.4.custom.min.css" rel="stylesheet">
+    <script src="js/jquery.min.js"></script>
+    <script src="js/jquery-ui-1.10.4.custom.min.js"></script>
+    <script src="js/jquery.validate.min.js"></script>
+    <script src="js/additional-methods.min.js"></script>
+    <script src="js/muzima.js"></script>
+    <title>Results Form</title>
+</head>
+<body class="col-md-10 col-md-offset-1">
+<div id="pre_populate_data">
+
+</div>
+<form id="results_form" name="results_form">
+    <h2 class="text-center">Results Form</h2>
+    <div class="section">
+        <h3>Demographics</h3>
+        <div class="form-group">
+            <input class="form-control" id="patient.uuid"
+                   name="patient.uuid" type="hidden" readonly="readonly">
+        </div>
+
+        <div class="form-group">
+            <label for="patient.medical_record_number">Unique case id:</label>
+            <input class="form-control" id="patient.medical_record_number"
+                   name="patient.medical_record_number" type="text"
+                   readonly="readonly">
+        </div>
+        <div class="form-group" style="display:none;">
+            <label for="patient.family_name">Family Name:</label>
+            <input class="form-control" id="patient.family_name"
+                   name="patient.family_name" type="text" readonly="readonly">
+        </div>
+        <div class="form-group" style="display:none;">
+            <label for="patient.given_name">Given Name:</label>
+            <input class="form-control" id="patient.given_name"
+                   name="patient.given_name" type="text" readonly="readonly">
+        </div>
+        <div class="form-group" style="display:none;">
+            <label for="patient.middle_name">Middle Name:</label>
+            <input class="form-control" id="patient.middle_name"
+                   name="patient.middle_name" type="text" readonly="readonly">
+        </div>
+		<div class="form-group">
+            <label for="patient.names">Name:</label>
+            <input class="form-control" id="patient.names"
+                   name="patient.names" type="text" readonly="readonly">
+        </div>
+        <div class="form-group">
+            <label for="patient.sex">Gender:</label>
+            <select class="form-control" id="patient.sex" name="patient.sex" readonly="readonly" disabled>
+                <option value="">...</option>
+                <option value="M">Male</option>
+                <option value="F">Female</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="patient.birth_date">Date of birth:</label>
+            <input class="form-control" id="patient.birth_date"
+                   name="patient.birth_date" type="text" readonly="readonly">
+        </div>
+    </div>
+	<div class="section">
+		<div class="form-group">
+			<label for="obs.test_result_type">			
+				COVID test result to input:
+			<span class="required">*</span>
+			</label>
+			<div class="form-group">	
+				<label for="tmp.test_result_type_molecular" style="font-weight: normal;">
+					<input type="checkbox" value="molecularTest" name="tmp.test_result_type_molecular" id="tmp.test_result_type_molecular">&nbsp;Molecular test
+				</label>
+			</div>
+			<div class="form-group">
+				<label for="tmp.test_result_type_serology" style="font-weight: normal;">
+					<input type="checkbox"  value="serologicalTest" name="tmp.test_result_type_serology" id="tmp.test_result_type_serology">&nbsp;Serological test
+				</label>
+			</div>
+        </div>
+	</div>
+	<div id="molecular_test">
+		<div class="section repeat molecular_testing" id="molecular_testing" data-name="molecular_testing" data-concept="165969^Molecular Testing Method and Results Set^99DCT">
+			<h3>Molecular testing method</h3>
+			<div class="form-group">
+				<label for="obs.laboratory_number">			
+					Laboratory ID
+				<span class="required">*</span>
+				</label>
+				<div class="form-group">
+					<input type="text" class="form-control" data-concept="164409^Laboratory number^99DCT" name="obs.laboratory_number" required="required">
+				</div>	
+			</div>
+			<div class="form-group">
+				<label for="obs.date_collected">			
+					Date sample collected
+				<span class="required">*</span>
+				</label>
+				<div class="form-group">
+					<input type="text" class="form-control datepicker nonFutureDate past-date" data-concept="159951^Specimen collection date^99DCT" name="obs.date_collected" required="required" readonly="readonly"/>
+				</div>	
+			</div>
+			<div class="form-group concept-set" data-concept="165935^Specimen sources, detailed^99DCT">
+				<div class="form-group">
+					<label for="obs.other_sample_type">			
+						Type of sample
+					<span class="required">*</span>
+					</label>
+					<select class="form-control" id="obs.other_sample_type" required
+						name="obs.other_sample_type" data-concept="162476^Specimen sources^99DCT">
+						<option value="">...</option>
+						<option value="163363^Nasal swab specimen^99DCT">Nasal Swab</option>
+						<option value="163362^Oropharyngeal swab specimen^99DCT">Throat Swab</option>
+						<option value="163364^Nasopharyngeal Swab^99DCT">Nasopharyngeal Swab</option>
+						<option value="5622^OTHER NON-CODED^99DCT">Other</option>
+					</select>
+				</div>
+				<div class="form-group other_sample_taken" id="other_sample_taken">
+					<label for="obs.other_sample_taken">			
+						Specify
+					<span class="required">*</span>
+					</label>
+					<div class="form-group">		
+						<input type="text" class="form-control" data-concept="165934^Specimen sources, specify^99DCT" name="obs.other_sample_taken" required="required">
+					</div>
+				</div>
+			</div>
+			<div class="form-group concept-set" data-concept="165966^COVID-19 type of molecular test, detailed^99DCT">
+				<div class="form-group">
+					<label for="obs.test_type">			
+						Type of test
+					<span class="required">*</span>
+					</label>
+					<select class="form-control" id="obs.test_type" required
+						name="obs.test_type" data-concept="165959^COVID-19 type of molecular test^99DCT">
+						<option value="">...</option>
+						<option value="165956^COVID-19 virus RNA by polymerase chain reaction^99DCT">PCR</option>
+						<option value="165957^COVID-19 whole genome sequencing^99DCT">Whole genome sequencing</option>
+						<option value="165958^COVID-19 partial genome sequencing^99DCT">Partial genome sequencing</option>
+						<option value="5622^OTHER^99DCT">Other</option>
+					</select>
+				</div>
+				<div class="form-group test_type_other" id="test_type_other">
+					<label for="obs.test_type_other">			
+						Specify
+					<span class="required">*</span>
+					</label>
+					<div class="form-group">		
+						<input type="text" class="form-control" data-concept="165965^COVID-19 type of molecular test, specify^99DCT" name="obs.test_type_other" required="required">
+					</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="obs.date_received">			
+					Date sample received
+				<span class="required">*</span>
+				</label>
+				<div class="form-group">
+					<input type="text" class="form-control datepicker nonFutureDate past-date" data-concept="165933^Specimen received date^99DCT" name="obs.date_received" required="required" readonly="readonly"/>
+				</div>	
+			</div>
+			<div class="form-group">
+				<div class="form-group">
+					<label for="obs.lab_results">			
+						Results
+					<span class="required">*</span>
+					</label>
+					<select class="form-control" id="obs.lab_results" required
+						name="obs.lab_results" data-concept="165964^COVID-19 molecular test result^99DCT">
+						<option value="">...</option>
+						<option value="165960^COVID-19 positive^99DCT">Positive for COVID-19</option>
+						<option value="165961^COVID-19 negative^99DCT">Negative for COVID-19</option>
+						<option value="165962^Positive for pathogen^99DCT">Positive for other pathogens</option>
+						<option value="1138^INDETERMINATE^99DCT">Indeterminate</option>
+					</select>
+				</div>
+				<div class="form-group lab_results_other_pathogen" id="lab_results_other_pathogen">
+					<label for="obs.lab_results_other_pathogen">			
+						Specify pathogen
+					<span class="required">*</span>
+					</label>
+					<div class="form-group">		
+						<input type="text" class="form-control" data-concept="165963^Type of pathogen^99DCT" name="obs.lab_results_other_pathogen" required="required">
+					</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="obs.results_date">			
+					Result date 
+				<span class="required">*</span>
+				</label>
+				<div class="form-group">
+					<input type="text" class="form-control datepicker nonFutureDate past-date" data-concept="162079^Date test resulted^99DCT" name="obs.results_date" required="required" readonly="readonly"/>
+				</div>	
+			</div>
+			<div class="form-group concept-set" data-concept="165968^Sequencing performed by confirming laboratory, detailed^99DCT">
+				<div class="form-group">
+					<label for="obs.lab_result_conformation">			
+						Specimen shipped to other laboratory for confirmation
+					<span class="required">*</span>
+					</label>
+					<select class="form-control" id="obs.lab_result_conformation" required
+						name="obs.lab_result_conformation" data-concept="165848^Sequencing performed by confirming laboratory^99DCT">
+						<option value="">...</option>
+						<option value="1065^Yes^99DCT">Yes</option>
+						<option value="1066^No^99DCT">No</option>
+					</select>
+				</div>
+				<div class="form-group lab_result_conformation_yes" id="lab_result_conformation_yes">
+					<label for="obs.shipment_date">			
+						Date
+					<span class="required">*</span>
+					</label>
+					<div class="form-group">		
+						<input type="text" class="form-control datepicker nonFutureDate past-date" data-concept="165967^Specimen shipped date for confirmation^99DCT" name="obs.shipment_date" required="required" readonly="readonly">
+					</div>
+					<label for="obs.lab_name">			
+						Laboratory name
+					<span class="required">*</span>
+					</label>
+					<div class="form-group">		
+						<input type="text" class="form-control" data-concept="164422^Laboratory name^99DCT" name="obs.lab_name" required="required">
+					</div>
+				</div>
+			</div>
+		</div>	
+	</div>
+	<div id="serological_test">
+		<div class="section repeat serology_testing" id="serology_testing" data-name="serology_testing" data-concept="165977^Serology Testing Method and Results Set^99DCT">
+		<h3>Serology testing method</h3>
+			<div class="form-group">
+				<label for="obs.laboratory_number">			
+					Laboratory ID
+				<span class="required">*</span>
+				</label>
+				<div class="form-group">
+					<input type="text" class="form-control" data-concept="164409^Laboratory number^99DCT" name="obs.serology_laboratory_number" required="required">
+				</div>	
+			</div>
+			<div class="form-group">
+				<label for="obs.date_collected">			
+					Date sample collected
+				<span class="required">*</span>
+				</label>
+				<div class="form-group">
+					<input type="text" class="form-control datepicker nonFutureDate past-date" data-concept="159951^Specimen collection date^99DCT" name="obs.serology_date_collected" required="required" readonly="readonly"/>
+				</div>	
+			</div>
+			<div class="form-group concept-set" data-concept="165935^Specimen sources, detailed^99DCT">
+				<div class="form-group">
+						<label for="obs.serology_sample_type">			
+							Type of sample
+						<span class="required">*</span>
+						</label>
+						<select class="form-control" id="obs.serology_sample_type" required
+							name="obs.serology_sample_type" data-concept="162476^Specimen sources^99DCT">
+							<option value="">...</option>
+							<option value="1001^Serum^99DCT">Serum</option>
+							<option value="5622^OTHER^99DCT">Other</option>
+						</select>
+				</div>
+				<div class="form-group serology_sample_type_other" id="serology_sample_type_other">
+					<label for="obs.serology_sample_type_other">			
+						Specify
+					<span class="required">*</span>
+					</label>
+					<div class="form-group">		
+						<input type="text" class="form-control" data-concept="165934^Specimen sources, specify^99DCT" name="obs.serology_sample_type_other" required="required">
+					</div>
+				</div>
+			</div>
+			<div class="form-group concept-set" data-concept="165974^COVID-19 type of serology test, detailed^99DCT">
+				<div class="form-group">
+					<label for="obs.serology_test_type">			
+						Type of test
+					<span class="required">*</span>
+					</label>
+					<select class="form-control" id="obs.serology_test_type" required
+						name="obs.serology_test_type" data-concept="165972^COVID-19 type of serology test^99DCT">
+						<option value="">...</option>
+						<option value="165970^COVID-19 ELISA^99DCT">ELISA</option>
+						<option value="165837^Serum or plasma severe acute respiratory syndrome coronavirus 2 (SARS-CoV-2) IgM antibody detection by immunoassay^99DCT">IgM immunoassay</option>
+						<option value="165899^Serum or plasma severe acute respiratory syndrome coronavirus 2 (SARS-CoV-2) IgM antibody detection by rapid immunoassay^99DCT">IgM rapid immunoassay</option>
+						<option value="165853^Rapid detection in serum or plasma of either or both IgG and IgM antibodies to severe acute respiratory syndrome coronavirus 2 (SARS-CoV-2) by immunoassay^99DCT">IgG immunoassay</option>
+						<option value="165898^Serum or plasma severe acute respiratory syndrome coronavirus 2 (SARS-CoV-2) IgG antibody detection by rapid immunoassay^99DCT">IgG rapid immunoassay</option>
+						<option value="165971^COVID-19 neutralization assay^99DCT">Neutralization assay </option>
+						<option value="5622^OTHER^99DCT">Other</option>
+					</select>
+				</div>
+				<div class="form-group serology_test_type_other" id="serology_test_type_other">
+					<label for="obs.serology_test_type_other">			
+						Specify
+					<span class="required">*</span>
+					</label>
+					<div class="form-group">		
+						<input type="text" class="form-control" data-concept="165973^COVID-19 type of serology test, specify^99DCT" name="obs.serology_test_type_other" required="required">
+					</div>
+				</div>
+			</div>			
+			<div class="form-group">
+				<label for="obs.date_received">			
+					Date sample received
+				<span class="required">*</span>
+				</label>
+				<div class="form-group">
+					<input type="text" class="form-control datepicker nonFutureDate past-date" data-concept="165933^Specimen received date^99DCT" name="obs.serology_date_received" required="required" readonly="readonly"/>
+				</div>	
+			</div>
+			<div class="form-group concept-set" data-concept="165976^Rapid detection in serum or plasma of either or both IgG and IgM antibodies to severe acute respiratory syndrome coronavirus 2 (SARS-CoV-2) by immunoassay, detailed^99DCT">
+				<div class="form-group">
+					<label for="obs.serology_lab_results">			
+						Results
+					<span class="required">*</span>
+					</label>
+					<select class="form-control" id="obs.serology_lab_results" required
+						name="obs.serology_lab_results" data-concept="165853^Rapid detection in serum or plasma of either or both IgG and IgM antibodies to COVID-19 by immunoassay^99DCT">
+						<option value="">...</option>
+						<option value="165855^Positive for IgM only (Presence of anti-COVID-19 IgM)^99DCT">Positive for IgM only</option>
+						<option value="165856^Positive for IgG only (Presence of anti-COVID-19 IgG)^99DCT">Positive for IgG only </option>
+						<option value="165857^Positive for both IgG and IgM (Presence of anti-COVID-19 IgG and IgM)^99DCT">Positive for both IgM and IgG</option>
+						<option value="703^POSITIVE^99DCT">Positive</option>
+						<option value="165854^Negative (no anti-COVID-19 antibody detected)^99DCT">Negative</option>	
+						<option value="165649^Inconclusive^99DCT">Inconclusive</option>
+						<option value="163611^Invalid^99DCT">Invalid</option>
+					</select>
+				</div>
+				<div class="form-group serology_lab_results_titre" id="serology_lab_results_titre">
+					<label for="obs.serology_lab_results_titre">			
+						Titre
+					<span class="required">*</span>
+					</label>
+					<div class="form-group">		
+						<input type="text" class="form-control" data-concept="165975^Titre, specify^99DCT" name="obs.serology_lab_results_titre" required="required">
+					</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="obs.results_date">			
+					Result date 
+				<span class="required">*</span>
+				</label>
+				<div class="form-group">
+					<input type="text" class="form-control datepicker nonFutureDate past-date" data-concept="162079^Date test resulted^99DCT" name="obs.serology_results_date" required="required" readonly="readonly">
+				</div>	
+			</div>
+			<div class="form-group concept-set" data-concept="165968^Sequencing performed by confirming laboratory, detailed^99DCT">
+				<div class="form-group">
+					<label for="obs.serology_lab_result_confirmation">			
+						Specimen shipped to other laboratory for confirmation
+					<span class="required">*</span>
+					</label>
+					<select class="form-control" id="obs.serology_lab_result_confirmation" required
+						name="obs.serology_lab_result_confirmation" data-concept="165848^Sequencing performed by confirming laboratory^99DCT">
+						<option value="">...</option>
+						<option value="1065^Yes^99DCT">Yes</option>
+						<option value="1066^No^99DCT">No</option>
+					</select>
+				</div>
+				<div class="form-group serology_lab_result_confirmation" id="serology_lab_result_confirmation">
+					<label for="obs.serology_shipment_date">			
+						Date
+					<span class="required">*</span>
+					</label>
+					<div class="form-group">		
+						<input type="text" class="form-control datepicker nonFutureDate past-date" data-concept="165967^Specimen shipped date for confirmation^99DCT" name="obs.serology_shipment_date" required="required" readonly="readonly">
+					</div>
+					<label for="obs.serology_lab_name">			
+						Laboratory name
+					<span class="required">*</span>
+					</label>
+					<div class="form-group">		
+						<input type="text" class="form-control" data-concept="164422^Laboratory name^99DCT" name="obs.serology_lab_name" required="required">
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="section">
+        <div class="form-group">
+		<label for="encounter.location_id">Encounter Location:<span class="required">*</span></label>
+		<input class="form-control valid-location-only" id="encounter.location_id" type="text"
+		placeholder="Start typing something..." required="required">
+		<input class="form-control" name="encounter.location_id" type="hidden">
+        </div>
+	<div class="form-group">
+		<label for="encounter.provider_id_select">Provider Name:<span class="required">*</span></label>
+		<input class="form-control valid-provider-only" id="encounter.provider_id_select"
+		type="text" placeholder="Start typing something...">
+		<input class="form-control" name="encounter.provider_id_select" type="hidden">
+	</div>
+
+	<div class="form-group show_provider_id_text">
+		<label for="encounter.provider_id">Provider’s System ID:<span class="required">*</span></label>
+		<input class="form-control checkDigit" id="encounter.provider_id" disabled name="encounter.provider_id"
+	       type="text" required="required"  placeholder="Provider Id">
+	</div>
+	<div class="form-group">
+		<label for="encounter.encounter_datetime">Encounter Date:<span class="required">*</span></label>
+		<input class="form-control datepicker nonFutureDate past-date" id="encounter.encounter_datetime"
+	       name="encounter.encounter_datetime" type="text" readonly="readonly"
+	       required="required">
+	</div>
+	<div class="form-group">
+		<input class="form-control" id="encounter.form_uuid" name="encounter.form_uuid"
+	       type="hidden" required="required">
+		<input class="form-control" id="encounter.user_system_id" name="encounter.user_system_id" type="hidden">
+	</div>
+    </div>
+</form>
+</body>
+<script type="text/javascript">
+$(document).ready(function () {
+	$('#save_draft').click(function () {
+	    $(this).prop('disabled', true);
+	    document.saveDraft();
+	    $(this).prop('disabled', false);
+	});
+
+	$('#submit_form').click(function () {
+	    $(this).prop('disabled', true);
+	    document.submit();
+	    $(this).prop('disabled', false);
+	});
+		
+	var prePopulateData = $.trim($('#pre_populate_data').html());
+	if(prePopulateData !=="" ){
+		var prePopulateJSON = JSON.parse(prePopulateData);
+		$.each(prePopulateJSON, function(key, value) {
+			if (key === 'patient') {
+				var names = "";
+				$.each(value, function(keys, values) {
+					if(keys === 'patient.given_name' || keys === 'patient.middle_name' || keys === 'patient.family_name' || keys === 'patient.names'){
+					   names=names+" "+values;
+					}
+				});
+				$('#patient\\.names').val(names);
+			}
+		});
+	}
+	
+	var $labResultOtherPathogen = $(':input[name="obs\\.lab_results"]');
+        $labResultOtherPathogen.change(function(){
+        var $activeOpt = $(this).val();
+		var $labResultFieldsRelevant = $(this).closest('.section').find('.lab_results_other_pathogen');
+		if($activeOpt == "165962^Positive for pathogen^99DCT"){
+			$labResultFieldsRelevant.show();
+		}else{
+			$labResultFieldsRelevant.hide();
+		}		
+	});
+	$labResultOtherPathogen.trigger('change');
+	
+	var $labResultConfirmation = $(':input[name="obs\\.lab_result_conformation"]');
+        $labResultConfirmation.change(function(){
+        var $activeOpt = $(this).val();
+		var $labResultConfirmationFieldsRelevant = $(this).closest('.section').find('.lab_result_conformation_yes');
+		if($activeOpt == "1065^Yes^99DCT"){
+		$labResultConfirmationFieldsRelevant.show();
+		}else{
+		$labResultConfirmationFieldsRelevant.hide();
+		}		
+	});
+	$labResultConfirmation.trigger('change');
+		
+	var $titre = $(':input[name="obs\\.serology_lab_results"]');
+        $titre.change(function(){
+        var $positiveOpt = $(this).val();
+		var $titreFieldsRelevant = $(this).closest('.section').find('.serology_lab_results_titre');
+		if($positiveOpt == "703^POSITIVE^99DCT"){
+			$titreFieldsRelevant.show();
+		}else{
+			$titreFieldsRelevant.hide();
+		}	
+	});
+	$titre.trigger('change');
+		
+	var $serologyTestShipped = $(':input[name="obs\\.serology_lab_result_confirmation"]');
+        $serologyTestShipped.change(function(){
+        var $confirmationOpt = $(this).val();
+		var $serologyTestShippedFieldsRelevant = $(this).closest('.section').find('.serology_lab_result_confirmation');
+		if($confirmationOpt == "1065^Yes^99DCT"){
+			$serologyTestShippedFieldsRelevant.show();
+		}else{
+			$serologyTestShippedFieldsRelevant.hide();
+		}	
+	});
+	$serologyTestShipped.trigger('change');
+
+	$('#tmp\\.test_result_type_molecular').change(function(){
+		if($(this).prop( "checked" )){
+			$('#molecular_test').show();
+		} else{
+			$('#molecular_test').hide();
+		}
+	}); 
+    $('#tmp\\.test_result_type_molecular').trigger('change');
+	
+	$('#tmp\\.test_result_type_serology').change(function(){
+		if($(this).prop( "checked" )){
+			$('#serological_test').show();
+		} else{
+			$('#serological_test').hide();
+		}
+	}); 
+    $('#tmp\\.test_result_type_serology').trigger('change');
+	
+	var $sampleTypeOther = $(':input[name="obs\\.other_sample_type"]');
+       $sampleTypeOther.change(function(){
+       var $activeOpt = $(this).val();
+	   var $sampleTypeFieldsRelevant = $(this).closest('.section').find('.other_sample_taken');
+		if($activeOpt == "5622^OTHER NON-CODED^99DCT"){
+			$sampleTypeFieldsRelevant.show();
+		}else{
+			$sampleTypeFieldsRelevant.hide();
+		}		
+	});
+	$sampleTypeOther.trigger('change');	
+
+	var $testTypeOther = $(':input[name="obs\\.test_type"]');
+        $testTypeOther.change(function(){
+        var $activeOpt = $(this).val();
+		var $testTypeFieldsRelevant = $(this).closest('.section').find('.test_type_other');
+		if($activeOpt == "5622^OTHER^99DCT"){
+			$testTypeFieldsRelevant.show();
+		}else{
+			$testTypeFieldsRelevant.hide();
+		}		
+	});
+	$testTypeOther.trigger('change');
+	
+	var $serologysampleTypeOther = $(':input[name="obs\\.serology_sample_type"]');
+        $serologysampleTypeOther.change(function(){
+        var $activeOpt = $(this).val();
+		var $serologysampleTypeFieldsRelevant = $(this).closest('.section').find('.serology_sample_type_other');
+		if($activeOpt == "5622^OTHER^99DCT"){
+			$serologysampleTypeFieldsRelevant.show();
+		}else{
+			$serologysampleTypeFieldsRelevant.hide();
+		}		
+	});
+	$serologysampleTypeOther.trigger('change');
+	
+	var $serologyTestTypeOther = $(':input[name="obs\\.serology_test_type"]');
+        $serologyTestTypeOther.change(function(){
+        var $activeOpt = $(this).val();
+		var $serologyTestTypeFieldsRelevant = $(this).closest('.section').find('.serology_test_type_other');
+		if($activeOpt == "5622^OTHER^99DCT"){
+			$serologyTestTypeFieldsRelevant.show();
+		}else{
+			$serologyTestTypeFieldsRelevant.hide();
+		}		
+	});
+	$serologyTestTypeOther.trigger('change');
+	
+	document.setupAutoCompleteDataForProvider('encounter\\.provider_id_select');
+	document.setupAutoCompleteData('encounter\\.location_id');
+	document.setupValidationForProvider($('#encounter\\.provider_id_select').val(),$("#encounter\\.provider_id"));
+	document.setupValidationForLocation($('#encounter\\.location_id').val(),$("encounter\\.location_id"));
+
+});
+</script>
+</html>
