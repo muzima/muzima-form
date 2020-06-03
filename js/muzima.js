@@ -6,6 +6,52 @@
  * that uses this code in a for-profit venture, please contact the copyright holder.
  */
 
+//Mock Javascript interfaces for testing forms in Web browser during development
+var htmlDataStore = {
+    getRelationshipTypesFromDevice:function(){
+        var dummyRelationshipTypes = [
+            {'uuid':'uuid1','AIsToB':'Doctor','BIsToA':'Patient'},
+            {'uuid':'uuid2','AIsToB':'Parent','BIsToA':'Child'},
+            {'uuid':'uuid3','AIsToB':'Teacher','BIsToA':'Student'}
+        ];
+        return JSON.stringify(dummyRelationshipTypes);
+    },
+
+    getPersonDetailsFromDeviceByUuid:function(uuid){
+        var persons = [{"uuid": "uuid1", "name": "Adam Smith", "birth_date":"2020-02-01", "sex":"M"},
+            {"uuid": "uuid2", "name": "John Pombe", "birth_date":"1968-02-30", "sex":"F"},
+            {"uuid": "uuid3", "name": "Wairimu Ngige", "birth_date":"1999-02-01", "sex":"F"},
+            {"uuid": "uuid4", "name": "Timmy Tammy", "birth_date":"2006-02-01", "sex":"M"}];
+
+        var foundPerson = {};
+        $.each(persons,function(k,person){
+            if(person.uuid == uuid){
+                foundPerson = person;
+            }
+        });
+        return JSON.stringify(foundPerson);
+    },
+
+    getPatientDetailsFromServerByUuid:function(uuid){
+        var persons = [{"uuid": "uuid1", "name": "Adam Smith", "birth_date":"2020-02-01", "sex":"M"},
+            {"uuid": "uuid2", "name": "John Pombe", "birth_date":"1968-02-30", "sex":"F"},
+            {"uuid": "uuid3", "name": "Wairimu Ngige", "birth_date":"1999-02-01", "sex":"F"},
+            {"uuid": "uuid4", "name": "Timmy Tammy", "birth_date":"2006-02-01", "sex":"M"}];
+
+        var foundPerson = {};
+        $.each(persons,function(k,person){
+            if(person.uuid == uuid){
+                foundPerson = person;
+            }
+        });
+        return JSON.stringify(foundPerson);
+    },
+
+    isMedicalRecordNumberRequired:function(){
+        return true;
+    }
+};
+
 /* Start - Minimal one element selected
  * Parameter:
  * * Fieldset element where the input must be selected at least one.
@@ -318,7 +364,7 @@ $(document).ready(function () {
     });
 
     /* Start - Initialize jQuery DatePicker */
-    
+
     /*Start - Initialize jQuery DateTimePicker */
     if ($.fn.datetimepicker) {
         $('.datetimepicker').datetimepicker({
@@ -432,8 +478,8 @@ $(document).ready(function () {
 
     $.validator.addMethod("phoneNumber", function (value, element) {
             if ($.fn.isNotRequiredAndEmpty(value, element)) return true;
-            var inputLength = value.length;
-            return inputLength >= 8 && inputLength <= 12;
+            var validPhoneNumberRegex = /^[\\+]?[(]?[0-9]{3}[)]?[-\\s\\.]?[0-9]{3}[-\\s\\.]?[0-9]{4,6}$/
+            return validPhoneNumberRegex.test(value);
         }, "Invalid Phone Number. Please check and re-enter."
     );
 
@@ -484,6 +530,14 @@ $(document).ready(function () {
     $.fn.getTempBirthDate = function (years) {
         var currentYear = new Date().getFullYear();
         var estimatedDate = new Date(currentYear - parseInt(years), 0, 1);
+        return $.datepicker.formatDate(dateFormat, estimatedDate);
+    };
+
+    $.fn.getTempBirthDateFromYearsAndMonths = function (years, months) {
+        var estimatedDate = new Date();
+        estimatedDate.setDate(1);
+        estimatedDate.setMonth( estimatedDate.getMonth() - parseInt(months) );
+        estimatedDate.setFullYear( estimatedDate.getFullYear() - parseInt(years));
         return $.datepicker.formatDate(dateFormat, estimatedDate);
     };
 
@@ -550,7 +604,9 @@ $(document).ready(function () {
     document.removeIfRepeatedSection = function($element){
         var $parent = $element.parent();
         var _id = $parent.attr('id');
+        console.log("_id: "+_id);
         var similarElements = $parent.parent().find("." + _id);
+        console.log('similarElements.length: '+similarElements.length);
         if (similarElements.length > 1) {
             $parent.remove();
             if(!document.isMaxRepeatsReached($(similarElements[0]))){
@@ -919,6 +975,8 @@ $(document).ready(function () {
 
     /* Start - Code to Serialize form along with Data-Concepts */
     $.fn.serializeEncounterForm = function () {
+      setObsDatetimeArray(this);
+
         var jsonResult = $.extend({}, serializeNonConceptElements(this),
         serializeNestedNonConceptElements(this),
             serializeConcepts(this), serializeNestedConcepts(this));
@@ -1028,10 +1086,32 @@ $(document).ready(function () {
         $.each($allConcepts, function (i, element) {
             if ($(element).is(':checkbox') || $(element).is(':radio')) {
                 if ($(element).is(':checked')) {
-                    o = pushIntoArray(o, $(element).attr('data-concept'), $(element).val());
+                    var obs_datetime = getObsDatetime(element);
+                    if (obs_datetime != '') {
+                        var v = {};
+                        var obs_value = $(element).val();
+                        if (JSON.stringify(obs_value) != '{}' && obs_value != "") {
+                            v = pushIntoArray(v, 'obs_value', obs_value);
+                            v = pushIntoArray(v, 'obs_datetime', obs_datetime);
+                            o = pushIntoArray(o, $(element).attr('data-concept'), v);
+                        }
+                    } else {
+                        o = pushIntoArray(o, $(element).attr('data-concept'), $(element).val());
+                    }
                 }
             } else {
-                o = pushIntoArray(o, $(element).attr('data-concept'), $(element).val());
+                var obs_datetime = getObsDatetime(element);
+                if (obs_datetime != '') {
+                    var v = {};
+                    var obs_value = $(element).val();
+                    if (JSON.stringify(obs_value) != '{}' && obs_value != "") {
+                        v = pushIntoArray(v, 'obs_value', obs_value);
+                        v = pushIntoArray(v, 'obs_datetime', obs_datetime);
+                        o = pushIntoArray(o, $(element).attr('data-concept'), v);
+                    }
+                } else {
+                    o = pushIntoArray(o, $(element).attr('data-concept'), $(element).val());
+                }
             }
         });
         return o;
@@ -1039,16 +1119,16 @@ $(document).ready(function () {
     var jsonifyNonConcepts = function ($allNonConcepts) {
         var o = {};
         $.each($allNonConcepts, function (i, element) {
-          //if element is metadata check whether corresponding value is present
-          if(typeof $(element).attr('data-metadata-for') !== 'undefined'){
-             var correspondingValueElementName = $(element).attr('data-metadata-for');
-             var value = $(element).closest('div[data-group]').find('[name="' + correspondingValueElementName + '"]').val();
-             if(value != ''){
-               jsonifyNonConcept(o,element);
-             }
-          } else {
-            jsonifyNonConcept(o,element);
-          }
+            //if element is metadata check whether corresponding value is present
+            if(typeof $(element).attr('data-metadata-for') !== 'undefined'){
+                var correspondingValueElementName = $(element).attr('data-metadata-for');
+                var value = $(element).closest('div[data-group]').find('[name="' + correspondingValueElementName + '"]').val();
+                if(value != ''){
+                    jsonifyNonConcept(o,element);
+                }
+            } else {
+                jsonifyNonConcept(o,element);
+            }
         });
         return o;
     };
@@ -1063,6 +1143,24 @@ $(document).ready(function () {
       }
       return object;
     };
+
+    var obsDatetimeArray = null;
+    var setObsDatetimeArray = function ($form) {
+        obsDatetimeArray = {};
+        var obsDatetimeElements = $form.find('*[data-obsdatetimefor]').filter(':visible');
+        $.each(obsDatetimeElements, function (i, element) {
+            pushIntoArray(obsDatetimeArray, $(element).attr('data-obsdatetimefor'), $(element).val());
+        });
+    };
+    var getObsDatetime = function (element) {
+        if (obsDatetimeArray !== null) {
+            var elementName = $(element).attr('name');
+            if (obsDatetimeArray[elementName] !== undefined) {
+                return obsDatetimeArray[elementName];
+            }
+        }
+        return '';
+    }
 
     var pushIntoArray = function (object, key, value) {
         if (JSON.stringify(value) == '{}' || value == "") {
@@ -1114,13 +1212,63 @@ $(document).ready(function () {
         });
     }
 
+    //Start - Set up auto complete for the person element.
+    document.setupAutoCompleteForPerson = function($searchElementSelector, $resultElementSelector,$resultsCountElement,searchServer) {
+        // if(searchElement.hasClass('ui-autocomplete-input')){
+        //     //searchElement.removeClass('ui-autocomplete-input');
+        //     searchElement.autocomplete('destroy');
+        //     console.log('hasClass');
+        // }
+        $searchElementSelector.focus(function () {
+
+            console.log('Setting up autocomplete...');
+
+            $searchElementSelector.autocomplete({
+                source: function (request, response) {
+                    console.log('creating source...');
+                    var searchResults = [];
+                    if (searchServer == true) {
+                        searchResults = [{"uuid": "uuid1", "name": "Adam Smith"},
+                            {"uuid": "uuid2", "name": "John Pombe"}];
+                        console.log("Searching server.....");
+                    } else {
+                        searchResults = [{"uuid": "uuid3", "name": "Wairimu Ngige"},
+                            {"uuid": "uuid4", "name": "Timmy Tammy"}];
+                        console.log("Searching.....");
+                    }
+                    var searchTerm = request.term;
+                    var listOfPersons = [];
+                    $.each(searchResults, function (key, person) {
+                        listOfPersons.push({"val": person.uuid, "label": person.name});
+                    });
+                    $resultsCountElement.val(searchResults.length);
+                    $resultsCountElement.trigger('change');
+
+                    response(listOfPersons);
+
+                },
+                select: function (event, ui) {
+                    $searchElementSelector.val(ui.item.label);
+                    $resultElementSelector.val(ui.item.val);
+                    $resultElementSelector.trigger('change');
+                    return false;
+                }
+            });
+        });
+
+        $searchElementSelector.blur(function () {
+            console.log('destroying up autocomplete...');
+            $searchElementSelector.autocomplete("destroy");
+        });
+    };
+//End - Set up auto complete for the person element.
     document.setupAutoCompleteDataForProvider = function(elementName) {
           var providers = [{"val":"3356-3","label":"David S. Pamba"},
                       {"val":"237-8","label":"Ariya Patrick"},
                       {"val":"3331-6","label":"Benjamin Osiya Ekirapa"},
                       {"val":"3332-4","label":"Molly Omodek Aluku"},
                       {"val":"3355-5","label":"Clementine Ingosi Osiel"}];
-          document.setupAutoCompleteForProvider('encounter\\.provider_id_select', providers);
+          document.setupAutoCompleteForProvider(elementName, providers);
     };
 
 
@@ -1234,3 +1382,222 @@ $(document).ready(function () {
     }
     /*end of populating initial form opening timestamp*/
 });
+
+$('.create-relationship-person').click(function () {
+console.log('populateRelationshipPerson');
+        var $parent = $(this).closest('div[data-name]');
+        var resultField = $(this).attr('data-result-field');
+        var testResult = [{resultField: "personUuid"}];
+        document.populateRelationshipPerson($parent.attr('data-name'),testResult );
+    });
+
+document.populateRelationshipPerson = function (sectionName, jsonString) {
+  console.log('populateRelationshipPerson');
+    var $parent = $('div[data-name="' + sectionName + '"]');
+    $.each(jsonString, function (key, value) {
+        var $inputField = $parent.find("input[name='" + key + "']");
+        $inputField.val(value);
+        $inputField.trigger('change');
+    });
+};
+
+document.setupAutoCompleteForCountry = function(elementName) {
+    var dataDictionary = [
+        {"val": "Afghanistan", "label": "Afghanistan"},
+        {"val": "Albania", "label": "Albania"},
+        {"val": "Algeria", "label": "Algeria"},
+        {"val": "Andorra", "label": "Andorra"},
+        {"val": "Angola", "label": "Angola"},
+        {"val": "Antigua and Barbuda", "label": "Antigua and Barbuda"},
+        {"val": "Argentina", "label": "Argentina"},
+        {"val": "Armenia", "label": "Armenia"},
+        {"val": "Australia", "label": "Australia"},
+        {"val": "Austria", "label": "Austria"},
+        {"val": "Azerbaijan", "label": "Azerbaijan"},
+        {"val": "Bahamas", "label": "Bahamas"},
+        {"val": "Bahrain", "label": "Bahrain"},
+        {"val": "Bangladesh", "label": "Bangladesh"},
+        {"val": "Barbados", "label": "Barbados"},
+        {"val": "Belarus", "label": "Belarus"},
+        {"val": "Belgium", "label": "Belgium"},
+        {"val": "Belize", "label": "Belize"},
+        {"val": "Benin", "label": "Benin"},
+        {"val": "Bhutan", "label": "Bhutan"},
+        {"val": "Bolivia", "label": "Bolivia"},
+        {"val": "Bosnia and Herzegovina", "label": "Bosnia and Herzegovina"},
+        {"val": "Botswana", "label": "Botswana"},
+        {"val": "Brazil", "label": "Brazil"},
+        {"val": "Brunei", "label": "Brunei"},
+        {"val": "Bulgaria", "label": "Bulgaria"},
+        {"val": "Burkina Faso", "label": "Burkina Faso"},
+        {"val": "Burundi", "label": "Burundi"},
+        {"val": "Côte d'Ivoire", "label": "Côte d'Ivoire"},
+        {"val": "Cabo Verde", "label": "Cabo Verde"},
+        {"val": "Cambodia", "label": "Cambodia"},
+        {"val": "Cameroon", "label": "Cameroon"},
+        {"val": "Canada", "label": "Canada"},
+        {"val": "Central African Republic", "label": "Central African Republic"},
+        {"val": "Chad", "label": "Chad"},
+        {"val": "Chile", "label": "Chile"},
+        {"val": "China", "label": "China"},
+        {"val": "Colombia", "label": "Colombia"},
+        {"val": "Comoros", "label": "Comoros"},
+        {"val": "Congo (Congo-Brazzaville)", "label": "Congo (Congo-Brazzaville)"},
+        {"val": "Costa Rica", "label": "Costa Rica"},
+        {"val": "Croatia", "label": "Croatia"},
+        {"val": "Cuba", "label": "Cuba"},
+        {"val": "Cyprus", "label": "Cyprus"},
+        {"val": "Czechia (Czech Republic)", "label": "Czechia (Czech Republic)"},
+        {"val": "Democratic Republic of the Congo", "label": "Democratic Republic of the Congo"},
+        {"val": "Denmark", "label": "Denmark"},
+        {"val": "Djibouti", "label": "Djibouti"},
+        {"val": "Dominica", "label": "Dominica"},
+        {"val": "Dominican Republic", "label": "Dominican Republic"},
+        {"val": "Ecuador", "label": "Ecuador"},
+        {"val": "Egypt", "label": "Egypt"},
+        {"val": "El Salvador", "label": "El Salvador"},
+        {"val": "Equatorial Guinea", "label": "Equatorial Guinea"},
+        {"val": "Eritrea", "label": "Eritrea"},
+        {"val": "Estonia", "label": "Estonia"},
+        {"val": "Eswatini (fmr. Swaziland)", "label": "Eswatini (fmr. Swaziland)"},
+        {"val": "Ethiopia", "label": "Ethiopia"},
+        {"val": "Fiji", "label": "Fiji"},
+        {"val": "Finland", "label": "Finland"},
+        {"val": "France", "label": "France"},
+        {"val": "Gabon", "label": "Gabon"},
+        {"val": "Gambia", "label": "Gambia"},
+        {"val": "Georgia", "label": "Georgia"},
+        {"val": "Germany", "label": "Germany"},
+        {"val": "Ghana", "label": "Ghana"},
+        {"val": "Greece", "label": "Greece"},
+        {"val": "Grenada", "label": "Grenada"},
+        {"val": "Guatemala", "label": "Guatemala"},
+        {"val": "Guinea", "label": "Guinea"},
+        {"val": "Guinea-Bissau", "label": "Guinea-Bissau"},
+        {"val": "Guyana", "label": "Guyana"},
+        {"val": "Haiti", "label": "Haiti"},
+        {"val": "Holy See", "label": "Holy See"},
+        {"val": "Honduras", "label": "Honduras"},
+        {"val": "Hungary", "label": "Hungary"},
+        {"val": "Iceland", "label": "Iceland"},
+        {"val": "India", "label": "India"},
+        {"val": "Indonesia", "label": "Indonesia"},
+        {"val": "Iran", "label": "Iran"},
+        {"val": "Iraq", "label": "Iraq"},
+        {"val": "Ireland", "label": "Ireland"},
+        {"val": "Israel", "label": "Israel"},
+        {"val": "Italy", "label": "Italy"},
+        {"val": "Jamaica", "label": "Jamaica"},
+        {"val": "Japan", "label": "Japan"},
+        {"val": "Jordan", "label": "Jordan"},
+        {"val": "Kazakhstan", "label": "Kazakhstan"},
+        {"val": "Kenya", "label": "Kenya"},
+        {"val": "Kiribati", "label": "Kiribati"},
+        {"val": "Kuwait", "label": "Kuwait"},
+        {"val": "Kyrgyzstan", "label": "Kyrgyzstan"},
+        {"val": "Laos", "label": "Laos"},
+        {"val": "Latvia", "label": "Latvia"},
+        {"val": "Lebanon", "label": "Lebanon"},
+        {"val": "Lesotho", "label": "Lesotho"},
+        {"val": "Liberia", "label": "Liberia"},
+        {"val": "Libya", "label": "Libya"},
+        {"val": "Liechtenstein", "label": "Liechtenstein"},
+        {"val": "Lithuania", "label": "Lithuania"},
+        {"val": "Luxembourg", "label": "Luxembourg"},
+        {"val": "Madagascar", "label": "Madagascar"},
+        {"val": "Malawi", "label": "Malawi"},
+        {"val": "Malaysia", "label": "Malaysia"},
+        {"val": "Maldives", "label": "Maldives"},
+        {"val": "Mali", "label": "Mali"},
+        {"val": "Malta", "label": "Malta"},
+        {"val": "Marshall Islands", "label": "Marshall Islands"},
+        {"val": "Mauritania", "label": "Mauritania"},
+        {"val": "Mauritius", "label": "Mauritius"},
+        {"val": "Mexico", "label": "Mexico"},
+        {"val": "Micronesia", "label": "Micronesia"},
+        {"val": "Moldova", "label": "Moldova"},
+        {"val": "Monaco", "label": "Monaco"},
+        {"val": "Mongolia", "label": "Mongolia"},
+        {"val": "Montenegro", "label": "Montenegro"},
+        {"val": "Morocco", "label": "Morocco"},
+        {"val": "Mozambique", "label": "Mozambique"},
+        {"val": "Myanmar (formerly Burma)", "label": "Myanmar (formerly Burma)"},
+        {"val": "Namibia", "label": "Namibia"},
+        {"val": "Nauru", "label": "Nauru"},
+        {"val": "Nepal", "label": "Nepal"},
+        {"val": "Netherlands", "label": "Netherlands"},
+        {"val": "New Zealand", "label": "New Zealand"},
+        {"val": "Nicaragua", "label": "Nicaragua"},
+        {"val": "Niger", "label": "Niger"},
+        {"val": "Nigeria", "label": "Nigeria"},
+        {"val": "North Korea", "label": "North Korea"},
+        {"val": "North Macedonia", "label": "North Macedonia"},
+        {"val": "Norway", "label": "Norway"},
+        {"val": "Oman", "label": "Oman"},
+        {"val": "Pakistan", "label": "Pakistan"},
+        {"val": "Palau", "label": "Palau"},
+        {"val": "Palestine State", "label": "Palestine State"},
+        {"val": "Panama", "label": "Panama"},
+        {"val": "Papua New Guinea", "label": "Papua New Guinea"},
+        {"val": "Paraguay", "label": "Paraguay"},
+        {"val": "Peru", "label": "Peru"},
+        {"val": "Philippines", "label": "Philippines"},
+        {"val": "Poland", "label": "Poland"},
+        {"val": "Portugal", "label": "Portugal"},
+        {"val": "Qatar", "label": "Qatar"},
+        {"val": "Romania", "label": "Romania"},
+        {"val": "Russia", "label": "Russia"},
+        {"val": "Rwanda", "label": "Rwanda"},
+        {"val": "Saint Kitts and Nevis", "label": "Saint Kitts and Nevis"},
+        {"val": "Saint Lucia", "label": "Saint Lucia"},
+        {"val": "Saint Vincent and the Grenadines", "label": "Saint Vincent and the Grenadines"},
+        {"val": "Samoa", "label": "Samoa"},
+        {"val": "San Marino", "label": "San Marino"},
+        {"val": "Sao Tome and Principe", "label": "Sao Tome and Principe"},
+        {"val": "Saudi Arabia", "label": "Saudi Arabia"},
+        {"val": "Senegal", "label": "Senegal"},
+        {"val": "Serbia", "label": "Serbia"},
+        {"val": "Seychelles", "label": "Seychelles"},
+        {"val": "Sierra Leone", "label": "Sierra Leone"},
+        {"val": "Singapore", "label": "Singapore"},
+        {"val": "Slovakia", "label": "Slovakia"},
+        {"val": "Slovenia", "label": "Slovenia"},
+        {"val": "Solomon Islands", "label": "Solomon Islands"},
+        {"val": "Somalia", "label": "Somalia"},
+        {"val": "South Africa", "label": "South Africa"},
+        {"val": "South Korea", "label": "South Korea"},
+        {"val": "South Sudan", "label": "South Sudan"},
+        {"val": "Spain", "label": "Spain"},
+        {"val": "Sri Lanka", "label": "Sri Lanka"},
+        {"val": "Sudan", "label": "Sudan"},
+        {"val": "Suriname", "label": "Suriname"},
+        {"val": "Sweden", "label": "Sweden"},
+        {"val": "Switzerland", "label": "Switzerland"},
+        {"val": "Syria", "label": "Syria"},
+        {"val": "Tajikistan", "label": "Tajikistan"},
+        {"val": "Tanzania", "label": "Tanzania"},
+        {"val": "Thailand", "label": "Thailand"},
+        {"val": "Timor-Leste", "label": "Timor-Leste"},
+        {"val": "Togo", "label": "Togo"},
+        {"val": "Tonga", "label": "Tonga"},
+        {"val": "Trinidad and Tobago", "label": "Trinidad and Tobago"},
+        {"val": "Tunisia", "label": "Tunisia"},
+        {"val": "Turkey", "label": "Turkey"},
+        {"val": "Turkmenistan", "label": "Turkmenistan"},
+        {"val": "Tuvalu", "label": "Tuvalu"},
+        {"val": "Uganda", "label": "Uganda"},
+        {"val": "Ukraine", "label": "Ukraine"},
+        {"val": "United Arab Emirates", "label": "United Arab Emirates"},
+        {"val": "United Kingdom", "label": "United Kingdom"},
+        {"val": "United States of America", "label": "United States of America"},
+        {"val": "Uruguay", "label": "Uruguay"},
+        {"val": "Uzbekistan", "label": "Uzbekistan"},
+        {"val": "Vanuatu", "label": "Vanuatu"},
+        {"val": "Venezuela", "label": "Venezuela"},
+        {"val": "Vietnam", "label": "Vietnam"},
+        {"val": "Yemen", "label": "Yemen"},
+        {"val": "Zambia", "label": "Zambia"},
+        {"val": "Zimbabwe", "label": "Zimbabwe"}
+    ];
+    document.setupAutoComplete(elementName, dataDictionary);
+};
