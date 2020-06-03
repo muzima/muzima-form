@@ -88,13 +88,13 @@
 			<span class="required">*</span>
 			</label>
 			<div class="form-group">	
-				<label for="tmp.test_result_type_molecular" style="font-weight: normal;">
-					<input type="checkbox" value="molecularTest" name="tmp.test_conducted_molecular" id="tmp.test_conducted_molecular">&nbsp;Molecular test
+				<label for="tmp.test_conducted_molecular" style="font-weight: normal;">
+					<input type="checkbox" value="molecularTest" name="tmp.test_conducted" id="tmp.test_conducted_molecular"  required="required">&nbsp;Molecular test
 				</label>
 			</div>
 			<div class="form-group">
-				<label for="tmp.test_result_type_serology" style="font-weight: normal;">
-					<input type="checkbox"  value="serologicalTest" name="tmp.test_conducted_serology" id="tmp.test_conducted_serology">&nbsp;Serological test
+				<label for="tmp.test_conducted_serology" style="font-weight: normal;">
+					<input type="checkbox"  value="serologicalTest" name="tmp.test_conducted" id="tmp.test_conducted_serology"  required="required">&nbsp;Serological test
 				</label>
 			</div>
         </div>
@@ -254,7 +254,7 @@
 			</label>
 			<div class="form-group">	
 				<label for="obs.covid_19_plan_lab_results" style="font-weight: normal;">
-					<input type="checkbox" data-concept="165936^Covid-19 Plan^99DCT" value="165980^Record laboratory results^99DCT" name="obs.covid_19_plan" id="obs.covid_19_plan_lab_results">&nbsp;Enter laboratory results
+					<input type="checkbox" data-concept="165936^Covid-19 Plan^99DCT" value="165980^Record laboratory results^99DCT" name="obs.covid_19_plan" id="obs.covid_19_plan_lab_results"  required="required">&nbsp;Enter laboratory results
 				</label>
 			</div>
 			<div class="sub-section" id="fill_lab_results_form">
@@ -275,7 +275,7 @@
 			</div>
 			<div class="form-group">
 				<label for="obs.covid_19_plan_fulr" style="font-weight: normal;">  
-					<input type="checkbox" data-concept="165936^Covid-19 Plan^99DCT" value="159971^waiting for test results^99DCT" name="obs.covid_19_plan" id="obs.covid_19_plan_fulr">&nbsp;Follow-up laboratory results
+					<input type="checkbox" data-concept="165936^Covid-19 Plan^99DCT" value="159971^waiting for test results^99DCT" name="obs.covid_19_plan" id="obs.covid_19_plan_fulr"  required="required">&nbsp;Follow-up laboratory results
 				</label>
 			</div>
         </div>
