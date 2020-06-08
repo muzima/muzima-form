@@ -82,17 +82,17 @@
                    name="patient.uuid" type="hidden" readonly="readonly">
         </div>
         <div class="form-group">
-            <label for="patient.given_name">First Name: <span class="required">*</span></label>
-            <input class="form-control" id="patient.given_name" name="patient.given_name" type="text"
-                   required="required">
-        </div>
-        <div class="form-group">
             <label for="patient.family_name">Family Name: <span class="required">*</span> </label>
             <input class="form-control" id="patient.family_name" name="patient.family_name" type="text"
                    required="required">
         </div>
+		 <div class="form-group">
+            <label for="patient.given_name">Given Name: <span class="required">*</span></label>
+            <input class="form-control" id="patient.given_name" name="patient.given_name" type="text"
+                   required="required">
+        </div>
         <div class="form-group">
-            <label for="patient.middle_name">Other Name:</label>
+            <label for="patient.middle_name">Middle Name:</label>
             <input class="form-control" id="patient.middle_name" name="patient.middle_name" type="text">
         </div>
     </div>
@@ -248,8 +248,8 @@
          id="person_relationships">
       <h3>Person you have been in contact with</h3>
       <div class="form-group">
-          <label>Relationship to person: <span class="required">*</span></label>
-              <select class="form-control tmp.relationshipDirection" name="tmp.relationshipDirection" required="required">
+          <label>Relationship to person: <span class="required"></span></label>
+              <select class="form-control tmp.relationshipDirection" name="tmp.relationshipDirection">
                   <option value="">...</option>
                   <option value="AtoB">COVID-19 Potential Exposure to</option>
                   <option value="BtoA">COVID-19 Potential Exposure from</option>
