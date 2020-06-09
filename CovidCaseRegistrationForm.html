@@ -17,6 +17,7 @@
 <div id="result"></div>
 <form id="registration_form" name="registration_form">
   <div id="pre_populate_data">
+  
   </div>
     <h2 class="text-center">Case Registration Form</h2>
     <label class="alert alert-info">This form should only be filled once for each individual</label>
@@ -125,7 +126,7 @@
             <select class="form-control" id="county" name="tmp.stateProvince" readonly="readonly">
                 <option value="">...</option>
             </select>
-            <input id="patient.stateProvince" name="patient.stateProvince" type="hidden">
+            <input id="patient.stateProvince" name="stateProvince" type="hidden">
         </div>
 
         <div class="form-group">
@@ -133,7 +134,7 @@
             <select class="form-control" id="sub_county" name="tmp.countyDistrict" readonly="readonly">
                 <option value="">...</option>
             </select>
-            <input id="patient.countyDistrict" name="patient.countyDistrict" type="hidden">
+            <input id="patient.countyDistrict" name="countyDistrict" type="hidden">
         </div>
 
         <div class="form-group">
@@ -141,15 +142,15 @@
             <select class="form-control" id="county_facility" name="tmp.address6" readonly="readonly">
                 <option value="">...</option>
             </select>
-            <input id="patient.address6" name="patient.address6" type="hidden">
+            <input id="patient.address6" name="address6" type="hidden">
         </div>
         <div class="form-group">
             <label for="patient.cityVillage">Village: </label>
-            <input class="form-control" id="patient.cityVillage" name="patient.cityVillage" type="text">
+            <input class="form-control" id="patient.cityVillage" name="cityVillage" type="text">
         </div>
         <div class="form-group">
             <label for="patient.landmark">Landmark: </label>
-            <input class="form-control" id="patient.landmark" name="patient.landmark" type="text">
+            <input class="form-control" id="patient.landmark" name="address3" type="text">
         </div>
         <div class="form-group">
             <label for="tmp.at_home_location">Are you currently at the home location of the COVID case?
