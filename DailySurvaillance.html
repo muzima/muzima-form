@@ -1,0 +1,1046 @@
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/muzima.css" rel="stylesheet">
+    <link href="css/ui-darkness/jquery-ui-1.10.4.custom.min.css" rel="stylesheet">
+
+    <script src="js/jquery.min.js"></script>
+    <script src="js/jquery-ui-1.10.4.custom.min.js"></script>
+    <script src="js/jquery.validate.min.js"></script>
+    <script src="js/additional-methods.min.js"></script>
+    <script src="js/muzima.js"></script>
+    <title>Daily Surveillance</title>
+    <style>
+    </style>
+</head>
+<body class="col-md-10 col-md-offset-1">
+<div id="pre_populate_data">
+
+</div>
+<form id="dailysurvaillance_form" name="dailysurvaillance_form">
+    <h2 class="text-center">Daily Surveillance</h2>
+    <div class="section">
+        <h3>Demographics</h3>
+        <div class="form-group">
+            <input class="form-control" id="patient.uuid"
+                   name="patient.uuid" type="hidden" readonly="readonly">
+        </div>
+
+        <div class="form-group">
+            <label for="patient.medical_record_number">Contact ID:</label>
+            <input class="form-control" id="patient.medical_record_number"
+                   name="patient.medical_record_number" type="text"
+                   readonly="readonly">
+        </div>
+        <div class="form-group" style="display:none">
+            <label for="patient.family_name">Family Name:</label>
+            <input class="form-control" id="patient.family_name"
+                   name="patient.family_name" type="text" readonly="readonly">
+        </div>
+        <div class="form-group" style="display:none">
+            <label for="patient.given_name">Given Name:</label>
+            <input class="form-control" id="patient.given_name"
+                   name="patient.given_name" type="text" readonly="readonly">
+        </div>
+        <div class="form-group" style="display:none">
+            <label for="patient.middle_name">Middle Name:</label>
+            <input class="form-control" id="patient.middle_name"
+                   name="patient.middle_name" type="text" readonly="readonly">
+        </div>
+		<div class="form-group">
+            <label for="patient.middle_name">Name:</label>
+            <input class="form-control" id="patient.names"
+                   name="patient.names" type="text" readonly="readonly">
+        </div>
+        <div class="form-group">
+            <label for="patient.sex">Gender:</label>
+            <select class="form-control" id="patient.sex" name="patient.sex" readonly="readonly" disabled>
+                <option value="">...</option>
+                <option value="M">Male</option>
+                <option value="F">Female</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="patient.birth_date">Date of birth:</label>
+            <input class="form-control" id="patient.birth_date"
+                   name="patient.birth_date" type="text" readonly="readonly">
+        </div>
+		<div class="form-group">
+            <label for="patient.phone_number">Telephone (mobile) number:</label>
+            <input class="form-control" id="patient.phone_number" name="patient.phone_number" type="text" readonly="readonly">
+        </div>
+    </div>
+	<div class="section">
+		<div class="form-group">
+			<label for="obs.surveillance_start_date">Surveillance Start Date</label>
+			<input class="form-control nonFutureDate past-date datepicker" readonly="readonly" data-concept="165996^Survaillance start date^99DCT"  id="obs.surveillance_start_date" name="obs.surveillance_start_date" type="text">
+		</div>
+		<div class="form-group">
+			<label for="obs.surveillance_end_date">Surveillance End Date</label>
+			<input class="form-control future-date datepicker" readonly="readonly"  id="obs.surveillance_end_date"  name="obs.surveillance_end_date" type="text">
+		</div>
+		<div class="form-group">
+			<label for="encounter.encounter_datetime">Date of Surveillance:<span class="required">*</span></label>
+			<input class="form-control datepicker nonFutureDate past-date" id="encounter.encounter_datetime" name="encounter.encounter_datetime" type="text" readonly="readonly" required="required">
+		</div>
+		<div class="form-group">
+			<label for="obs.surveillance_start_date">Day of Follow up</label>
+			<input type="number" class="form-control" data-concept="165998^Day of Follow-up^99DCT" name="obs.day_of_follow_up" id="obs.day_of_follow_up"  required="required" min="1" max="14">
+		</div>
+	</div>
+    <div class="section">
+		<div class="form-group">
+			<label for="obs.temperature">			
+				Temperature
+			</label>
+			<div class="form-group">		
+				<input type="text" class="form-control" data-concept="5088^Temperature^99DCT" name="obs.temperature" id="obs.temperature">
+			</div>
+        </div>	
+		<div class="form-group">
+			<label for="obs.symptoms_present">			
+				Symptoms Present
+			<span class="required">*</span>
+			</label>
+			<div class="form-group">	
+				<label for="obs.symptoms_present_yes" style="font-weight: normal;">	
+					<input type="radio" data-concept="1729^SYMPTOM PRESENT^99DCT" value="1065^Yes^99DCT" name="obs.symptoms_present" id="obs.symptoms_present_yes" required>&nbsp;Yes
+				</label>
+				<label for="obs.symptoms_present_no" style="font-weight: normal;">	
+					<input type="radio" data-concept="1729^SYMPTOM PRESENT^99DCT" value="1066^No^99DCT" name="obs.symptoms_present"  id="obs.symptoms_present_no" required>&nbsp;No
+				</label>
+			</div>
+        </div>
+	</div>
+	<div class="section">
+		<div class="form-group">
+			<label for="obs.fever">			
+				Fever(>=38 or history of fever)
+			<span class="required">*</span>
+			</label>
+			<div class="form-group">	
+				<label for="obs.fever_yes" style="font-weight: normal;">	
+					<input type="radio" data-concept="140238^Fever^99DCT" value="1065^Yes^99DCT" name="obs.fever" id="obs.fever_yes" required>&nbsp;Yes&nbsp;&nbsp;
+				</label>
+				<label for="obs.fever_no" style="font-weight: normal;">	
+					<input type="radio" data-concept="140238^Fever^99DCT" value="1066^No^99DCT" name="obs.fever" id="obs.fever_no" required>&nbsp;No&nbsp;&nbsp;
+				</label>
+				<label for="obs.fever_unknown" style="font-weight: normal;">	
+					<input type="radio" data-concept="140238^Fever^99DCT" value="1067^Unknown^99DCT" name="obs.fever" id="obs.fever_unknown" required>&nbsp;Unknown
+				</label>
+			</div>
+		</div>
+		<div class="form-group" id="date_of_fever_symptom">
+			<label for="obs.date_of_fever_symptom">			
+				Date:
+			<span class="required">*</span>
+			</label>
+			<div class="form-group">		
+				<input type="text" class="form-control datepicker nonFutureDate past-date" name="obs_datetime.date_of_fever_symptom" readonly="readonly" data-obsdatetimefor="obs.fever"  id="obs_datetime.date_of_fever_symptom" required="required">
+			</div>
+        </div>
+		<div class="form-group">
+			<label for="obs.sore_throat">			
+				Sore throat
+			<span class="required">*</span>
+			</label>
+			<div class="form-group">	
+				<label for="obs.sore_throat_yes" style="font-weight: normal;">	
+					<input type="radio" data-concept="158843^Sore throat^99DCT" value="1065^Yes^99DCT" name="obs.sore_throat" id="obs.sore_throat_yes" required>&nbsp;Yes&nbsp;&nbsp;
+				</label>
+				<label for="obs.sore_throat_no" style="font-weight: normal;">	
+					<input type="radio" data-concept="158843^Sore throat^99DCT" value="1066^No^99DCT" name="obs.sore_throat" id="obs.sore_throat_no" required>&nbsp;No&nbsp;&nbsp;
+				</label>
+				<label for="obs.sore_throat_unknown" style="font-weight: normal;">	
+					<input type="radio" data-concept="158843^Sore throat^99DCT" value="1067^Unknown^99DCT" name="obs.sore_throat" id="obs.sore_throat_unknown" required>&nbsp;Unknown
+				</label>
+			</div>
+        </div>
+		<div class="form-group" id="date_of_sore_throat_symptom">
+			<label for="obs.date_of_sore_throat_symptom">			
+				Date:
+			<span class="required">*</span>
+			</label>
+			<div class="form-group">		
+				<input type="text" class="form-control datepicker nonFutureDate past-date" name="obs_datetime.date_of_sore_throat_symptom" readonly="readonly" data-obsdatetimefor="obs.sore_throat"  id="obs_datetime.date_of_sore_throat_symptom" required="required">
+			</div>
+        </div>
+		<div class="form-group">
+			<label for="obs.runny_nose">			
+				Runny nose
+			<span class="required">*</span>
+			</label>
+			<div class="form-group">	
+				<label for="obs.runny_nose_yes" style="font-weight: normal;">	
+					<input type="radio" data-concept="165501^Runny nose^99DCT" value="1065^Yes^99DCT" name="obs.runny_nose" id="obs.runny_nose_yes" required>&nbsp;Yes&nbsp;&nbsp;
+				</label>
+				<label for="obs.runny_nose_no" style="font-weight: normal;">	
+					<input type="radio" data-concept="165501^Runny nose^99DCT" value="1066^No^99DCT" name="obs.runny_nose" id="obs.runny_nose_no" required>&nbsp;No&nbsp;&nbsp;
+				</label>
+				<label for="obs.runny_nose_unknown" style="font-weight: normal;">	
+					<input type="radio" data-concept="165501^Runny nose^99DCT" value="1067^Unknown^99DCT" name="obs.runny_nose" id="obs.runny_nose_unknown" required>&nbsp;Unknown
+				</label>
+			</div>
+        </div>
+		<div class="form-group" id="date_of_runny_nose_symptom">
+			<label for="obs.date_of_runny_nose_symptom">			
+				Date:
+			<span class="required">*</span>
+			</label>
+			<div class="form-group">		
+				<input type="text" class="form-control datepicker nonFutureDate past-date" name="obs_datetime.date_of_runny_nose_symptom" readonly="readonly" data-obsdatetimefor="obs.runny_nose"  id="obs_datetime.date_of_runny_nose_symptom" required="required">
+			</div>
+        </div>
+		<div class="form-group">
+			<label for="obs.cough">			
+				Cough
+			<span class="required">*</span>
+			</label>
+			<div class="form-group">	
+				<label for="obs.cough_yes" style="font-weight: normal;">	
+					<input type="radio" data-concept="143264^Cough^99DCT" value="1065^Yes^99DCT" name="obs.cough" id="obs.cough_yes" required>&nbsp;Yes&nbsp;&nbsp;
+				</label>
+				<label for="obs.cough_no" style="font-weight: normal;">	
+					<input type="radio" data-concept="143264^Cough^99DCT" value="1066^No^99DCT" name="obs.cough" id="obs.cough_no" required>&nbsp;No&nbsp;&nbsp;
+				</label>
+				<label for="obs.cough_unknown" style="font-weight: normal;">	
+					<input type="radio" data-concept="143264^Cough^99DCT" value="1067^Unknown^99DCT" name="obs.cough" id="obs.cough_unknown" required>&nbsp;Unknown
+				</label>
+			</div>
+        </div>
+		<div class="form-group" id="date_of_cough_symptom">
+			<label for="obs.date_of_cough_symptom">			
+				Date:
+			<span class="required">*</span>
+			</label>
+			<div class="form-group">		
+				<input type="text" class="form-control datepicker nonFutureDate past-date" name="obs_datetime.date_of_cough_symptom" readonly="readonly" data-obsdatetimefor="obs.cough"  id="obs_datetime.date_of_cough_symptom" required="required">
+			</div>
+        </div>
+		<div class="form-group">
+			<label for="obs.shortness_of_breath">			
+				Shortness of breath
+			<span class="required">*</span>
+			</label>
+			<div class="form-group">	
+				<label for="obs.shortness_of_breath_yes" style="font-weight: normal;">	
+					<input type="radio" data-concept="141600^Shortness of breath^99DCT" value="1065^Yes^99DCT" name="obs.shortness_of_breath" id="obs.shortness_of_breath_yes" required>&nbsp;Yes&nbsp;&nbsp;
+				</label>
+				<label for="obs.shortness_of_breath_no" style="font-weight: normal;">	
+					<input type="radio" data-concept="141600^Shortness of breath^99DCT" value="1066^No^99DCT" name="obs.shortness_of_breath" id="obs.shortness_of_breath_no" required>&nbsp;No&nbsp;&nbsp;
+				</label>
+				<label for="obs.shortness_of_breath_unknown" style="font-weight: normal;">	
+					<input type="radio" data-concept="141600^Shortness of breath^99DCT" value="1067^Unknown^99DCT" name="obs.shortness_of_breath" id="obs.shortness_of_breath_unknown" required>&nbsp;Unknown
+				</label>
+			</div>
+        </div>
+		<div class="form-group" id="date_of_shortnessOfBreath_symptom">
+			<label for="obs.date_of_shortnessOfBreath_symptom">			
+				Date:
+			<span class="required">*</span>
+			</label>
+			<div class="form-group">		
+				<input type="text" class="form-control datepicker nonFutureDate past-date" name="obs_datetime.date_of_shortnessOfBreath_symptom" readonly="readonly" data-obsdatetimefor="obs.shortness_of_breath"  id="obs_datetime.date_of_shortnessOfBreath_symptom" required="required">
+			</div>
+        </div>
+		<div class="form-group">
+			<label for="obs.vomiting">			
+				Vomiting
+			<span class="required">*</span>
+			</label>
+			<div class="form-group">	
+				<label for="obs.vomiting_yes" style="font-weight: normal;">	
+					<input type="radio" data-concept="122983^Vomiting^99DCT" value="1065^Yes^99DCT" name="obs.vomiting" id="obs.vomiting_yes" required>&nbsp;Yes&nbsp;&nbsp;
+				</label>
+				<label for="obs.vomiting_no" style="font-weight: normal;">	
+					<input type="radio" data-concept="122983^Vomiting^99DCT" value="1066^No^99DCT" name="obs.vomiting" id="obs.vomiting_no" required>&nbsp;No&nbsp;&nbsp;
+				</label>
+				<label for="obs.vomiting_unknown" style="font-weight: normal;">	
+					<input type="radio" data-concept="122983^Vomiting^99DCT" value="1067^Unknown^99DCT" name="obs.vomiting" id="obs.vomiting_unknown" required>&nbsp;Unknown
+				</label>
+			</div>
+        </div>
+		<div class="form-group" id="date_of_vomiting_symptom">
+			<label for="obs.date_of_vomiting_symptom">			
+				Date:
+			<span class="required">*</span>
+			</label>
+			<div class="form-group">		
+				<input type="text" class="form-control datepicker nonFutureDate past-date" name="obs_datetime.date_of_vomiting_symptom" readonly="readonly" data-obsdatetimefor="obs.vomiting"  id="obs_datetime.date_of_vomiting_symptom" required="required">
+			</div>
+        </div>
+		<div class="form-group">
+			<label for="obs.nausea">			
+				Nausea
+			<span class="required">*</span>
+			</label>
+			<div class="form-group">	
+				<label for="obs.nausea_yes" style="font-weight: normal;">	
+					<input type="radio" data-concept="5978^Nausea^99DCT" value="1065^Yes^99DCT" name="obs.nausea" id="obs.nausea_yes" required>&nbsp;Yes&nbsp;&nbsp;
+				</label>
+				<label for="obs.nausea_no" style="font-weight: normal;">	
+					<input type="radio" data-concept="5978^Nausea^99DCT" value="1066^No^99DCT" name="obs.nausea" id="obs.nausea_no" required>&nbsp;No&nbsp;&nbsp;
+				</label>
+				<label for="obs.nausea_unknown" style="font-weight: normal;">	
+					<input type="radio" data-concept="5978^Nausea^99DCT" value="1067^Unknown^99DCT" name="obs.nausea" id="obs.nausea_unknown" required>&nbsp;Unknown
+				</label>
+			</div>
+        </div>
+		<div class="form-group" id="date_of_nausea_symptom">
+			<label for="obs.date_of_nausea_symptom">			
+				Date:
+			<span class="required">*</span>
+			</label>
+			<div class="form-group">		
+				<input type="text" class="form-control datepicker nonFutureDate past-date" name="obs_datetime.date_of_nausea_symptom" readonly="readonly" data-obsdatetimefor="obs.nausea"  id="obs_datetime.date_of_nausea_symptom" required="required">
+			</div>
+        </div>
+		<div class="form-group">
+			<label for="obs.diarrhoea">			
+				Diarrhoea
+			<span class="required">*</span>
+			</label>
+			<div class="form-group">	
+				<label for="obs.diarrhoea_yes" style="font-weight: normal;">
+					<input type="radio" data-concept="142412^Diarrhoea^99DCT" value="1065^Yes^99DCT" name="obs.diarrhoea" id="obs.diarrhoea_yes" required>&nbsp;Yes&nbsp;&nbsp;
+				</label>
+				<label for="obs.diarrhoea_no" style="font-weight: normal;">
+					<input type="radio" data-concept="142412^Diarrhoea^99DCT" value="1066^No^99DCT" name="obs.diarrhoea" id="obs.diarrhoea_no" required>&nbsp;No&nbsp;&nbsp;
+				</label>
+				<label for="obs.diarrhoea_unknown" style="font-weight: normal;">
+					<input type="radio" data-concept="142412^Diarrhoea^99DCT" value="1067^Unknown^99DCT" name="obs.diarrhoea" id="obs.diarrhoea_unknown" required>&nbsp;Unknown
+				</label>
+			</div>
+        </div>
+		<div class="form-group" id="date_of_diarrhoea_symptom">
+			<label for="obs.date_of_diarrhoea_symptom">			
+				Date:
+			<span class="required">*</span>
+			</label>
+			<div class="form-group">		
+				<input type="text" class="form-control datepicker nonFutureDate past-date" name="obs_datetime.date_of_diarrhoea_symptom" readonly="readonly" data-obsdatetimefor="obs.diarrhoea"  id="obs_datetime.date_of_diarrhoea_symptom" required="required">
+			</div>
+        </div>
+		<div class="form-group">
+			<label for="obs.loss_of_smell">			
+				Loss of smell
+			<span class="required">*</span>
+			</label>
+			<div class="form-group">
+				<label for="obs.loss_of_smell_yes" style="font-weight: normal;">
+					<input type="radio" data-concept="135589^Loss of sense of smell^99DCT" value="1065^Yes^99DCT" name="obs.loss_of_smell" id="obs.loss_of_smell_yes" required>&nbsp;Yes&nbsp;&nbsp;
+				</label>
+				<label for="obs.loss_of_smell_no" style="font-weight: normal;">
+					<input type="radio" data-concept="135589^Loss of sense of smell^99DCT" value="1066^No^99DCT" name="obs.loss_of_smell"  id="obs.loss_of_smell_no" required>&nbsp;No&nbsp;&nbsp;
+				</label>
+				<label for="obs.loss_of_smell_unknown" style="font-weight: normal;">
+					<input type="radio" data-concept="135589^Loss of sense of smell^99DCT" value="1067^Unknown^99DCT" name="obs.loss_of_smell"  id="obs.loss_of_smell_unknown" required>&nbsp;Unknown
+				</label>
+			</div>
+        </div>
+		<div class="form-group" id="date_of_losos_symptom">
+			<label for="obs.date_of_losos_symptom">			
+				Date:
+			<span class="required">*</span>
+			</label>
+			<div class="form-group">		
+				<input type="text" class="form-control datepicker nonFutureDate past-date" name="obs_datetime.date_of_losos_symptom" readonly="readonly" data-obsdatetimefor="obs.loss_of_smell"  id="obs_datetime.date_of_losos_symptom" required="required">
+			</div>
+        </div>
+		<div class="form-group">
+			<label for="obs.loss_of_taste">			
+				Loss of Taste
+			<span class="required">*</span>
+			</label>
+			<div class="form-group">
+				<label for="obs.loss_of_taste_yes" style="font-weight: normal;">
+					<input type="radio" data-concept="135588^Loss of Taste^99DCT" value="1065^Yes^99DCT" name="obs.loss_of_taste" id="obs.loss_of_taste_yes" required>&nbsp;Yes&nbsp;&nbsp;
+				</label>
+				<label for="obs.loss_of_taste_no" style="font-weight: normal;">
+					<input type="radio" data-concept="135588^Loss of Taste^99DCT" value="1066^No^99DCT" name="obs.loss_of_taste"  id="obs.loss_of_taste_no" required>&nbsp;No&nbsp;&nbsp;
+				</label>
+				<label for="obs.loss_of_taste_unknown" style="font-weight: normal;">
+					<input type="radio" data-concept="135588^Loss of Taste^99DCT" value="1067^Unknown^99DCT" name="obs.loss_of_taste"  id="obs.loss_of_taste_unknown" required>&nbsp;Unknown
+				</label>
+			</div>
+        </div>
+		<div class="form-group" id="date_of_losot_symptom">
+			<label for="obs.date_of_losot_symptom">			
+				Date:
+			<span class="required">*</span>
+			</label>
+			<div class="form-group">		
+				<input type="text" class="form-control datepicker nonFutureDate past-date" name="obs_datetime.date_of_losot_symptom" readonly="readonly" data-obsdatetimefor="obs.loss_of_taste"  id="obs_datetime.date_of_losot_symptom" required="required">
+			</div>
+        </div>	
+		<div class="form-group">
+			<label for="obs.headache">			
+				Headache
+			<span class="required">*</span>
+			</label>
+			<div class="form-group">
+				<label for="obs.headache_yes" style="font-weight: normal;">
+					<input type="radio" data-concept="139084^Headache^99DCT" value="1065^Yes^99DCT" name="obs.headache" id="obs.headache_yes" required>&nbsp;Yes&nbsp;&nbsp;
+				</label>
+				<label for="obs.headache_no" style="font-weight: normal;">
+					<input type="radio" data-concept="139084^Headache^99DCT" value="1066^No^99DCT" name="obs.headache"  id="obs.headache_no" required>&nbsp;No&nbsp;&nbsp;
+				</label>
+				<label for="obs.headache_unknown" style="font-weight: normal;">
+					<input type="radio" data-concept="139084^Headache^99DCT" value="1067^Unknown^99DCT" name="obs.headache"  id="obs.headache_unknown" required>&nbsp;Unknown
+				</label>
+			</div>
+        </div>
+		<div class="form-group" id="date_of_headache_symptom">
+			<label for="obs.date_of_headache_symptom">			
+				Date:
+			<span class="required">*</span>
+			</label>
+			<div class="form-group">		
+				<input type="text" class="form-control datepicker nonFutureDate past-date" name="obs_datetime.date_of_headache_symptom" readonly="readonly" data-obsdatetimefor="obs.headache"  id="obs_datetime.date_of_headache_symptom" required="required">
+			</div>
+        </div>		
+		<div class="form-group">
+			<label for="obs.fatigue">			
+				Fatigue
+			<span class="required">*</span>
+			</label>
+			<div class="form-group">
+				<label for="obs.fatigue_yes" style="font-weight: normal;">
+					<input type="radio" data-concept="140501^Fatigue^99DCT" value="1065^Yes^99DCT" name="obs.fatigue" id="obs.fatigue_yes" required>&nbsp;Yes&nbsp;&nbsp;
+				</label>
+				<label for="obs.fatigue_no" style="font-weight: normal;">
+					<input type="radio" data-concept="140501^Fatigue^99DCT" value="1066^No^99DCT" name="obs.fatigue"  id="obs.fatigue_no" required>&nbsp;No&nbsp;&nbsp;
+				</label>
+				<label for="obs.fatigue_unknown" style="font-weight: normal;">
+					<input type="radio" data-concept="140501^Fatigue^99DCT" value="1067^Unknown^99DCT" name="obs.fatigue"  id="obs.fatigue_unknown" required>&nbsp;Unknown
+				</label>
+			</div>
+        </div>
+		<div class="form-group" id="date_of_fatigue_symptom">
+			<label for="obs.date_of_fatigue_symptom">			
+				Date:
+			<span class="required">*</span>
+			</label>
+			<div class="form-group">		
+				<input type="text" class="form-control datepicker nonFutureDate past-date" name="obs_datetime.date_of_fatigue_symptom" readonly="readonly" data-obsdatetimefor="obs.fatigue"  id="obs_datetime.date_of_fatigue_symptom" required="required">
+			</div>
+        </div>
+		
+		<div class="form-group">
+			<label for="obs.morba">			
+				Muscle or Body Aches
+			<span class="required">*</span>
+			</label>
+			<div class="form-group">
+				<label for="obs.morba_yes" style="font-weight: normal;">
+					<input type="radio" data-concept="139546^Muscle or Body Aches^99DCT" value="1065^Yes^99DCT" name="obs.morba" id="obs.morba_yes" required>&nbsp;Yes&nbsp;&nbsp;
+				</label>
+				<label for="obs.morba_no" style="font-weight: normal;">
+					<input type="radio" data-concept="139546^Muscle or Body Aches^99DCT" value="1066^No^99DCT" name="obs.morba"  id="obs.morba_no" required>&nbsp;No&nbsp;&nbsp;
+				</label>
+				<label for="obs.morba_unknown" style="font-weight: normal;">
+					<input type="radio" data-concept="139546^Muscle or Body Aches^99DCT" value="1067^Unknown^99DCT" name="obs.morba"  id="obs.morba_unknown" required>&nbsp;Unknown
+				</label>
+			</div>
+        </div>
+		<div class="form-group" id="date_of_morba_symptom">
+			<label for="obs.date_of_morba_symptom">			
+				Date:
+			<span class="required">*</span>
+			</label>
+			<div class="form-group">		
+				<input type="text" class="form-control datepicker nonFutureDate past-date" name="obs_datetime.date_of_morba_symptom" readonly="readonly" data-obsdatetimefor="obs.morba"  id="obs_datetime.date_of_morba_symptom" required="required">
+			</div>
+        </div>
+		<div class="form-group">
+			<label for="obs.other_symptoms">			
+				Other Symptoms
+			<span class="required"></span>
+			</label>
+			<div class="form-group">		
+				<input type="text" class="form-control" data-concept="165999^Other Symptoms, Freetext^99DCT" name="obs.other_symptoms" id="obs.other_symptoms">
+			</div>
+        </div>	
+    </div>
+	<div class="section">
+		<div class="form-group">
+			<label for="obs.outcome">			
+				Outcome
+			<span class="required">*</span>
+			</label>
+			<div class="form-group">
+				<label for="obs.outcome_dead" style="font-weight: normal;">
+					<input type="radio" data-concept="160433^Outcome^99DCT" value="159^Dead^99DCT" name="obs.outcome" id="obs.outcome_dead" required>&nbsp;Dead&nbsp;&nbsp;
+				</label>
+			</div>
+			<div class="form-group">
+				<label for="obs.outcome_ltfu" style="font-weight: normal;">
+					<input type="radio" data-concept="160433^Outcome^99DCT" value="5240^Lost to follow up^99DCT" name="obs.outcome"  id="obs.outcome_ltfu" required>&nbsp;Lost to follow up&nbsp;&nbsp;
+				</label>
+			</div>
+			<div class="form-group">
+				<label for="obs.outcome_asymptomatic" style="font-weight: normal;">
+					<input type="radio" data-concept="160433^Outcome^99DCT" value="5006^Asymptomatic^99DCT" name="obs.outcome"  id="obs.outcome_asymptomatic" required>&nbsp;Asymptomatic
+				</label>
+			</div>
+			<div class="form-group">
+				<label for="obs.outcome_symptomatic" style="font-weight: normal;">
+					<input type="radio" data-concept="160433^Outcome^99DCT" value="1068^Symptomatic^99DCT" name="obs.outcome"  id="obs.outcome_symptomatic" required>&nbsp;Symptomatic
+				</label>
+			</div>
+        </div>
+		<div class="form-group" id="details_ltfu">
+			<label for="obs.details_ltfu">			
+				Details of lost to follow up
+			<span class="required">*</span>
+			</label>
+			<div class="form-group">		
+				<input type="text" class="form-control" data-concept="161206^Details of lost to follow up^99DCT" name="obs.details_ltfu" id="obs.details_ltfu" required="required">
+			</div>
+        </div>	
+		<div class="form-group" id="test_ordered_div">
+			<label for="obs.test_ordered">			
+				Has COVID-19 testing been ordered
+			<span class="required">*</span>
+			</label>
+			<div class="form-group">
+				<label for="obs.test_ordered_yes" style="font-weight: normal;">
+					<input type="radio" data-concept="166000^COVID-19 Test Order^99DCT" value="1065^Yes^99DCT" name="obs.test_ordered" id="obs.test_ordered_yes" required>&nbsp;Yes&nbsp;&nbsp;
+				</label>
+				<label for="obs.test_ordered_no" style="font-weight: normal;">
+					<input type="radio" data-concept="166000^COVID-19 Test Order^99DCT" value="1066^No^99DCT" name="obs.test_ordered"  id="obs.test_ordered_no" required>&nbsp;No&nbsp;&nbsp;
+				</label>
+				<label for="obs.test_ordered_unknown" style="font-weight: normal;">
+					<input type="radio" data-concept="166000^COVID-19 Test Order^99DCT" value="1067^Unknown^99DCT" name="obs.test_ordered"  id="obs.test_ordered_unknown" required>&nbsp;Unknown
+				</label>
+			</div>
+        </div>				
+		<div class="form-group" id="test_results_div">
+			<label for="obs.test_results">			
+				Test results
+			<span class="required">*</span>
+			</label>
+			<div class="form-group">
+				<label for="obs.test_results_positive" style="font-weight: normal;">
+					<input type="radio" data-concept="165964^COVID-19 molecular test result^99DCT" value="165960^COVID-19 positive^99DCT" name="obs.test_results" id="obs.test_results_positive" required>&nbsp;Positive&nbsp;&nbsp;
+				</label>
+			</div>
+			<div class="form-group">
+				<label for="obs.test_results_negative" style="font-weight: normal;">
+					<input type="radio" data-concept="165964^COVID-19 molecular test result^99DCT" value="165961^COVID-19 negative^99DCT" name="obs.test_results"  id="obs.test_results_negative" required>&nbsp;Negative&nbsp;&nbsp;
+				</label>
+			</div>
+			<div class="form-group">
+				<label for="obs.test_results_indeterminate" style="font-weight: normal;">
+					<input type="radio" data-concept="165964^COVID-19 molecular test result^99DCT" value="1138^INDETERMINATE^99DCT" name="obs.test_results"  id="obs.test_results_indeterminate" required>&nbsp;Indeterminate
+				</label>
+			</div>
+			<div class="form-group">
+				<label for="obs.test_results_unknown" style="font-weight: normal;">
+					<input type="radio" data-concept="165964^COVID-19 molecular test result^99DCT" value="1067^Unknown^99DCT" name="obs.test_results"  id="obs.test_results_unknown" required>&nbsp;Unknown
+				</label>
+			</div>			
+        </div>
+		<div class="form-group" id="test_results_message_div">
+			   <label class="alert alert-info">Please order COVID-19 test</label>
+		</div>	
+		<div class="form-group">
+			<label for="obs.patient_plan">			
+				Patient plan
+			<span class="required">*</span>
+			</label>
+			<div class="form-group">	
+				<label for="obs.covid_19_plan_continue_screening" style="font-weight: normal;">
+					<input type="checkbox" data-concept="165936^Covid-19 Plan^99DCT" value="159835^Continue^99DCT" name="obs.covid_19_plan" id="obs.covid_19_plan_continue_screening" required>&nbsp;Continue monitoring
+				</label>
+			</div>
+			<div class="form-group">
+				<label for="obs.covid_19_plan_collect_lab" style="font-weight: normal;">
+					<input type="checkbox" data-concept="165936^Covid-19 Plan^99DCT" value="166044^Due for testing^99DCT" name="obs.covid_19_plan" id="obs.covid_19_plan_collect_lab" required>&nbsp;Due for testing
+				</label>
+			</div>
+			<div class="form-group">
+				<label for="obs.covid_19_plan_refer_lab" style="font-weight: normal;">
+					<input type="checkbox" data-concept="165936^Covid-19 Plan^99DCT" value="166045^Refer contact to care and treatment team^99DCT" name="obs.covid_19_plan" id="obs.covid_19_plan_refer_lab" required>&nbsp;Refer contact to care and treatment team
+				</label>
+			</div>
+			<div class="form-group">
+				<label for="obs.covid_19_plan_exit" style="font-weight: normal;">
+					<input type="checkbox" data-concept="165936^Covid-19 Plan^99DCT" value="166001^Exit^99DCT" name="obs.covid_19_plan" id="obs.covid_19_plan_exit" required>&nbsp;Exit (Discharge patient from program)
+				</label>
+			</div>
+		</div>
+
+	</div>
+    <div class="section">
+        <div class="form-group">
+		<label for="encounter.location_id">Encounter Location:<span class="required">*</span></label>
+		<input class="form-control valid-location-only" id="encounter.location_id" type="text"
+		placeholder="Start typing something..." required="required">
+		<input class="form-control" name="encounter.location_id" type="hidden">
+        </div>
+	<div class="form-group">
+		<label for="encounter.provider_id_select">Public Health Team Member:<span class="required">*</span></label>
+		<input class="form-control valid-provider-only" id="encounter.provider_id_select"
+		type="text" placeholder="Start typing something...">
+		<input class="form-control" name="encounter.provider_id_select" type="hidden">
+	</div>
+
+	<div class="form-group show_provider_id_text">
+		<label for="encounter.provider_id">Public Health Team Member's System ID:<span class="required">*</span></label>
+		<input class="form-control checkDigit" id="encounter.provider_id" disabled name="encounter.provider_id"
+	       type="text" required="required"  placeholder="Provider Id">
+	</div>
+	<div class="form-group">
+		<input class="form-control" id="encounter.form_uuid" name="encounter.form_uuid"
+	       type="hidden" required="required">
+		<input class="form-control" id="encounter.user_system_id" name="encounter.user_system_id" type="hidden">
+	</div>
+    </div>
+</form>
+</body>
+<script type="text/javascript">
+$(document).ready(function () {
+	$('#save_draft').click(function () {
+	    $(this).prop('disabled', true);
+	    document.saveDraft();
+	    $(this).prop('disabled', false);
+	});
+
+	$('#submit_form').click(function () {
+	    $(this).prop('disabled', true);
+	    document.submit();
+	    $(this).prop('disabled', false);
+	});
+	
+	var dateFormat = "dd-mm-yy";
+	var currentDate = $.datepicker.formatDate(dateFormat, new Date());
+	var encounterDatetime = $('#encounter\\.encounter_datetime');
+	if ($(encounterDatetime).val() == "") {
+		$(encounterDatetime).val(currentDate);
+	}
+
+	var prePopulateData = $.trim($('#pre_populate_data').html());
+	if(prePopulateData !=="" ){
+		var prePopulateJSON = JSON.parse(prePopulateData);
+		$.each(prePopulateJSON, function(key, value) {
+			if (key === 'patient') {
+				var names = "";
+				$.each(value, function(keys, values) {
+					if(keys === 'patient.given_name' || keys === 'patient.middle_name' || keys === 'patient.family_name'){
+					   names=names+" "+values;
+					}
+					
+					if (keys === 'patient.personattribute') {
+					    $.each(values, function (keyss, valuess) {
+							if(valuess.attribute_type_uuid === "50eacf4d-b65c-4773-a408-fa32fe36e97b"){
+								 $("#patient\\.phone_number").val(valuess.attribute_value);
+							}
+						});		
+					}		
+				});
+				$('#patient\\.names').val(names);
+			}
+		});
+	}
+	
+	var $feverTrigger = $(':radio[data-concept="140238^Fever^99DCT"]');
+        $feverTrigger.change(function(){
+        var $feverOptions = $(':radio[data-concept="140238^Fever^99DCT"]:checked').val();
+		if($feverOptions == "1065^Yes^99DCT"){
+			$('#date_of_fever_symptom').show();
+			if($("#obs_datetime\\.date_of_fever_symptom").val()===""){
+				$("#obs_datetime\\.date_of_fever_symptom").val($("#obs\\.date_of_first_symptom").val());
+			}
+		}else{
+			$("#obs_datetime\\.date_of_fever_symptom").val("");
+			$('#date_of_fever_symptom').hide();
+		}
+	});
+	$feverTrigger.trigger('change');
+
+	var $sorethroat = $(':radio[data-concept="158843^Sore throat^99DCT"]');
+        $sorethroat.change(function(){
+    	var $stOptions = $(':radio[data-concept="158843^Sore throat^99DCT"]:checked').val();
+		if($stOptions == "1065^Yes^99DCT"){
+			$('#date_of_sore_throat_symptom').show();
+			if($("#obs_datetime\\.date_of_sore_throat_symptom").val()===""){
+				$("#obs_datetime\\.date_of_sore_throat_symptom").val($("#obs\\.date_of_first_symptom").val());
+			}
+		}else{
+			$("#obs_datetime\\.date_of_sore_throat_symptom").val("");
+			$('#date_of_sore_throat_symptom').hide();
+		}
+	});
+	$sorethroat.trigger('change');
+
+	var $runnynose = $(':radio[data-concept="165501^Runny nose^99DCT"]');
+        $runnynose.change(function(){
+        var $rnOptions = $(':radio[data-concept="165501^Runny nose^99DCT"]:checked').val();
+		if($rnOptions == "1065^Yes^99DCT"){
+			$('#date_of_runny_nose_symptom').show();
+			if($("#obs_datetime\\.date_of_runny_nose_symptom").val()===""){
+				$("#obs_datetime\\.date_of_runny_nose_symptom").val($("#obs\\.date_of_first_symptom").val());
+			}
+		}else{
+			$("#obs_datetime\\.date_of_runny_nose_symptom").val("");
+			$('#date_of_runny_nose_symptom').hide();
+		}
+	});
+	$runnynose.trigger('change');
+
+	var $cough = $(':radio[data-concept="143264^Cough^99DCT"]');
+        $cough.change(function(){
+        var $cOptions = $(':radio[data-concept="143264^Cough^99DCT"]:checked').val();
+		if($cOptions == "1065^Yes^99DCT"){
+			$('#date_of_cough_symptom').show();
+			if($("#obs_datetime\\.date_of_cough_symptom").val()===""){
+				$("#obs_datetime\\.date_of_cough_symptom").val($("#obs\\.date_of_first_symptom").val());
+			}
+		}else{
+			$("#obs_datetime\\.date_of_cough_symptom").val("");
+			$('#date_of_cough_symptom').hide();
+		}
+	});
+	$cough.trigger('change');
+
+	var $shortnessOfBreath = $(':radio[data-concept="141600^Shortness of breath^99DCT"]');
+        $shortnessOfBreath.change(function(){
+        var $sobOptions = $(':radio[data-concept="141600^Shortness of breath^99DCT"]:checked').val();
+		if($sobOptions == "1065^Yes^99DCT"){
+			$('#date_of_shortnessOfBreath_symptom').show();
+			if($("#obs_datetime\\.date_of_shortnessOfBreath_symptom").val()===""){
+				$("#obs_datetime\\.date_of_shortnessOfBreath_symptom").val($("#obs\\.date_of_first_symptom").val());
+			}
+		}else{
+			$("#obs_datetime\\.date_of_shortnessOfBreath_symptom").val("");
+			$('#date_of_shortnessOfBreath_symptom').hide();
+		}
+	});
+	$shortnessOfBreath.trigger('change');
+
+	var $vomiting = $(':radio[data-concept="122983^Vomiting^99DCT"]');
+	$vomiting.change(function(){
+        var $vOptions = $(':radio[data-concept="122983^Vomiting^99DCT"]:checked').val();
+		if($vOptions == "1065^Yes^99DCT"){
+			$('#date_of_vomiting_symptom').show();
+			if($("#obs_datetime\\.date_of_vomiting_symptom").val()===""){
+				$("#obs_datetime\\.date_of_vomiting_symptom").val($("#obs\\.date_of_first_symptom").val());
+			}
+		}else{
+			$("#obs_datetime\\.date_of_vomiting_symptom").val("");
+			$('#date_of_vomiting_symptom').hide();
+		}
+	});
+	$vomiting.trigger('change');
+
+	var $nausea = $(':radio[data-concept="5978^Nausea^99DCT"]');
+        $nausea.change(function(){
+        var $nOptions = $(':radio[data-concept="5978^Nausea^99DCT"]:checked').val();
+		if($nOptions == "1065^Yes^99DCT"){
+			$('#date_of_nausea_symptom').show();
+			if($("#obs_datetime\\.date_of_nausea_symptom").val()===""){
+				$("#obs_datetime\\.date_of_nausea_symptom").val($("#obs\\.date_of_first_symptom").val());
+			}
+		}else{
+			$('#date_of_nausea_symptom').hide();
+			$("#obs_datetime\\.date_of_nausea_symptom").val("");
+		}
+	});
+	$nausea.trigger('change');
+
+	var $diarrhoea = $(':radio[data-concept="142412^Diarrhoea^99DCT"]');
+        $diarrhoea.change(function(){
+        var $dOptions = $(':radio[data-concept="142412^Diarrhoea^99DCT"]:checked').val();
+		if($dOptions == "1065^Yes^99DCT"){
+			$('#date_of_diarrhoea_symptom').show();
+			if($("#obs_datetime\\.date_of_diarrhoea_symptom").val()===""){
+				$("#obs_datetime\\.date_of_diarrhoea_symptom").val($("#obs\\.date_of_first_symptom").val());
+			}
+		}else{
+			$('#date_of_diarrhoea_symptom').hide();
+			$("#obs_datetime\\.date_of_diarrhoea_symptom").val("");
+		}
+	});
+	$diarrhoea.trigger('change');
+
+	var $losos = $(':radio[data-concept="135589^Loss of sense of smell^99DCT"]');
+        $losos.change(function(){
+        var $lososOptions = $(':radio[data-concept="135589^Loss of sense of smell^99DCT"]:checked').val();
+		if($lososOptions == "1065^Yes^99DCT"){
+			$('#date_of_losos_symptom').show();
+			if($("#obs_datetime\\.date_of_losos_symptom").val()===""){
+				$("#obs_datetime\\.date_of_losos_symptom").val($("#obs\\.date_of_first_symptom").val());
+			}
+		}else{
+			$('#date_of_losos_symptom').hide();
+			$("#obs_datetime\\.date_of_losos_symptom").val("");
+		}
+	});
+	$losos.trigger('change');
+	
+	var $losos = $(':radio[data-concept="135588^Loss of Taste^99DCT"]');
+        $losos.change(function(){
+        var $lososOptions = $(':radio[data-concept="135588^Loss of Taste^99DCT"]:checked').val();
+		if($lososOptions == "1065^Yes^99DCT"){
+			$('#date_of_losot_symptom').show();
+			if($("#obs_datetime\\.date_of_losot_symptom").val()===""){
+				$("#obs_datetime\\.date_of_losot_symptom").val($("#obs\\.date_of_first_symptom").val());
+			}
+		}else{
+			$('#date_of_losot_symptom').hide();
+			$("#obs_datetime\\.date_of_losot_symptom").val("");
+		}
+	});
+	$losos.trigger('change');
+	
+	var $headache = $(':radio[data-concept="139084^Headache^99DCT"]');
+        $headache.change(function(){
+        var $headacheOptions = $(':radio[data-concept="139084^Headache^99DCT"]:checked').val();
+		if($headacheOptions == "1065^Yes^99DCT"){
+			$('#date_of_headache_symptom').show();
+			if($("#obs_datetime\\.date_of_headache_symptom").val()===""){
+				$("#obs_datetime\\.date_of_headache_symptom").val($("#obs\\.date_of_first_symptom").val());
+			}
+		}else{
+			$('#date_of_headache_symptom').hide();
+			$("#obs_datetime\\.date_of_headache_symptom").val("");
+		}
+	});
+	$headache.trigger('change');
+	
+	var $fatigue = $(':radio[data-concept="140501^Fatigue^99DCT"]');
+        $fatigue.change(function(){
+        var $fatigueOptions = $(':radio[data-concept="140501^Fatigue^99DCT"]:checked').val();
+		if($fatigueOptions == "1065^Yes^99DCT"){
+			$('#date_of_fatigue_symptom').show();
+			if($("#obs_datetime\\.date_of_fatigue_symptom").val()===""){
+				$("#obs_datetime\\.date_of_fatigue_symptom").val($("#obs\\.date_of_first_symptom").val());
+			}
+		}else{
+			$('#date_of_fatigue_symptom').hide();
+			$("#obs_datetime\\.date_of_fatigue_symptom").val("");
+		}
+	});
+	$fatigue.trigger('change');
+	
+	var $morba = $(':radio[data-concept="139546^Muscle or Body Aches^99DCT"]');
+        $morba.change(function(){
+        var $morbaOptions = $(':radio[data-concept="139546^Muscle or Body Aches^99DCT"]:checked').val();
+		if($morbaOptions == "1065^Yes^99DCT"){
+			$('#date_of_morba_symptom').show();
+			if($("#obs_datetime\\.date_of_morba_symptom").val()===""){
+				$("#obs_datetime\\.date_of_morba_symptom").val($("#obs\\.date_of_first_symptom").val());
+			}
+		}else{
+			$('#date_of_morba_symptom').hide();
+			$("#obs_datetime\\.date_of_morba_symptom").val("");
+		}
+	});
+	$morba.trigger('change');
+	
+	var $outcome = $(':radio[name="obs\\.outcome"]');
+	$outcome.change(function(){
+		var $activeOpt = $(':radio[name="obs\\.outcome"]:checked').val();
+		if($activeOpt == "5240^Lost to follow up^99DCT"){
+			$("#details_ltfu").show();
+		}else{
+			$("#details_ltfu").hide();
+		}
+	});
+	$outcome.trigger('change');
+		
+	$("form[name='dailysurvaillance_form']").validate({
+			errorElement: "div",
+			wrapper: "div",  // a wrapper around the error message
+			errorPlacement: function(error, element) {
+				if (element.is(":radio") ) {                   
+					error.insertBefore(element.parent().parent());
+				}
+				else if (element.is(":checkbox") ) {                   
+					error.insertBefore(element.parent().parent());
+				}
+				else { // This is the default behavior of the script for all fields
+					error.insertAfter( element );
+				}
+		 }
+	});
+		
+   var patientuuid = $('#patient\\.uuid').val();
+   var survaillanceStartDate = htmlDataStore.getObsByConceptId(patientuuid,165996);  
+   survaillanceStartDate = JSON.parse(survaillanceStartDate);
+   var survaillanceStartDateSize = survaillanceStartDate.length-1;
+   if(parseInt(survaillanceStartDateSize)>-1){
+			if(survaillanceStartDate[0].valueDatetime!=""){
+				var start = survaillanceStartDate[0].valueDatetime;
+			 }else{
+				var start = survaillanceStartDate[0].valueText;
+			 }
+			$("#obs\\.surveillance_start_date").val(start);
+			var tmp = start.split('-');
+			var startdate = new Date(tmp[2],tmp[1]-1,tmp[0]);
+			var startd = new Date(tmp[2],tmp[1]-1,tmp[0]);
+			var end = startd.setDate(startd.getDate() + 14);
+			 var todate=pad(new Date(end).getDate());
+			var tomonth=pad(new Date(end).getMonth()+1);
+			var toyear=new Date(end).getFullYear();
+			var original_date=todate+'-'+tomonth+'-'+toyear
+			$('#obs\\.surveillance_end_date').val(original_date);
+			
+			var datediff = Math.floor((new Date() - new Date(startdate)) /(1000 * 60 * 60 * 24)); 	
+	        $('#obs\\.day_of_follow_up').val(datediff);
+	}else{	
+	   var patientuuid = $('#patient\\.uuid').val();
+	   var lastExposureDate = htmlDataStore.getObsByConceptId(patientuuid,165914);  
+	   lastExposureDate = JSON.parse(lastExposureDate);
+	   var lastExposureDateSize = lastExposureDate.length-1;
+	   if(parseInt(lastExposureDateSize)>-1){
+				var start = lastExposureDate[0].valueDatetime;
+				$("#obs\\.surveillance_start_date").val(start);
+				var tmp = start.split('-');
+				var startdate = new Date(tmp[2],tmp[1]-1,tmp[0]);
+				var startd = new Date(tmp[2],tmp[1]-1,tmp[0]);
+				var end = startd.setDate(startd.getDate() + 14);
+				 var todate=pad(new Date(end).getDate());
+				var tomonth=pad(new Date(end).getMonth()+1);
+				var toyear=new Date(end).getFullYear();
+				var original_date=todate+'-'+tomonth+'-'+toyear
+				$('#obs\\.surveillance_end_date').val(original_date);
+				
+				var datediff = Math.floor((new Date() - new Date(startdate)) /(1000 * 60 * 60 * 24)); 	
+				$('#obs\\.day_of_follow_up').val(datediff);
+		}	
+	}
+	
+	function pad(n) {
+		return n<10 ? '0'+n : n;
+	}
+	
+	var surEndDate = $('#obs\\.surveillance_end_date').val();
+	if(surEndDate != "" ){
+		var s = surEndDate;
+		var bits = s.split('-');
+		var surEndDates = new Date(bits[2], bits[1] - 1, bits[0]);
+		var today = new Date();
+		if(surEndDates < today)
+		{
+		     alert("Today is beyond 14 days of surveillance, Exit patient from program");
+		}
+	}
+	
+	$('#encounter\\.encounter_datetime').change(function(){
+		var surStartDate = $("#obs\\.surveillance_start_date").val();
+		if(surStartDate != ""){			
+			var tmp = surStartDate.split('-');
+			var startdate = new Date(tmp[2],tmp[1]-1,tmp[0]);
+			
+			var surDate = $('#encounter\\.encounter_datetime').val();
+			var tmp2 = surDate.split('-');
+			var encounterDate = new Date(tmp2[2],tmp2[1]-1,tmp2[0]);
+			
+			
+			var datediff = Math.floor((new Date(encounterDate) - new Date(startdate)) /(1000 * 60 * 60 * 24)); 	
+			$('#obs\\.day_of_follow_up').val(datediff);
+		}
+	}); 
+	$('#encounter\\.encounter_datetime').trigger('change');
+	
+   var ordered = false;
+   var patientuuid = $('#patient\\.uuid').val();
+   var testOrdered = htmlDataStore.getObsByConceptId(patientuuid,166000);  
+   testOrdered = JSON.parse(testOrdered);
+   var testOrdered = testOrdered.length-1;
+   if(parseInt(testOrdered)>-1){
+			if(parseInt(visitType[0].valueCoded.id)==1065){
+					ordered = true;
+			}
+	}	
+	
+	
+	$('#obs\\.day_of_follow_up').change(function(){
+		if(parseInt($(this).val())>=10 && !ordered){
+			$('#test_ordered_div').show();
+		} else{
+			$('#test_ordered_div').hide();
+		}
+	}); 
+	$('#obs\\.day_of_follow_up').trigger('change');
+	
+	var $testsOrdered = $(':radio[data-concept="166000^COVID-19 Test Order^99DCT"]');
+        $testsOrdered.change(function(){
+        var $testsOrderedOptions = $(':radio[data-concept="166000^COVID-19 Test Order^99DCT"]:checked').val();
+		if($testsOrderedOptions == "1065^Yes^99DCT"){
+			$('#test_results_div').show();
+			$('#test_results_message_div').hide();		
+		}else if($testsOrderedOptions == "1066^No^99DCT" || $testsOrderedOptions == "1067^Unknown^99DCT"){
+			$('#test_results_div').hide();
+			$('#test_results_message_div').show();
+		}else{
+			$('#test_results_div').hide();
+			$('#test_results_message_div').hide();			
+		}
+	});
+	$testsOrdered.trigger('change');
+	
+	$('#obs\\.covid_19_plan_collect_lab').change(function(){
+		if($(this).prop( "checked" )){
+			$('#obs\\.covid_19_plan_refer_lab').attr("disabled","disabled");
+		} else{
+			$('#obs\\.covid_19_plan_refer_lab').removeAttr("disabled");
+		}
+	}); 
+    $('#obs\\.covid_19_plan_collect_lab').trigger('change');
+	
+	$('#obs\\.covid_19_plan_refer_lab').change(function(){
+		if($(this).prop( "checked" )){
+			$('#obs\\.covid_19_plan_collect_lab').attr("disabled","disabled");
+		} else{
+			$('#obs\\.covid_19_plan_collect_lab').removeAttr("disabled");
+		}
+	}); 
+    $('#obs\\.covid_19_plan_refer_lab').trigger('change');
+	
+	$('#obs\\.covid_19_plan_quarantine').change(function(){
+		if($(this).prop( "checked" )){
+			$('#obs\\.covid_19_plan_exit').attr("disabled","disabled");
+			$('#obs\\.covid_19_plan_social_isolation').attr("disabled","disabled");
+		} else{
+			$('#obs\\.covid_19_plan_exit').removeAttr("disabled");
+			$('#obs\\.covid_19_plan_social_isolation').removeAttr("disabled");
+		}
+	}); 
+    $('#obs\\.covid_19_plan_quarantine').trigger('change');
+	
+	$('#obs\\.covid_19_plan_exit').change(function(){
+		if($(this).prop( "checked" )){
+			$('#obs\\.covid_19_plan_quarantine').attr("disabled","disabled");
+			$('#obs\\.covid_19_plan_social_isolation').attr("disabled","disabled");
+		} else{
+			$('#obs\\.covid_19_plan_quarantine').removeAttr("disabled");
+			$('#obs\\.covid_19_plan_social_isolation').removeAttr("disabled");
+		}
+	}); 
+    $('#obs\\.covid_19_plan_exit').trigger('change');
+	
+	$('#obs\\.covid_19_plan_social_isolation').change(function(){
+		if($(this).prop( "checked" )){
+			$('#obs\\.covid_19_plan_exit').attr("disabled","disabled");
+			$('#obs\\.covid_19_plan_quarantine').attr("disabled","disabled");
+		} else{
+			$('#obs\\.covid_19_plan_exit').removeAttr("disabled");
+			$('#obs\\.covid_19_plan_quarantine').removeAttr("disabled");
+		}
+	}); 
+    $('#obs\\.covid_19_plan_social_isolation').trigger('change');
+	
+
+	document.setupAutoCompleteDataForProvider('encounter\\.provider_id_select');
+
+	document.setupAutoCompleteData('encounter\\.location_id');
+	document.setupValidationForProvider($('#encounter\\.provider_id_select').val(),$("#encounter\\.provider_id"));
+	document.setupValidationForLocation($('#encounter\\.location_id').val(),$("encounter\\.location_id"));
+
+});
+</script>
+</html>
