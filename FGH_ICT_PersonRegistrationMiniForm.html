@@ -1,0 +1,254 @@
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <link href="css/muzima.css" rel="stylesheet">
+        <link href="css/ui-darkness/jquery-ui-1.10.4.custom.min.css" rel="stylesheet">
+
+        <script src="js/jquery.min.js"></script>
+        <script src="js/jquery-ui-1.10.4.custom.min.js"></script>
+        <script src="js/jquery.validate.min.js"></script>
+        <script src="js/additional-methods.min.js"></script>
+        <script src="js/muzima.js"></script>
+
+        <title>Person Registration Form</title>
+    </head>
+<body class="col-md-8 col-md-offset-2">
+    <div id="result"></div>
+    <form id="mini_registration_form" name="mini_registration_form">
+        <div id="pre_populate_data"></div>
+        <h2 class="text-center">Person Registration Form</h2>
+
+        <div class="section">
+            <h3>Names</h3>
+            <div class="form-group">
+                <input class="form-control" id="patient.uuid" name="patient.uuid" type="text" readonly="readonly">
+            </div>
+            <div class="form-group">
+                <label for="patient.family_name">Apelido: <span class="required">*</span> </label>
+                <input class="form-control" id="patient.family_name" name="patient.family_name" type="text" required="required">
+            </div>
+            <div class="form-group">
+                <label for="patient.given_name">Nome: <span class="required">*</span></label>
+                <input class="form-control" id="patient.given_name" name="patient.given_name" type="text" required="required">
+            </div>
+            <div class="form-group">
+                <label for="patient.middle_name">Nome do meio:</label>
+                <input class="form-control" id="patient.middle_name" name="patient.middle_name" type="text">
+            </div>
+        </div>
+        <div class="section">
+            <div class="section group-set" data-group="patient.personaddress">
+                <h3>Endereço</h3>
+                <div class="form-group">
+                    <label for="address1">Avenida/Rua: </label>
+                    <input class="form-control" id="address1" name="address1" type="text">
+                </div>
+                <div class="form-group">
+                    <label for="address2">Casa Nº: </label>
+                    <input class="form-control" id="address2" name="address2" type="text">
+                </div>
+                <div class="form-group">
+                    <label for="address6">Unidade Comunal: </label>
+                    <input class="form-control" id="address6" name="address6" type="text">
+                </div>
+                <div class="form-group">
+                    <label for="address3">Quarteirão: </label>
+                    <input class="form-control" id="address3" name="address3" type="text">
+                </div>
+                <div class="form-group">
+                    <label for="address5">Bairro: </label>
+                    <input class="form-control" id="address5" name="address5" type="text">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="patient.phone_number">Contacto do Paciente</label>
+                <input class="form-control" id="patient.phone_number" name="patient.phone_number"
+                       type="tel">
+            </div>
+        </div>
+        <div class="section">
+            <div class="form-group">
+                <label for="patient.sex">Sex: <span class="required">*</span></label>
+                <select class="form-control" id="patient.sex" name="patient.sex" required="required">
+                    <option value="">...</option>
+                    <option value="M">Male</option>
+                    <option value="F">Female</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="tmp.birthdate_type">Will Record Date of Birth... <span class="required">*</span></label>
+                <select class="form-control" name="tmp.birthdate_type" id="tmp.birthdate_type" required="required">
+                    <option value="">...</option>
+                    <option value="birthdate">By Birth-date</option>
+                    <option value="age">By Age</option>
+                </select>
+            </div>
+            <div class="form-group show_birthdate">
+                <label for="patient.birth_date">Select Birthdate <span class="required">*</span></label>
+                <input class="form-control birth_date_picker nonFutureDate past-date" id="patient.birth_date" name="patient.birth_date"
+                       type="text" required="required" readonly="readonly">
+            </div>
+            <div class="form-group show_birthdate">
+                <label for="patient.birthdate_estimated">Is this birthdate an estimate? <span class="required">*</span></label>
+                <select class="form-control" id="patient.birthdate_estimated" name="patient.birthdate_estimated" required="required">
+                    <option>...</option>
+                    <option value="true">Yes</option>
+                    <option value="false">No</option>
+                </select>
+            </div>
+            <div class="form-group show_age">
+                <label for="tmp.age_in_years">How old are you in Years <span class="required">*</span></label>
+                <input class="form-control" id="tmp.age_in_years" name="tmp.age_in_years" type="number" required="required">
+            </div>
+        </div>
+        <div class="section" data-concept="23782^SITUACAO FAMILIAR CONJUNTO^99DCT">
+            <div class="form-group">
+                <label for="obs.hiv_test">Teste de HIV:<span class="required">*</span></label>
+                <select class="form-control" id="obs.hiv_test" required
+                        name="obs.hiv_test" data-concept="23779^Teste de HIV^99DCT">
+                    <option value="">...</option>
+                    <option value="703^Positivo^99DCT">Positivo</option>
+                    <option value="664^Negativo^99DCT">Negativo</option>
+                    <option value="1067^Desconhecido^99DCT">Desconhecido</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="obs.hiv_care">Cuidados de HIV:<span class="required">*</span></label>
+                <select class="form-control" id="obs.hiv_care" required
+                        name="obs.hiv_care" data-concept="23780^Cuidados HIV^99DCT">
+                    <option value="">...</option>
+                    <option value="1065^SIM^99DCT">Yes</option>
+                    <option value="1066^NAO^99DCT">No</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="obs.child_at_risk_treatment">EM CCR:<span class="required">*</span></label>
+                <select class="form-control" id="obs.child_at_risk_treatment" required
+                        name="obs.child_at_risk_treatment" data-concept="1885^TRATEMENTO (CCR)^99DCT">
+                    <option value="">...</option>
+                    <option value="1065^Sim^99DCT">Sim</option>
+                    <option value="1066^Nao^99DCT">Nao</option>
+                    <option value="23892^Alta^99DCT">Alta</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="obs.relative_nid">NID:</label>
+                <input class="form-control" id="obs.relative_nid" data-concept="23781^Relative NID^99DCT"
+                       name="obs.relative_nid" type="number">
+            </div>
+        </div>
+        <div class="section">
+            <div class="form-group">
+                <label for="encounter.provider_id_select">Provider Name:</label>
+                <input class="form-control valid-provider-only" id="encounter.provider_id_select" type="text" placeholder="Start typing something...">
+                <input class="form-control" name="encounter.provider_id_select" type="hidden">
+            </div>
+            <div class="form-group hidden">
+                <select id="select_providers"></select>
+            </div>
+            <div class="form-group show_provider_id_text">
+                <label for="encounter.provider_id">Provider's system-id:<span class="required">*</span></label>
+                <input class="form-control checkDigit" id="encounter.provider_id" name="encounter.provider_id"
+                       type="text" required="required" disabled="disabled">
+            </div>
+            <div class="form-group">
+                <label for="encounter.location_id">Encounter Location:<span class="required">*</span></label>
+                <input class="form-control valid-location-only" id="encounter.location_id" type="text" placeholder="Start typing something..." required="required">
+                <input class="form-control" name="encounter.location_id" type="hidden">
+            </div>
+            <div class="form-group hidden">
+                <label for="encounter.location_id_select">Encounter Location <span class="required">*</span></label>
+                <select class="form-control" id="encounter.location_id_select" required="required">
+                    <option>...</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="encounter.encounter_datetime">Encounter Date <span class="required">*</span></label>
+                <input class="form-control nonFutureDate past-date datepicker" readonly="readonly" id="encounter.encounter_datetime"
+                       name="encounter.encounter_datetime" type="text" required="required">
+            </div>
+            <div class="form-group">
+                <input class="form-control" id="encounter.form_uuid" name="encounter.form_uuid" type="hidden" required="required">
+            </div>
+        </div>
+    </form>
+</body>
+<script type="text/javascript">
+    $(document).ready(function () {
+        var dateFormat = "dd-mm-yy";
+        var currentDate = $.datepicker.formatDate(dateFormat, new Date());
+        var encounterDatetime = $('#encounter\\.encounter_datetime');
+        if ($(encounterDatetime).val() == "") {
+            $(encounterDatetime).val(currentDate);
+        }
+
+        var currentYear = new Date().getFullYear();
+        var birthdate_start_year = currentYear - 140;
+        $('.birth_date_picker').datepicker({
+            dateFormat: dateFormat,
+            changeMonth: true,
+            changeYear: true,
+            yearRange: birthdate_start_year + ':' + currentYear
+        });
+
+        $.fn.calculateFields = function () {
+            var tempAgeInYears = $.trim($("#tmp\\.age_in_years").val());
+            if (tempAgeInYears != '') {
+                $('#patient\\.birthdate_estimated').val('true');
+                $('#patient\\.birth_date').val($.fn.getTempBirthDate(tempAgeInYears));
+            }
+            return true;
+        };
+
+        $.fn.customValidationCheck = function () {
+            return $.fn.calculateFields();
+        };
+
+        var dobType = $('#tmp\\.birthdate_type');
+        dobType.change(function () {
+            var $show_birth_date = $('.show_birthdate');
+            var $show_age = $('.show_age');
+            if ($('#tmp\\.birthdate_type').val() == 'age') {
+                $show_age.show();
+                $show_birth_date.find('input').val('');
+                $show_birth_date.hide();
+            } else {
+                $show_age.hide();
+                $show_age.find('input').val('');
+                $show_birth_date.show();
+            }
+        });
+        dobType.trigger('change');
+
+        document.setupAutoCompleteDataForProvider('encounter\\.provider_id_select');
+
+        $('#registration_form').validate({rules: {
+                'tmp.age_in_years': {
+                    range: [0, 120]
+                }
+            }
+        });
+
+        document.setupValidationForProvider("$('#encounter\\.provider_id_select').val()","encounter\\.provider_id");
+
+        document.setupAutoCompleteData('encounter\\.location_id');
+        document.setupValidationForLocation("$('#encounter\\.location_id').val()","encounter\\.location_id");
+
+        $('#save_draft').click(function () {
+            // pre process the medications
+            $(this).prop('disabled', true);
+            document.saveDraft(this);
+            $(this).prop('disabled', false);
+        });
+
+        $('#submit_form').click(function () {
+            // pre process the medications
+            $(this).prop('disabled', true);
+            document.submit();
+            $(this).prop('disabled', false);
+        });
+    });
+</script>
+
+</html>

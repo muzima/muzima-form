@@ -1,0 +1,514 @@
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <link href="css/muzima.css" rel="stylesheet">
+        <link href="css/ui-darkness/jquery-ui-1.10.4.custom.min.css" rel="stylesheet">
+
+        <script src="js/jquery.min.js"></script>
+        <script src="js/jquery-ui-1.10.4.custom.min.js"></script>
+        <script src="js/jquery.validate.min.js"></script>
+        <script src="js/additional-methods.min.js"></script>
+        <script src="js/bootstrap-datetimepicker.min.js"></script>
+        <script src="js/muzima.js"></script>
+
+        <title>Formulário de atualização de dados demográficos de pessoas</title>
+    </head>
+<body class="col-md-8 col-md-offset-2">
+    <div id="result"></div>
+    <form id="mini_registration_form" name="mini_registration_form">
+        <div id="pre_populate_data">
+        </div>
+        <h2 class="text-center">Formulário de atualização de dados demográficos de pessoas</h2>
+
+        <div class="section">
+            <h3>Nome do Paciente</h3>
+            <div class="form-group">
+                <input class="form-control" id="patient.uuid"
+                       name="patient.uuid" type="hidden" readonly="readonly">
+            </div>
+            <div class="form-group">
+                <label for="patient.family_name">Apelido: <span class="required">*</span> </label>
+                <input class="form-control" id="patient.family_name" name="patient.family_name" type="text"
+                       readonly="readonly" required="required">
+            </div>
+            <div class="form-group">
+                <label for="patient.given_name">Nome: <span class="required">*</span></label>
+                <input class="form-control" id="patient.given_name" name="patient.given_name" type="text"
+                       readonly="readonly" required="required">
+            </div>
+            <div class="form-group">
+                <label for="patient.middle_name">Nome do meio:</label>
+                <input class="form-control" id="patient.middle_name" name="patient.middle_name" type="text"
+                       readonly="readonly">
+            </div>
+            <div class="form-group">
+                <label for="tmp.update_names">
+                    <input id="tmp.update_names" name="tmp.update_names"
+                           type="checkbox">
+                    Vai atualizar nomes?
+                </label>
+            </div>
+        </div>
+        <div class="section" id="update_names">
+            <h3>Adicionar Nomes</h3>
+            <div class="form-group">
+                <label for="demographicsupdate.family_name">Novo Apelido: <span class="required">*</span> </label>
+                <input class="form-control" id="demographicsupdate.family_name" name="demographicsupdate.family_name" type="text"
+                       required="required">
+            </div>
+            <div class="form-group">
+                <label for="demographicsupdate.given_name">Novo Nome: <span class="required">*</span></label>
+                <input class="form-control" id="demographicsupdate.given_name" name="demographicsupdate.given_name" type="text"
+                       required="required">
+            </div>
+            <div class="form-group">
+                <label for="demographicsupdate.middle_name">Novo nome do meio:</label>
+                <input class="form-control" id="demographicsupdate.middle_name" name="demographicsupdate.middle_name" type="text">
+            </div>
+        </div>
+        <div class="section">
+            <div class="section group-set" data-group="patient.personaddress">
+                <h3>Endereço</h3>
+                <div class="form-group">
+                    <label for="address1">Avenida/Rua: </label>
+                    <input class="form-control" id="address1" name="address1" type="text" readonly="readonly">
+                </div>
+                <div class="form-group">
+                    <label for="address2">Casa Nº: </label>
+                    <input class="form-control" id="address2" name="address2" type="text" readonly="readonly">
+                </div>
+                <div class="form-group">
+                    <label for="address6">Unidade Comunal: </label>
+                    <input class="form-control" id="address6" name="address6" type="text" readonly="readonly">
+                </div>
+                <div class="form-group">
+                    <label for="address3">Quarteirão: </label>
+                    <input class="form-control" id="address3" name="address3" type="text" readonly="readonly">
+                </div>
+                <div class="form-group">
+                    <label for="address5">Bairro: </label>
+                    <input class="form-control" id="address5" name="address5" type="text" readonly="readonly">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="patient.phone_number">Contacto do Paciente</label>
+                <input class="form-control" id="patient.phone_number" name="patient.phone_number" type="tel" disabled="disabled">
+            </div>
+            <div class="form-group">
+                <label for="tmp.update_address">
+                    <input id="tmp.update_address" name="tmp.update_address"
+                           type="checkbox">
+                    Vai atualizar o endereço?
+                </label>
+            </div>
+        </div>
+        <div class="section" id="update_address">
+            <h3>Novo endereço</h3>
+            <div class="group-set" data-group="demographicsupdate.personaddress">
+                <div class="form-group">
+                    <label for="address1">Novo Avenida/Rua:: </label>
+                    <input class="form-control" id="address1" name="address1" type="text">
+                </div>
+                <div class="form-group">
+                    <label for="address6">Novo Unidade Comunal: </label>
+                    <input class="form-control" id="address6" name="address6" type="text">
+                </div>
+                <div class="form-group">
+                    <label for="address3">Novo Quarteirão: </label>
+                    <input class="form-control" id="address3" name="address3" type="text">
+                </div>
+                <div class="form-group">
+                    <label for="address2">Novo Casa Nº: </label>
+                    <input class="form-control" id="address2" name="address2" type="text">
+                </div>
+                <div class="form-group">
+                    <label for="address5">Novo Bairro: </label>
+                    <input class="form-control" id="address5" name="address5" type="text">
+                </div>
+            </div>
+            <div class="group-set" data-group="demographicsupdate.personattribute">
+                <div class="form-group">
+                    <label for="attribute_value">Novo Contacto do Paciente: </label>
+                    <input class="form-control" id="attribute_value"
+                           name="attribute_value" type="text" required="required">
+                    <input data-metadata-for="attribute_value" type="hidden" id="attribute_type_uuid" name="attribute_type_uuid" value="afe7eb5a-08a4-40df-a8de-c20c4d42cfac">
+                </div>
+            </div>
+        </div>
+        <div class="section">
+            <div class="form-group">
+                <label for="patient.sex">Sexo: <span class="required">*</span></label>
+                <input id="patient.sex" name="patient.sex" type="hidden">
+                <input class="form-control" disabled id="tmp.patient.sex" name="tmp.patient.sex" type="text">
+            </div>
+            <div class="form-group">
+                <label for="tmp.update_sex">
+                    <input id="tmp.update_sex" name="tmp.update_sex"
+                           type="checkbox">
+                    Vai mudar de sexo?
+                </label>
+            </div>
+            <div class="form-group sub-section" id="update_sex">
+                <label for="demographicsupdate.sex">Novo Sexo: <span class="required">*</span></label>
+                <select class="form-control" id="demographicsupdate.sex" name="demographicsupdate.sex">
+                    <option value="">...</option>
+                    <option value="M">Male</option>
+                    <option value="F">Female</option>
+                </select>
+            </div>
+            <div class="form-group birthdate">
+                <label for="patient.birth_date">Data de nascimento  <span class="required">*</span></label>
+                <input class="form-control birth_date_picker nonFutureDate" id="patient.birth_date" name="patient.birth_date"
+                       type="text" disabled="disabled" readonly="readonly">
+            </div>
+            <div class="form-group">
+                <label for="tmp.update_birthdate">
+                    <input id="tmp.update_birthdate" name="tmp.update_birthdate"
+                           type="checkbox">
+                    Mudará a data de nascimento?
+                </label>
+            </div>
+            <div id="update_birthdate" class="sub-section">
+                <div class="form-group">
+                    <label for="tmp.birthdate_type">Registrará a data de nascimento... <span class="required">*</span></label>
+                    <select class="form-control" name="tmp.birthdate_type" id="tmp.birthdate_type" required="required">
+                        <option value="">...</option>
+                        <option value="birthdate">Por data de nascimento</option>
+                        <option value="age">Por idade</option>
+                    </select>
+                </div>
+                <div class="form-group show_birthdate">
+                    <label for="demographicsupdate.birth_date">Selecione Nova Data de Nascimento<span class="required">*</span></label>
+                    <input class="form-control birth_date_picker nonFutureDate" id="demographicsupdate.birth_date"
+                           name="demographicsupdate.birth_date"
+                           type="text" required="required" readonly="readonly">
+                </div>
+                <div class="form-group show_birthdate">
+                    <label for="demographicsupdate.birthdate_estimated">Esta data de nascimento é uma estimativa? <span
+                            class="required">*</span></label>
+                    <select class="form-control" id="demographicsupdate.birthdate_estimated" name="demographicsupdate.birthdate_estimated"
+                            required="required">
+                        <option value="">...</option>
+                        <option value="true">SIM</option>
+                        <option value="false">NAO</option>
+                    </select>
+                </div>
+                <div class="form-group show_age">
+                    <label for="tmp.age_in_years">Quantos anos você tem em anos?<span class="required">*</span></label>
+                    <input class="form-control" id="tmp.age_in_years" name="tmp.age_in_years" type="number" required="required">
+
+                </div>
+            </div>
+        </div>
+        <div class="section">
+            <h3>Situacao familiar conjucanto</h3>
+            <div class="form-group">
+                <label for="tmp.hiv_test">Teste de HIV:</label>
+                <input class="form-control" id="tmp.hiv_test"
+                        name="tmp.hiv_test" readonly="readonly" />
+                <div id="obs_hiv_test"></div>
+            </div>
+            <div class="form-group">
+                <label for="tmp.hiv_care">Cuidados de HIV:</label>
+                <input class="form-control" id="tmp.hiv_care" readonly="readonly"
+                        name="tmp.hiv_care" />
+            </div>
+            <div class="form-group">
+                <label for="tmp.child_at_risk_treatment">EM CCR:</label>
+                <input class="form-control" id="tmp.child_at_risk_treatment" readonly="readonly"
+                        name="tmp.child_at_risk_treatment" />
+            </div>
+            <div class="form-group">
+                <label for="tmp.relative_nid">NID:</label>
+                <input class="form-control" id="tmp.relative_nid"
+                       name="tmp.relative_nid" type="number" readonly="readonly">
+            </div>
+            <div class="form-group">
+                <label for="tmp.update_hiv_details">
+                    <input id="tmp.update_hiv_details" name="tmp.update_hiv_details"
+                           type="checkbox">
+                    Atualizar situacao familiar conjunta?
+                </label>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="form-group">
+                <label for="obs.attempt_number">Número de Tentativa:</label>
+                <select class="form-control" id="obs.attempt_number"
+                        name="obs.attempt_number" data-concept="23842^Number of outreach attempts^99DCT">
+                    <option value="">...</option>
+                    <option value="6440^DATA DA PRIMEIRA TENTATIVA DE BUSCA^99DCT">PRIMEIRA</option>
+                    <option value="6254^DATA DA SEGUNDA TENTATIVA DE BUSCA^99DCT">SEGUNDA</option>
+                    <option value="6255^DATA DA TERCEIRA TENTATIVA DE BUSCA^99DCT">TERCEIRA</option>
+                </select>
+            </div>
+        </div>
+
+        <div id="update_hiv_details" class="sub-section" data-concept="23782^SITUACAO FAMILIAR CONJUNTO^99DCT">
+            <h3>Situacao familiar atualizada?</h3>
+            <div class="form-group">
+                <label for="demographicsupdate.hiv_test">Teste de HIV:<span class="required">*</span></label>
+                <select class="form-control" id="demographicsupdate.hiv_test" required
+                        name="demographicsupdate.hiv_test" data-concept="23779^Teste de HIV^99DCT">
+                    <option value="">...</option>
+                    <option value="703^Positivo^99DCT">Positivo</option>
+                    <option value="664^Negativo^99DCT">Negativo</option>
+                    <option value="1067^Desconhecido^99DCT">Desconhecido</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="demographicsupdate.hiv_care">Cuidados de HIV:<span class="required">*</span></label>
+                <select class="form-control" id="demographicsupdate.hiv_care" required
+                        name="demographicsupdate.hiv_care" data-concept="23780^Cuidados HIV^99DCT">
+                    <option value="">...</option>
+                    <option value="1065^Sim^99DCT">Yes</option>
+                    <option value="1066^Nao^99DCT">No</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="demographicsupdate.child_at_risk_treatment">EM CCR:<span class="required">*</span></label>
+                <select class="form-control" id="demographicsupdate.child_at_risk_treatment" required
+                        name="demographicsupdate.child_at_risk_treatment" data-concept="1885^TRATEMENTO (CCR)^99DCT">
+                    <option value="">...</option>
+                    <option value="1065^Sim^99DCT">Sim</option>
+                    <option value="1066^Nao^99DCT">Nao</option>
+                    <option value="23892^Alta^99DCT">Alta</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="demographicsupdate.relative_nid">NID:</label>
+                <input class="form-control" id="demographicsupdate.relative_nid" data-concept="23781^Relative NID^99DCT"
+                       name="demographicsupdate.relative_nid" type="number">
+            </div>
+        </div>
+        <div class="section">
+            <div class="form-group">
+                <label for="encounter.provider_id_select">Provider Name:</label>
+                <input class="form-control valid-provider-only" id="encounter.provider_id_select" type="text" placeholder="Start typing something...">
+                <input class="form-control" name="encounter.provider_id_select" type="hidden">
+            </div>
+            <div class="form-group hidden">
+                <select id="select_providers"></select>
+            </div>
+            <div class="form-group show_provider_id_text">
+                <label for="encounter.provider_id">Provider's system-id:<span class="required">*</span></label>
+                <input class="form-control checkDigit" id="encounter.provider_id" name="encounter.provider_id"
+                       type="text" required="required" disabled="disabled">
+            </div>
+
+            <div class="form-group">
+                <label for="encounter.location_id">Encounter Location:<span class="required">*</span></label>
+                <input class="form-control valid-location-only" id="encounter.location_id" type="text" placeholder="Start typing something..." required="required">
+                <input class="form-control" name="encounter.location_id" type="hidden">
+            </div>
+            <div class="form-group hidden">
+                <label for="encounter.location_id_select">Encounter Location <span class="required">*</span></label>
+                <select class="form-control" id="encounter.location_id_select" required="required">
+                    <option>...</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="encounter.encounter_datetime">Encounter Date <span class="required">*</span></label>
+                <input class="form-control nonFutureDate past-date datetimepicker" readonly="readonly" id="encounter.encounter_datetime"
+                       name="encounter.encounter_datetime" type="text" required="required">
+            </div>
+            <div class="form-group">
+                <input class="form-control" id="encounter.form_uuid" name="encounter.form_uuid" type="hidden" required="required">
+            </div>
+        </div>
+    </form>
+</body>
+<script type="text/javascript">
+    $(document).ready(function () {
+        var dateFormat = "dd-mm-yy";
+        var currentDate = $.datepicker.formatDate(dateFormat, new Date());
+        var encounterDatetime = $('#encounter\\.encounter_datetime');
+        if ($(encounterDatetime).val() == "") {
+            $(encounterDatetime).val(currentDate);
+        }
+
+        $('#tmp\\.update_names').change(function(){
+            if($(this).is(':checked')){
+                $('#update_names').show();
+            } else {
+                $('#update_names').hide();
+            }
+        });
+        $('#tmp\\.update_names').trigger('change');
+
+        $('#tmp\\.update_hiv_details').change(function(){
+            if($(this).is(':checked')){
+                $('#update_hiv_details').show();
+            } else {
+                $('#update_hiv_details').hide();
+            }
+        });
+        $('#tmp\\.update_hiv_details').trigger('change');
+
+        $('#tmp\\.update_address').change(function(){
+            if($(this).is(':checked')){
+                $('#update_address').show();
+            } else {
+                $('#update_address').hide();
+            }
+        });
+        $('#tmp\\.update_address').trigger('change');
+
+        $('#tmp\\.update_sex').change(function(){
+            if($(this).is(':checked')){
+                $('#update_sex').show();
+            } else {
+                $('#update_sex').hide();
+            }
+        });
+        $('#tmp\\.update_sex').trigger('change');
+
+        $('#tmp\\.update_birthdate').change(function(){
+            if($(this).is(':checked')){
+                $('#update_birthdate').show();
+            } else {
+                $('#update_birthdate').hide();
+            }
+        });
+        $('#tmp\\.update_birthdate').trigger('change');
+
+        $('#patient\\.sex').change(function(){
+            if($(this).val() == 'M'){
+                $('#tmp\\.patient\\.sex').val('Male');
+            } else if ($(this).val() == 'F') {
+                $('#tmp\\.patient\\.sex').val('Female');
+            }
+        });
+        $('#patient\\.sex').trigger('change');
+
+        var currentYear = new Date().getFullYear();
+        var birthdate_start_year = currentYear - 140;
+        $('.birth_date_picker').datepicker({
+            dateFormat: dateFormat,
+            changeMonth: true,
+            changeYear: true,
+            yearRange: birthdate_start_year + ':' + currentYear
+        });
+
+        $.fn.calculateFields = function () {
+            var tempAgeInYears = $.trim($("#tmp\\.age_in_years").val());
+            if (tempAgeInYears != '') {
+                $('#patient\\.birthdate_estimated').val('true');
+                $('#patient\\.birth_date').val($.fn.getTempBirthDate(tempAgeInYears));
+            }
+            return true;
+        };
+
+        $.fn.customValidationCheck = function () {
+            return $.fn.calculateFields();
+        };
+
+        var dobType = $('#tmp\\.birthdate_type');
+        dobType.change(function () {
+            var $show_birth_date = $('.show_birthdate');
+            var $show_age = $('.show_age');
+            if ($('#tmp\\.birthdate_type').val() == 'age') {
+                $show_age.show();
+                $show_birth_date.find('input').val('');
+                $show_birth_date.hide();
+            } else {
+                $show_age.hide();
+                $show_age.find('input').val('');
+                $show_birth_date.show();
+            }
+        });
+        dobType.trigger('change');
+
+        document.setupAutoCompleteDataForProvider('encounter\\.provider_id_select');
+
+        $('#registration_form').validate({rules: {
+                'tmp.age_in_years': {
+                    range: [0, 120]
+                }
+            }
+        });
+
+        document.setupValidationForProvider("$('#encounter\\.provider_id_select').val()","encounter\\.provider_id");
+        document.setupAutoCompleteData('encounter\\.location_id');
+        document.setupValidationForLocation("$('#encounter\\.location_id').val()","encounter\\.location_id");
+
+        $('#save_draft').click(function () {
+            // pre process the medications
+            $(this).prop('disabled', true);
+            document.saveDraft(this);
+            $(this).prop('disabled', false);
+        });
+
+        $('#submit_form').click(function () {
+            // pre process the medications
+            $(this).prop('disabled', true);
+            document.submit();
+            $(this).prop('disabled', false);
+        });
+
+        var patientUuid = $('#patient\\.uuid').val();
+
+        var hiv_test = htmlDataStore.getObsByConceptId(patientUuid, 23779);
+        console.log("hiv_test: "+hiv_test);
+        hiv_test = JSON.parse(hiv_test);
+        if(hiv_test.length) {
+            hiv_test = hiv_test[hiv_test.length-1];
+            if (hiv_test.valueCoded.id == 703){
+                $('#tmp\\.hiv_test').val('Positivo');
+                $('#demographicsupdate\\.hiv_test').val('703^Positivo^99DCT');
+            } else if (hiv_test.valueCoded.id == 664){
+                $('#tmp\\.hiv_test').val('Negativo');
+                $('#demographicsupdate\\.hiv_test').val('664^Negativo^99DCT');
+            } else if (hiv_test.valueCoded.id == 1067){
+                $('#tmp\\.hiv_test').val('Desconhecido');
+                $('#demographicsupdate\\.hiv_test').val('1067^Desconhecido^99DCT');
+            }
+        }
+
+        var hiv_care = htmlDataStore.getObsByConceptId(patientUuid, 23780);
+        console.log("hiv_care: "+hiv_care);
+        hiv_care = JSON.parse(hiv_care);
+        if(hiv_care.length) {
+            hiv_care = hiv_care[hiv_care.length-1];
+            if (hiv_care.valueCoded.id == 1065){
+                $('#tmp\\.hiv_care').val('Sim');
+                $('#demographicsupdate\\.hiv_care').val('1065^Sim^99DCT');
+            } else if (hiv_care.valueCoded.id == 1066){
+                $('#tmp\\.hiv_care').val('Nao');
+                $('#demographicsupdate\\.hiv_care').val('1066^Nao^99DCT');
+            }
+        }
+
+        var child_at_risk_treatment = htmlDataStore.getObsByConceptId(patientUuid, 1885);
+        console.log("child_at_risk_treatment: "+child_at_risk_treatment);
+        child_at_risk_treatment = JSON.parse(child_at_risk_treatment);
+        if(child_at_risk_treatment.length) {
+            child_at_risk_treatment = child_at_risk_treatment[child_at_risk_treatment.length-1];
+            if (child_at_risk_treatment.valueCoded.id == 1065){
+                $('#tmp\\.child_at_risk_treatment').val('Sim');
+                $('#demographicsupdate\\.child_at_risk_treatment').val('1065^Sim^99DCT');
+            } else if (child_at_risk_treatment.valueCoded.id == 1066){
+                $('#tmp\\.child_at_risk_treatment').val('Nao');
+                $('#demographicsupdate\\.child_at_risk_treatment').val('1066^Nao^99DCT');
+            } else if (child_at_risk_treatment.valueCoded.id == 23892){
+                $('#tmp\\.child_at_risk_treatment').val('Alta');
+                $('#demographicsupdate\\.child_at_risk_treatment').val('23892^Alta^99DCT');
+            }
+        }
+
+        var relative_nid = htmlDataStore.getObsByConceptId(patientUuid, 23781);
+        console.log("relative_nid: "+relative_nid);
+        relative_nid = JSON.parse(relative_nid);
+        if(relative_nid.length) {
+            relative_nid = relative_nid[relative_nid.length-1];
+            $('#tmp\\.relative_nid').val(relative_nid.valueText);
+            $('#demographicsupdate\\.relative_nid').val(relative_nid.valueText);
+        }
+
+    });
+</script>
+
+</html>

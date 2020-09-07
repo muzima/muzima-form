@@ -47,6 +47,10 @@ var htmlDataStore = {
         return JSON.stringify(foundPerson);
     },
 
+    getObsByConceptId:function(uuid,conceptId){
+        return '[]';
+    },
+
     isMedicalRecordNumberRequired:function(){
         return true;
     }
@@ -1385,11 +1389,19 @@ $(document).ready(function () {
 
 $('.create-relationship-person').click(function () {
 console.log('populateRelationshipPerson');
-        var $parent = $(this).closest('div[data-name]');
-        var resultField = $(this).attr('data-result-field');
-        var testResult = [{resultField: "personUuid"}];
-        document.populateRelationshipPerson($parent.attr('data-name'),testResult );
-    });
+    var $parent = $(this).closest('div[data-name]');
+    var resultField = $(this).attr('data-result-field');
+    var testResult = [{resultField: "personUuid"}];
+    document.populateRelationshipPerson($parent.attr('data-name'),testResult );
+});
+
+$('.update-relationship-person').click(function () {
+console.log('populateRelationshipPerson');
+    var $parent = $(this).closest('div[data-name]');
+    var resultField = $(this).attr('data-result-field');
+    var testResult = [{resultField: "personUuid"}];
+    document.populateRelationshipPerson($parent.attr('data-name'),testResult );
+});
 
 document.populateRelationshipPerson = function (sectionName, jsonString) {
   console.log('populateRelationshipPerson');
