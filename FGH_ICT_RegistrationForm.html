@@ -19,33 +19,6 @@
 
 <div id="result"></div>
 <div id="pre_populate_data">
-    {
-    "encounter": {
-    "encounter.encounter_datetime": "01-09-2020 7:13"
-    },
-    "person": {
-    "person.relationships": [
-    {
-    "person.relationshipType": "uuid1",
-    "tmp.relationshipType": "uuid1",
-    "personA.uuid": "uuid3",
-    "tmp.person_name_search_count": "2",
-    "tmp.person_search_sex": "F",
-    "tmp.person_search_birth_date": "1999-02-01",
-    "tmp.contact_age": "22"
-    },
-    {
-    "person.relationshipType": "uuid2",
-    "tmp.relationshipType": "uuid2",
-    "personA.uuid": "uuid4",
-    "tmp.person_name_search_count": "2",
-    "tmp.person_search_sex": "M",
-    "tmp.person_search_birth_date": "2006-02-01",
-    "tmp.contact_age": "15"
-    }
-    ]
-    }
-    }
 </div>
 <form id="demographics_update_form" name="demographics_update_form">
     <h2 class="text-center">Actualizar Dados Pessoais</h2>
@@ -54,7 +27,7 @@
         <h3>Nome do Paciente</h3>
         <div class="form-group">
             <input class="form-control" id="patient.uuid"
-                   name="patient.uuid" type="text" readonly="readonly" value="ptuuid">
+                   name="patient.uuid" type="hidden" readonly="readonly" value="">
         </div>
         <div class="form-group">
             <label for="patient.family_name">Apelido: <span class="required">*</span> </label>
@@ -114,7 +87,7 @@
             <div class="form-horizontal">
                 <div class="group-set" data-group="patient.medical_record_number">
                     <input type="button" class='btn barcode_btn form-control'>
-                    <input class="barcode_text form-control" id="identifier_value"
+                    <input class="barcode_text form-control valid_NID" id="identifier_value"
                            name="identifier_value" type="text" required="required">
                     <input data-metadata-for="identifier_value" type="hidden" id="identifier_type_uuid"
                            name="identifier_type_uuid" value="e2b966d0-1d5f-11e0-b929-000c29ad1d07">
@@ -145,8 +118,7 @@
             <input class="form-control birth_date_picker nonFutureDate" id="patient.birth_date"
                    name="patient.birth_date"
                    type="text"
-                   required="required"
-                   readonly="readonly">
+                   required="required">
         </div>
         <div class="form-group show_birthdate">
             <label for="patient.birthdate_estimated">Esta data de nascimento é uma estimativa? <span
@@ -208,22 +180,22 @@
             </select>
         </div>
         <div class="form-group">
-            <label for="obs.expected_testing_date">Paciente consente testagem dos contactos:
+            <label for="obs.expected_testing_date">Data Prevista para Testagem:
                 <span class="required">*</span></label>
-            <input class="form-control future-date datepicker" readonly="readonly"
+            <input class="form-control datepicker nonPostEncounterDate" readonly="readonly"
                    id="obs.expected_testing_date" data-concept="23879^Data Prevista para Testagem^99DCT"
                    name="obs.expected_testing_date" type="text" required="required">
         </div>
-        <div class="form-group">
-            <label for="obs.contact_phoning_consent">Patient consents to Contacts being phoned by
-                health personnel:<span class="required">*</span></label>
-            <select class="form-control" id="obs.contact_phoning_consent" required
-                    name="obs.contact_phoning_consent" data-concept="ddd^Contact phoning consent^99DCT">
-                <option value="">...</option>
-                <option value="1065^Sim^99DCT">Sim</option>
-                <option value="1066^Nao^99DCT">Nao</option>
-            </select>
-        </div>
+<!--        <div class="form-group">-->
+<!--            <label for="obs.contact_phoning_consent">Patient consents to Contacts being phoned by-->
+<!--                health personnel:<span class="required">*</span></label>-->
+<!--            <select class="form-control" id="obs.contact_phoning_consent" required-->
+<!--                    name="obs.contact_phoning_consent" data-concept="ddd^Contact phoning consent^99DCT">-->
+<!--                <option value="">...</option>-->
+<!--                <option value="1065^Sim^99DCT">Sim</option>-->
+<!--                <option value="1066^Nao^99DCT">Nao</option>-->
+<!--            </select>-->
+<!--        </div>-->
     </div>
 
     <div class="section">
@@ -367,6 +339,10 @@
             yearRange: birthdate_start_year + ':' + currentYear,
         });
 
+        $('.birth_date_picker').change(function () {
+            $(this).valid();
+        });
+
 
         $('#save_draft').click(function () {
             // pre process the medications
@@ -470,13 +446,17 @@
         //     }
         // });
 
-        $("#identifier_value").val($("#patient\\.medical_record_number").val());
-
-
+        var requireMedicalRecordNumber =  htmlDataStore.isMedicalRecordNumberRequired();
+        if(requireMedicalRecordNumber){
+            $(".require_medical_record_number_hint").show();
+            $("#identifier_value").attr("required","required");
+        } else {
+            $(".require_medical_record_number_hint").hide();
+            $("#identifier_value").removeAttr("required","required");
+        }
 
         var setUpPersonFieldsPopulation = function($parent, patientFieldSelector, relatedPersonFieldSelector, searchServer){
             var patientUuid = $('#patient\\.uuid').val();
-            console.log("GGG::: "+patientUuid);
             var patientFieldValue = $parent.find(patientFieldSelector).val();
             if(patientFieldValue != '' && patientFieldValue != patientUuid){
                 $parent.find(relatedPersonFieldSelector).val($parent.find(patientFieldSelector).val());
@@ -502,10 +482,9 @@
             $parent.find('.tmp\\.person_name_search').trigger('change');
 
             $parent.find('.tmp\\.person_name_search_count').change(function(){
-                console.log(".tmp\\.person_name_search_count: "+$(this).val());
                 if($(this).val() == 0){
                     $parent.find('.create_person').show();
-                    if($parent.find('.tmp\\.search_server').is(':checked')){
+                    if(searchServer){
                         $parent.find('.no_results_msg_local').hide();
                         $parent.find('.no_results_msg_server').show();
                     } else {
@@ -547,7 +526,6 @@
                         $parent.find('.tmp\\.person_uuid').val(patientUuid);
 
                         var hiv_test = htmlDataStore.getObsByConceptId(patientUuid, 23779);
-                        console.log("hiv_test: "+hiv_test);
                         hiv_test = JSON.parse(hiv_test);
                         if(hiv_test.length) {
                             hiv_test = hiv_test[hiv_test.length-1];
@@ -561,7 +539,6 @@
                         }
 
                         var hiv_care = htmlDataStore.getObsByConceptId(patientUuid, 23780);
-                        console.log("hiv_care: "+hiv_care);
                         hiv_care = JSON.parse(hiv_care);
                         if(hiv_care.length) {
                             hiv_care = hiv_care[hiv_care.length-1];
@@ -573,7 +550,6 @@
                         }
 
                         var child_at_risk_treatment = htmlDataStore.getObsByConceptId(patientUuid, 1885);
-                        console.log("child_at_risk_treatment: "+child_at_risk_treatment);
                         child_at_risk_treatment = JSON.parse(child_at_risk_treatment);
                         if(child_at_risk_treatment.length) {
                             child_at_risk_treatment = child_at_risk_treatment[child_at_risk_treatment.length-1];
@@ -587,7 +563,6 @@
                         }
 
                         var relative_nid = htmlDataStore.getObsByConceptId(patientUuid, 23781);
-                        console.log("relative_nid: "+relative_nid);
                         relative_nid = JSON.parse(relative_nid);
                         if(relative_nid.length) {
                             relative_nid = relative_nid[relative_nid.length-1];
@@ -616,7 +591,7 @@
         }
 
         var relationshipTypes = htmlDataStore.getRelationshipTypesFromDevice();
-        console.log(relationshipTypes)
+
         relationshipTypes = JSON.parse(relationshipTypes);
         $.each(relationshipTypes, function (key, relationship) {
             var o = new Option(relationship.AIsToB, relationship.uuid);
@@ -645,10 +620,9 @@
             var searchServer = $parent.find('.tmp\\.search_server').is(':checked');
 
             if(relationshipDirection == 'AIsToB'){
-                console.log(relationshipDirection);
                 $parent.find('.tmp\\.relationshipType').val($(this).val());
                 $parent.find('.create-relationship-person').attr('data-result-field','personB\\.uuid');
-                $parent.find('.update-relationship-person').attr('data-result-field','personB\\.uuid');
+                $parent.find('.tmp\\.update_person_details').attr('data-result-field','personB\\.uuid');
                 setUpPersonFieldsPopulation($parent,'.personA\\.uuid','.personB\\.uuid', searchServer);
 
                 $parent.find('.search_person').show();
@@ -657,7 +631,7 @@
             } else if(relationshipDirection == 'BIsToA'){
                 $parent.find('.tmp\\.relationshipType').val($(this).val());
                 $parent.find('.create-relationship-person').attr('data-result-field','personA\\.uuid');
-                $parent.find('.update-relationship-person').attr('data-result-field','personA\\.uuid');
+                $parent.find('.tmp\\.update_person_details').attr('data-result-field','personA\\.uuid');
                 setUpPersonFieldsPopulation($parent,'.personB\\.uuid','.personA\\.uuid', searchServer);
 
                 $parent.find('.search_person').show();
@@ -687,6 +661,7 @@
             $parent.find('.no_results_msg_local').hide();
             $parent.find('.no_results_msg_server').hide();
             $parent.find('.create_person').hide();
+            $parent.find('.person\\.relationshipType').trigger('change');
         });
 
         $('.tmp\\.update_person_details').change(function(){
@@ -694,20 +669,29 @@
                 var $parent = $(this).closest('.repeat');
                 var resultField = $(this).attr('data-result-field');
                 var personUuid = $parent.find('.tmp\\.person_uuid').val();
-                console.log($parent.attr('data-name'),resultField,personUuid);
                 document.updatePersonDemographics($parent.attr('data-name'),resultField,personUuid);
             }
+        });
+
+        $.validator.addMethod("valid_NID", function (value, element) {
+                return value.match(/[0-9]{8}\/[0-9]{2}\/[0-9]{4}/) != null;
+            }, "Please specify a valid NID in the format PPDDUUSS/AA/NNNN."
+        );
+
+        jQuery.validator.addClassRules({
+            valid_NID: { valid_NID: true }
         });
 
         document.setupAutoCompleteData('encounter\\.location_id');
 
         document.setupAutoCompleteDataForProvider('encounter\\.provider_id_select');
 
-        $('#demographics_update_form').validate({});
-
         document.setupValidationForProvider("$('#encounter\\.provider_id_select').val()","encounter\\.provider_id");
 
         document.setupValidationForLocation("$('#encounter\\.location_id').val()","encounter\\.location_id");
+
+
+        $('#demographics_update_form').validate();
 
     });
 </script>

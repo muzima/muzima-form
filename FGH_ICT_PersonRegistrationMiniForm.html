@@ -16,13 +16,14 @@
 <body class="col-md-8 col-md-offset-2">
     <div id="result"></div>
     <form id="mini_registration_form" name="mini_registration_form">
-        <div id="pre_populate_data"></div>
+        <div id="pre_populate_data">
+        </div>
         <h2 class="text-center">Person Registration Form</h2>
 
         <div class="section">
             <h3>Names</h3>
             <div class="form-group">
-                <input class="form-control" id="patient.uuid" name="patient.uuid" type="text" readonly="readonly">
+                <input class="form-control" id="patient.uuid" name="patient.uuid" type="hidden">
             </div>
             <div class="form-group">
                 <label for="patient.family_name">Apelido: <span class="required">*</span> </label>
@@ -86,7 +87,7 @@
             </div>
             <div class="form-group show_birthdate">
                 <label for="patient.birth_date">Select Birthdate <span class="required">*</span></label>
-                <input class="form-control birth_date_picker nonFutureDate past-date" id="patient.birth_date" name="patient.birth_date"
+                <input class="form-control birth_date_picker nonFutureDate" id="patient.birth_date" name="patient.birth_date"
                        type="text" required="required" readonly="readonly">
             </div>
             <div class="form-group show_birthdate">
@@ -102,10 +103,11 @@
                 <input class="form-control" id="tmp.age_in_years" name="tmp.age_in_years" type="number" required="required">
             </div>
         </div>
-        <div class="section" data-concept="23782^SITUACAO FAMILIAR CONJUNTO^99DCT">
+<!--        <div class="section" data-concept="23782^SITUACAO FAMILIAR CONJUNTO^99DCT">-->
+        <div class="section">
             <div class="form-group">
-                <label for="obs.hiv_test">Teste de HIV:<span class="required">*</span></label>
-                <select class="form-control" id="obs.hiv_test" required
+                <label for="obs.hiv_test">Teste de HIV:</label>
+                <select class="form-control" id="obs.hiv_test"
                         name="obs.hiv_test" data-concept="23779^Teste de HIV^99DCT">
                     <option value="">...</option>
                     <option value="703^Positivo^99DCT">Positivo</option>
@@ -114,8 +116,8 @@
                 </select>
             </div>
             <div class="form-group">
-                <label for="obs.hiv_care">Cuidados de HIV:<span class="required">*</span></label>
-                <select class="form-control" id="obs.hiv_care" required
+                <label for="obs.hiv_care">Cuidados de HIV:</label>
+                <select class="form-control" id="obs.hiv_care"
                         name="obs.hiv_care" data-concept="23780^Cuidados HIV^99DCT">
                     <option value="">...</option>
                     <option value="1065^SIM^99DCT">Yes</option>
@@ -123,8 +125,8 @@
                 </select>
             </div>
             <div class="form-group">
-                <label for="obs.child_at_risk_treatment">EM CCR:<span class="required">*</span></label>
-                <select class="form-control" id="obs.child_at_risk_treatment" required
+                <label for="obs.child_at_risk_treatment">EM CCR:</label>
+                <select class="form-control" id="obs.child_at_risk_treatment"
                         name="obs.child_at_risk_treatment" data-concept="1885^TRATEMENTO (CCR)^99DCT">
                     <option value="">...</option>
                     <option value="1065^Sim^99DCT">Sim</option>
@@ -136,6 +138,25 @@
                 <label for="obs.relative_nid">NID:</label>
                 <input class="form-control" id="obs.relative_nid" data-concept="23781^Relative NID^99DCT"
                        name="obs.relative_nid" type="number">
+            </div>
+        </div>
+        <div>
+<!--            Index case Observations-->
+            <input class="form-control" name="index_patient.given_name" type="hidden">
+            <input class="form-control" name="index_patient.middle_name" type="hidden">
+            <input class="form-control" name="index_patient.family_name" type="hidden">
+            <input class="form-control" name="index_patient.uuid" type="hidden">
+            <input class="form-control" name="index_patient.sex" type="hidden">
+            <input class="form-control" name="index_patient.birth_date" type="hidden">
+            <input class="form-control" name="index_patient.medical_record_number" type="hidden">
+            <div class="is-index-obs group-set" data-concept="23782^SITUACAO FAMILIAR CONJUNTO^99DCT">
+                <input class="form-control is-index-obs" id="index_obs.contact_name" name="index_obs.contact_name" type="hidden" data-concept="23778^Nome do familiar^99DCT">
+                <input class="form-control is-index-obs" id="index_obs.contact_relationship" name="index_obs.contact_relationship" type="hidden" data-concept="23704^Parentesco^99DCT">
+                <input class="form-control is-index-obs" id="index_obs.contact_age" name="index_obs.contact_age" type="hidden" data-concept="23777^Idade^99DCT">
+                <input class="form-control is-index-obs" id="index_obs.hiv_test" name="index_obs.hiv_test" type="hidden" data-concept="23779^Teste de HIV^99DCT">
+                <input class="form-control is-index-obs" id="index_obs.hiv_care" name="index_obs.hiv_care" type="hidden" data-concept="23780^Cuidados HIV^99DCT">
+                <input class="form-control is-index-obs" id="index_obs.child_at_risk_treatment" name="index_obs.child_at_risk_treatment" type="hidden" data-concept="1885^TRATEMENTO (CCR)^99DCT">
+                <input class="form-control is-index-obs" id="index_obs.relative_nid" name="index_obs.relative_nid" type="hidden" data-concept="23781^Relative NID^99DCT">
             </div>
         </div>
         <div class="section">
@@ -165,7 +186,7 @@
             </div>
             <div class="form-group">
                 <label for="encounter.encounter_datetime">Encounter Date <span class="required">*</span></label>
-                <input class="form-control nonFutureDate past-date datepicker" readonly="readonly" id="encounter.encounter_datetime"
+                <input class="form-control nonFutureDate past-date datetimepicker" readonly="readonly" id="encounter.encounter_datetime"
                        name="encounter.encounter_datetime" type="text" required="required">
             </div>
             <div class="form-group">
@@ -191,19 +212,19 @@
             changeYear: true,
             yearRange: birthdate_start_year + ':' + currentYear
         });
+        $('.birth_date_picker').change(function () {
+            $(this).valid();
+        });
 
-        $.fn.calculateFields = function () {
+        $("#tmp\\.age_in_years").change(function () {
             var tempAgeInYears = $.trim($("#tmp\\.age_in_years").val());
             if (tempAgeInYears != '') {
                 $('#patient\\.birthdate_estimated').val('true');
                 $('#patient\\.birth_date').val($.fn.getTempBirthDate(tempAgeInYears));
             }
-            return true;
-        };
-
-        $.fn.customValidationCheck = function () {
-            return $.fn.calculateFields();
-        };
+            $('#patient\\.birth_date').trigger('change');
+        });
+        $("#tmp\\.age_in_years").trigger('change');
 
         var dobType = $('#tmp\\.birthdate_type');
         dobType.change(function () {
@@ -220,6 +241,65 @@
             }
         });
         dobType.trigger('change');
+
+        $('#patient\\.family_name').change(function () {
+            var name = $('#patient\\.family_name').val() + ' ' +  $('#patient\\.given_name').val() +  ' ' + $('#patient\\.middle_name').val()
+            $('#index_obs\\.contact_name').val(name);
+        });
+        $('#patient\\.family_name').trigger('change');
+
+        $('#patient\\.given_name').change(function () {
+            var name = $('#patient\\.family_name').val() + ' ' +  $('#patient\\.given_name').val() +  ' ' + $('#patient\\.middle_name').val()
+            $('#index_obs\\.contact_name').val(name);
+        });
+        $('#patient\\.given_name').trigger('change');
+
+        $('#patient\\.middle_name').change(function () {
+            var name = $('#patient\\.family_name').val() + ' ' +  $('#patient\\.given_name').val() +  ' ' + $('#patient\\.middle_name').val()
+            $('#index_obs\\.contact_name').val(name);
+        });
+        $('#patient\\.middle_name').trigger('change');
+
+        $('#obs\\.contact_relationship').change(function () {
+            $('#index_obs\\.contact_relationship').val($(this).val());
+        });
+        $('#obs\\.contact_relationship').trigger('change');
+
+        $('#patient\\.birth_date').change(function () {
+            var birthdate = $(this).val();
+            if(birthdate != '') {
+                var enteredAgeInYears = $("#tmp\\.age_in_years").val();
+                if(enteredAgeInYears != ''){
+                    $('#index_obs\\.contact_age').val(enteredAgeInYears);
+                } else {
+                    var age = $.fn.getAgeInYears(birthdate);
+                    $('#index_obs\\.contact_age').val(Math.ceil(age));
+                }
+            } else {
+                $('#index_obs\\.contact_age').val('');
+            }
+        });
+        $('#patient\\.birth_date').trigger('change');
+
+        $('#obs\\.hiv_test').change(function () {
+            $('#index_obs\\.hiv_test').val($(this).val());
+        });
+        $('#obs\\.hiv_test').trigger('change');
+
+        $('#obs\\.hiv_care').change(function () {
+            $('#index_obs\\.hiv_care').val($(this).val());
+        });
+        $('#obs\\.hiv_care').trigger('change');
+
+        $('#obs\\.child_at_risk_treatment').change(function () {
+            $('#index_obs\\.child_at_risk_treatment').val($(this).val());
+        });
+        $('#obs\\.child_at_risk_treatment').trigger('change');
+
+        $('#obs\\.relative_nid').change(function () {
+            $('#index_obs\\.relative_nid').val($(this).val());
+        });
+        $('#obs\\.relative_nid').trigger('change');
 
         document.setupAutoCompleteDataForProvider('encounter\\.provider_id_select');
 
