@@ -17,6 +17,10 @@ var htmlDataStore = {
         return JSON.stringify(dummyRelationshipTypes);
     },
 
+    getRelationshipForPersons:function(uuid1,uuid2){
+        return '[]';
+    },
+
     getPersonDetailsFromDeviceByUuid:function(uuid){
         var persons = [{"uuid": "uuid1", "name": "Adam Smith", "birth_date":"2020-02-01", "sex":"M"},
             {"uuid": "uuid2", "name": "John Pombe", "birth_date":"1968-02-30", "sex":"F"},
@@ -53,6 +57,27 @@ var htmlDataStore = {
 
     isMedicalRecordNumberRequired:function(){
         return true;
+    },
+    updatePersonDemographics:function(sectionName, resultField, personUuid){
+        // ToDo: Create mock relationship component
+        //  relationshipCreatorComponent.updateRelationshipPerson(
+        //     sectionName,
+        //     resultField,
+        //     personUuid
+        // );
+    },
+    getPersonAttribute:function(patientUuid, attributeTypeNameOrUuid){
+        var attribute = {'attribute_type_uuid':'attribute_type_uuid',
+        'attribute_value':'currentPersonAttributeValue'
+        }
+        return JSON.stringify(attribute);
+    },
+    getPatientIdentifier:function(){
+        var medicalRecordNumber =  {"identifier_value":"identifier_value",
+        "identifier_type_name":"identifier_type_name",
+        "identifier_type_uuid":"identifier_type_uuid",
+        }
+        return JSON.stringify(medicalRecordNumber);
     }
 };
 
@@ -1257,19 +1282,13 @@ $(document).ready(function () {
     }
 
     //Start - Set up auto complete for the person element.
-    document.setupAutoCompleteForPerson = function($searchElementSelector, $resultElementSelector,$resultsCountElement,searchServer) {
-        // if(searchElement.hasClass('ui-autocomplete-input')){
-        //     //searchElement.removeClass('ui-autocomplete-input');
-        //     searchElement.autocomplete('destroy');
-        //     console.log('hasClass');
-        // }
+    document.setupAutoCompleteForPerson = function($searchElementSelector, $resultElementSelector,$resultsCountElement,$searchLoadingWidget,searchServer) {
+        $searchLoadingWidget.hide();;
         $searchElementSelector.focus(function () {
-
-            console.log('Setting up autocomplete...');
 
             $searchElementSelector.autocomplete({
                 source: function (request, response) {
-                    console.log('creating source...');
+                    $searchLoadingWidget.show();;
                     var searchResults = [];
                     if (searchServer == true) {
                         searchResults = [{"uuid": "uuid1", "name": "Adam Smith"},
@@ -1283,11 +1302,11 @@ $(document).ready(function () {
                     $.each(searchResults, function (key, person) {
                         listOfPersons.push({"val": person.uuid, "label": person.name});
                     });
+
                     $resultsCountElement.val(searchResults.length);
                     $resultsCountElement.trigger('change');
 
                     response(listOfPersons);
-
                 },
                 select: function (event, ui) {
                     $searchElementSelector.val(ui.item.label);
@@ -1299,7 +1318,7 @@ $(document).ready(function () {
         });
 
         $searchElementSelector.blur(function () {
-            console.log('destroying up autocomplete...');
+            $searchLoadingWidget.hide();
             $searchElementSelector.autocomplete("destroy");
         });
     };
