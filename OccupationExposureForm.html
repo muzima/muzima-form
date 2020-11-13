@@ -1,0 +1,667 @@
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/muzima.css" rel="stylesheet">
+    <link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+    <link href="css/ui-darkness/jquery-ui-1.10.4.custom.min.css" rel="stylesheet">
+
+    <script src="js/jquery.min.js"></script>
+    <script src="js/jquery-ui-1.10.4.custom.min.js"></script>
+    <script src="js/jquery.validate.min.js"></script>
+    <script src="js/additional-methods.min.js"></script>
+    <script src="js/bootstrap-datetimepicker.min.js"></script>
+    <script src="js/muzima.js"></script>
+    <title>OCCUPATIONAL EXPOSURE FORM</title>
+    <style>
+    </style>
+</head>
+<body class="col-md-10 col-md-offset-1">
+<div id="pre_populate_data">
+
+</div>
+<form id="occupatioinal_exposure_form" name="occupatioinal_exposure_form">
+    <h2 class="text-center">OCCUPATIONAL EXPOSURE FORM</h2>
+    <div class="section">
+        <h3>Demographics</h3>
+        <div class="form-group">
+            <input class="form-control" id="patient.uuid"
+                   name="patient.uuid" type="hidden" readonly="readonly">
+        </div>
+
+        <div class="form-group">
+            <label for="patient.medical_record_number">Record ID:</label>
+            <input class="form-control" id="patient.medical_record_number"
+                   name="patient.medical_record_number" type="text"
+                   readonly="readonly">
+        </div>
+        <div class="form-group" style="display:none">
+            <label for="patient.family_name">Family Name:</label>
+            <input class="form-control" id="patient.family_name"
+                   name="patient.family_name" type="text" readonly="readonly">
+        </div>
+        <div class="form-group" style="display:none">
+            <label for="patient.given_name">Given Name:</label>
+            <input class="form-control" id="patient.given_name"
+                   name="patient.given_name" type="text" readonly="readonly">
+        </div>
+        <div class="form-group" style="display:none">
+            <label for="patient.middle_name">Middle Name:</label>
+            <input class="form-control" id="patient.middle_name"
+                   name="patient.middle_name" type="text" readonly="readonly">
+        </div>
+		<div class="form-group">
+            <label for="patient.middle_name">Name:</label>
+            <input class="form-control" id="patient.names"
+                   name="patient.names" type="text" readonly="readonly">
+        </div>
+        <div class="form-group">
+            <label for="patient.sex">Gender:</label>
+            <select class="form-control" id="patient.sex" name="patient.sex" readonly="readonly" disabled>
+                <option value="">...</option>
+                <option value="M">Male</option>
+                <option value="F">Female</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="patient.birth_date">Date of birth:</label>
+            <input class="form-control" id="patient.birth_date"
+                   name="patient.birth_date" type="text" readonly="readonly">
+        </div>
+    </div>    
+	<div class="section">
+		<div class="form-group">
+			<label for="obs.name_of_case">			
+				Name Of Case
+			<span class="required">*</span>
+			</label>
+			<input type="text" class="form-control" data-concept="166006^Case UUIDs^99DCT" name="obs.case_uuid" required="required">
+		</div>		
+		<div class="form-group">
+			<label for="obs.role">			
+				HWC role
+			<span class="required">*</span>
+			</label>
+			<div class="form-group">
+				<label for="obs.occupation_mo" style="font-weight: normal;">
+					<input type="radio" data-concept="1542^Occupation^99DCT" value="162591^Medical Officers^99DCT" name="obs.occupation" id="obs.occupation_mo" required>&nbsp;Medical Officers
+				</label>
+			</div> 
+			<div class="form-group">
+				<label for="obs.occupation_reg" style="font-weight: normal;">
+					<input type="radio" data-concept="1542^Occupation^99DCT" value="166043^Registrars^99DCT" name="obs.occupation" id="obs.occupation_reg" required>&nbsp;Registrars
+				</label>
+			</div> 
+			<div class="form-group">
+				<label for="obs.occupation_cd" style="font-weight: normal;">
+					<input type="radio" data-concept="1542^Occupation^99DCT" value="5507^Consultant Doctors^99DCT" name="obs.occupation" id="obs.occupation_cd" required>&nbsp;Consultant Doctors
+				</label>
+			</div> 
+			<div class="form-group">
+				<label for="obs.occupation_co" style="font-weight: normal;">
+					<input type="radio" data-concept="1542^Occupation^99DCT" value="1574^Clinical Officers^99DCT" name="obs.occupation" id="obs.occupation_co" required>&nbsp;Clinical Officers
+				</label>
+			</div> 
+			<div class="form-group">	
+				<label for="obs.occupation_nurse" style="font-weight: normal;">
+					<input type="radio" data-concept="1542^Occupation^99DCT" value="1577^Nurse^99DCT" name="obs.occupation" id="obs.occupation_nurse" required>&nbsp;Nurse
+				</label>
+			</div>
+			<div class="form-group">
+				<label for="obs.occupation_hp" style="font-weight: normal;">
+					<input type="radio" data-concept="1542^Occupation^99DCT" value="164831^Laboratory Personnel^99DCT" name="obs.occupation" id="obs.occupation_hp" required>&nbsp;Laboratory Personnel
+				</label>
+			</div>
+			<div class="form-group">	
+				<label for="obs.occupation_hw" style="font-weight: normal;">
+					<input type="radio" data-concept="1542^Occupation^99DCT" value="5619^Other Health Worker^99DCT" name="obs.occupation" id="obs.occupation_hw" required>&nbsp;Other Health worker
+				</label>
+			</div>
+			<div class="form-group">
+				<label for="obs.occupation_wwa" style="font-weight: normal;">
+					<input type="radio" data-concept="1542^Occupation^99DCT" value="166046^Other Hospital Worker^99DCT" name="obs.occupation" id="obs.occupation_wwa" required>&nbsp;Other Hospital Worker 
+				</label>
+			</div>					
+		</div>	
+		<div class="form-group">
+			<label for="obs.place_of_work">			
+				Place of Work
+			<span class="required">*</span>
+			</label>
+			<div class="form-group">
+				<label for="obs.place_of_work_hf" style="font-weight: normal;">
+					<input type="radio" data-concept="164406^Workplace^99DCT" value="1537^HEALTH FACILITY^99DCT" name="obs.place_of_work" id="obs.place_of_work_hf" required>&nbsp;Health facility
+				</label>
+			</div>
+			<div class="form-group">	
+				<label for="obs.place_of_work_nhf" style="font-weight: normal;">
+					<input type="radio" data-concept="164406^Workplace^99DCT" value="164405^Non-health facility^99DCT" name="obs.place_of_work" id="obs.place_of_work_nhf" required>&nbsp;Non-health facility
+				</label>
+			</div>
+			<div class="form-group">
+				<label for="obs.place_of_work_outpatient" style="font-weight: normal;">
+					<input type="radio" data-concept="164406^Workplace^99DCT" value="160542^Outpatient^99DCT" name="obs.place_of_work" id="obs.place_of_work_outpatient" required>&nbsp;Outpatient
+				</label>
+			</div>
+			<div class="form-group">	
+				<label for="obs.place_of_work_sopd" style="font-weight: normal;">
+					<input type="radio" data-concept="164406^Workplace^99DCT" value="164164^Surgical Outpatient Department^99DCT" name="obs.place_of_work" id="obs.place_of_work_sopd" required>&nbsp;Surgical Outpatient Department
+				</label>
+			</div>	
+			<div class="form-group">
+				<label for="obs.place_of_work_ophthalmology_department" style="font-weight: normal;">
+					<input type="radio" data-concept="164406^Workplace^99DCT" value="160454^Ophthalmology department^99DCT" name="obs.place_of_work" id="obs.place_of_work_ophthalmology_department" required>&nbsp;Ophthalmology department
+				</label>
+			</div>
+			<div class="form-group">
+				<label for="obs.place_of_work_radiology_department" style="font-weight: normal;">
+					<input type="radio" data-concept="164406^Workplace^99DCT" value="160463^Radiology department^99DCT" name="obs.place_of_work" id="obs.place_of_work_radiology_department" required>&nbsp;Radiology department
+				</label>
+			</div>
+			<div class="form-group">
+				<label for="obs.place_of_work_neurology_department" style="font-weight: normal;">
+					<input type="radio" data-concept="164406^Workplace^99DCT" value="160471^Neurology department^99DCT" name="obs.place_of_work" id="obs.place_of_work_neurology_department" required>&nbsp;Neurology department
+				</label>
+			</div>
+			<div class="form-group">
+				<label for="obs.place_of_work_urology_department" style="font-weight: normal;">
+					<input type="radio" data-concept="164406^Workplace^99DCT" value="160476^Urology department^99DCT" name="obs.place_of_work" id="obs.place_of_work_urology_department" required>&nbsp;Urology department
+				</label>
+			</div>
+			<div class="form-group">
+				<label for="obs.place_of_work_gastroenterology_department" style="font-weight: normal;">
+					<input type="radio" data-concept="164406^Workplace^99DCT" value="160477^Gastroenterology department^99DCT" name="obs.place_of_work" id="obs.place_of_work_gastroenterology_department" required>&nbsp;Gastroenterology department
+				</label>
+			</div>
+			<div class="form-group">
+				<label for="obs.place_of_work_orthopedic_department" style="font-weight: normal;">
+					<input type="radio" data-concept="164406^Workplace^99DCT" value="160465^Orthopedic department^99DCT" name="obs.place_of_work" id="obs.place_of_work_orthopedic_department" required>&nbsp;Orthopedic department
+				</label>
+			</div>
+			<div class="form-group">
+				<label for="obs.place_of_work_referring_department" style="font-weight: normal;">
+					<input type="radio" data-concept="164406^Workplace^99DCT" value="160478^Referring department^99DCT" name="obs.place_of_work" id="obs.place_of_work_referring_department" required>&nbsp;Referring department
+				</label>
+			</div>
+			<div class="form-group">
+				<label for="obs.place_of_work_psychiatry_department" style="font-weight: normal;">
+					<input type="radio" data-concept="164406^Workplace^99DCT" value="160461^Psychiatry department^99DCT" name="obs.place_of_work" id="obs.place_of_work_psychiatry_department" required>&nbsp;Psychiatry department
+				</label>
+			</div>
+			<div class="form-group">
+				<label for="obs.place_of_work_emergency_department" style="font-weight: normal;">
+					<input type="radio" data-concept="164406^Workplace^99DCT" value="160473^Emergency department^99DCT" name="obs.place_of_work" id="obs.place_of_work_emergency_department" required>&nbsp;Emergency department
+				</label>
+			</div>
+			<div class="form-group">
+				<label for="obs.place_of_work_general_medicine_department" style="font-weight: normal;">
+					<input type="radio" data-concept="164406^Workplace^99DCT" value="160448^General medicine department^99DCT" name="obs.place_of_work" id="obs.place_of_work_general_medicine_department " required>&nbsp;General medicine department 
+				</label>
+			</div>
+			<div class="form-group">
+				<label for="obs.place_of_work_other" style="font-weight: normal;">
+					<input type="radio" data-concept="164406^Workplace^99DCT" value="5622^Other^99DCT" name="obs.place_of_work" id="obs.place_of_work_other" required>&nbsp;Other
+				</label>
+			</div>			
+		</div>	
+		<div class="form-group">
+			<label for="obs.icu_care">			
+				Caring for patients with severe acute respiratory illness in ICU
+			<span class="required">*</span>
+			</label>
+			<div class="form-group">
+				<label for="obs.icu_care_yes" style="font-weight: normal;">
+					<input type="radio" data-concept="166018^Care for severe acute respiratory illness in ICU^99DCT" value="1065^Yes^99DCT" name="obs.icu_care" id="obs.icu_care_yes" required>&nbsp;Yes&nbsp;&nbsp;
+				</label>
+				<label for="obs.icu_care_no" style="font-weight: normal;">
+					<input type="radio" data-concept="166018^Care for severe acute respiratory illness in ICU^99DCT" value="1066^No^99DCT" name="obs.icu_care"  id="obs.icu_care_no" required>&nbsp;No&nbsp;&nbsp;
+				</label>
+				<label for="obs.icu_care_unknown" style="font-weight: normal;">
+					<input type="radio" data-concept="166018^Care for severe acute respiratory illness in ICU^99DCT" value="1067^Unknown^99DCT" name="obs.icu_care"  id="obs.icu_care_unknown" required>&nbsp;Unknown
+				</label>
+			</div>
+        </div>
+		<div class="form-group">
+			<label for="obs.covid_19_patient_care">			
+				Was the HCW caring for a patient with COVID-19?
+			<span class="required">*</span>
+			</label>
+			<div class="form-group">
+				<label for="obs.covid_19_patient_care_yes" style="font-weight: normal;">
+					<input type="radio" data-concept="166019^Care for COVID-19 patient^99DCT" value="1065^Yes^99DCT" name="obs.covid_19_patient_care" id="obs.covid_19_patient_care_yes" required>&nbsp;Yes&nbsp;&nbsp;
+				</label>
+				<label for="obs.covid_19_patient_care_no" style="font-weight: normal;">
+					<input type="radio" data-concept="166019^Care for COVID-19 patient^99DCT" value="1066^No^99DCT" name="obs.covid_19_patient_care"  id="obs.covid_19_patient_care_no" required>&nbsp;No&nbsp;&nbsp;
+				</label>
+				<label for="obs.covid_19_patient_care_unknown" style="font-weight: normal;">
+					<input type="radio" data-concept="166019^Care for COVID-19 patient^99DCT" value="1067^Unknown^99DCT" name="obs.covid_19_patient_care"  id="obs.covid_19_patient_care_unknown" required>&nbsp;Unknown
+				</label>
+			</div>
+        </div>
+		<div class="form-group">
+			<label for="obs.ppe_used_during_contact">			
+				Was the recommended PPE used during contact with COVID-19  
+			<span class="required">*</span>
+			</label>
+			<div class="form-group">
+				<label for="obs.ppe_used_during_contact_yes" style="font-weight: normal;">
+					<input type="radio" data-concept="166020^Recommended PPE used during contact with COVID-19^99DCT" value="1065^Yes^99DCT" name="obs.ppe_used_during_contact" id="obs.ppe_used_during_contact_yes" required>&nbsp;Yes&nbsp;&nbsp;
+				</label>
+				<label for="obs.ppe_used_during_contact_no" style="font-weight: normal;">
+					<input type="radio" data-concept="166020^Recommended PPE used during contact with COVID-19^99DCT" value="1066^No^99DCT" name="obs.ppe_used_during_contact"  id="obs.ppe_used_during_contact_no" required>&nbsp;No&nbsp;&nbsp;
+				</label>
+				<label for="obs.ppe_used_during_contact_unknown" style="font-weight: normal;">
+					<input type="radio" data-concept="166020^Recommended PPE used during contact with COVID-19^99DCT" value="1067^Unknown^99DCT" name="obs.ppe_used_during_contact"  id="obs.ppe_used_during_contact_unknown" required>&nbsp;Unknown
+				</label>
+			</div>
+        </div>
+		<div id="ppe_used_during_contact_no_div">
+			<div class="form-group">
+				<label for="obs.date_first_contact">			
+					Date first HCW contact with case without PPE
+				<span class="required">*</span>
+				</label>
+				<div class="form-group">		
+					<input type="text" class="form-control datepicker nonFutureDate past-date" data-concept="166021^First Date Healthcare Worker with Case without PPE^99DCT" name="obs.date_first_contact" id="obs.date_first_contact" required="required">
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="obs.date_last_contact">			
+				 Date last HCW contact with case without recommended PPE  
+				<span class="required">*</span>
+				</label>
+				<div class="form-group">		
+					<input type="text" class="form-control datepicker nonFutureDate past-date" data-concept="166022^Last Date Healthcare Worker with Case without PPE^99DCT" name="obs.date_last_contact" id="obs.date_last_contact" required="required">
+				</div>
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="obs.ppe_used_during_contact_with_case">			
+				Did HCWs use PPE used during contact with this case
+			<span class="required">*</span>
+			</label>
+			<div class="form-group">
+				<label for="obs.ppe_used_during_contact_with_case_yes" style="font-weight: normal;">
+					<input type="radio" data-concept="166023^PPE used during contact with this case^99DCT" value="1065^Yes^99DCT" name="obs.ppe_used_during_contact_with_case" id="obs.ppe_used_during_contact_with_case_yes" required>&nbsp;Yes&nbsp;&nbsp;
+				</label>
+				<label for="obs.ppe_used_during_contact_with_case_no" style="font-weight: normal;">
+					<input type="radio" data-concept="166023^PPE used during contact with this case^99DCT" value="1066^No^99DCT" name="obs.ppe_used_during_contact_with_case"  id="obs.ppe_used_during_contact_with_case_no" required>&nbsp;No&nbsp;&nbsp;
+				</label>
+				<label for="obs.ppe_used_during_contact_with_case_unknown" style="font-weight: normal;">
+					<input type="radio" data-concept="166023^PPE used during contact with this case^99DCT" value="1067^Unknown^99DCT" name="obs.ppe_used_during_contact_with_case"  id="obs.ppe_used_during_contact_with_case_unknown" required>&nbsp;Unknown
+				</label>
+			</div>
+        </div>
+	</div>
+	<div class="section">
+		<div class="sub-section">
+			<h3>Use of PPE</h3>
+			<div class="form-group">
+				<label for="obs.surgical_mask">			
+					Surgical Mask
+				<span class="required">*</span>
+				</label>
+				<div class="form-group">
+					<label for="obs.surgical_mask_always" style="font-weight: normal;">
+						<input type="radio" data-concept="166026^Surgical Mask^99DCT" value="1358^Always^99DCT" name="obs.surgical_mask" id="obs.surgical_mask_always" required>&nbsp;Always&nbsp;&nbsp;
+					</label>
+				</div>
+				<div class="form-group">
+					<label for="obs.surgical_mask_often" style="font-weight: normal;">
+						<input type="radio" data-concept="166026^Surgical Mask^99DCT" value="166024^Often^99DCT" name="obs.surgical_mask"  id="obs.surgical_mask_often" required>&nbsp;Often&nbsp;&nbsp;
+					</label>
+				</div>
+				<div class="form-group">
+					<label for="obs.surgical_mask_infrequent" style="font-weight: normal;">
+						<input type="radio" data-concept="166026^Surgical Mask^99DCT" value="166025^Infrequent^99DCT" name="obs.surgical_mask"  id="obs.surgical_mask_infrequent" required>&nbsp;Infrequent
+					</label>
+				</div>
+				<div class="form-group">
+					<label for="obs.surgical_mask_never" style="font-weight: normal;">
+						<input type="radio" data-concept="166026^Surgical Mask^99DCT" value="1090^Never^99DCT" name="obs.surgical_mask"  id="obs.surgical_mask_never" required>&nbsp;Never
+					</label>
+				</div>
+			</div>		
+			<div class="form-group">
+				<label for="obs.N95">			
+					N95
+				<span class="required">*</span>
+				</label>
+				<div class="form-group">
+					<label for="obs.N95_always" style="font-weight: normal;">
+						<input type="radio" data-concept="166027^N95^99DCT" value="1358^Always^99DCT" name="obs.N95" id="obs.N95_always" required>&nbsp;Always&nbsp;&nbsp;
+					</label>
+				</div>
+				<div class="form-group">
+					<label for="obs.N95_often" style="font-weight: normal;">
+						<input type="radio" data-concept="166027^N95^99DCT" value="166024^Often^99DCT" name="obs.N95"  id="obs.N95_often" required>&nbsp;Often&nbsp;&nbsp;
+					</label>
+				</div>
+				<div class="form-group">
+					<label for="obs.N95_infrequent" style="font-weight: normal;">
+						<input type="radio" data-concept="166027^N95^99DCT" value="166025^Infrequent^99DCT" name="obs.N95"  id="obs.N95_infrequent" required>&nbsp;Infrequent
+					</label>
+				</div>
+				<div class="form-group">
+					<label for="obs.N95_never" style="font-weight: normal;">
+						<input type="radio" data-concept="166027^N95^99DCT" value="1090^Never^99DCT" name="obs.N95"  id="obs.N95_never" required>&nbsp;Never
+					</label>
+				</div>
+			</div>		
+			<div class="form-group">
+				<label for="obs.eye_protection">			
+					Eye Protection
+				<span class="required">*</span>
+				</label>
+				<div class="form-group">
+					<label for="obs.eye_protection_always" style="font-weight: normal;">
+						<input type="radio" data-concept="166028^Eye Protection^99DCT" value="1358^Always^99DCT" name="obs.eye_protection" id="obs.eye_protection_always" required>&nbsp;Always&nbsp;&nbsp;
+					</label>
+				</div>
+				<div class="form-group">
+					<label for="obs.eye_protection_often" style="font-weight: normal;">
+						<input type="radio" data-concept="166028^Eye Protection^99DCT" value="166024^Often^99DCT" name="obs.eye_protection"  id="obs.eye_protection_often" required>&nbsp;Often&nbsp;&nbsp;
+					</label>
+				</div>
+				<div class="form-group">
+					<label for="obs.eye_protection_infrequent" style="font-weight: normal;">
+						<input type="radio" data-concept="166028^Eye Protection^99DCT" value="166025^Infrequent^99DCT" name="obs.eye_protection"  id="obs.eye_protection_infrequent" required>&nbsp;Infrequent
+					</label>
+				</div>
+				<div class="form-group">
+					<label for="obs.eye_protection_never" style="font-weight: normal;">
+						<input type="radio" data-concept="166028^Eye Protection^99DCT" value="1090^Never^99DCT" name="obs.eye_protection"  id="obs.eye_protection_never" required>&nbsp;Never
+					</label>
+				</div>
+			</div>		
+			<div class="form-group">
+				<label for="obs.gloves">			
+					Gloves
+				<span class="required">*</span>
+				</label>
+				<div class="form-group">
+					<label for="obs.gloves_always" style="font-weight: normal;">
+						<input type="radio" data-concept="166029^Gloves^99DCT" value="1358^Always^99DCT" name="obs.gloves" id="obs.gloves_always" required>&nbsp;Always&nbsp;&nbsp;
+					</label>
+				</div>
+				<div class="form-group">
+					<label for="obs.gloves_often" style="font-weight: normal;">
+						<input type="radio" data-concept="166029^Gloves^99DCT" value="166024^Often^99DCT" name="obs.gloves"  id="obs.gloves_often" required>&nbsp;Often&nbsp;&nbsp;
+					</label>
+				</div>
+				<div class="form-group">
+					<label for="obs.gloves_infrequent" style="font-weight: normal;">
+						<input type="radio" data-concept="166029^Gloves^99DCT" value="166025^Infrequent^99DCT" name="obs.gloves"  id="obs.gloves_infrequent" required>&nbsp;Infrequent
+					</label>
+				</div>
+				<div class="form-group">
+					<label for="obs.gloves_never" style="font-weight: normal;">
+						<input type="radio" data-concept="166029^Gloves^99DCT" value="1090^Never^99DCT" name="obs.gloves"  id="obs.gloves_never" required>&nbsp;Never
+					</label>
+				</div>
+			</div>		
+			<div class="form-group">
+				<label for="obs.gowns">			
+					Gowns
+				<span class="required">*</span>
+				</label>
+				<div class="form-group">
+					<label for="obs.gowns_always" style="font-weight: normal;">
+						<input type="radio" data-concept="166030^Gowns^99DCT" value="1358^Always^99DCT" name="obs.gowns" id="obs.gowns_always" required>&nbsp;Always&nbsp;&nbsp;
+					</label>
+				</div>
+				<div class="form-group">
+					<label for="obs.gowns_often" style="font-weight: normal;">
+						<input type="radio" data-concept="166030^Gowns^99DCT" value="166024^Often^99DCT" name="obs.gowns"  id="obs.gowns_often" required>&nbsp;Often&nbsp;&nbsp;
+					</label>
+				</div>
+				<div class="form-group">
+					<label for="obs.gowns_infrequent" style="font-weight: normal;">
+						<input type="radio" data-concept="166030^Gowns^99DCT" value="166025^Infrequent^99DCT" name="obs.gowns"  id="obs.gowns_infrequent" required>&nbsp;Infrequent
+					</label>
+				</div>
+				<div class="form-group">
+					<label for="obs.gowns_never" style="font-weight: normal;">
+						<input type="radio" data-concept="166030^Gowns^99DCT" value="1090^Never^99DCT" name="obs.gowns"  id="obs.gowns_never" required>&nbsp;Never
+					</label>
+				</div>
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="obs.contact_during_aerosol_generating_procedure">			
+				Did contact with a case occur during aerosol generating procedures
+			<span class="required">*</span>
+			</label>
+			<div class="form-group">
+				<label for="obs.contact_during_aerosol_generating_procedure_yes" style="font-weight: normal;">
+					<input type="radio" data-concept="166031^Contact with a case occur during aerosol generating procedures^99DCT" value="1065^Yes^99DCT" name="obs.contact_during_aerosol_generating_procedure" id="obs.contact_during_aerosol_generating_procedure_yes" required>&nbsp;Yes&nbsp;&nbsp;
+				</label>
+				<label for="obs.contact_during_aerosol_generating_procedure_no" style="font-weight: normal;">
+					<input type="radio" data-concept="166031^Contact with a case occur during aerosol generating procedures^99DCT" value="1066^No^99DCT" name="obs.contact_during_aerosol_generating_procedure"  id="obs.contact_during_aerosol_generating_procedure_no" required>&nbsp;No&nbsp;&nbsp;
+				</label>
+				<label for="obs.contact_during_aerosol_generating_procedure_unknown" style="font-weight: normal;">
+					<input type="radio" data-concept="166031^Contact with a case occur during aerosol generating procedures^99DCT" value="1067^Unknown^99DCT" name="obs.contact_during_aerosol_generating_procedure"  id="obs.contact_during_aerosol_generating_procedure_unknown" required>&nbsp;Unknown
+				</label>
+			</div>
+        </div>
+		<div id="aerosol_div">
+			<label for="obs.aerosol_details">			
+				Details of aerosol generating procedures:
+			<span class="required">*</span>
+			</label>
+			<div class="form-group">			 
+				<input type="text" class="form-control" name="obs.aerosol_details" id="obs.aerosol_details" data-concept="166032^Details of aerosol generating procedures^99DCT" required="required">
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="obs.status_of_contact_tracing">			
+				Status of contact tracing
+			<span class="required">*</span>
+			</label>
+			<div class="form-group">
+				<label for="obs.status_of_contact_tracing_ongoing" style="font-weight: normal;">
+					<input type="radio" data-concept="166034^Status of contact tracing^99DCT" value="166033^ongoing^99DCT" name="obs.status_of_contact_tracing" id="obs.status_of_contact_tracing_ongoing" required>&nbsp;ongoing&nbsp;&nbsp;
+				</label>
+				<label for="obs.status_of_contact_tracing_completed" style="font-weight: normal;">
+					<input type="radio" data-concept="166034^Status of contact tracing^99DCT" value="1267^completed^99DCT" name="obs.status_of_contact_tracing"  id="obs.status_of_contact_tracing_completed" required>&nbsp;completed&nbsp;&nbsp;
+				</label>
+				<label for="obs.status_of_contact_tracing_ltfu" style="font-weight: normal;">
+					<input type="radio" data-concept="166034^Status of contact tracing^99DCT" value="5240^lost to follow–up^99DCT" name="obs.status_of_contact_tracing"  id="obs.status_of_contact_tracing_ltfu" required>&nbsp;lost to follow-up
+				</label>
+			</div>
+        </div>
+		<div class="form-group" id="ltfu_div">
+			<label for="obs.ltfu_details">			
+				Lost to follow-up details:
+			<span class="required">*</span>
+			</label>
+			<div class="form-group">			 
+				<input type="text" class="form-control" name="obs.ltfu_details" id="obs.ltfu_details" data-concept="166035^Lost to followup details, freetext^99DCT" required="required">
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="obs.contact_turn_symptomatic">			
+				Did the contact become symptomatic
+			<span class="required">*</span>
+			</label>
+			<div class="form-group">
+				<label for="obs.contact_turn_symptomatic_yes" style="font-weight: normal;">
+					<input type="radio" data-concept="166036^Showing symptoms^99DCT" value="1065^Yes^99DCT" name="obs.contact_turn_symptomatic" id="obs.contact_turn_symptomatic_yes" required>&nbsp;Yes&nbsp;&nbsp;
+				</label>
+				<label for="obs.contact_turn_symptomatic_no" style="font-weight: normal;">
+					<input type="radio" data-concept="166036^Showing symptoms^99DCT" value="1066^No^99DCT" name="obs.contact_turn_symptomatic"  id="obs.contact_turn_symptomatic_no" required>&nbsp;No&nbsp;&nbsp;
+				</label>
+				<label for="obs.contact_turn_symptomatic_unknown" style="font-weight: normal;">
+					<input type="radio" data-concept="166036^Showing symptoms^99DCT" value="1067^Unknown^99DCT" name="obs.contact_turn_symptomatic"  id="obs.contact_turn_symptomatic_unknown" required>&nbsp;Unknown
+				</label>
+			</div>
+        </div>
+		<div class="form-group">
+			<label for="obs.covid_diagnosed">			
+				Was COVID-19 diagnosed in this contact
+			<span class="required">*</span>
+			</label>
+			<div class="form-group">
+				<label for="obs.covid_diagnosed_yes" style="font-weight: normal;">
+					<input type="radio" data-concept="166037^Diagnosed with COVID-19^99DCT" value="1065^Yes^99DCT" name="obs.covid_diagnosed" id="obs.covid_diagnosed_yes" required>&nbsp;Yes&nbsp;&nbsp;
+				</label>
+				<label for="obs.covid_diagnosed_no" style="font-weight: normal;">
+					<input type="radio" data-concept="166037^Diagnosed with COVID-19^99DCT" value="1066^No^99DCT" name="obs.covid_diagnosed"  id="obs.covid_diagnosed_no" required>&nbsp;No&nbsp;&nbsp;
+				</label>
+				<label for="obs.covid_diagnosed_unknown" style="font-weight: normal;">
+					<input type="radio" data-concept="166037^Diagnosed with COVID-19^99DCT" value="1067^Unknown^99DCT" name="obs.covid_diagnosed"  id="obs.covid_diagnosed_unknown" required>&nbsp;Unknown
+				</label>
+			</div>
+        </div>
+		<div id="covid_diagnosed_div">
+			<div  class="form-group">
+				<label for="obs.hospital_id">			
+				Hospital ID
+				<span class="required">*</span>
+				</label>
+				<div class="form-group">			 
+					<input type="text" class="form-control" name="obs.hospital_id" id="obs.hospital_id" data-concept="166038^Hospital ID^99DCT" required="required">
+				</div>
+			</div>				
+			<div  class="form-group">
+				<label for="obs.work_id">			
+				Work ID:
+				<span class="required">*</span>
+				</label>
+				<div class="form-group">			 
+					<input type="text" class="form-control" name="obs.work_id" id="obs.work_id" data-concept="163161^Work ID^99DCT" required="required">
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="section">
+        <div class="form-group">
+		<label for="encounter.location_id">Encounter Location:<span class="required">*</span></label>
+		<input class="form-control valid-location-only" id="encounter.location_id" type="text"
+		placeholder="Start typing something..." required="required">
+		<input class="form-control" name="encounter.location_id" type="hidden">
+        </div>
+		<div class="form-group">
+			<label for="encounter.provider_id_select">Interviewer name:<span class="required">*</span></label>
+			<input class="form-control valid-provider-only" id="encounter.provider_id_select"
+			type="text" placeholder="Start typing something...">
+			<input class="form-control" name="encounter.provider_id_select" type="hidden">
+		</div>
+
+		<div class="form-group show_provider_id_text">
+			<label for="encounter.provider_id">Interviewer's ID:<span class="required">*</span></label>
+			<input class="form-control" id="encounter.provider_id" disabled name="encounter.provider_id"
+			   type="text" required="required"  placeholder="Provider Id">
+		</div>
+		<div class="form-group">
+			<label for="encounter.encounter_datetime">Date of interview:<span class="required">*</span></label>
+			<input class="form-control datepicker nonFutureDate past-date" id="encounter.encounter_datetime"
+			   name="encounter.encounter_datetime" type="text" readonly="readonly"
+			   required="required">
+		</div>
+		<div class="form-group">
+			<input class="form-control" id="encounter.form_uuid" name="encounter.form_uuid"
+			   type="hidden" required="required">
+			<input class="form-control" id="encounter.user_system_id" name="encounter.user_system_id" type="hidden">
+		</div>
+    </div>
+</form>
+</body>
+<script type="text/javascript">
+$(document).ready(function () {
+	$('#save_draft').click(function () {
+	    $(this).prop('disabled', true);
+	    document.saveDraft();
+	    $(this).prop('disabled', false);
+	});
+
+	$('#submit_form').click(function () {
+	    $(this).prop('disabled', true);
+	    document.submit();
+	    $(this).prop('disabled', false);
+	});
+
+	var prePopulateData = $.trim($('#pre_populate_data').html());
+	if(prePopulateData !=="" ){
+		var prePopulateJSON = JSON.parse(prePopulateData);
+		$.each(prePopulateJSON, function(key, value) {
+			if (key === 'patient') {
+				var names = "";
+				$.each(value, function(keys, values) {
+					if(keys === 'patient.given_name' || keys === 'patient.middle_name' || keys === 'patient.family_name'){
+					   names=names+" "+values;
+					}
+				});
+				$('#patient\\.names').val(names);
+			}
+		});
+	}
+	
+	var $ppeUsed = $(':radio[name="obs\\.ppe_used_during_contact"]');
+	$ppeUsed.change(function(){
+		var $activeOpt = $(':radio[name="obs\\.ppe_used_during_contact"]:checked').val();
+		if($activeOpt == "1066^No^99DCT"){
+			$("#ppe_used_during_contact_no_div").show();
+		}else{
+			$("#ppe_used_during_contact_no_div").hide();
+		}
+	});
+	$ppeUsed.trigger('change');
+	
+	var $aerosol = $(':radio[name="obs\\.contact_during_aerosol_generating_procedure"]');
+	$aerosol.change(function(){
+		var $activeOpt = $(':radio[name="obs\\.contact_during_aerosol_generating_procedure"]:checked').val();
+		if($activeOpt == "1065^Yes^99DCT"){
+			$("#aerosol_div").show();
+		}else{
+			$("#aerosol_div").hide();
+		}
+	});
+	$aerosol.trigger('change');  
+	
+	var $contactTracingStatus = $(':radio[name="obs\\.status_of_contact_tracing"]');
+	$contactTracingStatus.change(function(){
+		var $activeOpt = $(':radio[name="obs\\.status_of_contact_tracing"]:checked').val();
+		if($activeOpt == "5240^lost to follow–up^99DCT"){
+			$("#ltfu_div").show();
+		}else{
+			$("#ltfu_div").hide();
+		}
+	});
+	$contactTracingStatus.trigger('change'); 
+	
+	var $covidDiagnosed = $(':radio[name="obs\\.covid_diagnosed"]');
+	$covidDiagnosed.change(function(){
+		var $activeOpt = $(':radio[name="obs\\.covid_diagnosed"]:checked').val();
+		if($activeOpt == "1065^Yes^99DCT"){
+			$("#covid_diagnosed_div").show();
+		}else{
+			$("#covid_diagnosed_div").hide();
+		}
+	});
+	$covidDiagnosed.trigger('change'); 
+		
+	$("form[name='occupatioinal_exposure_form']").validate({
+			errorElement: "div",
+			wrapper: "div",  // a wrapper around the error message
+			errorPlacement: function(error, element) {
+				if (element.is(":radio") ) {                   
+					error.insertBefore(element.parent().parent());
+				}
+				else if (element.is(":checkbox") ) {                   
+					error.insertBefore(element.parent().parent());
+				}
+				else { // This is the default behavior of the script for all fields
+					error.insertAfter( element );
+				}
+		 }
+	});
+
+	document.setupAutoCompleteDataForProvider('encounter\\.provider_id_select');
+	document.setupAutoCompleteData('encounter\\.location_id');
+	document.setupValidationForProvider($('#encounter\\.provider_id_select').val(),$("#encounter\\.provider_id"));
+	document.setupValidationForLocation($('#encounter\\.location_id').val(),$("encounter\\.location_id"));
+
+});
+</script>
+</html>
