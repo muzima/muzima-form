@@ -1,0 +1,1809 @@
+<html xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
+<head>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/muzima.css" rel="stylesheet">
+    <link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+    <link href="css/ui-darkness/jquery-ui-1.10.4.custom.min.css" rel="stylesheet">
+
+    <script src="js/jquery.min.js"></script>
+    <script src="js/jquery-ui-1.10.4.custom.min.js"></script>
+    <script src="js/jquery.validate.min.js"></script>
+    <script src="js/additional-methods.min.js"></script>
+    <script src="js/bootstrap-datetimepicker.min.js"></script>
+    <script src="js/muzima.js"></script>
+    <title>PROCESSO HOSPITAL DE DIA</title>
+</head>
+<body class="col-md-10 col-md-offset-1">
+<div id="pre_populate_data">
+
+</div>
+<form id="adulto_seguimento" name="adulto_seguimento">
+	<div class="section" align="center">
+		<h2>FICHA DE SEGUIMENTO PARA ADULTOS</h2>
+	</div>
+	<div class="section" align="center">
+		REPÚBLICA DE MOÇAMBIQUE<br/>
+        SERVIÇO NACIONAL DE SAÚDE<br/><br/>
+        Mod. SIS - H-10
+	</div>
+	<div class="section">
+		<div class="form-group">
+			<input class="form-control" id="patient.uuid"
+				   name="patient.uuid" type="hidden" readonly="readonly">
+		</div>
+		<div class="form-group">
+			<label for="patient.names">Nome:</label>
+			<input class="form-control" id="patient.names"
+				   name="patient.names" type="text" readonly="readonly">
+		</div>
+		<div class="form-group">
+            <label for="patient.birth_date">Data de nascimento:</label>
+            <input class="form-control" id="patient.birth_date"
+                   name="patient.birth_date" type="text" readonly="readonly">
+        </div>
+		<div class="form-group">
+            <label for="patient.birth_date">Idade:</label>
+            <input class="form-control eligibleAgeOnly" id="patient.age" name="patient.age" type="text" readonly="readonly">
+        </div> 
+		<div class="form-group">
+            <label for="patient.sex">Sexo:</label>
+            <input class="form-control" id="patient.sex" name="patient.sex" type="text" readonly="readonly">
+        </div> 
+		<div class="form-group">
+            <label for="patient.medical_record_number">NID</label>
+            <input class="form-control" id="patient.medical_record_number" name="patient.medical_record_number" type="text" readonly="readonly">
+        </div>  
+	</div>
+	<div class="section">
+		<div class="form-group">
+			<label>Altura: <span class="required">*</span></label>
+			<input class="form-control" id="obs.altura" name="obs.altura" data-concept="5090^ALTURA (CM)^99DCT" onChange="calculateBMI()" type="number" step=".01"
+				   required="required">
+		</div>
+		<div class="form-group">
+			<label>Peso(kg): <span class="required">*</span></label>
+			<input class="form-control" id="obs.peso" name="obs.peso" data-concept="5089^PESO (KG)^99DCT" onChange="calculateBMI()" type="number" step=".01"
+				   required="required">
+		</div>
+		<div class="form-group">
+			<label>Indice de Massa Corporal (IMC):(kg/m2) <span class="required">*</span></label>
+			<input class="form-control" id="obs.imc" name="obs.imc" data-concept="1342^INDICE MASSA CORPORAL^99DCT" type="number" step=".01" required="required">
+		</div> 
+		<div class="sub-section">
+			<h4>Classificação Nutricional:</h4>
+			<div class="form-group">
+				<div class="radio">
+					<label>
+						<input name="obs.classificacao_nutricional" id="normal" type="radio" data-concept="6336^CLASSIFICACAO DE DESNUTRITIO^99DCT"
+							   value="1115^NORMAL^99DCT"> Normal
+					</label>
+				</div>
+				<div class="radio">
+					<label>
+						<input name="obs.classificacao_nutricional" id="ligeira" type="radio" data-concept="6336^CLASSIFICACAO DE DESNUTRITIO^99DCT" 
+							   value="6335^DESNUTRITIO LIGEIRA^99DCT"> Ligeira
+					</label>￼
+				</div>
+				<div class="radio">
+					<label>
+						<input name="obs.classificacao_nutricional" id="moderada" type="radio" data-concept="6336^CLASSIFICACAO DE DESNUTRITIO^99DCT" value="68^MALNUTRITIO MODERADA SEM RESPOSTA AO TRATAMENTO^99DCT">
+						Moderada
+					</label>
+				</div>
+				<div class="radio">
+					<label>
+						<input name="obs.classificacao_nutricional" id="grave" type="radio" data-concept="6336^CLASSIFICACAO DE DESNUTRITIO^99DCT" value="1844^MALNUTRICAO GRAVE SEM RESPOSTA AO TRATAMENTO ^99DCT">
+						Grave
+					</label>
+				</div>
+			</div>
+		</div>
+		<div class="sub-section">
+			<h4>Apoio Nutricional (ANUT):</h4>
+			<div class="form-group">
+				<div class="radio">
+					<label>
+						<input name="obs.apoio_nutricional" id="obs.apoio_nutricional" type="radio" data-concept="2152^SUPLEMENTO NUTRICIONAL^99DCT"
+							   value="1065^SIM^99DCT"> Sim
+					</label>
+				</div>
+				<div class="radio">
+					<label>
+						<input name="obs.apoio_nutricional" id="obs.apoio_nutricional" type="radio" data-concept="2152^SUPLEMENTO NUTRICIONAL^99DCT" 
+							   value="1066^NAO^99DCT"> Não
+					</label>￼
+				</div>
+			</div>
+			<div class="form-group apoio_nutricional_div">
+				<label for="">Tipo:</label>
+				<div class="form-group">
+					<label class="font-normal">
+						<input type="checkbox" data-concept="2152^SUPLEMENTO NUTRICIONAL^99DCT" value="2151^CESTA BUSICA DE ALIMENTOS^99DCT"> CSB
+					</label>
+				</div>
+				<div class="form-group">
+					<label class="font-normal">
+						<input type="checkbox" data-concept="2152^SUPLEMENTO NUTRICIONAL^99DCT" value="1884^PLUMPY NUT^99DCT"> Plumpy Nut
+					</label>
+				</div>
+				<div class="form-group">
+					<label class="font-normal">
+						<input type="checkbox" data-concept="2152^SUPLEMENTO NUTRICIONAL^99DCT" value="2150^PAPA ENRIQUECIDA^99DCT"> Papa Enriquecida
+					</label>
+				</div>
+				<div class="form-group">
+					<label class="font-normal">
+						<input type="checkbox" data-concept="2152^SUPLEMENTO NUTRICIONAL^99DCT" value="5622^OUTRO, NAO CODIFICADO^99DCT"> Outro
+					</label>
+				</div>
+			</div>
+		</div>
+		<div class="form-group">
+			<label>Temperatura (ºC) <span class="required">*</span></label>
+			<input class="form-control" id="obs.temperatura" name="obs.temperatura" data-concept="5088^TEMPERATURA^99DCT" type="number" step=".01" required="required">
+		</div> 
+		<div class="sub-section form-group">
+			<label>Tensão Arterial (TA):</label>
+			<div class="form-group">
+				<input class="form-control" id="obs.tensao_arterial" name="obs.tensao_arterial" data-concept="5085^PRESSUO ARTERIAL SISTOLICA^99DCT" 
+						   type="number" required="required">
+			/
+				<input class="form-control" id="obs.tensao_arterial" name="obs.tensao_arterial" data-concept="5086^PRESSUO ARTERIAL DIASTOLICA^99DCT" 
+						   type="number" required="required">
+			</div>
+		</div>
+		<div class="form-group female_gender_check_div">
+			<div class="form-group">
+				<label class="font-normal">
+					<input type="checkbox" data-concept="1982^ESTA GRAVIDA^99DCT" value="44^GRAVIDEZ^99DCT"> Nova
+				</label>
+			</div>
+			<div class="form-group">
+				<label for="dum">DUM: <span class="required">*</span></label>
+				<input class="form-control datepicker nonFutureDate past-date" id="obs.dum" name="obs.dum" data-concept="1465^DATA DE ULTUMO MENSTRUACAO^99DCT"
+					   type="text" required="required" readonly>
+			</div>
+			<div class="form-group">
+				<label for="dpp">DPP: <span class="required">*</span></label>
+				<input class="form-control datepicker" id="obs.dpp" name="obs.dpp" data-concept="1600^DATA GRAVIDEZ^99DCT"
+					   type="text" required="required" readonly>
+			</div>
+			<div class="sub-section">
+				<h4></h4>
+				<div class="form-group">
+					<div class="radio">
+						<label>
+							<input name="obs.ptv_ou_tarv" id="obs.ptv_ou_tarv" type="radio" data-concept="6286^PTV OU TARV^99DCT"
+								   value="1598^PREVENCAO DE TRANSMISSAO VERTICAL^99DCT"> PTV
+						</label>
+					</div>
+					<div class="radio">
+						<label>
+							<input name="obs.ptv_ou_tarv" id="obs.ptv_ou_tarv" type="radio" data-concept="6286^PTV OU TARV^99DCT" 
+								   value="6276^TARV^99DCT"> TARV
+						</label>￼
+					</div>
+				</div>
+			</div>
+			<div class="sub-section">
+				<h4>Lactante:</h4>
+				<div class="form-group">
+					<div class="radio">
+						<label>
+							<input name="obs.lactante" id="obs.lactante" type="radio" data-concept="6332^LACTANTE^99DCT"
+								   value="1065^SIM^99DCT"> Sim
+						</label>
+					</div>
+					<div class="radio">
+						<label>
+							<input name="obs.lactante" id="obs.lactante" type="radio" data-concept="6332^LACTANTE^99DCT" 
+								   value="1066^NAO^99DCT"> Não
+						</label>￼
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>	
+	<div class="section">
+		<h3>LABORATÓRIO</h3>
+		<div class="form-group">
+			<label for="">Data de Processamento do CD4 (d-m-a):</label>
+			<input class="form-control datepicker nonFutureDate past-date" id="obs.data_de_cd4_processamento" name="obs.data_de_cd4_processamento" 
+				   data-concept="6256^DATA DE PROCESSAMENTO DE CD4^99DCT" type="text" readonly>
+		</div>
+		<div class="sub-section form-group">
+			<label>CD4 (/mm) / CD4 (%):</label>
+			<div class="form-group">
+				<input class="form-control" id="obs.cd4_mm" name="obs.cd4_mm" data-concept="1695^CD4 ABSOLUTO OBS^99DCT" 
+						   type="number" required="required">
+			/
+				<input class="form-control" id="obs.cd4_per" name="obs.cd4_per" data-concept="730^CD4%^99DCT" 
+						   type="number" required="required">
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="">Carga Viral (CV):</label>
+			<input class="form-control" id="obs.carga_viral" name="obs.carga_viral" data-concept="856^CARGA VIRAL^99DCT" type="number">
+		</div>
+		<div class="form-group">
+			<label for="">Globulos Brancos (GB):</label>
+			<input class="form-control" id="obs.globulos_brancos" name="obs.g_brancos" data-concept="678^GLOBULOS BRANCOS^99DCT" type="number">
+		</div>
+		<div class="sub-section form-group">
+			<label>Neutrofilos (N) (l/mm3 e %):</label>
+			<div class="form-group">
+				<input class="form-control" id="obs.neutrofilos_abs_obs" name="obs.neutrofilos_abs_obs" data-concept="1690^NEUTROFILOS ABSOLUTO OBS^99DCT" 
+						   type="number" required="required">
+			/
+				<input class="form-control" id="obs.neutrofilos" name="obs.neutrofilos" data-concept="1022^NEUTROFILOS^99DCT" 
+						   type="number" required="required">
+			</div>
+		</div>
+		<div class="sub-section form-group">
+			<label>Linfócitos (L) (l/mm3 e %):</label>
+			<div class="form-group">
+				<input class="form-control" id="obs.linfocitos_abs_obs" name="obs.linfocitos_abs_obs" data-concept="1691^LINFOCITOS ABSOLUTO OBS^99DCT" 
+						   type="number" required="required">
+			/
+				<input class="form-control" id="obs.linfocitos" name="obs.linfocitos" data-concept="1021^LINFOCITOS^99DCT" 
+						   type="number" required="required">
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="">Hemoglobina (HgB) (g/dl):</label>
+			<input class="form-control" id="obs.hemoglobina" name="obs.hemoglobina" data-concept="1692^HEMOGLOBINA OBS^99DCT" type="number" step=".01">
+		</div>
+		<div class="sub-section form-group">
+			<label>Provas hepáticas - ALT / AST (U/L):</label>
+			<div class="form-group">
+				<input class="form-control" id="obs.alt_obs" name="obs.alt_obs" data-concept="1694^ALT OBS^99DCT" type="number" step=".01">
+			/
+				<input class="form-control" id="obs.ast_obs" name="obs.ast_obs" data-concept="1693^AST OBS^99DCT" type="number" step=".01">
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="">Glicémia (GL) (g/dl):</label>
+			<input class="form-control" id="obs.glicemia_gl" name="obs.glicemia_gl" data-concept="887^GLC^99DCT" type="number" step=".01">
+		</div>
+		<div class="sub-section form-group">
+			<label>Ureia (UR) (mg/dl)/Creatinina (CR) (mmol/L):</label>
+			<div class="form-group">
+				<input class="form-control" id="obs.ureia_ur" name="obs.ureia_ur" data-concept="857^UREIA^99DCT" type="number" step=".01">
+			/
+				<input class="form-control" id="obs.creatinina_cr" name="obs.creatinina_cr" data-concept="1011^CREATININA QUINASE^99DCT" type="number"
+					   step=".01">
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="">Amilase:</label>
+			<input class="form-control" id="obs.amilase" name="obs.amilase" data-concept="1299^AMILASE^99DCT" type="number">
+		</div>
+		<div class="female_gender_check_div">
+			<div class="sub-section">
+				<h4>Teste de gravidez:</h4>
+				<div class="form-group">
+					<div class="radio">
+						<label>
+							<input name="obs.teste_de_gravidez" id="obs.teste_de_gravidez" type="radio" data-concept="45^TESTE DE GRAVIDEZ COM URINA^99DCT"
+								   value="703^POSITIVO^99DCT"> Positivo
+						</label>
+					</div>
+					<div class="radio">
+						<label>
+							<input name="obs.teste_de_gravidez" id="obs.teste_de_gravidez" type="radio" data-concept="45^TESTE DE GRAVIDEZ COM URINA^99DCT" 
+								   value="64^NEGATIVO^99DCT"> Negativo
+						</label>￼
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="">Plaquetas:</label>
+			<input class="form-control" id="obs.plaquetas" name="obs.plaquetas" data-concept="729^PLAQUETES^99DCT" type="number">
+		</div>
+		<div class="sub-section">
+			<h4>RPR:</h4>
+			<div class="form-group">
+				<div class="radio">
+					<label>
+						<input name="obs.rpr" id="obs.rpr" type="radio" data-concept="1655^RAPID PLASMA REAGIN^99DCT"
+							   value="1228^REACTIVO^99DCT"> Positivo
+					</label>
+				</div>
+				<div class="radio">
+					<label>
+						<input name="obs.rpr" id="obs.rpr" type="radio" data-concept="1655^RAPID PLASMA REAGIN^99DCT" 
+							   value="1229^NAO REACTIVO^99DCT"> Negativo
+					</label>￼
+				</div>
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="obs.estadio_oms">ESTADIO OMS:</label>
+			<select class="form-control" id="obs.estadio_oms" name="obs.estadio_oms" data-concept="5356^ESTADIO OMS ACTUAL^99DCT">
+				<option value="">...</option>
+				<option value="1204^ESTADIO I OMS, ADULTO^99DCT">ESTADIO I</option>
+				<option value="1205^ESTADIO II OMS, ADULTO^99DCT">ESTADIO II</option>
+				<option value="1206^ESTADIO III OMS, ADULTO^99DCT">ESTADIO III</option>
+				<option value="1207^ESTADIO IV OMS, ADULTO^99DCT">ESTADIO IV</option>						
+			</select>
+		</div>
+		<div class="sub-section">
+			<label for="">Outros diagnósticos:</label>
+			<div class="form-group">
+				<label class="font-normal">
+					<input type="checkbox" data-concept="1406^OUTROS DIAGNOSTICOS^99DCT" value="123^MALARIA^99DCT"> Malária
+				</label>
+			</div>
+			<div class="form-group">
+				<label class="font-normal">
+					<input type="checkbox" data-concept="1406^OUTROS DIAGNOSTICOS^99DCT" value="3^ANEMIA^99DCT"> Anemia
+				</label>
+			</div>
+			<div class="form-group">
+				<label class="font-normal">
+					<input type="checkbox" data-concept="1406^OUTROS DIAGNOSTICOS^99DCT" value="68^MALNUTRICAO^99DCT"> Malnutrição
+				</label>
+			</div>
+			<div class="form-group">
+				<label class="font-normal">
+					<input type="checkbox" data-concept="1406^OUTROS DIAGNOSTICOS^99DCT" value="216^LEUCEMIA^99DCT"> Leucemia
+				</label>
+			</div>
+			<div class="form-group">
+				<label class="font-normal">
+					<input type="checkbox" data-concept="1406^OUTROS DIAGNOSTICOS^99DCT" value="5046^ENCEFALOPATIA PROGRESSIVA^99DCT"> Encefalopatia
+				</label>
+			</div>
+			<div class="form-group">
+				<label class="font-normal">
+					<input type="checkbox" data-concept="1406^OUTROS DIAGNOSTICOS^99DCT" value="218^OTITE EXTERNA^99DCT"> Otite
+				</label>
+			</div>
+			<div class="form-group">
+				<label class="font-normal">
+					<input type="checkbox" data-concept="1406^OUTROS DIAGNOSTICOS^99DCT" value="5945^FEBRE^99DCT"> Febre
+				</label>
+			</div>
+			<div class="form-group">
+				<label class="font-normal">
+					<input type="checkbox" data-concept="1406^OUTROS DIAGNOSTICOS^99DCT" value="507^SARCOMA DE KAPOSI^99DCT"> Sarcoma de Kaposi
+				</label>
+			</div>
+			<div class="form-group">
+				<label class="font-normal">
+					<input type="checkbox" data-concept="1406^OUTROS DIAGNOSTICOS^99DCT" value="16^DIARREIA^99DCT"> Diarreia
+				</label>
+			</div><div class="form-group">
+				<label class="font-normal">
+					<input type="checkbox" data-concept="1406^OUTROS DIAGNOSTICOS^99DCT" value="1790^FALENCIA TERAPEUTICA^99DCT"> Falência Terapeutica
+				</label>
+			</div>	
+			<div class="form-group">
+				<label for="">Outros:</label>
+				<input class="form-control" id="obs.outros_diagnosticos" name="obs.outros_diagnosticos" data-concept="1649^OUTROS DIAGNOSTICOS - SEM CODIGO^99DCT"
+					   type="text">
+			</div>
+		</div>		
+	</div>
+	<div class="section">
+		<h3>Infecções Oportunistas</h3>
+		<div class="sub-section">
+			<h4>Rastreio de ITS(Tem sintomas sugestivas de ITS)?</h4>
+			<div class="form-group">
+				<div class="radio">
+					<label>
+						<input name="obs.rastreio_de_its" id="obs.rastreio_de_its" type="radio" data-concept="6258^RASTREIO DE ITS^99DCT"
+							   value="1065^SIM^99DCT"> Sim
+					</label>
+				</div>
+				<div class="radio">
+					<label>
+						<input name="obs.rastreio_de_its" id="obs.rastreio_de_its" type="radio" data-concept="6258^RASTREIO DE ITS^99DCT" 
+							   value="1066^NAO^99DCT"> Não
+					</label>￼
+				</div>
+			</div>
+		</div>
+		<div class="sub-section">
+			<h4>Rastreio de TB(Tem sintomas sugestivas de TB)?</h4>
+			<div class="form-group">
+				<div class="radio">
+					<label>
+						<input name="obs.rastreio_de_tb" id="obs.rastreio_de_tb" type="radio" data-concept="6257^RASTREIO DE TB^99DCT"
+							   value="1065^SIM^99DCT"> Sim
+					</label>
+				</div>
+				<div class="radio">
+					<label>
+						<input name="obs.rastreio_de_tb" id="obs.rastreio_de_tb" type="radio" data-concept="6257^RASTREIO DE TB^99DCT" 
+							   value="1066^NAO^99DCT"> Não
+					</label>￼
+				</div>
+			</div>
+		</div>
+		<div class="sub-section">
+			<h4>Resultado para a Investigação para TB de BK e/ou RX?</h4>
+			<div class="form-group">
+				<div class="radio">
+					<label>
+						<input name="obs.resultado_para_de_tb" id="obs.resultado_para_de_tb" type="radio" data-concept="6277^RESULTADO DO BK^99DCT"
+							   value="703^POSITIVO^99DCT"> Positivo
+					</label>
+				</div>
+				<div class="radio">
+					<label>
+						<input name="obs.resultado_para_de_tb" id="obs.resultado_para_de_tb" type="radio" data-concept="6277^RESULTADO DO BK^99DCT" 
+							   value="664^NEGATIVO^99DCT"> Negativo
+					</label>￼
+				</div>
+			</div>
+		</div>
+		<div class="sub-section">
+			<h4>Tratamento de TB (Veja Cartão de TB)</h4>
+			<div class="form-group">
+				<div class="radio">
+					<label>
+						<input name="obs.tratamento_de_tb" id="obs.tratamento_de_tb" type="radio" data-concept="1268^TRATAMENTO DE TUBERCULOSE^99DCT"
+							   value="1065^SIM^99DCT"> Sim
+					</label>
+				</div>
+				<div class="radio">
+					<label>
+						<input name="obs.tratamento_de_tb" id="obs.tratamento_de_tb" type="radio" data-concept="1268^TRATAMENTO DE TUBERCULOSE^99DCT" 
+							   value="1066^NAO^99DCT"> Não
+					</label>￼
+				</div>
+			</div>
+			<div class="tratamento_de_tb_div">
+				<div class="form-group">
+					<label for="inicio_tb">Data Inicio:</label>
+					<input class="form-control datepicker nonFutureDate past-date" id="obs.inicio_tb" name="obs.inicio_tb" data-concept="1113^DATA DE INICIO^99DCT"
+						   type="text" readonly>
+				</div>
+				<div class="form-group">
+					<label for="fim_tb">Data Fim: </label>
+					<input class="form-control datepicker" id="obs.fim_tb" name="obs.fim_tb" data-concept="6120^DATA DE FIM DO TRATAMENTO TB^99DCT"
+						   type="text" readonly>
+				</div>
+			</div>
+		</div>
+		<div class="sub-section">
+			<h4>Profilaxia com Cotrimoxazol - TPC</h4>
+			<div class="form-group">
+				<div class="radio">
+					<label>
+						<input name="obs.profilaxia_com_cotrimoxazol" id="obs.profilaxia_com_cotrimoxazol" type="radio" data-concept="6121^PROFILAXIA COM COTRIMOXAZOL^99DCT"
+							   value="1065^SIM^99DCT"> Sim
+					</label>
+				</div>
+				<div class="radio">
+					<label>
+						<input name="obs.profilaxia_com_cotrimoxazol" id="obs.profilaxia_com_cotrimoxazol" type="radio" data-concept="6121^PROFILAXIA COM COTRIMOXAZOL^99DCT" 
+							   value="1066^NAO^99DCT"> Não
+					</label>￼
+				</div>
+			</div>
+			<div class="profilaxia_com_cotrimoxazol_div">
+				<div class="form-group">
+					<label for="inicio_tpc">Data Inicio:</label>
+					<input class="form-control datepicker nonFutureDate past-date" id="obs.inicio_tpc" name="obs.inicio_tpc" data-concept="6126^DATA DE INICIO DA PROFILAXIA COM COTRIMOXAZOL^99DCT"
+						   type="text" readonly>
+				</div>
+				<div class="form-group">
+					<label for="fim_tpc">Data Fim: </label>
+					<input class="form-control datepicker" id="obs.fim_tpc" name="obs.fim_tpc" data-concept="6127^DATA DE FIM DA PROFILAXIA COM COTRIMOXAZOL^99DCT"
+						   type="text" readonly>
+				</div>
+			</div>
+		</div>
+		<div class="sub-section">
+			<h4>Profilaxia com INH - TPI</h4>
+			<div class="form-group">
+				<div class="radio">
+					<label>
+						<input name="obs.profilaxia_com_inh" id="obs.profilaxia_com_inh" type="radio" data-concept="6122^PROFILAXIA COM ISONIAZIDA^99DCT"
+							   value="1065^SIM^99DCT"> Sim
+					</label>
+				</div>
+				<div class="radio">
+					<label>
+						<input name="obs.profilaxia_com_inh" id="obs.profilaxia_com_inh" type="radio" data-concept="6122^PROFILAXIA COM ISONIAZIDA^99DCT" 
+							   value="1066^NAO^99DCT"> Não
+					</label>￼
+				</div>
+			</div>
+			<div class="profilaxia_com_inh_div">
+				<div class="form-group">
+					<label for="inicio_profilaxia_com_inh">Data Inicio:</label>
+					<input class="form-control datepicker nonFutureDate past-date" id="obs.inicio_profilaxia_com_inh" name="obs.inicio_profilaxia_com_inh" 
+						   data-concept="6128^DATA DE INICIO DA PROFILAXIA COM ISONIAZIDA^99DCT" type="text" readonly>
+				</div>
+				<div class="form-group">
+					<label for="fim_profilaxia_com_inh">Data Fim: </label>
+					<input class="form-control datepicker" id="obs.fim_profilaxia_com_inh" name="obs.fim_profilaxia_com_inh" 
+						   data-concept="6129^DATA DE FIM DA PROFILAXIA COM ISONIAZIDA^99DCT" type="text" readonly>
+				</div>
+			</div>
+		</div>
+		<div class="sub-section">
+			<h4>Aconselhado para Adesão aos Cuidados</h4>
+			<div class="form-group">
+				<div class="radio">
+					<label>
+						<input name="obs.adesao" id="obs.adesao" type="radio" data-concept="1714^ADESAO^99DCT" value="1065^SIM^99DCT"> Sim
+					</label>
+				</div>
+				<div class="radio">
+					<label>
+						<input name="obs.adesao" id="obs.adesao" type="radio" data-concept="1714^ADESAO^99DCT" value="1066^NAO^99DCT"> Não
+					</label>￼
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="section">
+		<h3>TARV</h3>
+		<div class="form-group">
+			<label for="">Data de Elegibilidade para iniciar o TARV: </label>
+			<input class="form-control datepicker" id="obs.data_de_elegibilidade_para_iniciar" name="obs.data_de_elegibilidade_para_iniciar" 
+				   data-concept="6278^DATA DE ELEGIBILIDADE PARA INICIAR O TARV^99DCT" type="text" readonly>
+		</div>
+		<div class="form-group">
+			<label for="">Data de Inicio de TARV: </label>
+			<input class="form-control datepicker" id="obs.data_de_inicio_de_tarv" name="obs.data_de_inicio_de_tarv" 
+				   data-concept="1190^DATA DE INICIO DO TARV^99DCT" type="text" readonly>
+		</div>
+		<div class="female_gender_check_div">
+			<div class="sub-section">
+				<label for="">Critério de Elegibilidade para oInicio do TARV:</label>
+				<div class="form-group">
+					<label class="font-normal">
+						<input type="checkbox" data-concept="6334^CRITERIO PARA INICIO DE TRATAMENTO ARV^99DCT" value="6333^CLINICO E IMUNOLOGICO^99DCT"> 
+						CLINICO-IMUNOLOGICO
+					</label>
+				</div>
+				<div class="form-group">
+					<label class="font-normal">
+						<input type="checkbox" data-concept="6334^CRITERIO PARA INICIO DE TRATAMENTO ARV^99DCT" value="6331^B+^99DCT"> B+ (GRAVIDEZ)
+					</label>
+				</div>
+				<div class="form-group">
+					<label class="font-normal">
+						<input type="checkbox" data-concept="6334^CRITERIO PARA INICIO DE TRATAMENTO ARV^99DCT" value="6332^LACTANTE^99DCT"> LACTANTE
+					</label>
+				</div>
+			</div>	
+		</div>
+		<div class="male_gender_check_div">
+			<label for="">Critério de Elegibilidade para oInicio do TARV:</label>
+			<div class="form-group">
+				<label class="font-normal">
+					<input type="checkbox" data-concept="6334^CRITERIO PARA INICIO DE TRATAMENTO ARV^99DCT" value="6333^CLINICO E IMUNOLOGICO^99DCT"> 
+					CLINICO-IMUNOLOGICO
+				</label>
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="">Data de Reinicio de TARV: </label>
+			<input class="form-control datepicker" id="obs.data_de_reinicio" name="obs.data_de_reinicio" data-concept="6279^DATA DE REINICIO DE TARV^99DCT"
+				   type="text" readonly>
+		</div>
+		<div class="sub-section">
+			<h3>Médicamentos ARVs</h3>
+			<div class="form-group">
+				<label for="obs.medicamentos_arvs">Esquema ARV:</label>
+				<select class="form-control" id="obs.medicamentos_arvs" name="obs.medicamentos_arvs" data-concept="1087^ANTI-RETROVIRAIS ANTERIORES USADOS PARA TRATAMENTO^99DCT">
+					<option value="">...</option>
+					<option value="1651^AZT+3TC+NVP^99DCT">AZT+3TC+NVP</option>	
+					<option value="6324^TDF+3TC+EFV^99DCT">TDF+3TC+EFV</option>		
+					<option value="1703^AZT+3TC+EFV^99DCT">AZT+3TC+EFV</option>		
+					<option value="6243^TDF+3TC+NVP^99DCT">TDF+3TC+NVP</option>	
+					<option value="6103^D4T+3TC+LPV/r^99DCT">D4T+3TC+LPV/r</option>	
+					<option value="792^D4T+3TC+NVP^99DCT">D4T+3TC+NVP</option>		
+					<option value="1827^D4T+3TC+EFV^99DCT">D4T+3TC+EFV</option>		
+					<option value="6102^D4T+3TC+ABC^99DCT">D4T+3TC+ABC</option>		
+					<option value="6116^AZT+3TC+ABC^99DCT">AZT+3TC+ABC</option>		
+					<option value="6108^TDF+3TC+LPV/r(2ª LINHA)^99DCT">TDF+3TC+LPV/r(2ª Linha)</option>		
+					<option value="6100^AZT+3TC+LPV/r^99DCT">AZT+3TC+LPV/r(2ª Linha)</option>	
+					<option value="6329^TDF+3TC+RAL+DRV/r^99DCT">TDF+3TC+RAL+DRV/r (3ª Linha)</option>	
+					<option value="6330^AZT+3TC+RAL+DRVr^99DCT">AZT+3TC+RAL+DRV/r (3ª Linha)</option>	
+					<option value="5424^ESTADIO^99DCT">OUTRO</option>	
+				</select>
+			</div>
+			<div class="form-group">
+				<label for="obs.tipo_de_arves">Tipo:</label>
+				<select class="form-control" id="obs.tipo_de_arves" name="obs.tipo_de_arves" data-concept="1255^GESTEO DE TARV^99DCT">
+					<option value="">...</option>
+					<option value="1256^INICIO TARV^99DCT">INICIO(I)</option>
+					<option value="1257^CONTINUAR^99DCT">CONTINUAÇÃO (C)</option>
+					<option value="6282^CONTINUA COM INTOLERANCIA^99DCT">CONT. COM INTOLERÂNCIA (CI)</option>
+					<option value="1705^REINICIAR^99DCT">REINICIO (R)</option>
+					<option value="1260^INTERROMPER^99DCT">INTERROMPER</option>
+					<option value="1259^ALTERAR^99DCT">MUDANCA DE REGIME</option>
+				</select>
+			</div>
+			<div class="form-group">
+				<label for="obs.motivo_interromper">Interrompeu por:</label>
+				<select class="form-control" id="obs.motivo_interromper" name="obs.motivo_interromper" data-concept="1252^MOTIVO PARA INTERROMPER ANTI-RETROVIRAIS^99DCT">
+					<option value="">...</option>
+					<option value="2015^EFEITOS SECUNDARIOS ARV^99DCT">EFEITOS SECUNDARIOS</option>
+					<option value="6283^NAO ADERENTE^99DCT">NAO ADERENTE</option>
+					<option value="6284^INICIATIVA DO DOENTE^99DCT">INICIATIVA DO DOENTE</option>
+					<option value="843^FALENCIA DE TRATAMENTO^99DCT">FALENCIA DE TRATAMENTO</option>
+					<option value="102^TOXICIDADE^99DCT">TOXIDADE</option>
+					<option value="5622^OUTRO, NAO CODIFICADO^99DCT">OUTRO</option>
+				</select>
+			</div>
+			<div class="form-group">
+				<label for="obs.motivo_mudanca">Mudança de regime:</label>
+				<select class="form-control" id="obs.motivo_mudanca" name="obs.motivo_mudanca" data-concept="1792^JUSTIFICATIVE PARA MUDANCA DO TRATAMENTO ANTI-RETROVIRAL^99DCT">
+					<option value="">...</option>
+					<option value="1264^PROFILAXIA DE TUBERCULOSE INICIADO^99DCT">TRATAMENTO DE TB (INICIO)</option>
+					<option value="6247^TERMINOU TRATAMENTO DA TUBERCULOSE^99DCT">TRATAMENTO DE TB (FIM)</option>
+					<option value="1982^ESTA GRAVIDA^99DCT">GRAVIDEZ</option>
+					<option value="6248^PARTO^99DCT">PARTO</option>
+					<option value="1790^FALENCIA TERAPEUTICA^99DCT">FALENCIA TERAPEUTICA</option>
+					<option value="3^ANEMIA^99DCT">ANEMIA</option>
+					<option value="1789^AUSENCIA DE EFICACIA INICIAL^99DCT">AUSENCIA DE EFICACIA</option>
+					<option value="987^INTOLERANCIA^99DCT">INTOLERANCIA</option>
+					<option value="5622^OUTRO, NAO CODIFICADO^99DCT">OUTRO</option>
+				</select>
+			</div>
+		</div>
+		<div class="sub-section"> 
+			<h3>Outros Medicamentos</h3>
+			<div class="section repeat">
+				<div class="form-group">
+					<select class="form-control" id="obs.outros_medicamentos" name="obs.outros_medicamentos" data-concept="1719^TRATAMENTO PRESCRITO^99DCT">
+						<option value="">...</option>
+						<option value="22426^AC.SALICILICO+AC. LACT+5FU^99DCT">AC.SALICILICO+AC. LACT+5FU</option>
+						<option value="22495^ACARBOSE^99DCT">ACARBOSE</option>
+						<option value="22463^ACETATO DE ALUMINIO^99DCT">ACETATO DE ALUMINIO</option>
+						<option value="22134^ACETAZOLAMIDA^99DCT">ACETAZOLAMIDA</option>
+						<option value="22157^ACETILCISTEINA^99DCT">ACETILCISTEINA</option>
+						<option value="22755^ACETILCISTEINA LIQUIDO ORAL 10%^99DCT">ACETILCISTEINA LIQUIDO ORAL 10%</option>
+						<option value="22595^ACETILCISTEINA LIQUIDO ORAL 20%^99DCT">ACETILCISTEINA LIQUIDO ORAL 20%</option>
+						<option value="22537^ACETILCOLINA^99DCT">ACETILCOLINA</option>
+						<option value="22473^ACETILSALICILATO DE LISINA^99DCT">ACETILSALICILATO DE LISINA</option>
+						<option value="732^ACICLOVIR^99DCT">ACICLOVIR</option>
+						<option value="22059^ACIDO ACETICO^99DCT">ACIDO ACETICO</option>					
+						<option value="22237^ACIDO ACETIL SALCILICO^99DCT">ACIDO ACETIL SALCILICO</option>
+						<option value="22543^ACIDO ACETILSALICILICO  (ASPIRINA)^99DCT">ACIDO ACETILSALICILICO  (ASPIRINA)</option>
+						<option value="22554^ACIDO ACETILSALICILICO (ASPIRINA)^99DCT">ACIDO ACETILSALICILICO (ASPIRINA)</option>
+						<option value="22146^ACIDO AMINOCAPROICO^99DCT">ACIDO AMINOCAPROICO</option>
+						<option value="22097^ACIDO AMINOSALICILICO (PASER)^99DCT">ACIDO AMINOSALICILICO (PASER)</option>
+						<option value="22404^ACIDO ASCORBICO (VIT C)^99DCT">ACIDO ASCORBICO (VIT C)</option>
+						<option value="22483^ACIDO ASCORBICO (VITAMINA C)^99DCT">ACIDO ASCORBICO (VITAMINA C)</option>
+						<option value="22449^ACIDO BENZOICO^99DCT">ACIDO BENZOICO</option>
+						<option value="22339^ACIDO BENZOICO+ACIDO SALICILICO^99DCT">ACIDO BENZOICO+ACIDO SALICILICO</option>
+						<option value="22435^ACIDO CITRICO+CITRATO DE POTASSIO+CITRATO DE SODIO^99DCT">ACIDO CITRICO+CITRATO DE POTASSIO+CITRATO DE SODIO</option>
+						<option value="257^ACIDO FOLICO^99DCT">ACIDO FOLICO</option>
+						<option value="22068^ACIDO FOLICO+VIT B12^99DCT">ACIDO FOLICO+VIT B12</option>
+						<option value="22072^ACIDO FOLINICO (FOLINATO DE CALCIO)^99DCT">ACIDO FOLINICO (FOLINATO DE CALCIO)</option>
+						<option value="22374^ACIDO FUSIDICO^99DCT">ACIDO FUSIDICO</option>
+						<option value="268^ACIDO NALIDIXICO^99DCT">ACIDO NALIDIXICO</option>
+						<option value="22618^ACIDO SALICILICO^99DCT">ACIDO SALICILICO</option>
+						<option value="22152^ACIDO TRANEXAMICO^99DCT">ACIDO TRANEXAMICO</option>
+						<option value="22136^ACIDO TRICLOROACETICO^99DCT">ACIDO TRICLOROACETICO</option>
+						<option value="22589^ADENOSINA^99DCT">ADENOSINA</option>
+						<option value="22075^ADESIVO ELASTICO^99DCT">ADESIVO ELASTICO</option>					
+						<option value="22384^ADESIVO ESPARADRAPO^99DCT">ADESIVO ESPARADRAPO</option>
+						<option value="22351^ADESIVO ESPARADRAPO(TRANSPORE)^99DCT">ADESIVO ESPARADRAPO(TRANSPORE)</option>
+						<option value="22491^ADESIVO PERFURADO^99DCT">ADESIVO PERFURADO</option>
+						<option value="22078^ADESIVO TAPE (MICROPORE TIPO CIRUGICO)^99DCT">ADESIVO TAPE (MICROPORE TIPO CIRUGICO)</option>
+						<option value="22373^ADESIVO TRANSPARENTE^99DCT">ADESIVO TRANSPARENTE</option>
+						<option value="22205^ADESIVO TRANSPARENTE(MICROPORE)BP^99DCT">ADESIVO TRANSPARENTE(MICROPORE)BP</option>
+						<option value="22407^ADRENALINA^99DCT">ADRENALINA</option>
+						<option value="22024^ADRENALINA PEDIATRICA^99DCT">ADRENALINA PEDIATRICA</option>
+						<option value="22104^AGUA OXIGENADA^99DCT">AGUA OXIGENADA</option>
+						<option value="22732^AGUA PARA INJECTAVEIS^99DCT">AGUA PARA INJECTAVEIS</option>
+						<option value="22544^AGULHA HIPODERMICA^99DCT">AGULHA HIPODERMICA</option>
+						<option value="22654^AGULHA HIPODERMICA 16G^99DCT">AGULHA HIPODERMICA 16G</option>
+						<option value="22089^AGULHA HIPODERMICA 18G^99DCT">AGULHA HIPODERMICA 18G</option>
+						<option value="22290^AGULHA HIPODERMICA 20G^99DCT">AGULHA HIPODERMICA 20G</option>
+						<option value="22696^AGULHA HIPODERMICA 22G^99DCT">AGULHA HIPODERMICA 22G</option>
+						<option value="22566^AGULHA HIPODERMICA 24G^99DCT">AGULHA HIPODERMICA 24G</option>
+						<option value="941^ALBENDAZOL^99DCT">ALBENDAZOL</option>
+						<option value="848^ALBUMINA^99DCT">ALBUMINA</option>
+						<option value="22143^ALCATRAO DE HULHA (COALTAR)^99DCT">ALCATRAO DE HULHA (COALTAR)</option>
+						<option value="22652^ALCOOL GLICERINADO, 70%, 100 ML, FRASCO^99DCT">ALCOOL GLICERINADO, 70%, 100 ML, FRASCO</option>
+						<option value="22112^ALCOOL LITRO^99DCT">ALCOOL LITRO</option>
+						<option value="22768^ALENDRONATO  SODICO^99DCT">ALENDRONATO  SODICO</option>
+						<option value="22122^ALENDRONATO SODICO^99DCT">ALENDRONATO SODICO</option>
+						<option value="22765^ALFA TOCOFEROL (VITAMINA E)^99DCT">ALFA TOCOFEROL (VITAMINA E)</option>
+						<option value="22380^ALGODAO HIDROFILO^99DCT">ALGODAO HIDROFILO</option>
+						<option value="22326^ALGODAO OFTALMOLOGICO^99DCT">ALGODAO OFTALMOLOGICO</option>
+						<option value="22665^ALGODAO ORTOPEDICO^99DCT">ALGODAO ORTOPEDICO</option>
+						<option value="22517^ALOPURINOL^99DCT">ALOPURINOL</option>
+						<option value="733^ALPRAZOLAM^99DCT">ALPRAZOLAM</option>
+						<option value="22477^ALPROSTADIL^99DCT">ALPROSTADIL</option>
+						<option value="22359^AMIKACINA SULFATO^99DCT">AMIKACINA SULFATO</option>
+						<option value="742^AMILORIDA^99DCT">AMILORIDA</option>
+						<option value="22629^AMILORIDO^99DCT">AMILORIDO</option>
+						<option value="22685^AMILORIDO HCL^99DCT">AMILORIDO HCL</option>
+						<option value="22736^AMILORIDO+HIDROCLORTIAZIDA^99DCT">AMILORIDO+HIDROCLORTIAZIDA</option>
+						<option value="22257^AMINOACIDOS^99DCT">AMINOACIDOS</option>
+						<option value="928^AMINOFILINA^99DCT">AMINOFILINA</option>
+						<option value="22369^AMIODARONA HCL^99DCT">AMIODARONA HCL</option>
+						<option value="931^AMITRIPTILINA^99DCT">AMITRIPTILINA</option>
+						<option value="22647^AMLODIPINA^99DCT">AMLODIPINA</option>
+						<option value="22399^AMLODIPINA BESILATO^99DCT">AMLODIPINA BESILATO</option>
+						<option value="22149^AMODIAQUINA,HIDROCLORETO^99DCT">AMODIAQUINA,HIDROCLORETO</option>
+						<option value="22649^AMOROLFINE^99DCT">AMOROLFINE</option>
+						<option value="265^AMOXICILINA^99DCT">AMOXICILINA</option>
+						<option value="22141^AMOXICILINA +AC CLAVULANICO^99DCT">AMOXICILINA +AC CLAVULANICO</option>
+						<option value="450^AMOXICILINA E ACIDO CLAVULANICO^99DCT">AMOXICILINA E ACIDO CLAVULANICO</option>
+						<option value="22603^AMOXICILINA TRIHIDRATO^99DCT">AMOXICILINA TRIHIDRATO</option>
+						<option value="22438^AMOXICILINA+ACIDO CLAVULANICO^99DCT">AMOXICILINA+ACIDO CLAVULANICO</option>
+						<option value="269^AMPICILINA^99DCT">AMPICILINA</option>
+						<option value="22221^ANFOTERICINA B^99DCT">ANFOTERICINA B</option>
+						<option value="22645^ANTI HEMORROIDARIO^99DCT">ANTI HEMORROIDARIO</option>
+						<option value="22408^ANTI HEMORROIDARIO BISMUTO+ZN OX+LIDOCAINA^99DCT">ANTI HEMORROIDARIO BISMUTO+ZN OX+LIDOCAINA</option>
+						<option value="22035^ARTEMETER+LUMEFANTRINA^99DCT">ARTEMETER+LUMEFANTRINA</option>
+						<option value="746^ARTEMISININA^99DCT">ARTEMISININA</option>
+						<option value="6290^ARTESUNATO^99DCT">ARTESUNATO</option>
+						<option value="22470^ARTESUNATO+AMODIAQUINA^99DCT">ARTESUNATO+AMODIAQUINA</option>
+						<option value="22259^ARTIMISINA^99DCT">ARTIMISINA</option>
+						<option value="88^ASPIRINA^99DCT">ASPIRINA</option>
+						<option value="754^ATENOLOL^99DCT">ATENOLOL</option>
+						<option value="22763^ATORVASTATINA^99DCT">ATORVASTATINA</option>
+						<option value="22767^ATRACURIO^99DCT">ATRACURIO</option>
+						<option value="22508^ATROPINA SULFATO^99DCT">ATROPINA SULFATO</option>
+						<option value="22181^AXEROFTOL (VITAMINA A)^99DCT">AXEROFTOL (VITAMINA A) CAPS (200 000UI)</option>
+						<option value="22395^AXEROFTOL(VITAMINA A)^99DCT">AXEROFTOL(VITAMINA A) CAPS (100 000UI)</option>
+						<option value="22731^AXEROFTOL+ALFA TOCOFEROL^99DCT">AXEROFTOL+ALFA TOCOFEROL</option>
+						<option value="22346^AZATIOPRINA^99DCT">AZATIOPRINA</option>
+						<option value="735^AZITROMICINA^99DCT">AZITROMICINA</option>
+						<option value="22575^AZUL DE METILENO^99DCT">AZUL DE METILENO</option>
+						<option value="22388^BACITRACINA^99DCT">BACITRACINA</option>
+						<option value="22126^BACLOFENO^99DCT">BACLOFENO</option>
+						<option value="739^BALSAMO ANALGESICO^99DCT">BALSAMO ANALGÉSICO</option>
+						<option value="22235^BCG INTRAVESICAL^99DCT">BCG INTRAVESICAL</option>
+						<option value="1240^BECLOMETASONA^99DCT">BECLOMETASONA</option>
+						<option value="22260^BENAZEPRIL+HIDROCLOROTIAZIDA^99DCT">BENAZEPRIL+HIDROCLOROTIAZIDA</option>
+						<option value="22644^BENZIDAMINA HCL^99DCT">BENZIDAMINA HCL</option>
+						<option value="409^BENZOATO DE BENZILA^99DCT">BENZOATO DE BENZILA</option>
+						<option value="22044^BENZOATO DE BENZILO^99DCT">BENZOATO DE BENZILO</option>
+						<option value="22735^BENZOATO DE SODIO^99DCT">BENZOATO DE SODIO</option>
+						<option value="22716^BETAMETASONA DIPROPIONATO^99DCT">BETAMETASONA DIPROPIONATO</option>
+						<option value="22385^BETAMETASONA+ACIDO SALICILICO^99DCT">BETAMETASONA+ACIDO SALICILICO</option>
+						<option value="22037^BETAMETASONA+CLOTRIMAZOL+GENTAMICINA^99DCT">BETAMETASONA+CLOTRIMAZOL+GENTAMICINA</option>
+						<option value="22065^BETAMETASONA+NEOMICINA^99DCT">BETAMETASONA+NEOMICINA</option>
+						<option value="786^BETAMETASONE^99DCT">BETAMETASONE</option>
+						<option value="22094^BETANECOL^99DCT">BETANECOL</option>
+						<option value="22687^BEZAFIBRATO^99DCT">BEZAFIBRATO</option>
+						<option value="22300^BICALUTAMIDA^99DCT">BICALUTAMIDA</option>
+						<option value="22298^BICARBONATO DE SODIO^99DCT">BICARBONATO DE SODIO</option>
+						<option value="759^BIFONAZOL^99DCT">BIFONAZOL</option>
+						<option value="22507^BIPERIDENO HIDROCLORETO^99DCT">BIPERIDENO HIDROCLORETO</option>
+						<option value="22531^BIPERIDENO LACTATO^99DCT">BIPERIDENO LACTATO</option>
+						<option value="775^BISACODIL^99DCT">BISACODIL</option>
+						<option value="22217^BISOPROLOL^99DCT">BISOPROLOL</option>
+						<option value="22262^BLEOMICINA^99DCT">BLEOMICINA</option>
+						<option value="22382^BLEOMICINA SULFATO^99DCT">BLEOMICINA SULFATO</option>
+						<option value="22325^BLOCOS DE RECEITAS^99DCT">BLOCOS DE RECEITAS</option>
+						<option value="22692^BROMAZEPAM^99DCT">BROMAZEPAM</option>
+						<option value="22761^BROMETO DE IPRATROPIO^99DCT">BROMETO DE IPRATROPIO</option>
+						<option value="22255^BROMEXINA^99DCT">BROMEXINA</option>
+						<option value="22118^BROMFENAC^99DCT">BROMFENAC</option>
+						<option value="22054^BROMIDRATO DE DEXTROMETORFANO^99DCT">BROMIDRATO DE DEXTROMETORFANO</option>
+						<option value="22101^BROMOCRIPTINA^99DCT">BROMOCRIPTINA</option>
+						<option value="22379^BUPIVACAINA HCL^99DCT">BUPIVACAINA HCL</option>
+						<option value="22421^BUPIVACAINA HCL+ADRENALINA^99DCT">BUPIVACAINA HCL+ADRENALINA</option>
+						<option value="22587^BUPIVACAINA HIDROCLORETO^99DCT">BUPIVACAINA HIDROCLORETO</option>
+						<option value="22389^BUPIVACAINA+ DEXTROSE (HIPERBARICA)^99DCT">BUPIVACAINA+ DEXTROSE (HIPERBARICA)</option>
+						<option value="22455^BUPIVACAINA+DEXTROSE^99DCT">BUPIVACAINA+DEXTROSE</option>
+						<option value="22479^BUSPIRONA^99DCT">BUSPIRONA</option>
+						<option value="22082^BUSSULFANO^99DCT">BUSSULFANO</option>
+						<option value="22760^BUTILESCOPOLAMINA^99DCT">BUTILESCOPOLAMINA</option>
+						<option value="22218^CABERGOLINA^99DCT">CABERGOLINA</option>
+						<option value="22190^CAIXA PARA KITS AL/APE^99DCT">CAIXA PARA KITS AL/APE</option>
+						<option value="22402^CAIXA PARA KITS AL/US^99DCT">CAIXA PARA KITS AL/US</option>
+						<option value="22541^CALAMINA^99DCT">CALAMINA</option>
+						<option value="22496^CALCIO CARBONATO^99DCT">CALCIO CARBONATO</option>
+						<option value="22026^CALCIPOTRIOL^99DCT">CALCIPOTRIOL</option>
+						<option value="22707^CALCIPROTIOL^99DCT">CALCIPROTIOL</option>
+						<option value="22330^CAPREOMICINA,SULFATO^99DCT">CAPREOMICINA,SULFATO</option>
+						<option value="22069^CAPSAICINA^99DCT">CAPSAICINA</option>
+						<option value="920^CARBAMAZEPINA^99DCT">CARBAMAZEPINA</option>
+						<option value="22710^CARBIMAZOL^99DCT">CARBIMAZOL</option>
+						<option value="22576^CARBOPLATINA^99DCT">CARBOPLATINA</option>
+						<option value="22646^CARISOPRODOL^99DCT">CARISOPRODOL</option>
+						<option value="22162^CARMIN DE INDIGO^99DCT">CARMIN DE INDIGO</option>
+						<option value="22132^CARVAO ACTIVADO^99DCT">CARVAO ACTIVADO</option>
+						<option value="22553^CASEINATO DE CALCIO^99DCT">CASEINATO DE CALCIO</option>
+						<option value="22018^CATETER PERIFERICO C/ AGULHA, VALVULA DE INJECCAO E ABAS 14G, RADIOPACO^99DCT">CATETER PERIFERICO C/ AGULHA, VALVULA DE INJECCAO E ABAS 14G, RADIOPACO</option>
+						<option value="22013^CATETER PERIFERICO C/ AGULHA, VALVULA DE INJECCAO E ABAS 16G, RADIOPACO^99DCT">CATETER PERIFERICO C/ AGULHA, VALVULA DE INJECCAO E ABAS 16G, RADIOPACO</option>
+						<option value="22017^CATETER PERIFERICO C/ AGULHA, VALVULA DE INJECCAO E ABAS 18G, RADIOPACO^99DCT">CATETER PERIFERICO C/ AGULHA, VALVULA DE INJECCAO E ABAS 18G, RADIOPACO</option>
+						<option value="22021^CATETER PERIFERICO C/ AGULHA, VALVULA DE INJECCAO E ABAS 20G, RADIOPACO^99DCT">CATETER PERIFERICO C/ AGULHA, VALVULA DE INJECCAO E ABAS 20G, RADIOPACO</option>
+						<option value="22016^CATETER PERIFERICO C/ AGULHA, VALVULA DE INJECCAO E ABAS 22G, RADIOPACO^99DCT">CATETER PERIFERICO C/ AGULHA, VALVULA DE INJECCAO E ABAS 22G, RADIOPACO</option>
+						<option value="22015^CATETER PERIFERICO C/ AGULHA, VALVULA DE INJECCAO E ABAS 24G, RADIOPACO^99DCT">CATETER PERIFERICO C/ AGULHA, VALVULA DE INJECCAO E ABAS 24G, RADIOPACO</option>
+						<option value="22019^CATETER PERIFERICO C/ AGULHA, VALVULA DE INJECCAO E ABAS 26G, RADIOPACO^99DCT">CATETER PERIFERICO C/ AGULHA, VALVULA DE INJECCAO E ABAS 26G, RADIOPACO</option>
+						<option value="22585^CEFALEXINA^99DCT">CEFALEXINA</option>
+						<option value="22480^CEFIXIMA^99DCT">CEFIXIMA</option>
+						<option value="22436^CEFOTAXIMA DE SODIO^99DCT">CEFOTAXIMA DE SODIO</option>
+						<option value="22592^CEFOTAXIMA SODICO^99DCT">CEFOTAXIMA SODICO</option>
+						<option value="22563^CEFOTAXIME DE SODIO^99DCT">CEFOTAXIME DE SODIO</option>
+						<option value="22042^CEFTADIZIMA^99DCT">CEFTADIZIMA</option>
+						<option value="496^CEFTRIAXONA^99DCT">CEFTRIAXONA</option>
+						<option value="737^CEFUROXIMA^99DCT">CEFUROXIMA</option>
+						<option value="22598^CEFUROXIMA, AXETIL^99DCT">CEFUROXIMA, AXETIL</option>
+						<option value="22529^CEFUROXIMA, SAL SODICO^99DCT">CEFUROXIMA, SAL SODICO</option>
+						<option value="22250^CEFUROXIMA,AXETIL^99DCT">CEFUROXIMA,AXETIL</option>
+						<option value="779^CETIRIZINE^99DCT">CETIRIZINE</option>
+						<option value="926^CETOCONAZOL^99DCT">CETOCONAZOL</option>
+						<option value="22106^CETRIMIDA+CLOREXIDINA^99DCT">CETRIMIDA+CLOREXIDINA</option>
+						<option value="22103^CICLIDROL^99DCT">CICLIDROL</option>
+						<option value="22703^CICLOFOSFAMIDA^99DCT">CICLOFOSFAMIDA</option>
+						<option value="22590^CICLOPENTOLATO^99DCT">CICLOPENTOLATO</option>
+						<option value="22558^CICLOSERINA^99DCT">CICLOSERINA</option>
+						<option value="22370^CICLOSPORINA^99DCT">CICLOSPORINA</option>
+						<option value="22240^CIMETIDINA^99DCT">CIMETIDINA</option>
+						<option value="22105^CINARIZINA^99DCT">CINARIZINA</option>
+						<option value="740^CIPROFLOXACINA^99DCT">CIPROFLOXACINA</option>
+						<option value="22192^CIPROFLOXACINA+HIDROCORTISONA^99DCT">CIPROFLOXACINA+HIDROCORTISONA</option>
+						<option value="22642^CIPROFLOXACINA, LACTATO^99DCT">CIPROFLOXACINA, LACTATO</option>
+						<option value="22655^CIPROTERONA^99DCT">CIPROTERONA</option>
+						<option value="22674^CIPROTERONA+ESTRADIOL^99DCT">CIPROTERONA+ESTRADIOL</option>
+						<option value="22640^CIPROTERONA+ETINILESTRADIOL^99DCT">CIPROTERONA+ETINILESTRADIOL</option>
+						<option value="22364^CIPROTERONA, ACETATO^99DCT">CIPROTERONA, ACETATO</option>
+						<option value="22158^CISPLATINA^99DCT">CISPLATINA</option>
+						<option value="22147^CITARABINA (CITOSINA ARABINOSIDO)^99DCT">CITARABINA (CITOSINA ARABINOSIDO)</option>
+						<option value="22287^CITRATO DE SODIO^99DCT">CITRATO DE SODIO</option>
+						<option value="22550^CLARITROMICINA^99DCT">CLARITROMICINA</option>
+						<option value="22643^CLINDAMICINA^99DCT">CLINDAMICINA</option>
+						<option value="22304^CLINDAMICINA FOSFATO^99DCT">CLINDAMICINA FOSFATO</option>
+						<option value="22605^CLINDAMICINA,HIDROCLORETO^99DCT">CLINDAMICINA,HIDROCLORETO</option>
+						<option value="22045^CLOBETASOL PROPIONATO^99DCT">CLOBETASOL PROPIONATO</option>
+						<option value="22441^CLOFAZIMINA^99DCT">CLOFAZIMINA</option>
+						<option value="22166^CLOMIFENO CITRATO^99DCT">CLOMIFENO CITRATO</option>
+						<option value="22025^CLONAZEPAM^99DCT">CLONAZEPAM</option>
+						<option value="22527^CLOPIDOGREL^99DCT">CLOPIDOGREL</option>
+						<option value="22538^CLORAMBUCIL^99DCT">CLORAMBUCIL</option>
+						<option value="266^CLORANFENICOL^99DCT">CLORANFENICOL</option>
+						<option value="22309^CLORANFENICOL OLEOSA^99DCT">CLORANFENICOL OLEOSA</option>
+						<option value="22215^CLORBUT+PARADICLOROB+BENZOC^99DCT">CLORBUT+PARADICLOROB+BENZOC</option>
+						<option value="22539^CLORDIAZEPOXIDO^99DCT">CLORDIAZEPOXIDO</option>
+						<option value="22512^CLORETO DE BENZALCONIO^99DCT">CLORETO DE BENZALCONIO</option>
+						<option value="22253^CLORETO DE ETILO^99DCT">CLORETO DE ETILO</option>
+						<option value="22167^CLORETO DE POTASSIO^99DCT">CLORETO DE POTASSIO</option>
+						<option value="22667^CLORETO DE SODIO^99DCT">CLORETO DE SODIO</option>
+						<option value="22338^CLORETO DE TROSPIO^99DCT">CLORETO DE TROSPIO</option>
+						<option value="22047^CLOREXIDINA^99DCT">CLOREXIDINA</option>
+						<option value="913^CLORFENIRAMINA^99DCT">CLORFENIRAMINA</option>
+						<option value="22516^CLORMETINA^99DCT">CLORMETINA</option>
+						<option value="22030^CLOROQUINA DIFOSFATO^99DCT">CLOROQUINA DIFOSFATO</option>
+						<option value="22348^CLORPROMAZINA^99DCT">CLORPROMAZINA</option>
+						<option value="22244^CLORTALIDONA^99DCT">CLORTALIDONA</option>
+						<option value="22172^CLOTRIMAZOL^99DCT">CLOTRIMAZOL</option>
+						<option value="960^CLOTRIMAZOLE^99DCT">CLOTRIMAZOLE</option>
+						<option value="922^CLOXACILINA^99DCT">CLOXACILINA</option>
+						<option value="22202^CLOZAPINA^99DCT">CLOZAPINA</option>
+						<option value="22052^CODEINA FOSFATO^99DCT">CODEINA FOSFATO</option>
+						<option value="22095^COLCHICINA^99DCT">COLCHICINA</option>
+						<option value="22718^COLECALCIFEROL (VIT D)^99DCT">COLECALCIFEROL (VIT D)</option>
+						<option value="22758^COLESTIRAMINA^99DCT">COLESTIRAMINA</option>
+						<option value="22584^COLODIO QUERATOLITICO^99DCT">COLODIO QUERATOLITICO</option>
+						<option value="22489^COPPER T380 DISPOSITIVO^99DCT">COPPER T380 DISPOSITIVO</option>
+						<option value="22292^CORANTE AZUL DILUIDA DE AZUL TYPAN ESTERILIZADA^99DCT">CORANTE AZUL DILUIDA DE AZUL TYPAN ESTERILIZADA</option>
+						<option value="916^COTRIMOXAZOL^99DCT">COTRIMOXAZOL</option>
+						<option value="22214^COTRIMOXAZOL (SULFAMETAZOL+TRIMETOPRIM)^99DCT">COTRIMOXAZOL (SULFAMETAZOL+TRIMETOPRIM)</option>
+						<option value="22056^CREME AQUOSO^99DCT">CREME AQUOSO</option>
+						<option value="22427^CROMOGLICATO DE SODIO^99DCT">CROMOGLICATO DE SODIO</option>
+						<option value="22036^CROTAMITONA^99DCT">CROTAMITONA</option>
+						<option value="22602^DACARBAZINA^99DCT">DACARBAZINA</option>
+						<option value="22224^DACTINOMICINA (ACTINOMICINA D)^99DCT">DACTINOMICINA (ACTINOMICINA D)</option>
+						<option value="22668^DANAZOL^99DCT">DANAZOL</option>
+						<option value="22712^DANTROLENO INJ (20MG/70ML)^99DCT">DANTROLENO; INJ (20MG/70ML)</option>
+						<option value="92^DAPSONA^99DCT">DAPSONA</option>
+						<option value="22107^DAPSONA+CLOFAZIMINA+RIFAMPICINA^99DCT">DAPSONA+CLOFAZIMINA+RIFAMPICINA</option>
+						<option value="22526^DAPSONA+RIFAMPICINA^99DCT">DAPSONA+RIFAMPICINA</option>
+						<option value="22055^DAPSONA+RIFAMPICINA INFANTIL^99DCT">DAPSONA+RIFAMPICINA INFANTIL</option>
+						<option value="22087^DAUNORUBICINA^99DCT">DAUNORUBICINA</option>
+						<option value="22100^DESFERROXIAMINA MEXILATO^99DCT">DESFERROXIAMINA MEXILATO</option>
+						<option value="22226^DESMOPRESSINA^99DCT">DESMOPRESSINA</option>
+						<option value="22071^DEXAMETASONA^99DCT">DEXAMETASONA</option>
+						<option value="22624^DEXAMETASONA FOSFATO SODICO^99DCT">DEXAMETASONA FOSFATO SODICO</option>
+						<option value="22084^DEXAMETASONA+CLORANFENICOL^99DCT">DEXAMETASONA+CLORANFENICOL</option>
+						<option value="22729^DEXAMETASONA+CLOTRIMAZOL^99DCT">DEXAMETASONA+CLOTRIMAZOL</option>
+						<option value="22356^DEXAMETASONA+CLOTRIMAZOL+ BETAMETASONA^99DCT">DEXAMETASONA+CLOTRIMAZOL+ BETAMETASONA</option>
+						<option value="22697^DEXTRANO 40+GLICOSE^99DCT">DEXTRANO 40+GLICOSE</option>
+						<option value="358^DEXTROMETORFANO^99DCT">DEXTROMETORFANO</option>
+						<option value="22333^DEXTROPOPOXIFENO^99DCT">DEXTROPOPOXIFENO</option>
+						<option value="22323^DEXTROSE^99DCT">DEXTROSE</option>
+						<option value="22487^DIATRIZOATO^99DCT">DIATRIZOATO</option>
+						<option value="247^DIAZEPAM^99DCT">DIAZEPAM</option>
+						<option value="22306^DIAZOXIDO^99DCT">DIAZOXIDO</option>
+						<option value="436^DICLOFENACO^99DCT">DICLOFENACO</option>
+						<option value="22140^DIETAPOLIMERICA HIPERPROTEICA E HIPERCALORICA^99DCT">DIETAPOLIMERICA HIPERPROTEICA E HIPERCALORICA</option>
+						<option value="22014^DIETAPOLIMERICA PARA DOENTES DIABETICOS^99DCT">DIETAPOLIMERICA PARA DOENTES DIABETICOS</option>
+						<option value="22757^DIETAPOLIMERICA PARA INSUFICIENTES RENAIS^99DCT">DIETAPOLIMERICA PARA INSUFICIENTES RENAIS</option>
+						<option value="22660^DIETAPOLIMERICA PED NORMO PROTEICA/NORMOCALORICA^99DCT">DIETAPOLIMERICA PED NORMO PROTEICA/NORMOCALORICA</option>
+						<option value="22335^DIETAPOLIMERICA NORMO PROTEICA/NORMO CALORICA^99DCT">DIETAPOLIMERICA NORMO PROTEICA/NORMO CALORICA</option>
+						<option value="22288^DIETILCARBAMAZINA^99DCT">DIETILCARBAMAZINA</option>
+						<option value="921^DIFENIDRAMINA^99DCT">DIFENIDRAMINA</option>
+						<option value="22425^DIFENOXILATO+ATROPINA^99DCT">DIFENOXILATO+ATROPINA</option>
+						<option value="753^DIGOXINA^99DCT">DIGOXINA</option>
+						<option value="743^DIHIDROCODEINA^99DCT">DIHIDROCODEINA</option>
+						<option value="22623^DIMERCAPROL (B.A.L)^99DCT">DIMERCAPROL (B.A.L)</option>
+						<option value="22165^DIMETICONE^99DCT">DIMETICONE</option>
+						<option value="22148^DIMETILPOLISSILOXANO^99DCT">DIMETILPOLISSILOXANO</option>
+						<option value="22187^DINITRATO DE ISOSSORBIDO^99DCT">DINITRATO DE ISOSSORBIDO</option>
+						<option value="22115^DINOPROST (PROSTAGLANDINA F2 ALFA)^99DCT">DINOPROST (PROSTAGLANDINA F2 ALFA)</option>
+						<option value="22066^DISSULFIRAM^99DCT">DISSULFIRAM</option>
+						<option value="22510^DISULFIRAM^99DCT">DISULFIRAM</option>
+						<option value="22659^DITRANOL^99DCT">DITRANOL</option>
+						<option value="22571^DOBUTAMINA^99DCT">DOBUTAMINA</option>
+						<option value="22316^DOPAMINA HCL^99DCT">DOPAMINA HCL</option>
+						<option value="22040^DOXAZOSINA^99DCT">DOXAZOSINA</option>
+						<option value="22514^DOXAZOSINA DE ACCAO PROLONGADA^99DCT">DOXAZOSINA DE ACCAO PROLONGADA</option>
+						<option value="95^DOXICICLINA^99DCT">DOXICICLINA</option>
+						<option value="22222^DOXICICLINA HIDROCLORETO^99DCT">DOXICICLINA HIDROCLORETO</option>
+						<option value="22488^DOXICILINA^99DCT">DOXICILINA</option>
+						<option value="22315^DOXORUBICINA^99DCT">DOXORUBICINA</option>
+						<option value="22096^DOXORUBICINA (ADRIAMICINA)^99DCT">DOXORUBICINA (ADRIAMICINA)</option>
+						<option value="22533^DROPERIDOL (SOL AQUOSA)^99DCT">DROPERIDOL (SOL AQUOSA)</option>
+						<option value="22401^ECONAZOL^99DCT">ECONAZOL</option>
+						<option value="22549^EDATAMIL CALCIO- SODICO (EDTA)^99DCT">EDATAMIL CALCIO- SODICO (EDTA)</option>
+						<option value="22663^EFEDRINA^99DCT">EFEDRINA</option>
+						<option value="22178^EFEDRINA HCL^99DCT">EFEDRINA HCL</option>
+						<option value="791^EMTRICITABINA^99DCT">EMTRICITABINA</option>
+						<option value="1242^ENALAPRIL^99DCT">ENALAPRIL</option>
+						<option value="22249^ENOXEPARINA^99DCT">ENOXEPARINA</option>
+						<option value="22125^ENXOFRE+ACIDO SALICILICO^99DCT">ENXOFRE+ACIDO SALICILICO</option>
+						<option value="22194^EOSINA^99DCT">EOSINA</option>
+						<option value="22664^EOSINA DERMICA^99DCT">EOSINA DERMICA</option>
+						<option value="22328^ERGOMETRINA+OXITOCINA^99DCT">ERGOMETRINA+OXITOCINA</option>
+						<option value="22482^ERGOTAMINA+CAFEINA^99DCT">ERGOTAMINA+CAFEINA</option>
+						<option value="272^ERITROMICINA^99DCT">ERITROMICINA</option>
+						<option value="22120^ERITROMICINA ESTEARATO^99DCT">ERITROMICINA ESTEARATO</option>
+						<option value="22635^ERITROMICINA ETILSUCCINATO^99DCT">ERITROMICINA ETILSUCCINATO</option>
+						<option value="22177^ERITROMICINA, ESTEARATO^99DCT">ERITROMICINA, ESTEARATO</option>
+						<option value="22693^>ERITROMICINA, LACTOBIONATO^99DCT">ERITROMICINA, LACTOBIONATO</option>
+						<option value="22632^ERITROPOIETINA RECOM HUM ALFA/BETA^99DCT">ERITROPOIETINA RECOM HUM ALFA/BETA</option>
+						<option value="917^ESCOPOLAMINA^99DCT">ESCOPOLAMINA</option>
+						<option value="22653^ESMOLOL HIDROCLORETO^99DCT">ESMOLOL HIDROCLORETO</option>
+						<option value="22419^ESPIRONOLACTONA^99DCT">ESPIRONOLACTONA</option>
+						<option value="22038^ESPONJA DE GELATINA^99DCT">ESPONJA DE GELATINA</option>
+						<option value="22511^ESPONJA DE GELATINA ESTERIL^99DCT">ESPONJA DE GELATINA ESTERIL</option>
+						<option value="22142^ESTRADIOL^99DCT">ESTRADIOL</option>
+						<option value="22614^ESTRADIOL+NORETISTERONA^99DCT">ESTRADIOL+NORETISTERONA</option>
+						<option value="22567^ESTRAMUSTINA FOSFATO^99DCT">ESTRAMUSTINA FOSFATO</option>
+						<option value="438^ESTREPTOMICINA^99DCT">ESTREPTOMICINA</option>
+						<option value="22238^ESTREPTOQUINASE^99DCT">ESTREPTOQUINASE</option>
+						<option value="22079^ESTROGENIOS CONJUGADOS^99DCT">ESTROGENIOS CONJUGADOS</option>
+						<option value="22314^ESTROGENIOS ESQUINO CONJ+MEDROGESTONA^99DCT">ESTROGENIOS ESQUINO CONJ+MEDROGESTONA</option>
+						<option value="745^ETAMBUTOL^99DCT">ETAMBUTOL</option>
+						<option value="1108^ETAMBUTOL E ISONIAZIDA^99DCT">ETAMBUTOL E ISONIAZIDA</option>
+						<option value="22726^ETAMBUTOL+ISONIAZIDA^99DCT">ETAMBUTOL+ISONIAZIDA</option>
+						<option value="22747^ETANOL ABSOLUTO (LAB)^99DCT">ETANOL ABSOLUTO (LAB)</option>
+						<option value="22486^ETINILEST+LEVONORGESTREL^99DCT">ETINILEST+LEVONORGESTREL</option>
+						<option value="22117^ETINILESTRADIOL^99DCT">ETINILESTRADIOL</option>
+						<option value="22123^ETINILESTRADIOL+GESTODENO^99DCT">ETINILESTRADIOL+GESTODENO</option>
+						<option value="22574^ETIONAMIDA^99DCT">ETIONAMIDA</option>
+						<option value="22412^ETOMIDATO^99DCT">ETOMIDATO</option>
+						<option value="22597^ETOPOSIDO^99DCT">ETOPOSIDO</option>
+						<option value="22525^FACTOR DE COAGULACAO HUMANA II,VII,IX,X,INJ(500UI)^99DCT">FACTOR DE COAGULACAO HUMANA II,VII,IX,X,INJ(500UI)</option>
+						<option value="22622^FACTOR DE COAGULACAO VIII^99DCT">FACTOR DE COAGULACAO VIII</option>
+						<option value="22513^FACTOR VIII COAGULACAO HUMANO LIOFILIZADO^99DCT">FACTOR VIII COAGULACAO HUMANO LIOFILIZADO</option>
+						<option value="87^FANSIDAR^99DCT">FANSIDAR</option>
+						<option value="738^FENAZONA^99DCT">FENAZONA</option>
+						<option value="22294^FENAZONA+PROCAINA^99DCT">FENAZONA+PROCAINA</option>
+						<option value="22261^FENILEFRINA^99DCT">FENILEFRINA</option>
+						<option value="22098^FENILEFRINA HCL^99DCT">FENILEFRINA HCL</option>
+						<option value="22012^FENIPENTOL^99DCT">FENIPENTOL</option>
+						<option value="273^FENITOINA^99DCT">FENITOINA</option>
+						<option value="22198^FENITOINA SOL ORAL^99DCT">FENITOINA; SOL ORAL</option>
+						<option value="238^FENOBARBITAL^99DCT">FENOBARBITAL</option>
+						<option value="22362^FENOXIMETILPENICILINA^99DCT">FENOXIMETILPENICILINA</option>
+						<option value="22569^FENTANIL^99DCT">FENTANIL</option>
+						<option value="22273^FERRO DEXTRANO^99DCT">FERRO DEXTRANO</option>
+						<option value="22313^FIBRINOGENIO^99DCT">FIBRINOGENIO</option>
+						<option value="22317^FIBRINOGENIO INJECTAVEL (0.5G/25ML)^99DCT">FIBRINOGENIO INJECTAVEL (0.5G/25ML)</option>
+						<option value="22064^FICHA INDIVIDUAL LEVANTAMENTO ARVS^99DCT">FICHA INDIVIDUAL LEVANTAMENTO ARVS</option>
+						<option value="22474^FICHA DE STOCK^99DCT">FICHA DE STOCK</option>
+						<option value="22049^FILGRASTIM^99DCT">FILGRASTIM</option>
+						<option value="22210^FINASTERIDA^99DCT">FINASTERIDA</option>
+						<option value="22497^FITOMENADIONA (VIT K1)^99DCT">FITOMENADIONA (VIT K1)</option>
+						<option value="447^FLOXACILLIN^99DCT">FLOXACILLIN</option>
+						<option value="22433^FLUCITOSINA^99DCT">FLUCITOSINA</option>
+						<option value="22067^FLUCLOXACILINA CAPSULAS DE 500 MG^99DCT">FLUCLOXACILINA CAPSULAS DE 500 MG</option>
+						<option value="22070^FLUCLOXACILINA SODICA^99DCT">FLUCLOXACILINA SODICA</option>
+						<option value="22340^FLUCLOXACILINA, SAL DE MAGNESIO^99DCT">FLUCLOXACILINA, SAL DE MAGNESIO</option>
+						<option value="22557^FLUCLOXACILINA, SODICA^99DCT">FLUCLOXACILINA, SODICA</option>
+						<option value="22099^FLUCONAZOL^99DCT">FLUCONAZOL</option>
+						<option value="22616^FLUCONAZOL SUSPENSAO 50MG/5ML^99DCT">FLUCONAZOL SUSPENSAO 50MG/5ML</option>
+						<option value="747^FLUCONAZOLE^99DCT">FLUCONAZOLE</option>
+						<option value="22327^FLUDARABINA, FOSFATO^99DCT">FLUDARABINA, FOSFATO</option>
+						<option value="22116^FLUDROCORTISONA ACETATO^99DCT">FLUDROCORTISONA ACETATO</option>
+						<option value="22459^FLUFENAZINA^99DCT">FLUFENAZINA</option>
+						<option value="22620^FLUMAZENIL^99DCT">FLUMAZENIL</option>
+						<option value="22231^FLUMETASONA+CLIOQUINOL^99DCT">FLUMETASONA+CLIOQUINOL</option>
+						<option value="22518^FLUNITRAZEPAM^99DCT">FLUNITRAZEPAM</option>
+						<option value="22452^FLUORESCEINA^99DCT">FLUORESCEINA</option>
+						<option value="22675^FLUOROURACILO^99DCT">FLUOROURACILO</option>
+						<option value="22371^FLUOXETINA HCL^99DCT">FLUOXETINA HCL</option>
+						<option value="22684^FLUTAMIDA^99DCT">FLUTAMIDA</option>
+						<option value="22254^FRAMICET+GRAMICI+DEXAMET^99DCT">FRAMICET+GRAMICI+DEXAMET</option>
+						<option value="99^FUROSEMIDA^99DCT">FUROSEMIDA</option>
+						<option value="22500^FUROSEMIDA PEDIATRICA^99DCT">FUROSEMIDA PEDIATRICA</option>
+						<option value="22127^GABAPENTINA^99DCT">GABAPENTINA</option>
+						<option value="22128^GANCICLOVIR, SAL SODICO^99DCT">GANCICLOVIR, SAL SODICO</option>
+						<option value="22305^GAZE GORDUROSA^99DCT">GAZE GORDUROSA</option>
+						<option value="22383^GAZE HIDROFILA^99DCT">GAZE HIDROFILA</option>
+						<option value="22216^GAZE OFTALMOLOGICA^99DCT">GAZE OFTALMOLOGICA</option>
+						<option value="22493^GELATINA POLIMERIZADA^99DCT">GELATINA POLIMERIZADA</option>
+						<option value="100^GENTAMICINA^99DCT">GENTAMICINA</option>
+						<option value="22405^GENTAMICINA, SULFATO^99DCT">GENTAMICINA, SULFATO</option>
+						<option value="750^GLIBENCLAMIDA^99DCT">GLIBENCLAMIDA</option>
+						<option value="22135^GLICERINA ADULTO^99DCT">GLICERINA ADULTO</option>
+						<option value="22268^GLICERINA INFANTIL^99DCT">GLICERINA INFANTIL</option>
+						<option value="22638^GLICINA^99DCT">GLICINA</option>
+						<option value="22530^GLICLAZIDA^99DCT">GLICLAZIDA</option>
+						<option value="22688^GLICOSE^99DCT">GLICOSE</option>
+						<option value="22164^GLICOSE (DEXTROSE)^99DCT">GLICOSE (DEXTROSE)</option>
+						<option value="22690^GLICOSE+CLORETO DE SODIO^99DCT">GLICOSE + CLORETO DE SODIO</option>
+						<option value="22601^GLICOSE+CLORETO DE SODIO 5%+ 0.9%^99DCT">GLICOSE + CLORETO DE SODIO 5%+ 0.9%</option>
+						<option value="22448^GLICOSE INJECTAVEL^99DCT">GLICOSE INJECTAVEL</option>
+						<option value="22269^GLICOSE+CLORETO DE SODIO^99DCT">GLICOSE+CLORETO DE SODIO</option>
+						<option value="22398^GLUCAGON^99DCT">GLUCAGON</option>
+						<option value="22490^GLUCONATO DE CALCIO^99DCT">GLUCONATO DE CALCIO</option>
+						<option value="22770^GLUCONATO DE FERRO^99DCT">GLUCONATO DE FERRO</option>
+						<option value="22671^GLUCOSE+CLORETO SODIO^99DCT">GLUCOSE+CLORETO SODIO</option>
+						<option value="22764^GLUTERALDEIDO^99DCT">GLUTERALDEIDO</option>
+						<option value="22397^GLUTERALDEIDO LITRO^99DCT">GLUTERALDEIDO LITRO</option>
+						<option value="22091^GONADOTROFINA CORIONICA HUMANA^99DCT">GONADOTROFINA CORIONICA HUMANA</option>
+						<option value="22137^GOSERELINA, ACETATO^99DCT">GOSERELINA, ACETATO</option>
+						<option value="22661^GRISEOFULVINA^99DCT">GRISEOFULVINA</option>
+						<option value="22705^GUIA DE REMESSA /ENTRADA^99DCT">GUIA DE REMESSA /ENTRADA</option>
+						<option value="799^HALOFANTRINA^99DCT">HALOFANTRINA</option>
+						<option value="22722^HALOPERIDOL^99DCT">HALOPERIDOL</option>
+						<option value="22060^HALOTANO^99DCT">HALOTANO</option>
+						<option value="22322^HEPARINA DE BAIXO PESO MOLECULAR^99DCT">HEPARINA DE BAIXO PESO MOLECULAR</option>
+						<option value="22520^HEPARINA SODICA^99DCT">HEPARINA SODICA</option>
+						<option value="22704^HEPARINA SODICA INJECTAVEL 20000UI/1ML DE BAIXO PESO MOLECULAR^99DCT">HEPARINA SODICA INJECTAVEL 20000UI/1ML DE BAIXO PESO MOLECULAR</option>
+						<option value="734^HEXACLORETO DE BENZENO^99DCT">HEXACLORETO DE BENZENO</option>
+						<option value="22110^HIDRALAZINA^99DCT">HIDRALAZINA</option>
+						<option value="22709^HIDRATO DE CLORAL^99DCT">HIDRATO DE CLORAL</option>
+						<option value="1243^HIDROCLOROTIAZIDA^99DCT">HIDROCLOROTIAZIDA</option>
+						<option value="22195^HIDROCLORTIAZIDA^99DCT">HIDROCLORTIAZIDA</option>
+						<option value="22450^HIDROCLORTIAZIDA+AMILORIDO^99DCT">HIDROCLORTIAZIDA+AMILORIDO</option>
+						<option value="290^HIDROCORTISONA^99DCT">HIDROCORTISONA</option>
+						<option value="22570^HIDROCORTISONA ACETATO^99DCT">HIDROCORTISONA ACETATO</option>
+						<option value="22031^HIDROCORTISONA BUTIRATO^99DCT">HIDROCORTISONA BUTIRATO</option>
+						<option value="22648^HIDROLIZADO DE PROTEINAS COMPOSTO (COMPLAN)^99DCT">HIDROLIZADO DE PROTEINAS COMPOSTO (COMPLAN)</option>
+						<option value="22286^HIDROQUINONA^99DCT">HIDROQUINONA</option>
+						<option value="22609^HIDROX DE ALUMIN+MAGN^99DCT">HIDROX DE ALUMIN+MAGN</option>
+						<option value="22547^HIDROX DE MAGN+ALUMINIO^99DCT">HIDROX DE MAGN+ALUMINIO</option>
+						<option value="22233^HIDROXICARBAMIDA (HIDROXIUREIA)^99DCT">HIDROXICARBAMIDA (HIDROXIUREIA)</option>
+						<option value="22160^HIDROXICLORETO DE ALUMINIO^99DCT">HIDROXICLORETO DE ALUMINIO</option>
+						<option value="22386^HIDROXICOBALAMINA ACETATO B12^99DCT">HIDROXICOBALAMINA ACETATO B12</option>
+						<option value="22197^HIDROXIDO DE MAGNESIO^99DCT">HIDROXIDO DE  MAGNESIO</option>
+						<option value="22032^HIDROXIDO DE MAGNESIO^99DCT">HIDROXIDO DE MAGNESIO</option>
+						<option value="22342^HIDROXIETILAMIDO^99DCT">HIDROXIETILAMIDO</option>
+						<option value="22555^HIDROXIPROPILMETILCELULOSE^99DCT">HIDROXIPROPILMETILCELULOSE</option>
+						<option value="22184^HIDROXIZINA^99DCT">HIDROXIZINA</option>
+						<option value="22447^HIDROXIZINA HCL^99DCT">HIDROXIZINA HCL</option>
+						<option value="446^HIDROXIDO DE ALUMINIO^99DCT">HIDRÓXIDO DE ALUMÍNIO</option>
+						<option value="22699^HIPOCLORITO DE CALCIO^99DCT">HIPOCLORITO DE CALCIO</option>
+						<option value="22721^HIPOCLORITO DE SODIO (CONCENTRADO)^99DCT">HIPOCLORITO DE SODIO (CONCENTRADO)</option>
+						<option value="22403^HIPOCLORITO DE SODIO (SOL. DAKIN)^99DCT">HIPOCLORITO DE SODIO (SOL. DAKIN)</option>
+						<option value="22608^HORMONA FOLICULO-ESTIMULANTE (FSH)^99DCT">HORMONA FOLICULO-ESTIMULANTE (FSH)</option>
+						<option value="912^IBUPROFENO^99DCT">IBUPROFENO</option>
+						<option value="22415^IBUPROFENO+PARACETAMOL^99DCT">IBUPROFENO+PARACETAMOL</option>
+						<option value="22519^IDOXIURIDINA^99DCT">IDOXIURIDINA</option>
+						<option value="22626^IFOSFAMIDA^99DCT">IFOSFAMIDA</option>
+						<option value="22199^IMATINIB, MESILATO^99DCT">IMATINIB, MESILATO</option>
+						<option value="22319^IMIPENEM+CILASTATINA^99DCT">IMIPENEM+CILASTATINA</option>
+						<option value="22051^IMIPRAMINA^99DCT">IMIPRAMINA</option>
+						<option value="748^IMPRAMINA^99DCT">IMPRAMINA</option>
+						<option value="22739^IMUNOGLOBULINA HUMANA ANTI-D^99DCT">IMUNOGLOBULINA HUMANA ANTI-D</option>
+						<option value="22446^IMUNOGLOBULINA HUMANA ANTI-TETANO^99DCT">IMUNOGLOBULINA HUMANA ANTI-TETANO</option>
+						<option value="22462^IMUNOGLOBULINA HUMANA INESPECIFICA^99DCT">IMUNOGLOBULINA HUMANA INESPECIFICA</option>
+						<option value="22588^IMUNOGLOBULINA HUMANA NORMAL^99DCT">IMUNOGLOBULINA HUMANA NORMAL</option>
+						<option value="22429^IMUNOGLUBULINA ANTI-RABICA^99DCT">IMUNOGLUBULINA ANTI-RABICA</option>
+						<option value="22456^INDAPAMIDA^99DCT">INDAPAMIDA</option>
+						<option value="263^INDOMETACINA^99DCT">INDOMETACINA</option>
+						<option value="22111^INSULINA ACCAO CURTA (ULTRA-RAPIDA)^99DCT">INSULINA ACCAO CURTA (ULTRA-RAPIDA)</option>
+						<option value="22749^INSULINA ACCAO CURTA(RAPIDA)(ACTRAPID)^99DCT">INSULINA ACCAO CURTA(RAPIDA)(ACTRAPID)</option>
+						<option value="22679^INSULINA ACCAO INTERM BIFASICA(ACTRAPHANE70/30)^99DCT">INSULINA ACCAO INTERM BIFASICA(ACTRAPHANE70/30)</option>
+						<option value="22236^INSULINA ACCAO INTERMEDIA (PROTAPHANE)^99DCT">INSULINA ACCAO INTERMEDIA (PROTAPHANE)</option>
+						<option value="22636^INSULINA ACCAO PROLONGADA (GLARGINA)^99DCT">INSULINA ACCAO PROLONGADA (GLARGINA)</option>
+						<option value="22058^INSULINA ACCAO PROLONGADA SUSP DE ZINCO^99DCT">INSULINA ACCAO PROLONGADA SUSP DE ZINCO</option>
+						<option value="22524^INSULINA ACCAO RETARDADA (MONOTARD)^99DCT">INSULINA ACCAO RETARDADA (MONOTARD)</option>
+						<option value="22534^INSULINA ACCAO RETARDADA (ULTRATARD)^99DCT">INSULINA ACCAO RETARDADA (ULTRATARD)</option>
+						<option value="22154^INTERFERON ALFA^99DCT">INTERFERON ALFA</option>
+						<option value="22034^INTERFERON ALFA-2A RECOMBINADO^99DCT">INTERFERON ALFA-2A RECOMBINADO</option>
+						<option value="22366^IODETO DE POTASSIO^99DCT">IODETO DE POTASSIO</option>
+						<option value="22390^IODO SUBLIMADO^99DCT">IODO SUBLIMADO</option>
+						<option value="22465^IODO+ACIDO SALICILICO^99DCT">IODO+ACIDO SALICILICO</option>
+						<option value="22521^IODO+IODETO DE POTASSIO^99DCT">IODO+IODETO DE POTASSIO</option>
+						<option value="22759^IODO+IODETO DE POTASSIO(LUGOL)^99DCT">IODO+IODETO DE POTASSIO(LUGOL)</option>
+						<option value="22596^IODOPOVIDONA^99DCT">IODOPOVIDONA</option>
+						<option value="22418^IODOPOVIDONA 100MG/G, POMADA^99DCT">IODOPOVIDONA 100MG/G, POMADA</option>
+						<option value="22201^IODOPOVIDONA GINECOLOGICA^99DCT">IODOPOVIDONA GINECOLOGICA</option>
+						<option value="22457^IODOPOVIDONA GINECOLOGICO^99DCT">IODOPOVIDONA GINECOLOGICO</option>
+						<option value="22471^IOHEXOL^99DCT">IOHEXOL</option>
+						<option value="22713^IOTROLAN^99DCT">IOTROLAN</option>
+						<option value="22168^IPECACUANHA^99DCT">IPECACUANHA</option>
+						<option value="22464^IRBESARTAM^99DCT">IRBESARTAM</option>
+						<option value="22227^ISOFLAGEN^99DCT">ISOFLAGEN</option>
+						<option value="22279^ISOFLURANO^99DCT">ISOFLURANO</option>
+						<option value="656^ISONIAZIDA^99DCT">ISONIAZIDA</option>
+						<option value="22472^ISONIAZIDA COMPRIMIDO DISPERSIVEL 50 MG^99DCT">ISONIAZIDA COMPRIMIDO DISPERSIVEL 50 MG</option>
+						<option value="22248^ISONIAZIDA+TIACETAZONA^99DCT">ISONIAZIDA+TIACETAZONA</option>
+						<option value="22332^ISOTRETINOINA^99DCT">ISOTRETINOINA</option>
+						<option value="22606^ISPAGHULA^99DCT">ISPAGHULA</option>
+						<option value="22302^IVERMECTINA^99DCT">IVERMECTINA</option>
+						<option value="22706^KANAMICINA SULFATO^99DCT">KANAMICINA SULFATO</option>
+						<option value="22144^KETAMINA HIDROCLORETO^99DCT">KETAMINA HIDROCLORETO</option>
+						<option value="22715^KETOCONAZOL^99DCT">KETOCONAZOL</option>
+						<option value="22245^KETOROLAC^99DCT">KETOROLAC</option>
+						<option value="22061^KETOTIFENO^99DCT">KETOTIFENO</option>
+						<option value="22700^KIT AL/APE (ARTEMETER+LUMEFANTRINA)^99DCT">KIT AL/APE (ARTEMETER+LUMEFANTRINA)</option>
+						<option value="22650^KIT AL/US (ARTEMETER+LUMEFANTRINA)^99DCT">KIT AL/US (ARTEMETER+LUMEFANTRINA)</option>
+						<option value="22266^KIT PME APE^99DCT">KIT PME APE</option>
+						<option value="22343^KIT PME US^99DCT">KIT PME US</option>
+						<option value="22752^L-ACIDO ZOLEDRONICO^99DCT">L-ACIDO ZOLEDRONICO</option>
+						<option value="22727^L-ASPARAGINASE^99DCT">L-ASPARAGINASE</option>
+						<option value="22400^LABETALOL^99DCT">LABETALOL</option>
+						<option value="22637^LACTATO DE POTASSIO^99DCT">LACTATO DE POTASSIO</option>
+						<option value="22666^LACTATO DE RINGER+AD SET^99DCT">LACTATO DE RINGER+AD SET</option>
+						<option value="22291^LACTATO DE SODIO INJ (5%)^99DCT">LACTATO DE SODIO INJ (5%)</option>
+						<option value="22267^LACTULOSE^99DCT">LACTULOSE</option>
+						<option value="22180^LAMOTRIGINA^99DCT">LAMOTRIGINA</option>
+						<option value="22278^LANOLINA^99DCT">LANOLINA</option>
+						<option value="752^LANSOPRAZOL^99DCT">LANSOPRAZOL</option>
+						<option value="22020^LEITE ADAPTADO OU SEMI-ADAPTADO^99DCT">LEITE ADAPTADO OU SEMI-ADAPTADO</option>
+						<option value="22428^LEITE ADAPTADO PARA RECEM NASCIDOS DE BAIXO PESO^99DCT">LEITE ADAPTADO PARA RECEM NASCIDOS DE BAIXO PESO</option>
+						<option value="22639^LEITE ADAPTADO PARA RECEM-NASCIDOS DE BAIXO PESO/MUITO BAIXO PESO^99DCT">LEITE ADAPTADO PARA RECEM-NASCIDOS DE BAIXO PESO/MUITO BAIXO PESO</option>
+						<option value="22754^LEITE DE SOJA^99DCT">LEITE DE SOJA</option>
+						<option value="22170^LEITE DE TRANSICAO^99DCT">LEITE DE TRANSICAO</option>
+						<option value="22387^LEITE HIPOALERGENICO^99DCT">LEITE HIPOALERGENICO</option>
+						<option value="22113^LEITE SEM LACTOSE^99DCT">LEITE SEM LACTOSE</option>
+						<option value="22523^LEITE TERAPEUTICO F-100^99DCT">LEITE TERAPEUTICO F-100</option>
+						<option value="22372^LEITE TERAPEUTICO F-75^99DCT">LEITE TERAPEUTICO F-75</option>
+						<option value="22672^LETROZOLE^99DCT">LETROZOLE</option>
+						<option value="22219^LEVODOPA + CARBIDOPA^99DCT">LEVODOPA + CARBIDOPA</option>
+						<option value="22583^LEVODOPA+BENZERAZIDA^99DCT">LEVODOPA+BENZERAZIDA</option>
+						<option value="755^LEVOFLOXACINA^99DCT">LEVOFLOXACINA</option>
+						<option value="22308^LEVONOR+ETINIL (MICROGYNON)^99DCT">LEVONOR+ETINIL (MICROGYNON)</option>
+						<option value="22121^LEVONOR+ETINILEST(NEOGYNON)^99DCT">LEVONOR+ETINILEST(NEOGYNON)</option>
+						<option value="22093^LEVONOREGESTREL^99DCT">LEVONOREGESTREL</option>
+						<option value="22284^LEVONORGESTREL^99DCT">LEVONORGESTREL</option>
+						<option value="22604^LEVONORGESTREL (MICROLUT)^99DCT">LEVONORGESTREL (MICROLUT)</option>
+						<option value="22466^LEVONORGESTREL(MICROLUT)^99DCT">LEVONORGESTREL(MICROLUT)</option>
+						<option value="22481^LEVONORGESTREL+ETINILESTRADIOL^99DCT">LEVONORGESTREL+ETINILESTRADIOL</option>
+						<option value="22173^LEVOTIROXINA SODICA^99DCT">LEVOTIROXINA SODICA</option>
+						<option value="22540^LIDOCAINA^99DCT">LIDOCAINA</option>
+						<option value="22728^LIDOCAINA CARPULE^99DCT">LIDOCAINA CARPULE</option>
+						<option value="777^LIDOCAINA E HIDROCORTISONA^99DCT">LIDOCAINA E HIDROCORTISONA</option>
+						<option value="22283^LIDOCAINA HIDROCLORIDE CARPULE^99DCT">LIDOCAINA HIDROCLORIDE CARPULE</option>
+						<option value="22746^LIDOCAINA HIPERBARICA^99DCT">LIDOCAINA HIPERBARICA</option>
+						<option value="22678^LIDOCAINA+ADRENALINA^99DCT">LIDOCAINA+ADRENALINA</option>
+						<option value="22271^LIDOCAINA+ADRENALINA  CARPULE^99DCT">LIDOCAINA+ADRENALINA CARPULE</option>
+						<option value="22422^LIDOCAINA+ADRENALINA CARPULE^99DCT">LIDOCAINA+ADRENALINA CARPULE</option>
+						<option value="22088^LIDOCAINA+PRILOCAINA^99DCT">LIDOCAINA+PRILOCAINA</option>
+						<option value="22532^LIGADURA ELASTICA^99DCT">LIGADURA ELASTICA</option>
+						<option value="22324^LIGADURA DE CAMBRAIA^99DCT">LIGADURA DE CAMBRAIA</option>
+						<option value="22229^LIGADURA DE GAZE^99DCT">LIGADURA DE GAZE</option>
+						<option value="22297^LIGADURA GESSADA^99DCT">LIGADURA GESSADA</option>
+						<option value="22599^LINIMENTO DE CALCARIO^99DCT">LINIMENTO DE CALCARIO</option>
+						<option value="22562^LIPIDOS^99DCT">LIPIDOS</option>
+						<option value="22151^LIPIDOS+AMINOACIDOS E GLICOSE^99DCT">LIPIDOS+AMINOACIDOS E GLICOSE</option>
+						<option value="22377^LIPIDOS,AMINOACIDOS E GLICOSE^99DCT">LIPIDOS,AMINOACIDOS E GLICOSE</option>
+						<option value="22171^LISINOPRIL^99DCT">LISINOPRIL</option>
+						<option value="22628^LITIO CARBONATO^99DCT">LITIO CARBONATO</option>
+						<option value="22617^LIVRO DE REGISTO DIARIO DE ARVS-PEDIATRICO^99DCT">LIVRO DE REGISTO DIARIO DE ARVS-PEDIATRICO</option>
+						<option value="22769^LIVRO DE REGISTO DIARIO DE ARVS-PTV^99DCT">LIVRO DE REGISTO DIARIO DE ARVS-PTV</option>
+						<option value="22334^LIVRO DE REGISTO DIARIO DE ARVS-TARV^99DCT">LIVRO DE REGISTO DIARIO DE ARVS-TARV</option>
+						<option value="22701^LIVRO DE MAPA DE RESUMO/PLANO DIST/KIT^99DCT">LIVRO DE MAPA DE RESUMO/PLANO DIST/KIT</option>
+						<option value="22393^LIVRO DE RECEITA MEDICA/ BLOCO DE RECEITA^99DCT">LIVRO DE RECEITA MEDICA/ BLOCO DE RECEITA</option>
+						<option value="22209^LIVRO DE RECEITAS^99DCT">LIVRO DE RECEITAS</option>
+						<option value="22361^LIVRO DE REGISTO DIARIO DE TERAPEUTICA ARVS^99DCT">LIVRO DE REGISTO DIARIO DE TERAPEUTICA ARVS</option>
+						<option value="22586^LIVRO DE REGISTO DIARIO DOS ARVS NO HDD^99DCT">LIVRO DE REGISTO DIARIO DOS ARVS NO HDD</option>
+						<option value="429^LOPERAMIDA^99DCT">LOPERAMIDA</option>
+						<option value="22057^LORATADINA^99DCT">LORATADINA</option>
+						<option value="22630^LORAZEPAM^99DCT">LORAZEPAM</option>
+						<option value="22282^LUVAS CIRUGICAS 7,5 PAR^99DCT">LUVAS CIRUGICAS 7,5 PAR</option>
+						<option value="22028^LUVAS CIRUGICAS 8,0 PAR^99DCT">LUVAS CIRUGICAS 8,0 PAR</option>
+						<option value="22560^LUVAS CIRURGICAS 6,5 PAR^99DCT">LUVAS CIRURGICAS 6,5 PAR</option>
+						<option value="22594^LUVAS CIRURGICAS 7,0 PAR^99DCT">LUVAS CIRURGICAS 7,0 PAR</option>
+						<option value="22239^LUVAS CIRURGICAS 8,5 PAR^99DCT">LUVAS CIRURGICAS 8,5 PAR</option>
+						<option value="22349^LUVAS DE EXAMINACAO GRANDE^99DCT">LUVAS DE EXAMINACAO GRANDE</option>
+						<option value="22285^LUVAS DE EXAMINACAO MEDIO^99DCT">LUVAS DE EXAMINACAO MEDIO</option>
+						<option value="22183^LUVAS DE EXAMINACAO PEQUENAS^99DCT">LUVAS DE EXAMINACAO PEQUENAS</option>
+						<option value="22193^MANITOL^99DCT">MANITOL</option>
+						<option value="22223^MANUAL DE PROCEDIMENTOS DO DEPOSITO DISTITAL DE MEDICAMENTOS^99DCT">MANUAL DE PROCEDIMENTOS DO DEPOSITO DISTITAL DE MEDICAMENTOS</option>
+						<option value="22354^MANUAL DE PROCEDIMENTOS DO CENTRO DE SAUDE^99DCT">MANUAL DE PROCEDIMENTOS DO CENTRO DE SAUDE</option>
+						<option value="22230^MANUAL DE PROCEDIMENTOS DO DEPOSITO PROVINCIAL DE MEDICAMENTOS^99DCT">MANUAL DE PROCEDIMENTOS DO DEPOSITO PROVINCIAL DE MEDICAMENTOS</option>
+						<option value="22717^MANUAL DE PROCEDIMENTOS DOS HOSPITAIS^99DCT">MANUAL DE PROCEDIMENTOS DOS HOSPITAIS</option>
+						<option value="22138^MAPA MENSAL DE TDRS^99DCT">MAPA MENSAL DE TDRS</option>
+						<option value="22409^MAPA RESUMO/PLANO TRIMESTRAL DISTRIBUICAO DE KITS^99DCT">MAPA RESUMO/PLANO TRIMESTRAL DISTRIBUICAO DE KITS</option>
+						<option value="22423^MAPA CONSUMO MENSAL AL^99DCT">MAPA CONSUMO MENSAL AL</option>
+						<option value="22188^MAPA DE RESUMO MENSAL DE DEPOSITO AL^99DCT">MAPA DE RESUMO MENSAL DE DEPOSITO AL</option>
+						<option value="22695^MAPA FINACEIRO^99DCT">MAPA FINACEIRO</option>
+						<option value="22341^MAPA MENSAL DISTRITAL DE CONSUMO DE AL^99DCT">MAPA MENSAL DISTRITAL DE CONSUMO DE AL</option>
+						<option value="22264^MAPA MENSAL INFORMACAO ARVS-MMIA^99DCT">MAPA MENSAL INFORMACAO ARVS-MMIA</option>
+						<option value="22564^MAPA RESUMO MENSAL CAIXA^99DCT">MAPA RESUMO MENSAL CAIXA</option>
+						<option value="22689^MAPROTILINA^99DCT">MAPROTILINA</option>
+						<option value="244^MEBENDAZOL^99DCT">MEBENDAZOL</option>
+						<option value="22256^MEBEVERINA HCL^99DCT">MEBEVERINA HCL</option>
+						<option value="22724^MECLIZINA^99DCT">MECLIZINA</option>
+						<option value="22439^MEDROXIPROGESTERONA (SAYANA PRESS)^99DCT">MEDROXIPROGESTERONA (SAYANA PRESS)</option>
+						<option value="22155^MEDROXIPROGESTERONA ACET (DEPO-PROVERA)^99DCT">MEDROXIPROGESTERONA ACET (DEPO-PROVERA)</option>
+						<option value="22280^MEDROXIPROGESTERONA ACETATO^99DCT">MEDROXIPROGESTERONA ACETATO</option>
+						<option value="22274^MEFLOQUINA, HIDROCLORETO^99DCT">MEFLOQUINA, HIDROCLORETO</option>
+						<option value="22296^MELARSOPROL^99DCT">MELARSOPROL</option>
+						<option value="22200^MELFALAN^99DCT">MELFALAN</option>
+						<option value="22033^MENTOL+ETANOL^99DCT">MENTOL+ETANOL</option>
+						<option value="22041^MENTOL+SALICILATO DE METILO^99DCT">MENTOL+SALICILATO DE METILO</option>
+						<option value="22610^MERCAPTOPURINA^99DCT">MERCAPTOPURINA</option>
+						<option value="22600^MESALAZINA OU SULFASALAZINA (5ASA)^99DCT">MESALAZINA OU SULFASALAZINA (5ASA)</option>
+						<option value="22169^MESNA^99DCT">MESNA</option>
+						<option value="22329^METAMIZOL^99DCT">METAMIZOL</option>
+						<option value="22556^METFORMINA^99DCT">METFORMINA</option>
+						<option value="251^METILDOPA^99DCT">METILDOPA</option>
+						<option value="22191^METILERGOMETRINA^99DCT">METILERGOMETRINA</option>
+						<option value="22073^METILFENIDATO HIDROCLORETO^99DCT">METILFENIDATO HIDROCLORETO</option>
+						<option value="22443^METILPREDNISOLONA ACEPONATO^99DCT">METILPREDNISOLONA ACEPONATO</option>
+						<option value="22551^METILPREDNISOLONA ACETATO^99DCT">METILPREDNISOLONA ACETATO</option>
+						<option value="22698^METILPREDNISOLONA INJECTAVEL^99DCT">METILPREDNISOLONA; INJECTAVEL</option>
+						<option value="22355^METOCLOPRAMIDA^99DCT">METOCLOPRAMIDA</option>
+						<option value="751^METOCLOPRAMIDE^99DCT">METOCLOPRAMIDE</option>
+						<option value="22742^METOTREXATO^99DCT">METOTREXATO</option>
+						<option value="22363^METRIFONATO^99DCT">METRIFONATO</option>
+						<option value="22445^METRONIDAZOL^99DCT">METRONIDAZOL</option>
+						<option value="237^METRONIDAZOLE^99DCT">METRONIDAZOLE</option>
+						<option value="918^MICONAZOL^99DCT">MICONAZOL</option>
+						<option value="22318^MICONAZOL MUCO-ADESIVO BUCAL^99DCT">MICONAZOL MUCO-ADESIVO BUCAL</option>
+						<option value="22394^MICONAZOL NITRATO^99DCT">MICONAZOL NITRATO</option>
+						<option value="22381^MIDAZOLAM^99DCT">MIDAZOLAM</option>
+						<option value="22498^MINOCICLINA, HIDROCLORETO^99DCT">MINOCICLINA, HIDROCLORETO</option>
+						<option value="22413^MISOPROSTOL^99DCT">MISOPROSTOL</option>
+						<option value="22320^MISOPROSTOL BLISTER^99DCT">MISOPROSTOL BLISTER</option>
+						<option value="22350^MISTURA INTRAVEN PARA NUTRITAO PARENT (1900KCAL)^99DCT">MISTURA INTRAVEN PARA NUTRITAO PARENT (1900KCAL)</option>
+						<option value="22411^MITOXANTRONA, HIDROCLORETO^99DCT">MITOXANTRONA, HIDROCLORETO</option>
+						<option value="22476^MOMETASONA^99DCT">MOMETASONA</option>
+						<option value="22241^MOMETASONA FUROATO^99DCT">MOMETASONA FUROATO</option>
+						<option value="22062^MONONITRATO DE ISOSSORBIDO^99DCT">MONONITRATO DE ISOSSORBIDO</option>
+						<option value="22744^MORFINA SULFATO^99DCT">MORFINA SULFATO</option>
+						<option value="461^MULTIVITAMINA^99DCT">MULTIVITAMINA</option>
+						<option value="22063^MULTIVITAMINAS^99DCT">MULTIVITAMINAS</option>
+						<option value="22289^MULTIVITAMINAS +MINERAL (MICRONUTRIENTE) COMP^99DCT">MULTIVITAMINAS +MINERAL (MICRONUTRIENTE) COMP</option>
+						<option value="22542^MUPIROCIN^99DCT">MUPIROCIN</option>
+						<option value="22509^NALOXONA HCL^99DCT">NALOXONA HCL</option>
+						<option value="22453^NEOMICINA + BACITRACINA^99DCT">NEOMICINA + BACITRACINA</option>
+						<option value="22086^NEOMICINA+BACITRACINA^99DCT">NEOMICINA+BACITRACINA</option>
+						<option value="22676^NEOMICINA, SULFATO^99DCT">NEOMICINA, SULFATO</option>
+						<option value="22420^NEOSTIGMINA^99DCT">NEOSTIGMINA</option>
+						<option value="22559^NICOTINAMIDA (VITAMINA PP)^99DCT">NICOTINAMIDA (VITAMINA PP)</option>
+						<option value="22615^NIFEDIPINA^99DCT">NIFEDIPINA</option>
+						<option value="250^NIFEDIPINE^99DCT">NIFEDIPINE</option>
+						<option value="919^NISTATINA^99DCT">NISTATINA</option>
+						<option value="22365^NITRATO DE PRATA^99DCT">NITRATO DE PRATA</option>
+						<option value="22506^NITRITO DE SODIO^99DCT">NITRITO DE SODIO</option>
+						<option value="22669^NITROFURANTOINA^99DCT">NITROFURANTOINA</option>
+						<option value="22396^NITROGLICERINA^99DCT">NITROGLICERINA</option>
+						<option value="22451^NITROPUSSIATO DE SODIO^99DCT">NITROPUSSIATO DE SODIO</option>
+						<option value="22076^NONOXINOL^99DCT">NONOXINOL</option>
+						<option value="22174^NORADRENALINA( NOREPINEFRINA)^99DCT">NORADRENALINA( NOREPINEFRINA)</option>
+						<option value="22467^NORETISTERONA^99DCT">NORETISTERONA</option>
+						<option value="22159^NORFLOXACINA^99DCT">NORFLOXACINA</option>
+						<option value="22673^NORGESTREL (OVRETTE)^99DCT">NORGESTREL (OVRETTE)</option>
+						<option value="22741^NORGESTREL+ETHINYLESTRADIOL^99DCT">NORGESTREL+ETHINYLESTRADIOL</option>
+						<option value="22714^NOTA DE ENTREGA^99DCT">NOTA DE ENTREGA</option>
+						<option value="22246^OFLOXACINA^99DCT">OFLOXACINA</option>
+						<option value="22360^OLEO AMENDOAS DOCES^99DCT">OLEO AMENDOAS DOCES</option>
+						<option value="22331^OLEO DE BANHO^99DCT">OLEO DE BANHO</option>
+						<option value="22129^OLEO DE BANHO SAQ^99DCT">OLEO DE BANHO SAQ</option>
+						<option value="22607^OLEO DE CADE^99DCT">OLEO DE CADE</option>
+						<option value="22528^OMEPRAZOL^99DCT">OMEPRAZOL</option>
+						<option value="22756^ONDANSETRON^99DCT">ONDANSETRON</option>
+						<option value="5622^OUTRO, NAO CODIFICADO^99DCT">OUTRO, NAO CODIFICADO</option>
+						<option value="22750^OXAZEPAM^99DCT">OXAZEPAM</option>
+						<option value="22358^OXIBUPROCAINA^99DCT">OXIBUPROCAINA</option>
+						<option value="22432^OXIBUTININA^99DCT">OXIBUTININA</option>
+						<option value="22708^OXIDO DE ZINCO^99DCT">OXIDO DE ZINCO</option>
+						<option value="22582^OXIDO DE ZINCO + OLEO DE AMEDOAS DOCES^99DCT">OXIDO DE ZINCO + OLEO DE AMEDOAS DOCES</option>
+						<option value="22345^OXIDO DE ZINCO+TALCO^99DCT">OXIDO DE ZINCO+TALCO</option>
+						<option value="22725^OXIDO DE ZINCO+TALCO+GLICERINA^99DCT">OXIDO DE ZINCO+TALCO+GLICERINA</option>
+						<option value="22133^OXIGENIO MEDICINAL^99DCT">OXIGENIO MEDICINAL</option>
+						<option value="22295^OXITOCINA^99DCT">OXITOCINA</option>
+						<option value="22139^PACLITAXEL^99DCT">PACLITAXEL</option>
+						<option value="22686^PANCREALIPASE^99DCT">PANCREALIPASE</option>
+						<option value="22108^PANCREATINA^99DCT">PANCREATINA</option>
+						<option value="22247^PANCURONIO^99DCT">PANCURONIO</option>
+						<option value="763^PANTOPRAZOL^99DCT">PANTOPRAZOL</option>
+						<option value="22252^PAPAVERINA^99DCT">PAPAVERINA</option>
+						<option value="89^PARACETAMOL^99DCT">PARACETAMOL</option>
+						<option value="22621^PARACETAMOL+CAFEINA+ERGOTAMINA^99DCT">PARACETAMOL+CAFEINA+ERGOTAMINA</option>
+						<option value="22145^PARACETAMOL+CODEINA^99DCT">PARACETAMOL+CODEINA</option>
+						<option value="22460^PARAFINA LIQUIDA^99DCT">PARAFINA LIQUIDA</option>
+						<option value="22114^PAROXETINA^99DCT">PAROXETINA</option>
+						<option value="22119^PEFLOXACINA^99DCT">PEFLOXACINA</option>
+						<option value="784^PENICILINA^99DCT">PENICILINA</option>
+						<option value="292^PENICILINA BENZATINICA^99DCT">PENICILINA BENZATINICA</option>
+						<option value="22242^PENICILINA G SODICA^99DCT">PENICILINA G SODICA</option>
+						<option value="356^PENICILINA KANAMICINE^99DCT">PENICILINA KANAMICINE</option>
+						<option value="90^PENICILINA PROCAINA^99DCT">PENICILINA PROCAINA</option>
+						<option value="22651^PENICILINA SODICA CRISTALINA^99DCT">PENICILINA SODICA CRISTALINA</option>
+						<option value="22212^PENSO OCULAR ADESIVO^99DCT">PENSO OCULAR ADESIVO</option>
+						<option value="22734^PERMANGANATO DE POTASSIO^99DCT">PERMANGANATO DE POTASSIO</option>
+						<option value="22745^PEROXIDO DE AZOTO^99DCT">PEROXIDO DE AZOTO</option>
+						<option value="22505^PEROXIDO DE BENZOILO^99DCT">PEROXIDO DE BENZOILO</option>
+						<option value="22046^PETIDINA^99DCT">PETIDINA</option>
+						<option value="22153^PILOCARPINA^99DCT">PILOCARPINA</option>
+						<option value="22748^PIPERACILINA+TAZOBACTAM^99DCT">PIPERACILINA+TAZOBACTAM</option>
+						<option value="246^PIPERAZINA^99DCT">PIPERAZINA</option>
+						<option value="22243^PIRAZINAMIDA^99DCT">PIRAZINAMIDA</option>
+						<option value="22535^PIRIDOSTIGMINA^99DCT">PIRIDOSTIGMINA</option>
+						<option value="766^PIRIDOXINA^99DCT">PIRIDOXINA</option>
+						<option value="22186^PIRIDOXINA (VIT B6)^99DCT">PIRIDOXINA (VIT B6)</option>
+						<option value="22391^PIRIDOXINA (VITAMINA B6)^99DCT">PIRIDOXINA (VITAMINA B6)</option>
+						<option value="22367^PIRIMETAMINA^99DCT">PIRIMETAMINA</option>
+						<option value="22561^PIRITIONATO DE ZINCO^99DCT">PIRITIONATO DE ZINCO</option>
+						<option value="22196^PIRODIXINA (VIT B6)^99DCT">PIRODIXINA (VIT B6)</option>
+						<option value="22050^PLUMP NUT (MANTEIGA)^99DCT">PLUMP' NUT (MANTEIGA)</option>
+						<option value="22545^PO TALCO^99DCT">PO TALCO</option>
+						<option value="22702^PODOFILINA^99DCT">PODOFILINA</option>
+						<option value="22619^POLIDOCANOL^99DCT">POLIDOCANOL</option>
+						<option value="22023^POLIELECTROLITICO DE RESTITUICAO (H/S DARROL)^99DCT">POLIELECTROLITICO DE RESTITUICAO (H/S DARROL)</option>
+						<option value="22552^POLISTIRENO SULFONATO DE SODIO^99DCT">POLISTIRENO SULFONATO DE SODIO</option>
+						<option value="22633^PRALIDOXIMA^99DCT">PRALIDOXIMA</option>
+						<option value="22163^PRALIDOXIMA INJECTAVEL 1G/ML^99DCT">PRALIDOXIMA INJECTAVEL 1G/ML</option>
+						<option value="741^PRAZIQUANTEL^99DCT">PRAZIQUANTEL</option>
+						<option value="765^PREDNISOLANA^99DCT">PREDNISOLANA</option>
+						<option value="22733^PREDNISOLONA^99DCT">PREDNISOLONA</option>
+						<option value="22515^PREDNISOLONA ACETATO^99DCT">PREDNISOLONA ACETATO</option>
+						<option value="22102^PREDNISOLONA FOSFATO SODICO^99DCT">PREDNISOLONA FOSFATO SODICO</option>
+						<option value="22738^PRESERVATIVOS FEMININOS^99DCT">PRESERVATIVOS FEMININOS</option>
+						<option value="22430^PRESERVATIVOS MASCULINO (53MM 2MM)^99DCT">PRESERVATIVOS MASCULINO (53MM 2MM)</option>
+						<option value="22189^PRIMAQUINA,FOSFATO^99DCT">PRIMAQUINA,FOSFATO</option>
+						<option value="22213^PROBENICIDE^99DCT">PROBENICIDE</option>
+						<option value="22568^PROCARBAZINA^99DCT">PROCARBAZINA</option>
+						<option value="22156^PRODUTO TRANSITO TEST^99DCT">PRODUTO TRANSITO TEST</option>
+						<option value="22458^PROGESTERONA^99DCT">PROGESTERONA</option>
+						<option value="756^PROMETAZINA^99DCT">PROMETAZINA</option>
+						<option value="22270^>PROMETAZINA HCL^99DCT">PROMETAZINA HCL</option>
+						<option value="22683^PROPARACAINA (PROXYMETACAINE)^99DCT">PROPARACAINA (PROXYMETACAINE)</option>
+						<option value="22416^PROPILIODONA^99DCT">PROPILIODONA</option>
+						<option value="22522^PROPILTIOURACILO^99DCT">PROPILTIOURACILO</option>
+						<option value="22631^PROPOFOL^99DCT">PROPOFOL</option>
+						<option value="254^PROPRANOLOL^99DCT">PROPRANOLOL</option>
+						<option value="22131^PROTAMINA SULFATO^99DCT">PROTAMINA SULFATO</option>
+						<option value="22766^PROTIONAMIDA^99DCT">PROTIONAMIDA</option>
+						<option value="22203^PROTOXIDO DE AZOTO N0^99DCT">PROTOXIDO DE AZOTO N0</option>
+						<option value="5829^PYRAZINAMIDE^99DCT">PYRAZINAMIDE</option>
+						<option value="744^QUADRIDERME^99DCT">QUADRIDERME</option>
+						<option value="731^QUINAPRIL^99DCT">QUINAPRIL</option>
+						<option value="243^QUININA^99DCT">QUININA</option>
+						<option value="22627^QUININA SULFATO^99DCT">QUININA SULFATO</option>
+						<option value="22378^QUININA, DICLORIDRATO^99DCT">QUININA, DICLORIDRATO</option>
+						<option value="923^RANITIDINA^99DCT">RANITIDINA</option>
+						<option value="22251^REDE MOSQUITEIRAS^99DCT">REDE MOSQUITEIRAS</option>
+						<option value="22682^REGUAS PARA TESTE DE TUBERCULINA^99DCT">REGUAS PARA TESTE DE TUBERCULINA</option>
+						<option value="22740^REPAGLINIDA^99DCT">REPAGLINIDA</option>
+						<option value="22414^REQUISICAO / BALANCETE^99DCT">REQUISICAO / BALANCETE</option>
+						<option value="22092^REQUISICAO INTERNA / BALANCETE^99DCT">REQUISICAO INTERNA / BALANCETE</option>
+						<option value="736^RESERPINA^99DCT">RESERPINA</option>
+						<option value="22501^RESOMAL (SRO)^99DCT">RESOMAL (SRO)</option>
+						<option value="22593^RIFABUTINA^99DCT">RIFABUTINA</option>
+						<option value="22691^RIFAMP+ISONIAZ+ETAM^99DCT">RIFAMP+ISONIAZ+ETAM</option>
+						<option value="22611^RIFAMP+ISONIAZ+PIRAZ;COMP(60+30+150)MG 3DFC PEDIAT^99DCT">RIFAMP+ISONIAZ+PIRAZ;COMP(60+30+150)MG 3DFC PEDIAT</option>
+						<option value="767^RIFAMPICINA^99DCT">RIFAMPICINA</option>
+						<option value="768^RIFAMPICINA ISONIAZIDA E PIRAZINAMIDA^99DCT">RIFAMPICINA ISONIAZIDA E PIRAZINAMIDA</option>
+						<option value="1131^RIFAMPICINA ISONIAZIDA PIRAZINAMIDA E ETAMBUTOL^99DCT">RIFAMPICINA ISONIAZIDA PIRAZINAMIDA E ETAMBUTOL</option>
+						<option value="22083^RIFAMPICINA+ISONIAZIDA^99DCT">RIFAMPICINA+ISONIAZIDA</option>
+						<option value="22503^RIFAMPICINA+ISONIAZIDA+PIRAZINAMIDA^99DCT">RIFAMPICINA+ISONIAZIDA+PIRAZINAMIDA</option>
+						<option value="22263^RIFAMPICINA+ISONIAZIDA+PIRAZINAMIDA+ETAMBUTOL^99DCT">RIFAMPICINA+ISONIAZIDA+PIRAZINAMIDA+ETAMBUTOL</option>
+						<option value="22336^RISPERIDONA^99DCT">RISPERIDONA</option>
+						<option value="22484^RITUXIMAB^99DCT">RITUXIMAB</option>
+						<option value="22353^ROSIGLITAZONA^99DCT">ROSIGLITAZONA</option>
+						<option value="22625^SABONETE DE MAOS^99DCT">SABONETE DE MAOS</option>
+						<option value="22357^SACARINA^99DCT">SACARINA</option>
+						<option value="22258^SAIS DE REHIDRATACAO ORAL^99DCT">SAIS DE REHIDRATACAO ORAL</option>
+						<option value="256^SAL FERROSO^99DCT">SAL FERROSO</option>
+						<option value="798^SALBUTAMOL^99DCT">SALBUTAMOL</option>
+						<option value="22719^SALMETEROL^99DCT">SALMETEROL</option>
+						<option value="22204^SAQUINHOS PARA REEMBALAGEM DE MEDICAMENTOS^99DCT">SAQUINHOS PARA REEMBALAGEM DE MEDICAMENTOS</option>
+						<option value="22670^SERINGA 10 ML^99DCT">SERINGA 10 ML</option>
+						<option value="22485^SERINGA 100 ML^99DCT">SERINGA 100 ML</option>
+						<option value="22579^SERINGA 20 ML^99DCT">SERINGA 20 ML</option>
+						<option value="22275^SERINGA 3 ML^99DCT">SERINGA 3 ML</option>
+						<option value="22175^SERINGA 5 ML^99DCT">SERINGA 5 ML</option>
+						<option value="22612^SERINGA HIPODERMICA 10 ML COM AGULHA^99DCT">SERINGA HIPODERMICA 10 ML COM AGULHA</option>
+						<option value="22546^SERINGA HIPODERMICA 2,5 ML COM AGULHA^99DCT">SERINGA HIPODERMICA 2,5 ML COM AGULHA</option>
+						<option value="22762^SERINGA HIPODERMICA 5 ML COM AGULHA^99DCT">SERINGA HIPODERMICA 5 ML COM AGULHA</option>
+						<option value="22662^SERINGA PARA DEPOPROVERA^99DCT">SERINGA PARA DEPOPROVERA</option>
+						<option value="22220^SERINGA PARA INSULINA 1 ML COM AGULHA^99DCT">SERINGA PARA INSULINA 1 ML COM AGULHA</option>
+						<option value="22634^SERINGA PARA MEDROXIPROGESTERONA INJECTAVEL 1 ML COM AGULHA^99DCT">SERINGA PARA MEDROXIPROGESTERONA INJECTAVEL 1 ML COM AGULHA</option>
+						<option value="22442^SERINGA PARA TUBERCULINA 1 ML COM AGULHA^99DCT">SERINGA PARA TUBERCULINA 1 ML COM AGULHA</option>
+						<option value="22281^SERTRALINA^99DCT">SERTRALINA</option>
+						<option value="22499^SEVOFLURANO^99DCT">SEVOFLURANO</option>
+						<option value="22694^SILDENAFIL^99DCT">SILDENAFIL</option>
+						<option value="22312^SINVASTATINA^99DCT">SINVASTATINA</option>
+						<option value="22303^SISTEMAS PARA SORO IV^99DCT">SISTEMAS PARA SORO IV</option>
+						<option value="22109^SISTEMAS PARATRANSFUSAO DE SANGUE^99DCT">SISTEMAS PARATRANSFUSAO DE SANGUE</option>
+						<option value="22272^SOL OLIGOELEMENTOS^99DCT">SOL OLIGOELEMENTOS</option>
+						<option value="22578^SOLUCAO P/ DIALISE PERITONEAL C/ GLICOSE^99DCT">SOLUCAO P/ DIALISE PERITONEAL C/ GLICOSE</option>
+						<option value="22053^SOMATROPINA^99DCT">SOMATROPINA</option>
+						<option value="22440^SORO ANTI-OFIDICO POLIVALENTE^99DCT">SORO ANTI-OFIDICO POLIVALENTE</option>
+						<option value="22536^STILBESTROL (DIETILSTILBESTROL)^99DCT">STILBESTROL (DIETILSTILBESTROL)</option>
+						<option value="22179^SULFADIAZINA^99DCT">SULFADIAZINA</option>
+						<option value="938^SULFADIAZINA DE PRATA^99DCT">SULFADIAZINA DE PRATA</option>
+						<option value="22081^SULFADIAZINA SODICA^99DCT">SULFADIAZINA SODICA</option>
+						<option value="22310^SULFADOXINA+PIRIMETAMINA^99DCT">SULFADOXINA+PIRIMETAMINA</option>
+						<option value="22657^SULFATO DE BARIO^99DCT">SULFATO DE BARIO</option>
+						<option value="22743^SULFATO DE MAGNESIO^99DCT">SULFATO DE MAGNESIO</option>
+						<option value="22074^SULFATO DE SODIO+POLIETILENOGLICOL^99DCT">SULFATO DE SODIO+POLIETILENOGLICOL</option>
+						<option value="22321^SULFATO DE ZINCO^99DCT">SULFATO DE ZINCO</option>
+						<option value="22434^SULFATO FERROSO + ACIDO FOLICO^99DCT">SULFATO FERROSO + ACIDO FOLICO</option>
+						<option value="773^SULFATO FERROSO E ACIDO FOLICO^99DCT">SULFATO FERROSO E ÁCIDO FÓLICO</option>
+						<option value="22737^SULFATO FERROSO+ACIDO FOLICO^99DCT">SULFATO FERROSO+ACIDO FOLICO</option>
+						<option value="22352^SULFURETO DE SELENIO^99DCT">SULFURETO DE SELENIO</option>
+						<option value="22392^SUMATRIPTANO^99DCT">SUMATRIPTANO</option>
+						<option value="22276^SUPLEMENTO MULTIVITAMFNICO PARENTERAL^99DCT">SUPLEMENTO MULTIVITAMFNICO PARENTERAL</option>
+						<option value="22176^SURAMINA^99DCT">SURAMINA</option>
+						<option value="22368^SUXAMETONIO^99DCT">SUXAMETONIO</option>
+						<option value="22444^TACROLIMUS^99DCT">TACROLIMUS</option>
+						<option value="22751^TAMIFLU^99DCT">TAMIFLU</option>
+						<option value="22161^TAMOXIFENO^99DCT">TAMOXIFENO</option>
+						<option value="22211^TAMOXIFENO CITRATO^99DCT">TAMOXIFENO CITRATO</option>
+						<option value="22029^TANSULOSINA^99DCT">TANSULOSINA</option>
+						<option value="22311^TDR DE DETERMINE^99DCT">TDR DE DETERMINE</option>
+						<option value="22299^TDR DE MALARIA^99DCT">TDR DE MALARIA</option>
+						<option value="22277^TDR DE SIFILIS^99DCT">TDR DE SIFILIS</option>
+						<option value="22225^TDR DE UNIGOLD^99DCT">TDR DE UNIGOLD</option>
+						<option value="22043^TEOFILINA DE ACCAO PROLONGADA^99DCT">TEOFILINA DE ACCAO PROLONGADA</option>
+						<option value="22376^TERBINAFINA^99DCT">TERBINAFINA</option>
+						<option value="22406^TERBUTALINA^99DCT">TERBUTALINA</option>
+						<option value="22130^TESTOSTERONA^99DCT">TESTOSTERONA</option>
+						<option value="22572^TESTOSTERONA DEPOSITO^99DCT">TESTOSTERONA DEPOSITO</option>
+						<option value="22424^TESTOSTERONA ENANTATO^99DCT">TESTOSTERONA ENANTATO</option>
+						<option value="270^TETRACICLINA^99DCT">TETRACICLINA</option>
+						<option value="22730^TETRACICLINA HCL^99DCT">TETRACICLINA HCL</option>
+						<option value="22085^TETRACICLINA, HIDROCLORETO^99DCT">TETRACICLINA, HIDROCLORETO</option>
+						<option value="22206^TIABENDAZOL^99DCT">TIABENDAZOL</option>
+						<option value="22580^TIAMINA (VITAMINA B1)^99DCT">TIAMINA (VITAMINA B1)</option>
+						<option value="22711^TIAPRIDE^99DCT">TIAPRIDE</option>
+						<option value="22307^TICARCILINA SODICA^99DCT">TICARCILINA SODICA</option>
+						<option value="22027^TIMOLOL COLIRIO^99DCT">TIMOLOL COLIRIO</option>
+						<option value="22410^TIMOLOL MELEATO^99DCT">TIMOLOL MELEATO</option>
+						<option value="22475^TINT ATROP BELADON+TINT EUCALIP+ESS DE TIMOS^99DCT">TINT ATROP BELADON+TINT EUCALIP+ESS DE TIMOS</option>
+						<option value="22293^TIOPENTAL^99DCT">TIOPENTAL</option>
+						<option value="22347^TIORIDAZINA^99DCT">TIORIDAZINA</option>
+						<option value="22548^TIOSULFATO DE SODIO^99DCT">TIOSULFATO DE SODIO</option>
+						<option value="22468^TIROFIBAN^99DCT">TIROFIBAN</option>
+						<option value="22454^TOBRAMICINA SULFATO^99DCT">TOBRAMICINA SULFATO</option>
+						<option value="22124^TOLTERODINA^99DCT">TOLTERODINA</option>
+						<option value="22437^TOPIRAMATO^99DCT">TOPIRAMATO</option>
+						<option value="22090^TRAMADOL^99DCT">TRAMADOL</option>
+						<option value="22494^TRAMADOL, HIDROCLORETO^99DCT">TRAMADOL, HIDROCLORETO</option>
+						<option value="22232^TRASTUZUMAB^99DCT">TRASTUZUMAB</option>
+						<option value="22080^TRAZODONA^99DCT">TRAZODONA</option>
+						<option value="22344^TRETINOINA^99DCT">TRETINOINA</option>
+						<option value="22417^TRIAMCINOLONA HEXACETONIDO^99DCT">TRIAMCINOLONA HEXACETONIDO</option>
+						<option value="22375^TRIFLUORPERAZINA^99DCT">TRIFLUORPERAZINA</option>
+						<option value="22565^TRIGLICERIDOS DE CADEIA MEDIA^99DCT">TRIGLICERIDOS DE CADEIA MEDIA</option>
+						<option value="91^TRIMETOPRIM^99DCT">TRIMETOPRIM</option>
+						<option value="22265^TRIOXIMETILENO^99DCT">TRIOXIMETILENO</option>
+						<option value="22680^TRIPROLINA E PSEUDOEFEDRINA^99DCT">TRIPROLINA E PSEUDOEFEDRINA</option>
+						<option value="22228^TRIPROLINE + PSEUDOEPHEDRINE^99DCT">TRIPROLINE + PSEUDOEPHEDRINE</option>
+						<option value="22581^TROPICAMIDE^99DCT">TROPICAMIDE</option>
+						<option value="22492^PURIFIED TUBERCULINE^99DCT">PURIFIED TUBERCULINE</option>
+						<option value="857^UREA^99DCT">UREA</option>
+						<option value="22207^ANTI - COLERIC VACCINE 10 DOSES^99DCT">ANTI - COLERIC VACCINE 10 DOSES</option>
+						<option value="22591^ANTI - RACIAL VACCINE (ANTITOXIN)^99DCT">ANTI - RACIAL VACCINE (ANTITOXIN)</option>
+						<option value="22150^ANCIENT MENINGOCOCCAL VACCINE 10 DOSES^99DCT">ANCIENT MENINGOCOCCAL VACCINE 10 DOSES</option>
+						<option value="22431^ANTI-HEPATITIS 1-DOSE VACCINE^99DCT">ANTI-HEPATITIS 1-DOSE VACCINE</option>
+						<option value="22504^ANTI-HEPATITIS B 10 DOSES^99DCT">ANTI-HEPATITIS B 10 DOSES</option>
+						<option value="22677^ANTI-MENINGOCOCCAL VACCINE 50 DOSE^99DCT">ANTI-MENINGOCOCCAL VACCINE 50 DOSE</option>
+						<option value="22720^ANTI-POLYOMYLITIS VACCINE 10 DOSES^99DCT">ANTI-POLYOMYLITIS VACCINE 10 DOSES</option>
+						<option value="22461^ANTIRAGE VACCINE^99DCT">ANTIRAGE VACCINE</option>
+						<option value="22185^ANTI-TETANIC VACCINE (VAT)^99DCT">ANTI-TETANIC VACCINE (VAT)</option>
+						<option value="22039^BCG VACCINE 20 DOSES^99DCT">BCG VACCINE 20 DOSES</option>
+						<option value="22337^PENTAVALENTE VACINA^99DCT">PENTAVALENTE VACINA</option>
+						<option value="22077^CONJUGATED PNEUMOCOCCAL VACCINE^99DCT">CONJUGATED PNEUMOCOCCAL VACCINE</option>
+						<option value="22301^TRIPLICE VACCINE (DPT)^99DCT">TRIPLICE VACCINE (DPT)</option>
+						<option value="22182^SODIUM VALPROATE^99DCT">SODIUM VALPROATE</option>
+						<option value="22658^VANCOMICINA^99DCT">VANCOMICINA</option>
+						<option value="22048^VANCOMYCIN HYDROCHLORIDE^99DCT">VANCOMYCIN HYDROCHLORIDE</option>
+						<option value="22681^VARFARINA^99DCT">VARFARINA</option>
+						<option value="22641^WHITE VASELINE^99DCT">WHITE VASELINE</option>
+						<option value="22022^STERILIZED SOLUBLE VASELINE^99DCT">STERILIZED SOLUBLE VASELINE</option>
+						<option value="22469^VASOPRESSINA^99DCT">VASOPRESSINA</option>
+						<option value="22656^VECURONIO BROMETO^99DCT">VECURONIO BROMETO</option>
+						<option value="22234^VERAPAMIL^99DCT">VERAPAMIL</option>
+						<option value="22753^VINBLASTINE, SULFATE^99DCT">VINBLASTINE, SULFATE</option>
+						<option value="22478^VINCRISTINE^99DCT">VINCRISTINE</option>
+						<option value="22613^VINCRISTINE, SULFATE^99DCT">VINCRISTINE, SULFATE</option>
+						<option value="22502^VINORELBINA^99DCT">VINORELBINA</option>
+						<option value="22577^VIOLET DE GENCIANA SOLUCAO ALCOOLICA^99DCT">VIOLET DE GENCIANA SOLUCAO ALCOOLICA</option>
+						<option value="22723^GENCIANA VIOLETA SOLUCAO AQUOSA^99DCT">GENCIANA VIOLETA SOLUCAO AQUOSA</option>
+						<option value="22573^VITAMIN A AND VITAMIN E^99DCT">VITAMIN A AND VITAMIN E</option>
+						<option value="1535^VITAMIN TO TREATMENT^99DCT">VITAMIN TO TREATMENT</option>
+						<option value="329^COMPLEX VITAMIN B^99DCT">COMPLEX VITAMIN B</option>
+						<option value="769^VITAMIN C^99DCT">VITAMIN C</option>
+						<option value="22208^ZOLPIDEM^99DCT">ZOLPIDEM</option>
+					</select>
+				</div>
+			</div>
+		</div>
+		<div class="sub-section">
+			<div class="form-group">
+				<label for="">Efeitos Secundarios do Tratamento:</label>
+				<div class="form-group">
+					<label class="font-normal">
+						<input type="checkbox" data-concept="2015^EFEITOS SECUNDARIOS ARV^99DCT" value="3^ANEMIA^99DCT"> Anemia - A
+					</label>
+				</div>
+				<div class="form-group">
+					<label class="font-normal">
+						<input type="checkbox" data-concept="2015^EFEITOS SECUNDARIOS ARV^99DCT" value="6292^NEUTROPENIA^99DCT"> Neutropenia - N
+					</label>
+				</div>
+				<div class="form-group">
+					<label class="font-normal">
+						<input type="checkbox" data-concept="2015^EFEITOS SECUNDARIOS ARV^99DCT" value="6293^PANCREATITE^99DCT"> Pancreatite - P
+					</label>
+				</div>
+				<div class="form-group">
+					<label class="font-normal">
+						<input type="checkbox" data-concept="2015^EFEITOS SECUNDARIOS ARV^99DCT" value="6294^HEPATOTOXICIDADE^99DCT"> Hepatotoxicidade - H
+					</label>
+				</div>
+				<div class="form-group">
+					<label class="font-normal">
+						<input type="checkbox" data-concept="2015^EFEITOS SECUNDARIOS ARV^99DCT" value="6295^ALTERACOES PSICOLOGICAS^99DCT">
+						Alterações Psicológicas - AP
+					</label>
+				</div>
+				<div class="form-group">
+					<label class="font-normal">
+						<input type="checkbox" data-concept="2015^EFEITOS SECUNDARIOS ARV^99DCT" value="821^NEUROPATIA PERIFERICA^99DCT"> 
+						Neuropatia Periférica - NP
+					</label>
+				</div>
+				<div class="form-group">
+					<label class="font-normal">
+						<input type="checkbox" data-concept="2015^EFEITOS SECUNDARIOS ARV^99DCT" value="6296^MIOPATIA^99DCT"> Miopatia - M
+					</label>
+				</div>
+				<div class="form-group">
+					<label class="font-normal">
+						<input type="checkbox" data-concept="2015^EFEITOS SECUNDARIOS ARV^99DCT" value="6297^ALERGIA CUTANEA^99DCT"> Alergias Cutâneas - AC
+					</label>
+				</div>
+				<div class="form-group">
+					<label class="font-normal">
+						<input type="checkbox" data-concept="2015^EFEITOS SECUNDARIOS ARV^99DCT" value="6298^LIPODISTROFIA^99DCT"> Lipodistrofia - L
+					</label>
+				</div>
+				<div class="form-group">
+					<label class="font-normal">
+						<input type="checkbox" data-concept="2015^EFEITOS SECUNDARIOS ARV^99DCT" value="6299^ACIDOSE LACTICA^99DCT"> Acidose Láctica - AcL
+					</label>
+				</div>
+				<div class="form-group">
+					<label class="font-normal">
+						<input type="checkbox" data-concept="2015^EFEITOS SECUNDARIOS ARV^99DCT" value="16^DIARREIA^99DCT"> Diarreia - D
+					</label>
+				</div>
+				<div class="form-group">
+					<label class="font-normal">
+						<input type="checkbox" name="effeitos_sec_outros" id="effeitos_sec_outros" data-concept="2015^EFEITOS SECUNDARIOS ARV^99DCT" value="1406^OUTROS DIAGNOSTICOS^99DCT"> Outros
+					</label>
+				</div>
+				<div class="form-group effeitos_sec_outros_div">
+					<label for="">Outros:</label>
+					<input class="form-control" id="obs.effeitos_sec_outros" name="obs.effeitos_sec_outros" data-concept="1365^EFEITOS SECUNDARIOS COM GRAVIDADE^99DCT"
+						   type="text">
+				</div>
+			</div>
+		</div>
+		<div class="sub-section">
+			<h4>Aderente ao TARV:</h4>
+			<div class="form-group">
+				<div class="radio">
+					<label>
+						<input name="obs.aderente_ao_tarv" id="obs.aderente_ao_tarv" type="radio" data-concept="1714^ADERENTE AO TARV^99DCT" value="1065^SIM^99DCT"> Sim
+					</label>
+				</div>
+				<div class="radio">
+					<label>
+						<input name="obs.aderente_ao_tarv" id="obs.aderente_ao_tarv" type="radio" data-concept="1714^ADERENTE AO TARV^99DCT" value="1066^NAO^99DCT"> Não
+					</label>￼
+				</div>
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="ddpc">Data da proxima consulta:</label>
+			<input class="form-control datepicker checkFutureDate future-date" id="obs.ddpc" name="obs.ddpc" data-concept="1410^DATA DE PROXIMA CONSULTA^99DCT"
+				   type="text" readonly>
+		</div>
+		<div class="form-group">
+			<label for="ddpcdc">Data do proximo controlo de CD4:</label>
+			<input class="form-control datepicker checkFutureDate future-date" id="obs.ddpcdc" name="obs.ddpcdc" data-concept="6249^DATA DO PROXIMO CONTROLO DE CD4^99DCT"
+				   type="text" readonly>
+		</div>
+		<div class="form-group">
+			<label for="">Referido para outro sector clinico:</label><br/>
+			<select class="form-control" id="obs.rposc" name="obs.rposc" data-concept="1272^REFERENCIAS ORDENADOS^99DCT">
+				<option value="">...</option>				
+				<option value="5487^TRATAMENTO DE TUBERCULOSE OU PROGRAMA DE DOT^99DCT">TRATAMENTO TB</option>	
+				<option value="2044^APOIO PSICOLOGICO^99DCT">APOIO PSICOSSOCIAL</option>	
+				<option value="1940^PLANEMENTO FAMILIAR^99DCT">PLANEAMENTO FAMILIAR</option>	
+				<option value="5485^INTERNAMENTO OU HOSPITALIZACAO^99DCT">INTERNAMENTO</option>	
+				<option value="1798^CONSULTA MEDICA^99DCT">CONSULTA MÉDICA</option>	
+				<option value="5622^OUTRO, NAO CODIFICADO^99DCT">OUTROS</option>	
+			</select>
+		</div>
+		<div class="form-group">
+			<label for="">Referido para serviços comunitários:</label><br/>
+			<select class="form-control" id="obs.rpsc" name="obs.rpsc" data-concept="6287^REFERIDO PARA SERVICOS COMUNITARIOS^99DCT">
+				<option value="">...</option>		
+				<option value="1699^CUIDADOS DOMICILIARIOST^99DCT">CUIDADOS DOMICILIARIOS</option>	
+				<option value="6188^ASSOCIACIO DE APOIO^99DCT">GRUPO DE APOIO</option>	
+				<option value="5622^OUTRO, NAO CODIFICADO^99DCT">OUTROS</option>	
+			</select>
+		</div>
+		<div class="form-group">
+			<label for="observacoes">Observacoes:</label>
+			<input class="form-control" id="obs.observacoes" name="obs.observacoes" data-concept="5622^OUTRO, NAO CODIFICADO^99DCT" type="text">
+		</div>
+	</div>
+	<div class="section">
+		<div class="form-group">
+            <label for="encounter.encounter_datetime">Data da Consulta:<span class="required">*</span>
+            </label>
+            <input class="form-control datetimepicker nonFutureDate past-date" id="encounter.encounter_datetime" name="encounter.encounter_datetime"
+				   type="text" readonly="readonly" required="required">
+        </div>
+		<div class="form-group">
+			<label for="encounter.provider_id_select">Médico:<span class="required">*</span></label>
+			<input class="form-control valid-provider-only" id="encounter.provider_id_select" type="text" placeholder="Start typing something..." readonly>
+			<input class="form-control" name="encounter.provider_id_select" type="hidden">
+		</div>
+		<div class="form-group show_provider_id_text">
+			<label for="encounter.provider_id">Médico ID:<span class="required">*</span></label>
+			<input class="form-control checkDigit" id="encounter.provider_id" disabled name="encounter.provider_id" type="text" required="required"  placeholder="Provider Id">
+		</div>
+		<div class="form-group">
+            <label for="encounter.location_id">Unidade Sanitária:<span class="required">*</span></label>
+            <input class="form-control valid-location-only" id="encounter.location_id" type="text" placeholder="Start typing something..." required="required" readonly>
+            <input class="form-control" name="encounter.location_id" type="hidden">
+        </div>		
+		<div class="form-group">
+            <input class="form-control" id="encounter.form_uuid" name="encounter.form_uuid" type="hidden" required="required">     
+		</div>
+    </div>
+</form>
+</body>
+<script type="text/javascript">
+$(document).ready(function () {
+	$('#save_draft').click(function () {
+		$(this).prop('disabled', true);
+		document.saveDraft();
+		$(this).prop('disabled', false);
+	});
+
+	$('#submit_form').click(function () {
+		$(this).prop('disabled', true);
+		document.submit();
+		$(this).prop('disabled', false);
+	});
+	
+	$('#obs\\.apoio_nutricional').change(function(){
+		if($('input[name=obs\\.apoio_nutricional]:checked').val() == "1065^SIM^99DCT"){
+			$('.apoio_nutricional_div').show();
+		} else{
+			$('.apoio_nutricional_div').hide();
+		}
+	});    
+	$('#obs\\.apoio_nutricional').trigger('change');
+	
+	$('#obs\\.tratamento_de_tb').change(function(){
+		if($('input[name=obs\\.tratamento_de_tb]:checked').val() == "1065^SIM^99DCT"){
+			$('.tratamento_de_tb_div').show();
+		} else{
+			$('.tratamento_de_tb_div').hide();
+		}
+	});    
+	$('#obs\\.tratamento_de_tb').trigger('change');	
+	
+	$('#obs\\.profilaxia_com_cotrimoxazol').change(function(){
+		if($('input[name=obs\\.profilaxia_com_cotrimoxazol]:checked').val() == "1065^SIM^99DCT"){
+			$('.profilaxia_com_cotrimoxazol_div').show();
+		} else{
+			$('.profilaxia_com_cotrimoxazol_div').hide();
+		}
+	});    
+	$('#obs\\.profilaxia_com_cotrimoxazol').trigger('change');	
+	
+	$('#obs\\.profilaxia_com_inh').change(function(){
+		if($('input[name=obs\\.profilaxia_com_inh]:checked').val() == "1065^SIM^99DCT"){
+			$('.profilaxia_com_inh_div').show();
+		} else{
+			$('.profilaxia_com_inh_div').hide();
+		}
+	});    
+	$('#obs\\.profilaxia_com_inh').trigger('change');
+	
+	$('#effeitos_sec_outros').change(function(){
+		if($('#effeitos_sec_outros').is(":checked")){
+			$('.effeitos_sec_outros_div').show();
+		} else{
+			$('.effeitos_sec_outros_div').hide();
+		}
+	});    
+	$('#effeitos_sec_outros').trigger('change');
+	
+	if($('#patient\\.sex').val() == "M"){
+		$('.female_gender_check_div').hide();
+		$('.male_gender_check_div').show();
+	}else{
+		$('.female_gender_check_div').show();
+		$('.male_gender_check_div').hide();
+	}
+	     
+	$.validator.addMethod("eligibleAgeOnly", function (value, element) {
+		if ($.fn.isNotRequiredAndEmpty(value, element)) return true;
+		return value > 14; 
+	}, " "
+	);
+
+	// attach 'nonFutureDate' class to perform validation.
+	jQuery.validator.addClassRules({
+		eligibleAgeOnly: { eligibleAgeOnly: true }
+	});
+	
+	calculateBMI();
+	
+	document.setupAutoCompleteData('encounter\\.location_id');
+	document.setupAutoCompleteDataForProvider('encounter\\.provider_id_select');
+	document.setupValidationForLocation("$('#encounter\\.location_id').val()","encounter\\.location_id");
+	document.setupValidationForProvider("$('#encounter\\.provider_id_select').val()","encounter\\.provider_id");
+
+	var prePopulateData = $.trim($('#pre_populate_data').html());
+	var prePopulateJSON = JSON.parse(prePopulateData);
+	$.each(prePopulateJSON, function(key, value) {
+		if (key === 'patient') {
+			var names = "";
+			$.each(value, function(keys, values) {
+				if(keys === 'patient.given_name' || keys === 'patient.middle_name' || keys === 'patient.family_name' || keys === 'patient.names'){
+				   names=names+" "+values;
+				}
+
+				if(keys === "patient.birth_date"){
+					var tmp = values.split('-');
+					if(tmp[2].length==4){
+                    	var birthDate = new Date(tmp[2],tmp[1]-1,tmp[0]);
+					}else{
+						var birthDate = new Date(tmp[0],tmp[1]-1,tmp[2]);
+					}
+					var today = new Date();
+					var milliSecondsInAYear = 1000 * 60 * 60 * 24 * 365.26;
+					var age = (today - birthDate) / milliSecondsInAYear;
+					$('#patient\\.age').val((Math.floor(age)));
+				}
+			});
+			$('#patient\\.names').val(names);
+		}
+	});
+});
+	
+function calculateBMI(){
+	var weightKG = parseFloat($('#obs\\.peso').val());
+	var heightCm = parseFloat($('#obs\\.altura').val());
+	var heightM;
+	var IMC;
+	if(!isNaN(heightCm) && !isNaN(weightKG)){
+		heightM = heightCm/100;
+		IMC = weightKG/(heightM*heightM);
+		$('#obs\\.imc').val(IMC.toFixed(2));
+	}
+}
+</script>
+</html>
