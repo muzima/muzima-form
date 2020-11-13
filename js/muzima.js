@@ -661,9 +661,7 @@ $(document).ready(function () {
     document.removeIfRepeatedSection = function($element){
         var $parent = $element.parent();
         var _id = $parent.attr('id');
-        console.log("_id: "+_id);
         var similarElements = $parent.parent().find("." + _id);
-        console.log('similarElements.length: '+similarElements.length);
         if (similarElements.length > 1) {
             $parent.remove();
             if(!document.isMaxRepeatsReached($(similarElements[0]))){

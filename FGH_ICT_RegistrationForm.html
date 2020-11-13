@@ -358,6 +358,8 @@
         </div>
         <div class="form-group">
             <input class="form-control" id="encounter.form_uuid" name="encounter.form_uuid" type="hidden" required="required">
+            <input class="form-control" id="encounter.form_uuid_to_add_obs" name="encounter.form_uuid_to_add_obs"
+                   type="hidden" value="05496c70-845c-40b1-9d28-070f67b3f7da">
         </div>
     </div>
 </form>
@@ -448,22 +450,6 @@
         });
         dobType.trigger('change');
 
-        // var patient_data = JSON.parse($("#pre_populate_data").text());
-        // var patient_payload = patient_data.patient;
-        // $.each(patient_payload, function (key, value) {
-        //     if (value instanceof Object) {
-        //         if (value instanceof Array) {
-        //             $.each(value, function (i, element) {
-        //                 if(element.attribute_type_uuid=="e2e3fd64-1d5f-11e0-b929-000c29ad1d07"){
-        //                     $("#patient\\.phone_number").val(element.attribute_value);
-        //                 }
-        //             });
-        //         }
-        //     }
-        // });
-
-        var searching = false;
-
         var requireMedicalRecordNumber =  htmlDataStore.isMedicalRecordNumberRequired();
         if(requireMedicalRecordNumber){
             $(".require_medical_record_number_hint").show();
@@ -487,7 +473,6 @@
             );
 
             var setPersonFieldsDataConceptAttributes = function($parent){
-                console.log('setPersonFieldsDataConceptAttributes');
                 $parent.find('.person_details').attr('data-concept','23782^SITUACAO FAMILIAR CONJUNTO^99DCT');
                 $parent.find('.obs\\.contact_relationship').attr('data-concept','23704^PARENTESCO^99DCT');
                 $parent.find('.obs\\.contact_name').attr('data-concept','23778^Nome do familiar^99DCT');
@@ -495,7 +480,7 @@
                 $parent.find('.obs\\.hiv_test').attr('data-concept','23779^Teste de HIV^99DCT');
                 $parent.find('.obs\\.hiv_care').attr('data-concept','23780^Cuidados HIV^99DCT');
                 $parent.find('.obs\\.child_at_risk_treatment').attr('data-concept','1885^TRATEMENTO (CCR)^99DCT');
-                $parent.find('.obs\\.relative_nid').attr('data-concept','23781^Relative NID^99DCT');
+                $parent.find('.obs\\.relative_nid').attr('data-concept','`23781`^Relative NID^99DCT');
             }
 
             var clearPersonDetails = function($parent){
@@ -651,6 +636,12 @@
                         if(relative_nid.length) {
                             relative_nid = relative_nid[relative_nid.length-1];
                             $parent.find('.obs\\.relative_nid').val(relative_nid.valueText);
+                        } else {
+                            relative_nid = htmlDataStore.getPatientIdentifier(contactUuid, "e2b966d0-1d5f-11e0-b929-000c29ad1d07");
+                            relative_nid = JSON.parse(relative_nid);
+                            if('identifier_value' in relative_nid) {
+                                $parent.find('.obs\\.relative_nid').val(relative_nid.identifier_value);
+                            }
                         }
                     }
 
@@ -675,9 +666,6 @@
             var searchServer = $parent.find('.tmp\\.search_server').is(':checked');
 
             $('.search-person-loader').hide();
-            console.log("loader visible: "+$parent.find('.search-person-loader').attr('style'));
-
-            console.log('selected = '+$(this).find(':selected').val() + ' isAToB = '+isAToB + ' isBToA = '+isBToA);
 
             if(isAToB){
                 //setPersonFieldsDataConceptAttributes();
@@ -718,18 +706,14 @@
             var personAUuid = $parent.find('.personA\\.uuid').val();
             var personBUuid = $parent.find('.personB\\.uuid').val();
             if(indexPatientUuid == personAUuid){
-                console.log("PTisPersonA");
                 $.each($parent.find('.BIsToA'),function(k,selectOption){
                     if($(selectOption).attr('value') == relationshipType){
-                        console.log($(selectOption).attr('value')+' : '+relationshipType);
                         $(selectOption).prop('selected', true);
                     }
                 });
             } else if(indexPatientUuid == personBUuid){
-                console.log("PTisPersonB");
                 $.each($parent.find('.AIsToB'),function(k,selectOption){
                     if($(selectOption).attr('value') == relationshipType){
-                        console.log($(selectOption).attr('value')+' : '+relationshipType);
                         $(selectOption).prop('selected', true);
                     }
                 });
