@@ -1,0 +1,446 @@
+<html xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
+<head>
+    <link href="css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="css/muzima.css" rel="stylesheet"/>
+    <link href="css/ui-darkness/jquery-ui-1.10.4.custom.min.css" rel="stylesheet"/>
+
+    <script src="js/jquery.min.js"></script>
+    <script src="js/jquery-ui-1.10.4.custom.min.js"></script>
+    <script src="js/jquery.validate.min.js"></script>
+    <script src="js/additional-methods.min.js"></script>	
+    <script src="js/muzima.js"></script>
+    <title>Missed Appointment Tracking Register</title>
+</head>
+<body class="col-md-10 col-md-offset-1">
+<div id="pre_populate_data">
+
+</div>
+<form id="missed_appointment_tracking_register" name="missed_appointment_tracking_register">
+    <h2 class="text-center">Missed Appointment Tracking Register</h2>
+    <div class="section">
+        <h3>Demographics</h3>
+        <div class="form-group">
+            <input class="form-control" id="patient.uuid"
+                   name="patient.uuid" type="hidden" readonly="readonly">
+        </div>
+
+        <div class="form-group">
+            <label for="patient.medical_record_number">Medical No:</label>
+            <input class="form-control" id="patient.medical_record_number"
+                   name="patient.medical_record_number" type="text"
+                   readonly="readonly">
+        </div>
+        <div class="form-group" style="display:none">
+            <label for="patient.family_name">Family Name:</label>
+            <input class="form-control" id="patient.family_name"
+                   name="patient.family_name" type="text" readonly="readonly">
+        </div>
+        <div class="form-group" style="display:none">
+            <label for="patient.given_name">Given Name:</label>
+            <input class="form-control" id="patient.given_name"
+                   name="patient.given_name" type="text" readonly="readonly">
+        </div>
+        <div class="form-group" style="display:none">
+            <label for="patient.middle_name">Middle Name:</label>
+            <input class="form-control" id="patient.middle_name"
+                   name="patient.middle_name" type="text" readonly="readonly">
+        </div>
+		<div class="form-group">
+            <label for="patient.middle_name">Name:</label>
+            <input class="form-control" id="patient.names"
+                   name="patient.names" type="text" readonly="readonly">
+        </div>
+        <div class="form-group">
+            <label for="patient.sex">Gender:</label>
+            <select class="form-control" id="patient.sex" name="patient.sex" readonly="readonly" disabled>
+                <option value="">...</option>
+                <option value="M">Male</option>
+                <option value="F">Female</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="patient.birth_date">Date of birth:</label>
+            <input class="form-control" id="patient.birth_date"
+                   name="patient.birth_date" type="text" readonly="readonly">
+        </div>
+    </div>
+    <div class="section">
+        <h3>Appointment Information</h3>
+        <div class="form-group">
+            <label for="obs.missed_appointment_date">Missed Appointment Date:<span class="required"></span>
+            </label>
+            <input class="form-control" data-concept="166158^Missed Appointment Date^99DCT"  id="obs.missed_appointment_date" name="obs.missed_appointment_date" type="text" readonly="readonly"/>
+        </div>
+		<div class="form-group service_point">
+			<label for="obs.service_point">
+			Service Point<span class="required"></span>
+			</label>
+			<select class="form-control" id="obs.service_point" name="obs.service_point" data-concept="164993^POINT OF CARE^99DCT">
+				<option value="">...</option>
+				<option value="165047^Antiretraviral Treatment Clinic^99DCT">ART Clinic</option>
+				<option value="165048^Tuberculosis Clinic^99DCT">TB Clinic</option>
+				<option value="90002^OTHER SPECIFY^99DCT">Other</option>
+			</select>
+        </div> 
+		<div class="form-group" id="other_service_point_div">
+			<div class="form-group">
+				<label for="obs.other_service_point">			
+					Other Service Point
+				<span class="required"></span>
+				</label>
+				<div class="form-group">		
+					<input type="text" class="form-control" data-concept="165398^Other Point of Care^99DCT" name="obs.other_service_point" id="obs.other_service_point">
+				</div>
+			</div>	
+		</div>
+		<div class="form-group">
+			<label for="obs.medication_due_for_refill">			
+				 Medication Due for Refill
+			<span class="required"></span>
+			</label>						
+			<div class="form-group">	
+				<label for="obs.medication_due_for_refill_art" style="font-weight: normal;">
+					<input type="checkbox" data-concept="165482^Medication due for refill^99DCT" value="164972^ART Refill^99DCT" name="obs.medication_due_for_refill" id="obs.medication_due_for_refill_art">&nbsp;ART
+				</label>
+			</div>
+			<div class="form-group">
+				<label for="obs.medication_due_for_refill_tb" style="font-weight: normal;">
+					<input type="checkbox" data-concept="165482^Medication due for refill^99DCT" value="1159^TUBERCULOSIS TREATMENT DRUGS^99DCT" name="obs.medication_due_for_refill" id="obs.medication_due_for_refill_tb">&nbsp;TB Meds/TPT
+				</label>
+			</div>
+			<div class="form-group">
+				<label for="obs.medication_due_for_refill_inc" style="font-weight: normal;">
+					<input type="checkbox" data-concept="165482^Medication due for refill^99DCT" value="1158^TUBERCULOSIS PROPHYLACTIC DRUGS^99DCT" name="obs.medication_due_for_refill" id="obs.medication_due_for_refill_inc">&nbsp;Infant NVP/CTX
+				</label>
+			</div>
+			<div class="form-group">
+				<label for="obs.medication_due_for_refill_fp" style="font-weight: normal;">
+					<input type="checkbox" data-concept="165482^Medication due for refill^99DCT" value="5287^FAMILY PLANNING^99DCT" name="obs.medication_due_for_refill" id="obs.medication_due_for_refill_fp">&nbsp;FP
+				</label>
+			</div>
+			<div class="form-group">
+				<label for="obs.medication_due_for_refill_other" style="font-weight: normal;">
+					<input type="checkbox" data-concept="165482^Medication due for refill^99DCT" value="5622^Other^99DCT" name="obs.medication_due_for_refill" id="obs.medication_due_for_refill_other">&nbsp;Other
+				</label>
+			</div>	
+            <div class="form-group" id="medication_due_for_refill_other_div">
+				<label for="obs.medication_due_for_refill_specify">			
+					Other Specify:
+				<span class="required"></span>
+				</label>
+				<input type="text" class="form-control" data-concept="165483^Other medication due for refill at appointment^99DCT" name="obs.medication_other_specify">
+			</div>												
+		</div>
+		<div class="form-group">
+			<label for="obs.mode_of_care">
+			Mode of Care<span class="required"></span>
+			</label>
+			<select class="form-control" id="obs.mode_of_care" name="obs.mode_of_care" data-concept="165143^Differentiated Service Delivery^99DCT">
+				<option value="">...</option>
+				<option value="165138^Facility Based Individual Management^99DCT">1 - FBIM</option>
+				<option value="165140^Facility Based Groups^99DCT">2 - FBG</option>
+				<option value="165139^Fast Track Drug Refill^99DCT">3 - FTDR</option>
+				<option value="165142^Community Drug Distribution Point^99DCT">4 - CDDP</option>				
+				<option value="165141^Community Client Led ART Delivery^99DCT">5 - CCLAD</option>
+			</select>
+        </div> 
+	</div>
+	<div class="section">
+	    <h3>Tracking Information</h3>		
+        <div class="section group-set concept-set" data-concept="165346^General Follow Up^99DCT" >		
+			<div class="form-group">
+				<label for="obs.follow_up_attemp">
+				Follow Up Attempt<span class="required">*</span>
+				</label>
+				<select class="form-control" id="obs.follow_up_attemp" required name="obs.follow_up_attemp" data-concept="166157^Follow Up Attempts^99DCT">
+					<option value="">...</option>				
+					<option value="165338^General Follow Up First Attempt^99DCT">1 - Follow Up 1</option>
+					<option value="165339^General Follow Up Second Attempt^99DCT">2 - Follow Up 2</option>
+					<option value="165340^General Follow Up Third Attempt^99DCT">3 - Follow Up 3</option>
+					<option value="165341^General Follow Up Fourth Attempt^99DCT">4 - Follow Up 4</option>
+					<option value="165342^General Follow Up Fifth Attempt^99DCT">5 - Follow Up 5</option>
+					<option value="165343^General Follow Up Sixth Attempt^99DCT">6 - Follow Up 6</option>
+				</select>
+			</div> 		
+			<div class="form-group">
+				<label for="obs.followup_date_date">
+					Followup Date<span class="required">*</span>
+				</label>
+				<input class="form-control datepicker past-date"  data-concept="165373^Followup Date^99DCT" id="obs.followup_date_date" name="obs.followup_date_date" type="text" readonly="readonly" required>
+			</div>
+			<div class="form-group">
+				<label for="encounter.provider_id_select">
+					Follow Up Person:<span class="required">*</span>
+				</label>
+				<input class="form-control valid-provider-only" id="encounter.provider_id_select"
+				type="text" placeholder="Start typing something...">
+				<input class="form-control" name="encounter.provider_id_select" type="hidden">
+			</div>			
+			<div class="form-group">
+					<label for="obs.followup_method">
+						Followup Action<span class="required">*</span>
+					</label> 
+					<select class="form-control" id="obs.followup_method" name="obs.followup_method" data-concept="165100^Followup Method^99DCT" required>
+						<option value=""></option>
+						<option value="165102^Phonecall^99DCT">Phone call to client/caregiver/next of Kin</option>
+						<option value="165103^Home visit^99DCT"> Home/workplace visit by HCW</option>
+						<option value="165336^Facility to Facility Phone Call^99DCT"> Facility to facility phone call</option>
+						<option value="165337^Facility to Facility Visit^99DCT"> Facility to facility visit</option>
+						<option value="90002^OTHER SPECIFY^99DCT"> Other</option>
+					</select>
+			</div>
+			<div class="form-group freetext" id="other_follow_up_action_div">
+				<label for="obs.other_follow_up_action/method">
+					Other Follow up actions<span class="required">*</span>
+				</label>
+				<input class="form-control" id="obs.other_follow_up_action_method" name="obs.other_follow_up_action_method" type="text" data-concept="165481^Other follow up action/method^99DCT" required>
+			</div>
+			<div class="form-group">
+				<label for="obs.followup_outcome">
+					Follow Up Outcome<span class="required">*</span>
+				</label>			
+				<select class="form-control" id="obs.followup_outcome" name="obs.followup_outcome" data-concept="165104^Followup Outcome^99DCT" required>
+					<option value=""></option>
+					<option value="165334^Returned to Care^99DCT">1 - Returned to care</option>
+					<option value="165335^Self Transfered^99DCT"> 2 - Self transferred</option>
+					<option value="1363^STOPPED^99DCT"> 3 - Stopped/Refused</option>
+					<option value="165486^Patient migrated/relocated^99DCT"> 4 - Migrated/Relocated</option>
+					<option value="160034^Died^99DCT"> 5 - Died</option>
+					<option value="165368^CAN NOT BE TRACED^99DCT"> 6 - Unable to be traced</option>
+					<option value="165369^Tracing Attempts initiated but incomplete^99DCT"> 7 - Tracing attempts initiated but incomplete</option>
+					<option value="165370^No Attempt^99DCT"> 8 - No attempt to trace</option>
+					<option value="165371^Misclassified as missed Appointment^99DCT"> 9 - Misclassified as Missed Appointment</option>
+				</select>
+			</div>
+			<div id="ART_details">
+				<div class="form-group freetext">
+					<label for="obs.name_of_location_transferred_to">
+						ART Clinic<span class="required"></span>
+					</label>
+					<input class="form-control" id="obs.name_of_location_transferred_to" name="obs.name_of_location_transferred_to" type="text" data-concept="90211^NAME OF LOCATION TRANSFERRED TO^99DCT">
+				</div>
+				<div class="form-group freetext">
+					<label for="obs.art_number">ART Number</label>
+					<input class="form-control" id="obs.art_number" name="obs.art_number" type="text" data-concept="99431^ART Number^99DCT">
+				</div>
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="obs.followup_outcome_by_end_of_current_quarter">Followup outcome by end of current quarter</label>
+			<select class="form-control" id="obs.followup_outcome_by_end_of_current_quarter" name="obs.followup_outcome_by_end_of_current_quarter" data-concept="165484^Followup outcome by end of current quarter^99DCT">
+				<option value=""></option>
+				<option value="165334^Returned to Care^99DCT">1 - Returned to care</option>
+				<option value="165335^Self Transfered^99DCT"> 2 - Self transferred</option>
+				<option value="1363^STOPPED^99DCT"> 3 - Stopped/Refused</option>
+				<option value="165486^Patient migrated/relocated^99DCT"> 4 - Migrated/Relocated</option>
+				<option value="160034^Died^99DCT"> 5 - Died</option>
+				<option value="165368^CAN NOT BE TRACED^99DCT"> 6 - Unable to be traced</option>
+				<option value="165369^Tracing Attempts initiated but incomplete^99DCT"> 7 - Tracing attempts initiated but incomplete</option>
+				<option value="165370^No Attempt^99DCT"> 8 - No attempt to trace</option>
+				<option value="165371^Misclassified as missed Appointment^99DCT"> 9 - Misclassified as Missed Appointment</option>
+			</select>
+		</div>
+		<div class="form-group">
+				<label for="obs.followup_outcome_by_end_of_next_quarter">Followup outcome by end of next quarter</label>
+				<select class="form-control" id="obs.followup_outcome_by_end_of_next_quarter" name="obs.followup_outcome_by_end_of_next_quarter" data-concept="165485^Followup outcome by end of next quarter^99DCT">
+					<option value="" selected="true"></option>
+					<option value="165334^Returned to Care^99DCT">1 - Returned to care</option>
+					<option value="165335^Self Transfered^99DCT"> 2 - Self transferred</option>
+					<option value="1363^STOPPED^99DCT"> 3 - Stopped/Refused</option>
+					<option value="165486^Patient migrated/relocated^99DCT"> 4 - Migrated/Relocated</option>
+					<option value="160034^Died^99DCT"> 5 - Died</option>
+					<option value="165368^CAN NOT BE TRACED^99DCT"> 6 - Unable to be traced</option>
+					<option value="165369^Tracing Attempts initiated but incomplete^99DCT"> 7 - Tracing attempts initiated but incomplete</option>
+					<option value="165370^No Attempt^99DCT"> 8 - No attempt to trace</option>
+					<option value="165371^Misclassified as missed Appointment^99DCT"> 9 - Misclassified as Missed Appointment</option>
+				</select>
+		</div>
+		<div class="form-group" id="returned_to_care_date">
+			<label for="obs.date_client_returned_date">Date Returned to Care</label>
+			<input class="form-control datepicker past-date" id="obs.date_client_returned_date" name="obs.date_client_returned_date" data-concept="165378^Date Client Returned^99DCT" type="text" readonly="readonly">
+		</div>
+		<div class="form-group" id="self_transfered_date">
+			<label for="obs.transfer_out_date_date">Date Self Transferred</label>
+			<input class="form-control datepicker past-date" id="obs.transfer_out_date_date" name="obs.transfer_out_date_date"  data-concept="99165^TRANSFER OUT DATE^99DCT" type="text" readonly="readonly">
+		</div>
+		<div class="form-group" id="cause_of_death">
+			<label for="obs.cause_of_death">CAUSE OF DEATH</label>
+			<select class="form-control" id="obs.cause_of_death" name="obs.cause_of_death" data-concept="5002^CAUSE OF DEATH^99DCT">
+				<option value=""></option>
+				<option value="58^TUBERCULOSIS^99DCT">1 - TB</option>
+				<option value="116030^Cancer^99DCT"> 2 - Cancer</option>
+				<option value="165374^Infectious Disease other than TB^99DCT"> 3 - Infectious disease other than TB</option>
+				<option value="165375^HIV Non-infectious Disease^99DCT"> 4 - HIV Non-infectious disease</option>
+				<option value="165376^Natural Causes^99DCT"> 5 - Natural causes</option>
+				<option value="165377^Non natural causes^99DCT"> 6 - Non natural causes</option>
+				<option value="90001^UNKNOWN^99DCT"> 7 - Unknown</option>
+			</select>
+		</div>
+		<div class="form-group freetext">
+			<label for="obs.clinical_impression_comment">Clinical impression comment </label>
+			<input type="text" class="form-control" name="obs.clinical_impression_comment" id="obs.clinical_impression_comment" data-concept="159395^Clinical impression comment^99DCT">
+		</div>
+	</div>	
+	 <div class="section">	 
+        <div class="form-group">
+            <input class="form-control" id="encounter.form_uuid" name="encounter.form_uuid" type="hidden" required="required"/>           			
+		</div>
+		<div class="form-group">
+            <label for="encounter.encounter_datetime">Encounter Date:<span class="required">*</span>
+            </label>
+            <input class="form-control nonFutureDate past-date" id="encounter.encounter_datetime"
+                   name="encounter.encounter_datetime" type="text" readonly="readonly"
+                   required="required"/>
+        </div>
+		<div class="form-group show_provider_id_text" style="display:none">
+			<label for="encounter.provider_id">Follow Up Person's System ID:<span class="required">*</span></label>
+			<input class="form-control checkDigit" id="encounter.provider_id" disabled name="encounter.provider_id"
+			   type="text" required="required"  placeholder="Provider Id">
+		</div>
+		<div class="form-group">
+            <label for="encounter.location_id">Encounter Location:<span class="required">*</span></label>
+            <input class="form-control valid-location-only" id="encounter.location_id" type="text" placeholder="Start typing something..." required="required"/>
+            <input class="form-control" name="encounter.location_id" type="hidden"/>
+        </div>	
+    </div>
+</form>
+</body>
+<script type="text/javascript">
+$(document).ready(function () {
+	$('#save_draft').click(function () {
+		$(this).prop('disabled', true);
+		document.saveDraft();
+		$(this).prop('disabled', false);
+	});
+
+	$('#submit_form').click(function () {
+		$(this).prop('disabled', true);
+		document.submit();
+		$(this).prop('disabled', false);
+	});
+	
+	var dateFormat = "dd-mm-yy";
+	var currentDate = $.datepicker.formatDate(dateFormat, new Date());
+	var encounterDatetime = $('#encounter\\.encounter_datetime');
+	if ($(encounterDatetime).val() == "") {
+		$(encounterDatetime).val(currentDate);
+	}
+	
+	var followupDate = $('#obs\\.followup_date_date');
+	if ($(followupDate).val() == "") {
+		$(followupDate).val(currentDate);
+	}
+
+
+	$('#obs\\.service_point').change(function(){
+		if($(this).val() == "90002^OTHER SPECIFY^99DCT"){
+			$('#other_service_point_div').show();
+		} else{
+			$('#other_service_point_div').hide();
+		}
+	});    
+	$('#obs\\.service_point').trigger('change'); 
+	
+	$('#obs\\.medication_due_for_refill_other').change(function(){
+		if($(this).prop( "checked" )){
+			$('#medication_due_for_refill_other_div').show();
+		} else{
+			$('#medication_due_for_refill_other_div').hide();
+		}
+	});    
+	$('#obs\\.medication_due_for_refill_other').trigger('change'); 
+	
+	$('#obs\\.followup_method').change(function(){
+		if($(this).val() == "90002^OTHER SPECIFY^99DCT"){
+			$('#other_follow_up_action_div').show();
+		} else{
+			$('#other_follow_up_action_div').hide();
+		}
+	});    
+	$('#obs\\.followup_method').trigger('change'); 
+
+	// attach 'nonFutureDate' class to perform validation.
+	jQuery.validator.addClassRules({
+		validDeliveryDateOnly: { validDeliveryDateOnly: true }
+	});
+
+	document.setupAutoCompleteData('encounter\\.location_id');
+	document.setupAutoCompleteDataForProvider('encounter\\.provider_id_select');
+	document.setupValidationForLocation("$('#encounter\\.location_id').val()","encounter\\.location_id");
+	document.setupValidationForProvider("$('#encounter\\.provider_id_select').val()","encounter\\.provider_id");
+	
+	$('#obs\\.followup_date_date').change(function(){
+		$('#encounter\\.encounter_datetime').val($('#obs\\.followup_date_date').val());
+	});    
+	$('#obs\\.followup_date_date').trigger('change');
+
+	var prePopulateData = $.trim($('#pre_populate_data').html());
+	var prePopulateJSON = JSON.parse(prePopulateData);
+	$.each(prePopulateJSON, function(key, value) {
+		if (key === 'patient') {
+			var names = "";
+			$.each(value, function(keys, values) {
+				if(keys === 'patient.given_name' || keys === 'patient.middle_name' || keys === 'patient.family_name'){
+				   names=names+" "+values;
+				}
+
+				if(keys === "patient.birth_date"){
+					var tmp = values.split('-');
+                    var birthDate = new Date(tmp[2],tmp[1]-1,tmp[0]);
+					var today = new Date();
+					var milliSecondsInAYear = 1000 * 60 * 60 * 24 * 365.26;
+					var age = (today - birthDate) / milliSecondsInAYear;
+					$('#patient\\.age').val((Math.floor(age)+" Years "));
+				}
+			});
+			$('#patient\\.names').val(names);
+		}
+	});
+	
+   var patientuuid = $('#patient\\.uuid').val();
+   var lastAppointmentDate = htmlDataStore.getObsByConceptId(patientuuid,5096);  
+   lastAppointmentDate = JSON.parse(lastAppointmentDate);
+   var lastAppointmentDateSize = lastAppointmentDate.length-1;
+   if(parseInt(lastAppointmentDateSize)>-1){
+			if(lastAppointmentDate[0].valueDatetime!=""){
+				var appointmentDate = lastAppointmentDate[0].valueDatetime;
+			 }else{
+				var appointmentDate = lastAppointmentDate[0].valueText;
+			 }
+			$("#obs\\.missed_appointment_date").val(appointmentDate);
+	}
+	
+	 var followupOutcome = $('#obs\\.followup_outcome');
+        followupOutcome.change(function () {
+            if ($('#obs\\.followup_outcome').val() == '165335^Self Transfered^99DCT') {
+					$('#ART_details').show();
+					$('#self_transfered_date').hide();
+					$('#returned_to_care_date').hide();
+					$('#cause_of_death').hide();
+            } else if($('#obs\\.followup_outcome').val() == '165334^Returned to Care^99DCT'){
+					$('#ART_details').hide();
+					$('#self_transfered_date').hide();
+					$('#returned_to_care_date').show();
+					$('#cause_of_death').hide();
+			}	else if($('#obs\\.followup_outcome').val() == '165335^Self Transfered^99DCT'){
+					$('#ART_details').hide();
+					$('#self_transfered_date').show();
+					$('#returned_to_care_date').hide();
+					$('#cause_of_death').hide();
+			}	else if($('#obs\\.followup_outcome').val() == '160034^Died^99DCT'){
+					$('#ART_details').hide();
+					$('#self_transfered_date').hide();
+					$('#returned_to_care_date').hide();
+					$('#cause_of_death').show();
+			}	else {
+					$('#ART_details').hide();
+					$('#self_transfered_date').hide();
+					$('#returned_to_care_date').hide();
+					$('#cause_of_death').hide();
+            }
+        });
+        followupOutcome.trigger('change');
+	
+});
+</script>
+</html>
