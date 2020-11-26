@@ -474,7 +474,7 @@
 
             var setPersonFieldsDataConceptAttributes = function($parent){
                 $parent.find('.person_details').attr('data-concept','23782^SITUACAO FAMILIAR CONJUNTO^99DCT');
-                $parent.find('.obs\\.contact_relationship').attr('data-concept','23704^PARENTESCO^99DCT');
+                $parent.find('.obs\\.contact_relationship').attr('data-concept','1930^Amigo ou Colega^99DCT');
                 $parent.find('.obs\\.contact_name').attr('data-concept','23778^Nome do familiar^99DCT');
                 $parent.find('.obs\\.contact_age').attr('data-concept','23777^Idade^99DCT');
                 $parent.find('.obs\\.hiv_test').attr('data-concept','23779^Teste de HIV^99DCT');
@@ -680,8 +680,8 @@
             } else if(isBToA){
                 // setPersonFieldsDataConceptAttributes();
                 $parent.find('.tmp\\.relationshipType').val($(this).val());
-                $parent.find('.create-relationship-person').attr('data-result-field','personA\\.uuid');
-                $parent.find('.tmp\\.update_person_details').attr('data-result-field','personA\\.uuid');
+                $parent.find('.create-relationship-person').attr('data-result-field','personB\\.uuid');
+                $parent.find('.tmp\\.update_person_details').attr('data-result-field','personB\\.uuid');
                 setUpPersonFieldsPopulation($parent,'.personA\\.uuid','.personB\\.uuid', searchServer);
 
                 $parent.find('.search_person').show();
@@ -752,6 +752,7 @@
                 var $parent = $(this).closest('.repeat');
                 var resultField = $(this).attr('data-result-field');
                 var personUuid = $parent.find('.tmp\\.person_uuid').val();
+                $parent.attr('data-name',personUuid);
                 document.updatePersonDemographics($parent.attr('data-name'),resultField,personUuid);
             }
         });

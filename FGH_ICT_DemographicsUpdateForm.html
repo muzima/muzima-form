@@ -38,9 +38,9 @@
                    readonly="readonly" required="required">
         </div>
         <div class="form-group">
-            <label for="patient.given_name">Nome: <span class="required">*</span></label>
+            <label for="patient.given_name">Nome:</label>
             <input class="form-control" id="patient.given_name" name="patient.given_name" type="text"
-                   readonly="readonly" required="required">
+                   readonly="readonly">
         </div>
         <div class="form-group">
             <label for="patient.middle_name">Nome do meio:</label>
@@ -756,7 +756,7 @@
 
                         var relationshipType = $parent.find('.person\\.relationshipType').val();
                         if(relationshipType == '8ce38f96-0c7f-11eb-8fb0-bbd20b621cb8'){
-                            $parent.find('.obs\\.contact_relationship').val('23704^PARENTESCO^99DCT');
+                            $parent.find('.obs\\.contact_relationship').val('1930^Amigo ou Colega^99DCT');
                         } else if(relationshipType == '4132a84c-f116-4369-b67d-9363b3399916'){
                             if(personAUuid == contactUuid){
                                 $parent.find('.obs\\.contact_relationship').val('973^AVO^99DCT');
@@ -790,9 +790,10 @@
                         }
 
                         var hiv_test = htmlDataStore.getObsByConceptId(contactUuid, 23779);
+
                         hiv_test = JSON.parse(hiv_test);
                         if(hiv_test.length) {
-                            hiv_test = hiv_test[hiv_test.length-1];
+                            hiv_test = hiv_test[0];
                             if (hiv_test.valueCoded.id == 703){
                                 $parent.find('.obs\\.hiv_test').val('703^Positivo^99DCT');
                             } else if (hiv_test.valueCoded.id == 664){
@@ -805,7 +806,7 @@
                         var hiv_care = htmlDataStore.getObsByConceptId(contactUuid, 23780);
                         hiv_care = JSON.parse(hiv_care);
                         if(hiv_care.length) {
-                            hiv_care = hiv_care[hiv_care.length-1];
+                            hiv_care = hiv_care[0];
                             if (hiv_care.valueCoded.id == 1065){
                                 $parent.find('.obs\\.hiv_care').val('1065^Sim^99DCT');
                             } else if (hiv_care.valueCoded.id == 1066){
@@ -816,7 +817,7 @@
                         var child_at_risk_treatment = htmlDataStore.getObsByConceptId(contactUuid, 1885);
                         child_at_risk_treatment = JSON.parse(child_at_risk_treatment);
                         if(child_at_risk_treatment.length) {
-                            child_at_risk_treatment = child_at_risk_treatment[child_at_risk_treatment.length-1];
+                            child_at_risk_treatment = child_at_risk_treatment[0];
                             if (child_at_risk_treatment.valueCoded.id == 1065){
                                 $parent.find('.obs\\.child_at_risk_treatment').val('1065^Sim^99DCT');
                             } else if (child_at_risk_treatment.valueCoded.id == 1066){
@@ -829,7 +830,7 @@
                         var relative_nid = htmlDataStore.getObsByConceptId(contactUuid, 23781);
                         relative_nid = JSON.parse(relative_nid);
                         if(relative_nid.length) {
-                            relative_nid = relative_nid[relative_nid.length-1];
+                            relative_nid = relative_nid[0];
                             $parent.find('.obs\\.relative_nid').val(relative_nid.valueText);
                         } else {
                             relative_nid = htmlDataStore.getPatientIdentifier(contactUuid, "e2b966d0-1d5f-11e0-b929-000c29ad1d07");
@@ -875,8 +876,8 @@
             } else if(isBToA){
                 // setPersonFieldsDataConceptAttributes();
                 $parent.find('.person\\.relationshipType').val($(this).val());
-                $parent.find('.create-relationship-person').attr('data-result-field','personA\\.uuid');
-                $parent.find('.tmp\\.update_person_details').attr('data-result-field','personA\\.uuid');
+                $parent.find('.create-relationship-person').attr('data-result-field','personB\\.uuid');
+                $parent.find('.tmp\\.update_person_details').attr('data-result-field','personB\\.uuid');
                 setUpPersonFieldsPopulation($parent,'.personA\\.uuid','.personB\\.uuid', searchServer);
 
                 $parent.find('.search_person').show();
@@ -950,6 +951,7 @@
                 var $parent = $(this).closest('.repeat');
                 var resultField = $(this).attr('data-result-field');
                 var personUuid = $parent.find('.tmp\\.person_uuid').val();
+                $parent.attr('data-name',personUuid);
                 document.updatePersonDemographics($parent.attr('data-name'),resultField,personUuid);
             }
         });

@@ -29,14 +29,14 @@
                        name="patient.uuid" type="hidden" readonly="readonly">
             </div>
             <div class="form-group">
-                <label for="patient.family_name">Apelido: <span class="required">*</span> </label>
+                <label for="patient.family_name">Apelido: </label>
                 <input class="form-control" id="patient.family_name" name="patient.family_name" type="text"
-                       readonly="readonly" required="required" value="ddd">
+                       readonly="readonly" value="">
             </div>
             <div class="form-group">
-                <label for="patient.given_name">Nome: <span class="required">*</span></label>
+                <label for="patient.given_name">Nome:</label>
                 <input class="form-control" id="patient.given_name" name="patient.given_name" type="text"
-                       readonly="readonly" required="required">
+                       readonly="readonly">
             </div>
             <div class="form-group">
                 <label for="patient.middle_name">Nome do meio:</label>
@@ -146,7 +146,7 @@
         </div>
         <div class="section">
             <div class="form-group">
-                <label for="patient.sex">Sexo: <span class="required">*</span></label>
+                <label for="patient.sex">Sexo:</label>
                 <input id="patient.sex" name="patient.sex" type="hidden">
                 <input class="form-control" disabled id="tmp.patient.sex" name="tmp.patient.sex" type="text">
             </div>
@@ -159,7 +159,7 @@
             </div>
             <div class="form-group sub-section" id="update_sex">
                 <label for="demographicsupdate.sex">Novo Sexo: <span class="required">*</span></label>
-                <select class="form-control" id="demographicsupdate.sex" name="demographicsupdate.sex">
+                <select class="form-control" id="demographicsupdate.sex" name="demographicsupdate.sex" required="required">
                     <option value="">...</option>
                     <option value="M">Masculino</option>
                     <option value="F">Feminino</option>
@@ -253,7 +253,7 @@
             <div class="form-group">
                 <label for="tmp.relative_nid">NID:</label>
                 <input class="form-control" id="tmp.relative_nid"
-                       name="tmp.relative_nid" type="number" readonly="readonly">
+                       name="tmp.relative_nid" type="text" readonly="readonly">
             </div>
             <div class="form-group">
                 <label for="tmp.update_hiv_details">
@@ -616,7 +616,7 @@
         var hiv_test = htmlDataStore.getObsByConceptId(patientUuid, 23779);
         hiv_test = JSON.parse(hiv_test);
         if(hiv_test.length) {
-            hiv_test = hiv_test[hiv_test.length-1];
+            hiv_test = hiv_test[0];
             if (hiv_test.valueCoded.id == 703){
                 $('#tmp\\.hiv_test').val('Positivo');
                 $('#demographicsupdate\\.hiv_test').val('703^Positivo^99DCT');
@@ -633,7 +633,7 @@
         var hiv_care = htmlDataStore.getObsByConceptId(patientUuid, 23780);
         hiv_care = JSON.parse(hiv_care);
         if(hiv_care.length) {
-            hiv_care = hiv_care[hiv_care.length-1];
+            hiv_care = hiv_care[0];
             if (hiv_care.valueCoded.id == 1065){
                 $('#tmp\\.hiv_care').val('Sim');
                 $('#demographicsupdate\\.hiv_care').val('1065^Sim^99DCT');
@@ -647,7 +647,7 @@
         var child_at_risk_treatment = htmlDataStore.getObsByConceptId(patientUuid, 1885);
         child_at_risk_treatment = JSON.parse(child_at_risk_treatment);
         if(child_at_risk_treatment.length) {
-            child_at_risk_treatment = child_at_risk_treatment[child_at_risk_treatment.length-1];
+            child_at_risk_treatment = child_at_risk_treatment[0];
             if (child_at_risk_treatment.valueCoded.id == 1065){
                 $('#tmp\\.child_at_risk_treatment').val('Sim');
                 $('#demographicsupdate\\.child_at_risk_treatment').val('1065^Sim^99DCT');
@@ -664,7 +664,7 @@
         var relative_nid = htmlDataStore.getObsByConceptId(patientUuid, 23781);
         relative_nid = JSON.parse(relative_nid);
         if(relative_nid.length) {
-            relative_nid = relative_nid[relative_nid.length-1];
+            relative_nid = relative_nid[0];
             $('#tmp\\.relative_nid').val(relative_nid.valueText);
             $('#demographicsupdate\\.relative_nid').val(relative_nid.valueText);
             $('#demographicsupdate\\.relative_nid').trigger('change');
