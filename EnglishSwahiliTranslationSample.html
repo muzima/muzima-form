@@ -1,0 +1,82 @@
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/muzima.css" rel="stylesheet">
+    <link href="css/ui-darkness/jquery-ui-1.10.4.custom.min.css" rel="stylesheet">
+
+    <script type="text/javascript"  src="js/jquery.min.js"></script>
+    <script type="text/javascript"  src="js/jquery-ui-1.10.4.custom.min.js"></script>
+    <script type="text/javascript"  src="js/jquery.validate.min.js"></script>
+    <script type="text/javascript"  src="js/additional-methods.min.js"></script>
+    <script type="text/javascript"  src="js/muzima.js"></script>
+	<script src="js/jquery.i18n.js"></script>
+	<script src="js/jquery.i18n.messagestore.js"></script>
+
+    <title data-i18n="title"></title>
+</head>
+<body class="col-md-8 col-md-offset-2">
+  <form id="" name="">
+    <h2 class="text-center"  data-i18n="title"></h2>
+	<div class="section">
+			<B><p style="font-size:18px;text-align:center" data-i18n="info">NOTE: This is a demo form whose purpose is retrieving and displaying past historical data, it is not for data entry/collection.<p></B>
+	</div>
+    <div class="section">
+        <div class="form-group">
+        <input class="form-control" id="patient.uuid"
+            name="patient.uuid" type="hidden" readonly="readonly">
+        </div>
+        <div class="form-group">        
+            <label for="" data-i18n="search_type">Search Type</label>
+            <select class="form-control" name="historysearchtype" id="historysearchtype" required="required" onChange="checkSearchtype(this.value);">
+                <option value="">...</option>
+                <option value="conceptid"  data-i18n="concept">Concept</option>
+                <option value="encountertypeid"  data-i18n="enc_type">Encounter Type</option>
+                <option value="encounterid"  data-i18n="enc">Encounter</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="historysearchid"  data-i18n="search_by">Search By:<span class="required">*</span></label>
+            <input class="form-control" id="historysearchid" type="text" data-i18n="[placeholder]placeholder1" onChange="getObservations();" required="required">
+            <input class="form-control" id="historysearchids" name="historysearchid" type="hidden">
+        </div>
+        <div class="form-group" id="historicaldata">
+            
+        </div>
+    </div>
+</form>  
+
+</body>
+
+<script type="text/javascript">
+   $(document).ready(function () { 
+      $.i18n().locale = htmlDataStore.getApplicationLanguage();
+	 var update_texts = function() { $('body').i18n() };
+	  $.i18n().load({
+		'en': {
+		  'title':'Historical Data Access Form',
+		  'search_by':'Seach By',
+		  'placeholder1':'Start typing something...',
+		  'info':'NOTE: This is a demo form whose purpose is retrieving and displaying past historical data, it is not for data entry/collection.',
+		  'search_type':'Search Type',
+		  'enc':'Encounter',
+		  'enc_type':'Encounter Type',
+		  'concept':'Concept',
+		},
+		'sw': {
+		  'title':'Fomu ya Ufikiaji wa Takwimu za Kihistoria',
+		  'search_by':'Tafuta Na',
+		  'placeholder1':'Anza kuandika kitu...',
+		  'info':'KUMBUKA: Hii ni fomu ya onyesho ambayo kusudi lake ni kupata tena na kuonyesha data ya zamani ya kihistoria, sio kwa kuingiza / kukusanya data.',
+		  'search_type':'Aina ya Utafutaji',
+		  'enc':'Kukutana',
+		  'enc_type':'Aina ya Mkutano',
+		  'concept':'Dhana',		  
+		}
+	  });
+	  update_texts();   		
+    });
+        
+           
+</script>
+</html>
