@@ -61,28 +61,11 @@
             <input class="form-control" id="patient.medical_record_number" name="patient.medical_record_number" type="text" readonly="readonly"/>
         </div>       
 		<div class="section">
-			<div class="section group-set" data-group="patient.personaddress">
-				<h3>Endereço</h3>
+		    <h3>Endereço</h3>
+			<div class="group-set" data-group="patient.personaddress">
 				<div class="form-group">
-					<label for="address5">Bairro: </label>
 					<input class="form-control" id="address5" name="address5" type="text" readonly="readonly">
-				</div>
-				<div class="form-group">
-					<label for="address1">Avenida/Rua: </label>
-					<input class="form-control" id="address1" name="address1" type="text" readonly="readonly">
-				</div>
-				<div class="form-group">
-					<label for="address6">Unidade Comunal: </label>
-					<input class="form-control" id="address6" name="address6" type="text" readonly="readonly">
-				</div>
-				<div class="form-group">
-					<label for="address3">Quarteirão: </label>
-					<input class="form-control" id="address3" name="address3" type="text" readonly="readonly">
-				</div>
-				<div class="form-group">
-					<label for="address2">Casa Nº: </label>
-					<input class="form-control" id="address2" name="address2" type="text" readonly="readonly">
-				</div>				
+				</div>		
 			</div>
 		</div>
     </div>
@@ -95,7 +78,7 @@
         </div>
 		<div class="form-group">
 			<label for="encounter.provider_id_select">Provedor:<span class="required">*</span></label>
-			<input class="form-control valid-provider-only" id="encounter.provider_id_select" type="text" placeholder="Start typing something..." readonly="readonly"/>
+			<input class="form-control valid-provider-only" id="encounter.provider_id_select" type="text" placeholder="Start typing something..."/>
 			<input class="form-control" name="encounter.provider_id_select" type="hidden"/>
 		</div>
 		<div class="form-group show_provider_id_text">
@@ -107,7 +90,7 @@
 		</div>
 		<div class="form-group">
             <label for="encounter.location_id">Unidade Sanitária:<span class="required">*</span></label>
-            <input class="form-control valid-location-only" id="encounter.location_id" type="text" placeholder="Start typing something..." required="required" readonly="readonly"/>
+            <input class="form-control valid-location-only" id="encounter.location_id" type="text" placeholder="Start typing something..." required="required"/>
             <input class="form-control" name="encounter.location_id" type="hidden"/>
         </div>	
 	</div>
@@ -169,7 +152,7 @@
 				<label for="obs.qty_ordered_other">
 				Outra:<span class="required">*</span>
 				</label>				
-				<input id="obs.qty_ordered_other" class="form-control" type="text" name="obs.qty_ordered_other" data-concept="1715^QUANTIDADE AVIADA^99DCT" required="required"/>
+				<input id="obs.qty_ordered_other" class="form-control" type="text" name="obs.qty_ordered_other" data-concept="1715^QUANTIDADE AVIADA^99DCT"/>
 			</div> 
 		</div>
 		<div class="sub-section">
@@ -194,12 +177,14 @@
 				<label for="obs.dosage_other">
 				Outra:<span class="required">*</span>
 				</label>				
-				<input id="obs.dosage_other" class="form-control" type="text" name="obs.dosage_other" data-concept="1711^POSOLOGIA^99DCT" required="required"/>
+				<input id="obs.dosage_other" class="form-control" type="text" name="obs.dosage_other" data-concept="1711^POSOLOGIA^99DCT"/>
 			</div> 
 		</div>
 		 <div class="form-group">
-            <label for="obs.data_proxima">Data do próximo Levantamento:<span class="required">*</span>
-			<input id="obs.data_proxima" class="form-control" type="text" name="obs.data_proxima" data-concept="5096^DATA DO PROXIMO LEVANTAMENTO DE ARV^99DCT" required="required"/>
+            <label for="obs.data_proxima">
+				Data do próximo Levantamento:<span class="required">*</span>
+			</label>
+			<input id="obs.data_proxima" class="form-control datepicker" type="text" name="obs.data_proxima" data-concept="5096^DATA DO PROXIMO LEVANTAMENTO DE ARV^99DCT" readonly="readonly" required="required"/>
         </div>
 		<div class="form-group">
 			<label for="obs.leva_camp">
@@ -223,16 +208,16 @@
 			Modo de Dispensa:<span class="required">*</span>
 			</label>
 			<select class="form-control" id="obs.mod_dispensa" required
-				name="obs.mod_dispensa" data-concept="1711^POSOLOGIA^99DCT">
-				<option value="1-0-1">1-0-1</option>
+				name="obs.mod_dispensa" data-concept="40a9a12b-1205-4a55-bb93-caf15452bf61^MODO DE DISPENSA^99DCT">
+				<option value="870e2d25-c5ef-4e36-89db-0a4a37af214e^DISPENSA COMUNITÁRIA VIA PROVEDOR^99DCT">DISPENSA COMUNITÁRIA VIA PROVEDOR</option>
 			</select>
 		</div> 
 	</div>
 </form>
 </body>
 <script type="text/javascript">
-$(document).ready(function () {
-	$('#save_draft').click(function () {
+$(document).ready(function  () {
+	$('#save_draft').click(function  () {
 		$(this).prop('disabled', true);
 		document.saveDraft();
 		$(this).prop('disabled', false);
@@ -251,10 +236,11 @@ $(document).ready(function () {
 
 	var prePopulateData = $.trim($('#pre_populate_data').html());
 	var prePopulateJSON = JSON.parse(prePopulateData);
-	$.each(prePopulateJSON, function(key, value) {
+	$.each(prePopulateJSON, function    (key, value) {
 		if (key === 'patient') {
 			var names = "";
-			$.each(value, function(keys, values) {
+			
+			$.each(value, function  (keys, values) {
 				if(keys === 'patient.given_name' || keys === 'patient.middle_name' || keys === 'patient.family_name' || keys === 'patient.names'){
 				   names=names+" "+values;
 				}
@@ -290,7 +276,7 @@ $(document).ready(function () {
    obs3 = JSON.parse(obs3);
    var obsCount3 = obs3.length-1;
    if(parseInt(obsCount3)>-1){
-		$("#tmp\\.no_do_livro_tarv").val(obs3[0].valueNumeric);
+		$("#tmp\\.linha").val(obs3[0].valueNumeric);
    }
    
    var obs4 = htmlDataStore.getObsByConceptId(patientuuid,1088);  
@@ -298,9 +284,7 @@ $(document).ready(function () {
    var obsCount4 = obs4.length-1;
    if(parseInt(obsCount4)>-1){
 		$("#tmp\\.regime").val(obs4[0].valueCoded.name);
-   }
-   
-   
+   }   
 });
 </script>
 </html>
