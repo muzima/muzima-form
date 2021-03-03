@@ -1,0 +1,1361 @@
+<html xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
+<head>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/muzima.css" rel="stylesheet">
+    <link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+    <link href="css/ui-darkness/jquery-ui-1.10.4.custom.min.css" rel="stylesheet">
+
+    <script src="js/jquery.min.js"></script>
+    <script src="js/jquery-ui-1.10.4.custom.min.js"></script>
+    <script src="js/jquery.validate.min.js"></script>
+    <script src="js/additional-methods.min.js"></script>
+    <script src="js/bootstrap-datetimepicker.min.js"></script>
+    <script src="js/muzima.js"></script>
+    <title>PROCESSO HOSPITAL DE DIA</title>
+</head>
+<body class="col-md-10 col-md-offset-1">
+<div id="pre_populate_data">
+
+</div>
+<form id="processo_parte_a" name="processo_parte_a">
+    <h2 class="text-center">PROCESSO PARTE A</h2>
+	<div class="section">
+		<div class="form-group" align="center">
+            REPÚBLICA DE MOÇAMBIQUE<br/>
+			SERVIÇO NACIONAL DE SAÚDE<br/><br/>
+			Mod. SIS - H-07
+        </div>
+	</div>
+    <div class="section">
+        <h3>PROCESSO HOSPITAL DE DIA</h3>
+        <div class="form-group">
+            <input class="form-control" id="patient.uuid"
+                   name="patient.uuid" type="hidden" readonly="readonly">
+        </div>
+        <div class="form-group">
+            <label for="patient.names">Nome:</label>
+            <input class="form-control" id="patient.names"
+                   name="patient.names" type="text" readonly="readonly">
+        </div>
+		<div class="form-group">
+            <label for="patient.sex">Sexo:</label>
+            <input class="form-control" id="patient.sex" name="patient.sex" type="text" readonly="readonly">
+        </div>
+		<div class="form-group">
+            <label for="patient.birth_date">Data de Nasc:</label>
+            <input class="form-control" id="patient.birth_date"
+                   name="patient.birth_date" type="text" readonly="readonly">
+        </div>
+		<div class="form-group">
+            <label for="patient.birth_date">Idade:</label>
+            <input class="form-control eligibleAgeOnly" id="patient.age" name="patient.age" type="text" readonly="readonly" required>
+        </div>        
+		<div class="form-group">
+            <label for="patient.no_de_bi">Nº de BI</label>
+            <input class="form-control" id="patient.no_de_bi" name="patient.no_de_bi" type="text" readonly="readonly">
+        </div>  
+		<div class="form-group">
+            <label for="patient.no_de_bi">Outra identificação</label>
+            <input class="form-control" id="patient.outra_identificacao" name="patient.outra_identificacao" type="text" readonly="readonly">
+        </div>  
+		<div class="form-group">
+            <label for="patient.medical_record_number">NID/HDD</label>
+            <input class="form-control" id="patient.medical_record_number" name="patient.medical_record_number" type="text" readonly="readonly">
+        </div>  
+		<div class="section">
+			<div class="section group-set" data-group="patient.personaddress">
+				<h3>Endereço</h3>
+				<div class="form-group">
+					<label for="address2">Distrito/Cidade: </label>
+					<input class="form-control" id="address2" name="address2" type="text" readonly="readonly">
+				</div>
+				<div class="form-group">
+					<label for="address6">Localidade: </label>
+					<input class="form-control" id="address6" name="address6" type="text" readonly="readonly">
+				</div>
+				<div class="form-group">
+					<label for="address5">Bairro: </label>
+					<input class="form-control" id="address5" name="address5" type="text" readonly="readonly">
+				</div>
+				<div class="form-group">
+					<label for="address3">Célula/Quarteirão: </label>
+					<input class="form-control" id="address3" name="address3" type="text" readonly="readonly">
+				</div>
+				<div class="form-group">
+					<label for="address1">Avenida/Rua/Casa: </label>
+					<input class="form-control" id="address1" name="address1" type="text" readonly="readonly">
+				</div>
+			</div>
+		</div>
+    </div>
+	<div class="section">
+		<h3>Pessoa de Referência</h3>
+		<div class="form-group concept-set" data-concept="1609^PESSOA DE REFERENCIA^99DCT">
+			<div class="form-group">
+				<label for="nome">Nome: <span class="required">*</span></label>
+				<input class="form-control" id="obs.pessoa_de_referencia_nome"
+                   name="obs.pessoa_de_referencia_nome" data-concept="1441^PESSOA DE REFERENCIA - NOME^99DCT" type="text"
+				   required="required">
+			</div>
+			<div class="form-group">
+				<label for="apelido">Apelido: <span class="required">*</span></label>
+				<input class="form-control" id="obs.pessoa_de_referencia_apelido"
+                   name="obs.pessoa_de_referencia_apelido" data-concept="1442^PESSOA DE REFERENCIA - APELIDO^99DCT" type="text" 
+				   required="required">
+			</div>
+			<div class="form-group">
+				<label for="tel">Tel: <span class="required">*</span></label>
+				<input class="form-control" id="obs.pessoa_de_referencia_tel"
+                   name="obs.pessoa_de_referencia_tel" data-concept="1611^PESSOA DE REFERENCIA - NUMERO DE TELEFONE^99DCT" type="text" 
+				   required="required">
+			</div>	
+		</div>
+	</div>
+	<div class="section">
+		<div class="form-group concept-set" data-concept="1657^OUTRO INFORMATIO PESSOAL^99DCT">
+			<div class="form-group">
+				<label for="profissão">Profissão / Ocupação: <span class="required">*</span></label>
+				<input class="form-control" id="obs.profissao"
+                   name="obs.profissao" data-concept="1459^OCUPACAO^99DCT" type="text"
+				   required="required">
+			</div>
+			<div class="form-group">
+				<label for="obs.nivel">Nível de Escolaridade: <span class="required">*</span></label>
+				<select class="form-control" id="obs.nivel" required
+					name="obs.nivel" data-concept="1443^NIVEL DE ESCOLARIDADE^99DCT">
+					<option value="">...</option>
+					<option value="1445^NENHUMA EDUCATIO FORMAL^99DCT">NENHUM</option>
+					<option value="1446^PRIMARIO^99DCT">PRIMÁRIO</option>
+					<option value="1447^SECUNDARIO, NIVEL BASICO^99DCT">SECUNDÁRIO BÁSICO</option>
+					<option value="6124^TECNICO BASICO^99DCT">TÉCNICO BÁSICO</option>	
+					<option value="1444^SECUNDARIO, NIVEL MEDIO^99DCT">SECUNDÁRIO MÉDIO</option>	
+					<option value="6125^TECNICO MEDIO^99DCT">TÉCNICO MÉDIO</option>	
+					<option value="1448^UNIVERSITARIO^99DCT">UNIVERSITÁRIO</option>						
+				</select>
+			</div> 
+			<div class="form-group">
+				<label for="telefone_de_contacto">Telefone de contacto:</label>
+				<input class="form-control" id="patient.telefone_de_contacto" name="patient.telefone_de_contacto" type="text" readonly>
+			</div>	
+			<div class="form-group">
+				<label for="conviventes">Nº de conviventes: <span class="required">*</span></label>
+				<input class="form-control" id="obs.conviventes" name="obs.conviventes" data-concept="1656^NUMERO DE CONVIVENTES^99DCT" 
+					   type="number" required="required">
+			</div>	
+		</div>
+	</div>
+	<div class="section">
+		<div class="section">
+			<div class="form-group concept-set" data-concept="1659^INFORMATIO CIVIL PARA PACIENTES HIV POSITIVOS^99DCT">
+				<h3>INFORMATIO CIVIL PARA PACIENTES HIV POSITIVOS</h3>
+				<div class="form-group">
+					<label>ESTADO CIVIL</label>
+					<div class="radio">
+						<label>
+							<input name="obs.estado_civil" type="radio" data-concept="1054^ESTADO CIVIL^99DCT" value="1057^SOLTEIRO^99DCT">
+							Solteiro(a)
+						</label>
+					</div>
+					<div class="radio">
+						<label>
+							<input name="obs.estado_civil" type="radio" data-concept="1054^ESTADO CIVIL^99DCT" value="5555^CASSADO^99DCT">
+							Casado(a)
+						</label>
+					</div>
+					<div class="radio">
+						<label>
+							<input name="obs.estado_civil" type="radio" data-concept="1054^ESTADO CIVIL^99DCT" value="1059^VIUVO^99DCT">
+							Viúvo(a)
+						</label>
+					</div>
+					<div class="radio">
+						<label>
+							<input name="obs.estado_civil" type="radio" data-concept="1054^ESTADO CIVIL^99DCT" value="1060^UNIAO DE FACTO^99DCT">
+							União de facto
+						</label>
+					</div>
+					<div class="radio">
+						<label>
+							<input name="obs.estado_civil" type="radio" data-concept="1054^ESTADO CIVIL^99DCT" value="1056^SEPARADO^99DCT">
+							Separado(a)
+						</label>
+					</div>
+					<div class="radio">
+						<label>
+							<input name="obs.estado_civil" type="radio" data-concept="1054^ESTADO CIVIL^99DCT" value="1058^DIVORCIADO^99DCT">
+							Divorciado(a)
+						</label>
+					</div>
+					<div class="form-group">
+						<label>Cônjuge(s)? Nº: <span class="required">*</span></label>
+						<input class="form-control" id="obs.conjuge" name="obs.conjuge" data-concept="5557^NUMERO DE ESPOSAS^99DCT" 
+							   type="number" required="required">
+					</div>
+				</div>
+				<div class="form-group">
+					<label>Serologia HIV do(s) cônjuge(s)</label>
+					<div class="radio">
+						<label>
+							<input name="obs.serologia_conjuge" type="radio" data-concept="1449^SERIOLOGIA HIV DO CONJUGE^99DCT" value="1169^VIH POSITIV^99DCT">
+							Pos.
+						</label>
+					</div>
+					<div class="radio">
+						<label>
+							<input name="obs.serologia_conjuge" type="radio" data-concept="1449^SERIOLOGIA HIV DO CONJUGE^99DCT" value="1066^NAO^99DCT">
+							Neg.
+						</label>
+					</div>
+					<div class="radio">
+						<label>
+							<input name="obs.serologia_conjuge" type="radio" data-concept="1449^SERIOLOGIA HIV DO CONJUGE^99DCT" value="1457^SEM INFORMACAO^99DCT">
+							S. Inf.
+						</label>
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="number_do_processo">Nº do Processo: <span class="required">*</span></label>
+					<input class="form-control" id="obs.number_do_processo"
+					   name="obs.number_do_processo" data-concept="1450^NUMERO DO PROCESSO DO CONJUGE HIV POS^99DCT" type="number" 
+					   required="required">
+				</div>	
+				<div class="form-group">
+					<label for="outros_parceiros">Outros parceiros(as)?: <span class="required">*</span></label>
+					<input class="form-control" id="obs.outros_parceiros" name="obs.outros_parceiros" data-concept="1451^OUTROUS PARCEIROS^99DCT" 
+						   type="text" required="required">
+				</div>	
+				<div class="form-group">
+					<label for="de_filhos">Nº de filhos: <span class="required">*</span></label>
+					<input class="form-control" id="obs.de_filhos" name="obs.de_filhos" data-concept="5573^NUMERO DE FILHOS^99DCT" 
+						   type="number" required="required">
+				</div>	
+				<div class="form-group">
+					<label for="de_filhos_testados">Nº de filhos testados: <span class="required">*</span></label>
+					<input class="form-control" id="obs.de_filhos_testados" name="obs.de_filhos_testados" data-concept="1452^NUMERO DE FILHOS TESTADOS^99DCT"
+						   type="number" required="required">
+				</div>	
+				<div class="form-group">
+					<label for="de_filhos_hiv">Nº de filhos HIV+: <span class="required">*</span></label>
+					<input class="form-control" id="obs.de_filhos_hiv" name="obs.de_filhos_hiv" data-concept="1453^NUMERO DE FILHOS HIV POS^99DCT" 
+						   type="number" required="required">
+				</div>	
+				<div class="form-group">
+					<label for="dos_processos">Nº dos processos: <span class="required">*</span></label>
+					<input class="form-control" id="obs.dos_processos" name="obs.dos_processos" data-concept="1454^NUMERO DOS PROCESSOS DE FILHOS HIV POS^99DCT"
+						   type="number" required="required">
+				</div>	
+			</div>
+		</div>
+		<div class="section">
+			<div class="form-group concept-set" data-concept="1659^INFORMATIO CIVIL PARA PACIENTES HIV POSITIVOS^99DCT">
+				<h3>Equipamento ao domicilio</h3>
+				<div class="form-group">
+					<label>Geleira</label>
+					<div class="radio">
+						<label>
+							<input name="obs.geleira" type="radio" data-concept="1455^GELEIRA EM CASA^99DCT" value="1065^SIM^99DCT">
+							Sim
+						</label>
+					</div>
+					<div class="radio">
+						<label>
+							<input name="obs.geleira" type="radio" data-concept="1455^GELEIRA EM CASA^99DCT" value="1066^NAO^99DCT">
+							Não
+						</label>
+					</div>
+				</div>
+				<div class="form-group">
+					<label>Electricidade</label>
+					<div class="radio">
+						<label>
+							<input name="obs.electricidade" type="radio" data-concept="5609^ELECTRICIDADE EM CASA^99DCT" value="1065^SIM^99DCT">
+							Sim
+						</label>
+					</div>
+					<div class="radio">
+						<label>
+							<input name="obs.electricidade" type="radio" data-concept="5609^ELECTRICIDADE EM CASA^99DCT" value="1066^NAO^99DCT">
+							Não
+						</label>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="section">
+			<div class="form-group concept-set" data-concept="1625^PONTO DE ENTRADA NO SERVIO TARV, CONJUNTO^99DCT">
+				<div class="form-group">
+					<label for="obs.referencia_de">Referência de: <span class="required">*</span></label>
+					<select class="form-control" id="obs.referencia_de" required name="obs.referencia_de" data-concept="1594^PROVENIENCIA, TIPO^99DCT">
+						<option value="">...</option>						
+						<option value="1595^INTERNAMENTO^99DCT">Enfermaria</option>	
+						<option value="1596^CONSULTA EXTERNA^99DCT">Consulta Externa</option>
+						<option value="1414^PNCT^99DCT">PNCT</option>
+						<option value="1597^GATV^99DCT">GATV/ATS/UATS</option>
+						<option value="1987^SAAJ^99DCT">SAAJ</option>
+						<option value="1598^PTV^99DCT">PTV</option>
+						<option value="1872^CCR^99DCT">CCR</option>
+						<option value="1275^CENTRO DE SAUDE^99DCT">Posto/Centro de Saúde</option>
+						<option value="1984^UNIDADE DE SAUDE^99DCT">Hospital Geral-Rural</option>
+						<option value="1599^PROVEDOR PRIVADO^99DCT">Clínica Privada</option>
+						<option value="1932^REFERIDO POR UM PROFESSIONAL DA SAUDE^99DCT">Contacto</option>
+						<option value="1387^LABORATORIO^99DCT">Laboratório</option>
+						<option value="1386^CLINICA MOVEL^99DCT">Clínica Móvel</option>
+						<option value="6245^ATSC^99DCT">ATSC</option>
+						<option value="1699^CUIDADOS DOMICILIARIOS^99DCT">CD</option>
+						<option value="2160^VISITA DE BUSCA^99DCT">Busca Consentida</option>
+						<option value="6288^SMI^99DCT">SMI</option>
+						<option value="5484^APOIO NUTRICIONAL^99DCT">Apoio Alimentar</option>
+						<option value="6155^MEDICO TRADICIONAL^99DCT">Praticante de Medicina Tradicional</option>
+						<option value="1044^ENF. PEDIATRIA^99DCT">Pediatria</option>
+						<option value="6303^VBG^99DCT">VBG</option>
+						<option value="6304^ATIP^99DCT">ATIP</option>
+						<option value="6305^OBC^99DCT">OBC</option>
+						<option value="5622^OUTRO, NAO CODIFICADO^99DCT">Outros</option>
+					</select>
+				</div> 
+				<div class="form-group">
+					<label for="localide">Nome: <span class="required">*</span></label>
+					<input class="form-control" id="obs.localide" name="obs.localide" data-concept="1626^PROVENIENCIA, LOCALIDADE^99DCT" 
+						   type="text" required="required">
+				</div>	
+				<div class="form-group">
+					<label for="codigo">Código: <span class="required">*</span></label>
+					<input class="form-control" id="obs.codigo" name="obs.codigo" data-concept="1627^PROVENIENCIA, CODIGO^99DCT" 
+						   type="text" required="required">
+				</div>	
+			</div>
+		</div>
+		<div class="section">	
+			<div class="form-group concept-set" data-concept="1661^DIAGNOSTICO HIV^99DCT">
+				<div class="form-group">
+					<label for="data_de_diagnostico">Data de Diagnóstico: <span class="required">*</span></label>
+					<input class="form-control datepicker nonFutureDate past-date" id="obs.data_de_diagnostico" name="obs.data_de_diagnostico" data-concept="6123^DATA DE DIAGNOSTICO DO HIV+^99DCT"
+						   type="text" required="required" readonly>
+				</div>
+				<div class="form-group">
+					<label>Foi aconselhado</label>
+					<div class="radio">
+						<label>
+							<input name="obs.foi_aconselhado" type="radio" data-concept="5609^FOI ACONSELHADO^99DCT" value="1065^SIM^99DCT">
+							Sim
+						</label>
+					</div>
+					<div class="radio">
+						<label>
+							<input name="obs.foi_aconselhado" type="radio" data-concept="5609^FOI ACONSELHADO^99DCT" value="1066^NAO^99DCT">
+							Não
+						</label>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>	
+	<div class="section">
+		<h3>ANAMNESE</h3>
+		<div class="section">
+			<h3>Hábitos</h3>
+			<div class="form-group">
+				<label>Tabaco</label>
+				<div class="radio">
+					<label>
+						<input name="obs.tabaco" type="radio" data-concept="1388^TABACO^99DCT" value="1065^SIM^99DCT">
+						Sim
+					</label>
+				</div>
+				<div class="radio">
+					<label>
+						<input name="obs.tabaco" type="radio" data-concept="1388^TABACO^99DCT" value="1066^NAO^99DCT">
+						Não
+					</label>
+				</div>
+			</div>
+			<div class="form-group">
+				<label>Álcool</label>
+				<div class="radio">
+					<label>
+						<input name="obs.alcool" type="radio" data-concept="1603^ALCOOL^99DCT" value="1065^SIM^99DCT">
+						Sim
+					</label>
+				</div>
+				<div class="radio">
+					<label>
+						<input name="obs.alcool" type="radio" data-concept="1603^ALCOOL^99DCT" value="1066^NAO^99DCT">
+						Não
+					</label>
+				</div>
+			</div>
+			<div class="form-group">
+				<label>Drogas IV</label>
+				<div class="radio">
+					<label>
+						<input name="obs.drogas_four" type="radio" data-concept="105^ABUSO DE DROGAS^99DCT" value="1065^SIM^99DCT">
+						Sim
+					</label>
+				</div>
+				<div class="radio">
+					<label>
+						<input name="obs.drogas_four" type="radio" data-concept="105^ABUSO DE DROGAS^99DCT" value="1066^NAO^99DCT">
+						Não
+					</label>
+				</div>
+			</div>
+		</div>
+		<div class="section">
+			<h3>SEXUALIDADE</h3>
+			<div class="form-group">
+				<label>Sexualidade</label>
+				<div class="radio">
+					<label>
+						<input name="obs.sexualidade" type="radio" data-concept="1375^SEXUALIDADE^99DCT" value="1376^HETEROSEXUAL^99DCT">
+						Heterosexual
+					</label>
+				</div>
+				<div class="radio">
+					<label>
+						<input name="obs.sexualidade" type="radio" data-concept="1375^SEXUALIDADE^99DCT" value="1377^HOMOSEXUAL^99DCT">
+						Homosexual
+					</label>
+				</div>
+				<div class="radio">
+					<label>
+						<input name="obs.sexualidade" type="radio" data-concept="1375^SEXUALIDADE^99DCT" value="1378^BISEXUAL^99DCT">
+						Bisexual
+					</label>
+				</div>
+			</div>
+			<div class="form-group">
+				<label>Nº de parceiros nos últimos 3 meses</label>
+				<div class="radio">
+					<label>
+						<input name="obs.de_parceiros" type="radio" data-concept="1666^NO DE PARCEIROS NOS ULTIMOS 3 MESES^99DCT"
+							   value="1662^1 PARCEIRO SEXUAL NOS ULTIMOS 3 MESES^99DCT">
+						1
+					</label>
+				</div>
+				<div class="radio">
+					<label>
+						<input name="obs.de_parceiros" type="radio" data-concept="1666^NO DE PARCEIROS NOS ULTIMOS 3 MESES^99DCT" 
+							   value="1663^1 A 3 PARCEIROS SEXUAIS NOS ULTIMOS 3 MESES^99DCT">
+						1 a 3
+					</label>
+				</div>
+				<div class="radio">
+					<label>
+						<input name="obs.de_parceiros" type="radio" data-concept="1666^NO DE PARCEIROS NOS ULTIMOS 3 MESES^99DCT" 
+							   value="1664^+ DE 3 PARCEIROS SEXUAIS NOS ULTIMOS 3 MESES^99DCT">
+						+ de 3
+					</label>
+				</div>
+			</div>
+		</div>
+		<div class="section gender_check_div">
+			<div class="form-group concept-set" data-concept="1393^ANTECEDENTES GINECOLOGICOS, GPAV^99DCT">
+				<h3>Antecedentes Ginecológicos</h3>
+				<div class="form-group">
+					<label for="gesta_g">Gesta(G):</label>
+					<input class="form-control" id="obs.gesta_g" name="obs.gesta_g" data-concept="5624^CODE DE ANTECEDENTE GINECOLOGICOS, GESTANTE^99DCT"
+					   type="number">
+				</div>		
+				<div class="form-group">
+					<label for="para_p">Para(P):</label>
+					<input class="form-control" id="obs.para_p" name="obs.para_p" data-concept="1392^CODE DE ANTECEDENTE GINECOLOGICOS, PARA^99DCT"
+					   type="number">
+				</div>	
+				<div class="form-group">
+					<label for="aborto_a">Aborto(A):</label>
+					<input class="form-control" id="obs.aborto_a" name="obs.aborto_a" data-concept="1390^CODE DE ANTECEDENTE GINECOLOGICOS, ABORTO^99DCT"
+					   type="number">
+				</div>	
+				<div class="form-group">
+					<label for="vivos_v">Vivos(V):</label>
+					<input class="form-control" id="obs.vivos_v" name="obs.vivos_v" data-concept="1391^CODE DE ANTECEDENTE GINECOLOGICOS, VIVOS^99DCT"
+					   type="number">
+				</div>	
+				<div class="form-group">
+					<label for="outros_antecedentes">Outros Antecedentes:</label>
+					<input class="form-control" id="obs.outros_antecedentes" name="obs.outros_antecedentes" data-concept="1394^ANTECEDENTES GINECOLOGICOS, OUTROS^99DCT"
+						   type="text">
+				</div>	
+				<div class="form-group">
+					<label for="data_da_ultima_menstruacao">Data da última menstruação:</label>
+					<input class="form-control datepicker nonFutureDate past-date" id="obs.data_da_ultima_menstruacao" name="obs.data_da_ultima_menstruacao"
+						   data-concept="1465^DATA DE ULTIMO MENSTRUACAO^99DCT" type="text" readonly>
+				</div>
+			</div>				
+		</div>
+		<div class="section">
+			<div class="gender_check_div">
+				<div class="form-group concept-set" data-concept="1668^ANTECEDENTES OBSTETRICOS^99DCT">
+					<h3>Antecedentes Obstétricos</h3>
+					<div class="form-group">
+						<label>Aborto</label>
+						<div class="radio">
+							<label>
+								<input name="obs.aborto_antecedentes" type="radio" data-concept="1667^ABORTO^99DCT" value="50^GRAVIDEZ INTERROMPIDA^99DCT">
+								Sim
+							</label>
+						</div>
+						<div class="radio">
+							<label>
+								<input name="obs.aborto_antecedentes" type="radio" data-concept="1667^ABORTO^99DCT" value="1066^NAO^99DCT">
+								Não
+							</label>
+						</div>
+					</div>
+					<div class="form-group">
+						<label>PTV</label>
+						<div class="radio">
+							<label>
+								<input name="obs.ptv_antecedentes" id="obs.ptv_antecedentes" type="radio" data-concept="1466^TRATAMENTO PTV^99DCT" value="1065^SIM^99DCT">
+								Sim
+							</label>
+						</div>
+						<div class="radio">
+							<label>
+								<input name="obs.ptv_antecedentes" id="obs.ptv_antecedentes" type="radio" data-concept="1466^TRATAMENTO PTV^99DCT" value="1066^NAO^99DCT">
+								Não
+							</label>
+						</div>
+					</div>			
+					<div class="form-group ptv_antecedentes_div">
+						<label for="obs.tipo_ptv">Tipo PTV: <span class="required">*</span></label>
+						<select class="form-control" id="obs.tipo_ptv" required name="obs.tipo_ptv" data-concept="1504^TRATEMENTO ARV PRE-NATAL^99DCT">
+							<option value="">...</option>						
+							<option value="916^COTRIMOXAZOL^99DCT">COTRIMOXAZOL</option>	
+							<option value="792^D4T+3TC+NVP^99DCT">D4T+3TC+NVP</option>	
+							<option value="6388^EM TARV A ENTRADA NA CPN^99DCT">EM TARV A ENTRADA NA CPN</option>	
+							<option value="87^FANSIDAR^99DCT">FANSIDAR</option>	
+							<option value="1256^INICIO TARV^99DCT">INICIO TARV</option>	
+							<option value="628^LAMIVUDINA^99DCT">LAMIVUDINA</option>	
+							<option value="1257^CONTINUAR^99DCT">CONTINUAR</option>	
+							<option value="1107^NENHUM^99DCT">NENHUM</option>	
+							<option value="631^NEVIRAPINA^99DCT">NEVIRAPINA</option>	
+							<option value="1800^TRATEMENTO ANTIRETROVIRAL^99DCT">TRATEMENTO ANTIRETROVIRAL</option>	
+							<option value="797^ZIDOVUDINA^99DCT">ZIDOVUDINA</option>	
+							<option value="630^ZIDOVUDINA + LAMIVUDINA^99DCT">ZIDOVUDINA + LAMIVUDINA </option>	
+							<option value="1801^ZIDOVUDINA + NEVIRAPINA^99DCT">ZIDOVUDINA + NEVIRAPINA</option>							
+						</select>
+					</div> 
+					<div class="form-group">
+						<label>Mulher Grávida</label>
+						<div class="radio">
+							<label>
+								<input name="obs.mulher_gravida" id="obs.mulher_gravida" type="radio" data-concept="1982^ESTA GRAVIDA^99DCT" value="44^GESTACAO^99DCT">
+								Sim
+							</label>
+						</div>
+						<div class="radio">
+							<label>
+								<input name="obs.mulher_gravida" id="obs.mulher_gravida" type="radio" data-concept="1982^ESTA GRAVIDA^99DCT" value="1066^NAO^99DCT">
+								Não
+							</label>
+						</div>
+						<div class="radio">
+							<label>
+								<input name="obs.mulher_gravida" id="obs.mulher_gravida" type="radio" data-concept="1982^ESTA GRAVIDA^99DCT" value="1175^NAO^99DCT">
+								Não Aplicável
+							</label>
+						</div>
+					</div>	
+					<div class="mulher_gravida_div">
+						<div class="form-group">
+							<label for="semanas_de_gestacao">Semanas de Gestação:</label>
+							<input class="form-control" id="obs.semanas_de_gestacao" name="obs.semanas_de_gestacao"
+								   data-concept="1279^SEMANAS DE GESTACAO^99DCT" type="number">
+						</div>
+						<div class="form-group">
+							<label for="data_prevista_do_parto">Data prevista do parto:</label>
+							<input class="form-control datepicker checkFutureDate" id="obs.data_prevista_do_parto" name="obs.data_prevista_do_parto"
+								   data-concept="1600^DATA GRAVIDEZ^99DCT" type="text" readonly>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="mulher_puerpera">Mulher puérpera; Data do parto:</label>
+						<input class="form-control  datepicker nonFutureDate past-date" id="obs.mulher_puerpera" name="obs.mulher_puerpera"
+							   data-concept="5599^DATA DO PARTO^99DCT" type="text" readonly>
+					</div>
+					<div class="form-group">
+						<label>Tipo de Aleitamento</label>
+						<div class="radio">
+							<label>
+								<input name="obs.tipo_de_aleitamento" id="obs.tipo_de_aleitamento" type="radio" data-concept="1151^TIPO DE ALEITAMENTO^99DCT" value="5526^ALEITAMENTO MATERNO EXCLUSIVO^99DCT">
+								Materno
+							</label>
+						</div>
+						<div class="radio">
+							<label>
+								<input name="obs.tipo_de_aleitamento" id="obs.tipo_de_aleitamento" type="radio" data-concept="1151^TIPO DE ALEITAMENTO^99DCT" value="5254^ALEITAMENTO ARTIFICIAL^99DCT">
+								Artificial
+							</label>
+						</div>
+						<div class="radio">
+							<label>
+								<input name="obs.tipo_de_aleitamento" id="obs.tipo_de_aleitamento" type="radio" data-concept="1151^TIPO DE ALEITAMENTO^99DCT" value="6046^ALEITAMENTO MISTO^99DCT">
+								Misto
+							</label>
+						</div>
+					</div>	
+				</div>
+			</div>
+			<div class="form-group concept-set" data-concept="1669^ALERGIA A MEDICAMENTOS - SET^99DCT">
+				<div class="form-group">
+					<label>Alergia a medicamentos</label>
+					<div class="radio">
+						<label>
+							<input name="obs.alergia_a_medicamentos" id="obs.alergia_a_medicamentos" type="radio" data-concept="1601^ALERGIA A MEDICACAO^99DCT" value="1065^SIM^99DCT">
+							Sim
+						</label>
+					</div>
+					<div class="radio">
+						<label>
+							<input name="obs.alergia_a_medicamentos" id="obs.alergia_a_medicamentos" type="radio" data-concept="1601^ALERGIA A MEDICACAO^99DCT" value="1066^NAO^99DCT">
+							Não
+						</label>
+					</div>
+					<div class="radio">
+						<label>
+							<input name="obs.alergia_a_medicamentos" id="obs.alergia_a_medicamentos" type="radio" data-concept="1601^ALERGIA A MEDICACAO^99DCT" value="1067^NAO SABE^99DCT">
+							Não Sabe
+						</label>
+					</div>
+				</div>	
+				<div class="form-group alergia_a_medicamentos_div">
+					<label for="obs.tipo_alergia_a_medicamentos">Tipo Alergia: <span class="required">*</span></label>
+					<select class="form-control" id="obs.tipo_alergia_a_medicamentos" required name="obs.tipo_alergia_a_medicamentos" data-concept="1605^ALERGIA A MEDICAMENTOS^99DCT">
+						<option value="">...</option>						
+						<option value="6012^ALERGIA A SULFA^99DCT">ALERGIA A SULFA</option>	
+						<option value="6011^ALERGIA A PENICILINA^99DCT">ALERGIA A PENICILINA</option>	
+						<option value="5622^OUTRO, NAO CODIFICADO^99DCT">OUTRO, NAO CODIFICADO</option>			
+					</select>
+				</div> 
+				<div class="form-group tipo_alergia_a_medicamentos_div">
+					<label for="outros_tipo_alergia">Outros, especifique:</label>
+						<input class="form-control" id="obs.outros_tipo_alergia" name="obs.outros_tipo_alergia"
+							   data-concept="1517^ALERGIA DE MEDICAMENTOS, OUTROS^99DCT" type="text">
+				</div>			
+			</div>
+			<div class="form-group">
+				<label>Antecedentes terapêuticos com TARV?</label>
+				<div class="radio">
+					<label>
+						<input name="obs.com_tarv" id="obs.com_tarv" type="radio" data-concept="1192^USO DE ANTIRETROVIRAL^99DCT" value="1065^SIM^99DCT">
+						Sim
+					</label>
+				</div>
+				<div class="radio">
+					<label>
+						<input name="obs.com_tarv" id="obs.com_tarv" type="radio" data-concept="1192^USO DE ANTIRETROVIRAL^99DCT" value="1066^NAO^99DCT">
+						Não
+					</label>
+				</div>
+			</div>	
+			<div class="form-group com_tarv_div">
+				<label for="qual">qual:</label>
+				<select class="form-control" id="obs.qual" required name="obs.qual" data-concept="1087^ANTI-RETROVIRAIS PRESCRITOS^99DCT">
+					<option value="">...</option>						
+					<option value="23798^3TC+RAL+DRV/r^99DCT">3TC+RAL+DRV/r</option>	
+					<option value="23792^ABC+3TC+ATV/r^99DCT">ABC+3TC+ATV/r</option>	
+					<option value="23795^ABC+3TC+ATV/r+RAL^99DCT">ABC+3TC+ATV/r+RAL</option>	
+					<option value="23797^ABC+3TC+DRV/r+RAL^99DCT">ABC+3TC+DRV/r+RAL</option>	
+					<option value="23786^ABC+3TC+DTG^99DCT">ABC+3TC+DTG</option>	
+					<option value="23800^ABC+3TC+DTG (2º Linha)^99DCT">ABC+3TC+DTG (2º Linha)</option>	
+					<option value="6104^ABC+3TC+EFV^99DCT">ABC+3TC+EFV</option>	
+					<option value="1313^ABC+3TC+EFV (2º Linha)^99DCT">ABC+3TC+EFV (2º Linha)</option>	
+					<option value="6106^ABC+3TC+LPV^99DCT">ABC+3TC+LPV</option>	
+					<option value="1311^ABC+3TC+LPV/r (2º Linha)^99DCT">ABC+3TC+LPV/r (2º Linha)</option>	
+					<option value="6105^ABC+3TC+NVP^99DCT">ABC+3TC+NVP</option>	
+					<option value="23793^AZT+3TC+ATV/r^99DCT">AZT+3TC+ATV/r</option>	
+					<option value="23802^AZT+3TC+DRV/r^99DCT">AZT+3TC+DRV/r</option>	
+					<option value="23815^AZT+3TC+DTG^99DCT">AZT+3TC+DTG</option>
+					<option value="1703^AZT+3TC+EFV^99DCT">AZT+3TC+EFV</option>
+					<option value="6100^AZT+3TC+LPV/r^99DCT">AZT+3TC+LPV/r</option>
+					<option value="1314^AZT+3TC+LPV/r (2º Linha)^99DCT">AZT+3TC+LPV/r (2º Linha)</option>
+					<option value="1651^AZT+3TC+NVP^99DCT">AZT+3TC+NVP</option>
+					<option value="23801^AZT+3TC+RAL^99DCT">AZT+3TC+RAL</option>
+					<option value="23803^AZT+3TC+RAL+DRV/r^99DCT">AZT+3TC+RAL+DRV/r</option>
+					<option value="23791^TDF+3TC+ATV/r^99DCT">TDF+3TC+ATV/r</option>
+					<option value="23796^TDF+3TC+ATV/r+RAL^99DCT">TDF+3TC+ATV/r+RAL</option>
+					<option value="23784^TDF+3TC+DTG^99DCT">TDF+3TC+DTG</option>
+					<option value="23799^TDF+3TC+DTG (2º Linha)^99DCT">TDF+3TC+DTG (2º Linha)</option>
+					<option value="23785^TDF+3TC+DTG2^99DCT">TDF+3TC+DTG2</option>
+					<option value="6324^TDF+3TC+EFV^99DCT">TDF+3TC+EFV</option>
+					<option value="6108^TDF+3TC+LPV (2º Linha)^99DCT">TDF+3TC+LPV (2º Linha)</option>
+					<option value="23790^TDF+3TC+LPV/r+RTV^99DCT">TDF+3TC+LPV/r+RTV</option>
+					<option value="6329^TDF+3TC+RAL+DRV/r^99DCT">TDF+3TC+RAL+DRV/r</option>
+				</select>
+			</div>	
+		</div>
+		<div class="section">
+			<h3>Antecedentes Clinicos</h3>
+			<div class="form-group concept-set" data-concept="42^TUBERCULOSE PULMONAR^99DCT">
+				<div class="form-group">
+					<label>TB Pulmonar</label>
+					<div class="radio">
+						<label>
+							<input name="obs.tb_pulmonar" id="obs.tb_pulmonar" data-concept="obs_value" type="radio" value="1065^SIM^99DCT">
+							Sim
+						</label>
+					</div>
+					<div class="radio">
+						<label>
+							<input name="obs.tb_pulmonar" id="obs.tb_pulmonar" data-concept="obs_value" type="radio" value="1066^NAO^99DCT">
+							Não
+						</label>
+					</div>
+					<div class="form-group tb_pulmonar_div">
+						<label for="">Data do diagnóstico:</label>
+						<input class="form-control datepicker nonFutureDate past-date" name="obs.tb_pulmonar_data_do_diagnostico"
+							   data-concept="obs_datetime" readonly type="text">
+					</div>
+				</div>
+			</div>			
+			<div class="form-group concept-set" data-concept="5042^TUBERCULOSE EXTRAPULMONAR^99DCT">
+				<div class="form-group">
+					<label>TB extra pulmonar</label>
+					<div class="radio">
+						<label>
+							<input name="obs.tb_extra_pulmonar" id="obs.tb_extra_pulmonar" data-concept="obs_value" type="radio" value="1065^SIM^99DCT">
+							Sim
+						</label>
+					</div>
+					<div class="radio">
+						<label>
+							<input name="obs.tb_extra_pulmonar" id="obs.tb_extra_pulmonar" data-concept="obs_value" type="radio" value="1066^NAO^99DCT">
+							Não
+						</label>
+					</div>
+					<div class="form-group tb_extra_pulmonar_div">
+						<label for="">Data do diagnóstico:</label>
+						<input class="form-control datepicker nonFutureDate past-date" name="obs.tb_extra_pulmonar_data_do_diagnostico"
+							   data-concept="obs_datetime" readonly type="text">
+					</div>
+				</div>
+			</div>	
+			
+			
+			<div class="form-group concept-set" data-concept="836^HERPES ZOSTER^99DCT">
+				<div class="form-group">
+					<label>Herpes Zoster</label>
+					<div class="radio">
+						<label>
+							<input name="obs.herpes_zoster" id="obs.herpes_zoster" data-concept="obs_value" type="radio" value="1065^SIM^99DCT">
+							Sim
+						</label>
+					</div>
+					<div class="radio">
+						<label>
+							<input name="obs.herpes_zoster" id="obs.herpes_zoster" data-concept="obs_value" type="radio" value="1066^NAO^99DCT">
+							Não
+						</label>
+					</div>
+					<div class="form-group herpes_zoster_div">
+						<label for="">Data do diagnóstico:</label>
+						<input class="form-control datepicker nonFutureDate past-date" name="obs.herpes_zoster_data_do_diagnostico" 
+							   data-concept="obs_datetime" readonly type="text">
+					</div>
+				</div>
+			</div>
+			<div class="form-group concept-set" data-concept="5334^CANDIDIASE ORAL^99DCT">
+				<div class="form-group">
+					<label>Candidiase oral</label>
+					<div class="radio">
+						<label>
+							<input name="obs.candidiase_oral" id="obs.candidiase_oral" data-concept="obs_value" type="radio" value="1065^SIM^99DCT">
+							Sim
+						</label>
+					</div>
+					<div class="radio">
+						<label>
+							<input name="obs.candidiase_oral" id="obs.candidiase_oral" data-concept="obs_value" type="radio" value="1066^NAO^99DCT">
+							Não
+						</label>
+					</div>
+					<div class="form-group candidiase_oral_div">
+						<label for="">Data do diagnóstico:</label>
+						<input class="form-control datepicker nonFutureDate past-date" name="obs.candidiase_oral_data_do_diagnostico" 
+							   data-concept="obs_datetime" readonly type="text">
+					</div>
+				</div>
+			</div> 
+			<div class="form-group concept-set" data-concept="5340^CANDIDIASE ESOFAGICA^99DCT">
+				<div class="form-group">
+					<label>Candidiase esofágica</label>
+					<div class="radio">
+						<label>
+							<input name="obs.candidiase_esofagica" id="obs.candidiase_esofagica" data-concept="obs_value" type="radio" value="1065^SIM^99DCT">
+							Sim
+						</label>
+					</div>
+					<div class="radio">
+						<label>
+							<input name="obs.candidiase_esofagica" id="obs.candidiase_esofagica" data-concept="obs_value" type="radio" value="1066^NAO^99DCT">
+							Não
+						</label>
+					</div>
+					<div class="form-group candidiase_esofagica_div">
+						<label for="">Data do diagnóstico:</label>
+						<input class="form-control datepicker nonFutureDate past-date" name="obs.candidiase_esofagica_data_do_diagnostico" 
+							   data-concept="obs_datetime" readonly type="text">
+					</div>
+				</div>
+			</div>
+			<div class="form-group concept-set" data-concept="507^SARCOMA DE KAPOSI^99DCT">
+				<div class="form-group">
+					<label>Sarcoma de Kaposi</label>
+					<div class="radio">
+						<label>
+							<input name="obs.sarcoma_de_kaposi" id="obs.sarcoma_de_kaposi" data-concept="obs_value" type="radio" value="1065^SIM^99DCT">
+							Sim
+						</label>
+					</div>
+					<div class="radio">
+						<label>
+							<input name="obs.sarcoma_de_kaposi" id="obs.sarcoma_de_kaposi" data-concept="obs_value" type="radio" value="1066^NAO^99DCT">
+							Não
+						</label>
+					</div>
+					<div class="form-group sarcoma_de_kaposi_div">
+						<label for="">Data do diagnóstico:</label>
+						<input class="form-control datepicker nonFutureDate past-date" name="obs.sarcoma_de_kaposi_data_do_diagnostico" 
+							   data-concept="obs_datetime" readonly type="text">
+					</div>
+				</div>
+			</div>
+			<div class="form-group concept-set" data-concept="1379^DTS CORRIMENTO^99DCT">
+				<div class="form-group">
+					<label>DTS: Corrimento</label>
+					<div class="radio">
+						<label>
+							<input name="obs.dts_corrimento" id="obs.dts_corrimento" data-concept="obs_value" type="radio" value="1065^SIM^99DCT">
+							Sim
+						</label>
+					</div>
+					<div class="radio">
+						<label>
+							<input name="obs.dts_corrimento" id="obs.dts_corrimento" data-concept="obs_value" type="radio" value="1066^NAO^99DCT">
+							Não
+						</label>
+					</div>
+					<div class="form-group dts_corrimento_div">
+						<label for="">Data do diagnóstico:</label>
+						<input class="form-control datepicker nonFutureDate past-date" name="obs.dts_corrimento_data_do_diagnostico" 
+							   data-concept="obs_datetime" readonly type="text">
+					</div>
+				</div>
+			</div> 
+			<div class="form-group concept-set" data-concept="1380^DTS ULCERA^99DCT">
+				<div class="form-group">
+					<label>DTS: Úlcera</label>
+					<div class="radio">
+						<label>
+							<input name="obs.dts_ulcera" id="obs.dts_ulcera" data-concept="obs_value" type="radio" value="1065^SIM^99DCT">
+							Sim
+						</label>
+					</div>
+					<div class="radio">
+						<label>
+							<input name="obs.dts_ulcera" id="obs.dts_ulcera" data-concept="obs_value" type="radio" value="1066^NAO^99DCT">
+							Não
+						</label>
+					</div>
+					<div class="form-group dts_ulcera_div">
+						<label for="">Data do diagnóstico:</label>
+						<input class="form-control datepicker nonFutureDate past-date" name="obs.dts_ulcera_data_do_diagnostico" 
+							   data-concept="obs_datetime" readonly type="text">
+					</div>
+				</div>
+			</div>
+			<div class="form-group concept-set" data-concept="1381^DTS CONDILOMA^99DCT">
+				<div class="form-group">
+					<label>DTS: Condiloma</label>
+					<div class="radio">
+						<label>
+							<input name="obs.dts_condiloma" id="obs.dts_condiloma" data-concept="obs_value" type="radio" value="1065^SIM^99DCT">
+							Sim
+						</label>
+					</div>
+					<div class="radio">
+						<label>
+							<input name="obs.dts_condiloma" id="obs.dts_condiloma" data-concept="obs_value" type="radio" value="1066^NAO^99DCT">
+							Não
+						</label>
+					</div>
+					<div class="form-group dts_condiloma_div">
+						<label for="">Data do diagnóstico:</label>
+						<input class="form-control datepicker nonFutureDate past-date" name="obs.dts_condiloma_data_do_diagnostico" 
+							   data-concept="obs_datetime" readonly type="text">
+					</div>
+				</div>
+			</div>
+			<div class="form-group concept-set" data-concept="5018^DIARREIA CRONICA 1 MOS^99DCT">
+				<div class="form-group">
+					<label>Diarreia crónica</label>
+					<div class="radio">
+						<label>
+							<input name="obs.diarreia_cronica" id="obs.diarreia_cronica" data-concept="obs_value" type="radio" value="1065^SIM^99DCT">
+							Sim
+						</label>
+					</div>
+					<div class="radio">
+						<label>
+							<input name="obs.diarreia_cronica" id="obs.diarreia_cronica" data-concept="obs_value" type="radio" value="1066^NAO^99DCT">
+							Não
+						</label>
+					</div>
+					<div class="form-group diarreia_cronica_div">
+						<label for="">Data do diagnóstico:</label>
+						<input class="form-control datepicker nonFutureDate past-date" name="obs.diarreia_cronica_data_do_diagnostico" 
+							   data-concept="obs_datetime" readonly type="text">
+					</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<label>Perda de peso, mais de 10%</label>
+				<div class="radio">
+					<label>
+						<input name="obs.perda_de_pesa" id="obs.perda_de_pesa" data-concept="5339^PERDA DE PESO 10%^99DCT" type="radio" value="1065^SIM^99DCT">
+						Sim
+					</label>
+				</div>
+				<div class="radio">
+					<label>
+						<input name="obs.perda_de_pesa" id="obs.perda_de_pesa" data-concept="5339^PERDA DE PESO 10%^99DCT" type="radio" value="1066^NAO^99DCT">
+						Não
+					</label>
+				</div>
+			</div>
+			<div class="form-group">
+				<label>Febre prolongada</label>
+				<div class="radio">
+					<label>
+						<input name="obs.febre_prolongada" id="obs.febre_prolongada" data-concept="5027^FEBRE 1 MOS^99DCT" type="radio" value="1065^SIM^99DCT">
+						Sim
+					</label>
+				</div>
+				<div class="radio">
+					<label>
+						<input name="obs.febre_prolongada" id="obs.febre_prolongada" data-concept="5027^FEBRE 1 MOS^99DCT" type="radio" value="1066^NAO^99DCT">
+						Não
+					</label>
+				</div>
+			</div>
+			<div class="form-group">
+				<label>Tosse prolongada</label>
+				<div class="radio">
+					<label>
+						<input name="obs.tosse_prolongada" id="obs.tosse_prolongada" data-concept="1429^TOSSE PROLONGADA^99DCT" type="radio" value="1065^SIM^99DCT">
+						Sim
+					</label>
+				</div>
+				<div class="radio">
+					<label>
+						<input name="obs.tosse_prolongada" id="obs.tosse_prolongada" data-concept="1429^TOSSE PROLONGADA^99DCT" type="radio" value="1066^NAO^99DCT">
+						Não
+					</label>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="">Outros antecedentes:</label>
+				<input class="form-control" name="obs.outros_antecedentes_clinicos" data-concept="1628^ANTECEDENTES CLINICOS, OUTROS^99DCT" type="text">
+			</div>
+		</div>
+		<div class="section repeat hospitalizacao" id="hospitalizacao" data-concept="1606^HOSPITALIZACAO^99DCT">
+			<h3>INTERNAMENTOS</h3>
+			<div class="form-group">
+				<label for="">Enfermaria:</label>
+				<input class="form-control" name="obs.internamentos_enfermaria" data-concept="1468^ENFERMARIA^99DCT" type="text">
+			</div>
+			<div class="form-group">
+				<label for="">Diagnostico:</label>
+				<input class="form-control" name="obs.internamentos_diagnostico" data-concept="1469^DIAGNOSTICO INTERNAMENTO^99DCT" type="text">
+			</div>
+			<div class="form-group">
+				<label for="">Data Entrada:</label>
+				<input class="form-control datepicker nonFutureDate past-date" name="obs.internamentos_data_entrada" data-concept="1470^DATA DE INTERNAMENTO, ENTRADA^99DCT" type="text" readonly>
+			</div>
+			<div class="form-group">
+				<label for="">Data Saida:</label>
+				<input class="form-control datepicker nonFutureDate past-date" name="obs.internamentos_data_saida" data-concept="1722^DATA DE INTERNAMENTO, SAIDA^99DCT" type="text" readonly>
+			</div>
+			<div class="form-group">
+				<label for="">Tratamento:</label>
+				<input class="form-control" name="obs.internamentos_tratamento" data-concept="1471^TRATAMENTO INTERNAMENTO^99DCT" type="text">
+			</div>
+		</div>
+		<div class="section" data-concept="1688^ADULTO EXPOSITIO HIV^99DCT">
+			<div class="form-group">
+				<label>Intervenções cirúrgicas</label>
+				<div class="radio">
+					<label>
+						<input name="obs.intervencoes_cirurgicas" id="obs.intervencoes_cirurgicas" data-concept="1685^TEXPOSITIO HIV POR CIRURGIA^99DCT" type="radio" value="1472^INTERVENCOES CIRURGICAS^99DCT">
+						Sim
+					</label>
+				</div>
+				<div class="radio">
+					<label>
+						<input name="obs.intervencoes_cirurgicas" id="obs.intervencoes_cirurgicas" data-concept="1685^EXPOSITIO HIV POR CIRURGIA^99DCT" type="radio" value="1066^NAO^99DCT">
+						Não
+					</label>
+				</div>
+			</div>
+			<div class="form-group intervencoes_cirurgicas_div">
+				<label for="">Quais:</label>
+				<input class="form-control" name="obs.quais_intervencoes_cirurgicas" data-concept="1473^DESCRITIO DA INTERVENTIO CIRURGICA^99DCT" type="text">
+			</div>
+			<div class="form-group concept-set" data-concept="1686^EXPOSICAO AO HIV POR TRANSFUSIO DE SANGUE^99DCT">
+				<div class="form-group">
+					<label>Transfusões de Sangue</label>
+					<div class="radio">
+						<label>
+							<input name="obs.transfusoes_de_sangue" id="obs.transfusoes_de_sangue" data-concept="obs_value" type="radio"
+								   value="1063^TRANSFUSIO DE SANGUE^99DCT">
+							Sim
+						</label>
+					</div>
+					<div class="radio">
+						<label>
+							<input name="obs.transfusoes_de_sangue" id="obs.transfusoes_de_sangue" data-concept="obs_value" type="radio" value="1066^NAO^99DCT">
+							Não
+						</label>
+					</div>
+					<div class="form-group transfusoes_de_sangue_div">
+						<label for="">Data:</label>
+						<input class="form-control datepicker nonFutureDate past-date" name="obs.transfusoes_de_sangue_data" data-concept="obs_datetime" 
+							   readonly type="text">
+					</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<label>Exposição acidental</label>
+				<div class="radio">
+					<label>
+						<input name="obs.exposicao_acidental" id="obs.exposicao_acidental" data-concept="1687^EXPOSITIO HIV POR ACIDENTE^99DCT" type="radio"
+							   value="1063^EXPOSITIO ACCIDENTAL^99DCT">
+						Sim
+					</label>
+				</div>
+				<div class="radio">
+					<label>
+						<input name="obs.exposicao_acidental" id="obs.exposicao_acidental" data-concept="1687^EXPOSITIO HIV POR ACIDENTE^99DCT" type="radio" value="1066^NAO^99DCT">
+						Não
+					</label>
+				</div>
+				<div class="form-group exposicao_acidental_div">
+					<label for="">Tipo de acidente:</label>
+					<div class="form-group">
+						<label class="font-normal">
+							<input type="checkbox" data-concept="1061^MODO DE EXPOSITIO HIV^99DCT" value="181^CONTAMINADO POR AGULHA^99DCT"> 
+							Pica com agulha contaminada
+						</label>
+					</div>
+					<div class="form-group">
+						<label class="font-normal">
+							<input type="checkbox" data-concept="1061^MODO DE EXPOSITIO HIV^99DCT" value="5564^SPOUSES PARTNER SUSPECTED HIV+^99DCT"> 
+							Pica com agulha contaminada
+						</label>
+					</div>
+					<div class="form-group">
+						<label class="font-normal">
+							<input type="checkbox" data-concept="1061^MODO DE EXPOSITIO HIV^99DCT" value="1508^EXTRACAO DENTAL^99DCT"> Extração dentária
+						</label>
+					</div>
+					<div class="form-group">
+						<label class="font-normal">
+							<input type="checkbox" data-concept="1061^MODO DE EXPOSITIO HIV^99DCT" value="1507^INJECCOES^99DCT"> Injecção
+						</label>
+					</div>
+					<div class="form-group">
+						<label class="font-normal">
+							<input type="checkbox" data-concept="1061^MODO DE EXPOSITIO HIV^99DCT" value="1509^ESCARRIFICATIO^99DCT"> Escarificação
+						</label>
+					</div>
+					<div class="form-group">
+						<label for="">Outros tipo de acidente:</label>
+						<input class="form-control" name="obs.exposicao_acidental_outros" data-concept="1435^TIPO DE EXPOSITIO ACCIDENTE^99DCT" type="text">
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>	
+    <div class="section">
+		<h3>Abertura de processo</h3>
+		<div class="form-group">
+            <label for="encounter.encounter_datetime">Data:<span class="required">*</span>
+            </label>
+            <input class="form-control datetimepicker nonFutureDate past-date" id="encounter.encounter_datetime" name="encounter.encounter_datetime"
+				   type="text" readonly="readonly" required="required">
+        </div>
+		<div class="form-group">
+			<label for="encounter.provider_id_select">Feita por:<span class="required">*</span></label>
+			<input class="form-control valid-provider-only" id="encounter.provider_id_select" type="text" placeholder="Start typing something..." readonly>
+			<input class="form-control" name="encounter.provider_id_select" type="hidden">
+		</div>
+		<div class="form-group show_provider_id_text">
+			<label for="encounter.provider_id">Feita por ID:<span class="required">*</span></label>
+			<input class="form-control checkDigit" id="encounter.provider_id" disabled name="encounter.provider_id" type="text" required="required"  placeholder="Provider Id">
+		</div>
+		<div class="form-group">
+            <label for="encounter.location_id">Unidade Sanitária:<span class="required">*</span></label>
+            <input class="form-control valid-location-only" id="encounter.location_id" type="text" placeholder="Start typing something..." required="required" readonly>
+            <input class="form-control" name="encounter.location_id" type="hidden">
+        </div>	
+		<div class="form-group">
+            <input class="form-control" id="encounter.form_uuid" name="encounter.form_uuid" type="hidden" required="required"> 
+		</div>
+    </div>
+</form>
+</body>
+<script type="text/javascript">
+$(document).ready(function () {
+	$('#save_draft').click(function () {
+		$(this).prop('disabled', true);
+		document.saveDraft();
+		$(this).prop('disabled', false);
+	});
+
+	$('#submit_form').click(function () {
+		$(this).prop('disabled', true);
+		document.submit();
+		$(this).prop('disabled', false);
+	});
+	
+	if($('#patient\\.sex').val() == "M"){
+		$('.gender_check_div').hide();
+	}else{
+		$('.gender_check_div').show();
+	}
+	
+	$('#obs\\.ptv_antecedentes').change(function(){
+		if($('input[name=obs\\.ptv_antecedentes]:checked').val() == "1065^SIM^99DCT"){
+			$('.ptv_antecedentes_div').show();
+		} else{
+			$('.ptv_antecedentes_div').hide();
+		}
+	});    
+	$('#obs\\.ptv_antecedentes').trigger('change');
+	
+	$('#obs\\.mulher_gravida').change(function(){
+		if($('input[name=obs\\.mulher_gravida]:checked').val() == "44^GESTACAO^99DCT"){
+			$('.mulher_gravida_div').show();
+		} else{
+			$('.mulher_gravida_div').hide();
+		}
+	});    
+	$('#obs\\.mulher_gravida').trigger('change');
+	
+	$('#obs\\.alergia_a_medicamentos').change(function(){
+		if($('input[name=obs\\.alergia_a_medicamentos]:checked').val() == "1065^SIM^99DCT"){
+			$('.alergia_a_medicamentos_div').show();
+		} else{
+			$('.alergia_a_medicamentos_div').hide();
+		}
+	});    
+	$('#obs\\.alergia_a_medicamentos').trigger('change');
+	
+	$('#obs\\.tipo_alergia_a_medicamentos').change(function(){
+		if($(this).val() == "5622^OUTRO, NAO CODIFICADO^99DCT"){
+			$('.tipo_alergia_a_medicamentos_div').show();
+		} else{
+			$('.tipo_alergia_a_medicamentos_div').hide();
+		}
+	});    
+	$('#obs\\.tipo_alergia_a_medicamentos').trigger('change');
+	
+	$('#obs\\.com_tarv').change(function(){
+		if($('input[name=obs\\.com_tarv]:checked').val() == "1065^SIM^99DCT"){
+			$('.com_tarv_div').show();
+		} else{
+			$('.com_tarv_div').hide();
+		}
+	});    
+	$('#obs\\.com_tarv').trigger('change');
+	
+	$('#obs\\.tb_pulmonar').change(function(){
+		if($('input[name=obs\\.tb_pulmonar]:checked').val() == "1065^SIM^99DCT"){
+			$('.tb_pulmonar_div').show();
+		} else{
+			$('.tb_pulmonar_div').hide();
+		}
+	});    
+	$('#obs\\.tb_pulmonar').trigger('change');
+	
+	$('#obs\\.tb_extra_pulmonar').change(function(){
+		if($('input[name=obs\\.tb_extra_pulmonar]:checked').val() == "1065^SIM^99DCT"){
+			$('.tb_extra_pulmonar_div').show();
+		} else{
+			$('.tb_extra_pulmonar_div').hide();
+		}
+	});    
+	$('#obs\\.tb_extra_pulmonar').trigger('change');
+	
+	$('#obs\\.herpes_zoster').change(function(){
+		if($('input[name=obs\\.herpes_zoster]:checked').val() == "1065^SIM^99DCT"){
+			$('.herpes_zoster_div').show();
+		} else{
+			$('.herpes_zoster_div').hide();
+		}
+	});    
+	$('#obs\\.herpes_zoster').trigger('change');
+	
+	$('#obs\\.candidiase_oral').change(function(){
+		if($('input[name=obs\\.candidiase_oral]:checked').val() == "1065^SIM^99DCT"){
+			$('.candidiase_oral_div').show();
+		} else{
+			$('.candidiase_oral_div').hide();
+		}
+	});    
+	$('#obs\\.candidiase_oral').trigger('change');
+	
+	$('#obs\\.candidiase_esofagica').change(function(){
+		if($('input[name=obs\\.candidiase_esofagica]:checked').val() == "1065^SIM^99DCT"){
+			$('.candidiase_esofagica_div').show();
+		} else{
+			$('.candidiase_esofagica_div').hide();
+		}
+	});    
+	$('#obs\\.candidiase_esofagica').trigger('change');
+	
+	$('#obs\\.sarcoma_de_kaposi').change(function(){
+		if($('input[name=obs\\.sarcoma_de_kaposi]:checked').val() == "1065^SIM^99DCT"){
+			$('.sarcoma_de_kaposi_div').show();
+		} else{
+			$('.sarcoma_de_kaposi_div').hide();
+		}
+	});    
+	$('#obs\\.sarcoma_de_kaposi').trigger('change');
+	
+	$('#obs\\.dts_corrimento').change(function(){
+		if($('input[name=obs\\.dts_corrimento]:checked').val() == "1065^SIM^99DCT"){
+			$('.dts_corrimento_div').show();
+		} else{
+			$('.dts_corrimento_div').hide();
+		}
+	});    
+	$('#obs\\.dts_corrimento').trigger('change');
+	
+	$('#obs\\.dts_ulcera').change(function(){
+		if($('input[name=obs\\.dts_ulcera]:checked').val() == "1065^SIM^99DCT"){
+			$('.dts_ulcera_div').show();
+		} else{
+			$('.dts_ulcera_div').hide();
+		}
+	});    
+	$('#obs\\.dts_ulcera').trigger('change');
+	
+	$('#obs\\.dts_condiloma').change(function(){
+		if($('input[name=obs\\.dts_condiloma]:checked').val() == "1065^SIM^99DCT"){
+			$('.dts_condiloma_div').show();
+		} else{
+			$('.dts_condiloma_div').hide();
+		}
+	});    
+	$('#obs\\.dts_condiloma').trigger('change');
+	
+	$('#obs\\.diarreia_cronica').change(function(){
+		if($('input[name=obs\\.diarreia_cronica]:checked').val() == "1065^SIM^99DCT"){
+			$('.diarreia_cronica_div').show();
+		} else{
+			$('.diarreia_cronica_div').hide();
+		}
+	});    
+	$('#obs\\.diarreia_cronica').trigger('change');
+	
+	$('#obs\\.intervencoes_cirurgicas').change(function(){
+		if($('input[name=obs\\.intervencoes_cirurgicas]:checked').val() == "1472^INTERVENCOES CIRURGICAS^99DCT"){
+			$('.intervencoes_cirurgicas_div').show();
+		} else{
+			$('.intervencoes_cirurgicas_div').hide();
+		}
+	});    
+	$('#obs\\.intervencoes_cirurgicas').trigger('change');
+	
+	$('#obs\\.transfusoes_de_sangue').change(function(){
+		if($('input[name=obs\\.transfusoes_de_sangue]:checked').val() == "1063^TRANSFUSIO DE SANGUE^99DCT"){
+			$('.transfusoes_de_sangue_div').show();
+		} else{
+			$('.transfusoes_de_sangue_div').hide();
+		}
+	});    
+	$('#obs\\.transfusoes_de_sangue').trigger('change');
+	
+	$('#obs\\.exposicao_acidental').change(function(){
+		if($('input[name=obs\\.exposicao_acidental]:checked').val() == "1063^EXPOSITIO ACCIDENTAL^99DCT"){
+			$('.exposicao_acidental_div').show();
+		} else{
+			$('.exposicao_acidental_div').hide();
+		}
+	});    
+	$('#obs\\.exposicao_acidental').trigger('change');
+											
+											
+	$.validator.addMethod("eligibleAgeOnly", function (value, element) {
+		if ($.fn.isNotRequiredAndEmpty(value, element)) return true;
+		return value > 14; 
+	}, " "
+	);
+
+	// attach 'nonFutureDate' class to perform validation.
+	jQuery.validator.addClassRules({
+		eligibleAgeOnly: { eligibleAgeOnly: true }
+	});
+	
+	
+     
+	document.setupAutoCompleteData('encounter\\.location_id');
+	document.setupAutoCompleteDataForProvider('encounter\\.provider_id_select');
+	document.setupValidationForLocation("$('#encounter\\.location_id').val()","encounter\\.location_id");
+	document.setupValidationForProvider("$('#encounter\\.provider_id_select').val()","encounter\\.provider_id");
+
+	var prePopulateData = $.trim($('#pre_populate_data').html());
+	var prePopulateJSON = JSON.parse(prePopulateData);
+	$.each(prePopulateJSON, function(key, value) {
+		if (key === 'patient') {
+			var names = "";
+			$.each(value, function(keys, values) {
+				if(keys === 'patient.given_name' || keys === 'patient.middle_name' || keys === 'patient.family_name' || keys === 'patient.names'){
+				   names=names+" "+values;
+				}
+				
+				if(keys === 'patient.otheridentifier'){
+					var otheridentifierJson = values;
+					for (var identifierKey in otheridentifierJson) {
+						if (otheridentifierJson[identifierKey].identifier_type_uuid === 'e2b9682e-1d5f-11e0-b929-000c29ad1d07') {
+						  $('#patient\\.no_de_bi').val(otheridentifierJson[identifierKey].identifier_value);
+						}
+						if (otheridentifierJson[identifierKey].identifier_type_uuid === '8d793bee-c2cc-11de-8d13-0010c6dffd0f') {
+						  $('#patient\\.outra_identificacao').val(otheridentifierJson[identifierKey].identifier_value);
+						}						
+					}
+				}
+				
+				if(keys === 'patient.personattribute'){
+					for (var personattributeKey in values) {
+						if (values[personattributeKey].attribute_type_uuid === 'e2e3fd64-1d5f-11e0-b929-000c29ad1d07') {
+						  $('#patient\\.telefone_de_contacto').val(values[personattributeKey].attribute_value);
+						}
+					}
+				}
+
+				if(keys === "patient.birth_date"){
+					var tmp = values.split('-');
+					if(tmp[2].length==4){
+                    	var birthDate = new Date(tmp[2],tmp[1]-1,tmp[0]);
+					}else{
+						var birthDate = new Date(tmp[0],tmp[1]-1,tmp[2]);
+					}
+					var today = new Date();
+					var milliSecondsInAYear = 1000 * 60 * 60 * 24 * 365.26;
+					var age = (today - birthDate) / milliSecondsInAYear;
+					$('#patient\\.age').val((Math.floor(age)));
+				
+					if(age<=14){
+						alert("Patient not Eligible For this Form");
+					}
+				}
+			});
+			$('#patient\\.names').val(names);
+		}		
+	});
+});
+</script>
+</html>

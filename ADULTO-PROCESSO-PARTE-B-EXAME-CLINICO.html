@@ -1,0 +1,714 @@
+<html xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
+<head>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/muzima.css" rel="stylesheet">
+    <link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+    <link href="css/ui-darkness/jquery-ui-1.10.4.custom.min.css" rel="stylesheet">
+
+    <script src="js/jquery.min.js"></script>
+    <script src="js/jquery-ui-1.10.4.custom.min.js"></script>
+    <script src="js/jquery.validate.min.js"></script>
+    <script src="js/additional-methods.min.js"></script>
+    <script src="js/bootstrap-datetimepicker.min.js"></script>
+    <script src="js/muzima.js"></script>
+    <title>PROCESSO HOSPITAL DE DIA</title>
+</head>
+<body class="col-md-10 col-md-offset-1">
+<div id="pre_populate_data">
+
+</div>
+<form id="processo_parte_b" name="processo_parte_b">
+    <h2 class="text-center">PROCESSO HOSPITAL DE DIA - PARTE B - EXAME CLINICO</h2>
+	<div class="section">
+		<div class="form-group" align="center">
+            REPÚBLICA DE MOÇAMBIQUE<br />
+            SERVIÇO NACIONAL DE SAÚDE<br /><br />
+            Mod. SIS - H-07
+        </div>
+	</div>
+	<div class="section">
+		<div class="form-group">
+			<input class="form-control" id="patient.uuid"
+				   name="patient.uuid" type="hidden" readonly="readonly">
+		</div>
+		<div class="form-group">
+			<label for="patient.names">Nome:</label>
+			<input class="form-control" id="patient.names"
+				   name="patient.names" type="text" readonly="readonly">
+		</div>
+		<div class="form-group">
+            <label for="patient.sex">Sexo:</label>
+            <input class="form-control" id="patient.sex" name="patient.sex" type="text" readonly="readonly">
+        </div>
+		<div class="form-group">
+            <label for="patient.birth_date">Data de Nascimento:</label>
+            <input class="form-control" id="patient.birth_date"
+                   name="patient.birth_date" type="text" readonly="readonly">
+        </div>
+		<div class="form-group">
+            <label for="patient.birth_date">Idade:</label>
+            <input class="form-control eligibleAgeOnly" id="patient.age" name="patient.age" type="text" readonly="readonly">
+        </div>  
+		<div class="form-group">
+            <label for="patient.medical_record_number">NID</label>
+            <input class="form-control" id="patient.medical_record_number" name="patient.medical_record_number" type="text" readonly="readonly">
+        </div>  
+	</div>
+	<div class="section">
+		<div class="section">
+			<h3>HISTÓRIA ACTUAL</h3>
+			<div class="form-group concept-set" data-concept="1673^DADOS VITAIS^99DCT">
+				<div class="form-group">
+					<textarea data-concept="1441^HISTORIA ACTUAL^99DCT" style="width:100%;">
+
+					</textarea>
+				</div>
+				<div class="form-group">
+					<label>Estado geral:</label>
+					<div class="radio">
+						<label>
+							<input name="obs.estado_geral" type="radio" data-concept="1382^ESTADO GERAL^99DCT" value="1383^BOM^99DCT">
+							Bom
+						</label>
+					</div>
+					<div class="radio">
+						<label>
+							<input name="obs.estado_geral" type="radio" data-concept="1382^ESTADO GERAL^99DCT" value="1384^MODERADO^99DCT">
+							Moderado
+						</label>￼
+					</div>
+					<div class="radio">
+						<label>
+							<input name="obs.estado_geral" type="radio" data-concept="1382^ESTADO GERAL^99DCT" value="1385^MAU^99DCT">
+							Mau
+						</label>
+					</div>
+				</div>
+				<div class="sub-section form-group">
+					<label>Dados vitais: TA:</label>
+					<div class="form-group">
+						<input class="form-control" id="obs.dados_vitais_ta" name="obs.dados_vitais_ta" data-concept="5085^PRESSUO ARTERIAL SISTOLICA^99DCT" 
+								   type="number" required="required">
+					/
+						<input class="form-control" id="obs.dados_vitais_ta" name="obs.dados_vitais_ta" data-concept="5086^PRESSUO ARTERIAL DIASTOLICA^99DCT" 
+								   type="number" required="required">
+					</div>
+				</div>
+				<div class="form-group">
+					<label>Temp.: <span class="required">*</span></label>
+					<input class="form-control" id="obs.temp" name="obs.temp" data-concept="5088^TEMPERATURA (C)^99DCT" type="number" step=".01" required="required">
+				</div>
+				<div class="form-group">
+					<label>Peso: <span class="required">*</span></label>
+					<input class="form-control" id="obs.peso" name="obs.peso" data-concept="5089^PESO (KG)^99DCT" type="number" step=".01" required="required">
+				</div>
+				<div class="form-group">
+					<label>Altura: <span class="required">*</span></label>
+					<input class="form-control" id="obs.altura" name="obs.altura" data-concept="5090^ALTURA (CM)^99DCT" type="number" required="required">
+				</div>
+				<div class="form-group">
+					<label>IMC: <span class="required">*</span></label>
+					<input class="form-control" id="obs.imc" name="obs.imc" data-concept="1342^INDICE MASSA CORPORAL^99DCT" type="number" step=".01"
+						   required="required">
+				</div>      
+				<div class="form-group">
+					<label for="">Mucosas:</label>
+					<div class="form-group">
+						<label class="font-normal">
+							<input type="checkbox" data-concept="1415^EXAME MUCOSAS^99DCT" value="1416^CORADAS^99DCT"> Coradas
+						</label>
+					</div>
+					<div class="form-group">
+						<label class="font-normal">
+							<input type="checkbox" data-concept="1415^EXAME MUCOSAS^99DCT" value="1417^DESCORADAS^99DCT"> Descoradas
+						</label>
+					</div>
+					<div class="form-group">
+						<label class="font-normal">
+							<input type="checkbox" data-concept="1415^EXAME MUCOSAS^99DCT" value="1418^CONJUNTIVAS^99DCT"> Conjuntivas
+						</label>
+					</div>
+					<div class="form-group">
+						<label class="font-normal">
+							<input type="checkbox" data-concept="1415^EXAME MUCOSAS^99DCT" value="1419^ICTERICA^99DCT"> Ictéricas
+						</label>
+					</div>
+					<div class="form-group">
+						<label class="font-normal">
+							<input type="checkbox" data-concept="1415^EXAME MUCOSAS^99DCT" value="1420^ANICTERICAS^99DCT"> Anictéricas
+						</label>
+					</div>
+					<div class="form-group">
+						<label for="">Cavidade orofaríngea, de que tipo:</label>
+						<input class="form-control" name="obs.de_que_tipo" data-concept="1424^TIPO DE LESIO DE CAVIDADE OROFARINGEA^99DCT" type="text">
+					</div>
+				</div>			
+			</div>
+		</div>
+		<div class="section">
+			<div class="form-group concept-set" data-concept="1674^EXAME DA PELE^99DCT">
+				<div class="form-group">
+					<label>Exame da pele:</label>
+					<div class="radio">
+						<label>
+							<input name="obs.exame_da_pele" id="obs.exame_da_pele" type="radio" data-concept="1120^RESULTADO DO EXAME DA PELE^99DCT" value="1421^INTEGRA^99DCT">
+							Íntegra
+						</label>
+					</div>
+					<div class="radio">
+						<label>
+							<input name="obs.exame_da_pele" id="obs.exame_da_pele" type="radio" data-concept="1120^RESULTADO DO EXAME DA PELE^99DCT" value="1422^LESOES^99DCT">
+							Lesões
+						</label>￼
+					</div>
+				</div>
+				<div class="exame_da_pele_div">
+					<div class="sub-section repeat tipo_exame_da_pele" id="tipo_exame_da_pele">
+						<div class="form-group">
+							<label for="">Tipo:</label>
+							<input class="form-control" name="obs.tipo_de_exame_da_pele" data-concept="1423^TIPO DE LESOES DA PELE^99DCT" type="text">
+						</div>
+						<div class="form-group">
+							<label for="onde">Onde:</label>
+							<select class="form-control" id="obs.onde" required name="obs.onde" data-concept="1239^LOCAL DO CORPO^99DCT">
+								<option value="">...</option>						
+								<option value="540^ANTERIOR^99DCT">ANTERIOR</option>	
+								<option value="5141^DIREITO^99DCT">DIREITO</option>	
+								<option value="5139^ESQUERDO^99DCT">ESQUERDO</option>	
+								<option value="1235^EXTREMIDADE INFERIOR DIREITA^99DCT">EXTREMIDADE INFERIOR DIREITA</option>	
+								<option value="1234^EXTREMIDADE INFERIOR ESQUERDA^99DCT">EXTREMIDADE INFERIOR ESQUERDA</option>	
+								<option value="1233^EXTREMIDADE SUPERIOR DIREITA^99DCT">EXTREMIDADE SUPERIOR DIREITA</option>	
+								<option value="1232^EXTREMIDADE SUPERIOR ESQUERDA^99DCT">EXTREMIDADE SUPERIOR ESQUERDA</option>	
+								<option value="1236^EXTREMIDADES INFERIORES^99DCT">EXTREMIDADES INFERIORES</option>	
+								<option value="1237^EXTREMIDADES SUPERIORES^99DCT">EXTREMIDADES SUPERIORES</option>	
+								<option value="639^LOBO INFERIOR DIREITO^99DCT">LOBO INFERIOR DIREITO</option>	
+								<option value="5134^LOBO INFERIOR ESQUERDO^99DCT">LOBO INFERIOR ESQUERDO</option>	
+								<option value="5120^LOBO MEDIO DIREITO^99DCT">LOBO MEDIO DIREITO</option>	
+								<option value="5119^LOBO SUPERIOR DIREITO^99DCT">LOBO SUPERIOR DIREITO</option>	
+								<option value="5132^LOBO SUPERIOR ESQUERDO^99DCT">LOBO SUPERIOR ESQUERDO</option>	
+								<option value="5104^QUADRANTE INFERIOR ESQUERDO^99DCT">QUADRANTE INFERIOR ESQUERDO</option>	
+								<option value="5107^QUADRANTE SUPERIOR DIREITO^99DCT">QUADRANTE SUPERIOR DIREITO</option>	
+								<option value="5973^SUBESTERNAL^99DCT">SUBESTERNAL</option>	
+								<option value="504^SUBMANDIBULAR^99DCT">SUBMANDIBULAR</option>	
+								<option value="543^SUPERIOR^99DCT">SUPERIOR</option>	
+								<option value="505^SUPRACLAVICULAR^99DCT">SUPRACLAVICULAR</option>	
+								<option value="575^SUPRAPUBICA^99DCT">SUPRAPUBICA</option>
+							</select>
+						</div>	
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="section">
+			<div class="form-group">
+				<label>Estado de hidratação:</label>
+				<div class="radio">
+					<label>
+						<input name="obs.estado_de_hidraracao" type="radio" data-concept="1425^ESTADO DE HIDRATACAO^99DCT" value="1065^SIM^99DCT">
+						Hidratado
+					</label>
+				</div>
+				<div class="radio">
+					<label>
+						<input name="obs.estado_de_hidraracao" type="radio" data-concept="1425^ESTADO DE HIDRATACAO^99DCT" value="1066^NAO^99DCT">
+						Desidratado
+					</label>￼
+				</div>
+			</div>
+		</div>
+		<div class="section">
+			<h3>Gânglios linfáticos:</h3>
+			<div class="sub-section form-group">	
+				<label>Cervicais aumentados:</label>
+				<div class="radio">
+					<label>
+						<input name="obs.cervicais_aumentados" type="radio" data-concept="643^CERVICAL^99DCT" value="1065^SIM^99DCT">
+						Sim
+					</label>
+				</div>
+				<div class="radio">
+					<label>
+						<input name="obs.cervicais_aumentados" type="radio" data-concept="643^CERVICAL^99DCT" value="1066^NAO^99DCT">
+						Não
+					</label>￼
+				</div>
+			</div>
+			<div class="sub-section form-group">	
+				<label>Axilares aumentados:</label>
+				<div class="radio">
+					<label>
+						<input name="obs.axilares_aumentados" type="radio" data-concept="5112^AXILAR AUMENTADA^99DCT" value="1065^SIM^99DCT">
+						Sim
+					</label>
+				</div>
+				<div class="radio">
+					<label>
+						<input name="obs.axilares_aumentados" type="radio" data-concept="5112^AXILAR AUMENTADA^99DCT" value="1066^NAO^99DCT">
+						Não
+					</label>￼
+				</div>
+			</div>
+			<div class="sub-section form-group">	
+				<label>Inguinais aumentados:</label>
+				<div class="radio">
+					<label>
+						<input name="obs.inguinais_aumentados" type="radio" data-concept="506^INGUINALES^99DCT" value="1065^SIM^99DCT">
+						Sim
+					</label>
+				</div>
+				<div class="radio">
+					<label>
+						<input name="obs.inguinais_aumentados" type="radio" data-concept="506^INGUINALES^99DCT" value="1066^NAO^99DCT">
+						Não
+					</label>￼
+				</div>
+			</div>
+			<div class="sub-section form-group">	
+				<label>Outros aumentados:</label>
+				<div class="radio">
+					<label>
+						<input name="obs.outros_aumentados" type="radio" data-concept="1426^OUTROS AUMENTADOS^99DCT" value="1065^SIM^99DCT">
+						Sim
+					</label>
+				</div>
+				<div class="radio">
+					<label>
+						<input name="obs.outros_aumentados" type="radio" data-concept="1426^OUTROS AUMENTADOS^99DCT" value="1066^NAO^99DCT">
+						Não
+					</label>￼
+				</div>
+			</div>
+		</div>
+		<div class="section">
+			<h4>Exame pulmonar</h4>
+			<div class="form-group concept-set" data-concept="1675^EXAMES PULMONARES - CONJUNTO^99DCT">
+				<div class="sub-section form-group">	
+					<label>Respiração:</label>
+					<div class="radio">
+						<label>
+							<input name="obs.respiracao" type="radio" data-concept="1427^EXAME PULMONAR^99DCT" value="1115^NORMAL^99DCT">
+							Normal
+						</label>
+					</div>
+					<div class="radio">
+						<label>
+							<input name="obs.respiracao" type="radio" data-concept="1427^EXAME PULMONAR^99DCT" value="5960^DISPNEIA^99DCT">
+							Dispneia
+						</label>￼
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="">FR:/Min</label><br/>
+					<input class="form-control" name="obs.tipo_de_exame_da_pele" data-concept="1423^TIPO DE LESOES DA PELE^99DCT" type="number">
+				</div>
+				<div class="form-group">
+					<label for="">Auscultação:</label>
+					<div class="form-group">
+						<label class="font-normal">
+							<input type="checkbox" data-concept="1629^AUSCULTACAO^99DCT" value="1548^FERVORES^99DCT"> Fervores
+						</label>
+					</div>
+					<div class="form-group">
+						<label class="font-normal">
+							<input type="checkbox" data-concept="1629^AUSCULTACAO^99DCT" value="1549^RONCOS^99DCT"> Roncos
+						</label>
+					</div>
+					<div class="form-group">
+						<label class="font-normal">
+							<input type="checkbox" data-concept="1629^AUSCULTACAO^99DCT" value="1551^SOPRO ANFORICO^99DCT"> Sopro Anforico
+						</label>
+					</div>
+					<div class="form-group">
+						<label class="font-normal">
+							<input type="checkbox" data-concept="1629^AUSCULTACAO^99DCT" value="1550^SOPRO TUBARICO^99DCT"> Sopro Tubarico
+						</label>
+					</div>
+					<div class="form-group">
+						<label for="">Outros auscultação:</label>
+						<input class="form-control" name="obs.outros_auscultacao" data-concept="1543^EXAME PULMONAR AUSCULTACAO, NOS^99DCT" type="text">
+					</div>
+				</div>			
+			</div>
+		</div>
+		<div class="section">
+			<h4>Exame Cardiológico</h4>
+			<div class="form-group concept-set" data-concept="1676^EXAME CARDIOLOGICO^99DCT">
+				<div class="form-group">
+					<label for="">F.C.:/Min</label><br/>
+					<input class="form-control" name="obs.exame_cardiologico_fc" data-concept="5087^FREQUENCIA CARDIACA^99DCT" type="number">
+				</div>
+				<div class="form-group">
+					<label for="">Auscultação:</label>
+					<div class="form-group">
+						<label class="font-normal">
+							<input type="checkbox" data-concept="1124^EXAME CARDIOLOGICO - AUSCULTACAO^99DCT" value="1115^NORMAL^99DCT"> Normal
+						</label>
+					</div>
+					<div class="form-group">
+						<label class="font-normal">
+							<input type="checkbox" data-concept="1124^EXAME CARDIOLOGICO - AUSCULTACAO^99DCT" value="1295^DOENCA PULMONAR OBSTRUTIVA CRONICA^99DCT">
+							Arritmias
+						</label>
+					</div>
+					<div class="form-group">
+						<label class="font-normal">
+							<input type="checkbox" data-concept="1124^EXAME CARDIOLOGICO - AUSCULTACAO^99DCT" value="562^SOPRO CARDIACO^99DCT"> Sopros
+						</label>
+					</div>
+					<div class="form-group">
+						<label class="font-normal">
+							<input type="checkbox" data-concept="1124^EXAME CARDIOLOGICO - AUSCULTACAO^99DCT" value="1116^ANORMAL^99DCT"> Outros
+						</label>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="section">
+			<h4>Abdómen</h4>
+			<div class="form-group concept-set" data-concept="1677^EXAME DE ABDOMEN, GROUPO^99DCT">
+				<div class="form-group">
+					<div class="form-group">
+						<label class="font-normal">
+							<input type="checkbox" data-concept="1125^EXAME DE ABDOMEN^99DCT" value="1115^NORMAL^99DCT"> Normal
+						</label>
+					</div>
+					<div class="form-group">
+						<label class="font-normal">
+							<input type="checkbox" data-concept="1125^EXAME DE ABDOMEN^99DCT" value="1397^DISTENDIDO^99DCT"> Globoso
+						</label>
+					</div>
+					<div class="form-group">
+						<label class="font-normal">
+							<input type="checkbox" data-concept="1125^EXAME DE ABDOMEN^99DCT" value="581^ASCITE^99DCT"> Ascite
+						</label>
+					</div>
+					<div class="form-group">
+						<label class="font-normal">
+							<input type="checkbox" data-concept="1125^EXAME DE ABDOMEN^99DCT" value="1398^METEORISMO^99DCT"> Meteorismo
+						</label>
+					</div>
+				</div>
+				<div class="sub-section form-group">	
+					<label>Hepatomengalia:</label>
+					<div class="radio">
+						<label>
+							<input name="obs.hepatomengalia" type="radio" data-concept="5008^HEPATOMEGALIA^99DCT" value="1065^SIM^99DCT">
+							Sim
+						</label>
+					</div>
+					<div class="radio">
+						<label>
+							<input name="obs.hepatomengalia" type="radio" data-concept="5008^HEPATOMEGALIA^99DCT" value="1066^NAO^99DCT">
+							Não
+						</label>￼
+					</div>
+				</div>
+				<div class="sub-section form-group">	
+					<label>Esplenomegália:</label>
+					<div class="radio">
+						<label>
+							<input name="obs.esplenomegalia" type="radio" data-concept="5009^ESPLENOMEGALIA^99DCT" value="1065^SIM^99DCT">
+							Sim
+						</label>
+					</div>
+					<div class="radio">
+						<label>
+							<input name="obs.esplenomegalia" type="radio" data-concept="5009^ESPLENOMEGALIA^99DCT" value="1066^NAO^99DCT">
+							Não
+						</label>￼
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="">Outros:</label><br/>
+					<input class="form-control" name="obs.outros_exame_abdomen" data-concept="1396^EXAME ABDOMEN, OUTROS^99DCT" type="text">
+				</div>
+			</div>
+		</div>
+		<div class="section">
+			<h4>Genitais:</h4>
+			<div class="form-group concept-set" data-concept="1679^EXAME GENITAIS, GROUPO^99DCT">
+				<div class="form-group">
+					<div class="form-group">
+						<label class="font-normal">
+							<input type="checkbox" data-concept="1126^EXAME UROGENITAL^99DCT" value="1115^NORMAL^99DCT"> Normais
+						</label>
+					</div>
+					<div class="form-group">
+						<label class="font-normal">
+							<input type="checkbox" data-concept="1126^EXAME UROGENITAL^99DCT" value="1602^ULCERAS^99DCT"> Úlceras
+						</label>
+					</div>
+					<div class="form-group">
+						<label class="font-normal">
+							<input type="checkbox" data-concept="1126^EXAME UROGENITAL^99DCT" value="1399^SECRECOES^99DCT"> Secreções
+						</label>
+					</div>
+					<div class="form-group">
+						<label class="font-normal">
+							<input type="checkbox" data-concept="1126^EXAME UROGENITAL^99DCT" value="1400^CONDILOMAS^99DCT"> Condilomas
+						</label>
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="">Outros:</label><br/>
+					<input class="form-control" name="obs.outros_exame_genitais" data-concept="1678^EXAME GENITAIS, OUTROS^99DCT" type="text">
+				</div>
+			</div>
+		</div>
+		<div class="section">
+			<h4>Exame Neurológico:</h4>
+			<div class="form-group concept-set" data-concept="1681^EXAME NEUROLOGICO, CONJUNTO^99DCT">
+				<div class="form-group">
+					<div class="form-group">
+						<label class="font-normal">
+							<input type="checkbox" data-concept="1129^EXAME NEUROLOGICO^99DCT" value="1115^NORMAL^99DCT"> Normais
+						</label>
+					</div>
+					<div class="form-group">
+						<label class="font-normal">
+							<input type="checkbox" name="obs.paresias" id="obs.paresias" data-concept="1129^EXAME NEUROLOGICO^99DCT" value="1602^PARESIAS^99DCT">
+							Parésias
+						</label>
+					</div>
+					<div class="form-group tipo_paresias_div">
+						<label for="">Tipo:</label><br/>
+						<input class="form-control" name="obs.tipo_paresias" data-concept="1680^TIPO DE PARESIAS^99DCT" type="text">
+					</div>
+					<div class="form-group">
+						<label class="font-normal">
+							<input type="checkbox" data-concept="1129^EXAME NEUROLOGICO^99DCT" value="5170^RIGIDEZ NA NUCA^99DCT"> Rigidez da nuca
+						</label>
+					</div>
+					<div class="form-group">
+						<label class="font-normal">
+							<input type="checkbox" data-concept="1129^EXAME NEUROLOGICO^99DCT" value="821^NEUROPATIA PERIFERICA^99DCT"> Condilomas
+						</label>
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="">Outros:</label><br/>
+					<input class="form-control" name="obs.outros_exame_neurologico" data-concept="1407^EXAME NEUROLOGICO, OUTRO^99DCT" type="text">
+				</div>
+			</div>
+		</div>
+		<div class="section">
+			<h4>Aparelho articular:</h4>
+			<div class="form-group concept-set" data-concept="1683^APARELHO ARTICULAR, GROUPO^99DCT">
+				<div class="form-group">
+					<div class="form-group">
+						<label class="font-normal">
+							<input type="checkbox" data-concept="1127^EXAME DO APARELHO ARTICULAR^99DCT" value="1115^NORMAL^99DCT"> Normais
+						</label>
+					</div>
+					<div class="form-group">
+						<label class="font-normal">
+							<input type="checkbox" name="obs.tumefaccoes" id="obs.tumefaccoes" data-concept="1127^EXAME DO APARELHO ARTICULAR^99DCT"
+								   value="1403^TUMEFACCOES^99DCT"> Tumefacções
+						</label>
+					</div>
+					<div class="form-group tipo_tumefaccoes_div">
+						<label for="">Onde:</label><br/>
+						<select class="form-control" id="obs.tipo_tumefaccoes" required name="obs.tipo_tumefaccoes" data-concept="1239^LOCAL DO CORPO^99DCT">
+							<option value="">...</option>						
+							<option value="540^ANTERIOR^99DCT">ANTERIOR</option>	
+							<option value="5141^DIREITO^99DCT">DIREITO</option>	
+							<option value="5139^ESQUERDO^99DCT">ESQUERDO</option>	
+							<option value="1235^EXTREMIDADE INFERIOR DIREITA^99DCT">EXTREMIDADE INFERIOR DIREITA</option>	
+							<option value="1234^EXTREMIDADE INFERIOR ESQUERDA^99DCT">EXTREMIDADE INFERIOR ESQUERDA</option>	
+							<option value="1233^EXTREMIDADE SUPERIOR DIREITA^99DCT">EXTREMIDADE SUPERIOR DIREITA</option>	
+							<option value="1232^EXTREMIDADE SUPERIOR ESQUERDA^99DCT">EXTREMIDADE SUPERIOR ESQUERDA</option>	
+							<option value="1236^EXTREMIDADES INFERIORES^99DCT">EXTREMIDADES INFERIORES</option>	
+							<option value="1237^EXTREMIDADES SUPERIORES^99DCT">EXTREMIDADES SUPERIORES</option>	
+							<option value="639^LOBO INFERIOR DIREITO^99DCT">LOBO INFERIOR DIREITO</option>	
+							<option value="5134^LOBO INFERIOR ESQUERDO^99DCT">LOBO INFERIOR ESQUERDO</option>	
+							<option value="5120^LOBO MEDIO DIREITO^99DCT">LOBO MEDIO DIREITO</option>	
+							<option value="5119^LOBO SUPERIOR DIREITO^99DCT">LOBO SUPERIOR DIREITO</option>	
+							<option value="5132^LOBO SUPERIOR ESQUERDO^99DCT">LOBO SUPERIOR ESQUERDO</option>	
+							<option value="5104^QUADRANTE INFERIOR ESQUERDO^99DCT">QUADRANTE INFERIOR ESQUERDO</option>	
+							<option value="5107^QUADRANTE SUPERIOR DIREITO^99DCT">QUADRANTE SUPERIOR DIREITO</option>	
+							<option value="5973^SUBESTERNAL^99DCT">SUBESTERNAL</option>	
+							<option value="504^SUBMANDIBULAR^99DCT">SUBMANDIBULAR</option>	
+							<option value="543^SUPERIOR^99DCT">SUPERIOR</option>	
+							<option value="505^SUPRACLAVICULAR^99DCT">SUPRACLAVICULAR</option>	
+							<option value="575^SUPRAPUBICA^99DCT">SUPRAPUBICA</option>
+						</select>
+					</div>					
+					<div class="form-group">
+						<label class="font-normal">
+							<input type="checkbox" data-concept="1127^EXAME DO APARELHO ARTICULAR^99DCT" value="1404^RIGIDEZ^99DCT">Rigidez
+						</label>
+					</div>
+					<div class="form-group">
+						<label class="font-normal">
+							<input type="checkbox" data-concept="1127^EXAME DO APARELHO ARTICULAR^99DCT" value="507^SARCOMA DE KAPOSI^99DCT"> Sarcoma de Kaposi
+						</label>
+					</div>
+					<div class="form-group">
+						<label class="font-normal">
+							<input type="checkbox" name="outro_nao_codificado" id="outro_nao_codificado" data-concept="1127^EXAME DO APARELHO ARTICULAR^99DCT"
+								   value="5622^OUTRO, NAO CODIFICADO^99DCT"> Outro
+						</label>
+					</div>
+					<div class="form-group outro_nao_codificado_div">
+						<label for="">Onde:</label><br/>
+						<select class="form-control" id="obs.tipo_outro_nao_codificado" name="obs.tipo_outro_nao_codificado" data-concept="1239^LOCAL DO CORPO^99DCT"
+								required>
+							<option value="">...</option>						
+							<option value="540^ANTERIOR^99DCT">ANTERIOR</option>	
+							<option value="5141^DIREITO^99DCT">DIREITO</option>	
+							<option value="5139^ESQUERDO^99DCT">ESQUERDO</option>	
+							<option value="1235^EXTREMIDADE INFERIOR DIREITA^99DCT">EXTREMIDADE INFERIOR DIREITA</option>	
+							<option value="1234^EXTREMIDADE INFERIOR ESQUERDA^99DCT">EXTREMIDADE INFERIOR ESQUERDA</option>	
+							<option value="1233^EXTREMIDADE SUPERIOR DIREITA^99DCT">EXTREMIDADE SUPERIOR DIREITA</option>	
+							<option value="1232^EXTREMIDADE SUPERIOR ESQUERDA^99DCT">EXTREMIDADE SUPERIOR ESQUERDA</option>	
+							<option value="1236^EXTREMIDADES INFERIORES^99DCT">EXTREMIDADES INFERIORES</option>	
+							<option value="1237^EXTREMIDADES SUPERIORES^99DCT">EXTREMIDADES SUPERIORES</option>	
+							<option value="639^LOBO INFERIOR DIREITO^99DCT">LOBO INFERIOR DIREITO</option>	
+							<option value="5134^LOBO INFERIOR ESQUERDO^99DCT">LOBO INFERIOR ESQUERDO</option>	
+							<option value="5120^LOBO MEDIO DIREITO^99DCT">LOBO MEDIO DIREITO</option>	
+							<option value="5119^LOBO SUPERIOR DIREITO^99DCT">LOBO SUPERIOR DIREITO</option>	
+							<option value="5132^LOBO SUPERIOR ESQUERDO^99DCT">LOBO SUPERIOR ESQUERDO</option>	
+							<option value="5104^QUADRANTE INFERIOR ESQUERDO^99DCT">QUADRANTE INFERIOR ESQUERDO</option>	
+							<option value="5107^QUADRANTE SUPERIOR DIREITO^99DCT">QUADRANTE SUPERIOR DIREITO</option>	
+							<option value="5973^SUBESTERNAL^99DCT">SUBESTERNAL</option>	
+							<option value="504^SUBMANDIBULAR^99DCT">SUBMANDIBULAR</option>	
+							<option value="543^SUPERIOR^99DCT">SUPERIOR</option>	
+							<option value="505^SUPRACLAVICULAR^99DCT">SUPRACLAVICULAR</option>	
+							<option value="575^SUPRAPUBICA^99DCT">SUPRAPUBICA</option>
+						</select>
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="">Outros:</label>
+					<input class="form-control" name="obs.outros_exame_neurologico" data-concept="1682^EXAME DE APARELHO ARTICULAR, OUTRO NAO CODIFICADO^99DCT"
+						   type="text">
+				</div>
+			</div>
+		</div>
+		<div class="section">
+			<h4>Outros:</h4>
+			<div class="form-group">
+				<label>Hipótese de diagnóstico:</label>
+				<textarea data-concept="1649^OUTROS DIAGNOSTICOS - SEM CODIGO^99DCT" style="width:100%;">
+
+				</textarea>
+			</div>
+			<div class="form-group">
+				<label>Aconselhamento</label>
+				<input class="form-control datepicker nonFutureDate past-date" id="obs.aconselhamento" name="obs.aconselhamento" 
+					   data-concept="1475^DATA DE ACONSELHAMENTO^99DCT" type="text" readonly="readonly">
+			</div>
+			<div class="form-group">
+				<label>Conduta Terapeutica:</label>
+				<textarea data-concept="1474^TERAPEUTICA OUTRO^99DCT" style="width:100%;">
+
+				</textarea>
+			</div>
+		</div>
+	</div>
+	<div class="section">
+		<h3>Abertura de processo</h3>
+		<div class="form-group">
+            <label for="encounter.encounter_datetime">Data:<span class="required">*</span>
+            </label>
+            <input class="form-control datetimepicker nonFutureDate past-date" id="encounter.encounter_datetime" name="encounter.encounter_datetime"
+				   type="text" readonly="readonly" required="required">
+        </div>
+		<div class="form-group">
+			<label for="encounter.provider_id_select">Feita por:<span class="required">*</span></label>
+			<input class="form-control valid-provider-only" id="encounter.provider_id_select" type="text" placeholder="Start typing something..." readonly>
+			<input class="form-control" name="encounter.provider_id_select" type="hidden">
+		</div>
+		<div class="form-group show_provider_id_text">
+			<label for="encounter.provider_id">Feita por ID:<span class="required">*</span></label>
+			<input class="form-control checkDigit" id="encounter.provider_id" disabled name="encounter.provider_id" type="text" required="required"  placeholder="Provider Id">
+		</div>
+		<div class="form-group">
+            <label for="encounter.location_id">Unidade Sanitária:<span class="required">*</span></label>
+            <input class="form-control valid-location-only" id="encounter.location_id" type="text" placeholder="Start typing something..." required="required" readonly>
+            <input class="form-control" name="encounter.location_id" type="hidden">
+        </div>	
+		<div class="form-group">
+            <input class="form-control" id="encounter.form_uuid" name="encounter.form_uuid" type="hidden" required="required"> 
+		</div>
+    </div>
+	
+</form>
+</body>
+<script type="text/javascript">
+$(document).ready(function () {
+	$('#save_draft').click(function () {
+		$(this).prop('disabled', true);
+		document.saveDraft();
+		$(this).prop('disabled', false);
+	});
+
+	$('#submit_form').click(function () {
+		$(this).prop('disabled', true);
+		document.submit();
+		$(this).prop('disabled', false);
+	});
+	
+	$('#obs\\.exame_da_pele').change(function(){
+		if($('input[name=obs\\.exame_da_pele]:checked').val() == "1422^LESOES^99DCT"){
+			$('.exame_da_pele_div').show();
+		} else{
+			$('.exame_da_pele_div').hide();
+		}
+	});    
+	$('#obs\\.exame_da_pele').trigger('change');
+	
+	$('#obs\\.paresias').change(function(){
+		if($('#obs\\.paresias').is(":checked")){
+			$('.tipo_paresias_div').show();
+		} else{
+			$('.tipo_paresias_div').hide();
+		}
+	});    
+	$('#obs\\.paresias').trigger('change');
+	     
+	$.validator.addMethod("eligibleAgeOnly", function (value, element) {
+		if ($.fn.isNotRequiredAndEmpty(value, element)) return true;
+		return value > 14; 
+	}, " "
+	);
+
+	// attach 'nonFutureDate' class to perform validation.
+	jQuery.validator.addClassRules({
+		eligibleAgeOnly: { eligibleAgeOnly: true }
+	});
+	
+	document.setupAutoCompleteData('encounter\\.location_id');
+	document.setupAutoCompleteDataForProvider('encounter\\.provider_id_select');
+	document.setupValidationForLocation("$('#encounter\\.location_id').val()","encounter\\.location_id");
+	document.setupValidationForProvider("$('#encounter\\.provider_id_select').val()","encounter\\.provider_id");
+
+	var prePopulateData = $.trim($('#pre_populate_data').html());
+	var prePopulateJSON = JSON.parse(prePopulateData);
+	$.each(prePopulateJSON, function(key, value) {
+		if (key === 'patient') {
+			var names = "";
+			$.each(value, function(keys, values) {
+				if(keys === 'patient.given_name' || keys === 'patient.middle_name' || keys === 'patient.family_name' || keys === 'patient.names'){
+				   names=names+" "+values;
+				}
+
+				if(keys === "patient.birth_date"){
+					var tmp = values.split('-');
+					if(tmp[2].length==4){
+                    	var birthDate = new Date(tmp[2],tmp[1]-1,tmp[0]);
+					}else{
+						var birthDate = new Date(tmp[0],tmp[1]-1,tmp[2]);
+					}
+					var today = new Date();
+					var milliSecondsInAYear = 1000 * 60 * 60 * 24 * 365.26;
+					var age = (today - birthDate) / milliSecondsInAYear;
+					$('#patient\\.age').val((Math.floor(age)));
+				}
+			});
+			$('#patient\\.names').val(names);
+		}
+	});
+});
+</script>
+</html>
