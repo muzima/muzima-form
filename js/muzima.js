@@ -17,6 +17,10 @@ var htmlDataStore = {
         return JSON.stringify(dummyRelationshipTypes);
     },
 
+    getRelationshipForPersons:function(uuid1,uuid2){
+        return '[]';
+    },
+
     getPersonDetailsFromDeviceByUuid:function(uuid){
         var persons = [{"uuid": "uuid1", "name": "Adam Smith", "birth_date":"2020-02-01", "sex":"M"},
             {"uuid": "uuid2", "name": "John Pombe", "birth_date":"1968-02-30", "sex":"F"},
@@ -47,8 +51,33 @@ var htmlDataStore = {
         return JSON.stringify(foundPerson);
     },
 
+    getObsByConceptId:function(uuid,conceptId){
+        return '[]';
+    },
+
     isMedicalRecordNumberRequired:function(){
         return true;
+    },
+    updatePersonDemographics:function(sectionName, resultField, personUuid){
+        // ToDo: Create mock relationship component
+        //  relationshipCreatorComponent.updateRelationshipPerson(
+        //     sectionName,
+        //     resultField,
+        //     personUuid
+        // );
+    },
+    getPersonAttribute:function(patientUuid, attributeTypeNameOrUuid){
+        var attribute = {'attribute_type_uuid':'attribute_type_uuid',
+        'attribute_value':'currentPersonAttributeValue'
+        }
+        return JSON.stringify(attribute);
+    },
+    getPatientIdentifier:function(){
+        var medicalRecordNumber =  {"identifier_value":"identifier_value",
+        "identifier_type_name":"identifier_type_name",
+        "identifier_type_uuid":"identifier_type_uuid",
+        }
+        return JSON.stringify(medicalRecordNumber);
     }
 };
 
@@ -388,6 +417,7 @@ $(document).ready(function () {
 
     /* Start - CheckDigit algorithm Source: https://wiki.openmrs.org/display/docs/Check+Digit+Algorithm */
 
+
     $.validator.addMethod("checkDigit", function (value, element) {
             var num = value.split('-');
             if (num.length != 2) {
@@ -439,6 +469,7 @@ $(document).ready(function () {
     /* Start - Checking that the current date is not in the future */
 
     $.validator.addMethod("nonFutureDate", function (value, element) {
+        value = $(element).val();
             if ($.fn.isNotRequiredAndEmpty(value, element)) return true;
             var pattern = /(\d{2})-(\d{2})-(\d{4})/g;
             var matches = pattern.exec(value);
@@ -454,6 +485,32 @@ $(document).ready(function () {
     });
 
     /* End - nonFutureDate*/
+
+    $.validator.addMethod("nonPostEncounterDate", function (value, element) {
+            if ($.fn.isNotRequiredAndEmpty(value, element)) return true;
+            var pattern = /(\d{2})-(\d{2})-(\d{4})/g;
+            var matches = pattern.exec(value);
+            var enteredDate = new Date(matches[3], matches[2] - 1, matches[1]);
+            var today = new Date();
+
+            pattern = /(\d{2})-(\d{2})-(\d{4})/;
+            matches=pattern.exec($('#encounter\\.encounter_datetime').val());
+            if(matches == null){
+                return true;
+            }
+            var encounterDate = new Date(matches[3], matches[2] - 1, matches[1]);
+            return enteredDate <= encounterDate;
+        }, "Please enter a date prior to encounter date."
+    );
+
+    // attach 'checkFutureDate' class to perform validation.
+    jQuery.validator.addClassRules({
+        nonPostEncounterDate: { nonPostEncounterDate: true }
+    });
+
+    $('.nonPostEncounterDate').change(function () {
+        $(this).valid();
+    });
 
     /* Start - Checking that the current date is in the future */
 
@@ -604,9 +661,7 @@ $(document).ready(function () {
     document.removeIfRepeatedSection = function($element){
         var $parent = $element.parent();
         var _id = $parent.attr('id');
-        console.log("_id: "+_id);
         var similarElements = $parent.parent().find("." + _id);
-        console.log('similarElements.length: '+similarElements.length);
         if (similarElements.length > 1) {
             $parent.remove();
             if(!document.isMaxRepeatsReached($(similarElements[0]))){
@@ -805,7 +860,7 @@ $(document).ready(function () {
                     });
                 }
             } else if (value instanceof Object){
-                populateNonObservations($parentDiv, value);
+                document.populateNonObservations($parentDiv, value);
             } else {
                 $.each($elements, function (i, element) {
                     applyValue(element, value);
@@ -824,13 +879,14 @@ $(document).ready(function () {
         }
     };
 
-    var populateNonObservations = function ($parentDiv, prePopulateJson) {
+    document.populateNonObservations = function ($parentDiv, prePopulateJson) {
         $.each(prePopulateJson, function (key, value) {
             if (value instanceof Object) {
                 // check if this is a grouping observation.
                 var $div = $parentDiv.find('div[data-group="' + key + '"]');
                 if ($div.length > 0) {
                     // we are dealing with grouping
+                    console.log("we are dealing with grouping:"+key);
                     if (value instanceof Array) {
                         $.each(value, function (i, element) {
                             if (i == 0) {
@@ -848,6 +904,7 @@ $(document).ready(function () {
                     }
                 } else {
                     // we are not dealing with repeating
+                    console.log("we are not dealing with repeating");
                     if (value instanceof Array) {
                         var elements = $parentDiv.find('[data-group="' + key + '"]');
                         if (elements.length < value.length) {
@@ -963,10 +1020,10 @@ $(document).ready(function () {
         console.time("Starting population");
         var prePopulateJSON = JSON.parse(prePopulateData);
         $.each(prePopulateJSON, function(key, value) {
-            if (key === 'observation') {
+            if (key === 'observation' || key === 'index_obs') {
                 populateObservations($('form'),value);
             } else {
-                populateNonObservations($('form'),value);
+                document.populateNonObservations($('form'),value);
             }
         });
         console.timeEnd("Starting population");
@@ -987,6 +1044,9 @@ $(document).ready(function () {
             var dotIndex = k.indexOf(".");
             if (dotIndex >= 0) {
                 key = k.substr(0, k.indexOf("."));
+                if(key == 'index_obs'){
+                    k = k.substr(k.indexOf(".")+1, k.length-1);
+                }
             }
             var objects = completeObject[key];
             if (objects === undefined) {
@@ -1049,9 +1109,12 @@ $(document).ready(function () {
                 var subResult2 = serializeConcepts($(element));
                 var subResultCombined = $.extend({}, subResult1,subResult2);
                 result = pushIntoArray(result, $(element).attr('data-concept'), subResultCombined);
+            } else if ($(element).hasClass('is-index-obs')){
+                var $allConcepts = $(element).find('*[data-concept]');
+                result = pushIntoArray(result, 'index_obs.'+$(element).attr('data-concept'), jsonifyConcepts($allConcepts, false));
             } else {
                 var $allConcepts = $(element).find('*[data-concept]');
-                result = pushIntoArray(result, $(element).attr('data-concept'), jsonifyConcepts($allConcepts));
+                result = pushIntoArray(result, $(element).attr('data-concept'), jsonifyConcepts($allConcepts, true));
             }
         });
         return result;
@@ -1063,7 +1126,7 @@ $(document).ready(function () {
         $.each(allConcepts, function (i, element) {
             var $closestElement = $(element).closest('.section, .concept-set', $form);
             if ($form.is($closestElement) || $closestElement.attr('data-concept') == undefined ) {
-                var jsonifiedConcepts = jsonifyConcepts($(element));
+                var jsonifiedConcepts = jsonifyConcepts($(element, true));
                 if (JSON.stringify(jsonifiedConcepts) != '{}' && jsonifiedConcepts != "") {
                     $.each(jsonifiedConcepts, function (key, value) {
                         if (object[key] !== undefined) {
@@ -1081,7 +1144,7 @@ $(document).ready(function () {
         return object;
     };
 
-    var jsonifyConcepts = function ($allConcepts) {
+    var jsonifyConcepts = function ($allConcepts, codeIndexPatientObsIfAvailable) {
         var o = {};
         $.each($allConcepts, function (i, element) {
             if ($(element).is(':checkbox') || $(element).is(':radio')) {
@@ -1095,6 +1158,8 @@ $(document).ready(function () {
                             v = pushIntoArray(v, 'obs_datetime', obs_datetime);
                             o = pushIntoArray(o, $(element).attr('data-concept'), v);
                         }
+                    } else if ($(element).hasClass('is-index-obs')){
+                        o = pushIntoArray(o, 'index_obs.'+$(element).attr('data-concept'), $(element).val());
                     } else {
                         o = pushIntoArray(o, $(element).attr('data-concept'), $(element).val());
                     }
@@ -1109,6 +1174,8 @@ $(document).ready(function () {
                         v = pushIntoArray(v, 'obs_datetime', obs_datetime);
                         o = pushIntoArray(o, $(element).attr('data-concept'), v);
                     }
+                } else if ($(element).hasClass('is-index-obs') && codeIndexPatientObsIfAvailable == true){
+                    o = pushIntoArray(o, 'index_obs.'+$(element).attr('data-concept'), $(element).val());
                 } else {
                     o = pushIntoArray(o, $(element).attr('data-concept'), $(element).val());
                 }
@@ -1213,39 +1280,31 @@ $(document).ready(function () {
     }
 
     //Start - Set up auto complete for the person element.
-    document.setupAutoCompleteForPerson = function($searchElementSelector, $resultElementSelector,$resultsCountElement,searchServer) {
-        // if(searchElement.hasClass('ui-autocomplete-input')){
-        //     //searchElement.removeClass('ui-autocomplete-input');
-        //     searchElement.autocomplete('destroy');
-        //     console.log('hasClass');
-        // }
+    document.setupAutoCompleteForPerson = function($searchElementSelector, $resultElementSelector,$resultsCountElement,$searchLoadingWidget,searchServer) {
+        $searchLoadingWidget.hide();;
         $searchElementSelector.focus(function () {
-
-            console.log('Setting up autocomplete...');
 
             $searchElementSelector.autocomplete({
                 source: function (request, response) {
-                    console.log('creating source...');
+                    $searchLoadingWidget.show();;
                     var searchResults = [];
                     if (searchServer == true) {
                         searchResults = [{"uuid": "uuid1", "name": "Adam Smith"},
                             {"uuid": "uuid2", "name": "John Pombe"}];
-                        console.log("Searching server.....");
                     } else {
                         searchResults = [{"uuid": "uuid3", "name": "Wairimu Ngige"},
                             {"uuid": "uuid4", "name": "Timmy Tammy"}];
-                        console.log("Searching.....");
                     }
                     var searchTerm = request.term;
                     var listOfPersons = [];
                     $.each(searchResults, function (key, person) {
                         listOfPersons.push({"val": person.uuid, "label": person.name});
                     });
+
                     $resultsCountElement.val(searchResults.length);
                     $resultsCountElement.trigger('change');
 
                     response(listOfPersons);
-
                 },
                 select: function (event, ui) {
                     $searchElementSelector.val(ui.item.label);
@@ -1257,7 +1316,7 @@ $(document).ready(function () {
         });
 
         $searchElementSelector.blur(function () {
-            console.log('destroying up autocomplete...');
+            $searchLoadingWidget.hide();
             $searchElementSelector.autocomplete("destroy");
         });
     };
@@ -1385,11 +1444,19 @@ $(document).ready(function () {
 
 $('.create-relationship-person').click(function () {
 console.log('populateRelationshipPerson');
-        var $parent = $(this).closest('div[data-name]');
-        var resultField = $(this).attr('data-result-field');
-        var testResult = [{resultField: "personUuid"}];
-        document.populateRelationshipPerson($parent.attr('data-name'),testResult );
-    });
+    var $parent = $(this).closest('div[data-name]');
+    var resultField = $(this).attr('data-result-field');
+    var testResult = [{resultField: "personUuid"}];
+    document.populateRelationshipPerson($parent.attr('data-name'),testResult );
+});
+
+$('.update-relationship-person').click(function () {
+console.log('populateRelationshipPerson');
+    var $parent = $(this).closest('div[data-name]');
+    var resultField = $(this).attr('data-result-field');
+    var testResult = [{resultField: "personUuid"}];
+    document.populateRelationshipPerson($parent.attr('data-name'),testResult );
+});
 
 document.populateRelationshipPerson = function (sectionName, jsonString) {
   console.log('populateRelationshipPerson');
