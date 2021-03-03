@@ -184,20 +184,10 @@
         <div class="form-group">
             <label for="obs.expected_testing_date">Data Prevista para Testagem:
                 <span class="required">*</span></label>
-            <input class="form-control datepicker nonPostEncounterDate" readonly="readonly"
+            <input class="form-control datepicker nonPastEncounterDate" readonly="readonly"
                    id="obs.expected_testing_date" data-concept="23879^Data Prevista para Testagem^99DCT"
                    name="obs.expected_testing_date" type="text" required="required">
         </div>
-<!--        <div class="form-group">-->
-<!--            <label for="obs.contact_phoning_consent">Patient consents to Contacts being phoned by-->
-<!--                health personnel:<span class="required">*</span></label>-->
-<!--            <select class="form-control" id="obs.contact_phoning_consent" required-->
-<!--                    name="obs.contact_phoning_consent" data-concept="ddd^Contact phoning consent^99DCT">-->
-<!--                <option value="">...</option>-->
-<!--                <option value="1065^Sim^99DCT">Sim</option>-->
-<!--                <option value="1066^Nao^99DCT">Nao</option>-->
-<!--            </select>-->
-<!--        </div>-->
     </div>
 
     <div class="section">
@@ -474,7 +464,7 @@
 
             var setPersonFieldsDataConceptAttributes = function($parent){
                 $parent.find('.person_details').attr('data-concept','23782^SITUACAO FAMILIAR CONJUNTO^99DCT');
-                $parent.find('.obs\\.contact_relationship').attr('data-concept','1930^Amigo ou Colega^99DCT');
+                $parent.find('.obs\\.contact_relationship').attr('data-concept','23704^PARENTESCO^99DCT');
                 $parent.find('.obs\\.contact_name').attr('data-concept','23778^Nome do familiar^99DCT');
                 $parent.find('.obs\\.contact_age').attr('data-concept','23777^Idade^99DCT');
                 $parent.find('.obs\\.hiv_test').attr('data-concept','23779^Teste de HIV^99DCT');
@@ -561,7 +551,7 @@
 
                         var relationshipType = $parent.find('.person\\.relationshipType').val();
                         if(relationshipType == '8ce38f96-0c7f-11eb-8fb0-bbd20b621cb8'){
-                            $parent.find('.obs\\.contact_relationship').val('23704^PARENTESCO^99DCT');
+                            $parent.find('.obs\\.contact_relationship').val('1930^Amigo ou Colega^99DCT');
                         } else if(relationshipType == '4132a84c-f116-4369-b67d-9363b3399916'){
                             if(personAUuid == contactUuid){
                                 $parent.find('.obs\\.contact_relationship').val('973^AVO^99DCT');
@@ -758,8 +748,8 @@
         });
 
         $.validator.addMethod("valid_NID", function (value, element) {
-                return value.match(/[0-9]{8}\/[0-9]{2}\/[0-9]{4}/) != null;
-            }, "Identificador não coincide com o formato necessário: PPDDUUSS/AA/NNNN."
+                return value.match(/[0-9]{10}\/[0-9]{4}\/[0-9]{5}/) != null;
+            }, "Identificador não coincide com o formato necessário: CCPPDDUUSS/AAAA/NNNNN."
         );
 
         jQuery.validator.addClassRules({
@@ -767,16 +757,42 @@
         });
 
         $.validator.addMethod("valid_Person", function (value, element) {
-            var isPersonDetailsVisible = $(element).closest('.person_relationships').find('.tmp\\.person_search_birth_date').is(':visible');
-            if( value == '' || isPersonDetailsVisible){
-                return true;
-            }
-            return false;
+                var isPersonDetailsVisible = $(element).closest('.person_relationships').find('.tmp\\.person_search_birth_date').is(':visible');
+                if( value == '' || isPersonDetailsVisible){
+                    return true;
+                }
+                return false;
             }, "Pessoa não encontrada. Por favor, pesquise e selecione a pessoa da lista."
         );
 
         jQuery.validator.addClassRules({
             valid_Person: { valid_Person: true }
+        });
+
+        $.validator.addMethod("nonPastEncounterDate", function (value, element) {
+                if ($.fn.isNotRequiredAndEmpty(value, element)) return true;
+                var pattern = /(\d{2})-(\d{2})-(\d{4})/g;
+                var matches = pattern.exec(value);
+                var enteredDate = new Date(matches[3], matches[2] - 1, matches[1]);
+                var today = new Date();
+
+                pattern = /(\d{2})-(\d{2})-(\d{4})/;
+                matches=pattern.exec($('#encounter\\.encounter_datetime').val());
+                if(matches == null){
+                    return true;
+                }
+                var encounterDate = new Date(matches[3], matches[2] - 1, matches[1]);
+                return enteredDate >= encounterDate;
+            }, "Insira uma data posterior à data do encontro."
+        );
+
+        // attach 'checkFutureDate' class to perform validation.
+        jQuery.validator.addClassRules({
+            nonPastEncounterDate: { nonPastEncounterDate: true }
+        });
+
+        $('.nonPastEncounterDate').change(function () {
+            $(this).valid();
         });
 
         document.setupAutoCompleteData('encounter\\.location_id');

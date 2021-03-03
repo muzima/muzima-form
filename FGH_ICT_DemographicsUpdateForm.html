@@ -283,7 +283,7 @@
         <div class="form-group">
             <label for="obs.expected_testing_date">Data Prevista para Testagem:
                 <span class="required">*</span></label>
-            <input class="form-control datepicker nonPostEncounterDate" readonly="readonly"
+            <input class="form-control datepicker nonPastEncounterDate" readonly="readonly"
                    id="obs.expected_testing_date" data-concept="23879^Data Prevista para Testagem^99DCT"
                    name="obs.expected_testing_date" type="text" required="required">
         </div>
@@ -964,6 +964,33 @@
                 return false;
             }, "Pessoa não encontrada. Por favor, pesquise e selecione a pessoa da lista."
         );
+
+
+        $.validator.addMethod("nonPastEncounterDate", function (value, element) {
+                if ($.fn.isNotRequiredAndEmpty(value, element)) return true;
+                var pattern = /(\d{2})-(\d{2})-(\d{4})/g;
+                var matches = pattern.exec(value);
+                var enteredDate = new Date(matches[3], matches[2] - 1, matches[1]);
+                var today = new Date();
+
+                pattern = /(\d{2})-(\d{2})-(\d{4})/;
+                matches=pattern.exec($('#encounter\\.encounter_datetime').val());
+                if(matches == null){
+                    return true;
+                }
+                var encounterDate = new Date(matches[3], matches[2] - 1, matches[1]);
+                return enteredDate >= encounterDate;
+            }, "Insira uma data posterior à data do encontro."
+        );
+
+        // attach 'checkFutureDate' class to perform validation.
+        jQuery.validator.addClassRules({
+            nonPastEncounterDate: { nonPastEncounterDate: true }
+        });
+
+        $('.nonPastEncounterDate').change(function () {
+            $(this).valid();
+        });
 
         jQuery.validator.addClassRules({
             valid_Person: { valid_Person: true }
