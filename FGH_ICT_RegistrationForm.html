@@ -650,43 +650,48 @@
         }
 
         $('.person\\.relationshipType').change(function(){
-            var isAToB = $(this).find(':selected').hasClass('AIsToB');
-            var isBToA = $(this).find(':selected').hasClass('BIsToA');
             var $parent = $(this).closest('.repeat');
-            var searchServer = $parent.find('.tmp\\.search_server').is(':checked');
-
-            $('.search-person-loader').hide();
-
-            if(isAToB){
-                //setPersonFieldsDataConceptAttributes();
-                $parent.find('.tmp\\.relationshipType').val($(this).val());
-                $parent.find('.create-relationship-person').attr('data-result-field','personA\\.uuid');
-                $parent.find('.tmp\\.update_person_details').attr('data-result-field','personA\\.uuid');
-                setUpPersonFieldsPopulation($parent,'.personB\\.uuid','.personA\\.uuid', searchServer);
-
-                $parent.find('.search_person').show();
-                $parent.find('.create_person').hide();
-
-            } else if(isBToA){
-                // setPersonFieldsDataConceptAttributes();
-                $parent.find('.tmp\\.relationshipType').val($(this).val());
-                $parent.find('.create-relationship-person').attr('data-result-field','personB\\.uuid');
-                $parent.find('.tmp\\.update_person_details').attr('data-result-field','personB\\.uuid');
-                setUpPersonFieldsPopulation($parent,'.personA\\.uuid','.personB\\.uuid', searchServer);
-
-                $parent.find('.search_person').show();
-                $parent.find('.create_person').hide();
-            } else {
-                $parent.find('.personA\\.uuid').val('');
-                $parent.find('.personB\\.uuid').val('');
-                $parent.find('.tmp\\.person_search_sex').val('');
-                $parent.find('.tmp\\.person_search_birth_date').val('');
-                $parent.find('.tmp\\.person_name_search').val('');
+            if($(this).val() == ''){
                 $parent.find('.search_person').hide();
                 $parent.find('.create_person').hide();
                 $parent.find('.person_details').hide();
+                $parent.find('.tmp\\.relationshipType').val('');
+            } else {
+                var isAToB = $(this).find(':selected').hasClass('AIsToB');
+                var isBToA = $(this).find(':selected').hasClass('BIsToA');
+                var searchServer = $parent.find('.tmp\\.search_server').is(':checked');
+
+                $('.search-person-loader').hide();
+
+                if (isAToB) {
+                    $parent.find('.tmp\\.relationshipType').val($(this).val());
+                    $parent.find('.create-relationship-person').attr('data-result-field', 'personA\\.uuid');
+                    $parent.find('.tmp\\.update_person_details').attr('data-result-field', 'personA\\.uuid');
+                    setUpPersonFieldsPopulation($parent, '.personB\\.uuid', '.personA\\.uuid', searchServer);
+
+                    $parent.find('.search_person').show();
+                    $parent.find('.create_person').hide();
+
+                } else if (isBToA) {
+                    $parent.find('.tmp\\.relationshipType').val($(this).val());
+                    $parent.find('.create-relationship-person').attr('data-result-field', 'personB\\.uuid');
+                    $parent.find('.tmp\\.update_person_details').attr('data-result-field', 'personB\\.uuid');
+                    setUpPersonFieldsPopulation($parent, '.personA\\.uuid', '.personB\\.uuid', searchServer);
+
+                    $parent.find('.search_person').show();
+                    $parent.find('.create_person').hide();
+                } else {
+                    $parent.find('.personA\\.uuid').val('');
+                    $parent.find('.personB\\.uuid').val('');
+                    $parent.find('.tmp\\.person_search_sex').val('');
+                    $parent.find('.tmp\\.person_search_birth_date').val('');
+                    $parent.find('.tmp\\.person_name_search').val('');
+                    $parent.find('.search_person').hide();
+                    $parent.find('.create_person').hide();
+                    $parent.find('.person_details').hide();
+                }
+                $parent.find('.tmp\\.person_name_search').trigger('change');
             }
-            $parent.find('.tmp\\.person_name_search').trigger('change');
         });
 
         var indexPatientUuid = $('#patient\\.uuid').val();
