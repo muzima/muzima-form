@@ -150,9 +150,9 @@
 			</div> 
 			<div class="form-group">
 				<label for="obs.qty_ordered_other">
-				Outra:<span class="required">*</span>
+				Outra:<span class="required"></span>
 				</label>				
-				<input id="obs.qty_ordered_other" class="form-control" type="text" name="obs.qty_ordered_other" data-concept="1715^QUANTIDADE AVIADA^99DCT"/>
+				<input id="obs.qty_ordered_other" class="form-control" type="number" name="obs.qty_ordered_other" data-concept="1715^QUANTIDADE AVIADA^99DCT"/>
 			</div> 
 		</div>
 		<div class="sub-section">
@@ -175,7 +175,7 @@
 			</div> 
 			<div class="form-group">
 				<label for="obs.dosage_other">
-				Outra:<span class="required">*</span>
+				Outra:<span class="required"></span>
 				</label>				
 				<input id="obs.dosage_other" class="form-control" type="text" name="obs.dosage_other" data-concept="1711^POSOLOGIA^99DCT"/>
 			</div> 
@@ -197,11 +197,11 @@
 				<option value="1066^NAO^99DCT">Não</option>
 			</select>
 		</div>
-		<div class="form-group">
+		<div class="form-group" id="nome_camp_div">
 			<label for="obs.dosage_other">
-			Qual é o número do campo?:<span class="nome_camp">*</span>
+			Qual é o número do campo?:<span class="nome_camp"></span>
 			</label>				
-			<input id="obs.nome_camp" class="form-control" type="text" name="obs.nome_camp" data-concept="23857^SE SIM, QUAL O CAMPO^99DCT" required="required"/>
+			<input id="obs.nome_camp" class="form-control" type="number" name="obs.nome_camp" data-concept="23857^SE SIM, QUAL O CAMPO^99DCT"/>
 		</div> 	
 		<div class="form-group">
 			<label for="obs.mod_dispensa">
@@ -256,6 +256,15 @@ $(document).ready(function  () {
 			$('#patient\\.names').val(names);
 		}
 	});
+	
+	$('#obs\\.leva_camp').change(function(){
+        if($(this).val() == "1065^SIM^99DCT"){
+            $('#nome_camp_div').show();
+        }  else{
+			$('#nome_camp_div').hide();
+		}
+    });    
+    $('#obs\\.leva_camp').trigger('change');  
 
    var patientuuid = $('#patient\\.uuid').val();
    var obs1 = htmlDataStore.getObsByConceptId(patientuuid,6264);  
