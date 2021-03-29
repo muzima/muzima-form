@@ -263,6 +263,11 @@
 					<input class="form-control" id="temp.health_worker" name="temp.health_worker" type="text" required="required" placeholder="Start typing something...">
 				    <input class="form-control" id="obs.health_worker_id" name="obs.health_worker_id" type="text" required="required" data-concept="1912^TRABALHADOR DE SAÚDE^99DCT" readonly>
 			</div>
+			<div class="form-group sub-section">
+				<label for="obs.art_clinical_officer">Provedor de distribuição comunitária de ART:<span class="required"></span></label>
+					<input class="form-control" id="temp.art_clinical_officer" name="temp.art_clinical_officer" type="text" required="required" placeholder="Start typing something...">
+				    <input class="form-control" id="obs.art_clinical_officer_id" name="obs.art_clinical_officer_id" type="text" required="required" data-concept="165238^COMMUNITY ART DISTRIBUTION PROVIDER^99DCT" readonly>
+			</div>
 			<div class="form-group" id="home_visit_date">
 				<label for="obs.home_visit_date">
 					Data da entrega ao Voluntário:<span class="required">*</span>
@@ -366,8 +371,8 @@
     document.setupValidationForLocation("$('#encounter\\.location_id').val()","encounter\\.location_id");
     document.setupValidationForProvider("$('#encounter\\.provider_id_select').val()","encounter\\.provider_id");
 		   
-	document.setupAutoCompleteDataForTheForm('temp\\.health_worker');
-	document.setupAutoCompleteDataForTheForm('obs\\.professional_referral_name');	  
+	document.setupAutoCompleteDataForFieldWorker('temp\\.health_worker');
+	document.setupAutoCompleteDataForARTClinicalOfficer('temp\\.art_clinical_officer'); 
 	   	   
 /* Start - Toggle validateDeliveryDate date validation */
 $('.validateDeliveryDate').change(function () {
@@ -465,19 +470,19 @@ if(parseInt(cohortMembershipJson.length)==1){
 }
 });
 
-document.setupAutoCompleteDataForTheForm = function(elementName) {
+document.setupAutoCompleteDataForFieldWorker = function(elementName) {
 	var providersDictionary = [];
 	var providerNamesResults = htmlDataStore.getProviderNamesFromDevice();
 	providerNamesResults = JSON.parse(providerNamesResults);
 	$.each(providerNamesResults, function (key, providerName) {
 		providersDictionary.push({"val": providerName.identifier, "label": providerName.name});
 	});
-	document.setupAutoCompleteForTheForm(elementName, providersDictionary);
+	document.setupAutoCompleteForFieldWorker(elementName, providersDictionary);
 };
 
 	
 //Set up auto complete for the provider element.
-document.setupAutoCompleteForTheForm = function(elementName, providers) {
+document.setupAutoCompleteForFieldWorker = function(elementName, providers) {
 	$("#" + elementName).autocomplete({
 		source: providers,
 		create: function(event, ui) {
@@ -485,17 +490,45 @@ document.setupAutoCompleteForTheForm = function(elementName, providers) {
 			$.each(providers, function(i, elem) {
 				if (elem.val == provider_val) {
 					$("#" + elementName).val(elem.label);
-					if(elementName == 'temp\\.health_worker'){
-						$("#obs\\.health_worker_id").val(elem.val);
-					}
+					$("#obs\\.health_worker_id").val(elem.val);
 				}
 			});
 		},
 		select: function(event, ui) {
 			$("#" + elementName).val(ui.item.label);
-			if(elementName == 'temp\\.health_worker'){
-				$("#obs\\.health_worker_id").val(ui.item.val);
-			}
+			$("#obs\\.health_worker_id").val(ui.item.val);
+			return false;
+		}
+	});
+}
+
+document.setupAutoCompleteDataForARTClinicalOfficer = function(elementName) {
+	var providersDictionary = [];
+	var providerNamesResults = htmlDataStore.getProviderNamesFromDevice();
+	providerNamesResults = JSON.parse(providerNamesResults);
+	$.each(providerNamesResults, function (key, providerName) {
+		providersDictionary.push({"val": providerName.identifier, "label": providerName.name});
+	});
+	document.setupAutoCompleteForARTClinicalOfficer(elementName, providersDictionary);
+};
+
+	
+//Set up auto complete for the provider element.
+document.setupAutoCompleteForARTClinicalOfficer = function(elementName, providers) {
+	$("#" + elementName).autocomplete({
+		source: providers,
+		create: function(event, ui) {
+			var provider_val = $('input[name="' + elementName + '"]').val();
+			$.each(providers, function(i, elem) {
+				if (elem.val == provider_val) {
+					$("#" + elementName).val(elem.label);
+					$("#obs\\.art_clinical_officer_id").val(elem.val);
+				}
+			});
+		},
+		select: function(event, ui) {
+			$("#" + elementName).val(ui.item.label);
+			$("#obs\\.art_clinical_officer_id").val(ui.item.val);
 			return false;
 		}
 	});
