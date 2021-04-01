@@ -1,0 +1,1016 @@
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/muzima.css" rel="stylesheet">
+    <link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+    <link href="css/ui-darkness/jquery-ui-1.10.4.custom.min.css" rel="stylesheet">
+
+    <script src="js/jquery.min.js"></script>
+    <script src="js/jquery-ui-1.10.4.custom.min.js"></script>
+    <script src="js/jquery.validate.min.js"></script>
+    <script src="js/localization/messages_pt_PT.min.js"></script>
+    <script src="js/additional-methods.min.js"></script>
+    <script src="js/bootstrap-datetimepicker.min.js"></script>
+    <script src="js/muzima.js"></script>
+
+    <title>Actualizar Dados Pessoais</title>
+</head>
+<body class="col-md-8 col-md-offset-2">
+
+<div id="result">
+
+</div>
+<div id="pre_populate_data">
+</div>
+<form id="demographics_update_form" name="demographics_update_form">
+    <h2 class="text-center">Actualizar Dados Pessoais</h2>
+
+    <div class="section">
+        <h3>Nome do Paciente</h3>
+        <div class="form-group">
+            <input class="form-control" id="patient.uuid" value=""
+                   name="patient.uuid" type="hidden" readonly="readonly">
+        </div>
+        <div class="form-group">
+            <label for="patient.family_name">Apelido: <span class="required">*</span> </label>
+            <input class="form-control" id="patient.family_name" name="patient.family_name" type="text"
+                   readonly="readonly" required="required">
+        </div>
+        <div class="form-group">
+            <label for="patient.given_name">Nome:</label>
+            <input class="form-control" id="patient.given_name" name="patient.given_name" type="text"
+                   readonly="readonly">
+        </div>
+        <div class="form-group">
+            <label for="patient.middle_name">Nome do meio:</label>
+            <input class="form-control" id="patient.middle_name" name="patient.middle_name" type="text"
+                   readonly="readonly">
+        </div>
+        <div class="form-group">
+            <label for="tmp.update_names">
+                <input id="tmp.update_names" name="tmp.update_names"
+                       type="checkbox">
+                Vai atualizar nomes? (se sim, permitir editar)
+            </label>
+        </div>
+    </div>
+    <div class="section" id="update_names">
+        <h3>Adicionar Nomes </h3>
+        <div class="form-group">
+            <label for="demographicsupdate.family_name">Novo Apelido: <span class="required">*</span> </label>
+            <input class="form-control" id="demographicsupdate.family_name" name="demographicsupdate.family_name" type="text"
+                   required="required">
+        </div>
+        <div class="form-group">
+            <label for="demographicsupdate.given_name">Novo Nome: <span class="required">*</span></label>
+            <input class="form-control" id="demographicsupdate.given_name" name="demographicsupdate.given_name" type="text"
+                   required="required">
+        </div>
+        <div class="form-group">
+            <label for="demographicsupdate.middle_name">Novo nome do meio:</label>
+            <input class="form-control" id="demographicsupdate.middle_name" name="demographicsupdate.middle_name" type="text">
+        </div>
+    </div>
+    <div class="section">
+        <div class="section group-set" data-group="patient.personaddress" id="patient.personaddress">
+            <h3>Endereço</h3>
+            <div class="form-group">
+                <label for="address1">Avenida/Rua/Punto de referencia: </label>
+                <input class="form-control address1" name="address1" type="text" readonly="readonly">
+            </div>
+            <div class="form-group">
+                <label for="address2">Nº da Residência (casa): </label>
+                <input class="form-control address2" name="address2" type="text" readonly="readonly">
+            </div>
+            <div class="form-group">
+                <label for="address6">Comunidade: </label>
+                <input class="form-control address6" name="address6" type="text" readonly="readonly">
+            </div>
+            <div class="form-group">
+                <label for="address3">Quarteirão: </label>
+                <input class="form-control address3" name="address3" type="text" readonly="readonly">
+            </div>
+            <div class="form-group">
+                <label for="address5">Bairro: </label>
+                <input class="form-control address5" name="address5" type="text" readonly="readonly">
+                <input class="form-control person_address_uuid uuid" name="uuid" type="hidden" readonly="readonly">
+            </div>
+            <div class="form-group">
+                <input class=" tmp.edit_address update_address_confirm" name="tmp.edit_address"
+                       type="checkbox">
+                <label for="tmp.edit_address" class="edit_address_label">Vai atualizar o endereço? (se sim, permitir editar)</label>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="patient.phone_number">Contacto Telemóvel do Paciente:</label>
+            <input class="form-control" id="patient.phone_number" name="patient.phone_number" type="tel" disabled="disabled">
+        </div>
+        <div class="form-group">
+            <label for="tmp.update_address">
+                <input id="tmp.update_address" class="update_address_confirm" name="tmp.update_address"
+                       type="checkbox">
+                Você adicionará um novo endereço? (se sim, permita a edição)
+            </label>
+        </div>
+    </div>
+    <div class="section" id="update_address">
+        <h3>Novo endereço</h3>
+        <div class="group-set" data-group="demographicsupdate.personaddress" id="demographicsupdate.personaddress">
+            <div class="form-group">
+                <label for="address1">Novo Avenida/Rua/Punto de referencia: </label>
+                <input class="form-control address1" name="address1" type="text">
+            </div>
+            <div class="form-group">
+                <label for="address2">Novo Nº da Residência (casa): </label>
+                <input class="form-control address2" name="address2" type="text">
+            </div>
+            <div class="form-group">
+                <label for="address6">Novo Comunidade: </label>
+                <input class="form-control address6" name="address6" type="text">
+            </div>
+            <div class="form-group">
+                <label for="address3">Novo Quarteirão: </label>
+                <input class="form-control address3" name="address3" type="text">
+            </div>
+            <div class="form-group">
+                <label for="address5">Novo Bairro: </label>
+                <input class="form-control address5" name="address5" type="text">
+                <input class="form-control person_address_uuid" name="uuid" type="hidden">
+            </div>
+        </div>
+        <div class="group-set" data-group="demographicsupdate.personattribute" id="demographicsupdate.personattribute">
+            <div class="form-group">
+                <label for="phone_number">Novo Contacto Telemóvel do Paciente: </label>
+                <input class="form-control phone_number person_new_phone_number" id="attribute_value" name="attribute_value" type="text">
+                <input data-metadata-for="attribute_value" type="hidden" id="attribute_type_uuid"
+                       name="attribute_type_uuid" value="e2e3fd64-1d5f-11e0-b929-000c29ad1d07">
+            </div>
+        </div>
+    </div>
+    <div class="section">
+        <h3>Identificadores</h3>
+        <div class="form-group">
+            <label for="patient.medical_record_number">NID : <span class="required require_medical_record_number_hint">*</span></label>
+
+            <div class="form-horizontal">
+                <div class="group-set" id="patient.medical_record_number" data-group="patient.medical_record_number">
+                    <input class="barcode_text form-control" id="tmp.medical_record_number"
+                           name="tmp.medical_record_number" type="text" readonly>
+                    <input type="hidden" id="identifier_value" name="identifier_value">
+                    <input data-metadata-for="identifier_value" type="hidden" id="identifier_type_uuid" name="identifier_type_uuid" value="e2b966d0-1d5f-11e0-b929-000c29ad1d07">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="section">
+        <div class="form-group">
+            <label for="patient.sex">Sexo: <span class="required">*</span></label>
+            <input id="patient.sex" name="patient.sex" type="hidden">
+            <input class="form-control" disabled id="tmp.patient.sex" name="tmp.patient.sex" type="text">
+        </div>
+        <div class="form-group">
+            <label for="tmp.update_sex">
+                <input id="tmp.update_sex" name="tmp.update_sex"
+                       type="checkbox">
+                Vai mudar de sexo? (se sim, permitir editar)
+            </label>
+        </div>
+        <div class="form-group sub-section" id="update_sex">
+            <label for="demographicsupdate.sex">Novo Sexo: <span class="required">*</span></label>
+            <select class="form-control" id="demographicsupdate.sex" name="demographicsupdate.sex" required="required">
+                <option value="">...</option>
+                <option value="M">Masculino</option>
+                <option value="F">Feminino</option>
+            </select>
+        </div>
+        <div class="form-group birthdate">
+            <label for="patient.birth_date">Data de nascimento <span class="required">*</span></label>
+            <input class="form-control birth_date_picker nonFutureDate" id="patient.birth_date" name="patient.birth_date"
+                   type="text" disabled="disabled" readonly="readonly">
+        </div>
+        <div class="form-group birthdate">
+            <label for="patient.birthdate_estimated">Esta data de nascimento é uma estimativa?  <span class="required">*</span></label>
+            <select class="form-control" id="patient.birthdate_estimated" name="patient.birthdate_estimated"
+                    disabled="disabled" readonly="readonly">
+                <option value="">...</option>
+                <option value="true">Sim</option>
+                <option value="false">Nao</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="tmp.update_birthdate">
+                <input id="tmp.update_birthdate" name="tmp.update_birthdate"
+                       type="checkbox">
+                Mudar a data de nascimento? (se sim, permitir editar)
+            </label>
+        </div>
+        <div id="update_birthdate" class="sub-section">
+            <div class="form-group">
+                <label for="tmp.birthdate_type">Registar a data de nascimento... <span class="required">*</span></label>
+                <select class="form-control" name="tmp.birthdate_type" id="tmp.birthdate_type" required="required">
+                    <option value="">...</option>
+                    <option value="birthdate">Incluir a data de nascimento (seleccionar a …)</option>
+                    <option value="age"> Incluir a idade (seleccionar a …)</option>
+                </select>
+            </div>
+            <div class="form-group show_birthdate">
+                <label for="demographicsupdate.birth_date">Selecione Nova Data de Nascimento<span class="required">*</span></label>
+                <input class="form-control birth_date_picker nonFutureDate" id="demographicsupdate.birth_date"
+                       name="demographicsupdate.birth_date"
+                       type="text" required="required" readonly="readonly">
+            </div>
+            <div class="form-group show_birthdate">
+                <label for="demographicsupdate.birthdate_estimated">Esta data de nascimento é uma estimativa? <span
+                        class="required">*</span></label>
+                <select class="form-control" id="demographicsupdate.birthdate_estimated" name="demographicsupdate.birthdate_estimated"
+                        required="required">
+                    <option value="">...</option>
+                    <option value="true">Sim</option>
+                    <option value="false">Nao</option>
+                </select>
+            </div>
+            <div class="form-group show_age">
+                <label for="tmp.age_in_years">Quantos anos você tem em anos? <span class="required">*</span></label>
+                <input class="form-control" id="tmp.age_in_years" name="tmp.age_in_years" type="number" required="required">
+
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h3>TESTE DO CASO DO INDICE DO PACIENTE</h3>
+        <div class="form-group">
+            <label for="obs.index_patient_source">Origem CI:<span class="required">*</span></label>
+            <select class="form-control" id="obs.index_patient_source" required="required"
+                    name="obs.index_patient_source" data-concept="23877^Origem CI^99DCT">
+                <option value="">...</option>
+                <option value="1597^UATS^99DCT">UATS</option>
+                <option value="5271^CPF^99DCT">CPF</option>
+                <option value="23876^Enf. Cirurgia^99DCT">Enf. Cirurgia</option>
+                <option value="23875^Enf. Medicina^99DCT">Enf. Medicina</option>
+                <option value="23874^Enf. Pediatria^99DCT">Enf. Pediatria</option>
+                <option value="23873^Triagem Adulto^99DCT">Triagem Adulto</option>
+                <option value="23872^Triagem Banco Socorro^99DCT">Triagem Banco Socorro</option>
+                <option value="23871^Banco Socorro^99DCT">Banco Socorro</option>
+                <option value="1926^Banco de Sangue^99DCT">Banco de Sangue</option>
+                <option value="23868^Estomatologia^99DCT">Estomatologia</option>
+                <option value="6303^VBG^99DCT">VBG</option>
+                <option value="23870^Gabinete Médico^99DCT">Gabinete Médico</option>
+                <option value="1596^Consulta Externa^99DCT">Consulta Externa</option>
+                <option value="1987^SAAJ^99DCT">SAAJ</option>
+                <option value="23878^CPP^99DCT">CPP</option>
+                <option value="1978^CPN^99DCT">CPN</option>
+                <option value="1872^CCR^99DCT">CCR</option>
+                <option value="1414^PNCTL^99DCT">PNCTL</option>
+                <option value="23869^Maternidade^99DCT">Maternidade</option>
+                <option value="6423^CCS^99DCT">CCS</option>
+                <option value="6142^APSS-PP^99DCT">APSS-PP</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="obs.contact_testing_consent">Paciente consente testagem dos contactos:
+                <span class="required">*</span></label>
+            <!--            Check concepts metadata-->
+            <select class="form-control" id="obs.contact_testing_consent" required="required"
+                    name="obs.contact_testing_consent" data-concept="21155^Paciente consente testagem dos contactos^99DCT">
+                <option value="">...</option>
+                <option value="21154^HEALTH FACILITY^99DCT">Unidade Sanitária</option>
+                <option value="6403^Comunidade^99DCT">Comunidade</option>
+                <option value="1066^Recusa^99DCT">Recusa</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="obs.expected_testing_date">Data Prevista para Testagem:
+                <span class="required">*</span></label>
+            <input class="form-control datepicker nonPastEncounterDate" readonly="readonly"
+                   id="obs.expected_testing_date" data-concept="23879^Data Prevista para Testagem^99DCT"
+                   name="obs.expected_testing_date" type="text" required="required">
+        </div>
+        <!--        <div class="form-group">-->
+        <!--            <label for="obs.contact_phoning_consent">Patient consents to Contacts being phoned by-->
+        <!--                health personnel:<span class="required">*</span></label>-->
+        <!--            <select class="form-control" id="obs.contact_phoning_consent" required-->
+        <!--                    name="obs.contact_phoning_consent" data-concept="ddd^Contact phoning consent^99DCT">-->
+        <!--                <option value="">...</option>-->
+        <!--                <option value="1065^SIM^99DCT">Yes</option>-->
+        <!--                <option value="1066^NAO^99DCT">No</option>-->
+        <!--            </select>-->
+        <!--        </div>-->
+    </div>
+
+    <div class="section">
+        <h3>FICHA RESUMO/Situação da família</h3>
+
+        <div style="background-color:#f0ffff;" class="section group-set repeat person_relationships"
+             data-group="person.relationships" data-name="person.relationships" id="person.relationships">
+            <h3>Pessoa de contato</h3>
+            <div class="form-group">
+                <label>Parentesco: <span class="required"></span></label>
+                <select class="form-control tmp.relationshipType" name="tmp.relationshipType">
+                    <option value="">...</option>
+                    <option value="8ce38f96-0c7f-11eb-8fb0-bbd20b621cb8" class="AIsToB BIsToA">Amigo ou Colega</option>
+                    <option value='4132a84c-f116-4369-b67d-9363b3399916' class="AIsToB">Avó/Avô</option>
+                    <option value='4132a84c-f116-4369-b67d-9363b3399916' class="BIsToA">Neto/Neta</option>
+                    <option value='b43d9122-0c7f-11eb-946a-4b3fa847b86a' class="AIsToB">Chefe de Bairro</option>
+                    <option value='b43d9122-0c7f-11eb-946a-4b3fa847b86a' class="BIsToA">Residente</option>
+                    <option value='8d91a210-c2cc-11de-8d13-0010c6dffd0f' class="AIsToB">Mae/Pai</option>
+                    <option value='8d91a210-c2cc-11de-8d13-0010c6dffd0f' class="BIsToA">Filho/Filha</option>
+                    <option value='333be161-e33d-4f79-bedd-1f6be7ce56f6' class="AIsToB BIsToA">Irmão/Irmã</option>
+                    <option value='2f7d5778-0c80-11eb-b335-9f16b42e3b00' class="AIsToB BIsToA">Parceiro</option>
+                    <option value='d7de2452-0c7f-11eb-8830-53010a05b7d5' class="AIsToB BIsToA">Primo</option>
+                    <option value='8d91a3dc-c2cc-11de-8d13-0010c6dffd0f' class="AIsToB">Tio/Tia</option>
+                    <option value='8d91a3dc-c2cc-11de-8d13-0010c6dffd0f' class="BIsToA">Sobrinho/Sobrinha</option>
+                    <option value='f931fb74-0c7f-11eb-963d-535e77020317' class="AIsToB">Trabalhador</option>
+                    <option value='f931fb74-0c7f-11eb-963d-535e77020317' class="BIsToA">Empregador</option>
+                    <option value='10a5d5f0-0c80-11eb-86b1-e3c0d147106d' class="AIsToB BIsToA">Vizinho</option>
+                    <option value='4bf4d502-0c80-11eb-b53c-cf462d429cce' class="AIsToB BIsToA">Outro, Não Codificado</option>
+                </select>
+                <input type="hidden" name="person.relationshipType" class="person.relationshipType" />
+            </div>
+            <div class="form-group search_person">
+                <label>Nome do familiar:<span class="required">*</span></label>
+                <div style="display:inline-block;width: 80%;">
+                    <input required="required" class="form-control tmp.person_name_search valid_Person" type="text"
+                           placeholder="Pesquise localmente no dispositivo ...">
+                </div>
+                <input class="form-control personA.uuid" name="personA.uuid" type="hidden" value="">
+                <input class="form-control personB.uuid" name="personB.uuid" type="hidden" value="">
+                <input class="form-control tmp.person_name_search_count" name="tmp.person_name_search_count" type="hidden" value="">
+                <div class="search-person-loader search-widget" style="display:none"></div>
+                <div class="no_results_msg_local alert alert-info" style="display:none">
+                    Pessoa não encontrada neste dispositivo. Selecione a opção <b> <i> Pesquisar no servidor </i> </b> para pesquisar esse indivíduo no servidor.
+                    Você também pode registrá-los como uma nova pessoa selecionando <b> <i> Registrar pessoa </i> </b> abaixo.
+                </div>
+                <div class="no_results_msg_server alert alert-success" style="display:none">
+                    Pessoa não encontrada no servidor. Registre-o como uma nova pessoa de contato selecionando <b><i> Registrar pessoa </i></b> abaixo.</div>
+                <div class="search-widget"><label><input type="checkbox" name="tmp.search_server" class="tmp.search_server">&nbsp;Pesquisar no servidor</label></div>
+            </div>
+            <div class="person_details concept-set">
+                <input class="tmp.person_uuid" name="tmp.person_uuid" type="hidden">
+                <div class="form-group">
+                    <input class="obs.contact_name" name="obs.contact_name" type="hidden">
+                    <input class="obs.contact_relationship" name="obs.contact_relationship" type="hidden">
+                </div>
+                <div class="form-group">
+                    <label for="tmp.person_search_sex">Sexo:</label>
+                    <select class="form-control tmp.person_search_sex" id="tmp.person_search_sex" name="tmp.person_search_sex"
+                            readonly="readonly" disabled="disabled">
+                        <option value="">...</option>
+                        <option value="M">Masculino</option>
+                        <option value="F">Feminino</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="tmp.person_search_birth_date">Data de nascimento:</label>
+                    <input class="form-control tmp.person_search_birth_date tmp.person_search_birth_date" name="tmp.person_search_birth_date"
+                           type="text" readonly="readonly" disabled="disabled">
+                </div>
+                <div class="form-group">
+                    <label for="obs.contact_age">Idade:</label>
+                    <input class="form-control obs.contact_age"
+                           name="obs.contact_age" type="number" readonly="readonly">
+                </div>
+                <div class="form-group">
+                    <label for="obs.hiv_test">Teste de HIV:</label>
+                    <select class="form-control obs.hiv_test" readonly="readonly" disabled="disabled"
+                            name="obs.hiv_test">
+                        <option value="">...</option>
+                        <option value="703^Positivo^99DCT">Positivo</option>
+                        <option value="664^Negativo^99DCT">Negativo</option>
+                        <option value="1067^Desconhecido^99DCT">Desconhecido</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="obs.hiv_care">Cuidados de HIV:</label>
+                    <select class="form-control obs.hiv_care" readonly="readonly" disabled="disabled"
+                            name="obs.hiv_care">
+                        <option value="">...</option>
+                        <option value="1065^Sim^99DCT">Sim</option>
+                        <option value="1066^Nao^99DCT">Nao</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="obs.child_at_risk_treatment">EM CCR:</label>
+                    <select class="form-control obs.child_at_risk_treatment" readonly="readonly" disabled="disabled"
+                            name="obs.child_at_risk_treatment">
+                        <option value="">...</option>
+                        <option value="1065^Sim^99DCT">Sim</option>
+                        <option value="1066^Nao^99DCT">Nao</option>
+                        <option value="23892^Alta^99DCT">Alta</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="obs.relative_nid">NID:</label>
+                    <input class="form-control obs.relative_nid"
+                           name="obs.relative_nid" type="text" readonly="readonly">
+                </div>
+                <div class="form-group">
+                    <label class="update-relationship-person" data-result-field="">
+                        <input class="tmp.update_person_details" data-result-field=""
+                               data-personUuid="" name="tmp.update_person_details" type="checkbox">
+                        Atualizar situacao familiar conjunta? (se sim, permitir editar)
+                    </label>
+                </div>
+            </div>
+            <div class="form-group create_person">
+                OR <br />
+                <button onclick="return false" class="form-control btn btn-primary create-relationship-person"
+                        data-result-field="">Registrar pessoa</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h3>Detalhes do encontro</h3>
+        <div class="form-group">
+            <label for="encounter.provider_id_select">Nome do conselheiro/provedor:<span class="required">*</span></label>
+            <input class="form-control valid-provider-only" id="encounter.provider_id_select" type="text"
+                   placeholder="Comece a digitar algo ..." required="required">
+            <input class="form-control" name="encounter.provider_id_select" type="hidden">
+        </div>
+        <div class="form-group hidden">
+            <select id="select_providers"></select>
+        </div>
+        <div class="form-group show_provider_id_text">
+            <label for="encounter.provider_id">Nº de Identificação do conselheiro/provedor no sistema:<span class="required">*</span></label>
+            <input class="form-control checkDigit" id="encounter.provider_id" name="encounter.provider_id"
+                   type="text" required="required" disabled="disabled">
+        </div>
+
+        <div class="form-group">
+            <label for="encounter.location_id">Local de Encontro:<span class="required">*</span></label>
+            <input class="form-control valid-location-only" id="encounter.location_id" type="text" placeholder="Comece a digitar algo ..." required="required">
+            <input class="form-control" name="encounter.location_id" type="hidden">
+        </div>
+        <div class="form-group hidden">
+            <label for="encounter.location_id_select">Local de Encontro <span class="required">*</span></label>
+            <select class="form-control" id="encounter.location_id_select" required="required">
+                <option>...</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="encounter.encounter_datetime">Data de Encontro <span class="required">*</span></label>
+            <input class="form-control nonFutureDate past-date datetimepicker" readonly="readonly" id="encounter.encounter_datetime"
+                   name="encounter.encounter_datetime" type="text" required="required">
+        </div>
+        <div class="form-group">
+            <input class="form-control" id="encounter.form_uuid" name="encounter.form_uuid" type="hidden" required="required">
+            <input class="form-control" id="encounter.form_uuid_to_add_obs" name="encounter.form_uuid_to_add_obs"
+                   type="hidden" value="05496c70-845c-40b1-9d28-070f67b3f7da">
+        </div>
+    </div>
+</form>
+
+</body>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('.search-person-loader').hide();
+        $('.add_section').click(function(){
+            $('.search-person-loader').hide();
+        });
+
+        var patientUuid = $('#patient\\.uuid').val();
+        var phoneNumberPersonAttributeType = "e2e3fd64-1d5f-11e0-b929-000c29ad1d07";
+        var phoneNumber = htmlDataStore.getPersonAttribute(patientUuid,phoneNumberPersonAttributeType);
+        phoneNumber = JSON.parse(phoneNumber);
+        if('attribute_value' in phoneNumber){
+            phoneNumber = phoneNumber.attribute_value;
+        } else {
+            phoneNumber = '';
+        }
+        $('#patient\\.phone_number').val(phoneNumber);
+
+        var dateFormat = "dd-mm-yy";
+        var currentDate = $.datepicker.formatDate(dateFormat, new Date());
+        var encounterDatetime = $('#encounter\\.encounter_datetime');
+        if ($(encounterDatetime).val() == "") {
+            $(encounterDatetime).val(currentDate);
+        }
+
+        var currentYear = new Date().getFullYear();
+        var birthdate_start_year = currentYear - 140;
+        $('.birth_date_picker').datepicker({
+            dateFormat: dateFormat,
+            changeMonth: true,
+            changeYear: true,
+            yearRange: birthdate_start_year + ':' + currentYear,
+        });
+        $('.birth_date_picker').change(function () {
+            $(this).valid();
+        });
+
+        $('#save_draft').click(function () {
+            // pre process the medications
+            $(this).prop('disabled', true);
+            document.saveDraft(this);
+            $(this).prop('disabled', false);
+        });
+
+        $('#submit_form').click(function () {
+            // pre process the medications
+            $(this).prop('disabled', true);
+            document.submit();
+            $(this).prop('disabled', false);
+        });
+
+        $('#tmp\\.update_names').change(function(){
+            if($(this).is(':checked')){
+                $('#update_names').show();
+            } else {
+                $('#update_names').hide();
+            }
+        });
+        $('#tmp\\.update_names').trigger('change');
+
+        $('.edit_address_label').click(function(){
+            $parent = $(this).closest('.form-group');
+            if(!$parent.find('.update_address_confirm').prop('disabled')) {
+                $parent.find('.update_address_confirm').prop("checked", !$parent.find('.update_address_confirm').prop("checked"));
+                $parent.find('.update_address_confirm').trigger('change');
+            }
+        });
+
+        $('.tmp\\.edit_address').change(function(){
+            var $parent = $(this).closest('.group-set');
+            var $addressUpdateParent = $('#demographicsupdate\\.personAddress');
+            if($(this).is(':checked')){
+                $('#update_address').show();
+                if($addressUpdateParent.find('.person_address_uuid').val() != $parent.find(".person_address_uuid").val()) {
+                    $addressUpdateParent.find('.address1').val($parent.find(".address1").val());
+                    $addressUpdateParent.find('.address2').val($parent.find(".address2").val());
+                    $addressUpdateParent.find('.address3').val($parent.find(".address3").val());
+                    $addressUpdateParent.find('.address4').val($parent.find(".address4").val());
+                    $addressUpdateParent.find('.address5').val($parent.find(".address5").val());
+                    $addressUpdateParent.find('.address6').val($parent.find(".address6").val());
+                    $addressUpdateParent.find('.person_address_uuid').val($parent.find(".person_address_uuid").val());
+                    $('.person_new_phone_number').val(phoneNumber);
+                }
+
+                $('.update_address_confirm').not($(this)).prop('disabled',true);
+            } else if(!$(this).prop('disabled')) {
+                $('#update_address').hide();
+                $('.update_address_confirm').prop('disabled',false);
+                if($addressUpdateParent.find('.person_address_uuid').val() == $parent.find(".person_address_uuid").val()) {
+                    $addressUpdateParent.find('.address1').val("");
+                    $addressUpdateParent.find('.address2').val("");
+                    $addressUpdateParent.find('.address3').val("");
+                    $addressUpdateParent.find('.address4').val("");
+                    $addressUpdateParent.find('.address5').val("");
+                    $addressUpdateParent.find('.address6').val("");
+                    $addressUpdateParent.find('.person_address_uuid').val("");
+                }
+            }
+        });
+        $('.tmp\\.edit_address').trigger('change');
+
+        $('#tmp\\.update_address').change(function(){
+            if($(this).is(':checked')){
+                $('#update_address').show();
+                $('.update_address_confirm').not($(this)).prop('disabled',true);
+                $('.person_new_phone_number').val("");
+            } else if(!$(this).prop('disabled')) {
+                $('#update_address').hide();
+                $('.update_address_confirm').prop('disabled',false);
+            }
+        });
+        $('#tmp\\.update_address').trigger('change');
+
+        $('#tmp\\.update_sex').change(function(){
+            if($(this).is(':checked')){
+                $('#update_sex').show();
+            } else {
+                $('#update_sex').hide();
+            }
+        });
+        $('#tmp\\.update_sex').trigger('change');
+
+        $('#tmp\\.update_birthdate').change(function(){
+            if($(this).is(':checked')){
+                $('#update_birthdate').show();
+            } else {
+                $('#update_birthdate').hide();
+            }
+        });
+        $('#tmp\\.update_birthdate').trigger('change');
+
+        $('#patient\\.sex').change(function(){
+            if($(this).val() == 'M'){
+                $('#tmp\\.patient\\.sex').val('Masculino');
+            } else if ($(this).val() == 'F') {
+                $('#tmp\\.patient\\.sex').val('Feminino');
+            }
+        });
+        $('#patient\\.sex').trigger('change');
+
+        $.fn.calculateFields = function () {
+            var tempAgeInYears = $.trim($("#tmp\\.age_in_years").val());
+            if (tempAgeInYears != '') {
+                $('#demographicsupdate\\.birthdate_estimated').val('true');
+                $('#demographicsupdate\\.birth_date').val($.fn.getTempBirthDate(tempAgeInYears));
+            }
+            return true;
+        };
+
+        $.fn.customValidationCheck = function () {
+            return $.fn.calculateFields();
+        };
+
+        var dobType = $('#tmp\\.birthdate_type');
+        dobType.change(function () {
+            var $show_birth_date = $('.show_birthdate');
+            var $show_age = $('.show_age');
+            if ($('#tmp\\.birthdate_type').val() == 'age') {
+                $show_age.show();
+                $show_birth_date.find('input').val('');
+                $show_birth_date.hide();
+            } else {
+                $show_age.hide();
+                $show_age.find('input').val('');
+                $show_birth_date.show();
+            }
+        });
+        dobType.trigger('change');
+
+        var medicalRecordNumber = htmlDataStore.getPatientIdentifier(patientUuid, "e2b966d0-1d5f-11e0-b929-000c29ad1d07");
+        medicalRecordNumber = JSON.parse(medicalRecordNumber);
+        if('identifier_value' in medicalRecordNumber) {
+            $("#identifier_value").val(medicalRecordNumber.identifier_value);
+            $("#tmp\\.medical_record_number").val(medicalRecordNumber.identifier_value);
+        }
+
+        if($('.tmp\\.relationshipType').length > 1) {
+            var supportedRelationshipTypes = ['8ce38f96-0c7f-11eb-8fb0-bbd20b621cb8','4132a84c-f116-4369-b67d-9363b3399916',
+                'b43d9122-0c7f-11eb-946a-4b3fa847b86a','8d91a210-c2cc-11de-8d13-0010c6dffd0f',
+                '333be161-e33d-4f79-bedd-1f6be7ce56f6','2f7d5778-0c80-11eb-b335-9f16b42e3b00',
+                'd7de2452-0c7f-11eb-8830-53010a05b7d5','8d91a3dc-c2cc-11de-8d13-0010c6dffd0f',
+                'f931fb74-0c7f-11eb-963d-535e77020317','10a5d5f0-0c80-11eb-86b1-e3c0d147106d',
+                '4bf4d502-0c80-11eb-b53c-cf462d429cce'
+            ];
+            $.each($('.person\\.relationshipType'), function (k, v) {
+                if (!supportedRelationshipTypes.includes($(v).val()) && $('.person\\.relationshipType').length > 1){
+                    $(v).closest('.repeat').remove();
+                }
+            });
+        }
+
+        var setUpPersonFieldsPopulation = function($parent, patientFieldSelector, relatedPersonFieldSelector, searchServer){
+            var patientUuid = $('#patient\\.uuid').val();
+            var patientFieldValue = $parent.find(patientFieldSelector).val();
+            if(patientFieldValue != '' && patientFieldValue != patientUuid){
+                $parent.find(relatedPersonFieldSelector).val(patientFieldValue);
+            }
+
+            $parent.find(patientFieldSelector).val(patientUuid);
+
+            document.setupAutoCompleteForPerson(
+                $parent.find('.tmp\\.person_name_search'),$parent.find(relatedPersonFieldSelector),
+                $parent.find('.tmp\\.person_name_search_count'),$parent.find('.search-person-loader'),searchServer
+            );
+
+            var setPersonFieldsDataConceptAttributes = function($parent){
+                $parent.find('.person_details').attr('data-concept','23782^SITUACAO FAMILIAR CONJUNTO^99DCT');
+                $parent.find('.obs\\.contact_relationship').attr('data-concept','23704^PARENTESCO^99DCT');
+                $parent.find('.obs\\.contact_name').attr('data-concept','23778^Nome do familiar^99DCT');
+                $parent.find('.obs\\.contact_age').attr('data-concept','23777^Idade^99DCT');
+                $parent.find('.obs\\.hiv_test').attr('data-concept','23779^Teste de HIV^99DCT');
+                $parent.find('.obs\\.hiv_care').attr('data-concept','23780^Cuidados HIV^99DCT');
+                $parent.find('.obs\\.child_at_risk_treatment').attr('data-concept','1885^TRATEMENTO (CCR)^99DCT');
+                $parent.find('.obs\\.relative_nid').attr('data-concept','23781^Relative NID^99DCT');
+            }
+
+            var clearPersonDetails = function($parent){
+                $parent.find('.tmp\\.person_search_sex').val('');
+                $parent.find('.tmp\\.person_search_birth_date').val('');
+                $parent.find('.tmp\\.person_name_search').val('');
+                $parent.find('.obs\\.hiv_test').val('');
+                $parent.find('.obs\\.hiv_care').val('');
+                $parent.find('.obs\\.child_at_risk_treatment').val('');
+                $parent.find('.obs\\.relative_nid').val('');
+            }
+
+            $parent.find('.tmp\\.person_name_search').change(function(){
+                if($parent.find('.tmp\\.person_name_search').val() == ''){
+                    clearPersonDetails($parent);
+                    $parent.find('.person_details').hide();
+                    $parent.find('.create_person').show();
+                    setTimeout(function () {
+                        $('.search-person-loader').hide();
+                    }, 100);
+                }
+            })
+            $parent.find('.tmp\\.person_name_search').trigger('change');
+
+            $parent.find('.tmp\\.person_name_search_count').change(function(){
+                if($(this).val() == 0){
+                    $parent.find('.search-person-loader').hide();
+                    $parent.find('.create_person').show();
+                    if($parent.find('.tmp\\.search_server').is(':checked')){
+                        $parent.find('.no_results_msg_local').hide();
+                        $parent.find('.no_results_msg_server').show();
+                    } else {
+                        $parent.find('.no_results_msg_server').hide();
+                        $parent.find('.no_results_msg_local').show();
+                    }
+                } else {
+                    $parent.find('.create_person').hide();
+                    $parent.find('.no_results_msg_local').hide();
+                    $parent.find('.no_results_msg_server').hide();
+                }
+            });
+
+            $parent.find('.tmp\\.person_name_search').focusout(function(){
+                $parent.find('.search-person-loader').hide();
+            });
+
+            $parent.find(relatedPersonFieldSelector).change(function(){
+                $parent = $(this).closest('.group-set');
+                var uuid = $(this).val();
+                var patientUuid = $('#patient\\.uuid').val();
+                if(uuid != '' && uuid != patientUuid){
+                    var relatedPerson;
+                    if(searchServer){
+                        relatedPerson = htmlDataStore.getPatientDetailsFromServerByUuid(uuid);
+                    } else {
+                        relatedPerson = htmlDataStore.getPersonDetailsFromDeviceByUuid(uuid);
+                    }
+
+                    relatedPerson = JSON.parse(relatedPerson);
+                    if('uuid' in relatedPerson) {
+                        setPersonFieldsDataConceptAttributes($parent);
+                        $parent.find('.create-relationship-person').attr("data-personUuid",uuid);
+                        $parent.find('.tmp\\.person_search_sex').val(relatedPerson.sex);
+                        $parent.find('.tmp\\.person_search_birth_date').val(relatedPerson.birth_date);
+                        $parent.find('.tmp\\.person_name_search').val(relatedPerson.name);
+                        $parent.find('.obs\\.contact_name').val(relatedPerson.name);
+
+                        var age = $.fn.getAgeInYears(relatedPerson.birth_date)
+                        $parent.find('.obs\\.contact_age').val(Math.round(age));
+
+                        var contactUuid = uuid;
+                        $parent.find('.tmp\\.person_uuid').val(contactUuid);
+
+                        var personAUuid = $parent.find('.personA\\.uuid').val();
+                        var personBUuid = $parent.find('.personB\\.uuid').val();
+
+                        var relationshipType = $parent.find('.person\\.relationshipType').val();
+                        if(relationshipType == '8ce38f96-0c7f-11eb-8fb0-bbd20b621cb8'){
+                            $parent.find('.obs\\.contact_relationship').val('1930^Amigo ou Colega^99DCT');
+                        } else if(relationshipType == '4132a84c-f116-4369-b67d-9363b3399916'){
+                            if(personAUuid == contactUuid){
+                                $parent.find('.obs\\.contact_relationship').val('973^AVO^99DCT');
+                            } else if(personBUuid == contactUuid){
+                                $parent.find('.obs\\.contact_relationship').val('23708^NETO^99DCT');
+                            }
+                        } else if(relationshipType == 'b43d9122-0c7f-11eb-946a-4b3fa847b86a'){
+                            $parent.find('.obs\\.contact_relationship').val('2036^CHEFE DE BAIRRO^99DCT');
+                        } else if(relationshipType == '8d91a210-c2cc-11de-8d13-0010c6dffd0f'){
+                            if(personAUuid == contactUuid && relatedPerson.gender == 'M'){
+                                $parent.find('.obs\\.contact_relationship').val('970^MAE^99DCT');
+                            } else if(personAUuid == contactUuid && relatedPerson.gender == 'F'){
+                                $parent.find('.obs\\.contact_relationship').val('971^PAI^99DCT');
+                            } else if(personBUuid == contactUuid){
+                                $parent.find('.obs\\.contact_relationship').val('23707^FILHO^99DCT');
+                            }
+                        } else if(relationshipType == '333be161-e33d-4f79-bedd-1f6be7ce56f6'){
+                            $parent.find('.obs\\.contact_relationship').val('972^IRMAO^99DCT');
+                        } else if(relationshipType == '2f7d5778-0c80-11eb-b335-9f16b42e3b00'){
+                            $parent.find('.obs\\.contact_relationship').val('1921^PARCEIRO^99DCT');
+                        } else if(relationshipType == 'd7de2452-0c7f-11eb-8830-53010a05b7d5'){
+                            $parent.find('.obs\\.contact_relationship').val('23705^PRIMO^99DCT');
+                        } else if(relationshipType == '8d91a3dc-c2cc-11de-8d13-0010c6dffd0f'){
+                            $parent.find('.obs\\.contact_relationship').val('975^TIA^99DCT');
+                        } else if(relationshipType == 'f931fb74-0c7f-11eb-963d-535e77020317'){
+                            $parent.find('.obs\\.contact_relationship').val('23706^TRABALHADOR^99DCT');
+                        } else if(relationshipType == '10a5d5f0-0c80-11eb-86b1-e3c0d147106d'){
+                            $parent.find('.obs\\.contact_relationship').val('2034^VIZINHO^99DCT');
+                        } else if(relationshipType == '4bf4d502-0c80-11eb-b53c-cf462d429cce'){
+                            $parent.find('.obs\\.contact_relationship').val('5622^Outro, Não Codificado^99DCT');
+                        }
+
+                        var hiv_test = htmlDataStore.getObsByConceptId(contactUuid, 23779);
+
+                        hiv_test = JSON.parse(hiv_test);
+                        if(hiv_test.length) {
+                            hiv_test = hiv_test[0];
+                            if (hiv_test.valueCoded.id == 703){
+                                $parent.find('.obs\\.hiv_test').val('703^Positivo^99DCT');
+                            } else if (hiv_test.valueCoded.id == 664){
+                                $parent.find('.obs\\.hiv_test').val('664^Negativo^99DCT');
+                            } else if (hiv_test.valueCoded.id == 1067){
+                                $parent.find('.obs\\.hiv_test').val('1067^Desconhecido^99DCT');
+                            }
+                        }
+
+                        var hiv_care = htmlDataStore.getObsByConceptId(contactUuid, 23780);
+                        hiv_care = JSON.parse(hiv_care);
+                        if(hiv_care.length) {
+                            hiv_care = hiv_care[0];
+                            if (hiv_care.valueCoded.id == 1065){
+                                $parent.find('.obs\\.hiv_care').val('1065^Sim^99DCT');
+                            } else if (hiv_care.valueCoded.id == 1066){
+                                $parent.find('.obs\\.hiv_care').val('1066^Nao^99DCT');
+                            }
+                        }
+
+                        var child_at_risk_treatment = htmlDataStore.getObsByConceptId(contactUuid, 1885);
+                        child_at_risk_treatment = JSON.parse(child_at_risk_treatment);
+                        if(child_at_risk_treatment.length) {
+                            child_at_risk_treatment = child_at_risk_treatment[0];
+                            if (child_at_risk_treatment.valueCoded.id == 1065){
+                                $parent.find('.obs\\.child_at_risk_treatment').val('1065^Sim^99DCT');
+                            } else if (child_at_risk_treatment.valueCoded.id == 1066){
+                                $parent.find('.obs\\.child_at_risk_treatment').val('1066^Nao^99DCT');
+                            } else if (child_at_risk_treatment.valueCoded.id == 23892){
+                                $parent.find('.obs\\.child_at_risk_treatment').val('23892^Alta^99DCT');
+                            }
+                        }
+
+                        var relative_nid = htmlDataStore.getObsByConceptId(contactUuid, 23781);
+                        relative_nid = JSON.parse(relative_nid);
+                        if(relative_nid.length) {
+                            relative_nid = relative_nid[0];
+                            $parent.find('.obs\\.relative_nid').val(relative_nid.valueText);
+                        } else {
+                            relative_nid = htmlDataStore.getPatientIdentifier(contactUuid, "e2b966d0-1d5f-11e0-b929-000c29ad1d07");
+                            relative_nid = JSON.parse(relative_nid);
+                            if('identifier_value' in relative_nid) {
+                                $parent.find('.obs\\.relative_nid').val(relative_nid.identifier_value);
+                            }
+                        }
+                    }
+
+                    $parent.find('.person_details').show();
+                    $parent.find('.search-widget').hide();
+                    $parent.find('.create_person').hide();
+                } else {
+                    //clearPersonDetails($parent);
+                    $parent.find('.person_details').hide();
+                    $parent.find('.search-widget').show();
+                    $parent.find('.create_person').show();
+                }
+
+            });
+            $parent.find(relatedPersonFieldSelector).trigger('change');
+        }
+
+        $('.tmp\\.relationshipType').change(function(){
+            var $parent = $(this).closest('.repeat');
+            if($(this).val() == ''){
+                $parent.find('.search_person').hide();
+                $parent.find('.create_person').hide();
+                $parent.find('.person_details').hide();
+                $parent.find('.person\\.relationshipType').val('');
+            } else {
+                var isAToB = $(this).find(':selected').hasClass('AIsToB');
+                var isBToA = $(this).find(':selected').hasClass('BIsToA');
+                var searchServer = $parent.find('.tmp\\.search_server').is(':checked');
+
+                $('.search-person-loader').hide();
+
+                if (isAToB) {
+                    $parent.find('.person\\.relationshipType').val($(this).val());
+                    $parent.find('.create-relationship-person').attr('data-result-field', 'personA\\.uuid');
+                    $parent.find('.tmp\\.update_person_details').attr('data-result-field', 'personA\\.uuid');
+                    setUpPersonFieldsPopulation($parent, '.personB\\.uuid', '.personA\\.uuid', searchServer);
+
+                    $parent.find('.search_person').show();
+                    $parent.find('.create_person').hide();
+
+                } else if (isBToA) {
+                    $parent.find('.person\\.relationshipType').val($(this).val());
+                    $parent.find('.create-relationship-person').attr('data-result-field', 'personB\\.uuid');
+                    $parent.find('.tmp\\.update_person_details').attr('data-result-field', 'personB\\.uuid');
+                    setUpPersonFieldsPopulation($parent, '.personA\\.uuid', '.personB\\.uuid', searchServer);
+
+                    $parent.find('.search_person').show();
+                    $parent.find('.create_person').hide();
+                } else {
+                    $parent.find('.personA\\.uuid').val('');
+                    $parent.find('.personB\\.uuid').val('');
+                    $parent.find('.tmp\\.person_search_sex').val('');
+                    $parent.find('.tmp\\.person_search_birth_date').val('');
+                    $parent.find('.tmp\\.person_name_search').val('');
+                    $parent.find('.search_person').hide();
+                    $parent.find('.create_person').hide();
+                    $parent.find('.person_details').hide();
+                }
+                $parent.find('.tmp\\.person_name_search').trigger('change');
+            }
+        });
+
+        var indexPatientUuid = $('#patient\\.uuid').val();
+        $.each($('.person\\.relationshipType'), function(key,value){
+            var relationshipType = $(this).val();
+            var $parent = $(this).closest('.repeat');
+            var personAUuid = $parent.find('.personA\\.uuid').val();
+            var personBUuid = $parent.find('.personB\\.uuid').val();
+            if(indexPatientUuid == personAUuid){
+                $.each($parent.find('.BIsToA'),function(k,selectOption){
+                    if($(selectOption).attr('value') == relationshipType){
+                        $(selectOption).prop('selected', true);
+                    }
+                });
+            } else if(indexPatientUuid == personBUuid){
+                $.each($parent.find('.AIsToB'),function(k,selectOption){
+                    if($(selectOption).attr('value') == relationshipType){
+                        $(selectOption).prop('selected', true);
+                    }
+                });
+            }
+        });
+
+        $('.tmp\\.relationshipType').trigger('change');
+
+        //get relationships
+
+
+        $('.tmp\\.search_server').change(function(){
+            var $parent = $(this).closest('.repeat');
+
+            if ($(this).is(':checked')) {
+                $parent.find('.tmp\\.person_name_search').attr('placeholder', 'Pesquisar no servidor ...')
+            } else {
+                $parent.find('.tmp\\.person_name_search').attr('placeholder', 'Pesquise localmente no dispositivo ...')
+            }
+
+            $parent.find('.no_results_msg_local').hide();
+            $parent.find('.no_results_msg_server').hide();
+            $parent.find('.create_person').hide();
+
+            if($parent.find('.tmp\\.relationshipType').val() != '') {
+                if($parent.find('.tmp\\.person_name_search').val() != '') {
+                    $parent.find('.search-person-loader').show();
+                }
+                setTimeout(function () {
+                    $parent.find('.tmp\\.relationshipType').trigger('change');
+                    $parent.find('.tmp\\.person_name_search').focus();
+                    $parent.find('.tmp\\.person_name_search').autocomplete("search");
+                }, 100);
+            }
+        });
+
+        $('.tmp\\.update_person_details').change(function(){
+            if($(this).is(':checked')) {
+                var $parent = $(this).closest('.repeat');
+                var resultField = $(this).attr('data-result-field');
+                var personUuid = $parent.find('.tmp\\.person_uuid').val();
+                $parent.attr('data-name',personUuid);
+                document.updatePersonDemographics($parent.attr('data-name'),resultField,personUuid);
+            }
+        });
+
+        $.validator.addMethod("valid_Person", function (value, element) {
+                var isPersonDetailsVisible = $(element).closest('.person_relationships').find('.tmp\\.person_search_birth_date').is(':visible');
+                if( value == '' || isPersonDetailsVisible){
+                    return true;
+                }
+                return false;
+            }, "Pessoa não encontrada. Por favor, pesquise e selecione a pessoa da lista."
+        );
+
+
+        $.validator.addMethod("nonPastEncounterDate", function (value, element) {
+                if ($.fn.isNotRequiredAndEmpty(value, element)) return true;
+                var pattern = /(\d{2})-(\d{2})-(\d{4})/g;
+                var matches = pattern.exec(value);
+                var enteredDate = new Date(matches[3], matches[2] - 1, matches[1]);
+                var today = new Date();
+
+                pattern = /(\d{2})-(\d{2})-(\d{4})/;
+                matches=pattern.exec($('#encounter\\.encounter_datetime').val());
+                if(matches == null){
+                    return true;
+                }
+                var encounterDate = new Date(matches[3], matches[2] - 1, matches[1]);
+                return enteredDate >= encounterDate;
+            }, "Insira uma data posterior à data do encontro."
+        );
+
+        // attach 'checkFutureDate' class to perform validation.
+        jQuery.validator.addClassRules({
+            nonPastEncounterDate: { nonPastEncounterDate: true }
+        });
+
+        $('.nonPastEncounterDate').change(function () {
+            $(this).valid();
+        });
+
+        jQuery.validator.addClassRules({
+            valid_Person: { valid_Person: true }
+        });
+
+        document.setupAutoCompleteData('encounter\\.location_id');
+
+        document.setupAutoCompleteDataForProvider('encounter\\.provider_id_select');
+
+        $('#demographics_update_form').validate();
+
+        document.setupValidationForProvider("$('#encounter\\.provider_id_select').val()","encounter\\.provider_id");
+
+        document.setupValidationForLocation("$('#encounter\\.location_id').val()","encounter\\.location_id");
+
+    });
+</script>
+</html>

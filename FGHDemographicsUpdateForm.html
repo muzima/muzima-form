@@ -112,7 +112,7 @@
         <h3>Novo endereço</h3>
 		<div class="group-set" data-group="demographicsupdate.personaddress">
 			<div class="form-group">
-				<label for="address1">Novo Avenida/Rua:: </label>
+				<label for="address1">Novo Avenida/Rua: </label>
 				<input class="form-control" id="address1" name="address1" type="text">
 			</div>
 			<div class="form-group">
@@ -180,6 +180,11 @@
         <div class="form-group birthdate">
             <label for="patient.birth_date">Data de nascimento  <span class="required">*</span></label>
             <input class="form-control birth_date_picker nonFutureDate" id="patient.birth_date" name="patient.birth_date"
+                   type="text" disabled="disabled" readonly="readonly">
+        </div>
+        <div class="form-group birthdate">
+            <label for="patient.birth_date">Is this birthdate an estimate? <span class="required">*</span></label>
+            <input class="form-control" id="patient.birthdate_estimated" name="patient.birthdate_estimated"
                    type="text" disabled="disabled" readonly="readonly">
         </div>
         <div class="form-group">
