@@ -1,0 +1,305 @@
+<html xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
+<head>
+    <link href="css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="css/muzima.css" rel="stylesheet"/>
+    <link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet"/>
+    <link href="css/ui-darkness/jquery-ui-1.10.4.custom.min.css" rel="stylesheet"/>
+
+    <script src="js/jquery.min.js"></script>
+    <script src="js/jquery-ui-1.10.4.custom.min.js"></script>
+    <script src="js/jquery.validate.min.js"></script>
+    <script src="js/additional-methods.min.js"></script>
+    <script src="js/bootstrap-datetimepicker.min.js"></script>
+    <script src="js/muzima.js"></script>
+    <title>Ficha Individual de Levantamento de ARVs (FILA)</title>
+</head>
+<body class="col-md-10 col-md-offset-1">
+<div id="pre_populate_data">
+
+</div>
+<form id="tracing_main_form" name="tracing_main_form">
+    <h2 class="text-center">Ficha Individual de Levantamento de ARVs (FILA)</h2>
+	<div class="section" style="text-align:center">	
+		REPÚBLICA DE MOÇAMBIQUE<br/>
+		Serviço Nacional de Saúde
+	</div>
+	 <div class="section">
+		<div class="form-group">
+			<label class="font-normal">
+				Nº do Livro TARV:
+			</label>
+				<input class="form-control" id="tmp.no_do_livro_tarv" type="text" 	name="tmp.no_do_livro_tarv"  readonly="readonly" />
+		</div>
+		<div class="form-group">
+			<label class="font-normal">
+				Pag:
+			</label>
+				<input class="form-control" id="tmp.pag" type="text" 	name="tmp.pag"  readonly="readonly" />
+		</div>
+		<div class="form-group">
+			<label class="font-normal">
+				Linha:
+			</label>
+				<input class="form-control" id="tmp.linha" type="text" 	name="tmp.linha"  readonly="readonly" />
+		</div>
+	 </div>	
+    <div class="section">
+        <div class="form-group">
+            <input class="form-control" id="patient.uuid" name="patient.uuid" type="hidden" readonly="readonly"/>
+        </div>
+        <div class="form-group">
+            <label for="patient.names">Nome:</label>
+            <input class="form-control" id="patient.names"
+                   name="patient.names" type="text" readonly="readonly"/>
+        </div>
+		<div class="form-group">
+            <label for="patient.phone_number">Contacto:</label>
+            <input class="form-control" id="patient.phone_number" name="patient.phone_number" type="text" readonly="readonly">
+        </div>
+		<div class="form-group">
+            <label for="patient.medical_record_number">NID </label>
+            <input class="form-control" id="patient.medical_record_number" name="patient.medical_record_number" type="text" readonly="readonly"/>
+        </div>       
+		<div class="section">
+		    <h3>Endereço</h3>
+			<div class="group-set" data-group="patient.personaddress">
+				<div class="form-group">
+					<input class="form-control" id="address5" name="address5" type="text" readonly="readonly">
+				</div>		
+			</div>
+		</div>
+    </div>
+	<div class="section">
+		 <div class="form-group">
+            <label for="encounter.encounter_datetime">Data de Levantamento:<span class="required">*</span>
+            </label>
+            <input class="form-control datetimepicker nonFutureDate past-date" id="encounter.encounter_datetime"
+                   name="encounter.encounter_datetime" type="text" readonly="readonly"  required="required"/>
+        </div>
+		<div class="form-group">
+			<label for="encounter.provider_id_select">Provedor:<span class="required">*</span></label>
+			<input class="form-control valid-provider-only" id="encounter.provider_id_select" type="text" placeholder="Start typing something..."/>
+			<input class="form-control" name="encounter.provider_id_select" type="hidden"/>
+		</div>
+		<div class="form-group show_provider_id_text">
+			<label for="encounter.provider_id">ID do sistema do provedor:<span class="required">*</span></label>
+			<input class="form-control" id="encounter.provider_id" disabled name="encounter.provider_id" type="text" required="required"  placeholder="Provider Id"/>
+		</div>
+        <div class="form-group">
+            <input class="form-control" id="encounter.form_uuid" name="encounter.form_uuid" type="hidden" required="required"/>           			
+		</div>
+		<div class="form-group">
+            <label for="encounter.location_id">Unidade Sanitária:<span class="required">*</span></label>
+            <input class="form-control valid-location-only" id="encounter.location_id" type="text" placeholder="Start typing something..." required="required"/>
+            <input class="form-control" name="encounter.location_id" type="hidden"/>
+        </div>	
+	</div>
+	<div class="section">
+		<div class="form-group">
+		    Ultimo Regime: <input class="form-control" id="tmp.regime" type="text" 	name="tmp.regime"  readonly="readonly" />
+			<label for="obs.med_arvs">
+			Medicamentos ARVs:<span class="required">*</span>
+			</label>
+			<select class="form-control" id="obs.med_arvs" required
+				name="obs.med_arvs" data-concept="e1d83e4e-1d5f-11e0-b929-000c29ad1d07^Ultimo Regime^99DCT">
+				<option value="">...</option>
+				<option value="e1de19fe-1d5f-11e0-b929-000c29ad1d07^AZT+3TC+EFV^99DCT">AZT+3TC+EFV</option>
+				<option value="28b28521-b6cd-454e-9ec5-f2c6c9c58468^AZT+3TC+LPV/r^99DCT">AZT+3TC+LPV/r</option>
+				<option value="e1dd2f44-1d5f-11e0-b929-000c29ad1d07^AZT+3TC+NVP^99DCT">AZT+3TC+NVP</option>
+				<option value="9dc17c1b-7b6d-488e-a38d-505a7b65ec82^TDF+3TC+EFV^99DCT">TDF+3TC+EFV</option>
+				<option value="2e44e77e-eac4-4f64-84d2-73d32abf94d5^TDF+3TC+NVP^99DCT">TDF+3TC+NVP</option>
+				<option value="78419317-cdda-42e9-92a3-13cb0cbf0020^ABC+3TC+EFV^99DCT">ABC+3TC+EFV</option>
+				<option value="e3f6bb60-e2cf-46cb-a9da-27d634ba8607^TDF+3TC+DTG^99DCT">TDF+3TC+DTG</option>
+				<option value="af15246d-30b8-4aff-8391-ca2b58e2c88b^ABC+3TC+DTG^99DCT">ABC+3TC+DTG</option>
+				<option value="3e7f46c7-a971-4c0c-82aa-a65589fd518e^AZT+3TC+ABC^99DCT">AZT+3TC+ABC</option>
+				<option value="cf05347e-063c-4896-91a4-097741cf6be6^ABC+3TC+LPV/r^99DCT">ABC+3TC+LPV/r</option>
+				<option value="e11be52e-0da1-4d32-ab5c-e0feb9b6abd6^ABC+3TC+NVP^99DCT">ABC+3TC+NVP</option>
+				<option value="f8c5d365-7636-4449-9acd-c83c4fd2ea01^TDF+3TC+LPV/r^99DCT">TDF+3TC+LPV/r</option>
+				<option value="d5f9d629-67bc-4f60-9e12-629e6d2c1d08^TDF+3TC+LPV/r+RTV^99DCT">TDF+3TC+LPV/r+RTV</option>
+				<option value="7bf5a88d-6db6-4899-a01a-bfd14ce77b53^TDF+3TC+ATV/r^99DCT">TDF+3TC+ATV/r</option>
+				<option value="e8b741b3-463c-46b1-8423-a16f736af8d4^ABC+3TC+ATV/r^99DCT">ABC+3TC+ATV/r</option>
+				<option value="ba25f2b5-4216-4605-9e6b-1f591033dc3e^AZT+3TC+ATV/r^99DCT">AZT+3TC+ATV/r</option>
+				<option value="7d18d08c-d1a8-4dc8-8d65-02197b42acf7^ABC+3TC+ATV/r+RAL^99DCT">ABC+3TC+ATV/r+RAL</option>
+				<option value="c22c4431-a27e-4054-92bb-a1563482003e^TDF+3TC+ATV/r+RAL^99DCT">TDF+3TC+ATV/r+RAL</option>
+				<option value="c4a56680-ac6e-4538-8126-e3097b7b4789^AZT+3TC+RAL^99DCT">AZT+3TC+RAL</option>
+				<option value="8f9c4e58-0d70-4b09-a109-e776d325e9fd^AZT+3TC+DRV/r^99DCT">AZT+3TC+DRV/r</option>
+				<option value="9cb63f72-4c08-4543-878a-537dcabe5670^AZT+3TC+DTG^99DCT">AZT+3TC+DTG</option>
+				<option value="46b8a2ab-36a7-4072-ab62-0af9b3b58e72^TDF+3TC+RAL+DRV/r^99DCT">TDF+3TC+RAL+DRV/r</option>
+				<option value="552dd71f-d1de-426a-a19c-49b8706a4a7f^ABC+3TC++RAL+DRV/r^99DCT">ABC+3TC++RAL+DRV/r</option>
+				<option value="f32e013c-38c8-483a-8012-88596e8b13da^3TC+RAL+DRV/r^99DCT">3TC+RAL+DRV/r</option>
+				<option value="c30f826d-9433-4e63-ac91-dbbc158686ff^AZT+3TC+RAL+DRV/r^99DCT">AZT+3TC+RAL+DRV/r</option>
+				<option value="e1e59e0e-1d5f-11e0-b929-000c29ad1d07^OUTRO^99DCT">OUTRO</option>
+			</select>
+        </div> 
+		<div class="sub-section">
+			<div class="form-group">
+				<label for="obs.qty_ordered">
+				Quantidade Aviada:<span class="required">*</span>
+				</label>
+				<select class="form-control" id="obs.qty_ordered" required
+					name="obs.qty_ordered" data-concept="1715^QUANTIDADE AVIADA^99DCT">
+					<option value="">...</option>
+					<option value="15">15</option>
+					<option value="30">30</option>
+					<option value="45">45</option>
+					<option value="60">60</option>
+					<option value="90">90</option>
+					<option value="120">120</option>
+					<option value="180">180</option>
+				</select>
+			</div> 
+			<div class="form-group">
+				<label for="obs.qty_ordered_other">
+				Outra:<span class="required"></span>
+				</label>				
+				<input id="obs.qty_ordered_other" class="form-control" type="number" name="obs.qty_ordered_other" data-concept="1715^QUANTIDADE AVIADA^99DCT"/>
+			</div> 
+		</div>
+		<div class="sub-section">
+			<div class="form-group">
+				<label for="obs.dosage">
+				Dosagem:<span class="required">*</span>
+				</label>
+				<select class="form-control" id="obs.dosage" required
+					name="obs.dosage" data-concept="1711^POSOLOGIA^99DCT">
+					<option value="">...</option>
+					<option value="1-0-1">1-0-1</option>
+					<option value="0-0-1">0-0-1</option>
+					<option value="1-0-0">1-0-0</option>
+					<option value="2-0-2">2-0-2</option>
+					<option value="3-0-3">3-0-3</option>
+					<option value="0-0-3">0-0-3</option>
+					<option value="1-0-2">1-0-2</option>
+					<option value="1-0-1.5">1-0-1.5</option>
+				</select>
+			</div> 
+			<div class="form-group">
+				<label for="obs.dosage_other">
+				Outra:<span class="required"></span>
+				</label>				
+				<input id="obs.dosage_other" class="form-control" type="text" name="obs.dosage_other" data-concept="1711^POSOLOGIA^99DCT"/>
+			</div> 
+		</div>
+		 <div class="form-group">
+            <label for="obs.data_proxima">
+				Data do próximo Levantamento:<span class="required">*</span>
+			</label>
+			<input id="obs.data_proxima" class="form-control datepicker" type="text" name="obs.data_proxima" data-concept="5096^DATA DO PROXIMO LEVANTAMENTO DE ARV^99DCT" readonly="readonly" required="required"/>
+        </div>
+		<div class="form-group">
+			<label for="obs.leva_camp">
+			Levantamento efectuado num campo de acomodação?:<span class="required">*</span>
+			</label>
+			<select class="form-control" id="obs.leva_camp" required
+				name="obs.leva_camp" data-concept="23856^O LEVANTAMENTO DE ARVS FOI FEITO NUM CAMPO DE ACOMODAÇÃO^99DCT">
+				<option value="">...</option>
+				<option value="1065^SIM^99DCT">Sim</option>
+				<option value="1066^NAO^99DCT">Não</option>
+			</select>
+		</div>
+		<div class="form-group" id="nome_camp_div">
+			<label for="obs.dosage_other">
+			Qual é o número do campo?:<span class="nome_camp"></span>
+			</label>				
+			<input id="obs.nome_camp" class="form-control" type="number" name="obs.nome_camp" data-concept="23857^SE SIM, QUAL O CAMPO^99DCT"/>
+		</div> 	
+		<div class="form-group">
+			<label for="obs.mod_dispensa">
+			Modo de Dispensa:<span class="required">*</span>
+			</label>
+			<select class="form-control" id="obs.mod_dispensa" required
+				name="obs.mod_dispensa" data-concept="40a9a12b-1205-4a55-bb93-caf15452bf61^MODO DE DISPENSA^99DCT">
+				<option value="870e2d25-c5ef-4e36-89db-0a4a37af214e^DISPENSA COMUNITÁRIA VIA PROVEDOR^99DCT">DISPENSA COMUNITÁRIA VIA PROVEDOR</option>
+			</select>
+		</div> 
+		<div class="form-group">
+			<label for="obs.fonte_de_dadod">
+			Fonte de dados:<span class="required"></span>
+			</label>				
+			<input id="obs.fonte_de_dadod" class="form-control" type="text" name="obs.fonte_de_dadod" data-concept="165237^SOURCE OF DATA^99DCT" value="mUzima" readonly="readonly"/>
+		</div> 
+	</div>
+</form>
+</body>
+<script type="text/javascript">
+$(document).ready(function  () {
+	$('#save_draft').click(function  () {
+		$(this).prop('disabled', true);
+		document.saveDraft();
+		$(this).prop('disabled', false);
+	});
+
+	$('#submit_form').click(function () {
+		$(this).prop('disabled', true);
+		document.submit();
+		$(this).prop('disabled', false);
+	});
+
+	document.setupAutoCompleteData('encounter\\.location_id');
+	document.setupAutoCompleteDataForProvider('encounter\\.provider_id_select');
+	document.setupValidationForLocation("$('#encounter\\.location_id').val()","encounter\\.location_id");
+	document.setupValidationForProvider("$('#encounter\\.provider_id_select').val()","encounter\\.provider_id");
+
+	var prePopulateData = $.trim($('#pre_populate_data').html());
+	var prePopulateJSON = JSON.parse(prePopulateData);
+	$.each(prePopulateJSON, function    (key, value) {
+		if (key === 'patient') {
+			var names = "";
+			
+			$.each(value, function  (keys, values) {
+				if(keys === 'patient.given_name' || keys === 'patient.middle_name' || keys === 'patient.family_name' || keys === 'patient.names'){
+				   names=names+" "+values;
+				}
+
+				if (keys === 'patient.personattribute') {
+					$.each(values, function (keyss, valuess) {
+						if(valuess.attribute_type_uuid === "e2e3fd64-1d5f-11e0-b929-000c29ad1d07"){
+							 $("#patient\\.phone_number").val(valuess.attribute_value);
+						}
+					});		
+				}	
+			});
+			$('#patient\\.names').val(names);
+		}
+	});
+	
+	$('#obs\\.leva_camp').change(function(){
+        if($(this).val() == "1065^SIM^99DCT"){
+            $('#nome_camp_div').show();
+        }  else{
+			$('#nome_camp_div').hide();
+		}
+    });    
+    $('#obs\\.leva_camp').trigger('change');  
+
+   var patientuuid = $('#patient\\.uuid').val();
+   var obs1 = htmlDataStore.getObsByConceptId(patientuuid,6264);  
+   obs1 = JSON.parse(obs1);
+   var obsCount = obs1.length-1;
+   if(parseInt(obsCount)>-1){
+		$("#tmp\\.no_do_livro_tarv").val(obs1[0].valueCoded.name);
+   }
+   
+   var obs2 = htmlDataStore.getObsByConceptId(patientuuid,6266);  
+   obs2 = JSON.parse(obs2);
+   var obsCount2 = obs2.length-1;
+   if(parseInt(obsCount2)>-1){
+		$("#tmp\\.pag").val(obs2[0].valueNumeric);
+   }
+   
+   var obs3 = htmlDataStore.getObsByConceptId(patientuuid,6268);  
+   obs3 = JSON.parse(obs3);
+   var obsCount3 = obs3.length-1;
+   if(parseInt(obsCount3)>-1){
+		$("#tmp\\.linha").val(obs3[0].valueNumeric);
+   }
+   
+   var obs4 = htmlDataStore.getObsByConceptId(patientuuid,1088);  
+   obs4 = JSON.parse(obs4);
+   var obsCount4 = obs4.length-1;
+   if(parseInt(obsCount4)>-1){
+		$("#tmp\\.regime").val(obs4[0].valueCoded.name);
+   }   
+});
+</script>
+</html>
