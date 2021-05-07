@@ -29,13 +29,17 @@
 		  <div id="image1_good">
 			  <div class="form-group">
 					<label for="obs.image1">Image 1:<span class="required">*</span></label>
-					<div id="image1"  name="image1" style="width:200;height200;"></div>				
+					<div id="image1"  name="image1" style="width:200;height200;"></div>
 					<input type="text" class="form-control" name="obs.image1"   id="obs.image1" data-concept="992843^IMAGE 1^99DCT" required="required" readonly="readonly">
+					<label for="obs.image1">Image 1 Comment:<span class="required">*</span></label>
+					<input type="text" class="form-control" name="obs_valuetext.image1_comment"  data-obsvaluetextfor="obs.image1"  id="obs_valuetext.image1_comment" readonly="readonly">
 					<input type="text" class="form-control" name="obs_valueuuid.image1_uuid"  data-obsvalueuuidfor="obs.image1"  id="obs_valueuuid.image1_uuid"  readonly="readonly">
 				</div>
 			</div>
 			<div id="image1_poor">
 				<div class="section consultation_image1" id="consultation_image1" data-name="consultation_image1">
+				   <label for="">Image 1 Comment:<span class="required">*</span></label>
+				   <input type="text" class="form-control" name="obs_valuetext.image1_comment" id="obs_valuetext.image1_comment" readonly="readonly">
                    <div class="form-group">
                         <label for="obs.consultation_image1">Image 1:<span class="required">*</span></label>
                         <input type="button" class='btn image_btn'>
@@ -55,11 +59,15 @@
 					<label for="obs.image2">Image 2:<span class="required">*</span></label>
 					<div id="image2" style="width:200;height200;"></div>
 					<input type="text" class="form-control" name="obs.image2"   id="obs.image2" data-concept="992844^IMAGE 2^99DCT" value="IMG 2" required="required" readonly="readonly">
+					<label for="obs.image2">Image 2 Comment:<span class="required">*</span></label>
+					<input type="text" class="form-control" name="obs_valuetext.image2_comment"  data-obsvaluetextfor="obs.image2"  id="obs_valuetext.image2_comment" readonly="readonly">
 					<input type="text" class="form-control" name="obs_valueuuid.image2_uuid"  data-obsvalueuuidfor="obs.image2"  id="obs_valueuuid.image2_uuid" readonly="readonly">
 				</div>
 			</div>
 			<div id="image2_poor">
 				<div class="section consultation_image2" id="consultation_image2" data-name="consultation_image2">
+					<label for="obs.image3">Image 2 Comment:<span class="required">*</span></label>
+					<input type="text" class="form-control" name="image2_comment"  id="image2_comment" readonly="readonly">
                    <div class="form-group">
                         <label for="obs.consultation_image2">Image 2:<span class="required">*</span></label>
                         <input type="button" class='btn image_btn'>
@@ -79,11 +87,15 @@
 					<label for="obs.image3">Image 3:<span class="required">*</span></label>
 					<div id="image3" style="width:200;height200;"></div>
 					<input type="text" class="form-control" name="obs.image3"   id="obs.image3" data-concept="992845^IMAGE 3^99DCT" value="IMG 3" required="required" readonly="readonly">
+					<label for="obs.image3">Image 3 Comment:<span class="required">*</span></label>
+					<input type="text" class="form-control" name="obs_valuetext.image3_comment"  data-obsvaluetextfor="obs.image3"  id="obs_valuetext.image3_comment" readonly="readonly">
 					<input type="text" class="form-control" name="obs_valueuuid.image3_uuid"  data-obsvalueuuidfor="obs.image3"  id="obs_valueuuid.image3_uuid" readonly="readonly">
 				</div>
 			</div>
 			<div id="image3_poor">
 				<div class="section consultation_image3" id="consultation_image3" data-name="consultation_image3">
+				   <label for="">Image 3 Comment:<span class="required">*</span></label>
+				   <input type="text" class="form-control" name="image3_comment" id="image3_comment" readonly="readonly">
                    <div class="form-group">
                         <label for="obs.consultation_image3">Image 3:<span class="required">*</span></label>
                         <input type="button" class='btn image_btn'>
@@ -103,11 +115,15 @@
 					<label for="obs.image4">Image 4:<span class="required">*</span></label>
 					<div id="image4" style="width:200;height200;"></div>
 					<input type="text" class="form-control" name="obs.image4"   id="obs.image4" data-concept="992846^IMAGE 4^99DCT" value="IMG 4" required="required" readonly="readonly">
+					<label for="">Image 4 Comment:<span class="required">*</span></label>
+					<input type="text" class="form-control" name="obs_valuetext.image4_comment"  data-obsvaluetextfor="obs.image4"  id="obs_valuetext.image4_comment" readonly="readonly">
 					<input type="text" class="form-control" name="obs_valueuuid.image4_uuid"  data-obsvalueuuidfor="obs.image4"  id="obs_valueuuid.image4_uuid" readonly="readonly">
 				</div>
 			</div>
 			<div id="image4_poor">
 				<div class="section consultation_image4" id="consultation_image4" data-name="consultation_image2">
+					<label for="">Image 4 Comment:<span class="required">*</span></label>
+					<input type="text" class="form-control" name="image4_comment" id="image4_comment" readonly="readonly">
                    <div class="form-group">
                         <label for="obs.consultation_image4">Image 4:<span class="required">*</span></label>
                         <input type="button" class='btn image_btn'>
@@ -210,11 +226,13 @@
 					$('#image1_good').hide();
 					$('#consultant_div').show();
 					$('#consultation\\.recipient').val('admin');
+					$('#image1_comment').val(imageValue1[0].valueText);
 				}else{
 					$('#image1_poor').hide();
 					$('#image1_good').show();
 					$('#consultant_div').hide();
 					$('#obs\\.image1').val('IMG 1');
+					$('#obs_valuetext\\.image1_comment').val(imageValue1[0].valueText);
 					var imageSource = imageValue1[0].valueComplex;
 					$('#obs_valueuuid\\.image1_uuid').val(imageValue1[0].uuid);
 					var image1 = document.createElement('img'); 
@@ -235,11 +253,13 @@
 					$('#image2_good').hide();
 					$('#consultant_div').show();
 					$('#consultation\\.recipient').val('admin');
+					$('#image2_comment').val(imageValue2[0].valueText);
 				}else{		   
 				    $('#image2_poor').hide();
 					$('#image2_good').show();
 					$('#consultant_div').hide();
 					$('#obs\\.image2').val('IMG 2');
+					$('#obs_valuetext\\.image2_comment').val(imageValue2[0].valueText);
 					var imageSource2 = imageValue2[0].valueComplex;
                     $('#obs_valueuuid\\.image2_uuid').val(imageValue2[0].uuid);				
 					var image2 = document.createElement('img'); 
@@ -260,11 +280,13 @@
 					$('#image3_good').hide();	
 					$('#consultant_div').show();
 					$('#consultation\\.recipient').val('admin');
+					$('#image3_comment').val(imageValue3[0].valueText);
 				}else{
 					$('#image3_poor').hide();
 					$('#image3_good').show();
 					$('#consultant_div').hide();
 					$('#obs\\.image2').val('IMG 2');
+					$('#obs_valuetext\\.image3_comment').val(imageValue3[0].valueText);
 					var imageSource3 = imageValue3[0].valueComplex;		
                     $('#obs_valueuuid\\.image3_uuid').val(imageValue3[0].uuid);						
 					var image3 = document.createElement('img'); 
@@ -285,11 +307,13 @@
 					$('#image4_good').hide();
 					$('#consultant_div').show();
 					$('#consultation\\.recipient').val('admin');
+					$('#image4_comment').val(imageValue4[0].valueText);
 				}else{
 				    $('#image4_poor').hide();
 					$('#image4_good').show();
 					$('#consultant_div').hide();
 					$('#obs\\.image2').val('IMG 2');
+					$('#obs_valuetext\\.image4_comment').val(imageValue4[0].valueText);
 					var imageSource4 = imageValue4[0].valueComplex;	
 					$('#obs_valueuuid\\.image4_uuid').val(imageValue4[0].uuid);
 					$('#encounter\\.encounter_id').val(imageValue4[0].encounterId);
