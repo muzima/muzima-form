@@ -1,0 +1,292 @@
+<html>
+   <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+       <link href="css/bootstrap.min.css" rel="stylesheet">
+       <link href="css/muzima.css" rel="stylesheet">
+       <link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet"/>
+       <link href="css/ui-darkness/jquery-ui-1.10.4.custom.min.css" rel="stylesheet">
+       <script src="js/jquery.min.js"></script>
+       <script src="js/jquery-ui-1.10.4.custom.min.js"></script>
+       <script src="js/jquery.validate.min.js"></script>
+       <script src="js/additional-methods.min.js"></script>
+       <script src="js/bootstrap-datetimepicker.min.js"></script>
+       <script src="js/muzima.js"></script>
+       <title>BVGH Consultant Review Form</title>
+       <style>
+       </style>
+   </head>
+   <body class="col-md-10 col-md-offset-1">
+   <div id="pre_populate_data">
+
+   </div>
+   <form id="teleconsultation_form" name="teleconsultation_form">
+	<h2 class="text-center">BVGH Consultant Review Form</h2>
+	<div class="form-group">
+			 <input class="form-control" id="patient.uuid" name="patient.uuid" type="hidden" readonly="readonly">
+	</div>
+   <div class="section">
+		<div class="sub-section">
+		  <div class="form-group">
+				<label for="obs.image1">Image 1:<span class="required">*</span></label>
+				<div id="image1"  name="image1" style="width:200;height200;"></div>				
+				<input type="text" class="form-control" name="obs.image1"   id="obs.image1" data-concept="992843^IMAGE 1^99DCT" value="IMG 1"  required="required" readonly="readonly">
+				<label for="obs.image3">Image 1 Comment:<span class="required">*</span></label>
+				<input type="text" class="form-control" name="obs_valuetext.image1_comment"  data-obsvaluetextfor="obs.image1"  id="obs_valuetext.image1_comment" required="required">
+				<input type="text" class="form-control" name="obs_valueuuid.image1_uuid"  data-obsvalueuuidfor="obs.image1"  id="obs_valueuuid.image1_uuid"  readonly="readonly">
+				<label for="obs.image3">Image 3 Quality Good:<span class="required">*</span></label>
+				<div class="form-group">	
+					<label for="obs_valuecoded.image1_coded_yes" style="font-weight: normal;">	
+						<input type="radio"  value="1065^Yes^99DCT" name="obs_valuecoded.image1_coded" data-obsvaluecodedfor="obs.image1"  id="obs_valuecoded.image1_coded_yes" required>&nbsp;Yes
+					</label>
+					<label for="obs_valuecoded.image1_coded_no" style="font-weight: normal;">	
+						<input type="radio"  value="1066^No^99DCT" name="obs_valuecoded.image1_coded"  data-obsvaluecodedfor="obs.image1"  id="obs_valuecoded.image1_coded_no" required>&nbsp;No
+					</label>
+				</div>
+			</div>
+		</div>
+		<div class="sub-section">
+			<div class="form-group">
+				<label for="obs.image2">Image 2:<span class="required">*</span></label>
+				<div id="image2" style="width:200;height200;"></div>
+				<input type="text" class="form-control" name="obs.image2"   id="obs.image2" data-concept="992844^IMAGE 2^99DCT" value="IMG 2" required="required" readonly="readonly">
+				<label for="obs.image3">Image 2 Comment:<span class="required">*</span></label>
+				<input type="text" class="form-control" name="obs_valuetext.image2_comment"  data-obsvaluetextfor="obs.image2"  id="obs_valuetext.image2_comment" required="required">
+				<input type="text" class="form-control" name="obs_valueuuid.image2_uuid"  data-obsvalueuuidfor="obs.image2"  id="obs_valueuuid.image2_uuid" readonly="readonly">
+				<label for="obs.image3">Image 2 Quality Good:<span class="required">*</span></label>
+				<div class="form-group">	
+					<label for="obs_valuecoded.image2_coded_yes" style="font-weight: normal;">	
+						<input type="radio"  value="1065^Yes^99DCT" name="obs_valuecoded.image2_coded" data-obsvaluecodedfor="obs.image2"  id="obs_valuecoded.image2_coded_yes" required>&nbsp;Yes
+					</label>
+					<label for="obs_valuecoded.image2_coded_no" style="font-weight: normal;">	
+						<input type="radio"  value="1066^No^99DCT" name="obs_valuecoded.image2_coded"  data-obsvaluecodedfor="obs.image2"  id="obs_valuecoded.image2_coded_no" required>&nbsp;No
+					</label>
+				</div>
+			</div>
+		</div>
+		<div class="sub-section">
+			<div class="form-group">
+				<label for="obs.image3">Image 3:<span class="required">*</span></label>
+				<div id="image3" style="width:200;height200;"></div>
+				<input type="text" class="form-control" name="obs.image3"   id="obs.image3" data-concept="992845^IMAGE 3^99DCT" value="IMG 3" required="required" readonly="readonly">
+				<label for="obs.image3">Image 3 Comment:<span class="required">*</span></label>
+				<input type="text" class="form-control" name="obs_valuetext.image3_comment"  data-obsvaluetextfor="obs.image3"  id="obs_valuetext.image3_comment" required="required">
+				<input type="text" class="form-control" name="obs_valueuuid.image3_uuid"  data-obsvalueuuidfor="obs.image3"  id="obs_valueuuid.image3_uuid" readonly="readonly">
+				<label for="obs.image3">Image 3 Quality Good:<span class="required">*</span></label>
+				<div class="form-group">	
+					<label for="obs_valuecoded.image3_coded_yes" style="font-weight: normal;">	
+						<input type="radio"  value="1065^Yes^99DCT" name="obs_valuecoded.image3_coded" data-obsvaluecodedfor="obs.image3"  id="obs_valuecoded.image3_coded_yes" required>&nbsp;Yes
+					</label>
+					<label for="obs_valuecoded.image3_coded_no" style="font-weight: normal;">	
+						<input type="radio"  value="1066^No^99DCT" name="obs_valuecoded.image3_coded"  data-obsvaluecodedfor="obs.image3"  id="obs_valuecoded.image3_coded_no" required>&nbsp;No
+					</label>
+				</div>
+			</div>
+		</div>
+		<div class="sub-section">
+			<div class="form-group">
+				<label for="obs.image4">Image 4:<span class="required">*</span></label>
+				<div id="image4" style="width:200;height200;"></div>
+				<input type="text" class="form-control" name="obs.image4"   id="obs.image4" data-concept="992846^IMAGE 4^99DCT" value="IMG 4" required="required" readonly="readonly">
+				<label for="obs.image3">Image 4 Comment:<span class="required">*</span></label>
+				<input type="text" class="form-control" name="obs_valuetext.image4_comment"  data-obsvaluetextfor="obs.image4"  id="obs_valuetext.image4_comment" required="required">
+				<input type="text" class="form-control" name="obs_valueuuid.image4_uuid"  data-obsvalueuuidfor="obs.image4"  id="obs_valueuuid.image4_uuid" readonly="readonly">
+				<label for="obs.image3">Image 4 Quality Good:<span class="required">*</span></label>
+				<div class="form-group">	
+					<label for="obs_valuecoded.image4_coded_yes" style="font-weight: normal;">	
+						<input type="radio"  value="1065^Yes^99DCT" name="obs_valuecoded.image4_coded" data-obsvaluecodedfor="obs.image4"  id="obs_valuecoded.image4_coded_yes" required>&nbsp;Yes
+					</label>
+					<label for="obs_valuecoded.image4_coded_no" style="font-weight: normal;">	
+						<input type="radio"  value="1066^No^99DCT" name="obs_valuecoded.image4_coded"  data-obsvaluecodedfor="obs.image4"  id="obs_valuecoded.image4_coded_no" required>&nbsp;No
+					</label>
+				</div>
+			</div>
+		</div>
+		<div class="sub-section">
+			<div class="form-group">
+				<label for="obs.presumptive_diagnosis">Presumptive Diagnosis:<span class="required">*</span></label>
+				<textarea class="form-control" id="obs.presumptive_diagnosis" name="obs.presumptive_diagnosis" type="text"  rows="5" readonly="readonly"></textarea>
+			    <label for="obs.diagnosis">Diagnosis Correct:<span class="required">*</span></label>
+			    <div class="form-group">	
+					<label for="obs_valuecoded.presumptive_diagnosis_yes" style="font-weight: normal;">	
+						<input type="radio"  value="1065^Yes^99DCT" name="obs_valuecoded.presumptive_diagnosis" data-obsvaluecodedfor="obs.reviewed_presumptive_diagnosis"  id="obs_valuecoded.presumptive_diagnosis_yes" required>&nbsp;Yes
+					</label>
+					<label for="obs_valuecoded.presumptive_diagnosis_no" style="font-weight: normal;">	
+						<input type="radio"  value="1066^No^99DCT" name="obs_valuecoded.presumptive_diagnosis"  data-obsvaluecodedfor="obs.reviewed_presumptive_diagnosis"  id="obs_valuecoded.presumptive_diagnosis_no" required>&nbsp;No
+					</label>
+				</div>
+				<input type="text" class="form-control" name="obs_valueuuid.presumptive_diagnosis_uuid"  data-obsvalueuuidfor="obs.reviewed_presumptive_diagnosis"  id="obs_valueuuid.presumptive_diagnosis_uuid" readonly="readonly">
+				<label for="obs.reviewed_presumptive_diagnosis">Reviewer Diagnosis:<span class="required">*</span></label>
+				<textarea class="form-control" id="obs.reviewed_presumptive_diagnosis" data-concept="992847^PRESUMPTIVE DIAGNOSIS^99DCT" name="obs.reviewed_presumptive_diagnosis" type="text" required="required" rows="5"></textarea>	   
+			</div>
+		</div>	
+		<div class="sub-section">
+			<div class="form-group">
+				<label for="obs.presumptive_treatment">Presumptive Treatment:<span class="required">*</span></label>
+				<textarea class="form-control" id="obs.presumptive_treatment"
+					   name="obs.presumptive_treatment" type="text" required="required" rows="5" readonly="readonly"></textarea>
+				    <label for="obs.treatment">Treatment Correct:<span class="required">*</span></label>
+					<div class="form-group">	
+					<label for="obs_valuecoded.presumptive_treatment_yes" style="font-weight: normal;">	
+						<input type="radio"  value="1065^Yes^99DCT" name="obs_valuecoded.presumptive_treatment" data-obsvaluecodedfor="obs.reviewed_presumptive_treatment"  id="obs_valuecoded.presumptive_treatment_yes" required>&nbsp;Yes
+					</label>
+					<label for="obs_valuecoded.presumptive_treatment_no" style="font-weight: normal;">	
+						<input type="radio"  value="1066^No^99DCT" name="obs_valuecoded.presumptive_treatment"  data-obsvaluecodedfor="obs.reviewed_presumptive_treatment"  id="obs_valuecoded.presumptive_treatment_no" required>&nbsp;No
+					</label>
+				</div>
+				<input type="text" class="form-control" name="obs_valueuuid.presumptive_treatment_uuid"  data-obsvalueuuidfor="obs.reviewed_presumptive_treatment"  id="obs_valueuuid.presumptive_treatment_uuid" readonly="readonly">
+				<label for="obs.reviewed_presumptive_treatment">Reviewer treatment:<span class="required">*</span></label>
+				<textarea class="form-control" id="obs.reviewed_presumptive_treatment" data-concept="992848^PRESUMPTIVE TREATMENT^99DCT" name="obs.reviewed_presumptive_treatment" type="text" required="required" rows="5"></textarea>	  
+			</div>
+		</div>	
+		<div class="form-group">
+			<label for="consultation.recipient">Consultant:<span class="required">*</span></label>
+			<input class="form-control" name="consultation.recipient" type="text" value="admin" readonly="readonly">
+		</div>
+   </div>
+   <div class="section">
+		   <div class="form-group">
+		       <label for="encounter.location_id">Encounter Location:<span class="required">*</span></label>
+		       <input class="form-control valid-location-only" id="encounter.location_id" type="text" placeholder="Start typing something..." required="required">
+		       <input class="form-control" name="encounter.location_id" type="hidden">
+		   </div>
+		   <div class="form-group">
+		       <label for="encounter.provider_id_select">Provider Name:</label>
+		       <input class="form-control valid-provider-only" id="encounter.provider_id_select" type="text" placeholder="Start typing something...">
+		       <input class="form-control" name="encounter.provider_id_select" type="hidden">
+		   </div>
+		   <div class="form-group show_provider_id_text">
+		       <label for="encounter.provider_id">Provider's system-id:<span class="required">*</span></label>
+		       <input class="form-control checkDigit" id="encounter.provider_id" name="encounter.provider_id"
+		          type="text" required="required" disabled="disabled">
+		   </div>
+		   <div class="form-group">
+		       <label for="encounter.encounter_datetime">Encounter Date <span class="required">*</span></label>
+		       <input class="form-control nonFutureDate past-date datepicker" readonly="readonly" id="encounter.encounter_datetime"
+		              name="encounter.encounter_datetime" type="text" required="required">
+		   </div>
+		   <div class="form-group">
+		       <input class="form-control" id="encounter.form_uuid" name="encounter.form_uuid" type="hidden" required="required">
+		       <input class="form-control" id="encounter.encounter_id" name="encounter.encounter_id" type="hidden" required="required">
+		   </div>
+		</div>
+   </form>
+   </body>
+   <script type="text/javascript">
+   $(document).ready(function () {
+			$('#save_draft').click(function () {
+				$(this).prop('disabled', true);
+				document.saveDraft();
+				$(this).prop('disabled', false);
+			});
+
+			$('#submit_form').click(function () {
+				$(this).prop('disabled', true);
+				document.submit();
+				$(this).prop('disabled', false);
+			});
+			
+			var $diagnosisTrigger = $(':radio[name="obs_valuecoded.presumptive_diagnosis"]');
+			$diagnosisTrigger.change(function(){
+				var $diagnosisOptions = $(':radio[name="obs_valuecoded.presumptive_diagnosis"]:checked').val();
+				if($diagnosisOptions == "1065^Yes^99DCT"){
+					$('#obs\\.reviewed_presumptive_diagnosis').val($('#obs\\.presumptive_diagnosis').val());
+				}else{
+					$("#obs\\.reviewed_presumptive_diagnosis").val("");
+				}
+			});
+			$diagnosisTrigger.trigger('change');
+			
+			var $treatmentTrigger = $(':radio[name="obs_valuecoded.presumptive_treatment"]');
+			$treatmentTrigger.change(function(){
+				var $treatmentOptions = $(':radio[name="obs_valuecoded.presumptive_treatment"]:checked').val();
+				if($treatmentOptions == "1065^Yes^99DCT"){
+					$('#obs\\.reviewed_presumptive_treatment').val($('#obs\\.presumptive_treatment').val());
+				}else{
+					$("#obs\\.reviewed_presumptive_treatment").val("");
+				}
+			});
+			$treatmentTrigger.trigger('change');
+			
+           var patientuuid = $('#patient\\.uuid').val();
+		   var imageValue1 = htmlDataStore.getObsByConceptId(patientuuid,992843);  
+		   imageValue1 = JSON.parse(imageValue1);
+		   var imageValue1Size = imageValue1.length-1;
+		   if(parseInt(imageValue1Size)>-1){					 
+					var imageSource = imageValue1[0].valueComplex;
+					$('#obs_valueuuid\\.image1_uuid').val(imageValue1[0].uuid);
+					var image1 = document.createElement('img'); 
+					image1.setAttribute("height", "200");
+					image1.setAttribute("width", "200");
+					image1.src = 'data:image/png;base64,'+imageSource+'';
+					document.getElementById('image1').appendChild(image1);
+			}
+			
+			var patientuuid = $('#patient\\.uuid').val();
+		   var imageValue2 = htmlDataStore.getObsByConceptId(patientuuid,992844);  
+		   imageValue2 = JSON.parse(imageValue2);
+		   var imageValue2Size = imageValue2.length-1;
+		   if(parseInt(imageValue2Size)>-1){					 
+					var imageSource2 = imageValue2[0].valueComplex;
+                    $('#obs_valueuuid\\.image2_uuid').val(imageValue2[0].uuid);				
+					var image2 = document.createElement('img'); 
+					image2.setAttribute("height", "200");
+					image2.setAttribute("width", "200");
+					image2.src = 'data:image/png;base64,'+imageSource2+'';
+					document.getElementById('image2').appendChild(image2);
+			}
+			
+		   var patientuuid = $('#patient\\.uuid').val();
+		   var imageValue3 = htmlDataStore.getObsByConceptId(patientuuid,992845);  
+		   imageValue3 = JSON.parse(imageValue3);
+		   var imageValue3Size = imageValue3.length-1;
+		   if(parseInt(imageValue3Size)>-1){					 
+					var imageSource3 = imageValue3[0].valueComplex;		
+                    $('#obs_valueuuid\\.image3_uuid').val(imageValue3[0].uuid);						
+					var image3 = document.createElement('img'); 
+					image3.setAttribute("height", "200");
+					image3.setAttribute("width", "200");
+					image3.src = 'data:image/png;base64,'+imageSource3+'';
+					document.getElementById('image3').appendChild(image3);
+			}
+			
+			var patientuuid = $('#patient\\.uuid').val();
+		   var imageValue4 = htmlDataStore.getObsByConceptId(patientuuid,992846);  
+		   imageValue4 = JSON.parse(imageValue4);
+		   var imageValue4Size = imageValue4.length-1;
+		   if(parseInt(imageValue4Size)>-1){					 
+					var imageSource4 = imageValue4[0].valueComplex;	
+					$('#obs_valueuuid\\.image4_uuid').val(imageValue4[0].uuid);
+					$('#encounter\\.encounter_id').val(imageValue4[0].encounterId);
+					var image4 = document.createElement('img'); 
+					image4.setAttribute("height", "200");
+					image4.setAttribute("width", "200");
+					image4.src = 'data:image/png;base64,'+imageSource4+'';
+					document.getElementById('image4').appendChild(image4);
+			}
+			
+		   var patientuuid = $('#patient\\.uuid').val();
+		   var diagnosis = htmlDataStore.getObsByConceptId(patientuuid,992847);  
+		   diagnosis = JSON.parse(diagnosis);
+		   var diagnosisSize = diagnosis.length-1;
+		   if(parseInt(diagnosisSize)>-1){					 
+					$('#obs\\.presumptive_diagnosis').val(diagnosis[0].valueText);		
+					$('#obs_valueuuid\\.presumptive_diagnosis_uuid').val(diagnosis[0].uuid);		
+			}
+			
+		   var patientuuid = $('#patient\\.uuid').val();
+		   var treatment = htmlDataStore.getObsByConceptId(patientuuid,992848);  
+		   treatment = JSON.parse(treatment);
+		   var treatmentSize = treatment.length-1;
+		   if(parseInt(treatmentSize)>-1){					 
+					$('#obs\\.presumptive_treatment').val(treatment[0].valueText);	
+                    $('#obs_valueuuid\\.presumptive_treatment_uuid').val(treatment[0].uuid);							
+			}
+			
+   
+       document.setupAutoCompleteDataForProvider('encounter\\.provider_id_select');
+       document.setupAutoCompleteData('encounter\\.location_id');
+       document.setupValidationForProvider($('#encounter\\.provider_id_select').val(),$("#encounter\\.provider_id"));
+       document.setupValidationForLocation($('#encounter\\.location_id').val(),$("encounter\\.location_id"));  
+   });
+   </script>
+</html>
