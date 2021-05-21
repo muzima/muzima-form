@@ -264,35 +264,35 @@
 					<div class="form-group">
 						<label class="font-normal">
 							<input id="obs.referencias.auto_transferência" type="checkbox" name="obs.referencias"
-							data-concept="1272^REFERENCIAS^99DCT" value="2179^AUTO TRANSFERÊNCIA^99DCT"/>
+							data-concept="1272^REFERENCIAS^99DCT" value="2179^AUTO TRANSFERÊNCIA^99DCT" required="required"/>
 							Encaminhado para a US
 						</label>
 					</div>
 					<div class="form-group">
 						<label class="font-normal">
 							<input id="obs.referencias.esqueceu" type="checkbox" name="obs.referencias"
-							data-concept="1272^REFERENCIAS^99DCT" value="1977^PVHS^99DCT"/>
+							data-concept="1272^REFERENCIAS^99DCT" value="1977^PVHS^99DCT" required="required"/>
 							 Encaminhado para os grupos de apoio
 						</label>
 					</div>
 					<div class="form-group">
 						<label class="font-normal">
 							<input id="obs.referencias.esqueceu" type="checkbox" name="obs.referencias"
-							data-concept="1272^REFERENCIAS^99DCT" value="23755^PAIS E CUIDADORES (PC)^99DCT"/>
+							data-concept="1272^REFERENCIAS^99DCT" value="23755^PAIS E CUIDADORES (PC)^99DCT" required="required"/>
 							Familiar ou cuidador da criança foi referido para a US
 						</label>
 					</div>
 					<div class="form-group">
 						<label class="font-normal">
 							<input id="obs.referencias.esqueceu" type="checkbox" name="obs.referencias"
-							data-concept="1272^REFERENCIAS^99DCT" value="2159^FAMILIAR FOI REFERIDO PARA A UNIDADE SANITARIA^99DCT"/>
+							data-concept="1272^REFERENCIAS^99DCT" value="2159^FAMILIAR FOI REFERIDO PARA A UNIDADE SANITARIA^99DCT" required="required"/>
 							 Familiar referidopara US
 						</label>
 					</div>
 					<div class="form-group">
 						<label class="font-normal">
 							<input id="obs.referencias.other" type="checkbox" name="obs.referencias"
-							data-concept="2016^MOTIVO DE FALTA^99DCT" value="2040^REFERRAL, OTHER^99DCT"/>
+							data-concept="1272^REFERENCIAS^99DCT" value="2040^REFERRAL, OTHER^99DCT" required="required"/>
 							Outro
 						</label>
 					</div>	
@@ -318,40 +318,40 @@
 			<div class="form-group concept-set">
 				<div class="form-group">
 					<label for="obs.patient_not_found_reason">
-						Motivo de não encontrar
+						Motivo de não encontrar<span class="required">*</span>
 					</label>
 					<div class="form-group">
 						<label class="font-normal">
 							<input id="obs.patient_not_found_reason.obito" type="checkbox" name="obs.patient_not_found_reason"
-							data-concept="2031^MOTIVO^99DCT" value="1383^Óbito^99DCT"/>
+							data-concept="2031^MOTIVO^99DCT" value="2027^Óbito^99DCT" required="required"/>
 							 Óbito
 						</label>
 					</div>	
 					<div class="form-group">
 						<label class="font-normal">
 							<input id="obs.patient_not_found_reason.endereco" type="checkbox" name="obs.patient_not_found_reason"
-							data-concept="2031^MOTIVO^99DCT" value="2024^ENDEREÇO ERRADO^99DCT"/>
+							data-concept="2031^MOTIVO^99DCT" value="2024^ENDEREÇO ERRADO^99DCT" required="required"/>
 							 Endereço errado
 						</label>
 					</div>	
 					<div class="form-group">
 						<label class="font-normal">
 							<input id="obs.patient_not_found_reason.mudou" type="checkbox" name="obs.patient_not_found_reason"
-							data-concept="2031^MOTIVO^99DCT" value="2026^MUDOU DE CASA^99DCT"/>
+							data-concept="2031^MOTIVO^99DCT" value="2026^MUDOU DE CASA^99DCT" required="required"/>
 							  Mudou
 						</label>
 					</div>	
 					<div class="form-group">
 						<label class="font-normal">
 							<input id="obs.patient_not_found_reason.viajou" type="checkbox" name="obs.patient_not_found_reason"
-							data-concept="2031^MOTIVO^99DCT" value="2011^VIAJOU^99DCT"/>
+							data-concept="2031^MOTIVO^99DCT" value="2011^VIAJOU^99DCT" required="required"/>
 							  Viajou
 						</label>
 					</div>	
 					<div class="form-group">
 						<label class="font-normal">
 							<input id="obs.patient_not_found_reason.outros" type="checkbox" name="obs.patient_not_found_reason"
-							data-concept="2031^MOTIVO^99DCT" value="2032^OUTROS MOTIVOS^99DCT"/>
+							data-concept="2031^MOTIVO^99DCT" value="2032^OUTROS MOTIVOS^99DCT" required="required"/>
 							  Outro
 						</label>
 					</div>	
@@ -606,6 +606,22 @@ $(document).ready(function () {
 			$('#obs\\.type_of_visit').prop('disabled', 'disabled');	 
 	    }
 	}
+
+	$("form[name='tracing_main_form']").validate({
+		errorElement: "div",
+		wrapper: "div",  // a wrapper around the error message
+		errorPlacement: function(error, element) {
+			if (element.is(":radio") ) {                   
+				error.insertBefore(element.parent().parent());
+			}
+			else if (element.is(":checkbox") ) {                   
+				error.insertBefore(element.parent().parent());
+			}
+			else { // This is the default behavior of the script for all fields
+				error.insertAfter( element );
+			}
+	 }
+       });
 });
 </script>
 </html>
