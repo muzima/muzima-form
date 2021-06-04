@@ -15,7 +15,6 @@
 </head>
 <body class="col-md-10 col-md-offset-1">
 <div id="pre_populate_data">
-
 </div>
 <form id="tracing_main_form" name="tracing_main_form">
     <h2 class="text-center">Formulário de Visita Domiciliária v1.2</h2>
@@ -264,35 +263,42 @@
 					</label>
 					<div class="form-group">
 						<label class="font-normal">
-							<input id="obs.referencias.auto_transferência" type="checkbox" name="obs.referencias"
+							<input id="obs.referencias.auto_transferência" type="checkbox" name="obs.referencias" class="obs.referencias"
 							data-concept="1272^REFERENCIAS^99DCT" value="2179^AUTO TRANSFERÊNCIA^99DCT" required="required"/>
 							Encaminhado para a US
 						</label>
 					</div>
 					<div class="form-group">
 						<label class="font-normal">
-							<input id="obs.referencias.esqueceu" type="checkbox" name="obs.referencias"
+							<input id="obs.referencias.pvhs" type="checkbox" name="obs.referencias" class="obs.referencias"
 							data-concept="1272^REFERENCIAS^99DCT" value="1977^PVHS^99DCT" required="required"/>
 							 Encaminhado para os grupos de apoio
 						</label>
 					</div>
 					<div class="form-group">
 						<label class="font-normal">
-							<input id="obs.referencias.esqueceu" type="checkbox" name="obs.referencias"
+							<input id="obs.referencias.paisecuidadores" type="checkbox" name="obs.referencias" class="obs.referencias"
 							data-concept="1272^REFERENCIAS^99DCT" value="23755^PAIS E CUIDADORES (PC)^99DCT" required="required"/>
 							Familiar ou cuidador da criança foi referido para a US
 						</label>
 					</div>
 					<div class="form-group">
 						<label class="font-normal">
-							<input id="obs.referencias.esqueceu" type="checkbox" name="obs.referencias"
-							data-concept="1272^REFERENCIAS^99DCT" value="2159^FAMILIAR FOI REFERIDO PARA A UNIDADE SANITARIA^99DCT" required="required"/>
-							 Familiar referidopara US
+							<input id="obs.referencias.familiar" type="checkbox" name="obs.referencias" class="obs.referencias"
+								   data-concept="1272^REFERENCIAS^99DCT" value="2159^FAMILIAR FOI REFERIDO PARA A UNIDADE SANITARIA^99DCT" required="required"/>
+							Familiar referidopara US
 						</label>
 					</div>
 					<div class="form-group">
 						<label class="font-normal">
-							<input id="obs.referencias.other" type="checkbox" name="obs.referencias"
+							<input id="obs.referencias.refused" type="checkbox" name="obs.referencias" class="obs.referencias"
+								   data-concept="1272^REFERENCIAS^99DCT" value="XX^REFUSED^99DCT" required="required"/>
+							Refused
+						</label>
+					</div>
+					<div class="form-group">
+						<label class="font-normal">
+							<input id="obs.referencias.other" type="checkbox" name="obs.referencias" class="obs.referencias"
 							data-concept="1272^REFERENCIAS^99DCT" value="2040^REFERRAL, OTHER^99DCT" required="required"/>
 							Outro
 						</label>
@@ -307,7 +313,7 @@
 				</div>
 			</div>
 			<div class="form-group">
-				<label for="obs.data_combinada">Data combinada para retorno a US:<span class="required">*</span>
+				<label for="obs.data_combinada">Data combinada para retorno a US:<span class="data_combinada_required required">*</span>
 				</label>
 				<input class="form-control datepicker" id="obs.data_combinada" type="text" required="required" readonly="readonly"
 						name="obs.data_combinada" data-concept="23933^Data combinada na primeira visita para retorno a US^99DCT"/>
@@ -473,7 +479,36 @@ $(document).ready(function () {
 		   $('#patient_found_div_2161').hide();
 	   }
 	});    
-	$('#obs\\.patient_found').trigger('change'); 
+	$('#obs\\.patient_found').trigger('change');
+
+	$('.obs\\.referencias').change(function(){
+		if($('#obs\\.referencias\\.refused').is(':checked')){
+			$('#obs\\.data_combinada').removeAttr('required');
+			$('.data_combinada_required').hide();
+			$('.obs\\.referencias').not($('#obs\\.referencias\\.refused')).attr('disabled','disabled');
+		}else if($(this).is(':checked')){
+			$('#obs\\.data_combinada').attr('required','required');
+			$('.data_combinada_required').show();
+			$('#obs\\.referencias\\.refused').attr('disabled','disabled');
+		}
+	});
+	$('.obs\\.referencias').trigger('change');
+
+	$('.obs\\.referencias').click(function(){
+		if($('#obs\\.referencias\\.refused').is(':checked')){
+			$('#obs\\.data_combinada').removeAttr('required');
+			$('.data_combinada_required').hide();
+			$('.obs\\.referencias').not($('#obs\\.referencias\\.refused')).attr('disabled','disabled');
+		}else if($(this).is(':checked')){
+			$('#obs\\.data_combinada').attr('required','required');
+			$('.data_combinada_required').show();
+			$('#obs\\.referencias\\.refused').attr('disabled','disabled');
+		} else if($('.obs\\.referencias:checked').length == 0){
+			$('#obs\\.data_combinada').attr('required','required');
+			$('.data_combinada_required').show();
+			$('.obs\\.referencias').removeAttr('disabled');
+		}
+	});
 	
 	$('#obs\\.type_of_visit').change(function(){		
 	   if($('#obs\\.patient_found').val() == "1065^SIM^99DCT" &&  $(this).val()=="2160^VISITA DE BUSCA^99DCT"){
