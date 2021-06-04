@@ -200,22 +200,9 @@
                 <label>Parentesco: <span class="required"></span></label>
                 <select class="form-control person.relationshipType" name="person.relationshipType">
                     <option value="">...</option>
-                    <option value="8ce38f96-0c7f-11eb-8fb0-bbd20b621cb8" class="AIsToB BIsToA">Amigo ou Colega</option>
-                    <option value='4132a84c-f116-4369-b67d-9363b3399916' class="AIsToB">Avó/Avô</option>
-                    <option value='4132a84c-f116-4369-b67d-9363b3399916' class="BIsToA">Neto/Neta</option>
-                    <option value='b43d9122-0c7f-11eb-946a-4b3fa847b86a' class="AIsToB">Chefe de Bairro</option>
-                    <option value='b43d9122-0c7f-11eb-946a-4b3fa847b86a' class="BIsToA">Residente</option>
                     <option value='8d91a210-c2cc-11de-8d13-0010c6dffd0f' class="AIsToB">Mae/Pai</option>
                     <option value='8d91a210-c2cc-11de-8d13-0010c6dffd0f' class="BIsToA">Filho/Filha</option>
-                    <option value='333be161-e33d-4f79-bedd-1f6be7ce56f6' class="AIsToB BIsToA">Irmão/Irmã</option>
                     <option value='2f7d5778-0c80-11eb-b335-9f16b42e3b00' class="AIsToB BIsToA">Parceiro</option>
-                    <option value='d7de2452-0c7f-11eb-8830-53010a05b7d5' class="AIsToB BIsToA">Primo</option>
-                    <option value='8d91a3dc-c2cc-11de-8d13-0010c6dffd0f' class="AIsToB">Tio/Tia</option>
-                    <option value='8d91a3dc-c2cc-11de-8d13-0010c6dffd0f' class="BIsToA">Sobrinho/Sobrinha</option>
-                    <option value='f931fb74-0c7f-11eb-963d-535e77020317' class="AIsToB">Trabalhador</option>
-                    <option value='f931fb74-0c7f-11eb-963d-535e77020317' class="BIsToA">Empregador</option>
-                    <option value='10a5d5f0-0c80-11eb-86b1-e3c0d147106d' class="AIsToB BIsToA">Vizinho</option>
-                    <option value='4bf4d502-0c80-11eb-b53c-cf462d429cce' class="AIsToB BIsToA">Outro, Não Codificado</option>
                 </select>
                 <input type="hidden" name="tmp.relationshipType" class="tmp.relationshipType" />
             </div>
@@ -470,7 +457,7 @@
                 $parent.find('.obs\\.hiv_test').attr('data-concept','23779^Teste de HIV^99DCT');
                 $parent.find('.obs\\.hiv_care').attr('data-concept','23780^Cuidados HIV^99DCT');
                 $parent.find('.obs\\.child_at_risk_treatment').attr('data-concept','1885^TRATEMENTO (CCR)^99DCT');
-                $parent.find('.obs\\.relative_nid').attr('data-concept','`23781`^Relative NID^99DCT');
+                $parent.find('.obs\\.relative_nid').attr('data-concept','23781^Relative NID^99DCT');
             }
 
             var clearPersonDetails = function($parent){
