@@ -126,6 +126,24 @@
                 </select>
             </div>
             <div class="form-group">
+                <label for="obs.htc_offered">O serviço ATS foi oferecido?</label>
+                <select class="form-control" id="obs.htc_offered"
+                        name="obs.htc_offered" data-concept="165266^Oferecido serviço ATS?^99DCT">
+                    <option value="">...</option>
+                    <option value="1065^SIM^99DCT">Sim</option>
+                    <option value="1066^NAO^99DCT">Nao</option>
+                </select>
+            </div>
+            <div class="form-group htc_accepted">
+                <label for="obs.htc_accepted">O serviço ATS foi aceito? <span class="required">*</span></label>
+                <select class="form-control" id="obs.htc_accepted" required="required"
+                        name="obs.htc_accepted" data-concept="165267^Aceita serviço ATS?^99DCT">
+                    <option value="">...</option>
+                    <option value="1065^SIM^99DCT">Sim</option>
+                    <option value="1066^NAO^99DCT">Nao</option>
+                </select>
+            </div>
+            <div class="form-group">
                 <label for="obs.child_at_risk_treatment">EM CCR:</label>
                 <select class="form-control" id="obs.child_at_risk_treatment"
                         name="obs.child_at_risk_treatment" data-concept="1885^TRATEMENTO (CCR)^99DCT">
@@ -141,25 +159,6 @@
                        name="obs.relative_nid" type="text">
             </div>
         </div>
-<!--        <div>-->
-<!--&lt;!&ndash;            Index case Observations&ndash;&gt;-->
-<!--            <input class="form-control" name="index_patient.given_name" type="hidden">-->
-<!--            <input class="form-control" name="index_patient.middle_name" type="hidden">-->
-<!--            <input class="form-control" name="index_patient.family_name" type="hidden">-->
-<!--            <input class="form-control" name="index_patient.uuid" type="hidden">-->
-<!--            <input class="form-control" name="index_patient.sex" type="hidden">-->
-<!--            <input class="form-control" name="index_patient.birth_date" type="hidden">-->
-<!--            <input class="form-control" name="index_patient.medical_record_number" type="hidden">-->
-<!--            <div class="is-index-obs group-set" data-concept="23782^SITUACAO FAMILIAR CONJUNTO^99DCT">-->
-<!--                <input class="form-control is-index-obs" id="index_obs.contact_name" name="index_obs.contact_name" type="hidden" data-concept="23778^Nome do familiar^99DCT">-->
-<!--                <input class="form-control is-index-obs" id="index_obs.contact_relationship" name="index_obs.contact_relationship" type="text" data-concept="23704^Parentesco^99DCT">-->
-<!--                <input class="form-control is-index-obs" id="index_obs.contact_age" name="index_obs.contact_age" type="hidden" data-concept="23777^Idade^99DCT">-->
-<!--                <input class="form-control is-index-obs" id="index_obs.hiv_test" name="index_obs.hiv_test" type="hidden" data-concept="23779^Teste de HIV^99DCT">-->
-<!--                <input class="form-control is-index-obs" id="index_obs.hiv_care" name="index_obs.hiv_care" type="hidden" data-concept="23780^Cuidados HIV^99DCT">-->
-<!--                <input class="form-control is-index-obs" id="index_obs.child_at_risk_treatment" name="index_obs.child_at_risk_treatment" type="hidden" data-concept="1885^TRATEMENTO (CCR)^99DCT">-->
-<!--                <input class="form-control is-index-obs" id="index_obs.relative_nid" name="index_obs.relative_nid" type="hidden" data-concept="23781^Relative NID^99DCT">-->
-<!--            </div>-->
-<!--        </div>-->
         <div class="section">
             <h3>Detalhes do encontro</h3>
             <div class="form-group">
@@ -247,59 +246,14 @@
         });
         dobType.trigger('change');
 
-        // $('#patient\\.family_name').change(function () {
-        //     var name = $('#patient\\.family_name').val() + ' ' +  $('#patient\\.given_name').val() +  ' ' + $('#patient\\.middle_name').val()
-        //     $('#index_obs\\.contact_name').val(name);
-        // });
-        // $('#patient\\.family_name').trigger('change');
-        //
-        // $('#patient\\.given_name').change(function () {
-        //     var name = $('#patient\\.family_name').val() + ' ' +  $('#patient\\.given_name').val() +  ' ' + $('#patient\\.middle_name').val()
-        //     $('#index_obs\\.contact_name').val(name);
-        // });
-        // $('#patient\\.given_name').trigger('change');
-        //
-        // $('#patient\\.middle_name').change(function () {
-        //     var name = $('#patient\\.family_name').val() + ' ' +  $('#patient\\.given_name').val() +  ' ' + $('#patient\\.middle_name').val()
-        //     $('#index_obs\\.contact_name').val(name);
-        // });
-        // $('#patient\\.middle_name').trigger('change');
-
-        // $('#patient\\.birth_date').change(function () {
-        //     var birthdate = $(this).val();
-        //     if(birthdate != '') {
-        //         var enteredAgeInYears = $("#tmp\\.age_in_years").val();
-        //         if(enteredAgeInYears != ''){
-        //             $('#index_obs\\.contact_age').val(enteredAgeInYears);
-        //         } else {
-        //             var age = $.fn.getAgeInYears(birthdate);
-        //             $('#index_obs\\.contact_age').val(Math.ceil(age));
-        //         }
-        //     } else {
-        //         $('#index_obs\\.contact_age').val('');
-        //     }
-        // });
-        // $('#patient\\.birth_date').trigger('change');
-        //
-        // $('#obs\\.hiv_test').change(function () {
-        //     $('#index_obs\\.hiv_test').val($(this).val());
-        // });
-        // $('#obs\\.hiv_test').trigger('change');
-        //
-        // $('#obs\\.hiv_care').change(function () {
-        //     $('#index_obs\\.hiv_care').val($(this).val());
-        // });
-        // $('#obs\\.hiv_care').trigger('change');
-        //
-        // $('#obs\\.child_at_risk_treatment').change(function () {
-        //     $('#index_obs\\.child_at_risk_treatment').val($(this).val());
-        // });
-        // $('#obs\\.child_at_risk_treatment').trigger('change');
-        //
-        // $('#obs\\.relative_nid').change(function () {
-        //     $('#index_obs\\.relative_nid').val($(this).val());
-        // });
-        // $('#obs\\.relative_nid').trigger('change');
+        $('#obs\\.htc_offered').change(function () {
+            if($(this).val() == '1065^SIM^99DCT'){
+                $('.htc_accepted').show();
+            } else {
+                $('.htc_accepted').hide();
+            }
+        });
+        $('#obs\\.htc_offered').trigger('change');
 
         document.setupAutoCompleteDataForProvider('encounter\\.provider_id_select');
 

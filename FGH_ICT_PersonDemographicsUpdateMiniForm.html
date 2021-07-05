@@ -246,6 +246,16 @@
                         name="tmp.hiv_care" />
             </div>
             <div class="form-group">
+                <label for="tmp.htc_offered">O serviço ATS foi oferecido?</label>
+                <input class="form-control" id="tmp.htc_offered" readonly
+                        name="tmp.htc_offered" data-concept="165266^Oferecido serviço ATS?^99DCT" />
+            </div>
+            <div class="form-group tmp_htc_accepted">
+                <label for="tmp.htc_accepted">O serviço ATS foi aceito?</label>
+                <input class="form-control" id="tmp.htc_accepted" readonly
+                        name="tmp.htc_accepted" />
+            </div>
+            <div class="form-group">
                 <label for="tmp.child_at_risk_treatment">EM CCR:</label>
                 <input class="form-control" id="tmp.child_at_risk_treatment" readonly="readonly"
                         name="tmp.child_at_risk_treatment" />
@@ -283,6 +293,28 @@
                     <option value="">...</option>
                     <option value="1065^Sim^99DCT">Sim</option>
                     <option value="1066^Nao^99DCT">Nao</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="demographicsupdate.htc_offered">
+                    O serviço ATS foi oferecido? <span class="required">*</span>
+                </label>
+                <select class="form-control" id="demographicsupdate.htc_offered" required="required"
+                        name="demographicsupdate.htc_offered" data-concept="165266^Oferecido serviço ATS?^99DCT">
+                    <option value="">...</option>
+                    <option value="1065^SIM^99DCT">Sim</option>
+                    <option value="1066^NAO^99DCT">Nao</option>
+                </select>
+            </div>
+            <div class="form-group demographicsupdate_htc_accepted">
+                <label for="demographicsupdate.htc_accepted">
+                    O serviço ATS foi aceito? <span class="required">*</span>
+                </label>
+                <select class="form-control" id="demographicsupdate.htc_accepted" required="required"
+                        name="demographicsupdate.htc_accepted" data-concept="165267^Aceita serviço ATS?^99DCT">
+                    <option value="">...</option>
+                    <option value="1065^SIM^99DCT">Sim</option>
+                    <option value="1066^NAO^99DCT">Nao</option>
                 </select>
             </div>
             <div class="form-group">
@@ -497,93 +529,6 @@
         });
         dobType.trigger('change');
 
-        // var setContactAgeFromBirthdateIfBlank = function(){
-        //     var contactAge = $('#index_obs\\.contact_age').val();
-        //     if(contactAge == ''){
-        //         var birthdate = $('#patient\\.birth_date').val();
-        //         if(birthdate != ''){
-        //             var age = $.fn.getAgeInYears(birthdate);
-        //             $('#index_obs\\.contact_age').val(Math.ceil(age));
-        //         }
-        //     }
-        // }
-        //
-        // $('#patient\\.family_name').change(function () {
-        //     var name = $('#patient\\.family_name').val() + ' ' +  $('#patient\\.given_name').val() +  ' ' + $('#patient\\.middle_name').val()
-        //     $('#index_obs\\.contact_name').val(name);
-        // });
-        // $('#patient\\.family_name').trigger('change');
-        //
-        // $('#patient\\.given_name').change(function () {
-        //     var name = $('#patient\\.family_name').val() + ' ' +  $('#patient\\.given_name').val() +  ' ' + $('#patient\\.middle_name').val()
-        //     $('#index_obs\\.contact_name').val(name);
-        // });
-        // $('#patient\\.given_name').trigger('change');
-        //
-        // $('#patient\\.middle_name').change(function () {
-        //     var name = $('#patient\\.family_name').val() + ' ' +  $('#patient\\.given_name').val() +  ' ' + $('#patient\\.middle_name').val()
-        //     $('#index_obs\\.contact_name').val(name);
-        // });
-        // $('#patient\\.middle_name').trigger('change');
-        //
-        // $('#obs\\.contact_relationship').change(function () {
-        //     $('#index_obs\\.contact_relationship').val($(this).val());
-        // });
-        // $('#obs\\.contact_relationship').trigger('change');
-        //
-        // $('#demographicsupdate\\.birth_date').change(function () {
-        //     var birthdate = $(this).val();
-        //     if(birthdate != '') {
-        //         var enteredAgeInYears = $("#tmp\\.age_in_years").val();
-        //         if(enteredAgeInYears != ''){
-        //             $('#index_obs\\.contact_age').val(enteredAgeInYears);
-        //         } else {
-        //             var age = $.fn.getAgeInYears(birthdate);
-        //             $('#index_obs\\.contact_age').val(Math.ceil(age));
-        //         }
-        //     } else {
-        //         $('#index_obs\\.contact_age').val('');
-        //     }
-        // });
-        // $('#patient\\.birth_date').trigger('change');
-        //
-        // $('#demographicsupdate\\.hiv_test').change(function () {
-        //     var hivTest = $(this).val();
-        //     $('#index_obs\\.hiv_test').val(hivTest);
-        //     if(hivTest != ''){
-        //         setContactAgeFromBirthdateIfBlank();
-        //     }
-        // });
-        // $('#demographicsupdate\\.hiv_test').trigger('change');
-
-        // $('#demographicsupdate\\.hiv_care').change(function () {
-        //     var hivCare = $(this).val();
-        //     $('#index_obs\\.hiv_care').val(hivCare);
-        //     if(hivCare != '') {
-        //         setContactAgeFromBirthdateIfBlank();
-        //     }
-        // });
-        // $('#demographicsupdate\\.hiv_care').trigger('change');
-        //
-        // $('#demographicsupdate\\.child_at_risk_treatment').change(function () {
-        //     var childAtRiskTreatment = $(this).val();
-        //     $('#index_obs\\.child_at_risk_treatment').val(childAtRiskTreatment);
-        //     if(childAtRiskTreatment != '') {
-        //         setContactAgeFromBirthdateIfBlank();
-        //     }
-        // });
-        // $('#demographicsupdate\\.child_at_risk_treatment').trigger('change');
-        //
-        // $('#demographicsupdate\\.relative_nid').change(function () {
-        //     var relativeNid = $(this).val();
-        //     $('#index_obs\\.relative_nid').val(relativeNid);
-        //     if(relativeNid != '') {
-        //         setContactAgeFromBirthdateIfBlank();
-        //     }
-        // });
-        // $('#demographicsupdate\\.relative_nid').trigger('change');
-
-
         document.setupAutoCompleteDataForProvider('encounter\\.provider_id_select');
 
         $('#registration_form').validate({rules: {
@@ -630,6 +575,29 @@
             $('#demographicsupdate\\.hiv_test').trigger('change');
         }
 
+        var htc_offered = htmlDataStore.getObsByConceptId(patientUuid, 165266);
+        htc_offered = JSON.parse(htc_offered);
+        if(htc_offered.length) {
+            htc_offered = htc_offered[0];
+            if (htc_offered.valueCoded.id == 1065){
+                $('#tmp\\.htc_offered').val('Sim');
+            } else if (htc_offered.valueCoded.id == 1066){
+                $('#tmp\\.htc_offered').val('Nao');
+            }
+            $('#demographicsupdate\\.htc_offered').trigger('change');
+        }
+
+        var htc_accepted = htmlDataStore.getObsByConceptId(patientUuid, 165267);
+        htc_accepted = JSON.parse(htc_accepted);
+        if(htc_accepted.length) {
+            htc_accepted = htc_accepted[0];
+            if (htc_accepted.valueCoded.id == 1065){
+                $('#tmp\\.htc_accepted').val('Sim');
+            } else if (htc_accepted.valueCoded.id == 1066){
+                $('#tmp\\.htc_accepted').val('Nao');
+            }
+        }
+
         var hiv_care = htmlDataStore.getObsByConceptId(patientUuid, 23780);
         hiv_care = JSON.parse(hiv_care);
         if(hiv_care.length) {
@@ -643,6 +611,24 @@
             }
             $('#demographicsupdate\\.hiv_care').trigger('change');
         }
+
+        $('#tmp\\.htc_offered').change(function () {
+            if($(this).val() == 'Sim'){
+                $('.tmp_htc_accepted').show();
+            } else {
+                $('.tmp_htc_accepted').hide();
+            }
+        });
+        $('#tmp\\.htc_offered').trigger('change');
+
+        $('#demographicsupdate\\.htc_offered').change(function () {
+            if($(this).val() == '1065^SIM^99DCT'){
+                $('.demographicsupdate_htc_accepted').show();
+            } else {
+                $('.demographicsupdate_htc_accepted').hide();
+            }
+        });
+        $('#demographicsupdate\\.htc_offered').trigger('change');
 
         var child_at_risk_treatment = htmlDataStore.getObsByConceptId(patientUuid, 1885);
         child_at_risk_treatment = JSON.parse(child_at_risk_treatment);
