@@ -13,7 +13,7 @@
 </head>
 <body class="col-md-10 col-md-offset-1">
 <div id="pre_populate_data">
-
+ {"patient":{"patient.uuid":"49e0c21e-3443-4e76-9eec-149338d5411b","patient.medical_record_number":"12345","patient.family_name":"test","patient.given_name":"simon","patient.names":" simon  test","patient.sex":"M","patient.birth_date":"01-01-1993","patient.phone_number1":"1234","patient.phone_number2":"7890","patient.caregiver_name":"Care giver","patient.caregiver_phone_number":"12345678"},"encounter":{"encounter.provider_id_select":"admin","encounter.form_uuid":"e8805c90-8792-4f39-a37a-e5f3aee0d00d","encounter.provider_role_uuid":"240b26f9-dd88-4172-823d-4a8bfeb7841f","encounter.encounter_datetime":"02-08-2021","encounter.provider_id":"admin","encounter.user_system_id":"admin","encounter.device_time_zone":"Africa\/Nairobi","encounter.setup_config_uuid":"0e1202f5-5233-4f6e-8c67-c3a6aec6658f"},"observation":{"165346^General Follow Up^99DCT":{"165373^Followup Date^99DCT":"02-08-2021"}}}
 </div>
 <form id="missed_appointment_tracking_register" name="missed_appointment_tracking_register">
     <h2 class="text-center">Missed Appointment Tracking Register</h2>
@@ -64,6 +64,39 @@
                    name="patient.birth_date" type="text" readonly="readonly">
         </div>
     </div>
+	<div class="section">
+        <h3>Locator Information</h3>
+		 <div class="form-group">
+            <label for="tmp.home_address_direction">Directions to home address:<span class="required"></span>
+            </label>
+            <input class="form-control" id="tmp.home_address_direction" name="tmp.home_address_direction" type="text" readonly="readonly"/>
+        </div>		
+		<div class="form-group">
+            <label for="patient.phone_number1">Phone No. 1:<span class="required"></span>
+            </label>
+            <input class="form-control" id="patient.phone_number1" name="patient.phone_number1" type="text" readonly="readonly"/>
+        </div>
+		<div class="form-group">
+            <label for="patient.phone_number2">Phone No. 2:<span class="required"></span>
+            </label>
+            <input class="form-control" id="patient.phone_number2" name="patient.phone_number2" type="text" readonly="readonly"/>
+        </div>
+		<div class="form-group">
+            <label for="patient.phone_number3">Phone No. 3:<span class="required"></span>
+            </label>
+            <input class="form-control" id="patient.phone_number3" name="patient.phone_number3" type="text" readonly="readonly"/>
+        </div>
+		<div class="form-group">
+            <label for="patient.caregiver_name">Care Giver:<span class="required"></span>
+            </label>
+            <input class="form-control" id="patient.caregiver_name" name="patient.caregiver_name" type="text" readonly="readonly"/>
+        </div>
+		<div class="form-group">
+            <label for="patient.caregiver_phone_number">Care Giver Tel No:<span class="required"></span>
+            </label>
+            <input class="form-control" id="patient.caregiver_phone_number" name="patient.caregiver_phone_number" type="text" readonly="readonly"/>
+        </div>
+	</div>
     <div class="section">
         <h3>Appointment Information</h3>
         <div class="form-group">
@@ -284,6 +317,7 @@
 	 <div class="section">	 
         <div class="form-group">
             <input class="form-control" id="encounter.form_uuid" name="encounter.form_uuid" type="hidden" required="required"/>           			
+            <input class="form-control" id="encounter.provider_role_uuid" name="encounter.provider_role_uuid" type="hidden" value="240b26f9-dd88-4172-823d-4a8bfeb7841f"/>           			
 		</div>
 		<div class="form-group">
             <label for="encounter.encounter_datetime">Encounter Date:<span class="required">*</span>
@@ -293,7 +327,7 @@
                    required="required"/>
         </div>
 		<div class="form-group show_provider_id_text" style="display:none">
-			<label for="encounter.provider_id">Follow Up Person's System ID:<span class="required">*</span></label>
+			<label for="encounter.provider_id">Follow Up Person\'s System ID:<span class="required">*</span></label>
 			<input class="form-control checkDigit" id="encounter.provider_id" disabled name="encounter.provider_id"
 			   type="text" required="required"  placeholder="Provider Id">
 		</div>
@@ -307,140 +341,190 @@
 </body>
 <script type="text/javascript">
 $(document).ready(function () {
-	$('#save_draft').click(function () {
-		$(this).prop('disabled', true);
+	$("#save_draft").click(function () {
+		$(this).prop("disabled", true);
 		document.saveDraft();
-		$(this).prop('disabled', false);
-	});
+		$(this).prop("disabled", false);
+	})
 
-	$('#submit_form').click(function () {
-		$(this).prop('disabled', true);
+	$("#submit_form").click(function () {
+		$(this).prop("disabled", true);
 		document.submit();
-		$(this).prop('disabled', false);
+		$(this).prop("disabled", false);
 	});
 	
-	var dateFormat = "dd-mm-yy";
+	var dateFormat = "dd-mm-yy"
 	var currentDate = $.datepicker.formatDate(dateFormat, new Date());
-	var encounterDatetime = $('#encounter\\.encounter_datetime');
+	var encounterDatetime = $("#encounter\\.encounter_datetime");
 	if ($(encounterDatetime).val() == "") {
 		$(encounterDatetime).val(currentDate);
 	}
 	
-	var followupDate = $('#obs\\.followup_date_date');
+	var followupDate = $("#obs\\.followup_date_date");
 	if ($(followupDate).val() == "") {
 		$(followupDate).val(currentDate);
 	}
 
 
-	$('#obs\\.service_point').change(function(){
+	$("#obs\\.service_point").change(function(){
 		if($(this).val() == "90002^OTHER SPECIFY^99DCT"){
-			$('#other_service_point_div').show();
+			$("#other_service_point_div").show();
 		} else{
-			$('#other_service_point_div').hide();
+			$("#other_service_point_div").hide();
 		}
-	});    
-	$('#obs\\.service_point').trigger('change'); 
+	})    
+	$("#obs\\.service_point").trigger("change") ;
 	
-	$('#obs\\.medication_due_for_refill_other').change(function(){
+	$("#obs\\.medication_due_for_refill_other").change(function(){
 		if($(this).prop( "checked" )){
-			$('#medication_due_for_refill_other_div').show();
+			$("#medication_due_for_refill_other_div").show();
 		} else{
-			$('#medication_due_for_refill_other_div').hide();
+			$("#medication_due_for_refill_other_div").hide();
 		}
-	});    
-	$('#obs\\.medication_due_for_refill_other').trigger('change'); 
+	})    
+	$("#obs\\.medication_due_for_refill_other").trigger("change");
 	
-	$('#obs\\.followup_method').change(function(){
+	$("#obs\\.followup_method").change(function(){
 		if($(this).val() == "90002^OTHER SPECIFY^99DCT"){
-			$('#other_follow_up_action_div').show();
+			$("#other_follow_up_action_div").show();
 		} else{
-			$('#other_follow_up_action_div').hide();
+			$("#other_follow_up_action_div").hide();
 		}
-	});    
-	$('#obs\\.followup_method').trigger('change'); 
+	})    
+	$("#obs\\.followup_method").trigger("change");
 
-	// attach 'nonFutureDate' class to perform validation.
+	// attach "nonFutureDate" class to perform validation.
 	jQuery.validator.addClassRules({
 		validDeliveryDateOnly: { validDeliveryDateOnly: true }
-	});
+	})
 
-	document.setupAutoCompleteData('encounter\\.location_id');
-	document.setupAutoCompleteDataForProvider('encounter\\.provider_id_select');
-	document.setupValidationForLocation("$('#encounter\\.location_id').val()","encounter\\.location_id");
-	document.setupValidationForProvider("$('#encounter\\.provider_id_select').val()","encounter\\.provider_id");
+	document.setupAutoCompleteData("encounter\\.location_id");
+	document.setupAutoCompleteDataForProvider("encounter\\.provider_id_select");
+	document.setupValidationForLocation($("#encounter\\.location_id").val(),"encounter\\.location_id");
+	document.setupValidationForProvider($("#encounter\\.provider_id_select").val(),"encounter\\.provider_id");
 	
-	$('#obs\\.followup_date_date').change(function(){
-		$('#encounter\\.encounter_datetime').val($('#obs\\.followup_date_date').val());
-	});    
-	$('#obs\\.followup_date_date').trigger('change');
+	$("#obs\\.followup_date_date").change(function(){
+		$("#encounter\\.encounter_datetime").val($("#obs\\.followup_date_date").val())
+	})    
+	$("#obs\\.followup_date_date").trigger("change")
 
-	var prePopulateData = $.trim($('#pre_populate_data').html());
-	var prePopulateJSON = JSON.parse(prePopulateData);
+	var prePopulateData = $.trim($("#pre_populate_data").html())
+	var prePopulateJSON = JSON.parse(prePopulateData)
+	var index = 0
+	var hivNumberAvailable = false
 	$.each(prePopulateJSON, function(key, value) {
-		if (key === 'patient') {
-			var names = "";
+		if (key === "patient") {
+			var names = ""
 			$.each(value, function(keys, values) {
-				if(keys === 'patient.given_name' || keys === 'patient.middle_name' || keys === 'patient.family_name'){
-				   names=names+" "+values;
+				if(keys === "patient.given_name" || keys === "patient.middle_name" || keys === "patient.family_name"){
+				   names=names+" "+values
 				}
 
 				if(keys === "patient.birth_date"){
-					var tmp = values.split('-');
-                    var birthDate = new Date(tmp[2],tmp[1]-1,tmp[0]);
-					var today = new Date();
-					var milliSecondsInAYear = 1000 * 60 * 60 * 24 * 365.26;
-					var age = (today - birthDate) / milliSecondsInAYear;
-					$('#patient\\.age').val((Math.floor(age)+" Years "));
+					var tmp = values.split("-")
+                    var birthDate = new Date(tmp[2],tmp[1]-1,tmp[0])
+					var today = new Date()
+					var milliSecondsInAYear = 1000 * 60 * 60 * 24 * 365.26
+					var age = (today - birthDate) / milliSecondsInAYear
+					$("#patient\\.age").val((Math.floor(age)+" Years "))
 				}
-			});
-			$('#patient\\.names').val(names);
+
+				if (keys === "patient.personattribute") {
+					$.each(values, function (keyss, valuess) {
+						if(valuess.attribute_type_uuid === "14d4f066-15f5-102d-96e4-000c29c2a5d7"){
+							 $("#patient\\.phone_number1").val(valuess.attribute_value)
+						}
+						if(valuess.attribute_type_uuid === "8c44d411-285f-46c6-9f17-c2f919823b34"){
+							 $("#patient\\.phone_number2").val(valuess.attribute_value)
+						}
+						if(valuess.attribute_type_uuid === "a00eda65-2f66-4fda-a683-c1787eb626a9"){
+							 $("#patient\\.phone_number3").val(valuess.attribute_value)
+						}
+						if(valuess.attribute_type_uuid === "e493f4ec-51f1-4a77-8d3c-5791f8cb02cd"){
+							 $("#patient\\.caregiver_name").val(valuess.attribute_value)
+						}
+						if(valuess.attribute_type_uuid === "553834ef-b3fe-4c79-826a-6d4b6978bcff"){
+							 $("#patient\\.caregiver_phone_number").val(valuess.attribute_value)
+						}
+					})		
+				}	
+			})
+			$("#patient\\.names").val(names)
 		}
-	});
+		
+		if (key === "other_identifier_type") {
+			var arraySize = value.length;
+			var i = 0;
+			while(i < arraySize){
+				if(value[i] === "HIV Clinic No."){
+					hivNumberAvailable = true
+					index = i
+				}
+				i++;
+			}
+		}
+		
+		if(key === "other_identifier_value"){
+			if(hivNumberAvailable){
+				$("#patient\\.medical_record_number").val(value[index])
+			}
+		}
+		
+		
+	})
 	
-   var patientuuid = $('#patient\\.uuid').val();
-   var lastAppointmentDate = htmlDataStore.getObsByConceptId(patientuuid,5096);  
-   lastAppointmentDate = JSON.parse(lastAppointmentDate);
-   var lastAppointmentDateSize = lastAppointmentDate.length-1;
+   var patientuuid = $("#patient\\.uuid").val()
+   var lastAppointmentDate = htmlDataStore.getObsByConceptId(patientuuid,5096)  
+   lastAppointmentDate = JSON.parse(lastAppointmentDate)
+   var lastAppointmentDateSize = lastAppointmentDate.length-1
    if(parseInt(lastAppointmentDateSize)>-1){
 			if(lastAppointmentDate[0].valueDatetime!=""){
-				var appointmentDate = lastAppointmentDate[0].valueDatetime;
+				var appointmentDate = lastAppointmentDate[0].valueDatetime
 			 }else{
-				var appointmentDate = lastAppointmentDate[0].valueText;
+				var appointmentDate = lastAppointmentDate[0].valueText
 			 }
-			$("#obs\\.missed_appointment_date").val(appointmentDate);
+			$("#obs\\.missed_appointment_date").val(appointmentDate)
 	}
 	
-	 var followupOutcome = $('#obs\\.followup_outcome');
-        followupOutcome.change(function () {
-            if ($('#obs\\.followup_outcome').val() == '165335^Self Transfered^99DCT') {
-					$('#ART_details').show();
-					$('#self_transfered_date').hide();
-					$('#returned_to_care_date').hide();
-					$('#cause_of_death').hide();
-            } else if($('#obs\\.followup_outcome').val() == '165334^Returned to Care^99DCT'){
-					$('#ART_details').hide();
-					$('#self_transfered_date').hide();
-					$('#returned_to_care_date').show();
-					$('#cause_of_death').hide();
-			}	else if($('#obs\\.followup_outcome').val() == '165335^Self Transfered^99DCT'){
-					$('#ART_details').hide();
-					$('#self_transfered_date').show();
-					$('#returned_to_care_date').hide();
-					$('#cause_of_death').hide();
-			}	else if($('#obs\\.followup_outcome').val() == '160034^Died^99DCT'){
-					$('#ART_details').hide();
-					$('#self_transfered_date').hide();
-					$('#returned_to_care_date').hide();
-					$('#cause_of_death').show();
-			}	else {
-					$('#ART_details').hide();
-					$('#self_transfered_date').hide();
-					$('#returned_to_care_date').hide();
-					$('#cause_of_death').hide();
-            }
-        });
-        followupOutcome.trigger('change');
+	var homeAddressLocation = htmlDataStore.getObsByConceptId(patientuuid,90265)  
+   homeAddressLocation = JSON.parse(homeAddressLocation)
+   var homeAddressLocationSize = homeAddressLocation.length-1
+   if(parseInt(homeAddressLocationSize)>-1){
+			var homeAddress = homeAddressLocation[0].valueText
+			$("#tmp\\.home_address_direction").val(homeAddress)
+	}
 	
-});
+	 var followupOutcome = $("#obs\\.followup_outcome")
+        followupOutcome.change(function () {
+            if ($("#obs\\.followup_outcome").val() == "165335^Self Transfered^99DCT") {
+					$("#ART_details").show()
+					$("#self_transfered_date").hide()
+					$("#returned_to_care_date").hide()
+					$("#cause_of_death").hide()
+            } else if($("#obs\\.followup_outcome").val() == "165334^Returned to Care^99DCT"){
+					$("#ART_details").hide()
+					$("#self_transfered_date").hide()
+					$("#returned_to_care_date").show()
+					$("#cause_of_death").hide()
+			}	else if($("#obs\\.followup_outcome").val() == "165335^Self Transfered^99DCT"){
+					$("#ART_details").hide()
+					$("#self_transfered_date").show()
+					$("#returned_to_care_date").hide()
+					$("#cause_of_death").hide()
+			}	else if($("#obs\\.followup_outcome").val() == "160034^Died^99DCT"){
+					$("#ART_details").hide()
+					$("#self_transfered_date").hide()
+					$("#returned_to_care_date").hide()
+					$("#cause_of_death").show()
+			}	else {
+					$("#ART_details").hide()
+					$("#self_transfered_date").hide()
+					$("#returned_to_care_date").hide()
+					$("#cause_of_death").hide()
+            }
+        })
+        followupOutcome.trigger("change")
+	
+})
 </script>
 </html>
