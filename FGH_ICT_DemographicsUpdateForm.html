@@ -354,43 +354,48 @@
                            type="text" readonly="readonly" disabled="disabled">
                 </div>
                 <div class="form-group">
-                    <label for="obs.contact_age">Idade:</label>
-                    <input class="form-control obs.contact_age"
-                           name="obs.contact_age" type="number" readonly="readonly">
+                    <label for="tmp.contact_age">Idade:</label>
+                    <input class="form-control tmp.contact_age"
+                           name="tmp.contact_age" type="number" readonly="readonly">
+                    <input class="form-control obs.contact_age"  name="obs.contact_age" type="hidden">
                 </div>
                 <div class="form-group">
-                    <label for="obs.hiv_test">Teste de HIV:</label>
-                    <select class="form-control obs.hiv_test" readonly="readonly" disabled="disabled"
-                            name="obs.hiv_test">
+                    <label for="tmp.hiv_test">Teste de HIV:</label>
+                    <select class="form-control tmp.hiv_test" readonly="readonly" disabled="disabled"
+                            name="tmp.hiv_test">
                         <option value="">...</option>
                         <option value="703^Positivo^99DCT">Positivo</option>
                         <option value="664^Negativo^99DCT">Negativo</option>
                         <option value="1067^Desconhecido^99DCT">Desconhecido</option>
                     </select>
+                    <input class="form-control obs.hiv_test"  name="obs.hiv_test" type="hidden">
                 </div>
                 <div class="form-group">
-                    <label for="obs.hiv_care">Cuidados de HIV:</label>
-                    <select class="form-control obs.hiv_care" readonly="readonly" disabled="disabled"
-                            name="obs.hiv_care">
+                    <label for="tmp.hiv_care">Cuidados de HIV:</label>
+                    <select class="form-control tmp.hiv_care" readonly="readonly" disabled="disabled"
+                            name="tmp.hiv_care">
                         <option value="">...</option>
                         <option value="1065^Sim^99DCT">Sim</option>
                         <option value="1066^Nao^99DCT">Nao</option>
                     </select>
+                    <input class="form-control obs.hiv_care"  name="obs.hiv_care" type="hidden">
                 </div>
                 <div class="form-group">
-                    <label for="obs.child_at_risk_treatment">EM CCR:</label>
-                    <select class="form-control obs.child_at_risk_treatment" readonly="readonly" disabled="disabled"
-                            name="obs.child_at_risk_treatment">
+                    <label for="tmp.child_at_risk_treatment">EM CCR:</label>
+                    <select class="form-control tmp.child_at_risk_treatment" readonly="readonly" disabled="disabled"
+                            name="tmp.child_at_risk_treatment">
                         <option value="">...</option>
                         <option value="1065^Sim^99DCT">Sim</option>
                         <option value="1066^Nao^99DCT">Nao</option>
                         <option value="23892^Alta^99DCT">Alta</option>
                     </select>
+                    <input class="form-control obs.child_at_risk_treatment"  name="obs.child_at_risk_treatment" type="hidden">
                 </div>
                 <div class="form-group">
-                    <label for="obs.relative_nid">NID:</label>
-                    <input class="form-control obs.relative_nid"
-                           name="obs.relative_nid" type="text" readonly="readonly">
+                    <label for="tmp.relative_nid">NID:</label>
+                    <input class="form-control tmp.relative_nid"
+                           name="tmp.relative_nid" type="text" readonly="readonly">
+                    <input class="form-control obs.relative_nid"  name="obs.relative_nid" type="hidden">
                 </div>
                 <div class="form-group">
                     <label class="update-relationship-person" data-result-field="">
@@ -672,9 +677,13 @@
                 $parent.find('.tmp\\.person_search_birth_date').val('');
                 $parent.find('.tmp\\.person_name_search').val('');
                 $parent.find('.obs\\.hiv_test').val('');
+                $parent.find('.tmp\\.hiv_test').val('');
                 $parent.find('.obs\\.hiv_care').val('');
+                $parent.find('.tmp\\.hiv_care').val('');
                 $parent.find('.obs\\.child_at_risk_treatment').val('');
+                $parent.find('.tmp\\.child_at_risk_treatment').val('');
                 $parent.find('.obs\\.relative_nid').val('');
+                $parent.find('.tmp\\.relative_nid').val('');
             }
 
             $parent.find('.tmp\\.person_name_search').change(function(){
@@ -717,10 +726,11 @@
                 var patientUuid = $('#patient\\.uuid').val();
                 if(uuid != '' && uuid != patientUuid){
                     var relatedPerson;
+                    var relatedPersonUuid = uuid;
                     if(searchServer){
-                        relatedPerson = htmlDataStore.getPatientDetailsFromServerByUuid(uuid);
+                        relatedPerson = htmlDataStore.getPatientDetailsFromServerByUuid(relatedPersonUuid);
                     } else {
-                        relatedPerson = htmlDataStore.getPersonDetailsFromDeviceByUuid(uuid);
+                        relatedPerson = htmlDataStore.getPersonDetailsFromDeviceByUuid(relatedPersonUuid);
                     }
 
                     relatedPerson = JSON.parse(relatedPerson);
@@ -730,10 +740,33 @@
                         $parent.find('.tmp\\.person_search_sex').val(relatedPerson.sex);
                         $parent.find('.tmp\\.person_search_birth_date').val(relatedPerson.birth_date);
                         $parent.find('.tmp\\.person_name_search').val(relatedPerson.name);
-                        $parent.find('.obs\\.contact_name').val(relatedPerson.name);
+
+                        var relationshipType = $parent.find('.person\\.relationshipType').val();
+
+                        var existingRelationships = htmlDataStore.getRelationshipForPersons(patientUuid,relatedPersonUuid);
+                        existingRelationships = JSON.parse(existingRelationships);
+                        isExistingRelationship = false;
+                        $.each(existingRelationships, function(k,v){
+                            if(v.relationshipType == relationshipType){
+                                isExistingRelationship = true
+                            }
+                            console.log(v.relationshipType,relationshipType,);
+                        });
+                        console.log("isExistingRelationship: ",isExistingRelationship,);
+
+                        var isEditContactChecked = $parent.find('.tmp\\.update_person_details').is(":checked");
+                        console.log("isEditContactChecked: ",isEditContactChecked);
+
+                        $parent.find('.tmp\\.contact_name').val(relatedPerson.name);
+                        if(!isExistingRelationship || isEditContactChecked){
+                            $parent.find('.obs\\.contact_name').val(relatedPerson.name);
+                        }
 
                         var age = $.fn.getAgeInYears(relatedPerson.birth_date)
-                        $parent.find('.obs\\.contact_age').val(Math.round(age));
+                        $parent.find('.tmp\\.contact_age').val(Math.round(age));
+                        if(!isExistingRelationship || isEditContactChecked){
+                            $parent.find('.obs\\.contact_age').val(Math.round(age));
+                        }
 
                         var contactUuid = uuid;
                         $parent.find('.tmp\\.person_uuid').val(contactUuid);
@@ -741,39 +774,44 @@
                         var personAUuid = $parent.find('.personA\\.uuid').val();
                         var personBUuid = $parent.find('.personB\\.uuid').val();
 
-                        var relationshipType = $parent.find('.person\\.relationshipType').val();
+                        var relationshipObs = '';
                         if(relationshipType == '8ce38f96-0c7f-11eb-8fb0-bbd20b621cb8'){
-                            $parent.find('.obs\\.contact_relationship').val('1930^Amigo ou Colega^99DCT');
+                            relationshipObs = '1930^Amigo ou Colega^99DCT';
                         } else if(relationshipType == '4132a84c-f116-4369-b67d-9363b3399916'){
                             if(personAUuid == contactUuid){
-                                $parent.find('.obs\\.contact_relationship').val('973^AVO^99DCT');
+                                relationshipObs = '973^AVO^99DCT';
                             } else if(personBUuid == contactUuid){
-                                $parent.find('.obs\\.contact_relationship').val('23708^NETO^99DCT');
+                                relationshipObs = '23708^NETO^99DCT';
                             }
                         } else if(relationshipType == 'b43d9122-0c7f-11eb-946a-4b3fa847b86a'){
-                            $parent.find('.obs\\.contact_relationship').val('2036^CHEFE DE BAIRRO^99DCT');
+                            relationshipObs = '2036^CHEFE DE BAIRRO^99DCT';
                         } else if(relationshipType == '8d91a210-c2cc-11de-8d13-0010c6dffd0f'){
-                            if(personAUuid == contactUuid && relatedPerson.gender == 'M'){
-                                $parent.find('.obs\\.contact_relationship').val('970^MAE^99DCT');
-                            } else if(personAUuid == contactUuid && relatedPerson.gender == 'F'){
-                                $parent.find('.obs\\.contact_relationship').val('971^PAI^99DCT');
+                            if(personAUuid == contactUuid && relatedPerson.sex == 'M'){
+                                relationshipObs = '970^MAE^99DCT';
+                            } else if(personAUuid == contactUuid && relatedPerson.sex == 'F'){
+                                relationshipObs = '971^PAI^99DCT';
                             } else if(personBUuid == contactUuid){
-                                $parent.find('.obs\\.contact_relationship').val('23707^FILHO^99DCT');
+                                relationshipObs = '23707^FILHO^99DCT';
                             }
                         } else if(relationshipType == '333be161-e33d-4f79-bedd-1f6be7ce56f6'){
-                            $parent.find('.obs\\.contact_relationship').val('972^IRMAO^99DCT');
+                            relationshipObs = '972^IRMAO^99DCT';
                         } else if(relationshipType == '2f7d5778-0c80-11eb-b335-9f16b42e3b00'){
-                            $parent.find('.obs\\.contact_relationship').val('1921^PARCEIRO^99DCT');
+                            relationshipObs = '1921^PARCEIRO^99DCT';
                         } else if(relationshipType == 'd7de2452-0c7f-11eb-8830-53010a05b7d5'){
-                            $parent.find('.obs\\.contact_relationship').val('23705^PRIMO^99DCT');
+                            relationshipObs = '23705^PRIMO^99DCT';
                         } else if(relationshipType == '8d91a3dc-c2cc-11de-8d13-0010c6dffd0f'){
-                            $parent.find('.obs\\.contact_relationship').val('975^TIA^99DCT');
+                            relationshipObs = '975^TIA^99DCT';
                         } else if(relationshipType == 'f931fb74-0c7f-11eb-963d-535e77020317'){
-                            $parent.find('.obs\\.contact_relationship').val('23706^TRABALHADOR^99DCT');
+                            relationshipObs = '23706^TRABALHADOR^99DCT';
                         } else if(relationshipType == '10a5d5f0-0c80-11eb-86b1-e3c0d147106d'){
-                            $parent.find('.obs\\.contact_relationship').val('2034^VIZINHO^99DCT');
+                            relationshipObs = '2034^VIZINHO^99DCT';
                         } else if(relationshipType == '4bf4d502-0c80-11eb-b53c-cf462d429cce'){
-                            $parent.find('.obs\\.contact_relationship').val('5622^Outro, Não Codificado^99DCT');
+                            relationshipObs = '5622^Outro, Não Codificado^99DCT';
+                        }
+
+                        $parent.find('.tmp\\.contact_relationship').val(relationshipObs);
+                        if(!isExistingRelationship || isEditContactChecked){
+                            $parent.find('.obs\\.contact_relationship').val(relationshipObs);
                         }
 
                         var hiv_test = htmlDataStore.getObsByConceptId(contactUuid, 23779);
@@ -781,12 +819,18 @@
                         hiv_test = JSON.parse(hiv_test);
                         if(hiv_test.length) {
                             hiv_test = hiv_test[0];
+                            var hiv_test_obs = '';
                             if (hiv_test.valueCoded.id == 703){
-                                $parent.find('.obs\\.hiv_test').val('703^Positivo^99DCT');
+                                hiv_test_obs = '703^Positivo^99DCT';
                             } else if (hiv_test.valueCoded.id == 664){
-                                $parent.find('.obs\\.hiv_test').val('664^Negativo^99DCT');
+                                hiv_test_obs = '664^Negativo^99DCT';
                             } else if (hiv_test.valueCoded.id == 1067){
-                                $parent.find('.obs\\.hiv_test').val('1067^Desconhecido^99DCT');
+                                hiv_test_obs = '1067^Desconhecido^99DCT';
+                            }
+
+                            $parent.find('.tmp\\.hiv_test').val(hiv_test_obs);
+                            if(!isExistingRelationship || isEditContactChecked){
+                                $parent.find('.obs\\.hiv_test').val(hiv_test_obs);
                             }
                         }
 
@@ -794,10 +838,16 @@
                         hiv_care = JSON.parse(hiv_care);
                         if(hiv_care.length) {
                             hiv_care = hiv_care[0];
+                            var hiv_care_obs = '';
                             if (hiv_care.valueCoded.id == 1065){
-                                $parent.find('.obs\\.hiv_care').val('1065^Sim^99DCT');
+                                hiv_care_obs = '1065^Sim^99DCT';
                             } else if (hiv_care.valueCoded.id == 1066){
-                                $parent.find('.obs\\.hiv_care').val('1066^Nao^99DCT');
+                                hiv_care_obs = '1066^Nao^99DCT';
+                            }
+
+                            $parent.find('.tmp\\.hiv_care').val(hiv_care_obs);
+                            if(!isExistingRelationship || isEditContactChecked){
+                                $parent.find('.obs\\.hiv_care').val(hiv_care_obs);
                             }
                         }
 
@@ -805,26 +855,36 @@
                         child_at_risk_treatment = JSON.parse(child_at_risk_treatment);
                         if(child_at_risk_treatment.length) {
                             child_at_risk_treatment = child_at_risk_treatment[0];
+                            var child_at_risk_treatment_obs = '';
                             if (child_at_risk_treatment.valueCoded.id == 1065){
-                                $parent.find('.obs\\.child_at_risk_treatment').val('1065^Sim^99DCT');
+                                child_at_risk_treatment_obs = '1065^Sim^99DCT';
                             } else if (child_at_risk_treatment.valueCoded.id == 1066){
-                                $parent.find('.obs\\.child_at_risk_treatment').val('1066^Nao^99DCT');
+                                child_at_risk_treatment_obs = '1066^Nao^99DCT';
                             } else if (child_at_risk_treatment.valueCoded.id == 23892){
-                                $parent.find('.obs\\.child_at_risk_treatment').val('23892^Alta^99DCT');
+                                child_at_risk_treatment_obs = '23892^Alta^99DCT';
+                            }
+                            $parent.find('.obs\\.child_at_risk_treatment').val(child_at_risk_treatment_obs);
+                            if(!isExistingRelationship || isEditContactChecked){
+                                $parent.find('.obs\\.child_at_risk_treatment').val(child_at_risk_treatment_obs);
                             }
                         }
 
                         var relative_nid = htmlDataStore.getObsByConceptId(contactUuid, 23781);
                         relative_nid = JSON.parse(relative_nid);
+                        var relative_nid_obs = '';
                         if(relative_nid.length) {
                             relative_nid = relative_nid[0];
-                            $parent.find('.obs\\.relative_nid').val(relative_nid.valueText);
+                            relative_nid_obs = relative_nid.valueText;
                         } else {
                             relative_nid = htmlDataStore.getPatientIdentifier(contactUuid, "e2b966d0-1d5f-11e0-b929-000c29ad1d07");
                             relative_nid = JSON.parse(relative_nid);
                             if('identifier_value' in relative_nid) {
-                                $parent.find('.obs\\.relative_nid').val(relative_nid.identifier_value);
+                                relative_nid_obs = relative_nid.identifier_value;
                             }
+                        }
+                        $parent.find('.tmp\\.relative_nid').val(relative_nid_obs);
+                        if(!isExistingRelationship || isEditContactChecked) {
+                            $parent.find('.obs\\.relative_nid').val(relative_nid_obs);
                         }
                     }
 
