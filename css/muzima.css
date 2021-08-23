@@ -1,7 +1,7 @@
 .sub-section,.section {
     padding: 10px;
-    border: 1px solid #000000;
-    border-radius: 5px;
+    border: 1px solid #ffffff;
+    border-radius: 2px;
     margin: 10px 5px;
 }
 
@@ -12,6 +12,11 @@
 .error {
     color: red;
     font-weight: normal;
+}
+
+.blue-label {
+  color: blue;
+  text-transform: uppercase;
 }
 
 input.error {
@@ -26,7 +31,7 @@ input.error {
     line-height: 18px;
     padding: 16px 23px;
     margin-right: 4px !important;
-    border-radius: 4px;
+    border-radius: 1px;
     background: #ffffff url("../images/barcode_icon.png") no-repeat center;
 }
 
@@ -110,15 +115,15 @@ span.clear{
 }
 
 .medium h2{
-    font-size: 34px;
+    font-size: 24px;
 }
 
 .medium h3{
-    font-size: 28px;
+    font-size: 18px;
 }
 
 .medium h4{
-    font-size: 22px;
+    font-size: 16px;
 }
 
 .medium .form-control:not(textarea){

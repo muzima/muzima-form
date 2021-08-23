@@ -2,6 +2,7 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/material.css" rel="stylesheet">
     <link href="css/muzima.css" rel="stylesheet">
     <link href="css/ui-darkness/jquery-ui-1.10.4.custom.min.css" rel="stylesheet">
 
@@ -10,6 +11,7 @@
     <script src="js/jquery.validate.min.js"></script>
     <script src="js/additional-methods.min.js"></script>
     <script src="js/muzima.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <title>Registration Form</title>
 </head>
@@ -18,8 +20,6 @@
 <form id="registration_form" name="registration_form">
   <div id="pre_populate_data">
   </div>
-    <h2 class="text-center">Registration Form</h2>
-
     <div class="section">
         <h3>Personal Details</h3>
         <div class="form-group">
@@ -95,7 +95,7 @@
            <label>Other Identifiers:</label>
             <div class="section repeat other_identifier" id="other_identifier" data-name="other_identifier" data-group="patient.otheridentifier">
                 <div class="form-group group-set other_identifier_type" id="other_identifier_type">
-                    <label for="identifier_type_name">➕ Add Identifier</label>
+                    <label class ="blue-label" for="identifier_type_name">+ Add Identifier</label>
                     <select class="form-control identifier_type_name" name="identifier_type_name"  id="identifier_type_name">
                         <option value="">...</option>
                         <option id="amrs_medical_record_number" value="AMRS Medical Record Number">AMRS Medical Record Number</option>
