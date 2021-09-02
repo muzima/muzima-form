@@ -175,6 +175,31 @@ span.clear{
     display:inline-block;
 }
 
+input[type=text] {
+  border: none;
+  padding: 22px;
+  border-bottom: 2px solid gray;
+}
+
+.dropborder {
+  border: none;
+  border-bottom: 2px solid gray;
+}
+
+.selector-field {
+  margin: 12px;
+}
+
+ul {
+  column-count: 2;
+  column-gap: 2rem;
+  list-style: none;
+}
+
+.adder {
+  color: blue;
+}
+
 @keyframes spin {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
