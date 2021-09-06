@@ -1,3 +1,4 @@
+
 .sub-section,.section {
     padding: 10px;
     border: 1px solid #ffffff;
@@ -178,7 +179,12 @@ span.clear{
 input[type=text] {
   border: none;
   padding: 22px;
+  background-color: #0000001F;
   border-bottom: 2px solid gray;
+}
+
+input[type=checkbox] {
+  color:#000000DE
 }
 
 .dropborder {
@@ -186,8 +192,17 @@ input[type=text] {
   border-bottom: 2px solid gray;
 }
 
+SELECT {
+    padding-right: 2rem !important;
+}
+
 .selector-field {
-  margin: 12px;
+  padding: 12px;
+  height: auto;
+  margin-bottom: 8px;
+  margin-top: 8px;
+  background-color: #0000001F;
+  border-bottom: 2px solid gray;
 }
 
 ul {
@@ -197,7 +212,10 @@ ul {
 }
 
 .adder {
-  color: blue;
+  color: #137EFE;
+  font-weight: bold;
+  font-family: monospace;
+  margin-left: 16px;
 }
 
 @keyframes spin {
