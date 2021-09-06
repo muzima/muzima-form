@@ -184,7 +184,9 @@ input[type=text] {
 }
 
 input[type=checkbox] {
-  color:#000000DE
+  color:#000000DE;
+  margin-right: 12px;
+  font-size: 18px;
 }
 
 .dropborder {
@@ -194,6 +196,10 @@ input[type=checkbox] {
 
 SELECT {
     padding-right: 2rem !important;
+}
+
+.allergies_title{
+  margin-left: 12px;
 }
 
 .selector-field {
