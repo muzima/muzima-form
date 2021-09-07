@@ -186,7 +186,9 @@ input[type=text] {
 input[type=checkbox] {
   color:#000000DE;
   margin-right: 12px;
-  font-size: 18px;
+  font-size: 48px;
+  height: 2rem;
+  width: 2rem;
 }
 
 .dropborder {
