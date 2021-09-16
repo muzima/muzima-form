@@ -1,5 +1,5 @@
 
-.sub-section,.section {
+.sub-section, .section {
     padding: 10px;
     border: 1px solid #ffffff;
     border-radius: 2px;
@@ -16,8 +16,8 @@
 }
 
 .blue-label {
-  color: blue;
-  text-transform: uppercase;
+    color: blue;
+    text-transform: uppercase;
 }
 
 input.error {
@@ -90,16 +90,16 @@ input.error {
     width: 90%;
 }
 
-#pre_populate_data{
+#pre_populate_data {
     display: none;
 }
 
-span.clear{
+span.clear {
     display: block;
-    clear:left;
+    clear: left;
 }
 
-.datepicker{
+.datepicker {
     background: white !important;
 }
 
@@ -107,55 +107,55 @@ span.clear{
     font-weight: normal;
 }
 
-.small{
+.small {
     font-size: 14px;
 }
 
-.medium, .medium .form-control, .medium .btn{
+.medium, .medium .form-control, .medium .btn {
     font-size: 18px;
 }
 
-.medium h2{
+.medium h2 {
     font-size: 24px;
 }
 
-.medium h3{
+.medium h3 {
     font-size: 18px;
 }
 
-.medium h4{
+.medium h4 {
     font-size: 16px;
 }
 
-.medium .form-control:not(textarea){
+.medium .form-control:not(textarea) {
     height: 38px;
 }
 
-.medium .btn{
+.medium .btn {
     padding: 6px 15px;
 }
 
-.large, .large .form-control, .large .btn{
+.large, .large .form-control, .large .btn {
     font-size: 22px;
 }
 
-.large h2{
+.large h2 {
     font-size: 38px;
 }
 
-.large h3{
+.large h3 {
     font-size: 32px;
 }
 
-.large h4{
+.large h4 {
     font-size: 26px;
 }
 
-.large .form-control:not(textarea){
+.large .form-control:not(textarea) {
     height: 42px;
 }
 
-.large .btn{
+.large .btn {
     padding: 6px 18px;
 }
 
@@ -173,62 +173,82 @@ span.clear{
     vertical-align: top;
     padding: 6px 6px;
     animation: spin 2s linear infinite;
-    display:inline-block;
+    display: inline-block;
 }
 
 input[type=text] {
-  border: none;
-  padding: 22px;
-  background-color: #0000001F;
-  border-bottom: 2px solid gray;
+    border: none;
+    padding: 22px;
+    background-color: #00000005;
+    border-bottom: 2px solid #00000026;
 }
 
 input[type=checkbox] {
-  color:#000000DE;
-  margin-right: 12px;
-  font-size: 48px;
-  height: 2rem;
-  width: 2rem;
-  vertical-align: middle;
-  float: left;
+    color: #000000DE;
+    margin-right: 12px;
+    font-size: 48px;
+    height: 2rem;
+    width: 2rem;
+    vertical-align: middle;
+    float: left;
 }
 
 .dropborder {
-  border: none;
-  border-bottom: 2px solid gray;
+    border: none;
+    border-bottom: 2px solid gray;
 }
 
-SELECT {
+select {
     padding-right: 2rem !important;
 }
 
-.allergies_title{
-  margin-left: 12px;
+.allergies_title {
+    margin-left: 12px;
 }
 
 .selector-field {
-  padding: 12px;
-  height: auto;
-  margin-bottom: 8px;
-  margin-top: 8px;
-  background-color: #0000001F;
-  border-bottom: 2px solid gray;
+    padding: 13px;
+    height: auto;
+    background-color: #00000005;
+    border: none;
+    border-bottom: 2px solid #00000026;
 }
 
 ul {
-  column-count: 2;
-  column-gap: 2rem;
-  list-style: none;
+    column-count: 2;
+    column-gap: 2rem;
+    list-style: none;
 }
 
 .adder {
-  color: #137EFE;
-  font-weight: bold;
-  font-family: monospace;
-  margin-left: 16px;
+    color: #137EFE;
+    font-weight: bold;
+    font-family: monospace;
+    margin-left: 16px;
 }
 
 @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.input_icon_show {
+    position: relative;
+}
+.input_icon {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 2;
+    cursor: pointer;
+    transition: .3s ease all;
+    width: 45px;
+    height: 45px;
+    line-height: 45px !important;
+    text-align: center;
+    font-size: 24px !important;
 }
