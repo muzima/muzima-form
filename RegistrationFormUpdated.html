@@ -1,0 +1,421 @@
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/muzima.css" rel="stylesheet">
+    <link href="css/font-awesome.min.css" rel="stylesheet">
+    <link href="css/ui-darkness/jquery-ui-1.10.4.custom.min.css" rel="stylesheet">
+
+    <script src="js/jquery.min.js"></script>
+    <script src="js/jquery-ui-1.10.4.custom.min.js"></script>
+    <script src="js/jquery.validate.min.js"></script>
+    <script src="js/additional-methods.min.js"></script>
+    <script src="js/muzima.js"></script>
+
+    <title>Registration Form</title>
+</head>
+<body class="col-md-8 col-md-offset-2">
+<div id="result"></div>
+<form id="registration_form" name="registration_form">
+    <div id="pre_populate_data">
+    </div>
+    <div>
+        <div class="section">
+            <h3>Personal Details</h3>
+            <div class="form-group">
+                <input class="form-control" id="patient.uuid"
+                       name="patient.uuid" type="hidden" readonly="readonly">
+            </div>
+            <div class="form-group">
+                <input class="form-control" id="patient.family_name" placeholder="Family Name *" name="patient.family_name" type="text" required="required">
+            </div>
+            <div class="form-group">
+                <input class="form-control" id="patient.given_name" placeholder="Given Name *" name="patient.given_name" type="text" required="required">
+            </div>
+            <div class="form-group">
+                <input class="form-control" id="patient.middle_name" placeholder="Middle Name" name="patient.middle_name" type="text">
+            </div>
+
+            <div class="row">
+                <div class="col-sm-5 col-xs-5">
+                    <select class="form-control selector-field" id="patient.sex" name="patient.sex" required="required">
+                        <option value="">Sex *</option>
+                        <option value="M">Male</option>
+                        <option value="F">Female</option>
+                    </select>
+                </div>
+                <div class="col-sm-7 col-xs-7">
+                    <div class="form-group input_icon_show">
+                        <input class="form-control birth_date_picker nonFutureDate past-date" id="patient.birth_date"
+                               name="patient.birth_date"
+                               type="text" placeholder="Date of Birth *" required="required" readonly="readonly">
+                        <span class="fa fa-calendar input_icon text-warning"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h3>Identifiers</h3>
+            <select class="form-control dropborder selector-field" id="patient.sex" name="patient.sex"
+                    required="required">
+                <option value="identifier_type">Type</option>
+            </select>
+        </div>
+
+        <div class="section">
+            <div class="form-group input_icon_show">
+                <input class="form-control " id="patient.id_number" name="patient.id_number" type="text" placeholder="Patient ID Number" required="required">
+                <span class="fa fa-address-card input_icon text-primary"></span>
+            </div>
+        </div>
+
+        <p class="adder">+ ADD IDENTIFIER</p>
+
+        <div class="section">
+            <h3>Contact details</h3>
+            <div class="form-group input_icon_show">
+                <input class="form-control " id="patient.id_number" name="patient.id_number" type="text" placeholder="Mobile Number 1" required="required">
+                <span class="fa fa-phone input_icon text-success"></span>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="form-group input_icon_show">
+                <input class="form-control " id="patient.id_number" name="patient.id_number" type="text" placeholder="Mobile Number 2" required="required">
+                <span class="fa fa-phone input_icon text-success"></span>
+            </div>
+        </div>
+    </div>
+    <div class="section group-set repeat" data-group="patient.personaddress">
+        <h3>Address</h3>
+        <div class="form-group">
+            <select class="form-control dropborder selector-field" id="patient.sex" name="patient.sex"
+                    required="required">
+                <option value="identifier_type">Country</option>
+                <option value="identifier_type">Kenya</option>
+                <option value="identifier_type">Uganda</option>
+                <option value="identifier_type">Mozambique</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <select class="form-control dropborder selector-field" id="patient.sex" name="patient.sex"
+                    required="required">
+                <option value="identifier_type">State/Provice</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <select class="form-control dropborder selector-field" id="patient.sex" name="patient.sex"
+                    required="required">
+                <option value="identifier_type">County</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <select class="form-control dropborder selector-field" id="patient.sex" name="patient.sex"
+                    required="required">
+                <option value="identifier_type">Sub-county</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <select class="form-control dropborder selector-field" id="patient.sex" name="patient.sex"
+                    required="required">
+                <option value="identifier_type">City</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <select class="form-control dropborder selector-field" id="patient.sex" name="patient.sex"
+                    required="required">
+                <option value="identifier_type">Town</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <input class="form-control" placeholder="Landmark" id="countyDistrict" name="countyDistrict" type="text">
+        </div>
+        <div class="form-group input_icon_show">
+            <input class="form-control " id="address5" name="address5" type="text" placeholder="Address" required="required">
+            <span class="fa fa-map-marker input_icon text-primary"></span>
+        </div>
+        <div class="form-group">
+            <input class="form-control" placeholder="Postal Address" id="cityVillage" name="cityVillage" type="text">
+        </div>
+    </div>
+    <div class="section">
+        <div class="form-group">
+            <input id="enabled_gps" name="enabled_gps" type="checkbox">
+            <label for="enabled_gps">Enabled GPS Location </label>
+        </div>
+    </div>
+
+    <div class="allergies_title">
+        <h3>Allergies</h3>
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <ul>
+                <li>
+                    <label>
+                        <input type="checkbox"/>
+                        <span>Drug Allergy</span>
+                    </label>
+                </li>
+
+                <li>
+                    <label>
+                        <input type="checkbox"/>
+                        <span>Food Allergy</span>
+                    </label>
+                </li>
+
+                <li>
+                    <label>
+                        <input type="checkbox"/>
+                        <span>Latex Allergy</span>
+                    </label>
+                </li>
+
+                <li>
+                    <label>
+                        <input type="checkbox"/>
+                        <span>Insect Allergy</span>
+                    </label>
+                </li>
+
+                <li>
+                    <label>
+                        <input type="checkbox"/>
+                        <span>Drug Allergy</span>
+                    </label>
+                </li>
+
+                <li>
+                    <label>
+                        <input type="checkbox"/>
+                        <span>Drug Allergy</span>
+                    </label>
+                </li>
+
+                <li>
+                    <label>
+                        <input type="checkbox"/>
+                        <span>Food Allergy</span>
+                    </label>
+                </li>
+
+                <li>
+                    <label>
+                        <input type="checkbox"/>
+                        <span>Latex Allergy</span>
+                    </label>
+                </li>
+
+                <li>
+                    <label>
+                        <input type="checkbox"/>
+                        <span>Insect Allergy</span>
+                    </label>
+                </li>
+
+                <li>
+                    <label>
+                        <input type="checkbox"/>
+                        <span>Drug Allergy</span>
+                    </label>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="section">
+        <h3>Section heading</h3>
+        <select class="form-control dropborder selector-field" id="patient.sex" name="patient.sex" required="required">
+            <option value="identifier_type">Occupation</option>
+        </select>
+    </div>
+
+    <div class="section">
+        <h3>Next of kin details</h3>
+        <div class="form-group">
+            <input class="form-control" id="patient.uuid"
+                   name="patient.uuid" type="hidden" readonly="readonly">
+        </div>
+        <div class="form-group">
+            <input class="form-control" id="patient.family_name" placeholder="Family Name" name="patient.family_name"
+                   type="text"
+                   required="required">
+        </div>
+        <div class="form-group">
+            <input class="form-control" id="patient.given_name" placeholder="Given Name" name="patient.given_name"
+                   type="text"
+                   required="required">
+        </div>
+        <div class="form-group">
+            <input class="form-control" id="patient.middle_name" placeholder="Middle Name" name="patient.middle_name"
+                   type="text">
+        </div>
+
+        <div class="row form-group">
+            <div class="col-sm-5 col-xs-5">
+                <select class="form-control selector-field" id="patient.sex" name="patient.sex" required="required">
+                    <option value="">Sex</option>
+                    <option value="M">Male</option>
+                    <option value="F">Female</option>
+                </select>
+            </div>
+            <div class="col-sm-7 col-xs-7">
+                <div class="form-group input_icon_show">
+                    <input class="form-control birth_date_picker nonFutureDate past-date" id="patient.birth_date"
+                           name="patient.birth_date"
+                           type="text" placeholder="Date of Birth" required="required" readonly="readonly">
+                    <span class="fa fa-calendar input_icon text-warning"></span>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <select class="form-control dropborder selector-field" id="patient.sex" name="patient.sex"
+                    required="required">
+                <option value="identifier_type">Relationship</option>
+            </select>
+        </div>
+        <div class="form-group input_icon_show">
+            <input class="form-control " id="patient.id_number" name="patient.id_number" type="text" placeholder="Mobile Number 2" required="required">
+            <span class="fa fa-phone input_icon text-success"></span>
+        </div>
+    </div>
+</form>
+
+</body>
+<script type="text/javascript">
+    $(document).ready(function () {
+        var dateFormat = "dd-mm-yy";
+        var currentDate = $.datepicker.formatDate(dateFormat, new Date());
+        var encounterDatetime = $('#encounter\\.encounter_datetime');
+        if ($(encounterDatetime).val() == "") {
+            $(encounterDatetime).val(currentDate);
+        }
+
+        var requireMedicalRecordNumber = htmlDataStore.isMedicalRecordNumberRequired();
+        if (requireMedicalRecordNumber) {
+            $(".require_medical_record_number_hint").show();
+            $("#identifier_value").attr("required", "required");
+        } else {
+            $(".require_medical_record_number_hint").hide();
+            $("#identifier_value").removeAttr("required", "required");
+        }
+
+        var currentYear = new Date().getFullYear();
+        var birthdate_start_year = currentYear - 140;
+        $('.birth_date_picker').datepicker({
+            dateFormat: dateFormat,
+            changeMonth: true,
+            changeYear: true,
+            yearRange: birthdate_start_year + ':' + currentYear,
+        });
+
+        $('#save_draft').click(function () {
+            // pre process the medications
+            $(this).prop('disabled', true);
+            document.saveDraft(this);
+            $(this).prop('disabled', false);
+        });
+
+        $('#submit_form').click(function () {
+            // pre process the medications
+            $(this).prop('disabled', true);
+            document.submit();
+            $(this).prop('disabled', false);
+        });
+
+        $.fn.calculateFields = function () {
+            var tempAgeInYears = $.trim($("#tmp\\.age_in_years").val());
+            if (tempAgeInYears != '') {
+                $('#patient\\.birthdate_estimated').val('true');
+                $('#patient\\.birth_date').val($.fn.getTempBirthDate(tempAgeInYears));
+            }
+            return true;
+        };
+
+        $.fn.customValidationCheck = function () {
+            return $.fn.calculateFields();
+        };
+
+        var dobType = $('#tmp\\.birthdate_type');
+        dobType.change(function () {
+            var $show_birth_date = $('.show_birthdate');
+            var $show_age = $('.show_age');
+            if ($('#tmp\\.birthdate_type').val() == 'age') {
+                $show_age.show();
+                $show_birth_date.find('input').val('');
+                $show_birth_date.hide();
+            } else {
+                $show_age.hide();
+                $show_age.find('input').val('');
+                $show_birth_date.show();
+            }
+        });
+        dobType.trigger('change');
+
+        $.validator.addMethod(
+            "validateConfirmIdentifierElement",
+            function (confirm_other_identifier_value, confirm_identifier_element) {
+                var other_identifier_value = $(confirm_identifier_element).closest('.repeat').find('.check-other-identifier').val();
+                if (other_identifier_value == confirm_other_identifier_value) {
+                    return true;
+                } else {
+                    return false;
+                }
+            },
+            "Other Identifiers do not match."
+        );
+
+        jQuery.validator.addClassRules({
+            'check-confirm-identifier': {
+                validateConfirmIdentifierElement: true
+            }
+        });
+
+        $('.identifier_type_name').change(function () {
+            var selected_val = $(this).val();
+            console.log(selected_val);
+            if (selected_val == "") {
+                $(this).closest('.repeat').find('.identifier_value_section').hide();
+            } else {
+                if (selected_val == $('#amrs_medical_record_number').val() || selected_val == $('#hct_id').val() || selected_val == $('#pmtct_id')) {
+                    $('#other_identifier_value').addClass('checkDigit');
+                    $('#confirm_other_identifier_value').addClass('checkDigit');
+                } else {
+                    $('#other_identifier_value').removeClass('checkDigit');
+                    $('#confirm_other_identifier_value').removeClass('checkDigit');
+                }
+                $(this).closest('.repeat').find('.identifier_value_section').show();
+            }
+
+        });
+        $('.identifier_type_name').trigger('change');
+
+        document.setupAutoCompleteData('encounter\\.location_id');
+
+
+        document.setupAutoCompleteDataForProvider('encounter\\.provider_id_select');
+
+        $('#registration_form').validate({
+            rules: {
+                'tmp.age_in_years': {
+                    range: [0, 120]
+                }
+            }
+        });
+
+        document.setupValidationForProvider("$('#encounter\\.provider_id_select').val()", "encounter\\.provider_id");
+
+        document.setupValidationForLocation("$('#encounter\\.location_id').val()", "encounter\\.location_id");
+    });
+</script>
+
+</html>
