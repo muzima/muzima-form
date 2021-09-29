@@ -20,8 +20,27 @@
 
 <div id="result"></div>
 <div id="pre_populate_data">
+    {
+    "obs_comment": {
+    "obs_comment.contact_testing_consent": [
+    "source mUzima",
+    "Specific encounter form uuid"
+    ]
+    },
+    "encounter": {
+    "encounter.encounter_datetime": "28-09-2021 9:17",
+    "encounter.form_uuid_to_add_obs": "05496c70-845c-40b1-9d28-070f67b3f7da"
+    },
+    "observation": {
+    "21155^Paciente consente testagem dos contactos^99DCT": {
+    "obs_value": "6403^Comunidade^99DCT",
+    "obs_comment": "source mUzima",
+    "obs_formuuidtoaddobsfor": "source mUzima"
+    }
+    }
+    }
 </div>
-<form id="demographics_update_form" name="demographics_update_form">
+<form id="index_registration_form" name="index_registration_form">
     <h2 class="text-center">Actualizar Dados Pessoais</h2>
 
     <div class="section">
@@ -180,6 +199,13 @@
                 <option value="6403^Comunidade^99DCT">Comunidade</option>
                 <option value="1066^Recusa^99DCT">Recusa</option>
             </select>
+            <input type="hidden" class="form-control" name="obs_comment.contact_testing_consent"
+                   data-obscommentfor="obs.contact_testing_consent"  id="obs_comment.contact_testing_consent" required="required"
+                    value="Source=mUzima">
+            <input type="hidden" class="form-control" name="obs_formuuidtoaddobs.contact_testing_consent"
+                   value="25c7f95e-0685-43dd-9321-9c9092e35b69"
+                   data-obsformuuidtoaddobsfor="obs.contact_testing_consent"  id="obs_formuuidtoaddobs.contact_testing_consent" required="required">
+
         </div>
         <div class="form-group">
             <label for="obs.expected_testing_date">Data Prevista para Testagem:
@@ -796,7 +822,7 @@
         document.setupValidationForLocation("$('#encounter\\.location_id').val()","encounter\\.location_id");
 
 
-        $('#demographics_update_form').validate();
+        $('#index_registration_form').validate();
 
     });
 </script>

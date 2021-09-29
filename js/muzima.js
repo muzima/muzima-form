@@ -18,7 +18,7 @@ var htmlDataStore = {
     },
 
     getRelationshipForPersons:function(uuid1,uuid2){
-        return '[]';
+        return '[{"relationshipType":"8d91a210-c2cc-11de-8d13-0010c6dffd0f"}]';
     },
 
     getPersonDetailsFromDeviceByUuid:function(uuid){
@@ -808,14 +808,26 @@ $(document).ready(function () {
                     });
                 }
             }else if (v instanceof Object){
-                if(v.obs_value !== undefined && v.obs_datetime !== undefined){
+                if(v.obs_value !== undefined){
                     var obs_elements = $div.find('[data-concept="' + k + '"]');
                     $.each(obs_elements, function(i, element) {
                         applyValue(element, v.obs_value);
                     });
 
-                    var datetime_element = $div.find('[data-obsdatetimefor="' + obs_elements.attr('name') + '"]');
-                    applyValue(datetime_element, v.obs_datetime);
+                    if(v.obs_datetime !== undefined) {
+                        var datetime_element = $div.find('[data-obsdatetimefor="' + obs_elements.attr('name') + '"]');
+                        applyValue(datetime_element, v.obs_datetime);
+                    }
+
+                    if(v.obs_comment !== undefined) {
+                        var comment_element = $div.find('[data-obscommentfor="' + obs_elements.attr('name') + '"]');
+                        applyValue(comment_element, v.obs_comment);
+                    }
+
+                    if(v.obs_formuuidtoaddobsfor !== undefined) {
+                        var formuuid_element = $div.find('[data-obsformuuidtoaddobsfor="' + obs_elements.attr('name') + '"]');
+                        applyValue(formuuid_element, v.obs_formuuidtoaddobsfor);
+                    }
                 }else{
                     populateObservations($div, v);
                 }
@@ -993,13 +1005,26 @@ $(document).ready(function () {
                                 });
                             });
                         }
-                    } else if (value.obs_value !== undefined && value.obs_datetime !== undefined) {
+                    } else if (value.obs_value !== undefined) {
                         var obs_elements = $parentDiv.find('[data-concept="' + key + '"]');
                         $.each(obs_elements, function (i, element) {
                             applyValue(element, value.obs_value);
                         });
-                        var datetime_element = $parentDiv.find('[data-obsdatetimefor="' + obs_elements.attr('name') + '"]');
-                        applyValue(datetime_element, value.obs_datetime);
+
+                        if(value.obs_datetime !== undefined) {
+                            var datetime_element = $parentDiv.find('[data-obsdatetimefor="' + obs_elements.attr('name') + '"]');
+                            applyValue(datetime_element, value.obs_datetime);
+                        }
+
+                        if(value.obs_comment !== undefined) {
+                            var comment_element = $div.find('[data-obscommentfor="' + obs_elements.attr('name') + '"]');
+                            applyValue(comment_element, value.obs_comment);
+                        }
+
+                        if(value.obs_formuuidtoaddobsfor !== undefined) {
+                            var formuuid_element = $div.find('[data-obsformuuidtoaddobsfor="' + obs_elements.attr('name') + '"]');
+                            applyValue(formuuid_element, value.obs_formuuidtoaddobsfor);
+                        }
                     } else {
                         populateDataConcepts($div, value);
                     }
@@ -1033,6 +1058,11 @@ $(document).ready(function () {
     /* Start - Code to Serialize form along with Data-Concepts */
     $.fn.serializeEncounterForm = function () {
       setObsDatetimeArray(this);
+        setObsValueTextArray(this);
+        setObsValueCodedArray(this);
+        setObsValueUuidArray(this);
+        setObsCommentArray(this);
+        setFormUuidToAddObsForArray(this);
 
         var jsonResult = $.extend({}, serializeNonConceptElements(this),
         serializeNestedNonConceptElements(this),
@@ -1147,9 +1177,14 @@ $(document).ready(function () {
     var jsonifyConcepts = function ($allConcepts, codeIndexPatientObsIfAvailable) {
         var o = {};
         $.each($allConcepts, function (i, element) {
+            var obs_datetime = getObsDatetime(element);
+            var obs_valuetext = getObsValueText(element);
+            var obs_valuecoded = getObsValueCoded(element);
+            var obs_valueuuid = getObsValueUuid(element);
+            var obs_comment = getObsComment(element);
+            var obs_formuuidtoaddobsfor = getFormUuidToAddObsFor(element);
             if ($(element).is(':checkbox') || $(element).is(':radio')) {
                 if ($(element).is(':checked')) {
-                    var obs_datetime = getObsDatetime(element);
                     if (obs_datetime != '') {
                         var v = {};
                         var obs_value = $(element).val();
@@ -1158,20 +1193,43 @@ $(document).ready(function () {
                             v = pushIntoArray(v, 'obs_datetime', obs_datetime);
                             o = pushIntoArray(o, $(element).attr('data-concept'), v);
                         }
-                    } else if ($(element).hasClass('is-index-obs')){
+                    } else if (obs_valuetext != '' || obs_valuecoded != '' || obs_valueuuid != '' || obs_comment != '' || obs_formuuidtoaddobsfor != ''){
+                        var v = {};
+                        var obs_value = $(element).val();
+                        if (JSON.stringify(obs_value) != '{}' && obs_value != "") {
+                            v = pushIntoArray(v, 'obs_value', obs_value);
+                            v = pushIntoArray(v, 'obs_valuetext', obs_valuetext);
+                            v = pushIntoArray(v, 'obs_valuecoded', obs_valuecoded);
+                            v = pushIntoArray(v, 'obs_valueuuid', obs_valueuuid);
+                            v = pushIntoArray(v, 'obs_comment', obs_comment);
+                            v = pushIntoArray(v, 'obs_formuuidtoaddobsfor', obs_formuuidtoaddobsfor);
+                            o = pushIntoArray(o, $(element).attr('data-concept'), v);
+                        }
+                    } else if ($(element).hasClass('is-index-obs')) {
                         o = pushIntoArray(o, 'index_obs.'+$(element).attr('data-concept'), $(element).val());
                     } else {
                         o = pushIntoArray(o, $(element).attr('data-concept'), $(element).val());
                     }
                 }
             } else {
-                var obs_datetime = getObsDatetime(element);
                 if (obs_datetime != '') {
                     var v = {};
                     var obs_value = $(element).val();
                     if (JSON.stringify(obs_value) != '{}' && obs_value != "") {
                         v = pushIntoArray(v, 'obs_value', obs_value);
                         v = pushIntoArray(v, 'obs_datetime', obs_datetime);
+                        o = pushIntoArray(o, $(element).attr('data-concept'), v);
+                    }
+                } else if (obs_valuetext != '' || obs_valuecoded != '' || obs_valueuuid != '' || obs_comment != '' || obs_formuuidtoaddobsfor != ''){
+                    var v = {};
+                    var obs_value = $(element).val();
+                    if (JSON.stringify(obs_value) != '{}' && obs_value != "") {
+                        v = pushIntoArray(v, 'obs_value', obs_value);
+                        v = pushIntoArray(v, 'obs_valuetext', obs_valuetext);
+                        v = pushIntoArray(v, 'obs_valuecoded', obs_valuecoded);
+                        v = pushIntoArray(v, 'obs_valueuuid', obs_valueuuid);
+                        v = pushIntoArray(v, 'obs_comment', obs_comment);
+                        v = pushIntoArray(v, 'obs_formuuidtoaddobsfor', obs_formuuidtoaddobsfor);
                         o = pushIntoArray(o, $(element).attr('data-concept'), v);
                     }
                 } else if ($(element).hasClass('is-index-obs') && codeIndexPatientObsIfAvailable == true){
@@ -1183,6 +1241,7 @@ $(document).ready(function () {
         });
         return o;
     };
+
     var jsonifyNonConcepts = function ($allNonConcepts) {
         var o = {};
         $.each($allNonConcepts, function (i, element) {
@@ -1224,6 +1283,105 @@ $(document).ready(function () {
             var elementName = $(element).attr('name');
             if (obsDatetimeArray[elementName] !== undefined) {
                 return obsDatetimeArray[elementName];
+            }
+        }
+        return '';
+    }
+
+    var obsValueTextArray = null;
+    var setObsValueTextArray = function ($form) {
+        obsValueTextArray = {};
+        var obsValueTextElements = $form.find('*[data-obsvaluetextfor]').filter(':visible');
+        $.each(obsValueTextElements, function (i, element) {
+            pushIntoArray(obsValueTextArray, $(element).attr('data-obsvaluetextfor'), $(element).val());
+        });
+    };
+
+    var getObsValueText = function (element) {
+        if (obsValueTextArray !== null) {
+            var elementName = $(element).attr('name');
+            if (obsValueTextArray[elementName] !== undefined) {
+                return obsValueTextArray[elementName];
+            }
+        }
+        return '';
+    }
+
+    var obsValueCodedArray = null;
+    var setObsValueCodedArray = function ($form) {
+        obsValueCodedArray = {};
+        var obsValueCodedElements = $form.find('*[data-obsvaluecodedfor]').filter(':visible');
+        $.each(obsValueCodedElements, function (i, element) {
+            if ($(element).is(':checkbox') || $(element).is(':radio')) {
+                if ($(element).is(':checked')) {
+                    pushIntoArray(obsValueCodedArray, $(element).attr('data-obsvaluecodedfor'), $(element).val());
+                }
+            }else{
+                pushIntoArray(obsValueCodedArray, $(element).attr('data-obsvaluecodedfor'), $(element).val());
+            }
+        });
+    };
+
+    var getObsValueCoded = function (element) {
+        if (obsValueCodedArray !== null) {
+            var elementName = $(element).attr('name');
+            if (obsValueCodedArray[elementName] !== undefined) {
+                return obsValueCodedArray[elementName];
+            }
+        }
+        return '';
+    }
+
+    var obsValueUuidArray = null;
+    var setObsValueUuidArray = function ($form) {
+        obsValueUuidArray = {};
+        var obsValueUuidElements = $form.find('*[data-obsvalueuuidfor]').filter(':visible');
+        $.each(obsValueUuidElements, function (i, element) {
+            pushIntoArray(obsValueUuidArray, $(element).attr('data-obsvalueuuidfor'), $(element).val());
+        });
+    };
+
+    var getObsValueUuid = function (element) {
+        if (obsValueUuidArray !== null) {
+            var elementName = $(element).attr('name');
+            if (obsValueUuidArray[elementName] !== undefined) {
+                return obsValueUuidArray[elementName];
+            }
+        }
+        return '';
+    }
+
+    var obsCommentArray = null;
+    var setObsCommentArray = function ($form) {
+        obsCommentArray = {};
+        var obsCommentElements = $form.find('*[data-obscommentfor]').filter(':visible');
+        $.each(obsCommentElements, function (i, element) {
+            pushIntoArray(obsCommentArray, $(element).attr('data-obscommentfor'), $(element).val());
+        });
+    };
+    var getObsComment = function (element) {
+        if (obsCommentArray !== null) {
+            var elementName = $(element).attr('name');
+            if (obsCommentArray[elementName] !== undefined) {
+                return obsCommentArray[elementName];
+            }
+        }
+        return '';
+    }
+
+    var formUuidToAddObsForArray = null;
+    var setFormUuidToAddObsForArray = function ($form) {
+        formUuidToAddObsForArray = {};
+        var formUuidToAddObsForElements = $form.find('*[data-obsformuuidtoaddobsfor]').filter(':visible');
+        $.each(formUuidToAddObsForElements, function (i, element) {
+            pushIntoArray(formUuidToAddObsForArray, $(element).attr('data-obsformuuidtoaddobsfor'), $(element).val());
+        });
+    };
+    var getFormUuidToAddObsFor = function (element) {
+        if (formUuidToAddObsForArray !== null) {
+            var elementName = $(element).attr('name');
+            if (formUuidToAddObsForArray[elementName] !== undefined) {
+                return formUuidToAddObsForArray[elementName];
             }
         }
         return '';
@@ -1281,7 +1439,7 @@ $(document).ready(function () {
 
     //Start - Set up auto complete for the person element.
     document.setupAutoCompleteForPerson = function($searchElementSelector, $resultElementSelector,$resultsCountElement,$searchLoadingWidget,searchServer) {
-        $searchLoadingWidget.hide();;
+        $searchLoadingWidget.hide();
         $searchElementSelector.focus(function () {
 
             $searchElementSelector.autocomplete({
