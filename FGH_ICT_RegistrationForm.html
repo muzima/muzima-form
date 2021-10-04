@@ -20,25 +20,6 @@
 
 <div id="result"></div>
 <div id="pre_populate_data">
-    {
-    "obs_comment": {
-    "obs_comment.contact_testing_consent": [
-    "source mUzima",
-    "Specific encounter form uuid"
-    ]
-    },
-    "encounter": {
-    "encounter.encounter_datetime": "28-09-2021 9:17",
-    "encounter.form_uuid_to_add_obs": "05496c70-845c-40b1-9d28-070f67b3f7da"
-    },
-    "observation": {
-    "21155^Paciente consente testagem dos contactos^99DCT": {
-    "obs_value": "6403^Comunidade^99DCT",
-    "obs_comment": "source mUzima",
-    "obs_formuuidtoaddobsfor": "source mUzima"
-    }
-    }
-    }
 </div>
 <form id="index_registration_form" name="index_registration_form">
     <h2 class="text-center">Actualizar Dados Pessoais</h2>
@@ -664,11 +645,12 @@
 
         $('.person\\.relationshipType').change(function(){
             var $parent = $(this).closest('.repeat');
-            if($(this).val() == ''){
+            if($(this).val() == '' || $(this).val() == null){
                 $parent.find('.search_person').hide();
                 $parent.find('.create_person').hide();
                 $parent.find('.person_details').hide();
                 $parent.find('.tmp\\.relationshipType').val('');
+                $(this).val('');
             } else {
                 var isAToB = $(this).find(':selected').hasClass('AIsToB');
                 var isBToA = $(this).find(':selected').hasClass('BIsToA');

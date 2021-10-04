@@ -294,16 +294,6 @@
                    id="obs.expected_testing_date" data-concept="23879^Data Prevista para Testagem^99DCT"
                    name="obs.expected_testing_date" type="text" required="required">
         </div>
-        <!--        <div class="form-group">-->
-        <!--            <label for="obs.contact_phoning_consent">Patient consents to Contacts being phoned by-->
-        <!--                health personnel:<span class="required">*</span></label>-->
-        <!--            <select class="form-control" id="obs.contact_phoning_consent" required-->
-        <!--                    name="obs.contact_phoning_consent" data-concept="ddd^Contact phoning consent^99DCT">-->
-        <!--                <option value="">...</option>-->
-        <!--                <option value="1065^SIM^99DCT">Yes</option>-->
-        <!--                <option value="1066^NAO^99DCT">No</option>-->
-        <!--            </select>-->
-        <!--        </div>-->
     </div>
 
     <div class="section">
@@ -911,7 +901,7 @@
 
         $('.tmp\\.relationshipType').change(function(){
             var $parent = $(this).closest('.repeat');
-            if($(this).val() == ''){
+            if($(this).val() == '' || $(this).val() == null){
 
                 //clear and hide the fields
                 $parent.find('.search_person').hide();
@@ -923,6 +913,7 @@
                 $parent.find('.tmp\\.person_search_birth_date').val('');
                 $parent.find('.tmp\\.person_name_search').val('');
                 $parent.find('.person\\.relationshipType').val('');
+                $(this).val('');
             } else {
                 var isAToB = $(this).find(':selected').hasClass('AIsToB');
                 var isBToA = $(this).find(':selected').hasClass('BIsToA');
