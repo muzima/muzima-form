@@ -1185,19 +1185,12 @@ $(document).ready(function () {
             var obs_formuuidtoaddobsfor = getFormUuidToAddObsFor(element);
             if ($(element).is(':checkbox') || $(element).is(':radio')) {
                 if ($(element).is(':checked')) {
-                    if (obs_datetime != '') {
+                    if (obs_datetime != '' || obs_valuetext != '' || obs_valuecoded != '' || obs_valueuuid != '' || obs_comment != '' || obs_formuuidtoaddobsfor != ''){
                         var v = {};
                         var obs_value = $(element).val();
                         if (JSON.stringify(obs_value) != '{}' && obs_value != "") {
                             v = pushIntoArray(v, 'obs_value', obs_value);
                             v = pushIntoArray(v, 'obs_datetime', obs_datetime);
-                            o = pushIntoArray(o, $(element).attr('data-concept'), v);
-                        }
-                    } else if (obs_valuetext != '' || obs_valuecoded != '' || obs_valueuuid != '' || obs_comment != '' || obs_formuuidtoaddobsfor != ''){
-                        var v = {};
-                        var obs_value = $(element).val();
-                        if (JSON.stringify(obs_value) != '{}' && obs_value != "") {
-                            v = pushIntoArray(v, 'obs_value', obs_value);
                             v = pushIntoArray(v, 'obs_valuetext', obs_valuetext);
                             v = pushIntoArray(v, 'obs_valuecoded', obs_valuecoded);
                             v = pushIntoArray(v, 'obs_valueuuid', obs_valueuuid);
@@ -1212,19 +1205,12 @@ $(document).ready(function () {
                     }
                 }
             } else {
-                if (obs_datetime != '') {
+                if (obs_datetime != '' || obs_valuetext != '' || obs_valuecoded != '' || obs_valueuuid != '' || obs_comment != '' || obs_formuuidtoaddobsfor != ''){
                     var v = {};
                     var obs_value = $(element).val();
                     if (JSON.stringify(obs_value) != '{}' && obs_value != "") {
                         v = pushIntoArray(v, 'obs_value', obs_value);
                         v = pushIntoArray(v, 'obs_datetime', obs_datetime);
-                        o = pushIntoArray(o, $(element).attr('data-concept'), v);
-                    }
-                } else if (obs_valuetext != '' || obs_valuecoded != '' || obs_valueuuid != '' || obs_comment != '' || obs_formuuidtoaddobsfor != ''){
-                    var v = {};
-                    var obs_value = $(element).val();
-                    if (JSON.stringify(obs_value) != '{}' && obs_value != "") {
-                        v = pushIntoArray(v, 'obs_value', obs_value);
                         v = pushIntoArray(v, 'obs_valuetext', obs_valuetext);
                         v = pushIntoArray(v, 'obs_valuecoded', obs_valuecoded);
                         v = pushIntoArray(v, 'obs_valueuuid', obs_valueuuid);
