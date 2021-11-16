@@ -1,0 +1,187 @@
+<html xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
+<head>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/muzima.css" rel="stylesheet">
+    <link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+    <link href="css/ui-darkness/jquery-ui-1.10.4.custom.min.css" rel="stylesheet">
+
+    <script src="js/jquery.min.js"></script>
+    <script src="js/jquery-ui-1.10.4.custom.min.js"></script>
+    <script src="js/jquery.validate.min.js"></script>
+    <script src="js/additional-methods.min.js"></script>
+    <script src="js/bootstrap-datetimepicker.min.js"></script>
+    <script src="js/muzima.js"></script>
+    <title>Atribuição de caso de índice</title>
+</head>
+<body class="col-md-10 col-md-offset-1">
+<div id="pre_populate_data">
+
+</div>
+<form id="index_case_assignment" name="index_case_assignment">
+    <h2 class="text-center">Atribuição de caso de índice</h2>
+    <div class="section">
+        <h3>Demografia</h3>
+        <div class="form-group">
+            <input class="form-control" id="patient.uuid" name="patient.uuid" type="hidden" readonly="readonly">
+			<input class="form-control" id="patient.tagName" name="patient.tagName" type="hidden" value="">
+			<input class="form-control" id="patient.tagUuid" name="patient.tagUuid" type="hidden" value="">
+        </div>
+        <div class="form-group">
+            <label for="patient.names">Nome do Paciente:</label>
+            <input class="form-control" id="patient.names"
+                   name="patient.names" type="text" readonly="readonly">
+        </div>
+		<div class="form-group">
+            <label for="patient.birth_date">Data de nascimento:</label>
+            <input class="form-control" id="patient.birth_date"
+                   name="patient.birth_date" type="text" readonly="readonly">
+        </div>
+		<div class="form-group">
+            <label for="patient.birth_date">Idade:</label>
+            <input class="form-control" id="patient.age"
+                   name="patient.age" type="text" readonly="readonly">
+        </div>
+        <div class="form-group">
+            <label for="patient.sex">Sexo:</label>
+            <input type="text" class="form-control" id="patient.sex" name="patient.sex" readonly="readonly">
+        </div>
+		<div class="form-group">
+            <label for="patient.medical_record_number">NID </label>
+            <input class="form-control" id="patient.medical_record_number" name="patient.medical_record_number" type="text" readonly="readonly">
+        </div> 
+		<div class="section">
+			<div class="section group-set" data-group="patient.personaddress">
+				<h3>Endereço</h3>
+				<div class="form-group">
+					<label for="address5">Bairro: </label>
+					<input class="form-control" id="address5" name="address5" type="text" readonly="readonly">
+				</div>
+				<div class="form-group">
+					<label for="address1">Avenida/Rua: </label>
+					<input class="form-control" id="address1" name="address1" type="text" readonly="readonly">
+				</div>
+				<div class="form-group">
+					<label for="address6">Unidade Comunal: </label>
+					<input class="form-control" id="address6" name="address6" type="text" readonly="readonly">
+				</div>
+				<div class="form-group">
+					<label for="address3">Quarteirão: </label>
+					<input class="form-control" id="address3" name="address3" type="text" readonly="readonly">
+				</div>
+				<div class="form-group">
+					<label for="address2">Casa Nº: </label>
+					<input class="form-control" id="address2" name="address2" type="text" readonly="readonly">
+				</div>				
+			</div>
+		</div>
+    </div>
+    <div class="section">					
+		<div class="form-group sub-section">
+			<label for="obs.health_worker">Nome do Conselheiro:<span class="required"></span></label>
+				<input class="form-control" id="temp.health_worker" name="temp.health_worker" type="text" required="required" placeholder="Start typing something...">
+				<input class="form-control" id="obs.health_worker_id" name="obs.health_worker_id" type="text" required="required" data-concept="1912^TRABALHADOR DE SAÚDE^99DCT" readonly>
+		</div>
+		<div class="form-group">
+            <label for="encounter.encounter_datetime">Data de Encontro:<span class="required">*</span>
+            </label>
+            <input class="form-control datetimepicker nonFutureDate past-date" id="encounter.encounter_datetime"
+                   name="encounter.encounter_datetime" type="text" readonly="readonly"
+                   required="required">
+        </div>
+		<div class="form-group">
+			<label for="encounter.provider_id_select">Nome do provedor:<span class="required">*</span></label>
+			<input class="form-control valid-provider-only" id="encounter.provider_id_select" type="text">
+			<input class="form-control" name="encounter.provider_id_select" type="hidden">
+		</div>
+		<div class="form-group show_provider_id_text">
+			<label for="encounter.provider_id">ID do sistema do provedor:<span class="required">*</span></label>
+			<input class="form-control" id="encounter.provider_id" disabled name="encounter.provider_id" type="text" required="required"  placeholder="Provider Id">
+		</div>
+		<div class="form-group">
+            <label for="encounter.location_id">Local de Encontro:<span class="required">*</span></label>
+            <input class="form-control valid-location-only" id="encounter.location_id" type="text" required="required">
+            <input class="form-control" name="encounter.location_id" type="hidden">						
+			<input class="form-control" id="encounter.form_uuid" name="encounter.form_uuid" type="hidden" required="required">
+		</div>
+    </div>
+</form>
+</body>
+<script type="text/javascript">
+   $(document).ready(function () {
+	        
+        $('#save_draft').click(function () {
+            $(this).prop('disabled', true);
+            document.saveDraft();
+            $(this).prop('disabled', false);
+        });
+
+        $('#submit_form').click(function () {
+            $(this).prop('disabled', true);
+            document.submit();
+            $(this).prop('disabled', false);
+        });
+	      
+	var prePopulateData = $.trim($('#pre_populate_data').html());
+	var prePopulateJSON = JSON.parse(prePopulateData);
+	$.each(prePopulateJSON, function(key, value) {
+		if (key === 'patient') {
+			var names = "";
+			$.each(value, function(keys, values) {
+				if(keys === 'patient.given_name' || keys === 'patient.middle_name' || keys === 'patient.family_name' || keys === 'patient.names'){
+				   names=names+" "+values;
+				}
+
+				if(keys === "patient.birth_date"){
+					var tmp = values.split('-');
+					var birthDate = new Date(tmp[2],tmp[1]-1,tmp[0]);
+					var today = new Date();
+					var milliSecondsInAYear = 1000 * 60 * 60 * 24 * 365.26;
+					var age = (today - birthDate) / milliSecondsInAYear;
+					$('#patient\\.age').val((Math.floor(age)+" Anos "));
+				}
+			});
+			$('#patient\\.names').val(names);
+		}
+	});
+	
+    document.setupAutoCompleteData('encounter\\.location_id');
+    document.setupAutoCompleteDataForProvider('encounter\\.provider_id_select');
+    document.setupValidationForLocation("$('#encounter\\.location_id').val()","encounter\\.location_id");
+    document.setupValidationForProvider("$('#encounter\\.provider_id_select').val()","encounter\\.provider_id");
+		   
+	document.setupAutoCompleteDataForFieldWorker('temp\\.health_worker');
+
+});
+
+document.setupAutoCompleteDataForFieldWorker = function(elementName) {
+	var providersDictionary = [];
+	var providerNamesResults = htmlDataStore.getProviderNamesFromDevice();
+	providerNamesResults = JSON.parse(providerNamesResults);
+	$.each(providerNamesResults, function (key, providerName) {
+		providersDictionary.push({"val": providerName.identifier, "label": providerName.name});
+	});
+	document.setupAutoCompleteForFieldWorker(elementName, providersDictionary);
+};
+	
+//Set up auto complete for the provider element.
+document.setupAutoCompleteForFieldWorker = function(elementName, providers) {
+	$("#" + elementName).autocomplete({
+		source: providers,
+		create: function(event, ui) {
+			var provider_val = $('input[name="' + elementName + '"]').val();
+			$.each(providers, function(i, elem) {
+				if (elem.val == provider_val) {
+					$("#" + elementName).val(elem.label);
+					$("#obs\\.health_worker_id").val(elem.val);
+				}
+			});
+		},
+		select: function(event, ui) {
+			$("#" + elementName).val(ui.item.label);
+			$("#obs\\.health_worker_id").val(ui.item.val);
+			return false;
+		}
+	});
+}
+</script>
+</html>
