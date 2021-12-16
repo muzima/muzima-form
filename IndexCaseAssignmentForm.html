@@ -23,8 +23,10 @@
         <h3>Demografia</h3>
         <div class="form-group">
             <input class="form-control" id="patient.uuid" name="patient.uuid" type="hidden" readonly="readonly">
-			<input class="form-control" id="patient.tagName" name="patient.tagName" type="hidden" value="">
-			<input class="form-control" id="patient.tagUuid" name="patient.tagUuid" type="hidden" value="">
+			<input class="form-control" id="patient.tagName" name="patient.tagName"
+				   type="hidden" value="AL">
+			<input class="form-control" id="patient.tagUuid" name="patient.tagUuid"
+				   type="hidden" value="f45392bb-2eed-4e0a-8896-7010a04d728a">
         </div>
         <div class="form-group">
             <label for="patient.names">Nome do Paciente:</label>
@@ -74,6 +76,15 @@
 				</div>				
 			</div>
 		</div>
+		<div class="group-set" data-group="patient.personattribute">
+			<div class="form-group">
+				<label for="attribute_value">Contacto Telemóvel do Paciente: </label>
+				<input class="form-control" id="attribute_value"
+					   name="attribute_value" type="text" readonly="readonly">
+				<input data-metadata-for="attribute_value" type="hidden" id="attribute_type_uuid"
+					   name="attribute_type_uuid" value="e2e3fd64-1d5f-11e0-b929-000c29ad1d07">
+			</div>
+		</div>
     </div>
     <div class="section">					
 		<div class="form-group sub-section">
@@ -104,6 +115,8 @@
 			<input class="form-control" id="encounter.form_uuid" name="encounter.form_uuid" type="hidden" required="required">
 		</div>
     </div>
+	<div id="selected_patients">
+	</div>
 </form>
 </body>
 <script type="text/javascript">
@@ -183,5 +196,13 @@ document.setupAutoCompleteForFieldWorker = function(elementName, providers) {
 		}
 	});
 }
+
+if(htmlDataStore != null && typeof htmlDataStore["getSelectedPatientsUuids"] == "function"){
+	var selectedPatients = htmlDataStore.getSelectedPatientsUuids();
+	$("#selected_patients").html(selectedPatients);
+} else {
+	$("#selected_patients").html("NA");
+}
+
 </script>
 </html>

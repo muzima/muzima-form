@@ -748,7 +748,7 @@
         });
 
         $.validator.addMethod("valid_NID", function (value, element) {
-                return value.match(/[0-9]{10}\/[0-9]{4}\/[0-9]{5}/) != null;
+                return value.length == 21 && value.match(/[0-9]{10}\/[0-9]{4}\/[0-9]{5}/) != null;
             }, "Identificador não coincide com o formato necessário: CCPPDDUUSS/AAAA/NNNNN."
         );
 
