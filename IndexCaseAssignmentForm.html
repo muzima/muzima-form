@@ -19,15 +19,15 @@
 </div>
 <form id="index_case_assignment" name="index_case_assignment">
     <h2 class="text-center">Atribuição de caso de índice</h2>
-    <div class="section">
+	<div class="form-group">
+		<input class="form-control" id="patient.uuid" name="patient.uuid" type="hidden" readonly="readonly">
+		<input class="form-control" id="patient.tagName" name="patient.tagName"
+			   type="hidden" value="AL">
+		<input class="form-control" id="patient.tagUuid" name="patient.tagUuid"
+			   type="hidden" value="f45392bb-2eed-4e0a-8896-7010a04d728a">
+	</div>
+    <div class="section" id="multiple_patients_no">
         <h3>Demografia</h3>
-        <div class="form-group">
-            <input class="form-control" id="patient.uuid" name="patient.uuid" type="hidden" readonly="readonly">
-			<input class="form-control" id="patient.tagName" name="patient.tagName"
-				   type="hidden" value="AL">
-			<input class="form-control" id="patient.tagUuid" name="patient.tagUuid"
-				   type="hidden" value="f45392bb-2eed-4e0a-8896-7010a04d728a">
-        </div>
         <div class="form-group">
             <label for="patient.names">Nome do Paciente:</label>
             <input class="form-control" id="patient.names"
@@ -86,6 +86,16 @@
 			</div>
 		</div>
     </div>
+	
+	<div class="section" id="multiple_patients_yes">
+		<label for="patient.names">Nome do Paciente:</label>
+		<div class="group-set" data-group="patient.selectedPatients">
+			<h3></h3>
+			<div class="form-group">
+				<input class="form-control" id="names" name="names" type="text" readonly="readonly">
+			</div>			
+		</div>
+	</div>
     <div class="section">					
 		<div class="form-group sub-section">
 			<label for="obs.health_worker">Nome do Conselheiro:<span class="required"></span></label>
@@ -200,8 +210,17 @@ document.setupAutoCompleteForFieldWorker = function(elementName, providers) {
 if(htmlDataStore != null && typeof htmlDataStore["getSelectedPatientsUuids"] == "function"){
 	var selectedPatients = htmlDataStore.getSelectedPatientsUuids();
 	$("#selected_patients").html(selectedPatients);
+	if(selectedPatients !== "[]"){
+		$("#multiple_patients_yes").show();
+		$("#multiple_patients_no").hide();
+	}else{
+		$("#multiple_patients_yes").hide();
+		$("#multiple_patients_no").show();
+	}
 } else {
 	$("#selected_patients").html("NA");
+	$("#multiple_patients_yes").hide();
+	$("#multiple_patients_no").show();
 }
 
 </script>
