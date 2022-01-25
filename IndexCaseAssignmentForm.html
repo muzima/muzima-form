@@ -125,8 +125,6 @@
 			<input class="form-control" id="encounter.form_uuid" name="encounter.form_uuid" type="hidden" required="required">
 		</div>
     </div>
-	<div id="selected_patients">
-	</div>
 </form>
 </body>
 <script type="text/javascript">
@@ -209,7 +207,6 @@ document.setupAutoCompleteForFieldWorker = function(elementName, providers) {
 
 if(htmlDataStore != null && typeof htmlDataStore["getSelectedPatientsUuids"] == "function"){
 	var selectedPatients = htmlDataStore.getSelectedPatientsUuids();
-	$("#selected_patients").html(selectedPatients);
 	if(selectedPatients !== "[]"){
 		$("#multiple_patients_yes").show();
 		$("#multiple_patients_no").hide();
@@ -218,7 +215,6 @@ if(htmlDataStore != null && typeof htmlDataStore["getSelectedPatientsUuids"] == 
 		$("#multiple_patients_no").show();
 	}
 } else {
-	$("#selected_patients").html("NA");
 	$("#multiple_patients_yes").hide();
 	$("#multiple_patients_no").show();
 }
