@@ -684,6 +684,35 @@ $(document).ready(function () {
 			$('#obs\\.type_of_visit').prop('disabled', 'disabled');	 
 	    }
 	}
+   
+   var patientuuid = $('#patient\\.uuid').val();
+   var dispensationMode = htmlDataStore.getObsByConceptId(patientuuid,165174);  
+   dispensationMode = JSON.parse(dispensationMode);
+   var dispensationModeSize = dispensationMode.length-1;
+   if(parseInt(dispensationModeSize)>-1){
+       $("#dispensationMode").val(dispensationMode[0].valueCoded.name);
+   }
+   
+   var dispensationMode = htmlDataStore.getObsByConceptId(patientuuid,165174);  
+   dispensationMode = JSON.parse(dispensationMode);
+   var dispensationModeSize = dispensationMode.length-1;
+   if(parseInt(dispensationModeSize)>-1){
+       $("#dispensationMode").val(dispensationMode[0].valueCoded.name);
+   }
+   
+   var dispensationMode = htmlDataStore.getObsByConceptId(patientuuid,165174);  
+   dispensationMode = JSON.parse(dispensationMode);
+   var dispensationModeSize = dispensationMode.length-1;
+   if(parseInt(dispensationModeSize)>-1){
+       $("#dispensationMode").val(dispensationMode[0].valueCoded.name);
+   }
+   
+   var dispensationMode = htmlDataStore.getObsByConceptId(patientuuid,165174);  
+   dispensationMode = JSON.parse(dispensationMode);
+   var dispensationModeSize = dispensationMode.length-1;
+   if(parseInt(dispensationModeSize)>-1){
+       $("#dispensationMode").val(dispensationMode[0].valueCoded.name);
+   }
 
 	$("form[name='tracing_main_form']").validate({
 		errorElement: "div",
