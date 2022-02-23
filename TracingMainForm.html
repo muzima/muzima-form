@@ -694,28 +694,28 @@ $(document).ready(function () {
    dispensationMode = JSON.parse(dispensationMode);
    var dispensationModeSize = dispensationMode.length-1;
    if(parseInt(dispensationModeSize)>-1){
-       $("#dispensationMode").val(dispensationMode[0].valueCoded.name);
+       $("#dispensationMode").val(dispensationMode[0].valueText);
    }
    
    var startDateTPI = htmlDataStore.getObsByConceptId(patientuuid,6128);  
    startDateTPI = JSON.parse(startDateTPI);
    var startDateTPISize = startDateTPI.length-1;
    if(parseInt(startDateTPISize)>-1){
-       $("#startDateTPI").val(startDateTPI[0].valueCoded.name);
+       $("#startDateTPI").val(startDateTPI[0].valueDatetime);
    }
    
    var endDateTPI = htmlDataStore.getObsByConceptId(patientuuid,6129);  
    endDateTPI = JSON.parse(endDateTPI);
    var endDateTPISize = endDateTPI.length-1;
    if(parseInt(endDateTPISize)>-1){
-       $("#endDateTPI").val(endDateTPI[0].valueCoded.name);
+       $("#endDateTPI").val(endDateTPI[0].valueDatetime);
    }
    
    var lastDateCV = htmlDataStore.getObsByConceptId(patientuuid,23837);  
    lastDateCV = JSON.parse(lastDateCV);
    var lastDateCVSize = lastDateCV.length-1;
    if(parseInt(lastDateCVSize)>-1){
-       $("#lastDateCV").val(lastDateCV[0].valueCoded.name);
+       $("#lastDateCV").val(lastDateCV[0].valueDatetime);
    }
 
 	$("form[name='tracing_main_form']").validate({

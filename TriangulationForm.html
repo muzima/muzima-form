@@ -505,46 +505,50 @@ var gaac = htmlDataStore.getObsByConceptId(patientuuid,23724);
 gaac = JSON.parse(gaac);
 var gaacSize = gaac.length-1;
 if(parseInt(gaacSize)>-1){
-    $("#gaac").val(gaac[0].valueCoded.name);
+    $("#gaac").val(gaac[0].valueText);
 }
 
 var familyApproach = htmlDataStore.getObsByConceptId(patientuuid,23725);  
 familyApproach = JSON.parse(familyApproach);
 var familyApproachSize = familyApproach.length-1;
 if(parseInt(familyApproachSize)>-1){
-    $("#familyApproach").val(familyApproach[0].valueCoded.name);
+    $("#familyApproach").val(familyApproach[0].valueText);
 }
 
 var tb = htmlDataStore.getObsByConceptId(patientuuid,58);  
 tb = JSON.parse(tb);
 var tbSize = tb.length-1;
 if(parseInt(tbSize)>-1){
-    $("#tb").val(tb[0].valueCoded.name);
+    $("#tb").val(tb[0].valueText);
 }
 
-/* Encounter visit date */
-var lastVisit = $('#encounter\\.encounter_datetime').val();
-$("#lastVisit").val(lastVisit);
+/* Encounter visit date or historical Date ??? */
+var lastVisit = htmlDataStore.getObsByConceptId(patientuuid,1410);  
+lastVisit = JSON.parse(lastVisit);
+var lastVisitSize = lastVisit.length-1;
+if(parseInt(lastVisitSize)>-1){
+    $("#lastVisit").val(lastVisit[0].valueDatetime);
+}
 
 var nextVisit = htmlDataStore.getObsByConceptId(patientuuid,1410);  
 nextVisit = JSON.parse(nextVisit);
 var nextVisitSize = nextVisit.length-1;
 if(parseInt(nextVisitSize)>-1){
-    $("#nextVisit").val(nextVisit[0].valueCoded.name);
+    $("#nextVisit").val(nextVisit[0].valueDatetime);
 }
 
 var lastWithdrawal = htmlDataStore.getObsByConceptId(patientuuid,5096);  
 lastWithdrawal = JSON.parse(lastWithdrawal);
 var lastWithdrawalSize = lastWithdrawal.length-1;
 if(parseInt(lastWithdrawalSize)>-1){
-    $("#lastWithdrawal").val(lastWithdrawal[0].valueCoded.name);
+    $("#lastWithdrawal").val(lastWithdrawal[0].valueDatetime);
 }
 
 var nextWithdrawal = htmlDataStore.getObsByConceptId(patientuuid,23988);  
 nextWithdrawal = JSON.parse(nextWithdrawal);
 var nextWithdrawalSize = nextWithdrawal.length-1;
 if(parseInt(nextWithdrawalSize)>-1){
-    $("#nextWithdrawal").val(nextWithdrawal[0].valueCoded.name);
+    $("#nextWithdrawal").val(nextWithdrawal[0].valueDatetime);
 }
 
 });
