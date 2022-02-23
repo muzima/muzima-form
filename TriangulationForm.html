@@ -505,14 +505,14 @@ var gaac = htmlDataStore.getObsByConceptId(patientuuid,23724);
 gaac = JSON.parse(gaac);
 var gaacSize = gaac.length-1;
 if(parseInt(gaacSize)>-1){
-    $("#gaac").val(gaac[0].valueText);
+    $("#gaac").val(gaac[0].valueCoded.name);
 }
 
 var familyApproach = htmlDataStore.getObsByConceptId(patientuuid,23725);  
 familyApproach = JSON.parse(familyApproach);
 var familyApproachSize = familyApproach.length-1;
 if(parseInt(familyApproachSize)>-1){
-    $("#familyApproach").val(familyApproach[0].valueText);
+    $("#familyApproach").val(familyApproach[0].valueCoded.name);
 }
 
 var tb = htmlDataStore.getObsByConceptId(patientuuid,58);  
@@ -537,14 +537,14 @@ if(parseInt(nextVisitSize)>-1){
     $("#nextVisit").val(nextVisit[0].valueDatetime);
 }
 
-var lastWithdrawal = htmlDataStore.getObsByConceptId(patientuuid,5096);  
+var lastWithdrawal = htmlDataStore.getObsByConceptId(patientuuid,23866);  
 lastWithdrawal = JSON.parse(lastWithdrawal);
 var lastWithdrawalSize = lastWithdrawal.length-1;
 if(parseInt(lastWithdrawalSize)>-1){
     $("#lastWithdrawal").val(lastWithdrawal[0].valueDatetime);
 }
 
-var nextWithdrawal = htmlDataStore.getObsByConceptId(patientuuid,23988);  
+var nextWithdrawal = htmlDataStore.getObsByConceptId(patientuuid,5096);  
 nextWithdrawal = JSON.parse(nextWithdrawal);
 var nextWithdrawalSize = nextWithdrawal.length-1;
 if(parseInt(nextWithdrawalSize)>-1){

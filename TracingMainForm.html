@@ -694,7 +694,7 @@ $(document).ready(function () {
    dispensationMode = JSON.parse(dispensationMode);
    var dispensationModeSize = dispensationMode.length-1;
    if(parseInt(dispensationModeSize)>-1){
-       $("#dispensationMode").val(dispensationMode[0].valueText);
+       $("#dispensationMode").val(dispensationMode[0].valueCoded.name);
    }
    
    var startDateTPI = htmlDataStore.getObsByConceptId(patientuuid,6128);  
