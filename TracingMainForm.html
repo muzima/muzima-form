@@ -559,7 +559,11 @@ $(document).ready(function () {
 		   $('#patient_found_div_2160').show();
 		   $('#home_visit_result_div').attr('required','required');
 		   $('#home_visit_result_div').show();
-	   }else{
+	   }else if($('#obs\\.type_of_visit').val()=="2161^VISITA DE APOIO^99DCT"){
+		   $('#home_visit_result_div').attr('required','required');
+		   $('#home_visit_result_div').show();
+	   }
+	   else{
 		   $('#patient_found_div_2160').hide();
 		   $('#home_visit_result_div').removeAttr('required');
 		   $('#home_visit_result_div').hide();
@@ -693,25 +697,25 @@ $(document).ready(function () {
        $("#dispensationMode").val(dispensationMode[0].valueCoded.name);
    }
    
-   var dispensationMode = htmlDataStore.getObsByConceptId(patientuuid,165174);  
-   dispensationMode = JSON.parse(dispensationMode);
-   var dispensationModeSize = dispensationMode.length-1;
-   if(parseInt(dispensationModeSize)>-1){
-       $("#dispensationMode").val(dispensationMode[0].valueCoded.name);
+   var startDateTPI = htmlDataStore.getObsByConceptId(patientuuid,6128);  
+   startDateTPI = JSON.parse(startDateTPI);
+   var startDateTPISize = startDateTPI.length-1;
+   if(parseInt(startDateTPISize)>-1){
+       $("#startDateTPI").val(startDateTPI[0].valueCoded.name);
    }
    
-   var dispensationMode = htmlDataStore.getObsByConceptId(patientuuid,165174);  
-   dispensationMode = JSON.parse(dispensationMode);
-   var dispensationModeSize = dispensationMode.length-1;
-   if(parseInt(dispensationModeSize)>-1){
-       $("#dispensationMode").val(dispensationMode[0].valueCoded.name);
+   var endDateTPI = htmlDataStore.getObsByConceptId(patientuuid,6129);  
+   endDateTPI = JSON.parse(endDateTPI);
+   var endDateTPISize = endDateTPI.length-1;
+   if(parseInt(endDateTPISize)>-1){
+       $("#endDateTPI").val(endDateTPI[0].valueCoded.name);
    }
    
-   var dispensationMode = htmlDataStore.getObsByConceptId(patientuuid,165174);  
-   dispensationMode = JSON.parse(dispensationMode);
-   var dispensationModeSize = dispensationMode.length-1;
-   if(parseInt(dispensationModeSize)>-1){
-       $("#dispensationMode").val(dispensationMode[0].valueCoded.name);
+   var lastDateCV = htmlDataStore.getObsByConceptId(patientuuid,23837);  
+   lastDateCV = JSON.parse(lastDateCV);
+   var lastDateCVSize = lastDateCV.length-1;
+   if(parseInt(lastDateCVSize)>-1){
+       $("#lastDateCV").val(lastDateCV[0].valueCoded.name);
    }
 
 	$("form[name='tracing_main_form']").validate({

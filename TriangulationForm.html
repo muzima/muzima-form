@@ -522,12 +522,9 @@ if(parseInt(tbSize)>-1){
     $("#tb").val(tb[0].valueCoded.name);
 }
 
-var lastVisit = htmlDataStore.getObsByConceptId(patientuuid,23724);  
-lastVisit = JSON.parse(lastVisit);
-var lastVisitSize = lastVisit.length-1;
-if(parseInt(tbSize)>-1){
-    $("#lastVisit").val(lastVisit[0].valueCoded.name);
-}
+/* Encounter visit date */
+var lastVisit = $('#encounter\\.encounter_datetime').val();
+$("#lastVisit").val(lastVisit);
 
 var nextVisit = htmlDataStore.getObsByConceptId(patientuuid,1410);  
 nextVisit = JSON.parse(nextVisit);
@@ -536,7 +533,7 @@ if(parseInt(nextVisitSize)>-1){
     $("#nextVisit").val(nextVisit[0].valueCoded.name);
 }
 
-var lastWithdrawal = htmlDataStore.getObsByConceptId(patientuuid,23724);  
+var lastWithdrawal = htmlDataStore.getObsByConceptId(patientuuid,5096);  
 lastWithdrawal = JSON.parse(lastWithdrawal);
 var lastWithdrawalSize = lastWithdrawal.length-1;
 if(parseInt(lastWithdrawalSize)>-1){
