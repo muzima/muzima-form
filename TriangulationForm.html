@@ -75,6 +75,40 @@
 			</div>
 		</div>
     </div>
+    
+    <!-- Sumario -->
+    <div class="section">
+				<h3>Sumário</h3>
+				<div class="form-group">
+					<label for="gaac">Gaac: </label>
+					<input class="form-control" id="gaac" name="gaac" type="text" readonly="readonly">
+				</div>
+				<div class="form-group">
+					<label for="familyApproach">Abordagem Familiar: </label>
+					<input class="form-control" id="familyApproach" name="familyApproach" type="text" readonly="readonly">
+				</div>
+				<div class="form-group">
+					<label for="tb">TB: </label>
+					<input class="form-control" id="tb" name="tb" type="text" readonly="readonly">
+				</div>
+				<div class="form-group">
+					<label for="lastVisit">Última Consulta: </label>
+					<input class="form-control" id="lastVisit" name="lastVisit" type="text" readonly="readonly">
+				</div>
+				<div class="form-group">
+					<label for="nextVisit">Próxima Consulta: </label>
+					<input class="form-control" id="nextVisit" name="nextVisit" type="text" readonly="readonly">
+				</div>
+				<div class="form-group">
+					<label for="lastWithdrawal">Último Levantamento: </label>
+					<input class="form-control" id="lastWithdrawal" name="lastWithdrawal" type="text" readonly="readonly">
+				</div>
+				<div class="form-group">
+					<label for="nextWithdrawal">Próximo Levantamento: </label>
+					<input class="form-control" id="nextWithdrawal" name="nextWithdrawal" type="text" readonly="readonly">
+				</div>				
+	</div>
+    
     <div class="section">
         <h3>SECÇÃO DE TRIANGULAÇÃO</h3>
 		<div class="form-group">
@@ -466,6 +500,57 @@ if(parseInt(cohortMembershipJson.length)==1){
 		}
 	});
 }
+
+var gaac = htmlDataStore.getObsByConceptId(patientuuid,23724);  
+gaac = JSON.parse(gaac);
+var gaacSize = gaac.length-1;
+if(parseInt(gaacSize)>-1){
+    $("#gaac").val(gaac[0].valueCoded.name);
+}
+
+var familyApproach = htmlDataStore.getObsByConceptId(patientuuid,23725);  
+familyApproach = JSON.parse(familyApproach);
+var familyApproachSize = familyApproach.length-1;
+if(parseInt(familyApproachSize)>-1){
+    $("#familyApproach").val(familyApproach[0].valueCoded.name);
+}
+
+var tb = htmlDataStore.getObsByConceptId(patientuuid,58);  
+tb = JSON.parse(tb);
+var tbSize = tb.length-1;
+if(parseInt(tbSize)>-1){
+    $("#tb").val(tb[0].valueText);
+}
+
+/* Encounter visit date or historical Date ??? */
+var lastVisit = htmlDataStore.getObsByConceptId(patientuuid,1410);  
+lastVisit = JSON.parse(lastVisit);
+var lastVisitSize = lastVisit.length-1;
+if(parseInt(lastVisitSize)>-1){
+    $("#lastVisit").val(lastVisit[0].valueDatetime);
+}
+
+var nextVisit = htmlDataStore.getObsByConceptId(patientuuid,1410);  
+nextVisit = JSON.parse(nextVisit);
+var nextVisitSize = nextVisit.length-1;
+if(parseInt(nextVisitSize)>-1){
+    $("#nextVisit").val(nextVisit[0].valueDatetime);
+}
+
+var lastWithdrawal = htmlDataStore.getObsByConceptId(patientuuid,23866);  
+lastWithdrawal = JSON.parse(lastWithdrawal);
+var lastWithdrawalSize = lastWithdrawal.length-1;
+if(parseInt(lastWithdrawalSize)>-1){
+    $("#lastWithdrawal").val(lastWithdrawal[0].valueDatetime);
+}
+
+var nextWithdrawal = htmlDataStore.getObsByConceptId(patientuuid,5096);  
+nextWithdrawal = JSON.parse(nextWithdrawal);
+var nextWithdrawalSize = nextWithdrawal.length-1;
+if(parseInt(nextWithdrawalSize)>-1){
+    $("#nextWithdrawal").val(nextWithdrawal[0].valueDatetime);
+}
+
 });
 
 document.setupAutoCompleteDataForFieldWorker = function(elementName) {

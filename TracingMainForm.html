@@ -49,6 +49,28 @@
             <input class="form-control" id="patient.medical_record_number" name="patient.medical_record_number" type="text" readonly="readonly"/>
         </div>        
     </div>
+    
+    <!-- Seccao Sumario -->
+    <div class="section">
+        <h3>Sumário</h3>
+        <div class="form-group">
+            <label for="dispensationMode">Modo Dispensa (Último Fila):</label>
+            <input class="form-control" id="dispensationMode" name="dispensationMode" type="text" readonly="readonly"/>
+        </div>
+		<div class="form-group">
+            <label for="startDateTPI">Data Início TPI (Ficha Resumo):</label>
+            <input class="form-control" id="startDateTPI" name="startDateTPI" type="text" readonly="readonly"/>
+        </div>
+		<div class="form-group">
+            <label for="endDateTPI">Data Fim TPI (Ficha Resumo):</label>
+            <input class="form-control" id="endDateTPI" name="endDateTPI" type="text" readonly="readonly"/>
+        </div>
+        <div class="form-group">
+            <label for="lastDateCV">Data Última CV (Últimos 12 Meses):</label>
+            <input class="form-control" id="lastDateCV" name="lastDateCV" type="text" readonly="readonly"/>
+        </div>        
+    </div>
+    
     <div class="section">
         <h3>SECÇÃO DE VISITA</h3>
         <div class="form-group">
@@ -311,15 +333,7 @@
 						<input class="form-control" id="obs.other_referencias" type="text" required="required"
 						name="obs.other_referencias" data-concept="2040^REFERRAL, OTHER^99DCT"/>
 				</div>
-			</div>
-			<div class="form-group">
-				<label for="obs.data_combinada">Data combinada para retorno a US:<span class="data_combinada_required required">*</span>
-				</label>
-				<input class="form-control datepicker" id="obs.data_combinada" type="text" required="required" readonly="readonly"
-						name="obs.data_combinada" data-concept="23933^Data combinada na primeira visita para retorno a US^99DCT"/>
-			</div>
-			
-			
+			</div>	
 		</div> 		
 		<div class="form-group section patient_not_found_div" id="patient_not_found_div">
 			<div class="form-group concept-set">
@@ -413,6 +427,24 @@
 					<input class="form-control" id="obs.information_given_by_details" type="text" required="required"
 					name="obs.information_given_by_details" data-concept="2038^OUTROS INFORMAÇÃO DADA POR^99DCT"/>
 			</div>
+		</div>
+		<!-- Home visit result section -->
+		<div class="form-group sub-section home_visit_result_div" id="home_visit_result_div">
+			<label for="obs.home_visit_result">
+				Resultado da Visita Domiciliaria:<span class="required">*</span>
+			 </label>
+			<div class="form-group">
+				  <input id="obs.home_visit_result.refused" type="checkbox" name="obs.home_visit_result"
+							data-concept="165268^RESULTADO DA VISITA DOMICILIARIA^99DCT" value="165269^RECUSOU-SE VOLTAR^99DCT" required="required"/>
+				   <span class="align-middle">Recusou voltar?</span>
+			</div>
+		</div>	
+        <!-- Visible if pacient was found -->
+        <div class="form-group sub-section patient_found_div home_visit_result_div" id="data_combinada_div">
+				<label for="obs.data_combinada">Data combinada para retorno a US:<span class="data_combinada_required required">*</span>
+				</label>
+				<input class="form-control datepicker" id="obs.data_combinada" type="text" required="required" readonly="readonly"
+						name="obs.data_combinada" data-concept="23933^Data combinada na primeira visita para retorno a US^99DCT"/>
 		</div>		
 		<div class="form-group">
 			<label for="encounter.provider_id_select">Nome do voluntário:<span class="required">*</span></label>
@@ -521,6 +553,20 @@ $(document).ready(function () {
 		   $('#patient_found_div_2161').show();
 	   }else{
 		   $('#patient_found_div_2161').hide();
+	   }
+	   
+	   if($('#obs\\.type_of_visit').val()=="2160^VISITA DE BUSCA^99DCT"){
+		   $('#patient_found_div_2160').show();
+		   $('#home_visit_result_div').attr('required','required');
+		   $('#home_visit_result_div').show();
+	   }else if($('#obs\\.type_of_visit').val()=="2161^VISITA DE APOIO^99DCT"){
+		   $('#home_visit_result_div').attr('required','required');
+		   $('#home_visit_result_div').show();
+	   }
+	   else{
+		   $('#patient_found_div_2160').hide();
+		   $('#home_visit_result_div').removeAttr('required');
+		   $('#home_visit_result_div').hide();
 	   }
 	});  
 	
@@ -642,6 +688,35 @@ $(document).ready(function () {
 			$('#obs\\.type_of_visit').prop('disabled', 'disabled');	 
 	    }
 	}
+   
+   var patientuuid = $('#patient\\.uuid').val();
+   var dispensationMode = htmlDataStore.getObsByConceptId(patientuuid,165174);  
+   dispensationMode = JSON.parse(dispensationMode);
+   var dispensationModeSize = dispensationMode.length-1;
+   if(parseInt(dispensationModeSize)>-1){
+       $("#dispensationMode").val(dispensationMode[0].valueCoded.name);
+   }
+   
+   var startDateTPI = htmlDataStore.getObsByConceptId(patientuuid,6128);  
+   startDateTPI = JSON.parse(startDateTPI);
+   var startDateTPISize = startDateTPI.length-1;
+   if(parseInt(startDateTPISize)>-1){
+       $("#startDateTPI").val(startDateTPI[0].valueDatetime);
+   }
+   
+   var endDateTPI = htmlDataStore.getObsByConceptId(patientuuid,6129);  
+   endDateTPI = JSON.parse(endDateTPI);
+   var endDateTPISize = endDateTPI.length-1;
+   if(parseInt(endDateTPISize)>-1){
+       $("#endDateTPI").val(endDateTPI[0].valueDatetime);
+   }
+   
+   var lastDateCV = htmlDataStore.getObsByConceptId(patientuuid,23837);  
+   lastDateCV = JSON.parse(lastDateCV);
+   var lastDateCVSize = lastDateCV.length-1;
+   if(parseInt(lastDateCVSize)>-1){
+       $("#lastDateCV").val(lastDateCV[0].valueDatetime);
+   }
 
 	$("form[name='tracing_main_form']").validate({
 		errorElement: "div",
