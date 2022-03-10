@@ -515,11 +515,11 @@ if(parseInt(familyApproachSize)>-1){
     $("#familyApproach").val(familyApproach[0].valueCoded.name);
 }
 
-var tb = htmlDataStore.getObsByConceptId(patientuuid,58);  
+var tb = htmlDataStore.getObsByConceptId(patientuuid,23761);  
 tb = JSON.parse(tb);
 var tbSize = tb.length-1;
 if(parseInt(tbSize)>-1){
-    $("#tb").val(tb[0].valueText);
+    $("#tb").val(tb[0].valueCoded.name);
 }
 
 /* Encounter visit date or historical Date ??? */
