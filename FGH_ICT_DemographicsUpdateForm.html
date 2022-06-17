@@ -449,6 +449,8 @@
             <input class="form-control" id="encounter.form_uuid" name="encounter.form_uuid" type="hidden" required="required">
             <input class="form-control" id="encounter.form_uuid_to_add_obs" name="encounter.form_uuid_to_add_obs"
                    type="hidden" value="05496c70-845c-40b1-9d28-070f67b3f7da">
+            <input class="form-control" id="demographicsupdate.is_updated_name_preferred" name="demographicsupdate.is_updated_name_preferred"
+                   type="hidden" value="false">
         </div>
     </div>
 </form>
@@ -508,8 +510,10 @@
         $('#tmp\\.update_names').change(function(){
             if($(this).is(':checked')){
                 $('#update_names').show();
+                $('#demographicsupdate\\.is_updated_name_preferred').prop('value', true);
             } else {
                 $('#update_names').hide();
+                $('#demographicsupdate\\.is_updated_name_preferred').prop('value', false);
             }
         });
         $('#tmp\\.update_names').trigger('change');
