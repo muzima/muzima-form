@@ -108,7 +108,7 @@
         </div>
         <div class="form-group">
             <label for="tmp.update_address">
-                <input id="tmp.update_address" class="update_address_confirm" name="tmp.update_address"
+                <input id="tmp.update_address_new" class="update_address_confirm_new" name="tmp.update_address_new"
                        type="checkbox">
                 Você adicionará um novo endereço? (se sim, permita a edição)
             </label>
@@ -526,6 +526,26 @@
             }
         });
 
+        $('.update_address_confirm_new').change(function(){
+            var $parent = $(this).closest('.group-set');
+            var $addressUpdateParent = $('#demographicsupdate\\.personAddress');
+            if($(this).is(':checked')){
+                $('#update_address').show();
+                if($addressUpdateParent.find('.person_address_uuid').val() != $parent.find(".person_address_uuid").val()) {
+                    $addressUpdateParent.find('.address1').val("");
+                    $addressUpdateParent.find('.address2').val("");
+                    $addressUpdateParent.find('.address3').val("");
+                    $addressUpdateParent.find('.address4').val("");
+                    $addressUpdateParent.find('.address5').val("");
+                    $addressUpdateParent.find('.address6').val("");
+                    $addressUpdateParent.find('.person_address_uuid').val("");
+                }
+                $('.update_address_confirm_new').not($(this)).prop('disabled',true);
+            } else if($(this).is(':unchecked')){
+                $('#update_address').hide();
+            }
+        });
+
         $('.tmp\\.edit_address').change(function(){
             var $parent = $(this).closest('.group-set');
             var $addressUpdateParent = $('#demographicsupdate\\.personAddress');
@@ -547,12 +567,12 @@
                 $('#update_address').hide();
                 $('.update_address_confirm').prop('disabled',false);
                 if($addressUpdateParent.find('.person_address_uuid').val() == $parent.find(".person_address_uuid").val()) {
-                    $addressUpdateParent.find('.address1').val("");
-                    $addressUpdateParent.find('.address2').val("");
-                    $addressUpdateParent.find('.address3').val("");
-                    $addressUpdateParent.find('.address4').val("");
-                    $addressUpdateParent.find('.address5').val("");
-                    $addressUpdateParent.find('.address6').val("");
+                    $addressUpdateParent.find('.address1').val($parent.find(".address1").val());
+                    $addressUpdateParent.find('.address2').val($parent.find(".address2").val());
+                    $addressUpdateParent.find('.address3').val($parent.find(".address3").val());
+                    $addressUpdateParent.find('.address4').val($parent.find(".address4").val());
+                    $addressUpdateParent.find('.address5').val($parent.find(".address5").val());
+                    $addressUpdateParent.find('.address6').val($parent.find(".address6").val());
                     $addressUpdateParent.find('.person_address_uuid').val("");
                 }
             }
