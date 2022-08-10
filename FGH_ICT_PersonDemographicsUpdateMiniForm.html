@@ -31,7 +31,7 @@
             <div class="form-group">
                 <label for="patient.family_name">Apelido: </label>
                 <input class="form-control" id="patient.family_name" name="patient.family_name" type="text"
-                       readonly="readonly" value="">
+                       readonly="readonly">
             </div>
             <div class="form-group">
                 <label for="patient.given_name">Nome:</label>
@@ -104,7 +104,7 @@
             </div>
             <div class="form-group">
                 <label for="tmp.update_address">
-                    <input id="tmp.update_address" class="update_address_confirm" name="tmp.update_address"
+                    <input id="tmp.update_address_new" class="update_address_confirm_new" name="tmp.update_address_new"
                            type="checkbox">
                     Você adicionará um novo endereço? (se sim, permita a edição)
                 </label>
@@ -115,23 +115,23 @@
             <div class="group-set" data-group="demographicsupdate.personaddress" id="demographicsupdate.personaddress">
                 <div class="form-group">
                     <label for="address1">Novo Avenida/Rua/Punto de referencia: </label>
-                    <input class="form-control address1" name="address1" type="text">
+                    <input class="form-control address1" name="address1" type="text" minlength="5" maxlength="255">
                 </div>
                 <div class="form-group">
                     <label for="address2">Novo Nº da Residência (casa): </label>
-                    <input class="form-control address2" name="address2" type="text">
+                    <input class="form-control address2" name="address2" type="text" maxlength="255">
                 </div>
                 <div class="form-group">
                     <label for="address6">Novo Comunidade: </label>
-                    <input class="form-control address6" name="address6" type="text">
+                    <input class="form-control address6" name="address6" type="text" maxlength="255">
                 </div>
                 <div class="form-group">
                     <label for="address3">Novo Quarteirão: </label>
-                    <input class="form-control address3" name="address3" type="text">
+                    <input class="form-control address3" name="address3" type="text" maxlength="255">
                 </div>
                 <div class="form-group">
                     <label for="address5">Novo Bairro: </label>
-                    <input class="form-control address5" name="address5" type="text">
+                    <input class="form-control address5" name="address5" type="text" maxlength="255">
                     <input class="form-control person_address_uuid" name="uuid" type="hidden">
                 </div>
             </div>
@@ -358,6 +358,8 @@
                 <input class="form-control" id="encounter.form_uuid" name="encounter.form_uuid" type="hidden" required="required">
                 <input class="form-control" id="demographicsupdate.is_updated_name_preferred" name="demographicsupdate.is_updated_name_preferred"
                    type="hidden" value="false">
+                <input class="form-control" id="tmp.custom_discriminator" name="tmp.custom_discriminator"
+                   value="mastercard-record-mapper" type="hidden" required="required">
             </div>
         </div>
     </form>
@@ -391,7 +393,21 @@
                 $('#demographicsupdate\\.is_updated_name_preferred').prop('value', false);
             }
         });
+
         $('#tmp\\.update_names').trigger('change');
+
+        var patientOldFamilyName = $('#patient\\.family_name').val();
+
+        var patientOldGivenName = $('#patient\\.given_name').val();
+
+        var patientOldMiddleName = $('#patient\\.middle_name').val();
+
+        $('#demographicsupdate\\.family_name').val(patientOldFamilyName);
+
+        $('#demographicsupdate\\.given_name').val(patientOldGivenName);
+
+        $('#demographicsupdate\\.middle_name').val(patientOldMiddleName);
+
 
         $('#tmp\\.update_hiv_details').change(function(){
             if($(this).is(':checked')){
@@ -407,6 +423,26 @@
             if(!$parent.find('.update_address_confirm').prop('disabled')) {
                 $parent.find('.update_address_confirm').prop("checked", !$parent.find('.update_address_confirm').prop("checked"));
                 $parent.find('.update_address_confirm').trigger('change');
+            }
+        });
+
+        $('.update_address_confirm_new').change(function(){
+            var $parent = $(this).closest('.group-set');
+            var $addressUpdateParent = $('#demographicsupdate\\.personAddress');
+            if($(this).is(':checked')){
+                $('#update_address').show();
+                if($addressUpdateParent.find('.person_address_uuid').val() != $parent.find(".person_address_uuid").val()) {
+                    $addressUpdateParent.find('.address1').val("");
+                    $addressUpdateParent.find('.address2').val("");
+                    $addressUpdateParent.find('.address3').val("");
+                    $addressUpdateParent.find('.address4').val("");
+                    $addressUpdateParent.find('.address5').val("");
+                    $addressUpdateParent.find('.address6').val("");
+                    $addressUpdateParent.find('.person_address_uuid').val("");
+                }
+                $('.update_address_confirm_new').not($(this)).prop('disabled',true);
+            } else if($(this).is(':unchecked')){
+                $('#update_address').hide();
             }
         });
 
@@ -431,12 +467,12 @@
                 $('#update_address').hide();
                 $('.update_address_confirm').prop('disabled',false);
                 if($addressUpdateParent.find('.person_address_uuid').val() == $parent.find(".person_address_uuid").val()) {
-                    $addressUpdateParent.find('.address1').val("");
-                    $addressUpdateParent.find('.address2').val("");
-                    $addressUpdateParent.find('.address3').val("");
-                    $addressUpdateParent.find('.address4').val("");
-                    $addressUpdateParent.find('.address5').val("");
-                    $addressUpdateParent.find('.address6').val("");
+                    $addressUpdateParent.find('.address1').val($parent.find(".address1").val());
+                    $addressUpdateParent.find('.address2').val($parent.find(".address2").val());
+                    $addressUpdateParent.find('.address3').val($parent.find(".address3").val());
+                    $addressUpdateParent.find('.address4').val($parent.find(".address4").val());
+                    $addressUpdateParent.find('.address5').val($parent.find(".address5").val());
+                    $addressUpdateParent.find('.address6').val($parent.find(".address6").val());
                     $addressUpdateParent.find('.person_address_uuid').val("");
                 }
             }
