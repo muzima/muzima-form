@@ -320,7 +320,7 @@
 						<label class="font-normal">
 							<input id="obs.referencias.refused" type="checkbox" name="obs.referencias" class="obs.referencias"
 								   data-concept="1272^REFERENCIAS^99DCT" value="165269^RECUSAR VOLTAR^99DCT" required="required"/>
-							Recusar voltar
+							Recusou voltar
 						</label>
 					</div>
 					<div class="form-group">
@@ -435,18 +435,7 @@
 					name="obs.information_given_by_details" data-concept="2038^OUTROS INFORMAÇÃO DADA POR^99DCT"/>
 			</div>
 		</div>
-
-		<!-- Home visit result section -->
-		<div class="form-group sub-section home_visit_result_div" id="home_visit_result_div">
-			<label for="obs.home_visit_result">
-				Resultado da Visita Domiciliaria:
-			 </label>
-			<div class="form-group">
-				  <input id="obs.home_visit_result.refused" type="checkbox" name="obs.home_visit_result"
-							data-concept="165268^RESULTADO DA VISITA DOMICILIARIA^99DCT" value="165269^RECUSOU-SE VOLTAR^99DCT"/>
-				   <span class="align-middle">Recusou voltar?</span>
-			</div>
-		</div>	
+	
         <!-- Visible if pacient was found -->
         <div class="form-group sub-section patient_found_div home_visit_result_div" id="data_combinada_div" hidden="true">
 				<label for="obs.data_combinada">Data combinada para retorno a US:<span class="data_combinada_required required">*</span>
@@ -541,10 +530,18 @@ $(document).ready(function () {
 		if($('#obs\\.referencias\\.refused').is(':checked')){
 			$('#obs\\.data_combinada').removeAttr('required');
 			$('.data_combinada_required').hide();
+			$('#data_combinada_div').hide();
 			$('.obs\\.referencias').not($('#obs\\.referencias\\.refused')).attr('disabled','disabled');
-		}else if($(this).is(':checked')){
+		}
+		else if($('#obs\\.referencias\\.refused').is(':unchecked')){
 			$('#obs\\.data_combinada').attr('required','required');
 			$('.data_combinada_required').show();
+			$('#data_combinada_div').show();
+		}
+		else if($(this).is(':checked')){
+			$('#obs\\.data_combinada').attr('required','required');
+			$('.data_combinada_required').show();
+			$('#data_combinada_div').show();
 			$('#obs\\.referencias\\.refused').attr('disabled','disabled');
 		}
 	});
@@ -554,10 +551,12 @@ $(document).ready(function () {
 		if($('#obs\\.referencias\\.refused').is(':checked')){
 			$('#obs\\.data_combinada').removeAttr('required');
 			$('.data_combinada_required').hide();
+			$('#data_combinada_div').hide();
 			$('.obs\\.referencias').not($('#obs\\.referencias\\.refused')).attr('disabled','disabled');
 		}else if($(this).is(':checked')){
 			$('#obs\\.data_combinada').attr('required','required');
-			$('.data_combinada_required').show();
+			$('.data_combinada_required').hide();
+			$('#data_combinada_div').hide();
 			$('#obs\\.referencias\\.refused').attr('disabled','disabled');
 		} else if($('.obs\\.referencias:checked').length == 0){
 			$('#obs\\.data_combinada').attr('required','required');
