@@ -77,24 +77,24 @@
             <h3>Endereço</h3>
             <div class="form-group">
                 <label for="address1">Avenida/Rua/Punto de referencia: </label>
-                <input class="form-control address1" name="address1" type="text" readonly="readonly">
+                <input class="form-control address1" name="address1" type="text" readonly="readonly" id="old.address1">
             </div>
             <div class="form-group">
                 <label for="address2">Nº da Residência (casa): </label>
-                <input class="form-control address2" name="address2" type="text" readonly="readonly">
+                <input class="form-control address2" name="address2" type="text" readonly="readonly" id="old.address2">
             </div>
             <div class="form-group">
                 <label for="address6">Comunidade: </label>
-                <input class="form-control address6" name="address6" type="text" readonly="readonly">
+                <input class="form-control address6" name="address6" type="text" readonly="readonly" id="old.address6">
             </div>
             <div class="form-group">
                 <label for="address3">Quarteirão: </label>
-                <input class="form-control address3" name="address3" type="text" readonly="readonly">
+                <input class="form-control address3" name="address3" type="text" readonly="readonly" id="old.address3">
             </div>
             <div class="form-group">
                 <label for="address5">Bairro: </label>
                 <input class="form-control address5" name="address5" type="text" readonly="readonly">
-                <input class="form-control person_address_uuid uuid" name="uuid" type="hidden" readonly="readonly">
+                <input class="form-control person_address_uuid uuid" name="uuid" type="hidden" readonly="readonly" id="old.address5">
             </div>
             <div class="form-group">
                 <input class=" tmp.edit_address update_address_confirm" name="tmp.edit_address"
@@ -119,23 +119,23 @@
         <div class="group-set" data-group="demographicsupdate.personaddress" id="demographicsupdate.personaddress">
             <div class="form-group">
                 <label for="address1">Novo Avenida/Rua/Punto de referencia: </label>
-                <input class="form-control address1" name="address1" type="text" minlength="5" maxlength="255">
+                <input class="form-control address1" name="address1" type="text" minlength="5" maxlength="255" id="new.address1">
             </div>
             <div class="form-group">
                 <label for="address2">Novo Nº da Residência (casa): </label>
-                <input class="form-control address2" name="address2" type="text" maxlength="255">
+                <input class="form-control address2" name="address2" type="text" maxlength="255" id="new.address2">
             </div>
             <div class="form-group">
                 <label for="address6">Novo Comunidade: </label>
-                <input class="form-control address6" name="address6" type="text" maxlength="255">
+                <input class="form-control address6" name="address6" type="text" maxlength="255" id="new.address6">
             </div>
             <div class="form-group">
                 <label for="address3">Novo Quarteirão: </label>
-                <input class="form-control address3" name="address3" type="text" maxlength="255">
+                <input class="form-control address3" name="address3" type="text" maxlength="255" id="new.address3">
             </div>
             <div class="form-group">
                 <label for="address5">Novo Bairro: </label>
-                <input class="form-control address5" name="address5" type="text" maxlength="255">
+                <input class="form-control address5" name="address5" type="text" maxlength="255" id="new.address5">
                 <input class="form-control person_address_uuid" name="uuid" type="hidden">
             </div>
         </div>
@@ -187,7 +187,7 @@
         <div class="form-group birthdate">
             <label for="patient.birth_date">Data de nascimento <span class="required">*</span></label>
             <input class="form-control birth_date_picker nonFutureDate" id="patient.birth_date" name="patient.birth_date"
-                   type="text" disabled="disabled" readonly="readonly">
+                   type="text" disabled="disabled" readonly="readonly" value="12/08/2022">
         </div>
         <div class="form-group birthdate">
             <label for="patient.birthdate_estimated">Esta data de nascimento é uma estimativa?  <span class="required">*</span></label>
@@ -234,179 +234,6 @@
                 <label for="tmp.age_in_years">Quantos anos você tem em anos? <span class="required">*</span></label>
                 <input class="form-control" id="tmp.age_in_years" name="tmp.age_in_years" type="number" required="required">
 
-            </div>
-        </div>
-    </div>
-
-    <div class="section">
-        <h3>TESTE DO CASO DO INDICE DO PACIENTE</h3>
-        <div class="form-group">
-            <label for="obs.index_patient_source">Origem CI:<span class="required">*</span></label>
-            <select class="form-control" id="obs.index_patient_source" required="required"
-                    name="obs.index_patient_source" data-concept="23877^Origem CI^99DCT">
-                <option value="">...</option>
-                <option value="1597^UATS^99DCT">UATS</option>
-                <option value="5271^CPF^99DCT">CPF</option>
-                <option value="23876^Enf. Cirurgia^99DCT">Enf. Cirurgia</option>
-                <option value="23875^Enf. Medicina^99DCT">Enf. Medicina</option>
-                <option value="23874^Enf. Pediatria^99DCT">Enf. Pediatria</option>
-                <option value="23873^Triagem Adulto^99DCT">Triagem Adulto</option>
-                <option value="23872^Triagem Banco Socorro^99DCT">Triagem Banco Socorro</option>
-                <option value="23880^Triagem Pediatria^99DCT">Triagem Pediatria</option>
-                <option value="23871^Banco Socorro^99DCT">Banco Socorro</option>
-                <option value="1926^Banco de Sangue^99DCT">Banco de Sangue</option>
-                <option value="23868^Estomatologia^99DCT">Estomatologia</option>
-                <option value="6303^VBG^99DCT">VBG</option>
-                <option value="23870^Gabinete Médico^99DCT">Gabinete Médico</option>
-                <option value="1596^Consulta Externa^99DCT">Consulta Externa</option>
-                <option value="1987^SAAJ^99DCT">SAAJ</option>
-                <option value="23878^CPP^99DCT">CPP</option>
-                <option value="1978^CPN^99DCT">CPN</option>
-                <option value="1872^CCR^99DCT">CCR</option>
-                <option value="1414^PNCTL^99DCT">PNCTL</option>
-                <option value="23869^Maternidade^99DCT">Maternidade</option>
-                <option value="6423^CCS^99DCT">CCS</option>
-                <option value="6142^APSS-PP^99DCT">APSS-PP</option>
-            </select>
-        </div>
-        <div class="form-group">
-            <label for="obs.contact_testing_consent">Paciente consente testagem dos contactos:
-                <span class="required">*</span></label>
-            <!--            Check concepts metadata-->
-            <select class="form-control" id="obs.contact_testing_consent" required="required"
-                    name="obs.contact_testing_consent" data-concept="21155^Paciente consente testagem dos contactos^99DCT">
-                <option value="">...</option>
-                <option value="21154^HEALTH FACILITY^99DCT">Unidade Sanitária</option>
-                <option value="6403^Comunidade^99DCT">Comunidade</option>
-                <option value="1066^Recusa^99DCT">Recusa</option>
-            </select>
-            <input type="hidden" class="form-control" name="obs_comment.contact_testing_consent"
-                   data-obscommentfor="obs.contact_testing_consent"  id="obs_comment.contact_testing_consent" required="required"
-                   value="Source=mUzima">
-            <input type="hidden" class="form-control" name="obs_formuuidtoaddobs.contact_testing_consent"
-                   value="25c7f95e-0685-43dd-9321-9c9092e35b69"
-                   data-obsformuuidtoaddobsfor="obs.contact_testing_consent"  id="obs_formuuidtoaddobs.contact_testing_consent" required="required">
-
-        </div>
-        <div class="form-group">
-            <label for="obs.expected_testing_date">Data Prevista para Testagem:
-                <span class="required">*</span></label>
-            <input class="form-control datepicker nonPastEncounterDate" readonly="readonly"
-                   id="obs.expected_testing_date" data-concept="23879^Data Prevista para Testagem^99DCT"
-                   name="obs.expected_testing_date" type="text" required="required">
-        </div>
-    </div>
-
-    <div class="section">
-        <h3>FICHA RESUMO/Situação da família</h3>
-
-        <div style="background-color:#f0ffff;" class="section group-set repeat person_relationships"
-             data-group="person.relationships" data-name="person.relationships" id="person.relationships">
-            <h3>Pessoa de contato</h3>
-            <div class="form-group">
-                <label>Parentesco: <span class="required"></span></label>
-                <select class="form-control tmp.relationshipType" name="tmp.relationshipType">
-                    <option value="">...</option>
-                    <option value='8d91a210-c2cc-11de-8d13-0010c6dffd0f' class="AIsToB">Mae/Pai</option>
-                    <option value='8d91a210-c2cc-11de-8d13-0010c6dffd0f' class="BIsToA">Filho/Filha</option>
-                    <option value='2f7d5778-0c80-11eb-b335-9f16b42e3b00' class="AIsToB BIsToA">Parceiro</option>
-                </select>
-                <input type="hidden" name="person.relationshipType" class="person.relationshipType" />
-            </div>
-            <div class="form-group search_person">
-                <label>Nome do familiar:<span class="required">*</span></label>
-                <div style="display:inline-block;width: 80%;">
-                    <input required="required" class="form-control tmp.person_name_search valid_Person" type="text"
-                           placeholder="Pesquise localmente no dispositivo ...">
-                </div>
-                <input class="form-control personA.uuid" name="personA.uuid" type="hidden" value="">
-                <input class="form-control personB.uuid" name="personB.uuid" type="hidden" value="">
-                <input class="form-control tmp.person_name_search_count" name="tmp.person_name_search_count" type="hidden" value="">
-                <div class="search-person-loader search-widget" style="display:none"></div>
-                <div class="no_results_msg_local alert alert-info" style="display:none">
-                    Pessoa não encontrada neste dispositivo. Selecione a opção <b> <i> Pesquisar no servidor </i> </b> para pesquisar esse indivíduo no servidor.
-                    Você também pode registrá-los como uma nova pessoa selecionando <b> <i> Registrar pessoa </i> </b> abaixo.
-                </div>
-                <div class="no_results_msg_server alert alert-success" style="display:none">
-                    Pessoa não encontrada no servidor. Registre-o como uma nova pessoa de contato selecionando <b><i> Registrar pessoa </i></b> abaixo.</div>
-                <div class="search-widget"><label><input type="checkbox" name="tmp.search_server" class="tmp.search_server">&nbsp;Pesquisar no servidor</label></div>
-            </div>
-            <div class="person_details concept-set">
-                <input class="tmp.person_uuid" name="tmp.person_uuid" type="hidden">
-                <div class="form-group">
-                    <input class="obs.contact_name" name="obs.contact_name" type="hidden">
-                    <input class="obs.contact_relationship" name="obs.contact_relationship" type="hidden">
-                </div>
-                <div class="form-group">
-                    <label for="tmp.person_search_sex">Sexo:</label>
-                    <select class="form-control tmp.person_search_sex" id="tmp.person_search_sex" name="tmp.person_search_sex"
-                            readonly="readonly" disabled="disabled">
-                        <option value="">...</option>
-                        <option value="M">Masculino</option>
-                        <option value="F">Feminino</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="tmp.person_search_birth_date">Data de nascimento:</label>
-                    <input class="form-control tmp.person_search_birth_date tmp.person_search_birth_date" name="tmp.person_search_birth_date"
-                           type="text" readonly="readonly" disabled="disabled">
-                </div>
-                <div class="form-group">
-                    <label for="tmp.contact_age">Idade:</label>
-                    <input class="form-control tmp.contact_age"
-                           name="tmp.contact_age" type="number" readonly="readonly">
-                    <input class="form-control obs.contact_age"  name="obs.contact_age" type="hidden">
-                </div>
-                <div class="form-group">
-                    <label for="tmp.hiv_test">Teste de HIV:</label>
-                    <select class="form-control tmp.hiv_test" readonly="readonly" disabled="disabled"
-                            name="tmp.hiv_test">
-                        <option value="">...</option>
-                        <option value="703^Positivo^99DCT">Positivo</option>
-                        <option value="664^Negativo^99DCT">Negativo</option>
-                        <option value="1067^Desconhecido^99DCT">Desconhecido</option>
-                    </select>
-                    <input class="form-control obs.hiv_test"  name="obs.hiv_test" type="hidden">
-                </div>
-                <div class="form-group">
-                    <label for="tmp.hiv_care">Cuidados de HIV:</label>
-                    <select class="form-control tmp.hiv_care" readonly="readonly" disabled="disabled"
-                            name="tmp.hiv_care">
-                        <option value="">...</option>
-                        <option value="1065^Sim^99DCT">Sim</option>
-                        <option value="1066^Nao^99DCT">Nao</option>
-                    </select>
-                    <input class="form-control obs.hiv_care"  name="obs.hiv_care" type="hidden">
-                </div>
-                <div class="form-group">
-                    <label for="tmp.child_at_risk_treatment">EM CCR:</label>
-                    <select class="form-control tmp.child_at_risk_treatment" readonly="readonly" disabled="disabled"
-                            name="tmp.child_at_risk_treatment">
-                        <option value="">...</option>
-                        <option value="1065^Sim^99DCT">Sim</option>
-                        <option value="1066^Nao^99DCT">Nao</option>
-                        <option value="23892^Alta^99DCT">Alta</option>
-                    </select>
-                    <input class="form-control obs.child_at_risk_treatment"  name="obs.child_at_risk_treatment" type="hidden">
-                </div>
-                <div class="form-group">
-                    <label for="tmp.relative_nid">NID:</label>
-                    <input class="form-control tmp.relative_nid"
-                           name="tmp.relative_nid" type="text" readonly="readonly">
-                    <input class="form-control obs.relative_nid"  name="obs.relative_nid" type="hidden">
-                </div>
-                <div class="form-group">
-                    <label class="update-relationship-person" data-result-field="">
-                        <input class="tmp.update_person_details" data-result-field=""
-                               data-personUuid="" name="tmp.update_person_details" type="checkbox">
-                        Atualizar situacao familiar conjunta? (se sim, permitir editar)
-                    </label>
-                </div>
-            </div>
-            <div class="form-group create_person">
-                OR <br />
-                <button onclick="return false" class="form-control btn btn-primary create-relationship-person"
-                        data-result-field="">Registrar pessoa</button>
             </div>
         </div>
     </div>
@@ -476,6 +303,30 @@
         }
         $('#patient\\.phone_number').val(phoneNumber);
 
+        $('#tmp\\.update_names').change(function(){
+            if($(this).is(':checked')){
+                $('#update_names').show();
+                $('#demographicsupdate\\.is_updated_name_preferred').prop('value', true);
+            } else {
+                $('#update_names').hide();
+                $('#demographicsupdate\\.is_updated_name_preferred').prop('value', false);
+            }
+        });
+
+        $('#tmp\\.update_names').trigger('change');
+
+        var patientOldFamilyName = $('#patient\\.family_name').val();
+
+        var patientOldGivenName = $('#patient\\.given_name').val();
+
+        var patientOldMiddleName = $('#patient\\.middle_name').val();
+
+        $('#demographicsupdate\\.family_name').val(patientOldFamilyName);
+
+        $('#demographicsupdate\\.given_name').val(patientOldGivenName);
+
+        $('#demographicsupdate\\.middle_name').val(patientOldMiddleName);
+
         var dateFormat = "dd-mm-yy";
         var currentDate = $.datepicker.formatDate(dateFormat, new Date());
         var encounterDatetime = $('#encounter\\.encounter_datetime');
@@ -534,12 +385,12 @@
             if($(this).is(':checked')){
                 $('#update_address').show();
                 if($addressUpdateParent.find('.person_address_uuid').val() != $parent.find(".person_address_uuid").val()) {
-                    $addressUpdateParent.find('.address1').val("");
-                    $addressUpdateParent.find('.address2').val("");
-                    $addressUpdateParent.find('.address3').val("");
-                    $addressUpdateParent.find('.address4').val("");
-                    $addressUpdateParent.find('.address5').val("");
-                    $addressUpdateParent.find('.address6').val("");
+                    $("#new\\.address1").val("");
+                    $("#new\\.address2").val("");
+                    $("#new\\.address3").val("");
+                    $("#new\\.address4").val("");
+                    $("#new\\.address5").val("");
+                    $("#new\\.address6").val("");
                     $addressUpdateParent.find('.person_address_uuid').val("");
                 }
                 $('.update_address_confirm_new').not($(this)).prop('disabled',true);
@@ -554,12 +405,12 @@
             if($(this).is(':checked')){
                 $('#update_address').show();
                 if($addressUpdateParent.find('.person_address_uuid').val() != $parent.find(".person_address_uuid").val()) {
-                    $addressUpdateParent.find('.address1').val($parent.find(".address1").val());
-                    $addressUpdateParent.find('.address2').val($parent.find(".address2").val());
-                    $addressUpdateParent.find('.address3').val($parent.find(".address3").val());
-                    $addressUpdateParent.find('.address4').val($parent.find(".address4").val());
-                    $addressUpdateParent.find('.address5').val($parent.find(".address5").val());
-                    $addressUpdateParent.find('.address6').val($parent.find(".address6").val());
+                    $addressUpdateParent.find('.address1').val($("#old\\.address1").val());
+                    $addressUpdateParent.find('.address2').val($("#old\\.address2").val());
+                    $addressUpdateParent.find('.address3').val($("#old\\.address3").val());
+                    $addressUpdateParent.find('.address4').val($("#old\\.address4").val());
+                    $addressUpdateParent.find('.address5').val($("#old\\.address5").val());
+                    $addressUpdateParent.find('.address6').val($("#old\\.address6").val());
                     $addressUpdateParent.find('.person_address_uuid').val($parent.find(".person_address_uuid").val());
                     $('.person_new_phone_number').val(phoneNumber);
                 }
@@ -569,12 +420,12 @@
                 $('#update_address').hide();
                 $('.update_address_confirm').prop('disabled',false);
                 if($addressUpdateParent.find('.person_address_uuid').val() == $parent.find(".person_address_uuid").val()) {
-                    $addressUpdateParent.find('.address1').val($parent.find(".address1").val());
-                    $addressUpdateParent.find('.address2').val($parent.find(".address2").val());
-                    $addressUpdateParent.find('.address3').val($parent.find(".address3").val());
-                    $addressUpdateParent.find('.address4').val($parent.find(".address4").val());
-                    $addressUpdateParent.find('.address5').val($parent.find(".address5").val());
-                    $addressUpdateParent.find('.address6').val($parent.find(".address6").val());
+                    $addressUpdateParent.find('.address1').val($("#old\\.address1").val());
+                    $addressUpdateParent.find('.address2').val($("#old\\.address2").val());
+                    $addressUpdateParent.find('.address3').val($("#old\\.address3").val());
+                    $addressUpdateParent.find('.address4').val($("#old\\.address4").val());
+                    $addressUpdateParent.find('.address5').val($("#old\\.address5").val());
+                    $addressUpdateParent.find('.address6').val($("#old\\.address6").val());
                     $addressUpdateParent.find('.person_address_uuid').val("");
                 }
             }
@@ -596,8 +447,10 @@
         $('#tmp\\.update_sex').change(function(){
             if($(this).is(':checked')){
                 $('#update_sex').show();
+                $('#demographicsupdate\\.sex').val($('#patient\\.sex').val()==='Masculino'?'Masculino':$('#patient\\.sex').val()==='Feminino'?'Feminino':'...');
             } else {
                 $('#update_sex').hide();
+                $('#demographicsupdate\\.sex').val("...");
             }
         });
         $('#tmp\\.update_sex').trigger('change');
@@ -605,8 +458,12 @@
         $('#tmp\\.update_birthdate').change(function(){
             if($(this).is(':checked')){
                 $('#update_birthdate').show();
+                $("#demographicsupdate\\.birth_date").val($("#patient\\.birth_date").val());
+                $('#demographicsupdate\\.birthdate_estimated').val($('#patient\\.birthdate_estimated').val()==='true'?'true':$('#demographicsupdate\\.birthdate_estimated').val($('#patient\\.birthdate_estimated').val()==='false'?'false':'...'));
             } else {
                 $('#update_birthdate').hide();
+                $("#demographicsupdate\\.birth_date").val("");
+                $('#demographicsupdate\\.birthdate_estimated').val("");
             }
         });
         $('#tmp\\.update_birthdate').trigger('change');
