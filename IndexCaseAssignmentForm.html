@@ -13,7 +13,7 @@
     <script src="js/muzima.js"></script>
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>Atribuição de caso de índice</title>
+    <title>Formulário de Alocação de Contactos de Caso Índice ao Conselheiro</title>
 </head>
 <body class="col-md-10 col-md-offset-1">
 <div id="pre_populate_data">
@@ -22,8 +22,8 @@
 <form id="index_case_assignment" name="index_case_assignment">
     <h2 class="text-center">Atribuição de caso de índice</h2>
     <div class="form-group sub-section">
-        <label for="obs.health_worker">HTC Counselor Name/ <i>Nome do Conselheiro ATS</i>:<span class="required">*</span></label>
-        <input class="form-control" id="temp.health_worker" name="temp.health_worker" type="text" required="required" placeholder="Start typing something...">
+        <label for="obs.health_worker">Nome do Conselheiro ATS:<span class="required">*</span></label>
+        <input class="form-control" id="temp.health_worker" name="temp.health_worker" type="text" required="required" placeholder="Comece a digitar algo...">
         <input class="form-control" id="obs.health_worker_id" name="obs.health_worker_id" type="text" required="required" data-concept="1912^TRABALHADOR DE SAÚDE^99DCT" readonly>
     </div>
 	<div class="form-group">
@@ -37,40 +37,39 @@
 	</div>
 	
 	<div class="section">
-        <h4>Patient Name/ <i>Nome do Paciente</i> :</h4>
+        <h4>Nome do Paciente:</h4>
 		<div>
             <table class="table table-striped table-bordered">
                 <tr>
                     <th>#</th>
-                    <th>Last Name/ <i>Apelido</i></th>
-                    <th>First Name/<i>Nome</i></th>
-                    <th>Middle Name/ <i>Nome do Meio</i></th>
+                    <th>Apelido</th>
+                    <th>Nome</th>
+                    <th>Nome do meio</th>
                 </tr>
                 <tbody id="selected_patient_details"></tbody>
             </table>
 		</div>
 	</div>
     <div class="section">
-        <h4>Encounter Details/<i>Detalhes do Encontro</i></h4>
+        <h4>Detalhes do Encontro</h4>
 		<div class="form-group">
-            <label for="encounter.encounter_datetime">Encounter Date/ <i>Data do Encontro</i>:<span class="required">*</span>
+            <label for="encounter.encounter_datetime">Data do Encontro:<span class="required">*</span>
             </label>
             <input class="form-control datetimepicker nonFutureDate past-date" id="encounter.encounter_datetime"
                    name="encounter.encounter_datetime" type="text" readonly="readonly"
                    required="required">
         </div>
 		<div class="form-group">
-			<label for="encounter.provider_id_select">Name of Provider who allocated/
-                <i>Nome do provedor que fez a alocacao</i> :<span class="required">*</span></label>
+			<label for="encounter.provider_id_select">Nome do provedor que fez a alocacao:<span class="required">*</span></label>
 			<input class="form-control valid-provider-only" id="encounter.provider_id_select" type="text">
 			<input class="form-control" name="encounter.provider_id_select" type="hidden">
 		</div>
 		<div class="form-group show_provider_id_text">
-            <label for="encounter.provider_id">Provider system ID/ <i>ID do sistema do provedor</i>:<span class="required">*</span></label>
-			<input class="form-control" id="encounter.provider_id" disabled name="encounter.provider_id" type="text" required="required"  placeholder="Provider Id">
+            <label for="encounter.provider_id">ID do sistema do provedor:<span class="required">*</span></label>
+			<input class="form-control" id="encounter.provider_id" disabled name="encounter.provider_id" type="text" required="required"  placeholder="ID do Provedor">
 		</div>
 		<div class="form-group">
-            <label for="encounter.location_id">Encounter Location/ <i>Local do Encontro</i>:<span class="required">*</span></label>
+            <label for="encounter.location_id">Local do Encontro:<span class="required">*</span></label>
             <input class="form-control valid-location-only" id="encounter.location_id" type="text" required="required">
             <input class="form-control" name="encounter.location_id" type="hidden">						
 			<input class="form-control" id="encounter.form_uuid" name="encounter.form_uuid" type="hidden" required="required">

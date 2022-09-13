@@ -12,15 +12,16 @@
         <script src="js/additional-methods.min.js"></script>
         <script src="js/bootstrap-datetimepicker.min.js"></script>
         <script src="js/muzima.js"></script>
-
-        <title>Formulário de atualização de dados demográficos de pessoas (dos pacientes casos índices)</title>
+        <meta charset="utf-8">
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <title>Formulário ATS e Adicionar Contacto</title>
     </head>
 <body class="col-md-8 col-md-offset-2">
     <div id="result"></div>
     <form id="mini_registration_form" name="mini_registration_form">
         <div id="pre_populate_data">
         </div>
-        <h2 class="text-center">Formulário de atualização de dados demográficos de pessoas (dos pacientes casos índices)</h2>
+        <h2 class="text-center">Formulário ATS e Adicionar Contacto</h2>
 
         <div class="section">
             <h3>Nome do Paciente</h3>
@@ -68,83 +69,30 @@
                 <input class="form-control" id="demographicsupdate.middle_name" name="demographicsupdate.middle_name" type="text">
             </div>
         </div>
+        
         <div class="section">
-            <div class="section group-set" data-group="patient.personaddress" id="patient.personaddress">
-                <h3>Endereço</h3>
-                <div class="form-group">
-                    <label for="address1">Avenida/Rua/Punto de referencia: </label>
-                    <input class="form-control address1" name="address1" type="text" readonly="readonly" id="old.address1">
-                </div>
-                <div class="form-group">
-                    <label for="address2">Nº da Residência (casa): </label>
-                    <input class="form-control address2" name="address2" type="text" readonly="readonly" id="old.address2">
-                </div>
-                <div class="form-group">
-                    <label for="address6">Comunidade: </label>
-                    <input class="form-control address6" name="address6" type="text" readonly="readonly" id="old.address6">
-                </div>
-                <div class="form-group">
-                    <label for="address3">Quarteirão: </label>
-                    <input class="form-control address3" name="address3" type="text" readonly="readonly" id="old.address3">
-                </div>
-                <div class="form-group">
-                    <label for="address5">Bairro: </label>
-                    <input class="form-control address5" name="address5" type="text" readonly="readonly" id="old.address5">
-                    <input class="form-control person_address_uuid" name="uuid" type="hidden" readonly="readonly">
-                </div>
-                <div class="form-group">
-                    <input class=" tmp.edit_address update_address_confirm" name="tmp.edit_address"
-                           type="checkbox">
-                    <label for="tmp.edit_address" class="edit_address_label">Vai atualizar o endereço? (se sim, permitir editar)</label>
-                </div>
+            <h3>Outros Dados Demográficos</h3>
+            <div class="form-group">
+                <label>Parentesco: <span class="required">*</span></label>
+                <input id="patient.relationshipType" name="patient.relationshipType" type="hidden">
+                <input class="form-control" disabled id="tmp.patient.relationshipType" name="tmp.patient.relationshipType" type="text">
             </div>
             <div class="form-group">
-                <label for="patient.phone_number">Contacto Telemóvel do Paciente:</label>
-                <input class="form-control" id="patient.phone_number" name="patient.phone_number" type="tel" disabled="disabled">
-            </div>
-            <div class="form-group">
-                <label for="tmp.update_address">
-                    <input id="tmp.update_address_new" class="update_address_confirm_new" name="tmp.update_address_new"
+                <label for="tmp.update_relationshipType">
+                    <input id="tmp.update_relationshipType" name="tmp.update_relationshipType"
                            type="checkbox">
-                    Você adicionará um novo endereço? (se sim, permita a edição)
+                    Vai mudar de parentesco?  (se sim, permitir editar)
                 </label>
             </div>
-        </div>
-        <div class="section" id="update_address">
-            <h3>Novo endereço</h3>
-            <div class="group-set" data-group="demographicsupdate.personaddress" id="demographicsupdate.personaddress">
-                <div class="form-group">
-                    <label for="address1">Novo Avenida/Rua/Punto de referencia: </label>
-                    <input class="form-control address1" name="address1" type="text" minlength="5" maxlength="255" id="new.address1">
-                </div>
-                <div class="form-group">
-                    <label for="address2">Novo Nº da Residência (casa): </label>
-                    <input class="form-control address2" name="address2" type="text" maxlength="255" id="new.address2">
-                </div>
-                <div class="form-group">
-                    <label for="address6">Novo Comunidade: </label>
-                    <input class="form-control address6" name="address6" type="text" maxlength="255" id="new.address6">
-                </div>
-                <div class="form-group">
-                    <label for="address3">Novo Quarteirão: </label>
-                    <input class="form-control address3" name="address3" type="text" maxlength="255" id="new.address3">
-                </div>
-                <div class="form-group">
-                    <label for="address5">Novo Bairro: </label>
-                    <input class="form-control address5" name="address5" type="text" maxlength="255" id="new.address5">
-                    <input class="form-control person_address_uuid" name="uuid" type="hidden">
-                </div>
+            <div class="form-group" id="update_relationshipType">
+                <label for="demographicsupdate.relationshipType">Parentesco: <span class="required">*</span></label>
+                <select class="form-control demographicsupdate.relationshipType" name="demographicsupdate.relationshipType">
+                    <option value="">...</option>
+                    <option value='8d91a210-c2cc-11de-8d13-0010c6dffd0f' class="AIsToB">Mãe/Pai</option>
+                    <option value='8d91a210-c2cc-11de-8d13-0010c6dffd0f' class="BIsToA">Filho/Filha</option>
+                    <option value='2f7d5778-0c80-11eb-b335-9f16b42e3b00' class="AIsToB BIsToA">Parceiro</option>
+                </select>
             </div>
-            <div class="group-set" data-group="demographicsupdate.personattribute" id="demographicsupdate.personattribute">
-                <div class="form-group">
-                    <label for="phone_number">Novo Contacto Telemóvel do Paciente: </label>
-                    <input class="form-control phone_number person_new_phone_number" id="attribute_value" name="attribute_value" type="text">
-                    <input data-metadata-for="attribute_value" type="hidden" id="attribute_type_uuid"
-                           name="attribute_type_uuid" value="e2e3fd64-1d5f-11e0-b929-000c29ad1d07">
-                </div>
-            </div>
-        </div>
-        <div class="section">
             <div class="form-group">
                 <label for="patient.sex">Sexo:</label>
                 <input id="patient.sex" name="patient.sex" type="hidden">
@@ -208,7 +156,7 @@
                             required="required">
                         <option value="">...</option>
                         <option value="true">SIM</option>
-                        <option value="false">NAO</option>
+                        <option value="false">NÃO</option>
                     </select>
                 </div>
                 <div class="form-group show_age">
@@ -220,7 +168,7 @@
         </div>
 
         <div class="section">
-            <h3>Situacao familiar conjunta</h3>
+            <h3>Situação familiar conjunta</h3>
             <div class="form-group">
                 <label for="tmp.hiv_test">Teste de HIV:</label>
                 <input class="form-control" id="tmp.hiv_test"
@@ -264,25 +212,6 @@
         <div id="update_hiv_details" class="sub-section" >
             <h3>Situação familiar atualizada?</h3>
             <div class="form-group">
-                <label for="demographicsupdate.hiv_test">Resultado da Testagem de HIV:</label>
-                <select class="form-control" id="demographicsupdate.hiv_test"
-                        name="demographicsupdate.hiv_test" data-concept="23779^Teste de HIV^99DCT">
-                    <option value="">...</option>
-                    <option value="703^Positivo^99DCT">Positivo</option>
-                    <option value="664^Negativo^99DCT">Negativo</option>
-                    <option value="1067^Desconhecido^99DCT">Desconhecido</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="demographicsupdate.hiv_care">Cuidados de HIV:</label>
-                <select class="form-control" id="demographicsupdate.hiv_care"
-                        name="demographicsupdate.hiv_care" data-concept="23780^Cuidados HIV^99DCT">
-                    <option value="">...</option>
-                    <option value="1065^Sim^99DCT">Sim</option>
-                    <option value="1066^Nao^99DCT">Nao</option>
-                </select>
-            </div>
-            <div class="form-group">
                 <label for="demographicsupdate.htc_offered">
                     O serviço ATS foi oferecido? <span class="required">*</span>
                 </label>
@@ -305,6 +234,26 @@
                 </select>
             </div>
             <div class="form-group">
+                <label for="demographicsupdate.hiv_test">Resultado da Testagem de HIV:</label>
+                <select class="form-control" id="demographicsupdate.hiv_test"
+                        name="demographicsupdate.hiv_test" data-concept="23779^Teste de HIV^99DCT">
+                    <option value="">...</option>
+                    <option value="703^Positivo^99DCT">Positivo</option>
+                    <option value="664^Negativo^99DCT">Negativo</option>
+                    <option value="1067^Desconhecido^99DCT">Desconhecido</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="demographicsupdate.hiv_care">Cuidados de HIV:</label>
+                <select class="form-control" id="demographicsupdate.hiv_care"
+                        name="demographicsupdate.hiv_care" data-concept="23780^Cuidados HIV^99DCT">
+                    <option value="">...</option>
+                    <option value="1065^Sim^99DCT">Sim</option>
+                    <option value="1066^Nao^99DCT">Nao</option>
+                </select>
+            </div>
+           
+            <div class="form-group">
                 <label for="demographicsupdate.child_at_risk_treatment">EM CCR:</label>
                 <select class="form-control" id="demographicsupdate.child_at_risk_treatment"
                         name="demographicsupdate.child_at_risk_treatment" data-concept="1885^TRATEMENTO (CCR)^99DCT">
@@ -322,6 +271,11 @@
         </div>
         <div class="section">
             <h3>Detalhes do encontro</h3>
+            <div class="form-group">
+                <label for="encounter.encounter_datetime">Data de Encontro <span class="required">*</span></label>
+                <input class="form-control nonFutureDate past-date datetimepicker" readonly="readonly" id="encounter.encounter_datetime"
+                       name="encounter.encounter_datetime" type="text" required="required">
+            </div>
             <div class="form-group">
                 <label for="encounter.provider_id_select">Nome do conselheiro/provedor:<span class="required">*</span></label>
                 <input class="form-control valid-provider-only" id="encounter.provider_id_select" type="text"
@@ -347,12 +301,6 @@
                 <select class="form-control" id="encounter.location_id_select" required="required">
                     <option>...</option>
                 </select>
-            </div>
-
-            <div class="form-group">
-                <label for="encounter.encounter_datetime">Data de Encontro <span class="required">*</span></label>
-                <input class="form-control nonFutureDate past-date datetimepicker" readonly="readonly" id="encounter.encounter_datetime"
-                       name="encounter.encounter_datetime" type="text" required="required">
             </div>
             <div class="form-group">
                 <input class="form-control" id="encounter.form_uuid" name="encounter.form_uuid" type="hidden" required="required">
@@ -490,6 +438,17 @@
             }
         });
         $('#tmp\\.update_address').trigger('change');
+
+        $('#tmp\\.update_relationshipType').change(function(){
+            if($(this).is(':checked')){
+                $('#update_relationshipType').show();
+                $('#demographicsupdate\\.relationshipType').val($('#patient\\.relationshipType').val()==='Masculino'?'Masculino':$('#patient\\.relationshipType').val()==='Feminino'?'Feminino':'...');
+            } else {
+                $('#update_relationshipType').hide();
+                $('#demographicsupdate\\.relationshipType').val("...");
+            }
+        });
+        $('#tmp\\.update_relationshipType').trigger('change');
 
         $('#tmp\\.update_sex').change(function(){
             if($(this).is(':checked')){

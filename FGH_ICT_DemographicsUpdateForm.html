@@ -13,8 +13,9 @@
     <script src="js/additional-methods.min.js"></script>
     <script src="js/bootstrap-datetimepicker.min.js"></script>
     <script src="js/muzima.js"></script>
-
-    <title>Actualizar Dados Pessoais</title>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Formulário de Dados Demográficos do Caso Índice</title>
 </head>
 <body class="col-md-8 col-md-offset-2">
 
@@ -24,7 +25,7 @@
 <div id="pre_populate_data">
 </div>
 <form id="demographics_update_form" name="demographics_update_form">
-    <h2 class="text-center">Actualizar Dados Pessoais</h2>
+    <h2 class="text-center">Formulário de Dados Demográficos do Caso Índice</h2>
 
     <div class="section">
         <h3>Nome do Paciente</h3>
@@ -73,10 +74,99 @@
         </div>
     </div>
     <div class="section">
+        <h3>Identificadores</h3>
+        <div class="form-group">
+            <label for="patient.medical_record_number">NID : <span class="required require_medical_record_number_hint">*</span></label>
+
+            <div class="form-horizontal">
+                <div class="group-set" id="patient.medical_record_number" data-group="patient.medical_record_number">
+                    <input class="barcode_text form-control" id="tmp.medical_record_number"
+                           name="tmp.medical_record_number" type="text" readonly>
+                    <input type="hidden" id="identifier_value" name="identifier_value">
+                    <input data-metadata-for="identifier_value" type="hidden" id="identifier_type_uuid" name="identifier_type_uuid" value="e2b966d0-1d5f-11e0-b929-000c29ad1d07">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="section" id="update_names">
+        <h3>Outros Dados Demográficos</h3>
+            <div class="form-group">
+                <label for="patient.sex">Sexo: <span class="required">*</span></label>
+                <input id="patient.sex" name="patient.sex" type="hidden">
+                <input class="form-control" disabled id="tmp.patient.sex" name="tmp.patient.sex" type="text">
+            </div>
+            <div class="form-group">
+                <label for="tmp.update_sex">
+                    <input id="tmp.update_sex" name="tmp.update_sex"
+                           type="checkbox">
+                    Vai mudar de sexo? (se sim, permitir editar)
+                </label>
+            </div>
+            <div class="form-group sub-section" id="update_sex">
+                <label for="demographicsupdate.sex">Novo Sexo: <span class="required">*</span></label>
+                <select class="form-control" id="demographicsupdate.sex" name="demographicsupdate.sex" required="required">
+                    <option value="">...</option>
+                    <option value="M">Masculino</option>
+                    <option value="F">Feminino</option>
+                </select>
+            </div>
+            <div class="form-group birthdate">
+                <label for="patient.birth_date">Data de nascimento <span class="required">*</span></label>
+                <input class="form-control birth_date_picker nonFutureDate" id="patient.birth_date" name="patient.birth_date"
+                       type="text" disabled="disabled" readonly="readonly" value="12/08/2022">
+            </div>
+            <div class="form-group birthdate">
+                <label for="patient.birthdate_estimated">Esta data de nascimento é uma estimativa?  <span class="required">*</span></label>
+                <select class="form-control" id="patient.birthdate_estimated" name="patient.birthdate_estimated"
+                        disabled="disabled" readonly="readonly">
+                    <option value="">...</option>
+                    <option value="true">Sim</option>
+                    <option value="false">Nao</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="tmp.update_birthdate">
+                    <input id="tmp.update_birthdate" name="tmp.update_birthdate"
+                           type="checkbox">
+                    Mudar a data de nascimento? (se sim, permitir editar)
+                </label>
+            </div>
+            <div id="update_birthdate" class="sub-section">
+                <div class="form-group">
+                    <label for="tmp.birthdate_type">Registar a data de nascimento... <span class="required">*</span></label>
+                    <select class="form-control" name="tmp.birthdate_type" id="tmp.birthdate_type" required="required">
+                        <option value="">...</option>
+                        <option value="birthdate">Incluir a data de nascimento (seleccionar a …)</option>
+                        <option value="age"> Incluir a idade (seleccionar a …)</option>
+                    </select>
+                </div>
+                <div class="form-group show_birthdate">
+                    <label for="demographicsupdate.birth_date">Selecione Nova Data de Nascimento<span class="required">*</span></label>
+                    <input class="form-control birth_date_picker nonFutureDate" id="demographicsupdate.birth_date"
+                           name="demographicsupdate.birth_date"
+                           type="text" required="required" readonly="readonly">
+                </div>
+                <div class="form-group show_birthdate">
+                    <label for="demographicsupdate.birthdate_estimated">Esta data de nascimento é uma estimativa? <span
+                            class="required">*</span></label>
+                    <select class="form-control" id="demographicsupdate.birthdate_estimated" name="demographicsupdate.birthdate_estimated"
+                            required="required">
+                        <option value="">...</option>
+                        <option value="true">Sim</option>
+                        <option value="false">Nao</option>
+                    </select>
+                </div>
+                <div class="form-group show_age">
+                    <label for="tmp.age_in_years">Quantos anos você tem em anos? <span class="required">*</span></label>
+                    <input class="form-control" id="tmp.age_in_years" name="tmp.age_in_years" type="number" required="required">
+    
+                </div>
+            </div>
+    </div>
         <div class="section group-set" data-group="patient.personaddress" id="patient.personaddress">
             <h3>Endereço</h3>
             <div class="form-group">
-                <label for="address1">Avenida/Rua/Punto de referencia: </label>
+                <label for="address1">Avenida/Rua/Ponto de referencia: </label>
                 <input class="form-control address1" name="address1" type="text" readonly="readonly" id="old.address1">
             </div>
             <div class="form-group">
@@ -102,10 +192,12 @@
                 <label for="tmp.edit_address" class="edit_address_label">Vai atualizar o endereço? (se sim, permitir editar)</label>
             </div>
         </div>
+        <div class="section"> 
+            <h3>Contacto Telemóvel do Paciente</h3>
         <div class="form-group">
-            <label for="patient.phone_number">Contacto Telemóvel do Paciente:</label>
             <input class="form-control" id="patient.phone_number" name="patient.phone_number" type="tel" disabled="disabled">
         </div>
+       </div>
         <div class="form-group">
             <label for="tmp.update_address">
                 <input id="tmp.update_address_new" class="update_address_confirm_new" name="tmp.update_address_new"
@@ -113,12 +205,11 @@
                 Você adicionará um novo endereço? (se sim, permita a edição)
             </label>
         </div>
-    </div>
     <div class="section" id="update_address">
         <h3>Novo endereço</h3>
         <div class="group-set" data-group="demographicsupdate.personaddress" id="demographicsupdate.personaddress">
             <div class="form-group">
-                <label for="address1">Novo Avenida/Rua/Punto de referencia: </label>
+                <label for="address1">Novo Avenida/Rua/Ponto de referencia: </label>
                 <input class="form-control address1" name="address1" type="text" minlength="5" maxlength="255" id="new.address1">
             </div>
             <div class="form-group">
@@ -149,97 +240,12 @@
         </div>
     </div>
     <div class="section">
-        <h3>Identificadores</h3>
-        <div class="form-group">
-            <label for="patient.medical_record_number">NID : <span class="required require_medical_record_number_hint">*</span></label>
-
-            <div class="form-horizontal">
-                <div class="group-set" id="patient.medical_record_number" data-group="patient.medical_record_number">
-                    <input class="barcode_text form-control" id="tmp.medical_record_number"
-                           name="tmp.medical_record_number" type="text" readonly>
-                    <input type="hidden" id="identifier_value" name="identifier_value">
-                    <input data-metadata-for="identifier_value" type="hidden" id="identifier_type_uuid" name="identifier_type_uuid" value="e2b966d0-1d5f-11e0-b929-000c29ad1d07">
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="section">
-        <div class="form-group">
-            <label for="patient.sex">Sexo: <span class="required">*</span></label>
-            <input id="patient.sex" name="patient.sex" type="hidden">
-            <input class="form-control" disabled id="tmp.patient.sex" name="tmp.patient.sex" type="text">
-        </div>
-        <div class="form-group">
-            <label for="tmp.update_sex">
-                <input id="tmp.update_sex" name="tmp.update_sex"
-                       type="checkbox">
-                Vai mudar de sexo? (se sim, permitir editar)
-            </label>
-        </div>
-        <div class="form-group sub-section" id="update_sex">
-            <label for="demographicsupdate.sex">Novo Sexo: <span class="required">*</span></label>
-            <select class="form-control" id="demographicsupdate.sex" name="demographicsupdate.sex" required="required">
-                <option value="">...</option>
-                <option value="M">Masculino</option>
-                <option value="F">Feminino</option>
-            </select>
-        </div>
-        <div class="form-group birthdate">
-            <label for="patient.birth_date">Data de nascimento <span class="required">*</span></label>
-            <input class="form-control birth_date_picker nonFutureDate" id="patient.birth_date" name="patient.birth_date"
-                   type="text" disabled="disabled" readonly="readonly" value="12/08/2022">
-        </div>
-        <div class="form-group birthdate">
-            <label for="patient.birthdate_estimated">Esta data de nascimento é uma estimativa?  <span class="required">*</span></label>
-            <select class="form-control" id="patient.birthdate_estimated" name="patient.birthdate_estimated"
-                    disabled="disabled" readonly="readonly">
-                <option value="">...</option>
-                <option value="true">Sim</option>
-                <option value="false">Nao</option>
-            </select>
-        </div>
-        <div class="form-group">
-            <label for="tmp.update_birthdate">
-                <input id="tmp.update_birthdate" name="tmp.update_birthdate"
-                       type="checkbox">
-                Mudar a data de nascimento? (se sim, permitir editar)
-            </label>
-        </div>
-        <div id="update_birthdate" class="sub-section">
-            <div class="form-group">
-                <label for="tmp.birthdate_type">Registar a data de nascimento... <span class="required">*</span></label>
-                <select class="form-control" name="tmp.birthdate_type" id="tmp.birthdate_type" required="required">
-                    <option value="">...</option>
-                    <option value="birthdate">Incluir a data de nascimento (seleccionar a …)</option>
-                    <option value="age"> Incluir a idade (seleccionar a …)</option>
-                </select>
-            </div>
-            <div class="form-group show_birthdate">
-                <label for="demographicsupdate.birth_date">Selecione Nova Data de Nascimento<span class="required">*</span></label>
-                <input class="form-control birth_date_picker nonFutureDate" id="demographicsupdate.birth_date"
-                       name="demographicsupdate.birth_date"
-                       type="text" required="required" readonly="readonly">
-            </div>
-            <div class="form-group show_birthdate">
-                <label for="demographicsupdate.birthdate_estimated">Esta data de nascimento é uma estimativa? <span
-                        class="required">*</span></label>
-                <select class="form-control" id="demographicsupdate.birthdate_estimated" name="demographicsupdate.birthdate_estimated"
-                        required="required">
-                    <option value="">...</option>
-                    <option value="true">Sim</option>
-                    <option value="false">Nao</option>
-                </select>
-            </div>
-            <div class="form-group show_age">
-                <label for="tmp.age_in_years">Quantos anos você tem em anos? <span class="required">*</span></label>
-                <input class="form-control" id="tmp.age_in_years" name="tmp.age_in_years" type="number" required="required">
-
-            </div>
-        </div>
-    </div>
-
-    <div class="section">
         <h3>Detalhes do encontro</h3>
+        <div class="form-group">
+            <label for="encounter.encounter_datetime">Data de Encontro <span class="required">*</span></label>
+            <input class="form-control nonFutureDate past-date datetimepicker" readonly="readonly" id="encounter.encounter_datetime"
+                   name="encounter.encounter_datetime" type="text" required="required">
+        </div>
         <div class="form-group">
             <label for="encounter.provider_id_select">Nome do conselheiro/provedor:<span class="required">*</span></label>
             <input class="form-control valid-provider-only" id="encounter.provider_id_select" type="text"
@@ -265,12 +271,6 @@
             <select class="form-control" id="encounter.location_id_select" required="required">
                 <option>...</option>
             </select>
-        </div>
-
-        <div class="form-group">
-            <label for="encounter.encounter_datetime">Data de Encontro <span class="required">*</span></label>
-            <input class="form-control nonFutureDate past-date datetimepicker" readonly="readonly" id="encounter.encounter_datetime"
-                   name="encounter.encounter_datetime" type="text" required="required">
         </div>
         <div class="form-group">
             <input class="form-control" id="encounter.form_uuid" name="encounter.form_uuid" type="hidden" required="required">
