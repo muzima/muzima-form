@@ -22,10 +22,10 @@ var htmlDataStore = {
     },
 
     getPersonDetailsFromDeviceByUuid:function(uuid){
-        var persons = [{"uuid": "uuid1", "name": "Adam Smith", "birth_date":"2020-02-01", "sex":"M"},
-            {"uuid": "uuid2", "name": "John Pombe", "birth_date":"1968-02-30", "sex":"F"},
-            {"uuid": "uuid3", "name": "Wairimu Ngige", "birth_date":"1999-02-01", "sex":"F"},
-            {"uuid": "uuid4", "name": "Timmy Tammy", "birth_date":"2006-02-01", "sex":"M"}];
+        var persons = [{"uuid": "uuid1", "name": "Adam Smith", "family_name":"Adam","given_name":"Smith","birth_date":"2020-02-01", "sex":"M"},
+            {"uuid": "uuid2", "name": "John Pombe", "family_name": "John","given_name":"Pombe", "birth_date":"1968-02-30", "sex":"F"},
+            {"uuid": "uuid3", "name": "Wairimu Ngige", "family_name": "Wairimi","given_name":"Ngige", "birth_date":"1999-02-01", "sex":"F"},
+            {"uuid": "uuid4", "name": "Timmy Tammy", "family_name": "Timmy","given_name":"Tammy", "birth_date":"2006-02-01", "sex":"M"}];
 
         var foundPerson = {};
         $.each(persons,function(k,person){
@@ -49,6 +49,19 @@ var htmlDataStore = {
             }
         });
         return JSON.stringify(foundPerson);
+    },
+
+    getSelectedPatientsUuids:function(){
+        return JSON.stringify(['uuid1','uuid2']);
+    },
+
+    getProviderNamesFromDevice:function(){
+        var providers = [{"identifier":"3356-3","name":"David S. Pamba"},
+            {"identifier":"237-8","name":"Ariya Patrick"},
+            {"identifier":"3331-6","name":"Benjamin Osiya Ekirapa"},
+            {"identifier":"3332-4","name":"Molly Omodek Aluku"},
+            {"identifier":"3355-5","name":"Clementine Ingosi Osiel"}];
+        return JSON.stringify(providers);
     },
 
     getObsByConceptId:function(uuid,conceptId){
