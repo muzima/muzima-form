@@ -1,8 +1,7 @@
-
-.sub-section, .section {
+.section, .sub-section {
     padding: 10px;
-    border: 1px solid #ffffff;
-    border-radius: 2px;
+    border: 1px solid #000000;
+    border-radius: 5px;
     margin: 10px 5px;
 }
 
@@ -13,11 +12,6 @@
 .error {
     color: red;
     font-weight: normal;
-}
-
-.blue-label {
-    color: blue;
-    text-transform: uppercase;
 }
 
 input.error {
@@ -32,7 +26,7 @@ input.error {
     line-height: 18px;
     padding: 16px 23px;
     margin-right: 4px !important;
-    border-radius: 1px;
+    border-radius: 4px;
     background: #ffffff url("../images/barcode_icon.png") no-repeat center;
 }
 
@@ -41,16 +35,27 @@ input.error {
     width: 90%;
 }
 
+.section-div {
+    background-color: #DCDCDC;
+}
+
+.input-section {
+    background-color: #F0EFE0;
+}
+
+.input-section-2 {
+    background-color: #FFD8C6;
+}
+
 .image_btn {
     height: 6%;
     width: 12%;
     display: inline-block;
     line-height: 18px;
     padding: 16px 23px;
-    margin: 4px;
     margin-right: 4px !important;
     border-radius: 4px;
-    background: #ffffff url("../images/camera_mg.png") no-repeat center;
+    background: #ffffff url("../images/imaging_icon.png") no-repeat center;
 }
 
 .image_text {
@@ -66,7 +71,7 @@ input.error {
     padding: 16px 23px;
     margin-right: 4px !important;
     border-radius: 4px;
-    background: url("../images/record_img.png") no-repeat center;
+    background: rgba(0, 0, 0, 0.09) url("../images/audio_record_icon.png") no-repeat center;
 }
 
 .audio_record_text {
@@ -90,72 +95,81 @@ input.error {
     width: 90%;
 }
 
-#pre_populate_data {
+#pre_populate_data{
     display: none;
 }
 
-span.clear {
+span.clear{
     display: block;
-    clear: left;
+    clear:left;
 }
 
-.datepicker {
+.datepicker{
     background: white !important;
+}
+
+.roman_numeral_list>li{
+    list-style-type: lower-roman;
+}
+
+.padded_div_images{
+    padding:20px 0px 20px;
+    text-align : center;
 }
 
 .font-normal {
     font-weight: normal;
 }
 
-.small {
+.small{
     font-size: 14px;
 }
 
-.medium, .medium .form-control, .medium .btn {
+.medium, .medium .form-control, .medium .btn{
     font-size: 18px;
 }
 
-.medium h2 {
-    font-size: 24px;
+.medium h2{
+    font-size: 34px;
 }
 
-.medium h3 {
-    font-size: 18px;
+.medium h3{
+    font-size: 28px;
 }
 
-.medium h4 {
-    font-size: 16px;
-}
-
-.medium .form-control:not(textarea) {
-    height: 38px;
-}
-
-.medium .btn {
-    padding: 6px 15px;
-}
-
-.large, .large .form-control, .large .btn {
+.medium h4{
     font-size: 22px;
 }
 
-.large h2 {
+.medium .form-control:not(textarea){
+    height: 38px;
+}
+
+.medium .btn{
+    padding: 6px 15px;
+}
+
+.large, .large .form-control, .large .btn{
+    font-size: 22px;
+}
+
+.large h2{
     font-size: 38px;
 }
 
-.large h3 {
+.large h3{
     font-size: 32px;
 }
 
-.large h4 {
+.large h4{
     font-size: 26px;
 }
 
-.large .form-control:not(textarea) {
+.large .form-control:not(textarea){
     height: 42px;
 }
 
-.large .btn {
+.large .btn{
     padding: 6px 18px;
 }
 
@@ -173,82 +187,10 @@ span.clear {
     vertical-align: top;
     padding: 6px 6px;
     animation: spin 2s linear infinite;
-    display: inline-block;
-}
-
-input[type=text] {
-    border: none;
-    padding: 22px;
-    background-color: #00000005;
-    border-bottom: 2px solid #00000026;
-}
-
-input[type=checkbox] {
-    color: #000000DE;
-    margin-right: 12px;
-    font-size: 48px;
-    height: 2rem;
-    width: 2rem;
-    vertical-align: middle;
-    float: left;
-}
-
-.dropborder {
-    border: none;
-    border-bottom: 2px solid gray;
-}
-
-select {
-    padding-right: 2rem !important;
-}
-
-.allergies_title {
-    margin-left: 12px;
-}
-
-.selector-field {
-    padding: 13px;
-    height: auto;
-    background-color: #00000005;
-    border: none;
-    border-bottom: 2px solid #00000026;
-}
-
-ul {
-    column-count: 2;
-    column-gap: 2rem;
-    list-style: none;
-}
-
-.adder {
-    color: #137EFE;
-    font-weight: bold;
-    font-family: monospace;
-    margin-left: 16px;
+    display:inline-block;
 }
 
 @keyframes spin {
-    0% {
-        transform: rotate(0deg);
-    }
-    100% {
-        transform: rotate(360deg);
-    }
-}
-
-.input_icon_show {
-    position: relative;
-}
-.input_icon {
-    position: absolute;
-    top: 0;
-    right: 0;
-    z-index: 2;
-    cursor: pointer;
-    transition: .3s ease all;
-    width: 45px;
-    height: 45px;
-    line-height: 45px !important;
-    text-align: center;
-    font-size: 24px !important;
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
 }

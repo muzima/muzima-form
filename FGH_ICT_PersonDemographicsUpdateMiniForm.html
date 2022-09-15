@@ -85,40 +85,7 @@
                     Vai mudar de parentesco?  (se sim, permitir editar)
                 </label>
             </div>
- </div>
-        <div class="section" id="update_address">
-            <h3>Novo endereço</h3>
-            <div class="group-set" data-group="demographicsupdate.personaddress" id="demographicsupdate.personaddress">
-                <div class="form-group">
-                    <label for="address1">Novo Avenida/Rua/Punto de referencia: </label>
-                    <input class="form-control address1" name="address1" type="text" minlength="5" maxlength="255">
-                </div>
-                <div class="form-group">
-                    <label for="address2">Novo Nº da Residência (casa): </label>
-                    <input class="form-control address2" name="address2" type="text" maxlength="255">
-                </div>
-                <div class="form-group">
-                    <label for="address6">Novo Comunidade: </label>
-                    <input class="form-control address6" name="address6" type="text" maxlength="255">
-                </div>
-                <div class="form-group">
-                    <label for="address3">Novo Quarteirão: </label>
-                    <input class="form-control address3" name="address3" type="text" maxlength="255">
-                </div>
-                <div class="form-group">
-                    <label for="address5">Novo Bairro: </label>
-                    <input class="form-control address5" name="address5" type="text" maxlength="255">
-                    <input class="form-control person_address_uuid" name="uuid" type="hidden">
-                </div>
-            </div>
-            <div class="group-set" data-group="demographicsupdate.personattribute" id="demographicsupdate.personattribute">
-                <div class="form-group">
-                    <label for="phone_number">Novo Contacto Telemóvel do Paciente: </label>
-                    <input class="form-control phone_number person_new_phone_number" id="attribute_value" name="attribute_value" type="text">
-                    <input data-metadata-for="attribute_value" type="hidden" id="attribute_type_uuid"
-                           name="attribute_type_uuid" value="e2e3fd64-1d5f-11e0-b929-000c29ad1d07">
-                </div>
-            </div>
+
             <div class="form-group">
                 <label for="patient.sex">Sexo:</label>
                 <input id="patient.sex" name="patient.sex" type="hidden">
@@ -141,7 +108,7 @@
             </div>
             <div class="form-group birthdate">
                 <label for="patient.birth_date">Data de nascimento  <span class="required">*</span></label>
-                <input class="form-control" id="patient.birth_date" name="patient.birth_date" value="02-03-2020"
+                <input class="form-control" id="patient.birth_date" name="patient.birth_date" value=""
                        type="text" disabled="disabled" readonly="readonly">
             </div>
             <div class="form-group birthdate">
@@ -192,7 +159,6 @@
                 </div>
             </div>
         </div>
-
         <div class="section">
             <h3>Situação familiar conjunta</h3>
             <div class="form-group">
