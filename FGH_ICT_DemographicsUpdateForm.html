@@ -164,24 +164,24 @@
         <h3>Endereço</h3>
         <div class="form-group">
             <label for="address1">Avenida/Rua/Ponto de referencia: </label>
-            <input class="form-control address1" name="address1" type="text" readonly="readonly" id="old.address1">
+            <input class="form-control address1" name="address1" type="text" readonly="readonly">
         </div>
         <div class="form-group">
             <label for="address2">Nº da Residência (casa): </label>
-            <input class="form-control address2" name="address2" type="text" readonly="readonly" id="old.address2">
+            <input class="form-control address2" name="address2" type="text" readonly="readonly">
         </div>
         <div class="form-group">
             <label for="address6">Comunidade: </label>
-            <input class="form-control address6" name="address6" type="text" readonly="readonly" id="old.address6">
+            <input class="form-control address6" name="address6" type="text" readonly="readonly">
         </div>
         <div class="form-group">
             <label for="address3">Quarteirão: </label>
-            <input class="form-control address3" name="address3" type="text" readonly="readonly" id="old.address3">
+            <input class="form-control address3" name="address3" type="text" readonly="readonly">
         </div>
         <div class="form-group">
             <label for="address5">Bairro: </label>
             <input class="form-control address5" name="address5" type="text" readonly="readonly">
-            <input class="form-control person_address_uuid uuid" name="uuid" type="hidden" readonly="readonly" id="old.address5">
+            <input class="form-control person_address_uuid uuid" name="uuid" type="hidden" readonly="readonly">
         </div>
         <div class="form-group">
             <input class=" tmp.edit_address update_address_confirm" name="tmp.edit_address"
@@ -390,12 +390,12 @@
             if($(this).is(':checked')){
                 $('#update_address').show();
                 if($addressUpdateParent.find('.person_address_uuid').val() != $parent.find(".person_address_uuid").val()) {
-                    $addressUpdateParent.find('.address1').val($("#old\\.address1").val());
-                    $addressUpdateParent.find('.address2').val($("#old\\.address2").val());
-                    $addressUpdateParent.find('.address3').val($("#old\\.address3").val());
-                    $addressUpdateParent.find('.address4').val($("#old\\.address4").val());
-                    $addressUpdateParent.find('.address5').val($("#old\\.address5").val());
-                    $addressUpdateParent.find('.address6').val($("#old\\.address6").val());
+                    $addressUpdateParent.find('.address1').val($parent.find(".address1").val());
+                    $addressUpdateParent.find('.address2').val($parent.find(".address2").val());
+                    $addressUpdateParent.find('.address3').val($parent.find(".address3").val());
+                    $addressUpdateParent.find('.address4').val($parent.find(".address4").val());
+                    $addressUpdateParent.find('.address5').val($parent.find(".address5").val());
+                    $addressUpdateParent.find('.address6').val($parent.find(".address6").val());
                     $addressUpdateParent.find('.person_address_uuid').val($parent.find(".person_address_uuid").val());
                     $('.person_new_phone_number').val(phoneNumber);
                 }
@@ -405,13 +405,12 @@
                 $('#update_address').hide();
                 $('.update_address_confirm').prop('disabled',false);
                 if($addressUpdateParent.find('.person_address_uuid').val() == $parent.find(".person_address_uuid").val()) {
-
-                    $addressUpdateParent.find('.address1').val($parent.find(".address1").val());
-                    $addressUpdateParent.find('.address2').val($parent.find(".address2").val());
-                    $addressUpdateParent.find('.address3').val($parent.find(".address3").val());
-                    $addressUpdateParent.find('.address4').val($parent.find(".address4").val());
-                    $addressUpdateParent.find('.address5').val($parent.find(".address5").val());
-                    $addressUpdateParent.find('.address6').val($parent.find(".address6").val());
+                    $addressUpdateParent.find('.address1').val("");
+                    $addressUpdateParent.find('.address2').val("");
+                    $addressUpdateParent.find('.address3').val("");
+                    $addressUpdateParent.find('.address4').val("");
+                    $addressUpdateParent.find('.address5').val("");
+                    $addressUpdateParent.find('.address6').val("");
                     $addressUpdateParent.find('.person_address_uuid').val("");
                 }
             }
