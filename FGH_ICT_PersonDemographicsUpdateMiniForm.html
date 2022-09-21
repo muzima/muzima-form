@@ -166,51 +166,8 @@
                 </div>
             </div>
         </div>
-
-        <div class="section">
-            <h3>Situação familiar conjunta</h3>
-            <div class="form-group">
-                <label for="tmp.hiv_test">Teste de HIV:</label>
-                <input class="form-control" id="tmp.hiv_test"
-                        name="tmp.hiv_test" readonly="readonly" />
-                <div id="obs_hiv_test"></div>
-            </div>
-            <div class="form-group">
-                <label for="tmp.hiv_care">Cuidados de HIV:</label>
-                <input class="form-control" id="tmp.hiv_care" readonly="readonly"
-                        name="tmp.hiv_care" />
-            </div>
-            <div class="form-group">
-                <label for="tmp.htc_offered">O serviço ATS foi oferecido?</label>
-                <input class="form-control" id="tmp.htc_offered" readonly
-                        name="tmp.htc_offered" data-concept="165266^Oferecido serviço ATS?^99DCT" />
-            </div>
-            <div class="form-group tmp_htc_accepted">
-                <label for="tmp.htc_accepted">O serviço ATS foi aceito?</label>
-                <input class="form-control" id="tmp.htc_accepted" readonly
-                        name="tmp.htc_accepted" />
-            </div>
-            <div class="form-group">
-                <label for="tmp.child_at_risk_treatment">EM CCR:</label>
-                <input class="form-control" id="tmp.child_at_risk_treatment" readonly="readonly"
-                        name="tmp.child_at_risk_treatment" />
-            </div>
-            <div class="form-group">
-                <label for="tmp.relative_nid">NID:</label>
-                <input class="form-control" id="tmp.relative_nid"
-                       name="tmp.relative_nid" type="text" readonly="readonly">
-            </div>
-            <div class="form-group">
-                <label for="tmp.update_hiv_details">
-                    <input id="tmp.update_hiv_details" name="tmp.update_hiv_details"
-                           type="checkbox">
-                    Situação familiar atualizada? (se sim, permitir editar)
-                </label>
-            </div>
-        </div>
-<!--        data-concept="23782^SITUACAO FAMILIAR CONJUNTO^99DCT"-->
         <div id="update_hiv_details" class="sub-section" >
-            <h3>Situação familiar atualizada?</h3>
+            <h3>Dados de Testagem</h3>
             <div class="form-group">
                 <label for="demographicsupdate.htc_offered">
                     O serviço ATS foi oferecido? <span class="required">*</span>
@@ -355,16 +312,6 @@
         $('#demographicsupdate\\.given_name').val(patientOldGivenName);
 
         $('#demographicsupdate\\.middle_name').val(patientOldMiddleName);
-
-
-        $('#tmp\\.update_hiv_details').change(function(){
-            if($(this).is(':checked')){
-                $('#update_hiv_details').show();
-            } else {
-                $('#update_hiv_details').hide();
-            }
-        });
-        $('#tmp\\.update_hiv_details').trigger('change');
 
         $('.edit_address_label').click(function(){
             $parent = $(this).closest('.form-group');

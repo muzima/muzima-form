@@ -73,21 +73,6 @@
             <input class="form-control" id="demographicsupdate.middle_name" name="demographicsupdate.middle_name" type="text">
         </div>
     </div>
-    <div class="section">
-        <h3>Identificadores</h3>
-        <div class="form-group">
-            <label for="patient.medical_record_number">NID : <span class="required require_medical_record_number_hint">*</span></label>
-
-            <div class="form-horizontal">
-                <div class="group-set" id="patient.medical_record_number" data-group="patient.medical_record_number">
-                    <input class="barcode_text form-control" id="tmp.medical_record_number"
-                           name="tmp.medical_record_number" type="text" readonly>
-                    <input type="hidden" id="identifier_value" name="identifier_value">
-                    <input data-metadata-for="identifier_value" type="hidden" id="identifier_type_uuid" name="identifier_type_uuid" value="e2b966d0-1d5f-11e0-b929-000c29ad1d07">
-                </div>
-            </div>
-        </div>
-    </div>
     <div class="section" id="update_names">
         <h3>Outros Dados Demográficos</h3>
             <div class="form-group">
@@ -163,7 +148,22 @@
                 </div>
             </div>
     </div>
-        <div class="section group-set" data-group="patient.personaddress" id="patient.personaddress">
+    <div class="section">
+        <h3>Identificadores</h3>
+        <div class="form-group">
+            <label for="patient.medical_record_number">NID : <span class="required require_medical_record_number_hint">*</span></label>
+
+            <div class="form-horizontal">
+                <div class="group-set" id="patient.medical_record_number" data-group="patient.medical_record_number">
+                    <input class="barcode_text form-control" id="tmp.medical_record_number"
+                           name="tmp.medical_record_number" type="text" readonly>
+                    <input type="hidden" id="identifier_value" name="identifier_value">
+                    <input data-metadata-for="identifier_value" type="hidden" id="identifier_type_uuid" name="identifier_type_uuid" value="e2b966d0-1d5f-11e0-b929-000c29ad1d07">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="section group-set" data-group="patient.personaddress" id="patient.personaddress">
             <h3>Endereço</h3>
             <div class="form-group">
                 <label for="address1">Avenida/Rua/Ponto de referencia: </label>
