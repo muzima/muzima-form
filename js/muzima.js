@@ -18,7 +18,8 @@ var htmlDataStore = {
     },
 
     getRelationshipForPersons:function(uuid1,uuid2){
-        return '[{"relationshipType":"8d91a210-c2cc-11de-8d13-0010c6dffd0f"}]';
+        return '[{"relationshipType":"8d91a210-c2cc-11de-8d13-0010c6dffd0f", "personA":"'
+            +uuid1+'","personB":"'+uuid2+'","relationshipUuid":"8aac9d2-43fd-4247-8b29-676dbc291862"}]';
     },
 
     getPersonDetailsFromDeviceByUuid:function(uuid){
