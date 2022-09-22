@@ -72,18 +72,37 @@
         
         <div class="section">
             <h3>Outros Dados Demográficos</h3>
-            <div class="form-group">
-                <label>Parentesco: <span class="required">*</span></label>
-                <input id="patient.relationshipType" name="patient.relationshipType" type="hidden">
-                <input class="form-control" disabled id="tmp.patient.relationshipType" name="tmp.patient.relationshipType" type="text">
-            </div>
-            <div class="form-group">
+            <div id="relationshipStub">
+                <div class="form-group">
+                    <label>Parentesco: <span class="required">*</span></label>
+                    <input class="form-control tmp.person.relationshipTypeName"
+                           name="tmp.person.relationshipTypeName" type="text">
+                    <input class="form-control tmp.person.relationshipType"
+                           name="tmp.person.relationshipType" type="hidden">
+                    <input class="form-control tmp.personA.uuid" name="tmp.personA.uuid" type="hidden">
+                    <input class="form-control tmp.personB.uuid" name="tmp.personB.uuid" type="hidden">
+                    <input class="form-control tmp.relationship.uuid" name="tmp.relationship.uuid" type="hidden">
+                </div>
+                <div class="form-group">
+                    <label for="tmp.update_relationshipType">
+                        <input id="tmp.update_relationshipType" name="tmp.update_relationshipType"
+                               type="checkbox">
+                        Vai mudar de parentesco?  (se sim, permitir editar)
+                    </label>
+                </div>
+                <div class="form-group group-set" data-group="demographicsupdate.relationships" id="updateRelationshipType">
+                    <label>Novo parentesco: <span class="required"></span></label>
+                    <select class="form-control person.relationshipType" name="person.relationshipType">
+                        <option value="">...</option>
+                        <option value='8d91a210-c2cc-11de-8d13-0010c6dffd0f' class="AIsToB">Mae/Pai</option>
+                        <option value='8d91a210-c2cc-11de-8d13-0010c6dffd0f' class="BIsToA">Filho/Filha</option>
+                        <option value='2f7d5778-0c80-11eb-b335-9f16b42e3b00'>Parceiro</option>
+                    </select>
+                    <input class="form-control personA.uuid" name="personA.uuid" type="hidden">
+                    <input class="form-control personB.uuid" name="personB.uuid" type="hidden">
+                    <input class="form-control relationship.uuid" name="relationship.uuid" type="hidden">
 
-                <label for="tmp.update_relationshipType">
-                    <input id="tmp.update_relationshipType" name="tmp.update_relationshipType"
-                           type="checkbox">
-                    Vai mudar de parentesco?  (se sim, permitir editar)
-                </label>
+                </div>
             </div>
 
             <div class="form-group">
@@ -301,7 +320,6 @@
                 <input class="form-control" id="tmp.custom_discriminator" name="tmp.custom_discriminator"
                    value="mastercard-record-mapper" type="hidden" required="required">
             </div>
-        </div>
     </form>
 </body>
 <script type="text/javascript">
@@ -431,17 +449,6 @@
             }
         });
         $('#tmp\\.update_address').trigger('change');
-
-        $('#tmp\\.update_relationshipType').change(function(){
-            if($(this).is(':checked')){
-                $('#update_relationshipType').show();
-                $('#demographicsupdate\\.relationshipType').val($('#patient\\.relationshipType').val()==='Masculino'?'Masculino':$('#patient\\.relationshipType').val()==='Feminino'?'Feminino':'...');
-            } else {
-                $('#update_relationshipType').hide();
-                $('#demographicsupdate\\.relationshipType').val("...");
-            }
-        });
-        $('#tmp\\.update_relationshipType').trigger('change');
 
         $('#tmp\\.update_sex').change(function(){
             if($(this).is(':checked')){
@@ -640,6 +647,92 @@
             $('#demographicsupdate\\.relative_nid').val(relative_nid.valueText);
             $('#demographicsupdate\\.relative_nid').trigger('change');
         }
+
+        var prePopulateData = $.trim($('#pre_populate_data').html());
+        var indexCaseUuid = 'aa';
+        if(prePopulateData !=="" ){
+            var prePopulateJSON = JSON.parse(prePopulateData);
+            $.each(prePopulateJSON, function(key, value) {
+                if (key === 'index_patient') {
+                    $.each(value, function(subKey, subValue) {
+                        if(subKey === 'index_patient.uuid') {
+                            indexCaseUuid = subValue;
+                        }
+                    });
+                }
+            });
+        }
+
+        if(indexCaseUuid != ''){
+            var relationships = htmlDataStore.getRelationshipForPersons(indexCaseUuid, patientUuid);
+            relationships = JSON.parse(relationships);
+            var $relationshipStub = $('#relationshipStub');
+            for(let i=0; i<relationships.length; i++){
+                var relationshipType = relationships[i].relationshipType;
+                if(relationshipType != undefined) {
+                    var personA = relationships[i].personA;
+                    var personB = relationships[i].personB;
+                    var relationshipUuid = relationships[i].relationshipUuid;
+                    if (personA != undefined && personB != undefined) {
+                        var $relationshipStub = $('#relationshipStub');
+                        $relationshipStub.find('.tmp\\.personA\\.uuid').val(personA);
+                        $relationshipStub.find('.tmp\\.personB\\.uuid').val(personB);
+                        $relationshipStub.find('.tmp\\.person\\.relationshipType').val(relationshipType);
+                        $relationshipStub.find('.tmp\\.relationship\\.uuid').val(relationshipUuid);
+                        if(relationshipType == '8d91a210-c2cc-11de-8d13-0010c6dffd0f' && personA == patientUuid) {
+                            $relationshipStub.find('.tmp\\.person\\.relationshipTypeName').val("Mae/Pai");
+                        } else if(relationshipType == '8d91a210-c2cc-11de-8d13-0010c6dffd0f' && personB == patientUuid) {
+                            $relationshipStub.find('.tmp\\.person\\.relationshipTypeName').val("Filho/Filha");
+                        } else if(relationshipType == '2f7d5778-0c80-11eb-b335-9f16b42e3b00') {
+                            $relationshipStub.find('.tmp\\.person\\.relationshipTypeName').val("Parceiro");
+                        }
+                    }
+                }
+            }
+        }
+
+        var $updateRelationshipType = $('#updateRelationshipType');
+        $('#tmp\\.update_relationshipType').change(function(){
+            if($(this).is(':checked')){
+                $('#updateRelationshipType').show();
+                $updateRelationshipType.find('.person\\.relationshipType').val($('.tmp\\.person\\.relationshipType').val());
+                $updateRelationshipType.find('.personA\\.uuid').val($('.tmp\\.personA\\.uuid').val());
+                $updateRelationshipType.find('.personB\\.uuid').val($('.tmp\\.personB\\.uuid').val());
+                $updateRelationshipType.find('.relationship\\.uuid').val($('.tmp\\.relationship\\.uuid').val());
+
+                if($('.tmp\\.person\\.relationshipTypeName').val() == 'Mae/Pai'){
+                    $updateRelationshipType.find('.AIsToB').prop('selected', true);
+                } else if($('.tmp\\.person\\.relationshipTypeName').val() == 'Filho/Filha'){
+                    $updateRelationshipType.find('.BIsToA').prop('selected', true);
+                }
+            } else {
+                $('#updateRelationshipType').hide();
+                $updateRelationshipType.find('.person\\.relationshipType').val('');
+                $updateRelationshipType.find('.personA\\.uuid').val('');
+                $updateRelationshipType.find('.personB\\.uuid').val('');
+                $updateRelationshipType.find('.relationship\\.uuid').val('');
+            }
+        });
+        $('#tmp\\.update_relationshipType').trigger('change');
+
+        $updateRelationshipType.find('.person\\.relationshipType').change(function () {
+            var relationshipType = $(this).val();
+            if(relationshipType == '8d91a210-c2cc-11de-8d13-0010c6dffd0f' && $(this).find(':selected').hasClass('AIsToB')) {
+                $updateRelationshipType.find('.personA\\.uuid').val(patientUuid);
+                $updateRelationshipType.find('.personB\\.uuid').val(indexCaseUuid);
+            } else if(relationshipType == '8d91a210-c2cc-11de-8d13-0010c6dffd0f' && $(this).find(':selected').hasClass('BIsToA')) {
+                $updateRelationshipType.find('.personA\\.uuid').val(indexCaseUuid);
+                $updateRelationshipType.find('.personB\\.uuid').val(patientUuid);
+            } else if(relationshipType == '2f7d5778-0c80-11eb-b335-9f16b42e3b00') {
+                $updateRelationshipType.find('.personA\\.uuid').val(patientUuid);
+                $updateRelationshipType.find('.personB\\.uuid').val(indexCaseUuid);
+            } else {
+                $updateRelationshipType.find('.personA\\.uuid').val('');
+                $updateRelationshipType.find('.personB\\.uuid').val('');
+            }
+        });
+        $updateRelationshipType.find('.person\\.relationshipType').trigger('change');
+
     });
 </script>
 
