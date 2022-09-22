@@ -24,7 +24,7 @@
         <h2 class="text-center">Formulário ATS e Adicionar Contacto</h2>
 
         <div class="section">
-            <h3>Nome do Paciente</h3>
+            <h3>Nome do Contacto</h3>
             <div class="form-group">
                 <input class="form-control" id="patient.uuid"
                        name="patient.uuid" type="hidden" readonly="readonly">
@@ -74,9 +74,9 @@
             <h3>Outros Dados Demográficos</h3>
             <div id="relationshipStub">
                 <div class="form-group">
-                    <label>Parentesco: <span class="required">*</span></label>
+                    <label>Parentesco:</label>
                     <input class="form-control tmp.person.relationshipTypeName"
-                           name="tmp.person.relationshipTypeName" type="text">
+                           name="tmp.person.relationshipTypeName" type="text" readonly>
                     <input class="form-control tmp.person.relationshipType"
                            name="tmp.person.relationshipType" type="hidden">
                     <input class="form-control tmp.personA.uuid" name="tmp.personA.uuid" type="hidden">
@@ -224,9 +224,9 @@
             <h3>Situação familiar atualizada?</h3>
             <div class="form-group">
                 <label for="demographicsupdate.htc_offered">
-                    O serviço ATS foi oferecido? <span class="required">*</span>
+                    O serviço ATS foi oferecido?
                 </label>
-                <select class="form-control" id="demographicsupdate.htc_offered" required="required"
+                <select class="form-control" id="demographicsupdate.htc_offered"
                         name="demographicsupdate.htc_offered" data-concept="165266^Oferecido serviço ATS?^99DCT">
                     <option value="">...</option>
                     <option value="1065^SIM^99DCT">Sim</option>
@@ -235,9 +235,9 @@
             </div>
             <div class="form-group demographicsupdate_htc_accepted">
                 <label for="demographicsupdate.htc_accepted">
-                    O serviço ATS foi aceito? <span class="required">*</span>
+                    O serviço ATS foi aceito?
                 </label>
-                <select class="form-control" id="demographicsupdate.htc_accepted" required="required"
+                <select class="form-control" id="demographicsupdate.htc_accepted"
                         name="demographicsupdate.htc_accepted" data-concept="165267^Aceita serviço ATS?^99DCT">
                     <option value="">...</option>
                     <option value="1065^SIM^99DCT">Sim</option>
