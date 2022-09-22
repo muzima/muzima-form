@@ -181,17 +181,6 @@
         <div class="section">
             <h3>Situação familiar conjunta</h3>
             <div class="form-group">
-                <label for="tmp.hiv_test">Teste de HIV:</label>
-                <input class="form-control" id="tmp.hiv_test"
-                        name="tmp.hiv_test" readonly="readonly" />
-                <div id="obs_hiv_test"></div>
-            </div>
-            <div class="form-group">
-                <label for="tmp.hiv_care">Cuidados de HIV:</label>
-                <input class="form-control" id="tmp.hiv_care" readonly="readonly"
-                        name="tmp.hiv_care" />
-            </div>
-            <div class="form-group">
                 <label for="tmp.htc_offered">O serviço ATS foi oferecido?</label>
                 <input class="form-control" id="tmp.htc_offered" readonly
                         name="tmp.htc_offered" data-concept="165266^Oferecido serviço ATS?^99DCT" />
@@ -202,7 +191,18 @@
                         name="tmp.htc_accepted" />
             </div>
             <div class="form-group">
-                <label for="tmp.child_at_risk_treatment">EM CCR:</label>
+                <label for="tmp.hiv_test">Resultado da Testagem de HIV:</label>
+                <input class="form-control" id="tmp.hiv_test"
+                       name="tmp.hiv_test" readonly="readonly" />
+                <div id="obs_hiv_test"></div>
+            </div>
+            <div class="form-group">
+                <label for="tmp.hiv_care">Em Cuidados de HIV:</label>
+                <input class="form-control" id="tmp.hiv_care" readonly="readonly"
+                       name="tmp.hiv_care" />
+            </div>
+            <div class="form-group">
+                <label for="tmp.child_at_risk_treatment">Em CCR?</label>
                 <input class="form-control" id="tmp.child_at_risk_treatment" readonly="readonly"
                         name="tmp.child_at_risk_treatment" />
             </div>
@@ -255,7 +255,7 @@
                 </select>
             </div>
             <div class="form-group">
-                <label for="demographicsupdate.hiv_care">Cuidados de HIV:</label>
+                <label for="demographicsupdate.hiv_care">Em Cuidados de HIV?</label>
                 <select class="form-control" id="demographicsupdate.hiv_care"
                         name="demographicsupdate.hiv_care" data-concept="23780^Cuidados HIV^99DCT">
                     <option value="">...</option>
@@ -265,7 +265,7 @@
             </div>
            
             <div class="form-group">
-                <label for="demographicsupdate.child_at_risk_treatment">EM CCR:</label>
+                <label for="demographicsupdate.child_at_risk_treatment">Em CCR?</label>
                 <select class="form-control" id="demographicsupdate.child_at_risk_treatment"
                         name="demographicsupdate.child_at_risk_treatment" data-concept="1885^TRATEMENTO (CCR)^99DCT">
                     <option value="">...</option>
