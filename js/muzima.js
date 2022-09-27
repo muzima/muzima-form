@@ -417,10 +417,17 @@ $(document).ready(function () {
            step : 5,
            autoclose : true
        });
-       var dt = new Date();
-       var time = dt.getHours() + ":" + dt.getMinutes();
-       var dateFormat = "dd-mm-yy";
-       var currentDate = $.datepicker.formatDate(dateFormat, new Date());
+
+        var dt = new Date();
+        var currentHours = dt.getHours();
+        currentHours = ("0" + currentHours).slice(-2);
+
+        var currentMinutes = dt.getMinutes();
+        currentMinutes = ("0" + currentMinutes).slice(-2);
+
+        var time = currentHours + ":" + currentMinutes;
+        var dateFormat = "dd-mm-yy";
+        var currentDate = $.datepicker.formatDate(dateFormat, new Date());
 
        var encounterDatetime = $('#encounter\\.encounter_datetime');
        if ($(encounterDatetime).val() == "") {
