@@ -352,17 +352,6 @@
             $(this).prop('disabled', false);
         });
 
-        $('#tmp\\.update_names').change(function(){
-            if($(this).is(':checked')){
-                $('#update_names').show();
-                $('#demographicsupdate\\.is_updated_name_preferred').prop('value', true);
-            } else {
-                $('#update_names').hide();
-                $('#demographicsupdate\\.is_updated_name_preferred').prop('value', false);
-            }
-        });
-        $('#tmp\\.update_names').trigger('change');
-
         $('.edit_address_label').click(function(){
             $parent = $(this).closest('.form-group');
             if(!$parent.find('.update_address_confirm').prop('disabled')) {
