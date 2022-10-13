@@ -297,27 +297,38 @@
 
         $('#tmp\\.update_names').change(function(){
             if($(this).is(':checked')){
+
+                var patientOldFamilyName = $('#patient\\.family_name').val();
+
+                var patientOldGivenName = $('#patient\\.given_name').val();
+
+                var patientOldMiddleName = $('#patient\\.middle_name').val();
+
+                $('#demographicsupdate\\.family_name').val(patientOldFamilyName);
+
+                $('#demographicsupdate\\.given_name').val(patientOldGivenName);
+
+                $('#demographicsupdate\\.middle_name').val(patientOldMiddleName);
+
                 $('#update_names').show();
+
                 $('#demographicsupdate\\.is_updated_name_preferred').prop('value', true);
+
             } else {
+
                 $('#update_names').hide();
+
                 $('#demographicsupdate\\.is_updated_name_preferred').prop('value', false);
+
+                $('#demographicsupdate\\.family_name').val("");
+
+                $('#demographicsupdate\\.given_name').val("");
+
+                $('#demographicsupdate\\.middle_name').val("");
             }
         });
 
         $('#tmp\\.update_names').trigger('change');
-
-        var patientOldFamilyName = $('#patient\\.family_name').val();
-
-        var patientOldGivenName = $('#patient\\.given_name').val();
-
-        var patientOldMiddleName = $('#patient\\.middle_name').val();
-
-        $('#demographicsupdate\\.family_name').val(patientOldFamilyName);
-
-        $('#demographicsupdate\\.given_name').val(patientOldGivenName);
-
-        $('#demographicsupdate\\.middle_name').val(patientOldMiddleName);
 
         var dateFormat = "dd-mm-yy";
         var currentDate = $.datepicker.formatDate(dateFormat, new Date());
