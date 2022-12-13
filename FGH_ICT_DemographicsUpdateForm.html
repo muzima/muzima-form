@@ -286,7 +286,7 @@
 
         var patientUuid = $('#patient\\.uuid').val();
         var phoneNumberPersonAttributeType = "e2e3fd64-1d5f-11e0-b929-000c29ad1d07";
-        var phoneNumber = htmlDataStore.getPersonAttribute(patientUuid,phoneNumberPersonAttributeType);
+        var phoneNumber = htmlDataStore.getPersonAttribute(patientUuid, phoneNumberPersonAttributeType);
         phoneNumber = JSON.parse(phoneNumber);
         if('attribute_value' in phoneNumber){
             phoneNumber = phoneNumber.attribute_value;

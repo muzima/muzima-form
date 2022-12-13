@@ -236,23 +236,12 @@
    <div class="section">
       <h3>Detalhes do encontro</h3>
         <div class="form-group">
-              <label for="encounter.encounter_datetime">Encontro<span class="required">*</span></label>
+              <label for="encounter.encounter_datetime">Data do encontro<span class="required">*</span></label>
                  <input class="form-control datetimepicker nonFutureDate past-date" readonly="readonly" id="encounter.encounter_datetime"
                         name="encounter.encounter_datetime" type="text" required="required">
         </div>
         <div class="form-group">
-            <label for="encounter.location_id">US onde esta afecto o voluntário:<span class="required">*</span></label>
-            <input class="form-control valid-location-only" id="encounter.location_id" type="text"
-            placeholder="Start typing something..." required="required"  readonly="readonly">
-            <input class="form-control" name="encounter.location_id" type="hidden">
-        </div>
-        <div class="form-group hidden">
-            <select class="form-control" id="encounter.location_id_select" required="required">
-                <option>...</option>
-            </select>
-        </div>
-        <div class="form-group">
-            <label for="encounter.provider_id_select">Voluntário:</label>
+            <label for="encounter.provider_id_select">Nome do Provedor:</label>
             <input class="form-control valid-provider-only" id="encounter.provider_id_select" type="text"
             placeholder="Start typing something..."  readonly="readonly">
             <input class="form-control" name="encounter.provider_id_select" type="hidden">
@@ -263,10 +252,23 @@
                type="text" required="required" disabled="disabled">
         </div>
         <div class="form-group">
+            <label for="encounter.location_id">Local do Encontro:<span class="required">*</span></label>
+            <input class="form-control valid-location-only" id="encounter.location_id" type="text"
+            placeholder="Start typing something..." required="required"  readonly="readonly">
+            <input class="form-control" name="encounter.location_id" type="hidden">
+        </div>
+        <div class="form-group hidden">
+            <select class="form-control" id="encounter.location_id_select" required="required">
+                <option>...</option>
+            </select>
+        </div>
+        <div class="form-group">
             <input class="form-control" id="encounter.form_uuid" name="encounter.form_uuid"
                    type="hidden" required="required">
             <input class="form-control" id="demographicsupdate.is_updated_name_preferred" name="demographicsupdate.is_updated_name_preferred"
                    type="hidden" value="false">
+            <input class="form-control" id="tmp.custom_discriminator" name="tmp.custom_discriminator"
+                   value="mastercard-record-mapper" type="hidden" required="required">
         </div>
     </div>
 </form>
@@ -328,6 +330,12 @@
                 $('#update_names').hide();
 
                 $('#demographicsupdate\\.is_updated_name_preferred').prop('value', false);
+
+                $('#demographicsupdate\\.family_name').val("");
+
+                $('#demographicsupdate\\.given_name').val("");
+
+                $('#demographicsupdate\\.middle_name').val("");
             }
         });
         $('#tmp\\.update_names').trigger('change');
@@ -408,22 +416,22 @@
         });
         dobType.trigger('change');
 		
-	var patient_data = JSON.parse($("#pre_populate_data").text());
-	var patient_payload = patient_data.patient;
-	$.each(patient_payload, function (key, value) {
-		if (value instanceof Object) {
-			if (value instanceof Array) {
-				$.each(value, function (i, element) {	
-					  if(element.attribute_type_uuid=="e2e3fd64-1d5f-11e0-b929-000c29ad1d07"){
-						  $("#patient\\.phone_number").val(element.attribute_value);
-					  }
-				});
-			} 
-		}        
-    });
-	
-	$("#identifier_value").val($("#patient\\.medical_record_number").val());
+    var patientUuid = $('#patient\\.uuid').val();
+        var phoneNumberPersonAttributeType = "e2e3fd64-1d5f-11e0-b929-000c29ad1d07";
+        var phoneNumber = htmlDataStore.getPersonAttribute(patientUuid,phoneNumberPersonAttributeType);
+        phoneNumber = JSON.parse(phoneNumber);
+        if('attribute_value' in phoneNumber){
+            $('attribute_type_uuid').val(phoneNumber.attribute_value);
+            $('#patient\\.phone_number').val(phoneNumber.attribute_value);
+        }
 
+    var medicalRecordNumber = htmlDataStore.getPatientIdentifier(patientUuid, "e2b966d0-1d5f-11e0-b929-000c29ad1d07");
+        medicalRecordNumber = JSON.parse(medicalRecordNumber);
+        if('identifier_value' in medicalRecordNumber) {
+            $("#identifier_value").val(medicalRecordNumber.identifier_value);
+            $("#tmp\\.medical_record_number").val(medicalRecordNumber.identifier_value);
+        }
+	
     document.setupAutoCompleteData('encounter\\.location_id');
 
     document.setupAutoCompleteDataForProvider('encounter\\.provider_id_select');

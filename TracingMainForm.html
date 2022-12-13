@@ -75,14 +75,6 @@
     
     <div class="section section-div">
         <h3>SECÇÃO DE VISITA</h3>
-        <div class="form-group">
-            <label for="encounter.encounter_datetime">Data de visita:<span class="required">*</span>
-            </label>
-            <input class="form-control datetimepicker nonFutureDate past-date" id="encounter.encounter_datetime"
-                   name="encounter.encounter_datetime" type="text" readonly="readonly"
-                   required="required"/>
-			<input class="form-control" id="obs.encounter_datetime" name="obs.encounter_datetime" type="text" readonly="readonly"/>
-        </div>
 		<div class="form-group type_of_visit">
 			<label for="obs.type_of_visit">
 			TIPO DE VISITA<span class="required">*</span>
@@ -92,7 +84,10 @@
 				<option value="">...</option>
 				<option value="2161^VISITA DE APOIO^99DCT">Visita preventiva</option>
 				<option value="2160^VISITA DE BUSCA^99DCT">Visita de Reintegração</option>
-				<option value="23914^VISITA AOS CASOS ESPECIAIS^99DCT">Visita aos casos especiais</option>
+				<option value="23914^VISITA AOS CASOS ESPECIAIS^99DCT">Visita aos casos especiais - temporariamente desabilitado</option>
+				<option value="2160^VISITA DE BUSCA^99DCT">Clínica Móvel</option>
+				<option value="2160^VISITA DE BUSCA^99DCT">Melhoria de Adesão (AMA)</option>
+				<option value="2160^VISITA DE BUSCA^99DCT">Despensa Comunitária de ARVs (DCP)</option>
 			</select>
         </div> 
 		<div class="form-group">
@@ -145,7 +140,7 @@
 						<label class="font-normal">
 							<input id="obs.reason_for_failure.distancia" type="checkbox" name="obs.reason_for_failure"
 							data-concept="2016^MOTIVO DE FALTA^99DCT" value="2007^DISTANCIA OU DINHEIRO TRANSPORTE^99DCT" required="required"/>
-							Problema de transporte
+							Problemas de transporte
 
 						</label>
 					</div>
@@ -315,7 +310,7 @@
 						<label class="font-normal">
 							<input id="obs.referencias.familiar" type="checkbox" name="obs.referencias" class="obs.referencias"
 								   data-concept="1272^REFERENCIAS^99DCT" value="2159^FAMILIAR FOI REFERIDO PARA A UNIDADE SANITARIA^99DCT" required="required"/>
-							Familiar referidopara US
+							Familiar referido para US
 						</label>
 					</div>
 					<div class="form-group">
@@ -352,8 +347,8 @@
 					<div class="form-group">
 						<label class="font-normal">
 							<input id="obs.patient_not_found_reason.obito" type="checkbox" name="obs.patient_not_found_reason"
-							data-concept="2031^MOTIVO^99DCT" value="2027^Óbito^99DCT" required="required"/>
-							 Óbito
+							data-concept="2031^MOTIVO^99DCT" value="1366^Obitou^99DCT" required="required"/>
+							 Obitou
 						</label>
 					</div>	
 					<div class="form-group">
@@ -437,13 +432,25 @@
 					name="obs.information_given_by_details" data-concept="2038^OUTROS INFORMAÇÃO DADA POR^99DCT"/>
 			</div>
 		</div>
+
+		<div class="form-group sub-section patient_found_div home_visit_result_div" id="data_combinada_div" hidden="true">
+			<label for="obs.data_combinada">Data combinada para retorno a US:<span class="data_combinada_required required">*</span>
+			</label>
+			<input class="form-control datepicker" id="obs.data_combinada" type="text" required="required" readonly="readonly"
+					name="obs.data_combinada" data-concept="23933^Data combinada na primeira visita para retorno a US^99DCT"/>
+	    </div>
+	</div>
 	
         <!-- Visible if pacient was found -->
-        <div class="form-group sub-section patient_found_div home_visit_result_div" id="data_combinada_div" hidden="true">
-				<label for="obs.data_combinada">Data combinada para retorno a US:<span class="data_combinada_required required">*</span>
+		<div class="section section-div">
+			<h3>Detalhes do Encontro</h3>
+		<div class="form-group">
+				<label for="encounter.encounter_datetime">Data do encontro:<span class="required">*</span>
 				</label>
-				<input class="form-control datepicker" id="obs.data_combinada" type="text" required="required" readonly="readonly"
-						name="obs.data_combinada" data-concept="23933^Data combinada na primeira visita para retorno a US^99DCT"/>
+				<input class="form-control datetimepicker nonFutureDate past-date" id="encounter.encounter_datetime"
+					   name="encounter.encounter_datetime" type="text" readonly="readonly"
+					   required="required"/>
+				<input class="form-control" id="obs.encounter_datetime" name="obs.encounter_datetime" type="text" readonly="readonly"/>
 		</div>		
 		<div class="form-group">
 			<label for="encounter.provider_id_select">Nome do voluntário:<span class="required">*</span></label>
@@ -467,7 +474,7 @@
             <input class="form-control valid-location-only" id="encounter.location_id" type="text" placeholder="Start typing something..." required="required" readonly="readonly"/>
             <input class="form-control" name="encounter.location_id" type="hidden"/>
         </div>	
-    </div>
+	  </div>
 </form>
 </body>
 <script type="text/javascript">
@@ -512,6 +519,8 @@ $(document).ready(function () {
 		}else{
 			$('#patient_not_found_div').hide();
 			$('#patient_found_div').hide();
+			$('#data_combinada_div').hide();
+			$('#home_visit_result_div').hide();
 		}
 		
 	   if($(this).val() == "1065^SIM^99DCT" &&  $('#obs\\.type_of_visit').val()=="2160^VISITA DE BUSCA^99DCT"){
