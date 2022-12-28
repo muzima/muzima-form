@@ -153,12 +153,13 @@
 			<select class="form-control input-section" id="obs.type_of_visit" required
 				name="obs.type_of_visit" data-concept="1981^TIPO DE ATENDIMENTO FAMILIAR^99DCT">
 				<option value="">...</option>
+				<option value="">...</option>
 				<option value="2161^VISITA DE APOIO^99DCT">Visita preventiva</option>
 				<option value="2160^VISITA DE BUSCA^99DCT">Visita de Reintegração</option>
 				<option value="23914^VISITA AOS CASOS ESPECIAIS^99DCT">Visita aos casos especiais - temporariamente desabilitado</option>
-				<option value="1386^VISITA DE BUSCA^99DCT">Clínica Móvel</option>
-				<option value="6323^VISITA DE BUSCA^99DCT">Melhoria de Adesão (AMA)</option>
-				<option value="165179^VISITA DE BUSCA^99DCT">Despensa Comunitária de ARVs (DCP)</option>
+				<option value="1386^CLINICA MOVEL^99DCT">Clínica Móvel</option>
+				<option value="2160^VISITA DE BUSCA^99DCT">Melhoria de Adesão (AMA)</option>
+				<option value="165178^DISPENSA COMUNITÁRIA VIA PROVEDOR^99DCT">Despensa Comunitária de ARVs (DCP)</option>
 			</select>
         </div> 
 		<div class="form-group">
@@ -290,7 +291,7 @@
 					<label class="font-normal">
 						<input id="obs.reason_for_visit.aconselhamento" type="checkbox" name="obs.reason_for_visit"
 						data-concept="2172^MOTIVO DE VISITA/BUSCA DO PACIENTE^99DCT" value="6253^TRATAMENTO SEGUIMENTO SERVICO QUE PROVIDENCIA^99DCT" >
-						Seguimento preventive
+						Seguimento preventivo
 					</label>
 				</div>				
 				<div class="form-group">
@@ -320,7 +321,6 @@
 					<option value="1985^PATIENT CATAGORY FOR TARV REQUEST^99DCT">PTV</option>
 					<option value="1414^PLANO NACIONAL PARA COMBATE TUBERCULOSE^99DCT">PNCT</option>
 					<option value="1987^GATV/SAAJ^99DCT">SAAJ</option>	
-					<option value="1987^GATV/SAAJ^99DCT">SAAJ</option>					
 					<option value="23913^OUTRO^99DCT">Outro</option>
 				</select>
 			</div> 
@@ -333,7 +333,7 @@
 			</div>
 			<div class="form-group sub-section">
 				<label for="obs.health_worker">Nome do Voluntário:<span class="required"></span></label>
-					<input class="form-control" id="temp.health_worker" name="temp.health_worker" type="text" required="required" placeholder="Start typing something...">
+					<input class="form-control" id="temp.health_worker" name="temp.health_worker" type="text" required="required" placeholder="Comece a escrever...">
 				    <input class="form-control" id="obs.health_worker_id" name="obs.health_worker_id" type="text" required="required" data-concept="1912^TRABALHADOR DE SAÚDE^99DCT" readonly>
 			</div>
 			<div class="form-group" id="home_visit_date">
@@ -363,7 +363,7 @@
             <label for="encounter.encounter_datetime">Data de preenchimento do Formulário:<span class="required">*</span>
             </label>
             <input class="form-control datetimepicker nonFutureDate past-date input-section-2" id="encounter.encounter_datetime"
-                   name="encounter.encounter_datetime" type="text" readonly="readonly"
+                   name="encounter.encounter_datetime" type="text" readonly="readonly" disabled
                    required="required">
         </div>
 		<div class="form-group">
@@ -542,7 +542,17 @@ if(parseInt(cohortMembershipJson.length)==1){
 		}else if(obj.cohortName.includes("_LTFU")){
 			$("#obs\\.type_of_visit").val("2160^VISITA DE BUSCA^99DCT");
 			$('#obs\\.type_of_visit').prop('disabled', 'disabled');
+		}else if(obj.cohortName.includes("_AMA_LTFU")){
+			$("#obs\\.type_of_visit").val("23914^VISITA AOS CASOS ESPECIAIS^99DCT");
+			$('#obs\\.type_of_visit').prop('disabled', 'disabled');
+		}else if(obj.cohortName.includes("_CM_LTFU")){
+			$("#obs\\.type_of_visit").val("1386^CLINICA MOVEL^99DCT");
+			$('#obs\\.type_of_visit').prop('disabled', 'disabled');
+		}else if(obj.cohortName.includes("_DCP_LTFU")){
+			$("#obs\\.type_of_visit").val("165178^DISPENSA COMUNITÁRIA VIA PROVEDOR^99DCT");
+			$('#obs\\.type_of_visit').prop('disabled', 'disabled');
 		}
+		
 	});
 }
 
