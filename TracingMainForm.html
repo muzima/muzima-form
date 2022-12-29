@@ -20,6 +20,7 @@
 </div>
 <form id="tracing_main_form" name="tracing_main_form">
     <h2 class="text-center">Formulário de Visita Domiciliária v1.2</h2>
+	<input class="form-control" id="justtext" name="justtext"/>
     <div class="section" hidden="true">
         <h3>Demografia</h3>
         <div class="form-group">
@@ -84,7 +85,9 @@
 				<option value="">...</option>
 				<option value="2161^VISITA DE APOIO^99DCT">Visita preventiva</option>
 				<option value="2160^VISITA DE BUSCA^99DCT">Visita de Reintegração</option>
-				<option value="23914^VISITA AOS CASOS ESPECIAIS^99DCT">Visita aos casos especiais</option>
+				<option value="23914^VISITA AOS CASOS ESPECIAIS/CM^99DCT">Clínica Móvel</option>
+				<option value="23914^VISITA AOS CASOS ESPECIAIS/AMA^99DCT">Aconselhamento para Melhoria de Adesão (AMA)</option>
+				<option value="2160^VISITA DE BUSCA/DCP^99DCT">Dispensa Comunitária via Provedor</option>
 			</select>
         </div> 
 		<div class="form-group">
@@ -520,13 +523,15 @@ $(document).ready(function () {
 			$('#home_visit_result_div').hide();
 		}
 		
-	   if($(this).val() == "1065^SIM^99DCT" &&  $('#obs\\.type_of_visit').val()=="2160^VISITA DE BUSCA^99DCT"){
+	   if($(this).val() == "1065^SIM^99DCT" &&  $('#obs\\.type_of_visit').val()=="2160^VISITA DE BUSCA^99DCT" 
+	        || $('#obs\\.type_of_visit').val()=="2160^VISITA DE BUSCA/DCP^99DCT" || $('#obs\\.type_of_visit').val()=="23914^VISITA AOS CASOS ESPECIAIS/CM^99DCT"){
 		   $('#patient_found_div_2160').show();
 	   }else{
 		   $('#patient_found_div_2160').hide();
 	   }
 		
-	   if($(this).val() == "1065^SIM^99DCT" &&  $('#obs\\.type_of_visit').val()=="2161^VISITA DE APOIO^99DCT"){
+	   if($(this).val() == "1065^SIM^99DCT" &&  $('#obs\\.type_of_visit').val()=="2161^VISITA DE APOIO^99DCT" 
+	        || $('#obs\\.type_of_visit').val()=="23914^VISITA AOS CASOS ESPECIAIS/AMA^99DCT"){
 		   $('#patient_found_div_2161').show();
 	   }else{
 		   $('#patient_found_div_2161').hide();
@@ -741,28 +746,28 @@ $(document).ready(function () {
 	});
 
    var patientuuid = $('#patient\\.uuid').val();
-   var visitType = htmlDataStore.getObsByConceptId(patientuuid,1981);  
+   var visitType = htmlDataStore.getObsByConceptId(patientuuid,1981);
    visitType = JSON.parse(visitType);
    var visitTypeSize = visitType.length-1;
    if(parseInt(visitTypeSize)>-1){
-		if(parseInt(visitType[0].valueCoded.id)==2161){
+		if(visitType[0].obs_comment=="SV"){
 			$("#obs\\.type_of_visit").val("2161^VISITA DE APOIO^99DCT");
 			$('#obs\\.type_of_visit').prop('disabled', 'disabled');
-		}else if(parseInt(visitType[0].valueCoded.id)==2160){
+		}else if(visitType[0].obs_comment=="LTFU"){
 			$("#obs\\.type_of_visit").val("2160^VISITA DE BUSCA^99DCT");
 			$('#obs\\.type_of_visit').prop('disabled', 'disabled');
-		}else if(parseInt(visitType[0].valueCoded.id)==23914){
-			$("#obs\\.type_of_visit").val("23914^VISITA AOS CASOS ESPECIAIS^99DCT");
+		}else if(visitType[0].obs_comment=="DCP"){
+			$("#obs\\.type_of_visit").val("2160^VISITA DE BUSCA/DCP^99DCT");
 			$('#obs\\.type_of_visit').prop('disabled', 'disabled');	 
-	    }else if(parseInt(visitType[0].valueCoded.id)==23914){
-			$("#obs\\.type_of_visit").val("1386^CLINICA MOVEL^99DCT");
+	    }else if(visitType[0].obs_comment=="CM"){
+			$("#obs\\.type_of_visit").val("23914^VISITA AOS CASOS ESPECIAIS/CM^99DCT");
 			$('#obs\\.type_of_visit').prop('disabled', 'disabled');	 
-	    }else if(parseInt(visitType[0].valueCoded.id)==23914){
-			$("#obs\\.type_of_visit").val("165178^DISPENSA COMUNITÁRIA VIA PROVEDOR^99DCT");
+	    }else if(visitType[0].obs_comment=="AMA"){
+			$("#obs\\.type_of_visit").val("23914^VISITA AOS CASOS ESPECIAIS/AMA^99DCT");
 			$('#obs\\.type_of_visit').prop('disabled', 'disabled');	 
 	    }
 	}
-   
+
    var patientuuid = $('#patient\\.uuid').val();
    var dispensationMode = htmlDataStore.getObsByConceptId(patientuuid,165174);  
    dispensationMode = JSON.parse(dispensationMode);
@@ -810,3 +815,4 @@ $(document).ready(function () {
 });
 </script>
 </html>
+getCohortMembershipByPatientUuid

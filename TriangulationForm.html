@@ -155,8 +155,13 @@
 				<option value="">...</option>
 				<option value="2161^VISITA DE APOIO^99DCT">Visita preventiva</option>
 				<option value="2160^VISITA DE BUSCA^99DCT">Visita de Reintegração</option>
-				<option value="23914^VISITA AOS CASOS ESPECIAIS^99DCT">Visita aos casos especiais</option>
+				<option value="23914^VISITA AOS CASOS ESPECIAIS/CM^99DCT">Clínica Móvel</option>
+				<option value="23914^VISITA AOS CASOS ESPECIAIS/AMA^99DCT">Aconselhamento para Melhoria de Adesão (AMA)</option>
+				<option value="2160^VISITA DE BUSCA/DCP^99DCT">Dispensa Comunitária via Provedor</option>
 			</select>
+			<input type="text" class="form-control" name="obs_comment.type_of_visit"
+                   data-obscommentfor="obs.type_of_visit"  id="obs_comment.type_of_visit" required
+                    value="AMA" readonly="readonly" >
         </div> 
 		<div class="form-group">
 			<label for="obs.patient_triangulation_status">
@@ -507,7 +512,6 @@ $.each(prePopulateJSON, function(key, value) {
 	   
 $('#obs\\.professional_referral_name').val($('#encounter\\.provider_id_select').val());
 
-	 
 var patientuuid = $('#patient\\.uuid').val();
 var historyByData = htmlDataStore.getObsByConceptId(patientuuid,1410); 
 historyByData = JSON.parse(historyByData);
@@ -532,25 +536,42 @@ var cohortMembership = htmlDataStore.getCohortMembershipByPatientUuid(patientuui
 var cohortMembershipJson =  JSON.parse(cohortMembership);
 if(parseInt(cohortMembershipJson.length)==1){
 	$.each(cohortMembershipJson, function (i,obj) {
-		if(obj.cohortName.includes("_SV")){
-			$("#obs\\.type_of_visit").val("2161^VISITA DE APOIO^99DCT");
+		if(obj.cohortName.includes("_AMA _LTFU") || obj.cohortName.includes("_AMA_LTFU")){
+			$("#obs\\.type_of_visit").val("23914^VISITA AOS CASOS ESPECIAIS/AMA^99DCT");
 			$('#obs\\.type_of_visit').prop('disabled', 'disabled');
-		}else if(obj.cohortName.includes("_LTFU")){
-			$("#obs\\.type_of_visit").val("2160^VISITA DE BUSCA^99DCT");
-			$('#obs\\.type_of_visit').prop('disabled', 'disabled');
-		}else if(obj.cohortName.includes("_AMA_LTFU")){
-			$("#obs\\.type_of_visit").val("23914^VISITA AOS CASOS ESPECIAIS^99DCT");
-			$('#obs\\.type_of_visit').prop('disabled', 'disabled');
-		}else if(obj.cohortName.includes("_CM_LTFU")){
-			$("#obs\\.type_of_visit").val("1386^CLINICA MOVEL^99DCT");
+		}else if(obj.cohortName.includes("_CM _LTFU") || obj.cohortName.includes("_CM_LTFU")){
+			$("#obs\\.type_of_visit").val("23914^VISITA AOS CASOS ESPECIAIS/CM^99DCT");
 			$('#obs\\.type_of_visit').prop('disabled', 'disabled');
 		}else if(obj.cohortName.includes("_DCP_LTFU")){
-			$("#obs\\.type_of_visit").val("165178^DISPENSA COMUNITÁRIA VIA PROVEDOR^99DCT");
+			$("#obs\\.type_of_visit").val("2160^VISITA DE BUSCA/DCP^99DCT");
 			$('#obs\\.type_of_visit').prop('disabled', 'disabled');
-		}
-		
+		}else if(obj.cohortName.includes("Adultos_LTFU") || obj.cohortName.includes("Criancas_LTFU")
+		          || obj.cohortName.includes("Mentoras_LTFU") || obj.cohortName.includes("SAAJ_LTFU") || obj.cohortName.includes("Par_LTFU")){
+			$("#obs\\.type_of_visit").val("2160^VISITA DE BUSCA^99DCT");
+			$('#obs\\.type_of_visit').prop('disabled', 'disabled');
+		} else if(obj.cohortName.includes("_SV") || obj.cohortName.includes("Pares_SV") || obj.cohortName.includes("Criancas_SV")
+		 || obj.cohortName.includes("Gravidas_SV") || obj.cohortName.includes("SAAJ_SV")){
+			$("#obs\\.type_of_visit").val("2161^VISITA DE APOIO^99DCT");
+			$('#obs\\.type_of_visit').prop('disabled', 'disabled');
+		} else if(obj.cohortName.includes("_LTFU") || obj.cohortName.includes("_ LTFU")){
+			$("#obs\\.type_of_visit").val("2160^VISITA DE BUSCA^99DCT");
+			$('#obs\\.type_of_visit').prop('disabled', 'disabled');
+		} 	
 	});
 }
+
+var visitTypeValue = $('#obs\\.type_of_visit').val();
+if(visitTypeValue == "23914^VISITA AOS CASOS ESPECIAIS/AMA^99DCT"){
+		$("#obs_comment\\.type_of_visit").val("AMA");
+        } else if(visitTypeValue == "23914^VISITA AOS CASOS ESPECIAIS/CM^99DCT"){
+			$("#obs_comment\\.type_of_visit").val("CM");
+		} else if(visitTypeValue == "2160^VISITA DE BUSCA^99DCT"){
+			$("#obs_comment\\.type_of_visit").val("LTFU");
+        } else if(visitTypeValue == "2160^VISITA DE BUSCA/DCP^99DCT"){
+			$("#obs_comment\\.type_of_visit").val("DCP");
+        } else if(visitTypeValue == "2161^VISITA DE APOIO^99DCT"){
+			$("#obs_comment\\.type_of_visit").val("SV");
+        } 
 
 var gaac = htmlDataStore.getObsByConceptId(patientuuid,23724);  
 gaac = JSON.parse(gaac);
