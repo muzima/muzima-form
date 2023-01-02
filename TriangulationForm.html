@@ -159,9 +159,9 @@
 				<option value="23914^VISITA AOS CASOS ESPECIAIS/AMA^99DCT">Aconselhamento para Melhoria de Adesão (AMA)</option>
 				<option value="2160^VISITA DE BUSCA/DCP^99DCT">Dispensa Comunitária via Provedor</option>
 			</select>
-			<input type="text" class="form-control" name="obs_comment.type_of_visit"
-                   data-obscommentfor="obs.type_of_visit"  id="obs_comment.type_of_visit" required
-                    value="AMA" readonly="readonly" >
+			<input class="form-control" name="obs_comment.type_of_visit"
+                   data-obscommentfor="obs.type_of_visit"  id="obs_comment.type_of_visit"
+                    value="AMA" type="hidden">
         </div> 
 		<div class="form-group">
 			<label for="obs.patient_triangulation_status">
@@ -536,24 +536,19 @@ var cohortMembership = htmlDataStore.getCohortMembershipByPatientUuid(patientuui
 var cohortMembershipJson =  JSON.parse(cohortMembership);
 if(parseInt(cohortMembershipJson.length)==1){
 	$.each(cohortMembershipJson, function (i,obj) {
-		if(obj.cohortName.includes("_AMA _LTFU") || obj.cohortName.includes("_AMA_LTFU")){
+		if(obj.cohortName.includes("_AMA")){
 			$("#obs\\.type_of_visit").val("23914^VISITA AOS CASOS ESPECIAIS/AMA^99DCT");
 			$('#obs\\.type_of_visit').prop('disabled', 'disabled');
-		}else if(obj.cohortName.includes("_CM _LTFU") || obj.cohortName.includes("_CM_LTFU")){
+		}else if(obj.cohortName.includes("_CM")){
 			$("#obs\\.type_of_visit").val("23914^VISITA AOS CASOS ESPECIAIS/CM^99DCT");
 			$('#obs\\.type_of_visit').prop('disabled', 'disabled');
 		}else if(obj.cohortName.includes("_DCP_LTFU")){
 			$("#obs\\.type_of_visit").val("2160^VISITA DE BUSCA/DCP^99DCT");
 			$('#obs\\.type_of_visit').prop('disabled', 'disabled');
-		}else if(obj.cohortName.includes("Adultos_LTFU") || obj.cohortName.includes("Criancas_LTFU")
-		          || obj.cohortName.includes("Mentoras_LTFU") || obj.cohortName.includes("SAAJ_LTFU") || obj.cohortName.includes("Par_LTFU")){
-			$("#obs\\.type_of_visit").val("2160^VISITA DE BUSCA^99DCT");
-			$('#obs\\.type_of_visit').prop('disabled', 'disabled');
-		} else if(obj.cohortName.includes("_SV") || obj.cohortName.includes("Pares_SV") || obj.cohortName.includes("Criancas_SV")
-		 || obj.cohortName.includes("Gravidas_SV") || obj.cohortName.includes("SAAJ_SV")){
+		}else if(obj.cohortName.includes("_SV")){
 			$("#obs\\.type_of_visit").val("2161^VISITA DE APOIO^99DCT");
 			$('#obs\\.type_of_visit').prop('disabled', 'disabled');
-		} else if(obj.cohortName.includes("_LTFU") || obj.cohortName.includes("_ LTFU")){
+		} else if(obj.cohortName.includes("_LTFU")){
 			$("#obs\\.type_of_visit").val("2160^VISITA DE BUSCA^99DCT");
 			$('#obs\\.type_of_visit').prop('disabled', 'disabled');
 		} 	

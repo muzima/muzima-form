@@ -84,15 +84,15 @@
                 <label for="tmp.update_sex">
                     <input id="tmp.update_sex" name="tmp.update_sex"
                        type="checkbox">
-                       Vai mudar de sexo? (se sim, permitir editar)
+                       Vai actualizar gênero? (se sim, permitir editar)
                 </label>
             </div>
             <div class="form-group sub-section" id="update_sex">
                 <label for="demographicsupdate.sex">Novo Sexo: <span class="required">*</span></label>
                 <select class="form-control" id="demographicsupdate.sex" name="demographicsupdate.sex">
                     <option value="">...</option>
-                    <option value="M">Male</option>
-                    <option value="F">Female</option>
+                    <option value="M">Masculino</option>
+                    <option value="F">Femenino</option>
                 </select>
             </div>
             <div class="form-group birthdate">
@@ -101,9 +101,13 @@
                        type="text" disabled="disabled" readonly="readonly">
             </div>
             <div class="form-group birthdate">
-                <label for="patient.birth_date">A data de nascimento é estimada?<span class="required">*</span></label>
-                <input class="form-control" id="patient.birthdate_estimated" name="patient.birthdate_estimated"
-                       type="text" disabled="disabled" readonly="readonly">
+                <label for="patient.birthdate_estimated">Esta data de nascimento é uma estimativa?  <span class="required">*</span></label>
+                <select class="form-control" id="patient.birthdate_estimated" name="patient.birthdate_estimated"
+                        disabled="disabled" readonly="readonly">
+                    <option value="">...</option>
+                    <option value="true">Sim</option>
+                    <option value="false">Não</option>
+                </select>
             </div>
             <div class="form-group">
                 <label for="tmp.update_birthdate">
@@ -136,7 +140,7 @@
                             required="required">
                         <option value="">...</option>
                         <option value="true">SIM</option>
-                        <option value="false">NAO</option>
+                        <option value="false">NÃO</option>
                     </select>
                 </div>
                 <div class="form-group show_age">
@@ -257,18 +261,12 @@
             placeholder="Comece a digitar..." required="required"  readonly="readonly">
             <input class="form-control" name="encounter.location_id" type="hidden">
         </div>
-        <div class="form-group hidden">
-            <select class="form-control" id="encounter.location_id_select" required="required">
-                <option>...</option>
-            </select>
-        </div>
         <div class="form-group">
-            <input class="form-control" id="encounter.form_uuid" name="encounter.form_uuid"
-                   type="hidden" required="required">
+            <input class="form-control" id="encounter.form_uuid" name="encounter.form_uuid" type="hidden" required="required">
             <input class="form-control" id="demographicsupdate.is_updated_name_preferred" name="demographicsupdate.is_updated_name_preferred"
-                   type="hidden" value="false">
+               type="hidden" value="false">
             <input class="form-control" id="tmp.custom_discriminator" name="tmp.custom_discriminator"
-                   value="mastercard-record-mapper" type="hidden" required="required">
+               value="mastercard-record-mapper" type="hidden" required="required">
         </div>
     </div>
 </form>
@@ -307,6 +305,17 @@
             $(this).prop('disabled', false);
         });
 
+        var patientUuid = $('#patient\\.uuid').val();
+        var phoneNumberPersonAttributeType = "e2e3fd64-1d5f-11e0-b929-000c29ad1d07";
+        var phoneNumber = htmlDataStore.getPersonAttribute(patientUuid,phoneNumberPersonAttributeType);
+        phoneNumber = JSON.parse(phoneNumber);
+        if('attribute_value' in phoneNumber){
+            phoneNumber = phoneNumber.attribute_value;
+        } else {
+            phoneNumber = '';
+        }
+        $('#patient\\.phone_number').val(phoneNumber);
+
         $('#tmp\\.update_names').change(function(){
             if($(this).is(':checked')){
 
@@ -326,19 +335,86 @@
 
                 $('#demographicsupdate\\.is_updated_name_preferred').prop('value', true);
             } else {
-
                 $('#update_names').hide();
-
                 $('#demographicsupdate\\.is_updated_name_preferred').prop('value', false);
-
-                $('#demographicsupdate\\.family_name').val("");
-
-                $('#demographicsupdate\\.given_name').val("");
-
-                $('#demographicsupdate\\.middle_name').val("");
             }
         });
         $('#tmp\\.update_names').trigger('change');
+
+
+        var patientOldFamilyName = $('#patient\\.family_name').val();
+
+        var patientOldGivenName = $('#patient\\.given_name').val();
+
+        var patientOldMiddleName = $('#patient\\.middle_name').val();
+
+        $('#demographicsupdate\\.family_name').val(patientOldFamilyName);
+
+        $('#demographicsupdate\\.given_name').val(patientOldGivenName);
+
+        $('#demographicsupdate\\.middle_name').val(patientOldMiddleName);
+
+        $('.edit_address_label').click(function(){
+            $parent = $(this).closest('.form-group');
+            if(!$parent.find('.update_address_confirm').prop('disabled')) {
+                $parent.find('.update_address_confirm').prop("checked", !$parent.find('.update_address_confirm').prop("checked"));
+                $parent.find('.update_address_confirm').trigger('change');
+            }
+        });
+
+        $('.update_address_confirm_new').change(function(){
+            var $parent = $(this).closest('.group-set');
+            var $addressUpdateParent = $('#demographicsupdate\\.personAddress');
+            if($(this).is(':checked')){
+                $('#update_address').show();
+                if($addressUpdateParent.find('.person_address_uuid').val() != $parent.find(".person_address_uuid").val()) {
+                    $addressUpdateParent.find('.address1').val("");
+                    $addressUpdateParent.find('.address2').val("");
+                    $addressUpdateParent.find('.address3').val("");
+                    $addressUpdateParent.find('.address4').val("");
+                    $addressUpdateParent.find('.address5').val("");
+                    $addressUpdateParent.find('.address6').val("");
+                    $addressUpdateParent.find('.person_address_uuid').val("");
+                }
+                $('.update_address_confirm_new').not($(this)).prop('disabled',true);
+            } else if($(this).is(':unchecked')){
+                $('#update_address').hide();
+            }
+        });
+
+        $('.tmp\\.edit_address').change(function(){
+            var $parent = $(this).closest('.group-set');
+            var $addressUpdateParent = $('#demographicsupdate\\.personAddress');
+            if($(this).is(':checked')){
+                $('#update_address').show();
+                if($addressUpdateParent.find('.person_address_uuid').val() != $parent.find(".person_address_uuid").val()) {
+                    $addressUpdateParent.find('.address1').val($("#old\\.address1").val());
+                    $addressUpdateParent.find('.address2').val($("#old\\.address2").val());
+                    $addressUpdateParent.find('.address3').val($("#old\\.address3").val());
+                    $addressUpdateParent.find('.address4').val($("#old\\.address4").val());
+                    $addressUpdateParent.find('.address5').val($("#old\\.address5").val());
+                    $addressUpdateParent.find('.address6').val($("#old\\.address6").val());
+                    $addressUpdateParent.find('.person_address_uuid').val($parent.find(".person_address_uuid").val());
+                    $('.person_new_phone_number').val(phoneNumber);
+                }
+
+                $('.update_address_confirm').not($(this)).prop('disabled',true);
+            } else if(!$(this).prop('disabled')) {
+                $('#update_address').hide();
+                $('.update_address_confirm').prop('disabled',false);
+                if($addressUpdateParent.find('.person_address_uuid').val() == $parent.find(".person_address_uuid").val()) {
+
+                    $addressUpdateParent.find('.address1').val($parent.find(".address1").val());
+                    $addressUpdateParent.find('.address2').val($parent.find(".address2").val());
+                    $addressUpdateParent.find('.address3').val($parent.find(".address3").val());
+                    $addressUpdateParent.find('.address4').val($parent.find(".address4").val());
+                    $addressUpdateParent.find('.address5').val($parent.find(".address5").val());
+                    $addressUpdateParent.find('.address6').val($parent.find(".address6").val());
+                    $addressUpdateParent.find('.person_address_uuid').val("");
+                }
+            }
+        });
+        $('.tmp\\.edit_address').trigger('change');
 
         $('#tmp\\.update_address').change(function(){
             if($(this).is(':checked')){
@@ -372,17 +448,21 @@
         $('#tmp\\.update_birthdate').change(function(){
             if($(this).is(':checked')){
                 $('#update_birthdate').show();
+                $("#demographicsupdate\\.birth_date").val($("#patient\\.birth_date").val());
+                $('#demographicsupdate\\.birthdate_estimated').val($('#patient\\.birthdate_estimated').val()==='true'?'true':$('#demographicsupdate\\.birthdate_estimated').val($('#patient\\.birthdate_estimated').val()==='false'?'false':'...'));
             } else {
                 $('#update_birthdate').hide();
+                $("#demographicsupdate\\.birth_date").val("");
+                $('#demographicsupdate\\.birthdate_estimated').val("");
             }
         });
         $('#tmp\\.update_birthdate').trigger('change');
 
         $('#patient\\.sex').change(function(){
             if($(this).val() == 'M'){
-                $('#tmp\\.patient\\.sex').val('Male');
+                $('#tmp\\.patient\\.sex').val('Masculino');
             } else if ($(this).val() == 'F') {
-                $('#tmp\\.patient\\.sex').val('Female');
+                $('#tmp\\.patient\\.sex').val('Femenino');
             }
         });
         $('#patient\\.sex').trigger('change');

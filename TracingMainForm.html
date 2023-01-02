@@ -81,7 +81,7 @@
 			TIPO DE VISITA<span class="required">*</span>
 			</label>
 			<select class="form-control" id="obs.type_of_visit" required
-				name="obs.type_of_visit" data-concept="1981^TIPO DE ATENDIMENTO FAMILIAR^99DCT">
+				name="obs.type_of_visit" data-concept="1981^TIPO DE ATENDIMENTO FAMILIAR^99DCT" readonly="readonly">
 				<option value="">...</option>
 				<option value="2161^VISITA DE APOIO^99DCT">Visita preventiva</option>
 				<option value="2160^VISITA DE BUSCA^99DCT">Visita de Reintegração</option>
@@ -207,6 +207,13 @@
 							Outro
 						</label>
 					</div>	
+					<div class="form-group sub-section" id="other_reason_for_failure">
+						<label class="font-normal" for="obs.other_reason_for_failure">
+							Outro:<span class="required"></span>
+						</label>
+							<input class="form-control" id="obs.other_reason_for_failure" type="text" required="required"
+							name="obs.other_reason_for_failure" data-concept="2017^OUTRO MOTIVO DE FALTA^99DCT">
+					</div>
 				</div>
 			</div>
 		</div>	
@@ -272,6 +279,13 @@
 										 Outro
 									</label>
 								</div>
+							</div>
+							<div class="form-group" id="other_patient_had_difficulties">
+								<label class="font-normal" for="obs.other_patient_had_difficulties">
+									Outro:<span class="required"></span>
+								</label>
+									<input class="form-control" id="obs.other_referencias" type="text" required="required"
+									name="obs.other_patient_had_difficulties" data-concept="1748^OUTROS PROBLEMAS^99DCT"/>
 							</div>
 						</div>
 					</div>
@@ -433,7 +447,7 @@
 			</div>
 		</div>
 
-		<div class="form-group sub-section patient_found_div home_visit_result_div" id="data_combinada_div" hidden="true">
+		<div class="form-group sub-section patient_found_div home_visit_result_div" id="data_combinada_div" hidden="true" >
 			<label for="obs.data_combinada">Data combinada para retorno a US:<span class="data_combinada_required required">*</span>
 			</label>
 			<input class="form-control datepicker" id="obs.data_combinada" type="text" required="required" readonly="readonly"
@@ -581,24 +595,17 @@ $(document).ready(function () {
 	$('#obs\\.type_of_visit').change(function(){		
 	   if($('#obs\\.patient_found').val() == "1065^SIM^99DCT" &&  $(this).val()=="2160^VISITA DE BUSCA^99DCT"){
 		   $('#patient_found_div_2160').show();
+		   $('#home_visit_result_div').show();
 	   }else{
 		   $('#patient_found_div_2160').hide();
+		   $('#home_visit_result_div').hide();
 	   }
 		
 	   if($('#obs\\.patient_found').val() == "1065^SIM^99DCT" &&  $(this).val()=="2161^VISITA DE APOIO^99DCT"){
 		   $('#patient_found_div_2161').show();
+		   $('#home_visit_result_div').hide();
 	   }else{
 		   $('#patient_found_div_2161').hide();
-	   }
-	   
-	   if($('#obs\\.type_of_visit').val()=="2160^VISITA DE BUSCA^99DCT"){
-		   $('#patient_found_div_2160').show();
-		   $('#home_visit_result_div').show();
-	   }else if($('#obs\\.type_of_visit').val()=="2161^VISITA DE APOIO^99DCT"){
-		   $('#home_visit_result_div').show();
-	   }
-	   else{
-		   $('#patient_found_div_2160').hide();
 		   $('#home_visit_result_div').removeAttr('required');
 		   $('#home_visit_result_div').hide();
 	   }
@@ -644,6 +651,24 @@ $(document).ready(function () {
 		}
 	});    
 	$('#obs\\.referencias\\.other').trigger('change');
+
+	$('#obs\\.patient_had_difficulties\\.problemas').change(function(){
+        if($(this).prop( "checked" )){
+            $('#other_patient_had_difficulties').show();
+        } else{
+			$('#other_patient_had_difficulties').hide();
+		}
+    });    
+    $('#obs\\.patient_had_difficulties\\.problemas').trigger('change');
+
+	$('#obs\\.reason_for_failure\\.other').change(function(){
+        if($(this).prop( "checked" )){
+            $('#other_reason_for_failure').show();
+        } else{
+			$('#other_reason_for_failure').hide();
+		}
+    });    
+    $('#obs\\.reason_for_failure\\.other').trigger('change');
 
 	$.validator.addMethod("validDeliveryDateOnly", function (value, element) {
 		if ($.fn.isNotRequiredAndEmpty(value, element)) return true;
@@ -815,4 +840,3 @@ $(document).ready(function () {
 });
 </script>
 </html>
-getCohortMembershipByPatientUuid
