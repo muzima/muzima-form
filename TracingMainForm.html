@@ -81,7 +81,7 @@
 			TIPO DE VISITA<span class="required">*</span>
 			</label>
 			<select class="form-control" id="obs.type_of_visit" required
-				name="obs.type_of_visit" data-concept="1981^TIPO DE ATENDIMENTO FAMILIAR^99DCT" readonly="readonly">
+				name="obs.type_of_visit" data-concept="1981^TIPO DE ATENDIMENTO FAMILIAR^99DCT" readonly="readonly" disabled >
 				<option value="">...</option>
 				<option value="2161^VISITA DE APOIO^99DCT">Visita preventiva</option>
 				<option value="2160^VISITA DE BUSCA^99DCT">Visita de Reintegração</option>
@@ -96,7 +96,7 @@
 			<span class="required">*</span>
 			</label>
 			<select class="form-control" id="obs.attempt_number" required
-				name="obs.attempt_number" data-concept="23842^Number of outreach attempts^99DCT">
+				name="obs.attempt_number" data-concept="23842^Number of outreach attempts^99DCT" >
 				<option value="">...</option>
 				<option value="6440^DATA DA PRIMEIRA TENTATIVA DE BUSCA^99DCT">PRIMEIRA</option>
 				<option value="6254^DATA DA SEGUNDA TENTATIVA DE BUSCA^99DCT">SEGUNDA</option>
@@ -790,7 +790,9 @@ $(document).ready(function () {
 	    }else if(visitType[0].obs_comment=="AMA"){
 			$("#obs\\.type_of_visit").val("23914^VISITA AOS CASOS ESPECIAIS/AMA^99DCT");
 			$('#obs\\.type_of_visit').prop('disabled', 'disabled');	 
-	    }
+	    } else {
+			$('#obs\\.type_of_visit').prop('disabled', 'disabled');
+		}
 	}
 
    var patientuuid = $('#patient\\.uuid').val();

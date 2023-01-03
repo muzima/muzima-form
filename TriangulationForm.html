@@ -151,7 +151,7 @@
 			TIPO DE VISITA<span class="required">*</span>
 			</label>
 			<select class="form-control input-section" id="obs.type_of_visit" required
-				name="obs.type_of_visit" data-concept="1981^TIPO DE ATENDIMENTO FAMILIAR^99DCT">
+				name="obs.type_of_visit" data-concept="1981^TIPO DE ATENDIMENTO FAMILIAR^99DCT" readonly="readonly" disabled >
 				<option value="">...</option>
 				<option value="2161^VISITA DE APOIO^99DCT">Visita preventiva</option>
 				<option value="2160^VISITA DE BUSCA^99DCT">Visita de Reintegração</option>
@@ -168,7 +168,7 @@
 			Estado de Triangulação do Paciente<span class="required">*</span>
 			</label>
 			<select class="form-control input-section" id="obs.patient_triangulation_status" required
-				name="obs.patient_triangulation_status" data-concept="23848^ESTADO DA TRIANGULACAO DO PACIENTE^99DCT">
+				name="obs.patient_triangulation_status" data-concept="23848^ESTADO DA TRIANGULACAO DO PACIENTE^99DCT" disabled >
 				<option value="">...</option>
 				<option value="23846^PRECISA RASTREAMENTO^99DCT">Sim, precisa de visita</option>
 				<option value="23847^NAO PRECISA RASTREAMENTO^99DCT">Não há necessidade de visita</option>
@@ -539,19 +539,26 @@ if(parseInt(cohortMembershipJson.length)==1){
 		if(obj.cohortName.includes("_AMA")){
 			$("#obs\\.type_of_visit").val("23914^VISITA AOS CASOS ESPECIAIS/AMA^99DCT");
 			$('#obs\\.type_of_visit').prop('disabled', 'disabled');
+			$('#obs\\.patient_triangulation_status').removeAttr("disabled");
 		}else if(obj.cohortName.includes("_CM")){
 			$("#obs\\.type_of_visit").val("23914^VISITA AOS CASOS ESPECIAIS/CM^99DCT");
 			$('#obs\\.type_of_visit').prop('disabled', 'disabled');
+			$('#obs\\.patient_triangulation_status').removeAttr("disabled");
 		}else if(obj.cohortName.includes("_DCP_LTFU")){
 			$("#obs\\.type_of_visit").val("2160^VISITA DE BUSCA/DCP^99DCT");
 			$('#obs\\.type_of_visit').prop('disabled', 'disabled');
+			$('#obs\\.patient_triangulation_status').removeAttr("disabled");
 		}else if(obj.cohortName.includes("_SV")){
 			$("#obs\\.type_of_visit").val("2161^VISITA DE APOIO^99DCT");
 			$('#obs\\.type_of_visit').prop('disabled', 'disabled');
+			$('#obs\\.patient_triangulation_status').removeAttr("disabled");
 		} else if(obj.cohortName.includes("_LTFU")){
 			$("#obs\\.type_of_visit").val("2160^VISITA DE BUSCA^99DCT");
 			$('#obs\\.type_of_visit').prop('disabled', 'disabled');
-		} 	
+			$('#obs\\.patient_triangulation_status').removeAttr("disabled");
+		} else {
+			$('#obs\\.patient_triangulation_status').prop('disabled', true);
+		}	
 	});
 }
 
