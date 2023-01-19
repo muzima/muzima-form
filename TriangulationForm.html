@@ -160,8 +160,7 @@
 				<option value="2160^VISITA DE BUSCA/DCP^99DCT">Dispensa Comunitária via Provedor</option>
 			</select>
 			<input class="form-control" name="obs_comment.type_of_visit"
-                   data-obscommentfor="obs.type_of_visit"  id="obs_comment.type_of_visit"
-                    value="AMA" type="hidden">
+                   data-obscommentfor="obs.type_of_visit"  id="obs_comment.type_of_visit" type="hidden">
         </div> 
 		<div class="form-group">
 			<label for="obs.patient_triangulation_status">
@@ -513,23 +512,40 @@ $.each(prePopulateJSON, function(key, value) {
 $('#obs\\.professional_referral_name').val($('#encounter\\.provider_id_select').val());
 
 var patientuuid = $('#patient\\.uuid').val();
-var historyByData = htmlDataStore.getObsByConceptId(patientuuid,1410); 
+var historyByData = htmlDataStore.getObsByEncounterType(patientuuid,"e278f956-1d5f-11e0-b929-000c29ad1d07"); 
 historyByData = JSON.parse(historyByData);
 var historyByDataSize = historyByData.length-1;
 if(historyByDataSize==-1){
   $("#missed_consultation_div").hide(); 
 } else {
+  if(historyByData[0].valueDatetime==null){
+	$("#missed_consultation_div").hide();
+  }
+  else {
   var missedDate = new Date(historyByData[0].valueDatetime.replace( /(\d{2})-(\d{2})-(\d{4})/, "$2/$1/$3"));
   var today = new Date();
   var milliSecondsInAYear = 1000 * 60 * 60 * 24;
   var days = (today - missedDate) / milliSecondsInAYear;
-  if(days>0){
+
+  var missedYear = missedDate.getFullYear();
+  var year = today.getFullYear();
+
+  var missedMonth = missedDate.getMonth() + 1;
+  var month = today.getMonth() + 1;
+
+  var missedDay = missedDate.getDay();
+  var day = today.getDay();
+  if(missedYear == year && missedMonth == month && missedDay == day){
+	$("#missed_consultation_div").hide();
+  }
+  else if(days>0){
 	  $("#missed_consultation_div").show(); 
 	  $("#temp\\.missed_consultation_days").val(Math.floor(days));
 	  $("#temp\\.missed_consultation").val(historyByData[0].valueDatetime);
   }else{
 	  $("#missed_consultation_div").hide();
   }
+ }
 } 
 
 var cohortMembership = htmlDataStore.getCohortMembershipByPatientUuid(patientuuid);
