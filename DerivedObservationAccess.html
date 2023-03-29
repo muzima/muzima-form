@@ -24,7 +24,20 @@
         <input class="form-control" id="patient.uuid"
             name="patient.uuid" type="hidden" readonly="readonly">
         </div>
-        <div class="form-group" id="derived-obs">
+		<B>BY Patient UUID</B>
+        <div class="form-group" id="derived-obs-by-patient">
+            
+        </div>
+	</div>
+	<div class="section">
+		<B>BY Patient UUID and Derived Concept UUID</B>
+			<div class="form-group" id="derived-obs-by-patient-and-concept-uuid">
+				
+			</div>
+	</div>
+	<div class="section">
+		<B>BY Patient UUID and Derived Concept ID</B>
+        <div class="form-group" id="derived-obs-by-patient-and-concept-id">
             
         </div>
     </div>
@@ -35,9 +48,15 @@
 <script type="text/javascript">
    $(document).ready(function () { 
 			var patientuuid = $('#patient\\.uuid').val();
-			 document.getElementById("derived-obs").innerHTML="";
+			
 			var derivedObs = htmlDataStore.getDerivedObservationByPatientUuid(patientuuid);
-			document.getElementById("derived-obs").innerHTML = derivedObs;
+			document.getElementById("derived-obs-by-patient").innerHTML = derivedObs;
+			
+			var derivedObs = htmlDataStore.getDerivedObservationByPatientUuidAndDerivedConceptUuid(patientuuid,"6e6aa6c8-e176-4fa4-b5de-8f1f27f087d6");
+			document.getElementById("derived-obs-by-patient-and-concept-uuid").innerHTML = derivedObs;
+			
+			var derivedObs = htmlDataStore.getDerivedObservationByPatientUuidAndDerivedConceptId(patientuuid,3);
+			document.getElementById("derived-obs-by-patient-and-concept-id").innerHTML = derivedObs;
     });     
 </script>
 </html>
