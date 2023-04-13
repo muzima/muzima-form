@@ -11,7 +11,8 @@
         <script src="js/localization/messages_pt_PT.min.js"></script>
         <script src="js/additional-methods.min.js"></script>
         <script src="js/muzima.js"></script>
-
+        <meta charset="utf-8">
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
         <title>Formulário ATS e Adicionar Contacto</title>
     </head>
 <body class="col-md-8 col-md-offset-2">
@@ -20,9 +21,10 @@
         <div id="pre_populate_data">
         </div>
         <h2 class="text-center">Formulário ATS e Adicionar Contacto</h2>
+        <h2 class="text-center">Formulário ATS e Adicionar Contacto</h2>
 
         <div class="section">
-            <h3>Nomes</h3>
+            <h3>Nome do Contacto</h3>
             <div class="form-group">
                 <input class="form-control" id="patient.uuid" name="patient.uuid" type="hidden">
             </div>
@@ -80,12 +82,30 @@
                 <input class="form-control" id="tmp.age_in_years" name="tmp.age_in_years" type="number" required="required">
             </div>
         </div>
-
-<!--        <div class="section" data-concept="23782^SITUACAO FAMILIAR CONJUNTO^99DCT">-->
+        
+        <!--        <div class="section" data-concept="23782^SITUACAO FAMILIAR CONJUNTO^99DCT">-->
         <div class="section">
             <h3>Dados de Testagem</h3>
             <div class="form-group">
-                <label for="obs.hiv_test">Teste de HIV:</label>
+                <div class="form-group">
+                    <label for="obs.htc_offered">O serviço ATS foi oferecido?</label>
+                    <select class="form-control" id="obs.htc_offered"
+                            name="obs.htc_offered" data-concept="165266^Oferecido serviço ATS?^99DCT">
+                        <option value="">...</option>
+                        <option value="1065^SIM^99DCT">Sim</option>
+                        <option value="1066^NAO^99DCT">Nao</option>
+                    </select>
+                </div>
+                <div class="form-group htc_accepted">
+                    <label for="obs.htc_accepted">O serviço ATS foi aceito? <span class="required">*</span></label>
+                    <select class="form-control" id="obs.htc_accepted" required="required"
+                            name="obs.htc_accepted" data-concept="165267^Aceita serviço ATS?^99DCT">
+                        <option value="">...</option>
+                        <option value="1065^SIM^99DCT">Sim</option>
+                        <option value="1066^NAO^99DCT">Nao</option>
+                    </select>
+                </div>
+                <label for="obs.hiv_test">Resultado da Testagem de HIV:</label>
                 <select class="form-control" id="obs.hiv_test"
                         name="obs.hiv_test" data-concept="23779^Teste de HIV^99DCT">
                     <option value="">...</option>
@@ -98,24 +118,6 @@
                 <label for="obs.hiv_care">Cuidados de HIV:</label>
                 <select class="form-control" id="obs.hiv_care"
                         name="obs.hiv_care" data-concept="23780^Cuidados HIV^99DCT">
-                    <option value="">...</option>
-                    <option value="1065^SIM^99DCT">Sim</option>
-                    <option value="1066^NAO^99DCT">Nao</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="obs.htc_offered">O serviço ATS foi oferecido?</label>
-                <select class="form-control" id="obs.htc_offered"
-                        name="obs.htc_offered" data-concept="165266^Oferecido serviço ATS?^99DCT">
-                    <option value="">...</option>
-                    <option value="1065^SIM^99DCT">Sim</option>
-                    <option value="1066^NAO^99DCT">Nao</option>
-                </select>
-            </div>
-            <div class="form-group htc_accepted">
-                <label for="obs.htc_accepted">O serviço ATS foi aceito? <span class="required">*</span></label>
-                <select class="form-control" id="obs.htc_accepted" required="required"
-                        name="obs.htc_accepted" data-concept="165267^Aceita serviço ATS?^99DCT">
                     <option value="">...</option>
                     <option value="1065^SIM^99DCT">Sim</option>
                     <option value="1066^NAO^99DCT">Nao</option>

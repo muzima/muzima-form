@@ -12,8 +12,9 @@
     <script src="js/additional-methods.min.js"></script>
     <script src="js/bootstrap-datetimepicker.min.js"></script>
     <script src="js/muzima.js"></script>
-
-    <title>Actualizar Dados Pessoais</title>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Formulário de Dados Demográficos do Paciente</title>
 </head>
 <body class="col-md-8 col-md-offset-2">
 
@@ -24,7 +25,7 @@
  
 </div>
 <form id="demographics_update_form" name="demographics_update_form">
-    <h2 class="text-center">Actualizar Dados Pessoais</h2>
+    <h2 class="text-center">Formulário de Dados Demográficos do Paciente</h2>
 
     <div class="section">
         <h3>Nome do Paciente</h3>
@@ -51,12 +52,12 @@
             <label for="tmp.update_names">
                 <input id="tmp.update_names" name="tmp.update_names"
                    type="checkbox">
-                   Vai atualizar nomes?
+                   Vai atualizar nomes? (se sim, permitir editar)
             </label>
         </div>
     </div>
     <div class="section" id="update_names">
-        <h3>Add Names</h3>
+        <h3>Adicionar Nomes</h3>
         <div class="form-group">
             <label for="demographicsupdate.family_name">Novo Apelido: <span class="required">*</span> </label>
             <input class="form-control" id="demographicsupdate.family_name" name="demographicsupdate.family_name" type="text"
@@ -72,19 +73,106 @@
             <input class="form-control" id="demographicsupdate.middle_name" name="demographicsupdate.middle_name" type="text">
         </div>
     </div>
-	<div class="section">
-		<div class="section group-set" data-group="patient.personaddress">
+    <div class="section" id="update_names">
+        <h3>Outros Dados Demográficos</h3>
+            <div class="form-group">
+                <label for="patient.sex">Sexo: <span class="required">*</span></label>
+                <input id="patient.sex" name="patient.sex" type="hidden">
+                <input class="form-control" disabled id="tmp.patient.sex" name="tmp.patient.sex" type="text">
+            </div>
+            <div class="form-group">
+                <label for="tmp.update_sex">
+                    <input id="tmp.update_sex" name="tmp.update_sex"
+                       type="checkbox">
+                       Vai actualizar gênero? (se sim, permitir editar)
+                </label>
+            </div>
+            <div class="form-group sub-section" id="update_sex">
+                <label for="demographicsupdate.sex">Novo Sexo: <span class="required">*</span></label>
+                <select class="form-control" id="demographicsupdate.sex" name="demographicsupdate.sex">
+                    <option value="">...</option>
+                    <option value="M">Masculino</option>
+                    <option value="F">Femenino</option>
+                </select>
+            </div>
+            <div class="form-group birthdate">
+                <label for="patient.birth_date">Data de nascimento  <span class="required">*</span></label>
+                <input class="form-control birth_date_picker nonFutureDate" id="patient.birth_date" name="patient.birth_date"
+                       type="text" disabled="disabled" readonly="readonly">
+            </div>
+            <div class="form-group birthdate">
+                <label for="patient.birthdate_estimated">Esta data de nascimento é uma estimativa?  <span class="required">*</span></label>
+                <select class="form-control" id="patient.birthdate_estimated" name="patient.birthdate_estimated"
+                        disabled="disabled" readonly="readonly">
+                    <option value="">...</option>
+                    <option value="true">Sim</option>
+                    <option value="false">Não</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="tmp.update_birthdate">
+                    <input id="tmp.update_birthdate" name="tmp.update_birthdate"
+                       type="checkbox">
+                       Mudará a data de nascimento? (se sim, permitir editar)
+                </label>
+            </div>
+            <div id="update_birthdate" class="sub-section">
+                <div class="form-group">
+                    <label for="tmp.birthdate_type">Registrará a data de nascimento... <span class="required">*</span></label>
+                    <select class="form-control" name="tmp.birthdate_type" id="tmp.birthdate_type" required="required">
+                        <option value="">...</option>
+                        <option value="birthdate">Por data de nascimento</option>
+                        <option value="age">Por idade</option>
+                    </select>
+                </div>
+                <div class="form-group show_birthdate">
+                    <label for="demographicsupdate.birth_date">Selecione Nova Data de Nascimento<span class="required">*</span></label>
+                    <input class="form-control birth_date_picker nonFutureDate" id="demographicsupdate.birth_date"
+                    name="demographicsupdate.birth_date"
+                           type="text"
+                           required="required"
+                           readonly="readonly">
+                </div>
+                <div class="form-group show_birthdate">
+                    <label for="demographicsupdate.birthdate_estimated">Esta data de nascimento é uma estimativa? <span
+                            class="required">*</span></label>
+                    <select class="form-control" id="demographicsupdate.birthdate_estimated" name="demographicsupdate.birthdate_estimated"
+                            required="required">
+                        <option value="">...</option>
+                        <option value="true">SIM</option>
+                        <option value="false">NÃO</option>
+                    </select>
+                </div>
+                <div class="form-group show_age">
+                    <label for="tmp.age_in_years">Quantos anos de idade tem?<span class="required">*</span></label>
+                    <input class="form-control" id="tmp.age_in_years" name="tmp.age_in_years" type="number" required="required">
+    
+                </div>
+            </div>
+    </div>
+    <div class="section">
+        <h3>Identificadores</h3>
+        <div class="form-group">
+            <label for="patient.medical_record_number">NID : <span class="required require_medical_record_number_hint">*</span></label>
+
+            <div class="form-horizontal">
+                <div class="group-set" id="patient.medical_record_number" data-group="patient.medical_record_number">
+                    <input class="barcode_text form-control" id="tmp.medical_record_number"
+                           name="tmp.medical_record_number" type="text" readonly>
+                    <input type="hidden" id="identifier_value" name="identifier_value">
+                    <input data-metadata-for="identifier_value" type="hidden" id="identifier_type_uuid" name="identifier_type_uuid" value="e2b966d0-1d5f-11e0-b929-000c29ad1d07">
+                </div>
+            </div>
+        </div>
+    </div>
+	<div class="section group-set" data-group="patient.personaddress">
 			<h3>Endereço</h3>
 			<div class="form-group">
-				<label for="address1">Avenida/Rua: </label>
+				<label for="address1">Avenida/Rua/Casa: </label>
 				<input class="form-control" id="address1" name="address1" type="text" readonly="readonly">
 			</div>
 			<div class="form-group">
-				<label for="address2">Casa Nº: </label>
-				<input class="form-control" id="address2" name="address2" type="text" readonly="readonly">
-			</div>
-			<div class="form-group">
-				<label for="address6">Unidade Comunal: </label>
+				<label for="address6">Localidade: </label>
 				<input class="form-control" id="address6" name="address6" type="text" readonly="readonly">
 			</div>
 			<div class="form-group">
@@ -94,17 +182,12 @@
 			<div class="form-group">
 				<label for="address5">Bairro: </label>
 				<input class="form-control" id="address5" name="address5" type="text" readonly="readonly">
-			</div>
-		</div>
-		<div class="form-group">
-			<label for="patient.phone_number">Contacto do Paciente</label>
-			<input class="form-control" id="patient.phone_number" name="patient.phone_number" type="tel" disabled="disabled">
-		</div>			
-        <div class="form-group">
+			</div>			
+            <div class="form-group">
             <label for="tmp.update_address">
                 <input id="tmp.update_address" name="tmp.update_address"
                    type="checkbox">
-                   Vai atualizar o endereço?
+                   Vai atualizar o endereço? (se sim, permitir editar)
             </label>
         </div>
 	</div>
@@ -116,7 +199,7 @@
 				<input class="form-control" id="address1" name="address1" type="text">
 			</div>
 			<div class="form-group">
-				<label for="address6">Novo Unidade Comunal: </label>
+				<label for="address6">Novo Localidade: </label>
 				<input class="form-control" id="address6" name="address6" type="text">
 			</div>
 			<div class="form-group">
@@ -124,128 +207,43 @@
 				<input class="form-control" id="address3" name="address3" type="text">
 			</div>
 			<div class="form-group">
-				<label for="address2">Novo Casa Nº: </label>
-				<input class="form-control" id="address2" name="address2" type="text">
-			</div>
-			<div class="form-group">
 				<label for="address5">Novo Bairro: </label>
 				<input class="form-control" id="address5" name="address5" type="text">
 			</div>
 		</div>
-		<div class="group-set" data-group="demographicsupdate.personattribute">
-			<div class="form-group">
-				<label for="phone_number">Novo Contacto do Paciente: </label>
-				<input class="form-control" id="attribute_value"
-						   name="attribute_value" type="text" required="required">			
-					<input data-metadata-for="attribute_value" type="hidden" id="attribute_type_uuid" name="attribute_type_uuid" value="e2e3fd64-1d5f-11e0-b929-000c29ad1d07">
-			</div>
-		</div>
     </div>
-    <div class="section">
-        <h3>Identificadores</h3>
+    <div class="section"> 
         <div class="form-group">
-            <label for="patient.medical_record_number">NID : <span class="required require_medical_record_number_hint">*</span></label>
-
-            <div class="form-horizontal">
-                <div class="group-set" data-group="patient.medical_record_number">
-                  <input class="barcode_text form-control" id="patient.medical_record_number"
-                       name="patient.medical_record_number" type="text" readonly>
-					  <input type="hidden" id="identifier_value" name="identifier_value">
-					<input data-metadata-for="identifier_value" type="hidden" id="identifier_type_uuid" name="identifier_type_uuid" value="e2b966d0-1d5f-11e0-b929-000c29ad1d07">
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="section">
-        <div class="form-group">
-            <label for="patient.sex">Sexo: <span class="required">*</span></label>
-            <input id="patient.sex" name="patient.sex" type="hidden">
-            <input class="form-control" disabled id="tmp.patient.sex" name="tmp.patient.sex" type="text">
+          <h3>Contacto Telemóvel do Paciente</h3>
+          <input class="form-control" id="patient.phone_number" name="patient.phone_number" type="tel" disabled="disabled">
         </div>
         <div class="form-group">
-            <label for="tmp.update_sex">
-                <input id="tmp.update_sex" name="tmp.update_sex"
+            <label for="tmp.update_patient_contact">
+                <input id="tmp.update_patient_contact" name="tmp.update_patient_contact"
                    type="checkbox">
-                   Vai mudar de sexo?
+                   Vai atualizar o contacto? (se sim, permitir editar)
             </label>
         </div>
-        <div class="form-group sub-section" id="update_sex">
-            <label for="demographicsupdate.sex">Novo Sexo: <span class="required">*</span></label>
-            <select class="form-control" id="demographicsupdate.sex" name="demographicsupdate.sex">
-                <option value="">...</option>
-                <option value="M">Male</option>
-                <option value="F">Female</option>
-            </select>
+     </div>
+    <div class="section" id="update_patient_contact"> 
+        <div class="form-group">
+            <label for="phone_number">Novo Contacto do Paciente: </label>
+            <input class="form-control" id="attribute_value"
+                       name="attribute_value" type="text" required="required">			
+                <input data-metadata-for="attribute_value" type="hidden" id="attribute_type_uuid" name="attribute_type_uuid" value="e2e3fd64-1d5f-11e0-b929-000c29ad1d07">
         </div>
-        <div class="form-group birthdate">
-            <label for="patient.birth_date">Data de nascimento  <span class="required">*</span></label>
-            <input class="form-control birth_date_picker nonFutureDate" id="patient.birth_date" name="patient.birth_date"
-                   type="text" disabled="disabled" readonly="readonly">
-        </div>
-        <div class="form-group birthdate">
-            <label for="patient.birth_date">Is this birthdate an estimate? <span class="required">*</span></label>
-            <input class="form-control" id="patient.birthdate_estimated" name="patient.birthdate_estimated"
-                   type="text" disabled="disabled" readonly="readonly">
+   </div>
+   <div class="section">
+      <h3>Detalhes do encontro</h3>
+        <div class="form-group">
+              <label for="encounter.encounter_datetime">Data do encontro<span class="required">*</span></label>
+                 <input class="form-control datetimepicker nonFutureDate past-date" readonly="readonly" id="encounter.encounter_datetime"
+                        name="encounter.encounter_datetime" type="text" required="required" disabled>
         </div>
         <div class="form-group">
-            <label for="tmp.update_birthdate">
-                <input id="tmp.update_birthdate" name="tmp.update_birthdate"
-                   type="checkbox">
-                   Mudará a data de nascimento?
-            </label>
-        </div>
-        <div id="update_birthdate" class="sub-section">
-            <div class="form-group">
-                <label for="tmp.birthdate_type">Registrará a data de nascimento... <span class="required">*</span></label>
-                <select class="form-control" name="tmp.birthdate_type" id="tmp.birthdate_type" required="required">
-                    <option value="">...</option>
-                    <option value="birthdate">Por data de nascimento</option>
-                    <option value="age">Por idade</option>
-                </select>
-            </div>
-            <div class="form-group show_birthdate">
-                <label for="demographicsupdate.birth_date">Selecione Nova Data de Nascimento<span class="required">*</span></label>
-                <input class="form-control birth_date_picker nonFutureDate" id="demographicsupdate.birth_date"
-                name="demographicsupdate.birth_date"
-                       type="text"
-                       required="required"
-                       readonly="readonly">
-            </div>
-            <div class="form-group show_birthdate">
-                <label for="demographicsupdate.birthdate_estimated">Esta data de nascimento é uma estimativa? <span
-                        class="required">*</span></label>
-                <select class="form-control" id="demographicsupdate.birthdate_estimated" name="demographicsupdate.birthdate_estimated"
-                        required="required">
-                    <option value="">...</option>
-                    <option value="true">SIM</option>
-                    <option value="false">NAO</option>
-                </select>
-            </div>
-            <div class="form-group show_age">
-                <label for="tmp.age_in_years">Quantos anos você tem em anos?<span class="required">*</span></label>
-                <input class="form-control" id="tmp.age_in_years" name="tmp.age_in_years" type="number" required="required">
-
-            </div>
-        </div>
-    </div>
-    <div class="section">
-
-        <div class="form-group">
-            <label for="encounter.location_id">US onde esta afecto o voluntário:<span class="required">*</span></label>
-            <input class="form-control valid-location-only" id="encounter.location_id" type="text"
-            placeholder="Start typing something..." required="required"  readonly="readonly">
-            <input class="form-control" name="encounter.location_id" type="hidden">
-        </div>
-
-        <div class="form-group hidden">
-            <select class="form-control" id="encounter.location_id_select" required="required">
-                <option>...</option>
-            </select>
-        </div>
-        <div class="form-group">
-            <label for="encounter.provider_id_select">Voluntário:</label>
+            <label for="encounter.provider_id_select">Nome do Provedor:</label>
             <input class="form-control valid-provider-only" id="encounter.provider_id_select" type="text"
-            placeholder="Start typing something..."  readonly="readonly">
+            placeholder="Comece a digitar..."  readonly="readonly">
             <input class="form-control" name="encounter.provider_id_select" type="hidden">
         </div>
         <div class="form-group show_provider_id_text">
@@ -254,16 +252,17 @@
                type="text" required="required" disabled="disabled">
         </div>
         <div class="form-group">
-            <label for="encounter.encounter_datetime">Encontro<span class="required">*</span></label>
-            <input class="form-control datetimepicker nonFutureDate past-date" readonly="readonly" id="encounter.encounter_datetime"
-                   name="encounter.encounter_datetime"
-                   type="text" required="required">
+            <label for="encounter.location_id">Local do Encontro:<span class="required">*</span></label>
+            <input class="form-control valid-location-only" id="encounter.location_id" type="text"
+            placeholder="Comece a digitar..." required="required"  readonly="readonly">
+            <input class="form-control" name="encounter.location_id" type="hidden">
         </div>
         <div class="form-group">
-            <input class="form-control" id="encounter.form_uuid" name="encounter.form_uuid"
-                   type="hidden" required="required">
+            <input class="form-control" id="encounter.form_uuid" name="encounter.form_uuid" type="hidden" required="required">
             <input class="form-control" id="demographicsupdate.is_updated_name_preferred" name="demographicsupdate.is_updated_name_preferred"
-                   type="hidden" value="false">
+               type="hidden" value="false">
+            <input class="form-control" id="tmp.custom_discriminator" name="tmp.custom_discriminator"
+               value="mastercard-record-mapper" type="hidden" required="required">
         </div>
     </div>
 </form>
@@ -302,9 +301,34 @@
             $(this).prop('disabled', false);
         });
 
+        var patientUuid = $('#patient\\.uuid').val();
+        var phoneNumberPersonAttributeType = "e2e3fd64-1d5f-11e0-b929-000c29ad1d07";
+        var phoneNumber = htmlDataStore.getPersonAttribute(patientUuid,phoneNumberPersonAttributeType);
+        phoneNumber = JSON.parse(phoneNumber);
+        if('attribute_value' in phoneNumber){
+            phoneNumber = phoneNumber.attribute_value;
+        } else {
+            phoneNumber = '';
+        }
+        $('#patient\\.phone_number').val(phoneNumber);
+
         $('#tmp\\.update_names').change(function(){
             if($(this).is(':checked')){
+
+                var patientOldFamilyName = $('#patient\\.family_name').val();
+
+                var patientOldGivenName = $('#patient\\.given_name').val();
+
+                var patientOldMiddleName = $('#patient\\.middle_name').val();
+
+                $('#demographicsupdate\\.family_name').val(patientOldFamilyName);
+
+                $('#demographicsupdate\\.given_name').val(patientOldGivenName);
+
+                $('#demographicsupdate\\.middle_name').val(patientOldMiddleName);
+
                 $('#update_names').show();
+
                 $('#demographicsupdate\\.is_updated_name_preferred').prop('value', true);
             } else {
                 $('#update_names').hide();
@@ -313,14 +337,96 @@
         });
         $('#tmp\\.update_names').trigger('change');
 
-        $('#tmp\\.update_address').change(function(){
+
+        var patientOldFamilyName = $('#patient\\.family_name').val();
+
+        var patientOldGivenName = $('#patient\\.given_name').val();
+
+        var patientOldMiddleName = $('#patient\\.middle_name').val();
+
+        $('#demographicsupdate\\.family_name').val(patientOldFamilyName);
+
+        $('#demographicsupdate\\.given_name').val(patientOldGivenName);
+
+        $('#demographicsupdate\\.middle_name').val(patientOldMiddleName);
+
+        $('.edit_address_label').click(function(){
+            $parent = $(this).closest('.form-group');
+            if(!$parent.find('.update_address_confirm').prop('disabled')) {
+                $parent.find('.update_address_confirm').prop("checked", !$parent.find('.update_address_confirm').prop("checked"));
+                $parent.find('.update_address_confirm').trigger('change');
+            }
+        });
+
+        $('.update_address_confirm_new').change(function(){
+            var $parent = $(this).closest('.group-set');
+            var $addressUpdateParent = $('#demographicsupdate\\.personAddress');
             if($(this).is(':checked')){
                 $('#update_address').show();
-            } else {
+                if($addressUpdateParent.find('.person_address_uuid').val() != $parent.find(".person_address_uuid").val()) {
+                    $addressUpdateParent.find('.address1').val("");
+                    $addressUpdateParent.find('.address3').val("");
+                    $addressUpdateParent.find('.address4').val("");
+                    $addressUpdateParent.find('.address5').val("");
+                    $addressUpdateParent.find('.address6').val("");
+                    $addressUpdateParent.find('.person_address_uuid').val("");
+                }
+                $('.update_address_confirm_new').not($(this)).prop('disabled',true);
+            } else if($(this).is(':unchecked')){
                 $('#update_address').hide();
             }
         });
+
+        $('.tmp\\.edit_address').change(function(){
+            var $parent = $(this).closest('.group-set');
+            var $addressUpdateParent = $('#demographicsupdate\\.personAddress');
+            if($(this).is(':checked')){
+                $('#update_address').show();
+                if($addressUpdateParent.find('.person_address_uuid').val() != $parent.find(".person_address_uuid").val()) {
+                    $addressUpdateParent.find('.address1').val($("#old\\.address1").val());
+                    $addressUpdateParent.find('.address3').val($("#old\\.address3").val());
+                    $addressUpdateParent.find('.address4').val($("#old\\.address4").val());
+                    $addressUpdateParent.find('.address5').val($("#old\\.address5").val());
+                    $addressUpdateParent.find('.address6').val($("#old\\.address6").val());
+                    $addressUpdateParent.find('.person_address_uuid').val($parent.find(".person_address_uuid").val());
+                    $('.person_new_phone_number').val(phoneNumber);
+                }
+
+                $('.update_address_confirm').not($(this)).prop('disabled',true);
+            } else if(!$(this).prop('disabled')) {
+                $('#update_address').hide();
+                $('.update_address_confirm').prop('disabled',false);
+                if($addressUpdateParent.find('.person_address_uuid').val() == $parent.find(".person_address_uuid").val()) {
+                    $addressUpdateParent.find('.address1').val($parent.find(".address1").val());
+                    $addressUpdateParent.find('.address3').val($parent.find(".address3").val());
+                    $addressUpdateParent.find('.address4').val($parent.find(".address4").val());
+                    $addressUpdateParent.find('.address5').val($parent.find(".address5").val());
+                    $addressUpdateParent.find('.address6').val($parent.find(".address6").val());
+                    $addressUpdateParent.find('.person_address_uuid').val("");
+                }
+            }
+        });
+        $('.tmp\\.edit_address').trigger('change');
+
+        $('#tmp\\.update_address').change(function(){
+            if($(this).is(':checked')){
+                $('#update_address').show();
+                $('#update_patient_contact').show();
+            } else {
+                $('#update_address').hide();
+                $('#update_patient_contact').hide();
+            }
+        });
         $('#tmp\\.update_address').trigger('change');
+
+        $('#tmp\\.update_patient_contact').change(function(){
+            if($(this).is(':checked')){
+                $('#update_patient_contact').show();
+            } else {
+                $('#update_patient_contact').hide();
+            }
+        });
+        $('#tmp\\.update_patient_contact').trigger('change');
 
         $('#tmp\\.update_sex').change(function(){
             if($(this).is(':checked')){
@@ -334,17 +440,21 @@
         $('#tmp\\.update_birthdate').change(function(){
             if($(this).is(':checked')){
                 $('#update_birthdate').show();
+                $("#demographicsupdate\\.birth_date").val($("#patient\\.birth_date").val());
+                $('#demographicsupdate\\.birthdate_estimated').val($('#patient\\.birthdate_estimated').val()==='true'?'true':$('#demographicsupdate\\.birthdate_estimated').val($('#patient\\.birthdate_estimated').val()==='false'?'false':'...'));
             } else {
                 $('#update_birthdate').hide();
+                $("#demographicsupdate\\.birth_date").val("");
+                $('#demographicsupdate\\.birthdate_estimated').val("");
             }
         });
         $('#tmp\\.update_birthdate').trigger('change');
 
         $('#patient\\.sex').change(function(){
             if($(this).val() == 'M'){
-                $('#tmp\\.patient\\.sex').val('Male');
+                $('#tmp\\.patient\\.sex').val('Masculino');
             } else if ($(this).val() == 'F') {
-                $('#tmp\\.patient\\.sex').val('Female');
+                $('#tmp\\.patient\\.sex').val('Femenino');
             }
         });
         $('#patient\\.sex').trigger('change');
@@ -378,22 +488,22 @@
         });
         dobType.trigger('change');
 		
-	var patient_data = JSON.parse($("#pre_populate_data").text());
-	var patient_payload = patient_data.patient;
-	$.each(patient_payload, function (key, value) {
-		if (value instanceof Object) {
-			if (value instanceof Array) {
-				$.each(value, function (i, element) {	
-					  if(element.attribute_type_uuid=="e2e3fd64-1d5f-11e0-b929-000c29ad1d07"){
-						  $("#patient\\.phone_number").val(element.attribute_value);
-					  }
-				});
-			} 
-		}        
-    });
-	
-	$("#identifier_value").val($("#patient\\.medical_record_number").val());
+    var patientUuid = $('#patient\\.uuid').val();
+        var phoneNumberPersonAttributeType = "e2e3fd64-1d5f-11e0-b929-000c29ad1d07";
+        var phoneNumber = htmlDataStore.getPersonAttribute(patientUuid,phoneNumberPersonAttributeType);
+        phoneNumber = JSON.parse(phoneNumber);
+        if('attribute_value' in phoneNumber){
+            $('attribute_type_uuid').val(phoneNumber.attribute_value);
+            $('#patient\\.phone_number').val(phoneNumber.attribute_value);
+        }
 
+    var medicalRecordNumber = htmlDataStore.getPatientIdentifier(patientUuid, "e2b966d0-1d5f-11e0-b929-000c29ad1d07");
+        medicalRecordNumber = JSON.parse(medicalRecordNumber);
+        if('identifier_value' in medicalRecordNumber) {
+            $("#identifier_value").val(medicalRecordNumber.identifier_value);
+            $("#tmp\\.medical_record_number").val(medicalRecordNumber.identifier_value);
+        }
+	
     document.setupAutoCompleteData('encounter\\.location_id');
 
     document.setupAutoCompleteDataForProvider('encounter\\.provider_id_select');
