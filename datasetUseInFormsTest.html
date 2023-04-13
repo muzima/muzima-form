@@ -1,0 +1,79 @@
+<!--SAMPLE REPORT DATASET QUERY FOR USE WITH THIs FORM-->
+<!--select distinct person.uuid as patientUuid,name as hivTestResult from obs inner join concept_name on concept_name.concept_id=obs.value_coded inner join person on obs.person_id=person.person_id where obs.concept_id=23779 and obs.person_id in (select patient_id from cohort_member where end_date is null and cohort_id=16) and locale='pt';-->
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/muzima.css" rel="stylesheet">
+    <link href="css/ui-darkness/jquery-ui-1.10.4.custom.min.css" rel="stylesheet">
+
+    <script src="js/jquery.min.js"></script>
+    <script src="js/jquery-ui-1.10.4.custom.min.js"></script>
+    <script src="js/jquery.validate.min.js"></script>
+    <script src="js/localization/messages_pt_PT.min.js"></script>
+    <script src="js/additional-methods.min.js"></script>
+    <script src="js/bootstrap-datetimepicker.min.js"></script>
+    <script src="js/muzima.js"></script>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Dataset use in forms demo</title>
+</head>
+<body class="col-md-8 col-md-offset-2">
+<div id="result"></div>
+<form id="mini_registration_form" name="mini_registration_form">
+    <div id="pre_populate_data">
+    </div>
+    <h2 class="text-center">Dataset use in forms demo</h2>
+    <div class="section">
+        <h3>Demographics</h3>
+        <div class="form-group">
+            <input class="form-control" id="patient.uuid"
+                   name="patient.uuid" type="hidden" readonly="readonly">
+        </div>
+        <div class="form-group">
+            <label for="patient.medical_record_number">EMR ID:</label>
+            <input class="form-control" id="patient.medical_record_number"
+                   name="patient.medical_record_number" type="text" readonly="readonly">
+        </div>
+        <div class="form-group">
+            <label for="patient.family_name">Family Name:</label>
+            <input class="form-control" id="patient.family_name" name="patient.family_name" type="text"
+                   readonly="readonly">
+        </div>
+        <div class="form-group">
+            <label for="patient.given_name">Given Name:</label>
+            <input class="form-control" id="patient.given_name" name="patient.given_name" type="text"
+                   readonly="readonly">
+        </div>
+        <div class="form-group">
+            <label for="patient.middle_name">Middle Name:</label>
+            <input class="form-control" id="patient.middle_name" name="patient.middle_name" type="text"
+                   readonly="readonly">
+        </div>
+    </div>
+    <div class="section">
+        <h3>Status</h3>
+        <div class="form-group">
+            <label for="patient.middle_name">HIV Test Result:</label>
+            <input class="form-control" id="hivTestResult" type="text"
+                   readonly="readonly">
+        </div>
+    </div>
+
+</form>
+</body>
+<script type="text/javascript">
+    $(document).ready(function () {
+        if (reportDatasetInterface != null && typeof reportDatasetInterface['getReportDatasetByDatasetDefinitionIdAndKeyValue'] == 'function') {
+            var dataset = reportDatasetInterface.getReportDatasetByDatasetDefinitionIdAndKeyValue(6, "patientUuid", $('#patient\\.uuid').val());
+            dataset = JSON.parse(dataset);
+            if(Object.keys(dataset).length>0 && 'hivTestResult' in dataset[0]) {
+                $('#hivTestResult').val(dataset[0].hivTestResult);
+            } else {
+                $('#hivTestResult').val('---');
+            }
+        }
+    });
+</script>
+</html>
