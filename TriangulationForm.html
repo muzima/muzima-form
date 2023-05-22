@@ -50,8 +50,21 @@
         </div>
     </div>
 
-	<div class="section">
-        <h3>Registo no Livro</h3>
+<div class="section section-div form-group" id="visit_book_call">
+	<div class="panel-heading">
+		<h3 class="panel-title">
+			<a data-toggle="collapse" data-parent="#accordion" href="#visit_book_call" aria-expanded="false" aria-controls="visit_book_call_collapse" id="visit_book_call.section">
+				REGISTO NO LIVRO
+			</a>
+			<a data-toggle="collapse" data-parent="#accordion" aria-expanded="false" href="#visit_book_call" id="visit_book_call.section">
+				<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrows-collapse" viewBox="0 0 16 16">
+					<path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13A.5.5 0 0 1 1 8zm7-8a.5.5 0 0 1 .5.5v3.793l1.146-1.147a.5.5 0 0 1 .708.708l-2 2a.5.5 0 0 1-.708 0l-2-2a.5.5 0 1 1 .708-.708L7.5 4.293V.5A.5.5 0 0 1 8 0zm-.5 11.707-1.146 1.147a.5.5 0 0 1-.708-.708l2-2a.5.5 0 0 1 .708 0l2 2a.5.5 0 0 1-.708.708L8.5 11.707V15.5a.5.5 0 0 1-1 0v-3.793z"/>
+				</svg>
+			</a>
+		</h3>
+	</div>
+ <div id="visit_book_call" class="panel-collapse collapse in">
+    <div class="form-group" id="visit_book_call.section_div">
         <div class="form-group">
             <label for="patient.names">Nº do Livro de Chamadas e Visitas:</label>
             <input class="form-control" id="bookNumber" name="bookNumber" type="number" data-concept="23948^Call and Visit Book Number^99DCT">
@@ -65,11 +78,25 @@
             <input class="form-control" id="lineNumber" name="lineNumber" type="number" data-concept="23950^Call and Visit Book Page row^99DCT">
         </div>
     </div>
+ </div>
+</div>
 
-<div class="section section-div">
-	<h3>TRIANGULAÇÃO</h3>
+<div class="section section-div form-group" id="triangulation">
+	<div class="panel-heading">
+		<h3 class="panel-title">
+			<a data-toggle="collapse" data-parent="#accordion" href="#triangulation" aria-expanded="false" aria-controls="triangulation" id="triangulation.section">
+				TRIANGULAÇÃO
+			</a>
+			<a data-toggle="collapse" data-parent="#accordion" aria-expanded="false" href="#triangulation" id="triangulation.section">
+				<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrows-collapse" viewBox="0 0 16 16">
+					<path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13A.5.5 0 0 1 1 8zm7-8a.5.5 0 0 1 .5.5v3.793l1.146-1.147a.5.5 0 0 1 .708.708l-2 2a.5.5 0 0 1-.708 0l-2-2a.5.5 0 1 1 .708-.708L7.5 4.293V.5A.5.5 0 0 1 8 0zm-.5 11.707-1.146 1.147a.5.5 0 0 1-.708-.708l2-2a.5.5 0 0 1 .708 0l2 2a.5.5 0 0 1-.708.708L8.5 11.707V15.5a.5.5 0 0 1-1 0v-3.793z"/>
+				</svg>
+			</a>
+		</h3>
+	</div>
+ <div id="tringulation" class="panel-collapse collapse in">
+  <div class="form-group" id="triangulation.section_div">
 	 <div class="section section-div">
-	   <h3>VISITA</h3>
 		<div class="form-group">
 			<label for="obs.type_of_visit">
 			Tipo de Visita<span class="required">*</span>
@@ -106,14 +133,23 @@
 				<option value="23846^PRECISA RASTREAMENTO^99DCT">Sim, precisa de visita</option>
 				<option value="23847^NAO PRECISA RASTREAMENTO^99DCT">Não há necessidade de visita</option>
 			</select>
-        </div>		
-		<div class="form-group" id="tracking_needed">
-			<div class="form-group">
+        </div>
+		
+		<div class="section section-div form-group" id="tracking_needed">
+			<a data-toggle="collapse" data-parent="#accordion" href="#traking_need" aria-expanded="false" aria-controls="traking_need_collapse" id="traking_need.section">
 				<label for="obs.reason_for_visit">
-				Motivo da Visita<span class="required">*</span>
+				    Motivo da Visita<span class="required">*</span>
 					<input type="checkbox" name="obs.reason_for_visit" required="required" readonly="readonly" style="opacity:0; position:absolute; left:9999px;">
 				</label>
-				
+			</a>
+			<a data-toggle="collapse" data-parent="#accordion" aria-expanded="false" href="#traking_need" id="traking_need.section">
+				<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrows-collapse" viewBox="0 0 16 16">
+					<path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13A.5.5 0 0 1 1 8zm7-8a.5.5 0 0 1 .5.5v3.793l1.146-1.147a.5.5 0 0 1 .708.708l-2 2a.5.5 0 0 1-.708 0l-2-2a.5.5 0 1 1 .708-.708L7.5 4.293V.5A.5.5 0 0 1 8 0zm-.5 11.707-1.146 1.147a.5.5 0 0 1-.708-.708l2-2a.5.5 0 0 1 .708 0l2 2a.5.5 0 0 1-.708.708L8.5 11.707V15.5a.5.5 0 0 1-1 0v-3.793z"/>
+				</svg>
+			</a>
+			<div id="traking_need" class="panel-collapse collapse in">
+			<div class="form-group" id="traking_need.section_div">
+			<div class="form-group">
 				<div class="form-group">
 					<label class="font-normal">
 						<input id="obs.reason_for_visit.exposta" type="checkbox" name="obs.reason_for_visit"
@@ -198,14 +234,26 @@
 					<input class="form-control" id="obs.other_reason_for_visit" type="text" required="required"
 					name="obs.other_reason_for_visit" data-concept="2171^OUTRO MOTIVO DE VISITA AO PACIENTE^99DCT">
 			</div>
-			</div>
+		  </div>
+		 </div>
 		</div>
-		<div class="form-group" id="no_tracking_needed">
+	</div>
+
+		<div class="section section-div form-group" id="no_tracking_needed">
+			<a data-toggle="collapse" data-parent="#accordion" href="#no_tracking_needed" aria-expanded="false" aria-controls="no_tracking_needed_collapse" id="no_tracking_needed.section">
+				<label for="obs.reason_for_not_tracing_patient">
+					Razão para não realizar a visita domiciliária
+				</label>
+			</a>
+			<a data-toggle="collapse" data-parent="#accordion" aria-expanded="false" href="#no_tracking_needed" id="no_tracking_needed.section">
+				<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrows-collapse" viewBox="0 0 16 16">
+					<path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13A.5.5 0 0 1 1 8zm7-8a.5.5 0 0 1 .5.5v3.793l1.146-1.147a.5.5 0 0 1 .708.708l-2 2a.5.5 0 0 1-.708 0l-2-2a.5.5 0 1 1 .708-.708L7.5 4.293V.5A.5.5 0 0 1 8 0zm-.5 11.707-1.146 1.147a.5.5 0 0 1-.708-.708l2-2a.5.5 0 0 1 .708 0l2 2a.5.5 0 0 1-.708.708L8.5 11.707V15.5a.5.5 0 0 1-1 0v-3.793z"/>
+				</svg>
+			</a>
+		  <div id="no_tracking_needed" class="panel-collapse collapse in">
+		    <div class="form-group" id="no_tracking_needed.section_div">
 				<div class="form-group concept-set">
 					<div class="form-group">
-						<label for="obs.reason_for_not_tracing_patient">
-							Razão para não realizar a visita domiciliária
-						</label>
 						<div class="form-group">
 							<label class="font-normal">
 								<input id="obs.reason_for_not_tracing_patient.clin" type="checkbox" name="obs.reason_for_not_tracing_patient"
@@ -223,7 +271,7 @@
 						<div class="form-group">
 							<label class="font-normal">
 								<input id="obs.reason_for_not_tracing_patient.drug" type="checkbox" name="obs.reason_for_not_tracing_patient"
-								data-concept="23852^RAZAO DE NAO RASTREAR O PACIENTE^99DCT" value="6307^CONTACTO TELEFONICO^99DCT">
+								 data-concept="23852^RAZAO DE NAO RASTREAR O PACIENTE^99DCT" value="6307^CONTACTO TELEFONICO^99DCT">
 								Chamadas telefónicas
 							</label>
 						</div>
@@ -251,6 +299,9 @@
 					</div>
 				</div>
 		  </div>
+		 </div>
+		</div>
+
 		        <div class="form-group">
 					<label for="obs.patient_call_made">
 					Foi feita a chamada?<span class="required">*</span>
@@ -270,9 +321,26 @@
 					<input class="form-control" id="obs.professional_referral_name" type="text" required="required"
 					name="obs.professional_referral_name" data-concept="23853^NOME DO PROFISSIONAL QUE REFERIU^99DCT" readonly="readonly">
 			    </div>
-	 </div>
-	 <div class="section">
-			<h3>Alocação</h3>
+    </div>
+  </div>
+</div>
+</div>
+
+<div class="section section-div form-group" id="allocation">
+	<div class="panel-heading">
+		 <h3 class="panel-title">
+			<a data-toggle="collapse" data-parent="#accordion" href="#allocation" aria-expanded="false" aria-controls="allocation_collapse" id="allocation.section">
+				ALOCAÇÃO
+			</a>
+			<a data-toggle="collapse" data-parent="#accordion" aria-expanded="false" href="#allocation" id="allocation.section">
+				<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrows-collapse" viewBox="0 0 16 16">
+					<path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13A.5.5 0 0 1 1 8zm7-8a.5.5 0 0 1 .5.5v3.793l1.146-1.147a.5.5 0 0 1 .708.708l-2 2a.5.5 0 0 1-.708 0l-2-2a.5.5 0 1 1 .708-.708L7.5 4.293V.5A.5.5 0 0 1 8 0zm-.5 11.707-1.146 1.147a.5.5 0 0 1-.708-.708l2-2a.5.5 0 0 1 .708 0l2 2a.5.5 0 0 1-.708.708L8.5 11.707V15.5a.5.5 0 0 1-1 0v-3.793z"/>
+				</svg>
+			</a>
+		</h3>
+	</div>
+   <div id="allocation" class="panel-collapse collapse in">
+	  <div class="form-group" id="allocation.section_div"> 
 			<div class="form-group">
 				<label for="obs.home_visit_service">
 				Serviço que refere<span class="required">*</span>
@@ -317,9 +385,12 @@
 					   required="required">
 			</div>
 		</div>
+	  </div>
+   </div>
+</div>
 
-	<div class="section">
-			<h3>Detalhes do formulario</h3>
+<div class="section" hidden="true">
+	<h3>Detalhes do formulario</h3>
 		<div class="form-group">
             <label for="encounter.encounter_datetime">Data de actualizacao:<span class="required">*</span>
             </label>
@@ -352,7 +423,6 @@
 			<input class="form-control cummulativeFormOpeningGPSData serializable"  id="obs.cummulativeFormOpeningGPSData"  name="obs.cummulativeFormOpeningGPSData"  data-concept="23843^Outreach GPS Coordinates^99DCT" type="hidden">
 		</div>
     </div>
-
 </div>
 </form>
 </body>
@@ -516,23 +586,23 @@ var derivedObs = htmlDataStore.getDerivedObservationByPatientUuid(patientuuid);
 var derivedObs =  JSON.parse(derivedObs);
 var derivedObsSize = derivedObs.length-1;
 if(parseInt(derivedObsSize)>-1){
-	if(derivedObs[0].derivedConceptName=="Faltoso"){
+	if(derivedObs[0].derivedConceptName==="Faltoso"){
     $("#derived-obs-by-intervention-type").val("derived-obs-faltoso");
 	$("#obs\\.type_of_visit").val("2160^VISITA DE BUSCA^99DCT");
 	}
-	else if(derivedObs[0].derivedConceptName=="Abandono"){
+	else if(derivedObs[0].derivedConceptName==="Abandono"){
     $("#derived-obs-by-intervention-type").val("derived-obs-abandono");
 	$("#obs\\.type_of_visit").val("2160^VISITA DE BUSCA^99DCT");
 	}
-	else if(derivedObs[0].derivedConceptName=="Elegível Carga Viral"){
+	else if(derivedObs[0].derivedConceptName==="Elegível Carga Viral"){
     $("#derived-obs-by-intervention-type").val("derived-obs-elegivel-carga-viral");
 	$("#obs\\.type_of_visit").val("23914^VISITA AOS CASOS ESPECIAIS^99DCT");
 	}
-	else if(derivedObs[0].derivedConceptName=="Carga Viral Elevada"){
+	else if(derivedObs[0].derivedConceptName==="Carga Viral Elevada"){
     $("#derived-obs-by-intervention-type").val("derived-obs-carga-viral-elevada");
 	$("#obs\\.type_of_visit").val("23914^VISITA AOS CASOS ESPECIAIS^99DCT");
 	}
-	else if(derivedObs[0].derivedConceptName=="Preventiva"){
+	else if(derivedObs[0].derivedConceptName==="Preventiva"){
     $("#derived-obs-by-intervention-type").val("derived-obs-preventiva");
 	$("#obs\\.type_of_visit").val("2161^VISITA DE APOIO^99DCT");
 	}
@@ -628,29 +698,62 @@ document.setupAutoCompleteForFieldWorker = function(elementName, providers) {
 	});
 }
 
-// Hides and shows the address section
-$("#address\\.section").click(function() {
-	if($("#address\\.section_div").attr('hidden')==='hidden')
+// Hides and shows the REGISTO NO LIVRO section
+$("#visit_book_call\\.section").click(function() {
+	if($("#visit_book_call\\.section_div").attr('hidden')==='hidden')
 	{
-		$("#address\\.section_div").removeAttr('hidden');
-		$("#triangulation\\.section_div").attr('hidden', 'true');
+		$("#visit_book_call\\.section_div").removeAttr('hidden');
 	}
 	else{
-		$("#address\\.section_div").attr('hidden', 'true');
+		$("#visit_book_call\\.section_div").attr('hidden', 'true');
 	}
 });
 
-// Hides and shows the tringulation section
+// Hides and shows the TRIANGULACAO section
 $("#triangulation\\.section").click(function() {
 	if($("#triangulation\\.section_div").attr('hidden')==='hidden')
 	{
 		$("#triangulation\\.section_div").removeAttr('hidden');
-		$("#address\\.section_div").attr('hidden', 'true');
 	}
 	else{
 		$("#triangulation\\.section_div").attr('hidden', 'true');
 	}
 });
+
+// Hides and shows the motivo de visita section
+$("#traking_need\\.section").click(function() {
+	if($("#traking_need\\.section_div").attr('hidden')==='hidden')
+	{
+		$("#traking_need\\.section_div").removeAttr('hidden');
+	}
+	else{
+		$("#traking_need\\.section_div").attr('hidden', 'true');
+	}
+});
+
+// Hides and shows the Razao para nao realizar a visita section
+$("#no_tracking_needed\\.section").click(function() {
+	if($("#no_tracking_needed\\.section_div").attr('hidden')==='hidden')
+	{
+		$("#no_tracking_needed\\.section_div").removeAttr('hidden');
+	}
+	else{
+		$("#no_tracking_needed\\.section_div").attr('hidden', 'true');
+	}
+});
+
+// Hides and shows the Razao para nao realizar a visita section
+$("#allocation\\.section").click(function() {
+	if($("#allocation\\.section_div").attr('hidden')==='hidden')
+	{
+		$("#allocation\\.section_div").removeAttr('hidden');
+	}
+	else{
+		$("#allocation\\.section_div").attr('hidden', 'true');
+	}
+});
+
+
 
 </script>
 </html>
