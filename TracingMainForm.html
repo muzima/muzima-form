@@ -101,7 +101,7 @@
 			Tipo de Visita<span class="required">*</span>
 			</label>
 			<select class="form-control input-section" id="obs.type_of_visit" required
-				name="obs.type_of_visit" data-concept="1981^TIPO DE ATENDIMENTO FAMILIAR^99DCT" readonly="readonly" disabled >
+				name="obs.type_of_visit" data-concept="1981^TIPO DE ATENDIMENTO FAMILIAR^99DCT" readonly="readonly" >
 				<option value="">...</option>
 				<option value="2161^VISITA DE APOIO^99DCT">Visita preventiva</option>
 				<option value="2160^VISITA DE BUSCA^99DCT">Visita de Reintegração</option>
@@ -128,7 +128,8 @@
 				<option value="6254^DATA DA SEGUNDA TENTATIVA DE BUSCA^99DCT">SEGUNDA</option>
 				<option value="6255^DATA DA TERCEIRA TENTATIVA DE BUSCA^99DCT">TERCEIRA</option>
 		    </select>
-			<input class="form-control" id="obs.patient_attemp_found_response" name="obs.patient_attemp_found_response" data-concept="24008^PATIENT FOUND IN THE FIRST ATTEMPT^99DCT" type="hidden" value="ss">
+			<input class="form-control serializable" id="obs.patient_attemp_found_response"
+			 type="hidden" data-concept="24008^PATIENT FOUND IN THE FIRST ATTEMPT^99DCT" readonly="readonly">
         </div>
 		
 		<div class="form-group">
@@ -159,6 +160,7 @@
 			</a>
 		</h3>
 	</div>
+
   <div id="visit_report_div" class="panel-collapse collapse in">
     <div class="form-group" id="visit_report_div.section_div" hidden="true">
 		<div class="form-group section patient_found_div_2160" id="patient_found_div_2160">
@@ -262,7 +264,10 @@
 				</div>
 			</div>
 		</div>	
-		
+
+<div class="section"> 
+
+	<div class="section concept-set" id="convset_group_section" data-concept="165356^CONVSET VISIT REPORT - FIRST VISIT^99DCT">	
 		<div class="form-group section patient_found_div_2161" id="patient_found_div_2161">
 			<div class="form-group">
 				<div class="form-group">
@@ -275,7 +280,12 @@
 						<option value="1383^BOM^99DCT">O paciente está bem</option>
 						<option value="2157^O PACIENTE APRESENTOU DIFICULDADES^99DCT">O paciente apresentou dificuldades</option>
 					</select>
-					<div class="form-group sub-section" id="patient_had_difficulties">
+				</div>
+			</div>			
+		</div>
+	</div>
+
+	<div class="form-group sub-section" id="patient_had_difficulties">
 						<div class="form-group concept-set">
 							<div class="form-group">
 								<label for="obs.patient_had_difficulties">
@@ -334,9 +344,8 @@
 							</div>
 						</div>
 					</div>
-				</div>
-			</div>			
-		</div>
+
+</div>
 
 		<div class="form-group" id="patient_fallowup_div" hidden="true">
 			<label for="obs.patient_followup">
@@ -516,7 +525,7 @@
 			<input class="form-control initialFormOpeningTimestamp serializable"  id="obs.initialFormOpeningTimestamp"  name="obs.initialFormOpeningTimestamp"  data-concept="23844^Outreach Form Start Datetime Stamp^99DCT" type="hidden"/>			
 			<input class="form-control dataEntryCompletionTimeStamp serializable"  id="obs.dataEntryCompletionTimeStamp"  name="obs.dataEntryCompletionTimeStamp"  data-concept="23845^Outreach Form End Datetime Stamp^99DCT" type="hidden"/>
 			<input class="form-control cummulativeFormOpeningGPSData serializable"  id="obs.cummulativeFormOpeningGPSData"  name="obs.cummulativeFormOpeningGPSData"  data-concept="23843^Outreach GPS Coordinates^99DCT" type="hidden"/>
-		    <input class="form-control" id="encounter.obs_group_uuid" name="encounter.obs_group_uuid" type="hidden" required="required">   
+		    <input class="form-control" id="encounter.obs_group_uuid" name="encounter.obs_group_uuid" type="hidden" required="required">
 			<!-- <input class="form-control" id="encounter.form_uuid_to_add_obs" name="encounter.form_uuid_to_add_obs" type="hidden" value="b1ecb071-6471-4d87-89f4-d9e1b0c80630">
             <input class="form-control" id="encounter.should_not_edit_existing_encounters" name="encounter.should_not_edit_existing_encounters" type="hidden" value="true"> -->
 		</div>
@@ -542,6 +551,30 @@ $(document).ready(function () {
 		$(this).prop('disabled', false);
 	});
 
+   var patientuuid = $('#patient\\.uuid').val();
+   var attemptNumber = htmlDataStore.getObsByConceptId(patientuuid,23842);  
+   attemptNumber = JSON.parse(attemptNumber);
+   var attemptcount = attemptNumber.length-1;
+   if(attemptcount===-1){
+	  $('#obs\\.encounter_datetime').hide();
+	  $("#obs\\.attempt_number").val("6440^DATA DA PRIMEIRA TENTATIVA DE BUSCA^99DCT");
+	  $('#obs\\.attempt_number').prop('disabled', 'disabled');
+   }else if(parseInt(attemptNumber[0].valueCoded.id)===6440){
+	  $("#obs\\.attempt_number").val("6254^DATA DA SEGUNDA TENTATIVA DE BUSCA^99DCT");
+	  $('#obs\\.attempt_number').prop('disabled', 'disabled');
+	  $('#obs\\.encounter_datetime').show();
+	  $('#obs\\.encounter_datetime').attr('data-concept', '6254^DATA DA SEGUNDA TENTATIVA DE BUSCA^99DCT');
+	  $('#obs\\.encounter_datetime').val($('#encounter\\.encounter_datetime').val());
+	  $('#encounter\\.encounter_datetime').hide();
+   }else if(parseInt(attemptNumber[0].valueCoded.id)===6254){
+	  $("#obs\\.attempt_number").val("6255^DATA DA TERCEIRA TENTATIVA DE BUSCA^99DCT");
+	  $('#obs\\.attempt_number').prop('disabled', 'disabled');
+	  $('#obs\\.encounter_datetime').show();
+	  $('#obs\\.encounter_datetime').attr('data-concept', '6255^DATA DA TERCEIRA TENTATIVA DE BUSCA^99DCT');
+	  $('#obs\\.encounter_datetime').val($('#encounter\\.encounter_datetime').val());
+	  $('#encounter\\.encounter_datetime').hide();
+   }
+
 	$('#obs\\.patient_found').change(function(){
 		if($(this).val() == "1065^SIM^99DCT"){
 			$("#patient\\.tagName").val("SIM");
@@ -554,24 +587,18 @@ $(document).ready(function () {
 			$('#patient_fallowup_div').show();
 			$('#visit_report_div').show();
 
-			$('#obs\\.data_combinada').attr('required','required');
-			$('.data_combinada_required').show();
 			$('#data_combinada_div').show();
 
 			$('#home_visit_result_div').show();
 
-			if($("#obs\\.attempt_number").val()==="6440^DATA DA PRIMEIRA TENTATIVA DE BUSCA^99DCT"){
-				$('#obs\\.patient_attemp_found_response').removeAttr('data-concept');
-				$('#obs\\.patient_attemp_found_response').attr('data-concept', '24008^PATIENT FOUND IN THE FIRST ATTEMPT^99DCT');
-			} else if($("#obs\\.attempt_number").val()==="6254^DATA DA SEGUNDA TENTATIVA DE BUSCA^99DCT"){
-                $('#obs\\.patient_attemp_found_response').removeAttr('data-concept');
-				$('#obs\\.patient_attemp_found_response').attr('data-concept', '24009^PATIENT FOUND IN THE SECOND ATTEMPT^99DCT');
-			} if($("#obs\\.attempt_number").val()==="6255^DATA DA TERCEIRA TENTATIVA DE BUSCA^99DCT"){
-                $('#obs\\.patient_attemp_found_response').removeAttr('data-concept');
-				$('#obs\\.patient_attemp_found_response').attr('data-concept', '24010^PATIENT FOUND IN THE THIRD ATTEMPT^99DCT');
-			}
-			$('#obs\\.patient_attemp_found_response').val('1065^SIM^99DCT');
-
+		if(attemptcount===-1) {
+			$('#obs\\.patient_attemp_found_response').attr('data-concept', '24008^PATIENT FOUND IN THE FIRST ATTEMPT^99DCT');
+		} else if(parseInt(attemptNumber[0].valueCoded.id)===6440){
+            $('#obs\\.patient_attemp_found_response').attr('data-concept', '24009^PATIENT FOUND IN THE SECOND ATTEMPT^99DCT');
+		} else if(parseInt(attemptNumber[0].valueCoded.id)===6254){
+            $('#obs\\.patient_attemp_found_response').attr('data-concept', '24010^PATIENT FOUND IN THE THIRD ATTEMPT^99DCT');
+		}
+		    $('#obs\\.patient_attemp_found_response').val('1065^SIM^99DCT');
 		} else if($(this).val() == "1066^NAO^99DCT") {
 			$("#patient\\.tagName").val("NÃO");
 			$("#patient\\.tagUuid").val("d7ae6ff6-0531-11ea-a2b4-c8d3ffd477a6");			
@@ -583,24 +610,19 @@ $(document).ready(function () {
 			$('#patient_fallowup_div').hide();
 			$('#visit_report_div').hide();
 
-			$('#obs\\.data_combinada').removeAttr('required');
-			$('.data_combinada_required').hide();
 			$('#data_combinada_div').hide();
 
 			$('#obs\\.home_visit_result\\.refused').removeAttr('required');
 			$('#home_visit_result_div').hide();
 
-			if($("#obs\\.attempt_number").val()==="6440^DATA DA PRIMEIRA TENTATIVA DE BUSCA^99DCT"){
-				$('#obs\\.patient_attemp_found_response').removeAttr('data-concept');
-				$('#obs\\.patient_attemp_found_response').attr('data-concept', '24008^PATIENT FOUND IN THE FIRST ATTEMPT^99DCT');
-			} else if($("#obs\\.attempt_number").val()==="6254^DATA DA SEGUNDA TENTATIVA DE BUSCA^99DCT"){
-                $('#obs\\.patient_attemp_found_response').removeAttr('data-concept');
-				$('#obs\\.patient_attemp_found_response').attr('data-concept', '24009^PATIENT FOUND IN THE SECOND ATTEMPT^99DCT');
-			} if($("#obs\\.attempt_number").val()==="6255^DATA DA TERCEIRA TENTATIVA DE BUSCA^99DCT"){
-                $('#obs\\.patient_attemp_found_response').removeAttr('data-concept');
-				$('#obs\\.patient_attemp_found_response').attr('data-concept', '24010^PATIENT FOUND IN THE THIRD ATTEMPT^99DCT');
-			}
-			$('#obs\\.patient_attemp_found_response').val('1066^NAO^99DCT');
+		if(attemptcount===-1) {
+			$('#obs\\.patient_attemp_found_response').attr('data-concept', '24008^PATIENT FOUND IN THE FIRST ATTEMPT^99DCT');
+		} else if(parseInt(attemptNumber[0].valueCoded.id)===6440){
+            $('#obs\\.patient_attemp_found_response').attr('data-concept', '24009^PATIENT FOUND IN THE SECOND ATTEMPT^99DCT');
+		} else if(parseInt(attemptNumber[0].valueCoded.id)===6254){
+            $('#obs\\.patient_attemp_found_response').attr('data-concept', '24010^PATIENT FOUND IN THE THIRD ATTEMPT^99DCT');
+		}
+		    $('#obs\\.patient_attemp_found_response').val('1066^NAO^99DCT');
 		}else{
 			$('#patient_not_found_div').hide();
 			$('#patient_not_found_div_section').hide();
@@ -611,19 +633,23 @@ $(document).ready(function () {
 			$('#information_given_by_div').hide();
 			$('#patient_fallowup_div').hide();
 			$('#visit_report_div').hide();
-			$('#obs\\.patient_attemp_found_response').val('1066^NAO^99DCT');
 		}
 		
-	   if($(this).val() == "1065^SIM^99DCT" &&  $('#obs\\.type_of_visit').val()=="2160^VISITA DE BUSCA^99DCT" 
-	        || $('#obs\\.type_of_visit').val()=="2160^VISITA DE BUSCA^99DCT" || $('#obs\\.type_of_visit').val()=="23914^VISITA AOS CASOS ESPECIAIS^99DCT"){
+	   if($(this).val() == "1065^SIM^99DCT" &&  $('#obs\\.type_of_visit').val()=="2160^VISITA DE BUSCA^99DCT" || $('#obs\\.type_of_visit').val()=="23914^VISITA AOS CASOS ESPECIAIS^99DCT"){
 		   $('#patient_found_div_2160').show();
 	   }else{
 		   $('#patient_found_div_2160').hide();
 	   }
+
+	   if($(this).val() == "1065^SIM^99DCT" && $('#obs\\.type_of_visit').val()=="2161^VISITA DE APOIO^99DCT"){
+		   $('#patient_found_div_2161').show();
+	   }else{
+		   $('#patient_found_div_2161').hide();
+	   }
 	});    
 	$('#obs\\.patient_found').trigger('change');
 	
-	$('#obs\\.type_of_visit').change(function(){		
+	$('#obs\\.type_of_visit').change(function(){	
 	   if($('#obs\\.patient_found').val() == "1065^SIM^99DCT" &&  $(this).val()=="2160^VISITA DE BUSCA^99DCT"){
 		   $('#patient_found_div_2160').show();
 		   $('#home_visit_result_div').show();
@@ -650,6 +676,14 @@ $(document).ready(function () {
 		} else{
 			$('#patient_had_difficulties').hide();
 		}
+		if(attemptcount===-1) {
+			$('#convset_group_section').attr('data-concept', '165356^CONVSET VISIT REPORT - FIRST VISIT^99DCT');
+		} else if(parseInt(attemptNumber[0].valueCoded.id)===6440){
+            $('#convset_group_section').attr('data-concept', '165357^CONVSET RELATÓRIO DE VISITA - SEGUNDA VISITA^99DCT');
+		} else if(parseInt(attemptNumber[0].valueCoded.id)===6254){
+            $('#convset_group_section').attr('data-concept', '165358^CONVSET VISIT REPORT - THIRD VISIT^99DCT');
+		}
+		
 	});  
 
 	$('#obs\\.visit_report').trigger('change');
@@ -753,11 +787,6 @@ if(parseInt(allocationObsSize)>-1){
 		}
 		i++;
 	} while (i <= allocationObsSize);
-	/*do {
-        var allObs = allocationObs[i];
-        $('#encounter\\.obs_group_uuid').val($('#encounter\\.obs_group_uuid').val() + ", " + allocationObs[i].uuid);
-		i++;
-	} while (i <= allocationObsSize);*/
    }
 
 var patientuuid = $('#patient\\.uuid').val();
@@ -792,30 +821,7 @@ if(parseInt(derivedObsSize)>-1){
    $('#obs\\.type_of_visit').prop('disabled', 'disabled');
    $("#derived-obs-by-intervention-type").prop('disabled', 'disabled');
 }
-   var patientuuid = $('#patient\\.uuid').val();
-   var attemptNumber = htmlDataStore.getObsByConceptId(patientuuid,23842);  
-   attemptNumber = JSON.parse(attemptNumber);
-   var attemptcount = attemptNumber.length-1;
-   if(attemptcount==-1){
-	  $('#obs\\.encounter_datetime').hide();
-	  $("#obs\\.attempt_number").val("6440^DATA DA PRIMEIRA TENTATIVA DE BUSCA^99DCT");
-	  $('#obs\\.attempt_number').prop('disabled', 'disabled');
-   }else if(parseInt(attemptNumber[0].valueCoded.id)==6440){
-	  $("#obs\\.attempt_number").val("6254^DATA DA SEGUNDA TENTATIVA DE BUSCA^99DCT");
-	  $('#obs\\.attempt_number').prop('disabled', 'disabled');
-	  $('#obs\\.encounter_datetime').show();
-	  $('#obs\\.encounter_datetime').attr('data-concept', '6254^DATA DA SEGUNDA TENTATIVA DE BUSCA^99DCT');
-	  $('#obs\\.encounter_datetime').val($('#encounter\\.encounter_datetime').val());
-	  $('#encounter\\.encounter_datetime').hide();
-   }else if(parseInt(attemptNumber[0].valueCoded.id)==6254){
-	  $("#obs\\.attempt_number").val("6255^DATA DA TERCEIRA TENTATIVA DE BUSCA^99DCT");
-	  $('#obs\\.attempt_number').prop('disabled', 'disabled');
-	  $('#obs\\.encounter_datetime').show();
-	  $('#obs\\.encounter_datetime').attr('data-concept', '6255^DATA DA TERCEIRA TENTATIVA DE BUSCA^99DCT');
-	  $('#obs\\.encounter_datetime').val($('#encounter\\.encounter_datetime').val());
-	  $('#encounter\\.encounter_datetime').hide();
-   }
-
+   
    $('#encounter\\.encounter_datetime').change(function(){
        if($("#obs\\.attempt_number").val()==="6254^DATA DA SEGUNDA TENTATIVA DE BUSCA^99DCT"){
 		$('#obs\\.encounter_datetime').attr('data-concept', '6254^DATA DA SEGUNDA TENTATIVA DE BUSCA^99DCT');
