@@ -790,7 +790,7 @@ if(parseInt(allocationObsSize)>-1){
    }
 
 var patientuuid = $('#patient\\.uuid').val();
-var derivedObs = htmlDataStore.getDerivedObservationByPatientUuid(patientuuid);
+var derivedObs = htmlDataStore.getInterventionsDerivedObservationByPatientUuid(patientuuid);
 var derivedObs =  JSON.parse(derivedObs);
 var derivedObsSize = derivedObs.length-1;
 if(parseInt(derivedObsSize)>-1){

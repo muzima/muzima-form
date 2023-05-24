@@ -582,7 +582,7 @@ if(historyByDataSize==-1){
  }
 } 
 
-var derivedObs = htmlDataStore.getDerivedObservationByPatientUuid(patientuuid);
+var derivedObs = htmlDataStore.getInterventionsDerivedObservationByPatientUuid(patientuuid);
 var derivedObs =  JSON.parse(derivedObs);
 var derivedObsSize = derivedObs.length-1;
 if(parseInt(derivedObsSize)>-1){
