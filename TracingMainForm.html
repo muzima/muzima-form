@@ -20,9 +20,8 @@
 </div>
 <form id="tracing_main_form" name="tracing_main_form">
     <h2 class="text-center">Formulário de Visita Domiciliária v1.2</h2>
-	
+
 	<div class="section">
-        <h3>Demografia</h3>
         <div class="form-group">
             <input class="form-control" id="patient.uuid" name="patient.uuid" type="hidden" readonly="readonly">
 			<input class="form-control" id="patient.tagName" name="patient.tagName" type="hidden">
@@ -31,7 +30,7 @@
 		<div class="form-group">
             <label for="patient.medical_record_number">NID</label>
             <input class="form-control" id="patient.medical_record_number" name="patient.medical_record_number" type="text" readonly="readonly">
-        </div> 
+        </div>
         <div class="form-group">
 			<label for="patient.names">Nome</label>
             <input class="form-control" id="patient.names"
@@ -40,13 +39,14 @@
 		<div class="form-group">
              <label for="elegibility.category">Categoria de Elegibilidade:</label>
 			 <select class="form-control input-section" id="derived-obs-by-intervention-type" required
-				readonly="readonly" disabled >
+				readonly="readonly" disabled>
+				<option value="derived-obs-default">...</option>
 				<option value="derived-obs-faltoso">Faltoso</option>
 				<option value="derived-obs-elegivel-carga-viral">Elegivel Carga Viral</option>
 				<option value="derived-obs-carga-viral-alta">Carga Viral Alta</option>
 				<option value="derived-obs-abandono">Abandono</option>
 				<option value="derived-obs-preventiva">Preventiva</option>
-			</select>
+		     </select>
         </div>
     </div>
 
@@ -80,12 +80,12 @@
     </div>
   </div>
 </div>
-    
+
 <div class="section section-div form-group" id="visit_section">
 	<div class="panel-heading">
 		<h3 class="panel-title">
 			<a data-toggle="collapse" data-parent="#accordion" href="#visit_section" aria-expanded="false" aria-controls="visit_section" id="visit_section.section">
-				SECÇÃO DE VISITA
+				VISITA
 			</a>
 			<a data-toggle="collapse" data-parent="#accordion" aria-expanded="false" href="#visit_section" id="visit_section.section">
 				<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrows-collapse" viewBox="0 0 16 16">
@@ -117,11 +117,11 @@
 				<input class="form-control" id="obs.encounter_datetime" type="text" readonly="readonly"/>
 		</div>
 		<div class="form-group">
-			<label for="obs.attempt_number">			
+			<label for="obs.attempt_number">
 				Número de Tentativa
 			<span class="required">*</span>
 			</label>
-			<select class="form-control" id="obs.attempt_number" required
+			<select class="form-control" id="obs.attempt_number" required disabled
 				name="obs.attempt_number" data-concept="23842^Number of outreach attempts^99DCT">
 				<option value="">...</option>
 				<option value="6440^DATA DA PRIMEIRA TENTATIVA DE BUSCA^99DCT">PRIMEIRA</option>
@@ -131,14 +131,14 @@
 			<input class="form-control serializable" id="obs.patient_attemp_found_response"
 			 type="hidden" data-concept="24008^PATIENT FOUND IN THE FIRST ATTEMPT^99DCT" readonly="readonly">
         </div>
-		
+
 		<div class="form-group">
 			<label for="obs.patient_found">
 			Encontrou o Paciente<span class="required">*</span>
 			</label>
 			<select class="form-control" id="obs.patient_found" required
 				name="obs.patient_found" data-concept="2003^ACTIVISTA ENCONTROU A PESSOA^99DCT">
-				<option value="">...</option>	
+				<option value="">...</option>
 				<option value="1065^SIM^99DCT">SIM</option>
 				<option value="1066^NAO^99DCT">NÃO</option>
 			</select>
@@ -180,7 +180,7 @@
 						<label class="font-normal">
 							<input id="obs.reason_for_failure.esta" type="checkbox" name="obs.reason_for_failure"
 							data-concept="2016^MOTIVO DE FALTA^99DCT" value="2006^ESTÁ ACAMADO EM CASA^99DCT" required="required"/>
-							Está doente 
+							Está doente
 						</label>
 					</div>
 					<div class="form-group">
@@ -216,14 +216,21 @@
 						<label class="font-normal">
 							<input id="obs.reason_for_failure.efeitos" type="checkbox" name="obs.reason_for_failure"
 							data-concept="2016^MOTIVO DE FALTA^99DCT" value="2015^EFEITOS SECUNDARIOS ARV^99DCT" required="required"/>
-							Efeitos secundários 
+							Efeitos secundários
 						</label>
 					</div>
 					<div class="form-group">
 						<label class="font-normal">
-							<input id="obs.reason_for_failure.tratamento" type="checkbox" name="obs.reason_for_failure"
+							<input id="obs.reason_for_failure.tratamento_tradicional" type="checkbox" name="obs.reason_for_failure"
 							data-concept="2016^MOTIVO DE FALTA^99DCT" value="2013^TRATAMENTO TRADICIONAL^99DCT" required="required"/>
 							Tratamento tradicional
+						</label>
+					</div>
+					<div class="form-group">
+						<label class="font-normal">
+							<input id="obs.reason_for_failure.tratamento_religioso" type="checkbox" name="obs.reason_for_failure"
+							data-concept="2016^MOTIVO DE FALTA^99DCT" value="1898^TRATAMENTO RELIGIOSO^99DCT" required="required"/>
+							Tratamento religioso
 						</label>
 					</div>
 					<div class="form-group">
@@ -243,17 +250,45 @@
 					<div class="form-group">
 						<label class="font-normal">
 							<input id="obs.reason_for_failure.desmotivacao" type="checkbox" name="obs.reason_for_failure"
-							data-concept="2016^MOTIVO DE FALTA^99DCT" value="2012^DESMOTIVAÇAO^99DCT" required="required"/>
-							 Abandono ao TARV
+							data-concept="2016^MOTIVO DE FALTA^99DCT" value="165355^DESISTIU DO TARV^99DCT" required="required"/>
+							 Desistiu do TARV
 						</label>
-					</div>	
+					</div>
+					<div class="form-group">
+						<label class="font-normal">
+							<input id="obs.reason_for_failure.vbg" type="checkbox" name="obs.reason_for_failure"
+							data-concept="2016^MOTIVO DE FALTA^99DCT" value="6303^VIOLENCIA BASEADA NO GENERO^99DCT" required="required"/>
+							 VBG
+						</label>
+					</div>
+					<div class="form-group">
+						<label class="font-normal">
+							<input id="obs.reason_for_failure.diagnostico_negacao" type="checkbox" name="obs.reason_for_failure"
+							data-concept="2016^MOTIVO DE FALTA^99DCT" value="1956^NÃO ACREDITO NO REULTADO^99DCT" required="required"/>
+							 Negação ao diagnóstico
+						</label>
+					</div>
+					<div class="form-group">
+						<label class="font-normal">
+							<input id="obs.reason_for_failure.diagnostico_dificuldades" type="checkbox" name="obs.reason_for_failure"
+							data-concept="2016^MOTIVO DE FALTA^99DCT" value="2155^NÃO REVELOU SEU DIAGNOSTICO^99DCT" required="required"/>
+							 Dificuldades em revelação de diagnóstico
+						</label>
+					</div>
+					<div class="form-group">
+						<label class="font-normal">
+							<input id="obs.reason_for_failure.sente_se_melhor" type="checkbox" name="obs.reason_for_failure"
+							data-concept="2016^MOTIVO DE FALTA^99DCT" value="23767^SENTE-SE MELHOR (E)^99DCT" required="required"/>
+							 Sente-se melhor
+						</label>
+					</div>
 					<div class="form-group">
 						<label class="font-normal">
 							<input id="obs.reason_for_failure.other" type="checkbox" name="obs.reason_for_failure"
 							data-concept="2016^MOTIVO DE FALTA^99DCT" value="2017^OUTRO MOTIVO DE FALTA^99DCT" required="required"/>
 							Outro
 						</label>
-					</div>	
+					</div>
 					<div class="form-group sub-section" id="other_reason_for_failure">
 						<label class="font-normal" for="obs.other_reason_for_failure">
 							Outro:<span class="required"></span>
@@ -263,11 +298,10 @@
 					</div>
 				</div>
 			</div>
-		</div>	
+		</div>
 
-<div class="section"> 
-
-	<div class="section concept-set" id="convset_group_section" data-concept="165356^CONVSET VISIT REPORT - FIRST VISIT^99DCT">	
+<div class="section" id="preventive_visit_section">
+	<div class="section concept-set" id="convset_group_section" data-concept="165356^CONVSET VISIT REPORT - FIRST VISIT^99DCT">
 		<div class="form-group section patient_found_div_2161" id="patient_found_div_2161">
 			<div class="form-group">
 				<div class="form-group">
@@ -281,7 +315,7 @@
 						<option value="2157^O PACIENTE APRESENTOU DIFICULDADES^99DCT">O paciente apresentou dificuldades</option>
 					</select>
 				</div>
-			</div>			
+			</div>
 		</div>
 	</div>
 
@@ -297,7 +331,7 @@
 										data-concept="2157^O PACIENTE APRESENTOU DIFICULDADES^99DCT" value="2156^PREOCUPAÇÕES COM A FAMILIA^99DCT" 											required="required"/>
 										 Preocupações com a família
 									</label>
-								</div>		
+								</div>
 								<div class="form-group">
 									<label class="font-normal">
 										<input id="obs.patient_had_difficulties.efeitos" type="checkbox" name="obs.patient_had_difficulties"
@@ -305,14 +339,14 @@
 										required="required"/>
 										 Medicamento esta a fazer mal
 									</label>
-								</div>	
+								</div>
 								<div class="form-group">
 									<label class="font-normal">
 										<input id="obs.patient_had_difficulties.falta" type="checkbox" name="obs.patient_had_difficulties"
 										data-concept="2157^O PACIENTE APRESENTOU DIFICULDADES^99DCT" value="2153^FALTA DE APOIO^99DCT" required="required"/>
 										 Falta de apoio familiar
 									</label>
-								</div>	
+								</div>
 								<div class="form-group">
 									<label class="font-normal">
 										<input id="obs.patient_had_difficulties.problemas" type="checkbox" name="obs.patient_had_difficulties"
@@ -322,14 +356,14 @@
 								</div>
 								<div class="form-group">
 									<label class="font-normal">
-										<input id="obs.patient_had_difficulties.problemas" type="checkbox" name="obs.patient_had_difficulties"
+										<input id="obs.patient_had_difficulties.diagnostic" type="checkbox" name="obs.patient_had_difficulties"
 										data-concept="2157^O PACIENTE APRESENTOU DIFICULDADES^99DCT" value="2155^NÃO REVELOU SEU DIAGNOSTICO^99DCT" 											required="required"/>
 										 Não revelou o diagnóstico
 									</label>
 								</div>
 								<div class="form-group">
 									<label class="font-normal">
-										<input id="obs.patient_had_difficulties.problemas" type="checkbox" name="obs.patient_had_difficulties"
+										<input id="obs.patient_had_difficulties.other" type="checkbox" name="obs.patient_had_difficulties"
 										data-concept="2157^O PACIENTE APRESENTOU DIFICULDADES^99DCT" value="1748^OUTROS PROBLEMAS^99DCT" required="required"/>
 										 Outro
 									</label>
@@ -353,7 +387,7 @@
 			</label>
 			<select class="form-control" id="obs.patient_followup" required
 				name="obs.patient_followup" data-concept="23947^FAMILIAR OU CUIDADOR DA CRIANÇA FOI REFERIDO PARA A US^99DCT">
-				<option value="">...</option>	
+				<option value="">...</option>
 				<option value="1065^SIM^99DCT">SIM</option>
 				<option value="1066^NAO^99DCT">NÃO</option>
 				<option value="21233^N/A^99DCT">N/A</option>
@@ -368,7 +402,7 @@
 	</div>
   </div>
 </div>
-	
+
 <div class="section section-div form-group patient_not_found_div" id="patient_not_found_div_section">
 	<div class="panel-heading">
 		<h3 class="panel-title">
@@ -396,35 +430,35 @@
 							data-concept="2031^REASON PATIENT NOT FOUND BY ACTIVIST^99DCT" value="1366^Obitou^99DCT" required="required"/>
 							 Óbito
 						</label>
-					</div>	
+					</div>
 					<div class="form-group">
 						<label class="font-normal">
 							<input id="obs.patient_not_found_reason.endereco" type="checkbox" name="obs.patient_not_found_reason"
 							data-concept="2031^REASON PATIENT NOT FOUND BY ACTIVIST^99DCT" value="2024^ENDEREÇO ERRADO^99DCT" required="required"/>
 							 Endereço errado
 						</label>
-					</div>	
+					</div>
 					<div class="form-group">
 						<label class="font-normal">
 							<input id="obs.patient_not_found_reason.mudou" type="checkbox" name="obs.patient_not_found_reason"
 							data-concept="2031^REASON PATIENT NOT FOUND BY ACTIVIST^99DCT" value="2026^MUDOU DE CASA^99DCT" required="required"/>
 							  Mudou de endereço
 						</label>
-					</div>	
+					</div>
 					<div class="form-group">
 						<label class="font-normal">
 							<input id="obs.patient_not_found_reason.viajou" type="checkbox" name="obs.patient_not_found_reason"
 							data-concept="2031^REASON PATIENT NOT FOUND BY ACTIVIST^99DCT" value="2011^VIAJOU^99DCT" required="required"/>
 							  Viajou
 						</label>
-					</div>	
+					</div>
 					<div class="form-group">
 						<label class="font-normal">
 							<input id="obs.patient_not_found_reason.outros" type="checkbox" name="obs.patient_not_found_reason"
 							data-concept="2031^REASON PATIENT NOT FOUND BY ACTIVIST^99DCT" value="2032^OUTROS MOTIVOS^99DCT" required="required"/>
 							  Outro
 						</label>
-					</div>	
+					</div>
 				</div>
 			</div>
 			<div class="form-group sub-section" id="patient_not_found_reason_other">
@@ -438,12 +472,12 @@
 	   </div>
      </div>
   </div>
-	 
+
  <div class="section section-div form-group patient_not_found_div" id="information_given_by_div">
 	<div class="panel-heading">
 		<h3 class="panel-title">
 			<a data-toggle="collapse" data-parent="#accordion" href="#information_given_by_div" aria-expanded="false" aria-controls="information_given_by_div" id="information_given_by_div.section">
-				INFORMAÇÃO DADA POR
+				DADOS DO INFORMANTE
 			</a>
 			<a data-toggle="collapse" data-parent="#accordion" aria-expanded="false" href="#information_given_by_div" id="information_given_by_div.section">
 				<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrows-collapse" viewBox="0 0 16 16">
@@ -461,29 +495,33 @@
 							data-concept="2037^INFORMAÇAO DADA POR^99DCT" value="2034^VIZINHO^99DCT"/>
 							   Vizinho
 						</label>
-					</div>	
+					</div>
 					<div class="form-group">
 						<label class="font-normal">
 							<input id="obs.information_given_by.confidante" type="checkbox" name="obs.information_given_by"
 							data-concept="2037^INFORMAÇAO DADA POR^99DCT" value="2033^CONFIDENTE^99DCT"/>
 							   Confidente
 						</label>
-					</div>	
+					</div>
 					<div class="form-group">
 						<label class="font-normal">
 							<input id="obs.information_given_by.familiar" type="checkbox" name="obs.information_given_by"
 							data-concept="2037^INFORMAÇAO DADA POR^99DCT" value="2035^FAMILIAR^99DCT"/>
 							    Familiar
 						</label>
-					</div>	
+						  <label class="font-normal" for="obs.familiar_parentesco">
+							       (Parentesco:<span class="required">*</span>)
+							<input id="obs.familiar_parentesco" class="font-normal" type="hidden" data-concept="2038^OUTROS INFORMAÇÃO DADA POR^99DCT" required="required">
+						  </label>
+					</div>
 					<div class="form-group">
 						<label class="font-normal">
 							<input id="obs.information_given_by.lider" type="checkbox" name="obs.information_given_by"
 							data-concept="2037^INFORMAÇAO DADA POR^99DCT" value="2036^CHEFE DE BAIRRO^99DCT"/>
 							 Lider Comunitário
 						</label>
-					</div>	
-				</div>	
+					</div>
+				</div>
 			<div class="form-group sub-section">
 				<label class="font-normal" for="obs.referenced_person_name">
 					Nome
@@ -499,7 +537,7 @@
 	   </div>
     </div>
   </div>
-			
+
         <!-- Visible if pacient was found -->
 	<div class="section section-div" hidden="true">
 			<h3>Detalhes do Encontro</h3>
@@ -510,7 +548,7 @@
 					   name="encounter.encounter_datetime" type="text" readonly="readonly" disabled
 					   required="required"/>
 				<input class="form-control" id="obs.encounter_datetime" name="obs.encounter_datetime" type="text" readonly="readonly"/>
-		</div>		
+		</div>
 		<div class="form-group">
 			<label for="encounter.provider_id_select">Nome do voluntário:<span class="required">*</span></label>
 			<input class="form-control valid-provider-only" id="encounter.provider_id_select" type="text" placeholder="Start typing something..." readonly="readonly"/>
@@ -521,8 +559,8 @@
 			<input class="form-control" id="encounter.provider_id" disabled name="encounter.provider_id" type="text" required="required"  placeholder="Provider Id"/>
 		</div>
         <div class="form-group">
-            <input class="form-control" id="encounter.form_uuid" name="encounter.form_uuid" type="hidden" required="required"/>           			
-			<input class="form-control initialFormOpeningTimestamp serializable"  id="obs.initialFormOpeningTimestamp"  name="obs.initialFormOpeningTimestamp"  data-concept="23844^Outreach Form Start Datetime Stamp^99DCT" type="hidden"/>			
+            <input class="form-control" id="encounter.form_uuid" name="encounter.form_uuid" type="hidden" required="required"/>
+			<input class="form-control initialFormOpeningTimestamp serializable"  id="obs.initialFormOpeningTimestamp"  name="obs.initialFormOpeningTimestamp"  data-concept="23844^Outreach Form Start Datetime Stamp^99DCT" type="hidden"/>
 			<input class="form-control dataEntryCompletionTimeStamp serializable"  id="obs.dataEntryCompletionTimeStamp"  name="obs.dataEntryCompletionTimeStamp"  data-concept="23845^Outreach Form End Datetime Stamp^99DCT" type="hidden"/>
 			<input class="form-control cummulativeFormOpeningGPSData serializable"  id="obs.cummulativeFormOpeningGPSData"  name="obs.cummulativeFormOpeningGPSData"  data-concept="23843^Outreach GPS Coordinates^99DCT" type="hidden"/>
 		    <input class="form-control" id="encounter.obs_group_uuid" name="encounter.obs_group_uuid" type="hidden" required="required">
@@ -533,7 +571,7 @@
             <label for="encounter.location_id">Unidade Sanitaria:<span class="required">*</span></label>
             <input class="form-control valid-location-only" id="encounter.location_id" type="text" placeholder="Start typing something..." required="required" readonly="readonly"/>
             <input class="form-control" name="encounter.location_id" type="hidden"/>
-        </div>	
+        </div>
 	</div>
 </form>
 </body>
@@ -552,7 +590,7 @@ $(document).ready(function () {
 	});
 
    var patientuuid = $('#patient\\.uuid').val();
-   var attemptNumber = htmlDataStore.getObsByConceptId(patientuuid,23842);  
+   var attemptNumber = htmlDataStore.getLastVisitAttemptNumberAfterLastTriangulation(patientuuid,23842);
    attemptNumber = JSON.parse(attemptNumber);
    var attemptcount = attemptNumber.length-1;
    if(attemptcount===-1){
@@ -578,7 +616,7 @@ $(document).ready(function () {
 	$('#obs\\.patient_found').change(function(){
 		if($(this).val() == "1065^SIM^99DCT"){
 			$("#patient\\.tagName").val("SIM");
-			$("#patient\\.tagUuid").val("32809438-e45b-11e9-b737-c8d3ffd477a6f");			
+			$("#patient\\.tagUuid").val("32809438-e45b-11e9-b737-c8d3ffd477a6f");
 			$('#patient_found_div').show();
 			$('#patient_not_found_div').hide();
 			$('#patient_not_found_div_section').hide();
@@ -601,7 +639,7 @@ $(document).ready(function () {
 		    $('#obs\\.patient_attemp_found_response').val('1065^SIM^99DCT');
 		} else if($(this).val() == "1066^NAO^99DCT") {
 			$("#patient\\.tagName").val("NÃO");
-			$("#patient\\.tagUuid").val("d7ae6ff6-0531-11ea-a2b4-c8d3ffd477a6");			
+			$("#patient\\.tagUuid").val("d7ae6ff6-0531-11ea-a2b4-c8d3ffd477a6");
 			$('#patient_not_found_div').show();
 			$('#patient_not_found_div_section').show();
 			$('#patient_found_div').hide();
@@ -634,22 +672,26 @@ $(document).ready(function () {
 			$('#patient_fallowup_div').hide();
 			$('#visit_report_div').hide();
 		}
-		
+
 	   if($(this).val() == "1065^SIM^99DCT" &&  $('#obs\\.type_of_visit').val()=="2160^VISITA DE BUSCA^99DCT" || $('#obs\\.type_of_visit').val()=="23914^VISITA AOS CASOS ESPECIAIS^99DCT"){
 		   $('#patient_found_div_2160').show();
+		   $('#preventive_visit_section').hide();
 	   }else{
 		   $('#patient_found_div_2160').hide();
+		    $('#preventive_visit_section').hide();
 	   }
 
 	   if($(this).val() == "1065^SIM^99DCT" && $('#obs\\.type_of_visit').val()=="2161^VISITA DE APOIO^99DCT"){
 		   $('#patient_found_div_2161').show();
+		    $('#preventive_visit_section').show();
 	   }else{
 		   $('#patient_found_div_2161').hide();
+		    $('#preventive_visit_section').hide();
 	   }
-	});    
+	});
 	$('#obs\\.patient_found').trigger('change');
-	
-	$('#obs\\.type_of_visit').change(function(){	
+
+	$('#obs\\.type_of_visit').change(function(){
 	   if($('#obs\\.patient_found').val() == "1065^SIM^99DCT" &&  $(this).val()=="2160^VISITA DE BUSCA^99DCT"){
 		   $('#patient_found_div_2160').show();
 		   $('#home_visit_result_div').show();
@@ -657,7 +699,7 @@ $(document).ready(function () {
 		   $('#patient_found_div_2160').hide();
 		   $('#home_visit_result_div').hide();
 	   }
-		
+
 	   if($('#obs\\.patient_found').val() == "1065^SIM^99DCT" &&  $(this).val()=="2161^VISITA DE APOIO^99DCT"){
 		   $('#patient_found_div_2161').show();
 		   $('#home_visit_result_div').hide();
@@ -666,10 +708,10 @@ $(document).ready(function () {
 		   $('#home_visit_result_div').removeAttr('required');
 		   $('#home_visit_result_div').hide();
 	   }
-	});  
-	
-	$('#obs\\.type_of_visit').trigger('change'); 
-	
+	});
+
+	$('#obs\\.type_of_visit').trigger('change');
+
 	$('#obs\\.visit_report').change(function(){
 		if($(this).val() == "2157^O PACIENTE APRESENTOU DIFICULDADES^99DCT"){
 			$('#patient_had_difficulties').show();
@@ -683,8 +725,8 @@ $(document).ready(function () {
 		} else if(parseInt(attemptNumber[0].valueCoded.id)===6254){
             $('#convset_group_section').attr('data-concept', '165358^CONVSET VISIT REPORT - THIRD VISIT^99DCT');
 		}
-		
-	});  
+
+	});
 
 	$('#obs\\.visit_report').trigger('change');
 
@@ -694,10 +736,8 @@ $(document).ready(function () {
 		} else{
 			$('#patient_not_found_reason_other').hide();
 		}
-	});    
+	});
 	$('#obs\\.patient_not_found_reason\\.outros').trigger('change');
-	   
-	$('#obs\\.information_given_by\\.familiar').trigger('change');
 
 	$('#obs\\.referencias\\.other').change(function(){
 		if($(this).prop( "checked" )){
@@ -705,17 +745,28 @@ $(document).ready(function () {
 		} else{
 			$('#other_referencias').hide();
 		}
-	});    
+	});
 	$('#obs\\.referencias\\.other').trigger('change');
 
-	$('#obs\\.patient_had_difficulties\\.problemas').change(function(){
+	$('#obs\\.patient_had_difficulties\\.other').change(function(){
         if($(this).prop( "checked" )){
             $('#other_patient_had_difficulties').show();
         } else{
 			$('#other_patient_had_difficulties').hide();
 		}
-    });    
-    $('#obs\\.patient_had_difficulties\\.problemas').trigger('change');
+    });
+    $('#obs\\.patient_had_difficulties\\.other').trigger('change');
+
+	$('#obs\\.information_given_by\\.familiar').change(function(){
+		if($(this).prop("checked")) {
+		   $('#obs\\.familiar_parentesco').attr('required', 'required');
+           $('#obs\\.familiar_parentesco').attr('type', 'text');
+		} else {
+           $('#obs\\.familiar_parentesco').attr('type', 'hidden');
+		   $('#obs\\.familiar_parentesco').removeAttr('required');
+		}
+	});
+	$('#obs\\.information_given_by\\.familiar').trigger('change');
 
 	$('#obs\\.reason_for_failure\\.other').change(function(){
         if($(this).prop( "checked" )){
@@ -723,7 +774,7 @@ $(document).ready(function () {
         } else{
 			$('#other_reason_for_failure').hide();
 		}
-    });    
+    });
     $('#obs\\.reason_for_failure\\.other').trigger('change');
 
 	$.validator.addMethod("validDeliveryDateOnly", function (value, element) {
@@ -734,7 +785,7 @@ $(document).ready(function () {
 		var s = $('#encounter\\.encounter_datetime').val();
 		var bits = s.split(/\D/);
 		var encounterDate = new Date(bits[2], bits[1] - 1, bits[0]);
-		return enteredDate < encounterDate; 
+		return enteredDate < encounterDate;
 	}, "A data de entrega do cartão deve ser anterior à data da visita.."
 	);
 
@@ -794,23 +845,23 @@ var derivedObs = htmlDataStore.getInterventionsDerivedObservationByPatientUuid(p
 var derivedObs =  JSON.parse(derivedObs);
 var derivedObsSize = derivedObs.length-1;
 if(parseInt(derivedObsSize)>-1){
-	if(derivedObs[0].derivedConceptName.toUpperCase()==="Faltoso".toUpperCase()){
+	if(derivedObs[0].derivedConceptName==="Faltoso"){
     $("#derived-obs-by-intervention-type").val("derived-obs-faltoso");
 	$("#obs\\.type_of_visit").val("2160^VISITA DE BUSCA^99DCT");
 	}
-	else if(derivedObs[0].derivedConceptName.toUpperCase()==="Abandono".toUpperCase()){
+	else if(derivedObs[0].derivedConceptName==="Abandono"){
     $("#derived-obs-by-intervention-type").val("derived-obs-abandono");
 	$("#obs\\.type_of_visit").val("2160^VISITA DE BUSCA^99DCT");
 	}
-	else if(derivedObs[0].derivedConceptName.toUpperCase()==="Elegível Carga Viral".toUpperCase()){
+	else if(derivedObs[0].derivedConceptName==="Elegível Carga Viral"){
     $("#derived-obs-by-intervention-type").val("derived-obs-elegivel-carga-viral");
 	$("#obs\\.type_of_visit").val("23914^VISITA AOS CASOS ESPECIAIS^99DCT");
 	}
-	else if(derivedObs[0].derivedConceptName.toUpperCase()==="Carga Viral Elevada".toUpperCase()){
+	else if(derivedObs[0].derivedConceptName==="Carga Viral Elevada"){
     $("#derived-obs-by-intervention-type").val("derived-obs-carga-viral-elevada");
 	$("#obs\\.type_of_visit").val("23914^VISITA AOS CASOS ESPECIAIS^99DCT");
 	}
-	else if(derivedObs[0].derivedConceptName.toUpperCase()==="Preventiva".toUpperCase()){
+	else if(derivedObs[0].derivedConceptName==="Preventiva"){
     $("#derived-obs-by-intervention-type").val("derived-obs-preventiva");
 	$("#obs\\.type_of_visit").val("2161^VISITA DE APOIO^99DCT");
 	}
@@ -821,7 +872,7 @@ if(parseInt(derivedObsSize)>-1){
    $('#obs\\.type_of_visit').prop('disabled', 'disabled');
    $("#derived-obs-by-intervention-type").prop('disabled', 'disabled');
 }
-   
+
    $('#encounter\\.encounter_datetime').change(function(){
        if($("#obs\\.attempt_number").val()==="6254^DATA DA SEGUNDA TENTATIVA DE BUSCA^99DCT"){
 		$('#obs\\.encounter_datetime').attr('data-concept', '6254^DATA DA SEGUNDA TENTATIVA DE BUSCA^99DCT');
@@ -831,7 +882,7 @@ if(parseInt(derivedObsSize)>-1){
 		$('#obs\\.encounter_datetime').attr('data-concept', '6255^DATA DA TERCEIRA TENTATIVA DE BUSCA^99DCT');
 		$('#obs\\.encounter_datetime').val($('#encounter\\.encounter_datetime').val());
 	   }
-	});  
+	});
 
 	$('#obs\\.data_combinada').change(function(){
        if($("#obs\\.attempt_number").val()==="6254^DATA DA SEGUNDA TENTATIVA DE BUSCA^99DCT"){
@@ -851,7 +902,7 @@ if(parseInt(derivedObsSize)>-1){
 	   }
 	});
 
-    var patientuuid = $('#patient\\.uuid').val();
+	var patientuuid = $('#patient\\.uuid').val();
     var callVisitBookNumber = htmlDataStore.getObsByConceptId(patientuuid, 23948);
 	callVisitBookNumber = JSON.parse(callVisitBookNumber);
     var callVisitBookNumberSize = callVisitBookNumber.length-1;
@@ -879,10 +930,10 @@ if(parseInt(derivedObsSize)>-1){
 		errorElement: "div",
 		wrapper: "div",  // a wrapper around the error message
 		errorPlacement: function(error, element) {
-			if (element.is(":radio") ) {                   
+			if (element.is(":radio") ) {
 				error.insertBefore(element.parent().parent());
 			}
-			else if (element.is(":checkbox") ) {                   
+			else if (element.is(":checkbox") ) {
 				error.insertBefore(element.parent().parent());
 			}
 			else { // This is the default behavior of the script for all fields
