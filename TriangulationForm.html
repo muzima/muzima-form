@@ -159,58 +159,51 @@
 				</div>
 				<div class="form-group">
 					<label class="font-normal">
-						<input id="obs.reason_for_visit.tratamento" type="checkbox" name="obs.reason_for_visit"
-						data-concept="2172^MOTIVO DE VISITA/BUSCA DO PACIENTE^99DCT" value="2169^BACILOSCOPIA POSITIVA SEM TRATAMENTO^99DCT">
-						BK+ sem tratamento
+						<input id="obs.reason_for_visit.pcr" type="checkbox" name="obs.reason_for_visit"
+						data-concept="2172^MOTIVO DE VISITA/BUSCA DO PACIENTE^99DCT" value="165352^CRIANÇA COM PCR +^99DCT">
+						Criança com PCR
 					</label>
 				</div>
 				<div class="form-group">
 					<label class="font-normal">
-						<input id="obs.reason_for_visit.sem_tratamen" type="checkbox" name="obs.reason_for_visit"
-						data-concept="2172^MOTIVO DE VISITA/BUSCA DO PACIENTE^99DCT" value="23909^TB SEM TRATAMENTO^99DCT">
-						TB sem tratamento
+						<input id="obs.reason_for_visit.diagnostico_tb" type="checkbox" name="obs.reason_for_visit"
+						data-concept="2172^MOTIVO DE VISITA/BUSCA DO PACIENTE^99DCT" value="23761^TUBERCULOSE ACTIVO^99DCT">
+						Diagnóstico da TB
 					</label>
 				</div>
 				<div class="form-group">
 					<label class="font-normal">
-						<input id="obs.reason_for_visit.exposita" type="checkbox" name="obs.reason_for_visit"
-						data-concept="2172^MOTIVO DE VISITA/BUSCA DO PACIENTE^99DCT" value="23910^SEM CARGA VIRAL^99DCT">
-						Sem carga viral
+						<input id="obs.reason_for_visit.perda_segmento_tb" type="checkbox" name="obs.reason_for_visit"
+						data-concept="2172^MOTIVO DE VISITA/BUSCA DO PACIENTE^99DCT" value="5240^PERDA DE SEGUIMENTO^99DCT">
+						Perda de seguimento da TB
 					</label>
 				</div>
 				<div class="form-group">
 					<label class="font-normal">
-						<input id="obs.reason_for_visit.exposita" type="checkbox" name="obs.reason_for_visit"
+						<input id="obs.reason_for_visit.carga_viral_elevada" type="checkbox" name="obs.reason_for_visit"
+						data-concept="2172^MOTIVO DE VISITA/BUSCA DO PACIENTE^99DCT" value="23912^CARGA VIRAL ELEVADA^99DCT">
+						Carga viral elevada
+					</label>
+				</div>
+				<div class="form-group">
+					<label class="font-normal">
+						<input id="obs.reason_for_visit.falencia_terapeutica" type="checkbox" name="obs.reason_for_visit"
 						data-concept="2172^MOTIVO DE VISITA/BUSCA DO PACIENTE^99DCT" value="1790^FALENCIA TERAPEUTICA^99DCT">
 						Falência terapêutica
 					</label>
 				</div>
 				<div class="form-group">
 					<label class="font-normal">
-						<input id="obs.reason_for_visit.para" type="checkbox" name="obs.reason_for_visit"
-						data-concept="2172^MOTIVO DE VISITA/BUSCA DO PACIENTE^99DCT" value="1359^ELEGÍVEL^99DCT">
-						Elegível para TARV
+						<input id="obs.reason_for_visit.faltoso" type="checkbox" name="obs.reason_for_visit"
+						data-concept="2172^MOTIVO DE VISITA/BUSCA DO PACIENTE^99DCT" value="165353^FALTOSO^99DCT">
+						Faltoso
 					</label>
 				</div>
 				<div class="form-group">
 					<label class="font-normal">
-						<input id="obs.reason_for_visit.levantamento" type="checkbox" name="obs.reason_for_visit"
-						data-concept="2172^MOTIVO DE VISITA/BUSCA DO PACIENTE^99DCT" value="2168^AUSENTE AO LEVANTAMENTO DE MEDICAMENTOS ARV^99DCT">
-						 Faltoso na farmácia
-					</label>
-				</div>
-				<div class="form-group">
-					<label class="font-normal">
-						<input id="obs.reason_for_visit.exposita" type="checkbox" name="obs.reason_for_visit"
-						data-concept="2172^MOTIVO DE VISITA/BUSCA DO PACIENTE^99DCT" value="23911^FALTOSO AS CONSULTAS^99DCT">
-						Faltoso as consultas
-					</label>
-				</div>
-				<div class="form-group">
-					<label class="font-normal">
-						<input id="obs.reason_for_visit.exposita" type="checkbox" name="obs.reason_for_visit"
-						data-concept="2172^MOTIVO DE VISITA/BUSCA DO PACIENTE^99DCT" value="23912^CARGA VIRAL ELEVADA^99DCT">
-						Carga viral elevada
+						<input id="obs.reason_for_visit.abandono" type="checkbox" name="obs.reason_for_visit"
+						data-concept="2172^MOTIVO DE VISITA/BUSCA DO PACIENTE^99DCT" value="1707^ABANDONO^99DCT">
+						Abandono
 					</label>
 				</div>
 				<div class="form-group">
@@ -465,11 +458,13 @@
 			$('#no_tracking_needed').hide();
 			$('#patient\\.tagUuid').val('e7e26b4e-b3fd-11eb-8374-d0577bb73cd4');
 			$('#patient\\.tagName').val('AL');
+			$('#allocation').show();
         } else if($(this).val() == "23847^NAO PRECISA RASTREAMENTO^99DCT"){
 			$('#tracking_needed').hide();
 			$('#no_tracking_needed').show();
 			$('#patient\\.tagUuid').val(' f1b7a01c-b3fd-11eb-8374-d0577bb73cd4');
 			$('#patient\\.tagName').val('NA');
+			$('#allocation').hide();
 		} else{
 			$('#tracking_needed').hide();
 			$('#no_tracking_needed').hide();
