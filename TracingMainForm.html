@@ -301,7 +301,7 @@
 		</div>
 
 <div class="section" id="preventive_visit_section">
-	<div class="section concept-set" id="convset_group_section" data-concept="165356^CONVSET VISIT REPORT - FIRST VISIT^99DCT">
+	<div class="concept-set" id="convset_group_section" data-concept-group="165356^CONVSET VISIT REPORT - FIRST VISIT^99DCT">
 		<div class="form-group section patient_found_div_2161" id="patient_found_div_2161">
 			<div class="form-group">
 				<div class="form-group">
@@ -337,28 +337,57 @@
 										<input id="obs.patient_had_difficulties.efeitos" type="checkbox" name="obs.patient_had_difficulties"
 										data-concept="2157^O PACIENTE APRESENTOU DIFICULDADES^99DCT" value="2015^EFEITOS SECUNDARIOS ARV^99DCT"
 										required="required"/>
-										 Medicamento esta a fazer mal
+										 Medicamento está a fazer mal
 									</label>
 								</div>
 								<div class="form-group">
 									<label class="font-normal">
-										<input id="obs.patient_had_difficulties.falta" type="checkbox" name="obs.patient_had_difficulties"
+										<input id="obs.patient_had_difficulties.sente_se_triste" type="checkbox" name="obs.patient_had_difficulties"
+										data-concept="2157^O PACIENTE APRESENTOU DIFICULDADES^99DCT" value="14579^TRISTEZA^99DCT"
+										required="required"/>
+										 Sente-se triste
+									</label>
+								</div>
+								<div class="form-group">
+									<label class="font-normal">
+										<input id="obs.patient_had_difficulties.falta_apoio_familiar" type="checkbox" name="obs.patient_had_difficulties"
 										data-concept="2157^O PACIENTE APRESENTOU DIFICULDADES^99DCT" value="2153^FALTA DE APOIO^99DCT" required="required"/>
 										 Falta de apoio familiar
 									</label>
 								</div>
 								<div class="form-group">
 									<label class="font-normal">
-										<input id="obs.patient_had_difficulties.problemas" type="checkbox" name="obs.patient_had_difficulties"
-										data-concept="2157^O PACIENTE APRESENTOU DIFICULDADES^99DCT" value="2154^PROBLEMAS EM TOMAR MEDICAMENTOS^99DCT" 										required="required"/>
-										Problemas em tomar os medicamentos
+										<input id="obs.patient_had_difficulties.tarv" type="checkbox" name="obs.patient_had_difficulties"
+										data-concept="2157^O PACIENTE APRESENTOU DIFICULDADES^99DCT" value="6186^NAO ACREDITA NO TRATAMENTO^99DCT" required="required"/>
+										 Não acredita no TARV
 									</label>
 								</div>
 								<div class="form-group">
 									<label class="font-normal">
-										<input id="obs.patient_had_difficulties.diagnostic" type="checkbox" name="obs.patient_had_difficulties"
-										data-concept="2157^O PACIENTE APRESENTOU DIFICULDADES^99DCT" value="2155^NÃO REVELOU SEU DIAGNOSTICO^99DCT" 											required="required"/>
-										 Não revelou o diagnóstico
+										<input id="obs.patient_had_difficulties.falta_medicamentos" type="checkbox" name="obs.patient_had_difficulties"
+										data-concept="2157^O PACIENTE APRESENTOU DIFICULDADES^99DCT" value="165354^FALTA DE PREPARACAO PARA DAR OU TOMAR OS MEDICAMENTOS^99DCT" required="required"/>
+										 Falta de preparação para dar ou tomar os medicamentos
+									</label>
+								</div>
+								<div class="form-group">
+									<label class="font-normal">
+										<input id="obs.patient_had_difficulties.problemas" type="checkbox" name="obs.patient_had_difficulties"
+										data-concept="2157^O PACIENTE APRESENTOU DIFICULDADES^99DCT" value="2007^DISTANCIA OU DINHEIRO TRANSPORTE^99DCT" 										required="required"/>
+										Problemas de transporte
+									</label>
+								</div>
+								<div class="form-group">
+									<label class="font-normal">
+										<input id="obs.patient_had_difficulties.acamado" type="checkbox" name="obs.patient_had_difficulties"
+										data-concept="2157^O PACIENTE APRESENTOU DIFICULDADES^99DCT" value="2006^ESTÁ ACAMADO EM CASA^99DCT" required="required"/>
+										 Está doente ou acamado
+									</label>
+								</div>
+								<div class="form-group">
+									<label class="font-normal">
+										<input id="obs.patient_had_difficulties.descriminition" type="checkbox" name="obs.patient_had_difficulties"
+										data-concept="2157^O PACIENTE APRESENTOU DIFICULDADES^99DCT" value="6436^ESTIGMA^99DCT" 											required="required"/>
+										 Estigma/descriminação o diagnóstico
 									</label>
 								</div>
 								<div class="form-group">
@@ -857,8 +886,8 @@ if(parseInt(derivedObsSize)>-1){
     $("#derived-obs-by-intervention-type").val("derived-obs-elegivel-carga-viral");
 	$("#obs\\.type_of_visit").val("23914^VISITA AOS CASOS ESPECIAIS^99DCT");
 	}
-	else if(derivedObs[0].derivedConceptName==="Carga Viral Elevada"){
-    $("#derived-obs-by-intervention-type").val("derived-obs-carga-viral-elevada");
+	else if(derivedObs[0].derivedConceptName==="Carga Viral Alta"){
+    $("#derived-obs-by-intervention-type").val("derived-obs-carga-viral-alta");
 	$("#obs\\.type_of_visit").val("23914^VISITA AOS CASOS ESPECIAIS^99DCT");
 	}
 	else if(derivedObs[0].derivedConceptName==="Preventiva"){
