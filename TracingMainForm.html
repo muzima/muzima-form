@@ -301,23 +301,21 @@
 		</div>
 
 <div class="section" id="preventive_visit_section">
-	<div class="concept-set" id="convset_group_section" data-concept="165356^CONVSET VISIT REPORT - FIRST VISIT^99DCT 0">
 		<div class="form-group section patient_found_div_2161" id="patient_found_div_2161">
-			<div class="form-group">
 				<div class="form-group">
 					<label for="obs.visit_report">
 					Visita preventiva - Relatório da visita<span class="required">*</span>
 					</label>
+				  <div class="concept-set" id="convset_group_section" data-concept="165356^CONVSET VISIT REPORT - FIRST VISIT^99DCT 0"> 
 					<select class="form-control" id="obs.visit_report" required
 						name="obs.visit_report" data-concept="2158^RELATORIO DA VISITA DE APOIO^99DCT">
 						<option value="">...</option>
 						<option value="1383^BOM^99DCT">O paciente está bem</option>
 						<option value="2157^O PACIENTE APRESENTOU DIFICULDADES^99DCT">O paciente apresentou dificuldades</option>
 					</select>
-				</div>
-			</div>
-		</div>
-	</div>
+				   </div>
+		       </div>
+	-   </div>
 
 	<div class="form-group sub-section" id="patient_had_difficulties">
 						<div class="form-group concept-set">
@@ -411,22 +409,20 @@
 							 <div class="concept-set" id="convset_group_section" data-concept="165356^CONVSET VISIT REPORT - FIRST VISIT^99DCT 11">
 								<div class="form-group">
 									<label class="font-normal">
-										<input id="obs.patient_had_difficulties.other" type="checkbox" name="obs.patient_had_difficulties"
+										<input id="obs.patient_had_difficulties.other" type="checkbox" name="obs.patient_had_difficulties.other"
 										data-concept="2157^O PACIENTE APRESENTOU DIFICULDADES^99DCT" value="1748^OUTROS PROBLEMAS^99DCT" required="required"/>
 										 Outro
 									</label>
 								</div>
 							 </div>
 						</div>
-						<div class="concept-set" id="convset_group_section" data-concept="165356^CONVSET VISIT REPORT - FIRST VISIT^99DCT 12">
-							    <div class="form-group" id="other_patient_had_difficulties">
+							<div class="form-group" id="other_patient_had_difficulties">
 								  <label class="font-normal" for="obs.other_patient_had_difficulties">
 									Outro:<span class="required"></span>
 								  </label>
-									<input class="form-control" id="obs.other_referencias" type="text" required="required"
-									name="obs.other_patient_had_difficulties" data-concept="1748^OUTROS PROBLEMAS^99DCT"/>
-							    </div>
-						</div>
+								  <input class="form-control" id="obs.other_referencias" type="text" required="required"
+									name="obs.patient_had_difficulties.other" data-obscommentfor="obs.patient_had_difficulties.other"/>
+							</div>
 					</div>
 
 </div>
