@@ -208,7 +208,7 @@
 					<div class="form-group">
 						<label class="font-normal">
 							<input id="obs.reason_for_failure.Ausencia" type="checkbox" name="obs.reason_for_failure"
-							data-concept="2016^MOTIVO DE FALTA^99DCT" value="2014^TRABALHO^99DCT" required="required"/>
+							data-concept="2016^MOTIVO DE FALTA^99DCT" value="23946^AUSENCIA DO PROVEDOR DE SAUDE NA UNIDADE SANITARIA^99DCT" required="required"/>
 							Ausência do Provedor na US
 						</label>
 					</div>
@@ -300,7 +300,7 @@
 			</div>
 		</div>
 
-<div class="section" id="preventive_visit_section">
+<div class="form-group" id="preventive_visit_section">
 		<div class="form-group section patient_found_div_2161" id="patient_found_div_2161">
 				<div class="form-group">
 					<label for="obs.visit_report">
@@ -315,9 +315,7 @@
 					</select>
 				   </div>
 		       </div>
-	-   </div>
-
-	<div class="form-group sub-section" id="patient_had_difficulties">
+			   <div class="form-group sub-section" id="patient_had_difficulties">
 						<div class="form-group concept-set">
 							<div class="form-group">
 								<label for="obs.patient_had_difficulties">
@@ -425,9 +423,12 @@
 							</div>
 					</div>
 
-</div>
+	    </div>
 
-		<div class="form-group" id="patient_fallowup_div" hidden="true">
+	  </div>
+	</div>
+  </div>
+    <div class="form-group section" id="patient_fallowup_div" hidden="true">
 			<label for="obs.patient_followup">
 			Paciente ou cuidador encaminhado para US<span class="required">*</span>
 			</label>
@@ -438,15 +439,13 @@
 				<option value="1066^NAO^99DCT">NÃO</option>
 				<option value="21233^N/A^99DCT">N/A</option>
 			</select>
-        </div>
-		<div class="form-group sub-section patient_found_div home_visit_result_div" id="data_combinada_div" hidden="true" >
+    </div>
+	<div class="form-group sub-section patient_found_div home_visit_result_div" id="data_combinada_div" hidden="true">
 			<label for="obs.data_combinada">Data combinada para retorno a US:
 			</label>
 			<input class="form-control datepicker" id="obs.data_combinada" type="text" readonly="readonly"
-					name="obs.data_combinada" data-concept="23933^Data combinada na primeira visita para retorno a US^99DCT"/>
-	    </div>
+					name="obs.data_combinada" data-concept="23933^Data combinada na primeira visita para retorno a US^99DCT" />
 	</div>
-  </div>
 </div>
 
 <div class="section section-div form-group patient_not_found_div" id="patient_not_found_div_section">
@@ -517,9 +516,9 @@
 		 </div>
 	   </div>
      </div>
-  </div>
+    </div>
 
- <div class="section section-div form-group patient_not_found_div" id="information_given_by_div">
+<div class="section section-div form-group" id="information_given_by_div">
 	<div class="panel-heading">
 		<h3 class="panel-title">
 			<a data-toggle="collapse" data-parent="#accordion" href="#information_given_by_div" aria-expanded="false" aria-controls="information_given_by_div" id="information_given_by_div.section">
@@ -583,6 +582,8 @@
 	   </div>
     </div>
   </div>
+
+</div>
 
         <!-- Visible if pacient was found -->
 	<div class="section section-div" hidden="true">
@@ -735,7 +736,7 @@ $(document).ready(function () {
 			$('#patient_found_div_2160').show();
 			$('#information_given_by_div').show();
 			$('#patient_fallowup_div').hide();
-			$('#visit_report_div').hide();
+			$('#visit_report_div').show();
 
 			$('#data_combinada_div').hide();
 
