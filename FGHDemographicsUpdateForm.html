@@ -279,6 +279,9 @@
 				<label for="address5">Novo Bairro: </label>
 				<input class="form-control" id="address5" name="address5" type="text">
 			</div>
+
+				<input class="form-control" id="preferred" name="preferred" type="hidden" value="true">
+
 		</div>
         <div class="form-group group-set" data-group="demographicsupdate.personattribute">
             <label for="address_reference">Novo Ponto de referência: </label>
@@ -352,6 +355,8 @@
                type="hidden" value="false">
             <input class="form-control" id="tmp.custom_discriminator" name="tmp.custom_discriminator"
                value="mastercard-record-mapper" type="hidden" required="required">
+
+
 
             <input class="form-control" id="encounter.process_as_individual_obs" name="encounter.process_as_individual_obs" type="hidden" value="true">
         </div>
@@ -504,10 +509,8 @@
         $('#tmp\\.update_address').change(function(){
             if($(this).is(':checked')){
                 $('#update_address').show();
-                $('#update_patient_contact').show();
             } else {
                 $('#update_address').hide();
-                $('#update_patient_contact').hide();
             }
         });
         $('#tmp\\.update_address').trigger('change');
@@ -586,25 +589,25 @@
         var phoneNumber = htmlDataStore.getPersonAttribute(patientUuid,phoneNumberPersonAttributeType);
         phoneNumber = JSON.parse(phoneNumber);
         if('attribute_value' in phoneNumber){
-            $('attribute_type_uuid').val(phoneNumber.attribute_value);
+            $('attribute_type_uuid').val(phoneNumber.attribute_type_uuid);
             $('#patient\\.phone_number').val(phoneNumber.attribute_value);
         }
 
     var addressReferencePersonAttributeType = "e944813c-11b1-49f3-b9a5-9fbbd10beec2";
-    var addressReference = htmlDataStore.getPersonAttribute(patientUuid,addressReferencePersonAttributeType);
-    addressReference = JSON.parse(addressReference);
+    var reference = htmlDataStore.getPersonAttribute(patientUuid,addressReferencePersonAttributeType);
+    var addressReference = JSON.parse(reference);
     if('attribute_value' in addressReference){
         addressReference = addressReference.attribute_value;
-    } else {
-        addressReference = '';
+        $('attribute_type_uuid').val(addressReference.attribute_type_uuid);
+        $('#patient\\.address_reference').val(addressReference);
     }
-    $('#patient\\.address_reference').val(addressReference);
+
 
     var nicNameObs = htmlDataStore.getObsByConceptId(patientUuid, 23924);
         nicNameObs = JSON.parse(nicNameObs);
-        var nicNameObsSize = nicNameObs.length-1;
+        var nicNameObsSize = nicNameObs.length;
         if(parseInt(nicNameObsSize)>-1){
-            $('#patient\\.nick_name').val(nicNameObs[0].value);
+            $('#patient\\.nick_name').val(nicNameObs[0].valueText);
         }
 
     var medicalRecordNumber = htmlDataStore.getPatientIdentifier(patientUuid, "e2b966d0-1d5f-11e0-b929-000c29ad1d07");
