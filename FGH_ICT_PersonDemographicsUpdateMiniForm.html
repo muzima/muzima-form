@@ -25,7 +25,6 @@
 
         <div class="section">
             <h3>Nome do Contacto</h3>
-            <h3>Nome do Contacto</h3>
             <div class="form-group">
                 <input class="form-control" id="patient.uuid"
                        name="patient.uuid" type="hidden" readonly="readonly">
@@ -70,7 +69,7 @@
                 <input class="form-control" id="demographicsupdate.middle_name" name="demographicsupdate.middle_name" type="text">
             </div>
         </div>
-        
+
         <div class="section">
             <h3>Outros Dados Demográficos</h3>
             <div id="relationshipStub">
@@ -182,8 +181,8 @@
             </div>
         </div>
 
-        <div class="section">
-            <h3>Situação familiar conjunta</h3>
+        <div class="section" hidden>
+            <h3>Situação familiar</h3>
             <div class="form-group">
                 <label for="tmp.hiv_test">Teste de HIV:</label>
                 <input class="form-control" id="tmp.hiv_test"
@@ -260,7 +259,6 @@
             </div>
             <div class="form-group">
                 <label for="demographicsupdate.hiv_care">Em Cuidados de HIV?</label>
-                <label for="demographicsupdate.hiv_care">Em Cuidados de HIV?</label>
                 <select class="form-control" id="demographicsupdate.hiv_care"
                         name="demographicsupdate.hiv_care" data-concept="23780^Cuidados HIV^99DCT">
                     <option value="">...</option>
@@ -268,9 +266,8 @@
                     <option value="1066^Nao^99DCT">Nao</option>
                 </select>
             </div>
-           
+
             <div class="form-group">
-                <label for="demographicsupdate.child_at_risk_treatment">Em CCR?</label>
                 <label for="demographicsupdate.child_at_risk_treatment">Em CCR?</label>
                 <select class="form-control" id="demographicsupdate.child_at_risk_treatment"
                         name="demographicsupdate.child_at_risk_treatment" data-concept="1885^TRATEMENTO (CCR)^99DCT">
