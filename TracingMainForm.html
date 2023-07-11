@@ -409,7 +409,7 @@
 								<div class="form-group">
 									<label class="font-normal">
 										<input id="obs.patient_had_difficulties.other" type="checkbox" name="obs.patient_had_difficulties.other"
-										data-concept="2157^O PACIENTE APRESENTOU DIFICULDADES^99DCT" value="1748^OUTROS PROBLEMAS^99DCT" required="required"/>
+										data-concept="2157^O PACIENTE APRESENTOU DIFICULDADES^99DCT" value="1748^OUTROS PROBLEMAS^99DCT" />
 										 Outro
 									</label>
 								</div>
@@ -430,7 +430,7 @@
 			<label for="obs.patient_followup">
 			Paciente ou cuidador encaminhado para US<span class="required">*</span>
 			</label>
-			<select class="form-control" id="obs.patient_followup" required
+			<select class="form-control" id="obs.patient_followup" required="required"
 				name="obs.patient_followup" data-concept="23947^FAMILIAR OU CUIDADOR DA CRIANÇA FOI REFERIDO PARA A US^99DCT">
 				<option value="">...</option>
 				<option value="1065^SIM^99DCT">SIM</option>
@@ -762,12 +762,14 @@ $(document).ready(function () {
 			$('#visit_report_div').hide();
 		}
 
-	   if($(this).val() == "1065^SIM^99DCT" &&  $('#obs\\.type_of_visit').val()=="2160^VISITA DE BUSCA^99DCT" || $('#obs\\.type_of_visit').val()=="23914^VISITA AOS CASOS ESPECIAIS^99DCT"){
+	   if($(this).val() == "1065^SIM^99DCT" &&  ($('#obs\\.type_of_visit').val()=="2160^VISITA DE BUSCA^99DCT" || $('#obs\\.type_of_visit').val()=="23914^VISITA AOS CASOS ESPECIAIS^99DCT")){
 		   $('#patient_found_div_2160').show();
 		   $('#preventive_visit_section').hide();
+		   $('#home_visit_result_div').show();
 	   }else{
 		   $('#patient_found_div_2160').hide();
 		    $('#preventive_visit_section').hide();
+			$('#home_visit_result_div').hide();
 	   }
 
 	   if($(this).val() == "1065^SIM^99DCT" && $('#obs\\.type_of_visit').val()=="2161^VISITA DE APOIO^99DCT"){
