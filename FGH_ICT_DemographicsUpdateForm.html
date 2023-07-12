@@ -160,34 +160,41 @@
             </div>
         </div>
     </div>
-    <div class="section group-set" data-group="patient.personaddress" id="patient.personaddress">
-        <h3>Endereço</h3>
-        <div class="form-group">
-            <label for="address1">Avenida/Rua/Ponto de referencia: </label>
-            <input class="form-control address1" name="address1" type="text" readonly="readonly">
+        <div class="section group-set" data-group="patient.personaddress" id="patient.personaddress">
+            <h3>Endereço</h3>
+            <div class="form-group">
+                <label for="address1">Avenida/Rua/Ponto de referencia: </label>
+                <input class="form-control address1" name="address1" type="text" readonly="readonly" id="old.address1">
+            </div>
+            <div class="form-group">
+                <label for="address2">Nº da Residência (casa): </label>
+                <input class="form-control address2" name="address2" type="text" readonly="readonly" id="old.address2">
+            </div>
+            <div class="form-group">
+                <label for="address6">Comunidade: </label>
+                <input class="form-control address6" name="address6" type="text" readonly="readonly" id="old.address6">
+            </div>
+            <div class="form-group">
+                <label for="address3">Quarteirão: </label>
+                <input class="form-control address3" name="address3" type="text" readonly="readonly" id="old.address3">
+            </div>
+            <div class="form-group">
+                <label for="address5">Bairro: </label>
+                <input class="form-control address5" name="address5" type="text" readonly="readonly">
+                <input class="form-control person_address_uuid uuid" name="uuid" type="hidden" readonly="readonly" id="old.address5">
+            </div>
+            <div class="form-group">
+                <input class=" tmp.edit_address update_address_confirm" name="tmp.edit_address"
+                       type="checkbox">
+                <label for="tmp.edit_address" class="edit_address_label">Vai atualizar o endereço? (se sim, permitir editar)</label>
+            </div>
         </div>
+        <div class="section"> 
+            <h3>Contacto Telemóvel do Paciente</h3>
         <div class="form-group">
-            <label for="address2">Nº da Residência (casa): </label>
-            <input class="form-control address2" name="address2" type="text" readonly="readonly">
+            <input class="form-control" id="patient.phone_number" name="patient.phone_number" type="tel" disabled="disabled">
         </div>
-        <div class="form-group">
-            <label for="address6">Comunidade: </label>
-            <input class="form-control address6" name="address6" type="text" readonly="readonly">
-        </div>
-        <div class="form-group">
-            <label for="address3">Quarteirão: </label>
-            <input class="form-control address3" name="address3" type="text" readonly="readonly">
-        </div>
-        <div class="form-group">
-            <label for="address5">Bairro: </label>
-            <input class="form-control address5" name="address5" type="text" readonly="readonly">
-            <input class="form-control person_address_uuid uuid" name="uuid" type="hidden" readonly="readonly">
-        </div>
-        <div class="form-group">
-            <input class=" tmp.edit_address update_address_confirm" name="tmp.edit_address"
-                   type="checkbox">
-            <label for="tmp.edit_address" class="edit_address_label">Vai atualizar o endereço? (se sim, permitir editar)</label>
-        </div>
+       </div>
         <div class="form-group">
             <label for="tmp.update_address">
                 <input id="tmp.update_address" name="tmp.update_address" class="update_address_confirm" type="checkbox">
@@ -199,15 +206,11 @@
         <h3>Novo endereço</h3>
         <div class="group-set" data-group="demographicsupdate.personaddress" id="demographicsupdate.personaddress">
             <div class="form-group">
-                <label for="address1">Novo Avenida/Rua/Punto de referencia: </label>
+                <label for="address1">Novo Avenida/Rua/Casa: </label>
                 <input class="form-control address1" name="address1" type="text" minlength="5" maxlength="255">
             </div>
             <div class="form-group">
-                <label for="address2">Novo Nº da Residência (casa): </label>
-                <input class="form-control address2" name="address2" type="text" maxlength="255">
-            </div>
-            <div class="form-group">
-                <label for="address6">Novo Comunidade: </label>
+                <label for="address6">Novo Localidade: </label>
                 <input class="form-control address6" name="address6" type="text" maxlength="255">
             </div>
             <div class="form-group">
@@ -299,7 +302,7 @@
 
         var patientUuid = $('#patient\\.uuid').val();
         var phoneNumberPersonAttributeType = "e2e3fd64-1d5f-11e0-b929-000c29ad1d07";
-        var phoneNumber = htmlDataStore.getPersonAttribute(patientUuid,phoneNumberPersonAttributeType);
+        var phoneNumber = htmlDataStore.getPersonAttribute(patientUuid, phoneNumberPersonAttributeType);
         phoneNumber = JSON.parse(phoneNumber);
         if('attribute_value' in phoneNumber){
             phoneNumber = phoneNumber.attribute_value;
@@ -310,27 +313,38 @@
 
         $('#tmp\\.update_names').change(function(){
             if($(this).is(':checked')){
+
+                var patientOldFamilyName = $('#patient\\.family_name').val();
+
+                var patientOldGivenName = $('#patient\\.given_name').val();
+
+                var patientOldMiddleName = $('#patient\\.middle_name').val();
+
+                $('#demographicsupdate\\.family_name').val(patientOldFamilyName);
+
+                $('#demographicsupdate\\.given_name').val(patientOldGivenName);
+
+                $('#demographicsupdate\\.middle_name').val(patientOldMiddleName);
+
                 $('#update_names').show();
+
                 $('#demographicsupdate\\.is_updated_name_preferred').prop('value', true);
+
             } else {
+
                 $('#update_names').hide();
+
                 $('#demographicsupdate\\.is_updated_name_preferred').prop('value', false);
+
+                $('#demographicsupdate\\.family_name').val("");
+
+                $('#demographicsupdate\\.given_name').val("");
+
+                $('#demographicsupdate\\.middle_name').val("");
             }
         });
 
         $('#tmp\\.update_names').trigger('change');
-
-        var patientOldFamilyName = $('#patient\\.family_name').val();
-
-        var patientOldGivenName = $('#patient\\.given_name').val();
-
-        var patientOldMiddleName = $('#patient\\.middle_name').val();
-
-        $('#demographicsupdate\\.family_name').val(patientOldFamilyName);
-
-        $('#demographicsupdate\\.given_name').val(patientOldGivenName);
-
-        $('#demographicsupdate\\.middle_name').val(patientOldMiddleName);
 
         var dateFormat = "dd-mm-yy";
         var currentDate = $.datepicker.formatDate(dateFormat, new Date());
@@ -364,17 +378,6 @@
             document.submit();
             $(this).prop('disabled', false);
         });
-
-        $('#tmp\\.update_names').change(function(){
-            if($(this).is(':checked')){
-                $('#update_names').show();
-                $('#demographicsupdate\\.is_updated_name_preferred').prop('value', true);
-            } else {
-                $('#update_names').hide();
-                $('#demographicsupdate\\.is_updated_name_preferred').prop('value', false);
-            }
-        });
-        $('#tmp\\.update_names').trigger('change');
 
         $('.edit_address_label').click(function(){
             $parent = $(this).closest('.form-group');

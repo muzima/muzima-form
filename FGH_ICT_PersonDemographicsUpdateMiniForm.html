@@ -14,14 +14,14 @@
         <script src="js/muzima.js"></script>
         <meta charset="utf-8">
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-        <title>Formulário ATS e Adicionar Contacto</title>
+        <title>Formulario de ATS</title>
     </head>
 <body class="col-md-8 col-md-offset-2">
     <div id="result"></div>
     <form id="mini_registration_form" name="mini_registration_form">
         <div id="pre_populate_data">
         </div>
-        <h2 class="text-center">Formulário ATS e Adicionar Contacto</h2>
+        <h2 class="text-center">Formulario de ATS</h2>
 
         <div class="section">
             <h3>Nome do Contacto</h3>
@@ -69,14 +69,14 @@
                 <input class="form-control" id="demographicsupdate.middle_name" name="demographicsupdate.middle_name" type="text">
             </div>
         </div>
-        
+
         <div class="section">
             <h3>Outros Dados Demográficos</h3>
             <div id="relationshipStub">
                 <div class="form-group">
-                    <label>Parentesco:</label>
+                    <label>Parentesco: <span class="required">*</span></label>
                     <input class="form-control tmp.person.relationshipTypeName"
-                           name="tmp.person.relationshipTypeName" type="text" readonly>
+                           name="tmp.person.relationshipTypeName" type="text" readonly="readonly">
                     <input class="form-control tmp.person.relationshipType"
                            name="tmp.person.relationshipType" type="hidden">
                     <input class="form-control tmp.personA.uuid" name="tmp.personA.uuid" type="hidden">
@@ -105,6 +105,7 @@
                 </div>
             </div>
 
+
             <div class="form-group">
                 <label for="patient.sex">Sexo:</label>
                 <input id="patient.sex" name="patient.sex" type="hidden">
@@ -127,6 +128,7 @@
             </div>
             <div class="form-group birthdate">
                 <label for="patient.birth_date">Data de nascimento  <span class="required">*</span></label>
+                <input class="form-control" id="patient.birth_date" name="patient.birth_date" value=""
                 <input class="form-control" id="patient.birth_date" name="patient.birth_date" value=""
                        type="text" disabled="disabled" readonly="readonly">
             </div>
@@ -151,8 +153,8 @@
                     <label for="tmp.birthdate_type">Registar a data de nascimento... <span class="required">*</span></label>
                     <select class="form-control" name="tmp.birthdate_type" id="tmp.birthdate_type" required="required">
                         <option value="">...</option>
-                        <option value="birthdate">Incluir a data de nascimento (seleccionar a …)</option>
-                        <option value="age">Incluir a idade (seleccionar a …)</option>
+                        <option value="birthdate">Incluir a data de nascimento</option>
+                        <option value="age">Incluir a idade</option>
                     </select>
                 </div>
                 <div class="form-group show_birthdate">
@@ -178,8 +180,20 @@
                 </div>
             </div>
         </div>
-        <div class="section">
-            <h3>Situação familiar conjunta</h3>
+
+        <div class="section" hidden>
+            <h3>Situação familiar</h3>
+            <div class="form-group">
+                <label for="tmp.hiv_test">Teste de HIV:</label>
+                <input class="form-control" id="tmp.hiv_test"
+                        name="tmp.hiv_test" readonly="readonly" />
+                <div id="obs_hiv_test"></div>
+            </div>
+            <div class="form-group">
+                <label for="tmp.hiv_care">Cuidados de HIV:</label>
+                <input class="form-control" id="tmp.hiv_care" readonly="readonly"
+                        name="tmp.hiv_care" />
+            </div>
             <div class="form-group">
                 <label for="tmp.htc_offered">O serviço ATS foi oferecido?</label>
                 <input class="form-control" id="tmp.htc_offered" readonly
@@ -191,18 +205,7 @@
                         name="tmp.htc_accepted" />
             </div>
             <div class="form-group">
-                <label for="tmp.hiv_test">Resultado da Testagem de HIV:</label>
-                <input class="form-control" id="tmp.hiv_test"
-                       name="tmp.hiv_test" readonly="readonly" />
-                <div id="obs_hiv_test"></div>
-            </div>
-            <div class="form-group">
-                <label for="tmp.hiv_care">Em Cuidados de HIV?</label>
-                <input class="form-control" id="tmp.hiv_care" readonly="readonly"
-                       name="tmp.hiv_care" />
-            </div>
-            <div class="form-group">
-                <label for="tmp.child_at_risk_treatment">Em CCR?</label>
+                <label for="tmp.child_at_risk_treatment">EM CCR:</label>
                 <input class="form-control" id="tmp.child_at_risk_treatment" readonly="readonly"
                         name="tmp.child_at_risk_treatment" />
             </div>
@@ -221,7 +224,7 @@
         </div>
 <!--        data-concept="23782^SITUACAO FAMILIAR CONJUNTO^99DCT"-->
         <div id="update_hiv_details" class="sub-section" >
-            <h3>Situação familiar atualizada?</h3>
+            <h3>Dados de Testagem</h3>
             <div class="form-group">
                 <label for="demographicsupdate.htc_offered">
                     O serviço ATS foi oferecido?
@@ -263,7 +266,7 @@
                     <option value="1066^Nao^99DCT">Nao</option>
                 </select>
             </div>
-           
+
             <div class="form-group">
                 <label for="demographicsupdate.child_at_risk_treatment">Em CCR?</label>
                 <select class="form-control" id="demographicsupdate.child_at_risk_treatment"
@@ -344,15 +347,29 @@
 
         $('#tmp\\.update_names').change(function(){
             if($(this).is(':checked')){
+
+                var patientOldFamilyName = $('#patient\\.family_name').val();
+
+                var patientOldGivenName = $('#patient\\.given_name').val();
+
+                var patientOldMiddleName = $('#patient\\.middle_name').val();
+
+                $('#demographicsupdate\\.family_name').val(patientOldFamilyName);
+
+                $('#demographicsupdate\\.given_name').val(patientOldGivenName);
+
+                $('#demographicsupdate\\.middle_name').val(patientOldMiddleName);
+
                 $('#update_names').show();
+
                 $('#demographicsupdate\\.is_updated_name_preferred').prop('value', true);
             } else {
                 $('#update_names').hide();
                 $('#demographicsupdate\\.is_updated_name_preferred').prop('value', false);
             }
         });
-
         $('#tmp\\.update_names').trigger('change');
+
 
         var patientOldFamilyName = $('#patient\\.family_name').val();
 
@@ -366,15 +383,6 @@
 
         $('#demographicsupdate\\.middle_name').val(patientOldMiddleName);
 
-
-        $('#tmp\\.update_hiv_details').change(function(){
-            if($(this).is(':checked')){
-                $('#update_hiv_details').show();
-            } else {
-                $('#update_hiv_details').hide();
-            }
-        });
-        $('#tmp\\.update_hiv_details').trigger('change');
 
         $('.edit_address_label').click(function(){
             $parent = $(this).closest('.form-group');
@@ -550,60 +558,6 @@
 
         var patientUuid = $('#patient\\.uuid').val();
 
-        var hiv_test = htmlDataStore.getObsByConceptId(patientUuid, 23779);
-        hiv_test = JSON.parse(hiv_test);
-        if(hiv_test.length) {
-            hiv_test = hiv_test[0];
-            if (hiv_test.valueCoded.id == 703){
-                $('#tmp\\.hiv_test').val('Positivo');
-                $('#demographicsupdate\\.hiv_test').val('703^Positivo^99DCT');
-            } else if (hiv_test.valueCoded.id == 664){
-                $('#tmp\\.hiv_test').val('Negativo');
-                $('#demographicsupdate\\.hiv_test').val('664^Negativo^99DCT');
-            } else if (hiv_test.valueCoded.id == 1067){
-                $('#tmp\\.hiv_test').val('Desconhecido');
-                $('#demographicsupdate\\.hiv_test').val('1067^Desconhecido^99DCT');
-            }
-            $('#demographicsupdate\\.hiv_test').trigger('change');
-        }
-
-        var htc_offered = htmlDataStore.getObsByConceptId(patientUuid, 165266);
-        htc_offered = JSON.parse(htc_offered);
-        if(htc_offered.length) {
-            htc_offered = htc_offered[0];
-            if (htc_offered.valueCoded.id == 1065){
-                $('#tmp\\.htc_offered').val('Sim');
-            } else if (htc_offered.valueCoded.id == 1066){
-                $('#tmp\\.htc_offered').val('Nao');
-            }
-            $('#demographicsupdate\\.htc_offered').trigger('change');
-        }
-
-        var htc_accepted = htmlDataStore.getObsByConceptId(patientUuid, 165267);
-        htc_accepted = JSON.parse(htc_accepted);
-        if(htc_accepted.length) {
-            htc_accepted = htc_accepted[0];
-            if (htc_accepted.valueCoded.id == 1065){
-                $('#tmp\\.htc_accepted').val('Sim');
-            } else if (htc_accepted.valueCoded.id == 1066){
-                $('#tmp\\.htc_accepted').val('Nao');
-            }
-        }
-
-        var hiv_care = htmlDataStore.getObsByConceptId(patientUuid, 23780);
-        hiv_care = JSON.parse(hiv_care);
-        if(hiv_care.length) {
-            hiv_care = hiv_care[0];
-            if (hiv_care.valueCoded.id == 1065){
-                $('#tmp\\.hiv_care').val('Sim');
-                $('#demographicsupdate\\.hiv_care').val('1065^Sim^99DCT');
-            } else if (hiv_care.valueCoded.id == 1066){
-                $('#tmp\\.hiv_care').val('Nao');
-                $('#demographicsupdate\\.hiv_care').val('1066^Nao^99DCT');
-            }
-            $('#demographicsupdate\\.hiv_care').trigger('change');
-        }
-
         $('#tmp\\.htc_offered').change(function () {
             if($(this).val() == 'Sim'){
                 $('.tmp_htc_accepted').show();
@@ -621,32 +575,6 @@
             }
         });
         $('#demographicsupdate\\.htc_offered').trigger('change');
-
-        var child_at_risk_treatment = htmlDataStore.getObsByConceptId(patientUuid, 1885);
-        child_at_risk_treatment = JSON.parse(child_at_risk_treatment);
-        if(child_at_risk_treatment.length) {
-            child_at_risk_treatment = child_at_risk_treatment[0];
-            if (child_at_risk_treatment.valueCoded.id == 1065){
-                $('#tmp\\.child_at_risk_treatment').val('Sim');
-                $('#demographicsupdate\\.child_at_risk_treatment').val('1065^Sim^99DCT');
-            } else if (child_at_risk_treatment.valueCoded.id == 1066){
-                $('#tmp\\.child_at_risk_treatment').val('Nao');
-                $('#demographicsupdate\\.child_at_risk_treatment').val('1066^Nao^99DCT');
-            } else if (child_at_risk_treatment.valueCoded.id == 23892){
-                $('#tmp\\.child_at_risk_treatment').val('Alta');
-                $('#demographicsupdate\\.child_at_risk_treatment').val('23892^Alta^99DCT');
-            }
-            $('#demographicsupdate\\.child_at_risk_treatment').trigger('change');
-        }
-
-        var relative_nid = htmlDataStore.getObsByConceptId(patientUuid, 23781);
-        relative_nid = JSON.parse(relative_nid);
-        if(relative_nid.length) {
-            relative_nid = relative_nid[0];
-            $('#tmp\\.relative_nid').val(relative_nid.valueText);
-            $('#demographicsupdate\\.relative_nid').val(relative_nid.valueText);
-            $('#demographicsupdate\\.relative_nid').trigger('change');
-        }
 
         var prePopulateData = $.trim($('#pre_populate_data').html());
         var indexCaseUuid = 'aa';

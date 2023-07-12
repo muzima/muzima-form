@@ -11,6 +11,8 @@
     <script src="js/additional-methods.min.js"></script>
     <script src="js/bootstrap-datetimepicker.min.js"></script>
     <script src="js/muzima.js"></script>
+	<meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>Formulário de Triangulação</title>
 </head>
 <body class="col-md-10 col-md-offset-1">
@@ -149,19 +151,23 @@
 			TIPO DE VISITA<span class="required">*</span>
 			</label>
 			<select class="form-control input-section" id="obs.type_of_visit" required
-				name="obs.type_of_visit" data-concept="1981^TIPO DE ATENDIMENTO FAMILIAR^99DCT">
+				name="obs.type_of_visit" data-concept="1981^TIPO DE ATENDIMENTO FAMILIAR^99DCT" readonly="readonly" disabled >
 				<option value="">...</option>
 				<option value="2161^VISITA DE APOIO^99DCT">Visita preventiva</option>
 				<option value="2160^VISITA DE BUSCA^99DCT">Visita de Reintegração</option>
-				<option value="23914^VISITA AOS CASOS ESPECIAIS^99DCT">Visita aos casos especiais</option>
+				<option value="23914^VISITA AOS CASOS ESPECIAIS/CM^99DCT">Clínica Móvel</option>
+				<option value="23914^VISITA AOS CASOS ESPECIAIS/AMA^99DCT">Aconselhamento para Melhoria de Adesão (AMA)</option>
+				<option value="2160^VISITA DE BUSCA/DCP^99DCT">Dispensa Comunitária via Provedor</option>
 			</select>
+			<input class="form-control" name="obs_comment.type_of_visit"
+                   data-obscommentfor="obs.type_of_visit"  id="obs_comment.type_of_visit" type="hidden">
         </div> 
 		<div class="form-group">
 			<label for="obs.patient_triangulation_status">
 			Estado de Triangulação do Paciente<span class="required">*</span>
 			</label>
 			<select class="form-control input-section" id="obs.patient_triangulation_status" required
-				name="obs.patient_triangulation_status" data-concept="23848^ESTADO DA TRIANGULACAO DO PACIENTE^99DCT">
+				name="obs.patient_triangulation_status" data-concept="23848^ESTADO DA TRIANGULACAO DO PACIENTE^99DCT" disabled >
 				<option value="">...</option>
 				<option value="23846^PRECISA RASTREAMENTO^99DCT">Sim, precisa de visita</option>
 				<option value="23847^NAO PRECISA RASTREAMENTO^99DCT">Não há necessidade de visita</option>
@@ -171,7 +177,7 @@
 			<div class="form-group concept-set">
 				<div class="form-group">
 					<label for="obs.reason_for_not_tracing_patient">
-						razão para não rastrear paciente
+						Razão para não realizar a visita domiciliária
 					</label>
 					<div class="form-group">
 						<label class="font-normal">
@@ -285,7 +291,7 @@
 					<label class="font-normal">
 						<input id="obs.reason_for_visit.aconselhamento" type="checkbox" name="obs.reason_for_visit"
 						data-concept="2172^MOTIVO DE VISITA/BUSCA DO PACIENTE^99DCT" value="6253^TRATAMENTO SEGUIMENTO SERVICO QUE PROVIDENCIA^99DCT" >
-						Seguimento preventive
+						Seguimento preventivo
 					</label>
 				</div>				
 				<div class="form-group">
@@ -312,10 +318,9 @@
 					<option value="">...</option>
 					<option value="2175^SERVIÇO TARV ADULTO^99DCT">TARV (Clínica/APSS e PP)</option>
 					<option value="1872^CCR^99DCT">CCR</option>
-					<option value="1985^GATV/PTV CPN^99DCT">CPN</option>
+					<option value="1598^PREVENTION MOTHER CHILD TRANSMISSION^99DCT">CPN</option>
 					<option value="1414^PLANO NACIONAL PARA COMBATE TUBERCULOSE^99DCT">PNCT</option>
 					<option value="1987^GATV/SAAJ^99DCT">SAAJ</option>	
-					<option value="1987^GATV/SAAJ^99DCT">SAAJ</option>					
 					<option value="23913^OUTRO^99DCT">Outro</option>
 				</select>
 			</div> 
@@ -328,7 +333,7 @@
 			</div>
 			<div class="form-group sub-section">
 				<label for="obs.health_worker">Nome do Voluntário:<span class="required"></span></label>
-					<input class="form-control" id="temp.health_worker" name="temp.health_worker" type="text" required="required" placeholder="Start typing something...">
+					<input class="form-control" id="temp.health_worker" name="temp.health_worker" type="text" required="required" placeholder="Comece a escrever...">
 				    <input class="form-control" id="obs.health_worker_id" name="obs.health_worker_id" type="text" required="required" data-concept="1912^TRABALHADOR DE SAÚDE^99DCT" readonly>
 			</div>
 			<div class="form-group" id="home_visit_date">
@@ -355,14 +360,14 @@
 			</div>
 	    </div>
 		<div class="form-group">
-            <label for="encounter.encounter_datetime">Data de visita:<span class="required">*</span>
+            <label for="encounter.encounter_datetime">Data de preenchimento do Formulário:<span class="required">*</span>
             </label>
             <input class="form-control datetimepicker nonFutureDate past-date input-section-2" id="encounter.encounter_datetime"
-                   name="encounter.encounter_datetime" type="text" readonly="readonly"
+                   name="encounter.encounter_datetime" type="text" readonly="readonly" disabled
                    required="required">
         </div>
 		<div class="form-group">
-			<label for="encounter.provider_id_select">Nome do Conselheiro:<span class="required">*</span></label>
+			<label for="encounter.provider_id_select">Nome do provedor que fez a alocação:<span class="required">*</span></label>
 			<input class="form-control valid-provider-only input-section-2" id="encounter.provider_id_select" type="text" readonly="readonly">
 			<input class="form-control" name="encounter.provider_id_select" type="hidden">
 		</div>
@@ -371,7 +376,7 @@
 			<input class="form-control input-section-2" id="encounter.provider_id" disabled name="encounter.provider_id" type="text" required="required"  placeholder="Provider Id">
 		</div>
 		<div class="form-group">
-            <label for="encounter.location_id">Unidade Sanitaria:<span class="required">*</span></label>
+            <label for="encounter.location_id">Local de Encontro:<span class="required">*</span></label>
             <input class="form-control valid-location-only input-section-2" id="encounter.location_id" type="text" required="required" readonly="readonly">
             <input class="form-control" name="encounter.location_id" type="hidden">						
 			<input class="form-control" id="encounter.form_uuid" name="encounter.form_uuid" type="hidden" required="required">
@@ -506,40 +511,85 @@ $.each(prePopulateJSON, function(key, value) {
 	   
 $('#obs\\.professional_referral_name').val($('#encounter\\.provider_id_select').val());
 
-	 
 var patientuuid = $('#patient\\.uuid').val();
-var historyByData = htmlDataStore.getObsByConceptId(patientuuid,1410); 
+var historyByData = htmlDataStore.getObsByEncounterType(patientuuid,"e278f956-1d5f-11e0-b929-000c29ad1d07"); 
 historyByData = JSON.parse(historyByData);
 var historyByDataSize = historyByData.length-1;
 if(historyByDataSize==-1){
   $("#missed_consultation_div").hide(); 
 } else {
+  if(historyByData[0].valueDatetime==null){
+	$("#missed_consultation_div").hide();
+  }
+  else {
   var missedDate = new Date(historyByData[0].valueDatetime.replace( /(\d{2})-(\d{2})-(\d{4})/, "$2/$1/$3"));
   var today = new Date();
   var milliSecondsInAYear = 1000 * 60 * 60 * 24;
   var days = (today - missedDate) / milliSecondsInAYear;
-  if(days>0){
+
+  var missedYear = missedDate.getFullYear();
+  var year = today.getFullYear();
+
+  var missedMonth = missedDate.getMonth() + 1;
+  var month = today.getMonth() + 1;
+
+  var missedDay = missedDate.getDay();
+  var day = today.getDay();
+  if(missedYear == year && missedMonth == month && missedDay == day){
+	$("#missed_consultation_div").hide();
+  }
+  else if(days>0){
 	  $("#missed_consultation_div").show(); 
 	  $("#temp\\.missed_consultation_days").val(Math.floor(days));
 	  $("#temp\\.missed_consultation").val(historyByData[0].valueDatetime);
   }else{
 	  $("#missed_consultation_div").hide();
   }
+ }
 } 
 
 var cohortMembership = htmlDataStore.getCohortMembershipByPatientUuid(patientuuid);
 var cohortMembershipJson =  JSON.parse(cohortMembership);
 if(parseInt(cohortMembershipJson.length)==1){
 	$.each(cohortMembershipJson, function (i,obj) {
-		if(obj.cohortName.includes("_SV")){
+		if(obj.cohortName.includes("_AMA")){
+			$("#obs\\.type_of_visit").val("23914^VISITA AOS CASOS ESPECIAIS/AMA^99DCT");
+			$('#obs\\.type_of_visit').prop('disabled', 'disabled');
+			$('#obs\\.patient_triangulation_status').removeAttr("disabled");
+		}else if(obj.cohortName.includes("_CM")){
+			$("#obs\\.type_of_visit").val("23914^VISITA AOS CASOS ESPECIAIS/CM^99DCT");
+			$('#obs\\.type_of_visit').prop('disabled', 'disabled');
+			$('#obs\\.patient_triangulation_status').removeAttr("disabled");
+		}else if(obj.cohortName.includes("_DCP_LTFU")){
+			$("#obs\\.type_of_visit").val("2160^VISITA DE BUSCA/DCP^99DCT");
+			$('#obs\\.type_of_visit').prop('disabled', 'disabled');
+			$('#obs\\.patient_triangulation_status').removeAttr("disabled");
+		}else if(obj.cohortName.includes("_SV")){
 			$("#obs\\.type_of_visit").val("2161^VISITA DE APOIO^99DCT");
 			$('#obs\\.type_of_visit').prop('disabled', 'disabled');
-		}else if(obj.cohortName.includes("_LTFU")){
+			$('#obs\\.patient_triangulation_status').removeAttr("disabled");
+		} else if(obj.cohortName.includes("_LTFU")){
 			$("#obs\\.type_of_visit").val("2160^VISITA DE BUSCA^99DCT");
 			$('#obs\\.type_of_visit').prop('disabled', 'disabled');
-		}
+			$('#obs\\.patient_triangulation_status').removeAttr("disabled");
+		} else {
+			$('#obs\\.patient_triangulation_status').prop('disabled', true);
+		}	
 	});
 }
+
+var visitTypeValue = $('#obs\\.type_of_visit').val();
+if(visitTypeValue == "23914^VISITA AOS CASOS ESPECIAIS/AMA^99DCT"){
+		$("#obs_comment\\.type_of_visit").val("AMA");
+        } else if(visitTypeValue == "23914^VISITA AOS CASOS ESPECIAIS/CM^99DCT"){
+			$("#obs_comment\\.type_of_visit").val("CM");
+		} else if(visitTypeValue == "2160^VISITA DE BUSCA^99DCT"){
+			$("#obs_comment\\.type_of_visit").val("LTFU");
+        } else if(visitTypeValue == "2160^VISITA DE BUSCA/DCP^99DCT"){
+			$("#obs_comment\\.type_of_visit").val("DCP");
+        } else if(visitTypeValue == "2161^VISITA DE APOIO^99DCT"){
+			$("#obs_comment\\.type_of_visit").val("SV");
+        } 
 
 var gaac = htmlDataStore.getObsByConceptId(patientuuid,23724);  
 gaac = JSON.parse(gaac);
