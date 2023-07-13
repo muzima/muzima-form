@@ -14,14 +14,14 @@
         <script src="js/muzima.js"></script>
         <meta charset="utf-8">
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-        <title>Formulário ATS e Adicionar Contacto</title>
+        <title>Formulario de ATS</title>
     </head>
 <body class="col-md-8 col-md-offset-2">
     <div id="result"></div>
     <form id="mini_registration_form" name="mini_registration_form">
         <div id="pre_populate_data">
         </div>
-        <h2 class="text-center">Formulário ATS e Adicionar Contacto</h2>
+        <h2 class="text-center">Formulario de ATS</h2>
 
         <div class="section">
             <h3>Nome do Contacto</h3>
@@ -69,7 +69,7 @@
                 <input class="form-control" id="demographicsupdate.middle_name" name="demographicsupdate.middle_name" type="text">
             </div>
         </div>
-        
+
         <div class="section">
             <h3>Outros Dados Demográficos</h3>
             <div id="relationshipStub">
@@ -152,8 +152,8 @@
                     <label for="tmp.birthdate_type">Registar a data de nascimento... <span class="required">*</span></label>
                     <select class="form-control" name="tmp.birthdate_type" id="tmp.birthdate_type" required="required">
                         <option value="">...</option>
-                        <option value="birthdate">Incluir a data de nascimento (seleccionar a …)</option>
-                        <option value="age">Incluir a idade (seleccionar a …)</option>
+                        <option value="birthdate">Incluir a data de nascimento</option>
+                        <option value="age">Incluir a idade</option>
                     </select>
                 </div>
                 <div class="form-group show_birthdate">
@@ -180,8 +180,8 @@
             </div>
         </div>
 
-        <div class="section">
-            <h3>Situação familiar conjunta</h3>
+        <div class="section" hidden>
+            <h3>Situação familiar</h3>
             <div class="form-group">
                 <label for="tmp.hiv_test">Teste de HIV:</label>
                 <input class="form-control" id="tmp.hiv_test"
@@ -258,7 +258,6 @@
             </div>
             <div class="form-group">
                 <label for="demographicsupdate.hiv_care">Em Cuidados de HIV?</label>
-                <label for="demographicsupdate.hiv_care">Em Cuidados de HIV?</label>
                 <select class="form-control" id="demographicsupdate.hiv_care"
                         name="demographicsupdate.hiv_care" data-concept="23780^Cuidados HIV^99DCT">
                     <option value="">...</option>
@@ -266,9 +265,8 @@
                     <option value="1066^Nao^99DCT">Nao</option>
                 </select>
             </div>
-           
+
             <div class="form-group">
-                <label for="demographicsupdate.child_at_risk_treatment">Em CCR?</label>
                 <label for="demographicsupdate.child_at_risk_treatment">Em CCR?</label>
                 <select class="form-control" id="demographicsupdate.child_at_risk_treatment"
                         name="demographicsupdate.child_at_risk_treatment" data-concept="1885^TRATEMENTO (CCR)^99DCT">

@@ -19,41 +19,74 @@
 <body class="col-md-8 col-md-offset-2">
 
 <div id="result">
-	
+
 </div>
 <div id="pre_populate_data">
- 
+
 </div>
 <form id="demographics_update_form" name="demographics_update_form">
-    <h2 class="text-center">Formulário de Dados Demográficos do Paciente</h2>
+    <h3 class="text-center">Formulário de Dados Demográficos do Paciente</h3>
 
     <div class="section">
-        <h3>Nome do Paciente</h3>
+        <h3>Identificadores</h3>
         <div class="form-group">
-            <input class="form-control" id="patient.uuid"
-                   name="patient.uuid" type="hidden" readonly="readonly">
+            <label for="patient.medical_record_number">NID : </label>
+
+            <div class="form-horizontal">
+                <div class="group-set" id="patient.medical_record_number" data-group="patient.medical_record_number">
+                    <input class="barcode_text form-control" id="tmp.medical_record_number"
+                           name="tmp.medical_record_number" type="text" readonly>
+                    <input type="hidden" id="identifier_value" name="identifier_value">
+                    <input data-metadata-for="identifier_value" type="hidden" id="identifier_type_uuid" name="identifier_type_uuid" value="e2b966d0-1d5f-11e0-b929-000c29ad1d07">
+                </div>
+            </div>
         </div>
-        <div class="form-group">
-            <label for="patient.family_name">Apelido: <span class="required">*</span> </label>
-            <input class="form-control" id="patient.family_name" name="patient.family_name" type="text"
-                   readonly="readonly" required="required">
-        </div>
-        <div class="form-group">
-            <label for="patient.given_name">Nome: <span class="required">*</span></label>
-            <input class="form-control" id="patient.given_name" name="patient.given_name" type="text"
-                   readonly="readonly" required="required">
-        </div>
-        <div class="form-group">
-            <label for="patient.middle_name">Nome do meio:</label>
-            <input class="form-control" id="patient.middle_name" name="patient.middle_name" type="text"
-            readonly="readonly">
-        </div>
-        <div class="form-group">
-            <label for="tmp.update_names">
-                <input id="tmp.update_names" name="tmp.update_names"
-                   type="checkbox">
-                   Vai atualizar nomes? (se sim, permitir editar)
-            </label>
+    </div>
+    <div class="section" id="patient_names">
+        <h3>
+            <a data-toggle="collapse" data-parent="#accordion" href="#patient_names" aria-expanded="false" aria-controls="patient_names" id="patient_names.section">
+				1. Nome do Paciente
+			</a>
+			<a data-toggle="collapse" data-parent="#accordion" aria-expanded="false" href="#patient_names" id="patient_names.section">
+				<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrows-collapse" viewBox="0 0 16 16">
+					<path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13A.5.5 0 0 1 1 8zm7-8a.5.5 0 0 1 .5.5v3.793l1.146-1.147a.5.5 0 0 1 .708.708l-2 2a.5.5 0 0 1-.708 0l-2-2a.5.5 0 1 1 .708-.708L7.5 4.293V.5A.5.5 0 0 1 8 0zm-.5 11.707-1.146 1.147a.5.5 0 0 1-.708-.708l2-2a.5.5 0 0 1 .708 0l2 2a.5.5 0 0 1-.708.708L8.5 11.707V15.5a.5.5 0 0 1-1 0v-3.793z"/>
+				</svg>
+			</a>
+        </h3>
+        <div id="patient_names" class="panel-collapse collapse in">
+            <div id="patient_names.section_div">
+                <div class="form-group">
+                    <input class="form-control" id="patient.uuid"
+                           name="patient.uuid" type="hidden" readonly="readonly">
+                </div>
+                <div class="form-group">
+                    <label for="patient.family_name">Apelido: <span class="required">*</span> </label>
+                    <input class="form-control" id="patient.family_name" name="patient.family_name" type="text"
+                           readonly="readonly" required="required">
+                </div>
+                <div class="form-group">
+                    <label for="patient.given_name">Nome: <span class="required">*</span></label>
+                    <input class="form-control" id="patient.given_name" name="patient.given_name" type="text"
+                           readonly="readonly" required="required">
+                </div>
+                <div class="form-group">
+                    <label for="patient.middle_name">Nome do meio:</label>
+                    <input class="form-control" id="patient.middle_name" name="patient.middle_name" type="text"
+                    readonly="readonly">
+                </div>
+                <div class="form-group">
+                    <label for="patient.nick_name">Nome de Casa / Alcunha</label>
+                    <input class="form-control" id="patient.nick_name" name="patient.nick_name" type="text"
+                    readonly="readonly">
+                </div>
+                <div class="form-group">
+                    <label for="tmp.update_names">
+                        <input id="tmp.update_names" name="tmp.update_names"
+                           type="checkbox">
+                           Vai atualizar nomes? (se sim, permitir editar)
+                    </label>
+                </div>
+            </div>
         </div>
     </div>
     <div class="section" id="update_names">
@@ -72,123 +105,159 @@
             <label for="demographicsupdate.middle_name">Novo nome do meio:</label>
             <input class="form-control" id="demographicsupdate.middle_name" name="demographicsupdate.middle_name" type="text">
         </div>
-    </div>
-    <div class="section" id="update_names">
-        <h3>Outros Dados Demográficos</h3>
-            <div class="form-group">
-                <label for="patient.sex">Sexo: <span class="required">*</span></label>
-                <input id="patient.sex" name="patient.sex" type="hidden">
-                <input class="form-control" disabled id="tmp.patient.sex" name="tmp.patient.sex" type="text">
-            </div>
-            <div class="form-group">
-                <label for="tmp.update_sex">
-                    <input id="tmp.update_sex" name="tmp.update_sex"
-                       type="checkbox">
-                       Vai actualizar gênero? (se sim, permitir editar)
-                </label>
-            </div>
-            <div class="form-group sub-section" id="update_sex">
-                <label for="demographicsupdate.sex">Novo Sexo: <span class="required">*</span></label>
-                <select class="form-control" id="demographicsupdate.sex" name="demographicsupdate.sex">
-                    <option value="">...</option>
-                    <option value="M">Masculino</option>
-                    <option value="F">Femenino</option>
-                </select>
-            </div>
-            <div class="form-group birthdate">
-                <label for="patient.birth_date">Data de nascimento  <span class="required">*</span></label>
-                <input class="form-control birth_date_picker nonFutureDate" id="patient.birth_date" name="patient.birth_date"
-                       type="text" disabled="disabled" readonly="readonly">
-            </div>
-            <div class="form-group birthdate">
-                <label for="patient.birthdate_estimated">Esta data de nascimento é uma estimativa?  <span class="required">*</span></label>
-                <select class="form-control" id="patient.birthdate_estimated" name="patient.birthdate_estimated"
-                        disabled="disabled" readonly="readonly">
-                    <option value="">...</option>
-                    <option value="true">Sim</option>
-                    <option value="false">Não</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="tmp.update_birthdate">
-                    <input id="tmp.update_birthdate" name="tmp.update_birthdate"
-                       type="checkbox">
-                       Mudará a data de nascimento? (se sim, permitir editar)
-                </label>
-            </div>
-            <div id="update_birthdate" class="sub-section">
-                <div class="form-group">
-                    <label for="tmp.birthdate_type">Registrará a data de nascimento... <span class="required">*</span></label>
-                    <select class="form-control" name="tmp.birthdate_type" id="tmp.birthdate_type" required="required">
-                        <option value="">...</option>
-                        <option value="birthdate">Por data de nascimento</option>
-                        <option value="age">Por idade</option>
-                    </select>
-                </div>
-                <div class="form-group show_birthdate">
-                    <label for="demographicsupdate.birth_date">Selecione Nova Data de Nascimento<span class="required">*</span></label>
-                    <input class="form-control birth_date_picker nonFutureDate" id="demographicsupdate.birth_date"
-                    name="demographicsupdate.birth_date"
-                           type="text"
-                           required="required"
-                           readonly="readonly">
-                </div>
-                <div class="form-group show_birthdate">
-                    <label for="demographicsupdate.birthdate_estimated">Esta data de nascimento é uma estimativa? <span
-                            class="required">*</span></label>
-                    <select class="form-control" id="demographicsupdate.birthdate_estimated" name="demographicsupdate.birthdate_estimated"
-                            required="required">
-                        <option value="">...</option>
-                        <option value="true">SIM</option>
-                        <option value="false">NÃO</option>
-                    </select>
-                </div>
-                <div class="form-group show_age">
-                    <label for="tmp.age_in_years">Quantos anos de idade tem?<span class="required">*</span></label>
-                    <input class="form-control" id="tmp.age_in_years" name="tmp.age_in_years" type="number" required="required">
-    
-                </div>
-            </div>
-    </div>
-    <div class="section">
-        <h3>Identificadores</h3>
         <div class="form-group">
-            <label for="patient.medical_record_number">NID : <span class="required require_medical_record_number_hint">*</span></label>
-
-            <div class="form-horizontal">
-                <div class="group-set" id="patient.medical_record_number" data-group="patient.medical_record_number">
-                    <input class="barcode_text form-control" id="tmp.medical_record_number"
-                           name="tmp.medical_record_number" type="text" readonly>
-                    <input type="hidden" id="identifier_value" name="identifier_value">
-                    <input data-metadata-for="identifier_value" type="hidden" id="identifier_type_uuid" name="identifier_type_uuid" value="e2b966d0-1d5f-11e0-b929-000c29ad1d07">
+            <label for="demographicsupdate.nick_name">Novo Nome de Casa / Alcunha</label>
+            <input class="form-control" id="demographicsupdate.nick_name" name="demographicsupdate.nick_name" type="text" data-concept="23924^ALCUNHA DO PACIENTE^99DCT">
+        </div>
+    </div>
+    <div class="section" id="patient_gender">
+        <h3>
+            <a data-toggle="collapse" data-parent="#accordion" href="#patient_gender" aria-expanded="false" aria-controls="patient_gender" id="patient_gender.section">
+				2. Gênero
+			</a>
+			<a data-toggle="collapse" data-parent="#accordion" aria-expanded="false" href="#patient_gender" id="patient_gender.section">
+				<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrows-collapse" viewBox="0 0 16 16">
+					<path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13A.5.5 0 0 1 1 8zm7-8a.5.5 0 0 1 .5.5v3.793l1.146-1.147a.5.5 0 0 1 .708.708l-2 2a.5.5 0 0 1-.708 0l-2-2a.5.5 0 1 1 .708-.708L7.5 4.293V.5A.5.5 0 0 1 8 0zm-.5 11.707-1.146 1.147a.5.5 0 0 1-.708-.708l2-2a.5.5 0 0 1 .708 0l2 2a.5.5 0 0 1-.708.708L8.5 11.707V15.5a.5.5 0 0 1-1 0v-3.793z"/>
+				</svg>
+			</a>
+        </h3>
+        <div id="patient_gender" class="panel-collapse collapse in">
+            <div class="form-group" id="patient_gender.section_div">
+                <div class="form-group">
+                    <label for="patient.sex">Sexo: <span class="required">*</span></label>
+                    <input id="patient.sex" name="patient.sex" type="hidden">
+                    <input class="form-control" disabled id="tmp.patient.sex" name="tmp.patient.sex" type="text">
+                </div>
+                <div class="form-group">
+                    <label for="tmp.update_sex">
+                        <input id="tmp.update_sex" name="tmp.update_sex"
+                           type="checkbox">
+                           Vai actualizar gênero? (se sim, permitir editar)
+                    </label>
+                </div>
+                <div class="form-group sub-section" id="update_sex">
+                    <label for="demographicsupdate.sex">Novo Sexo: <span class="required">*</span></label>
+                    <select class="form-control" id="demographicsupdate.sex" name="demographicsupdate.sex">
+                        <option value="">...</option>
+                        <option value="M">Masculino</option>
+                        <option value="F">Femenino</option>
+                    </select>
                 </div>
             </div>
         </div>
+
+        </div>
+        <div class="section" id="patient_age">
+            <h3>
+                <a data-toggle="collapse" data-parent="#accordion" href="#patient_age" aria-expanded="false" aria-controls="patient_age" id="patient_age.section">
+                    3. Idade
+                </a>
+                <a data-toggle="collapse" data-parent="#accordion" aria-expanded="false" href="#patient_age" id="patient_age.section">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrows-collapse" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13A.5.5 0 0 1 1 8zm7-8a.5.5 0 0 1 .5.5v3.793l1.146-1.147a.5.5 0 0 1 .708.708l-2 2a.5.5 0 0 1-.708 0l-2-2a.5.5 0 1 1 .708-.708L7.5 4.293V.5A.5.5 0 0 1 8 0zm-.5 11.707-1.146 1.147a.5.5 0 0 1-.708-.708l2-2a.5.5 0 0 1 .708 0l2 2a.5.5 0 0 1-.708.708L8.5 11.707V15.5a.5.5 0 0 1-1 0v-3.793z"/>
+                    </svg>
+                </a>
+            </h3>
+            <div id="patient_age" class="panel-collapse collapse in">
+                <div class="form-group" id="patient_age.section_div">
+                    <div class="form-group birthdate">
+                        <label for="patient.birth_date">Data de nascimento  <span class="required">*</span></label>
+                        <input class="form-control birth_date_picker nonFutureDate" id="patient.birth_date" name="patient.birth_date"
+                               type="text" disabled="disabled" readonly="readonly">
+                    </div>
+                    <div class="form-group birthdate">
+                        <label for="patient.birthdate_estimated">Esta data de nascimento é uma estimativa?  <span class="required">*</span></label>
+                        <select class="form-control" id="patient.birthdate_estimated" name="patient.birthdate_estimated"
+                                disabled="disabled" readonly="readonly">
+                            <option value="">...</option>
+                            <option value="true">Sim</option>
+                            <option value="false">Não</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="tmp.update_birthdate">
+                            <input id="tmp.update_birthdate" name="tmp.update_birthdate"
+                               type="checkbox">
+                               Mudará a data de nascimento? (se sim, permitir editar)
+                        </label>
+                    </div>
+                    <div id="update_birthdate" class="sub-section">
+                        <div class="form-group">
+                            <label for="tmp.birthdate_type">Registrará a data de nascimento... <span class="required">*</span></label>
+                            <select class="form-control" name="tmp.birthdate_type" id="tmp.birthdate_type" required="required">
+                                <option value="">...</option>
+                                <option value="birthdate">Por data de nascimento</option>
+                                <option value="age">Por idade</option>
+                            </select>
+                        </div>
+                        <div class="form-group show_birthdate">
+                            <label for="demographicsupdate.birth_date">Selecione Nova Data de Nascimento<span class="required">*</span></label>
+                            <input class="form-control birth_date_picker nonFutureDate" id="demographicsupdate.birth_date"
+                            name="demographicsupdate.birth_date"
+                                   type="text"
+                                   required="required"
+                                   readonly="readonly">
+                        </div>
+                        <div class="form-group show_birthdate">
+                            <label for="demographicsupdate.birthdate_estimated">Esta data de nascimento é uma estimativa? <span
+                                    class="required">*</span></label>
+                            <select class="form-control" id="demographicsupdate.birthdate_estimated" name="demographicsupdate.birthdate_estimated"
+                                    required="required">
+                                <option value="">...</option>
+                                <option value="true">SIM</option>
+                                <option value="false">NÃO</option>
+                            </select>
+                        </div>
+                        <div class="form-group show_age">
+                            <label for="tmp.age_in_years">Quantos anos de idade tem?<span class="required">*</span></label>
+                            <input class="form-control" id="tmp.age_in_years" name="tmp.age_in_years" type="number" required="required">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
     </div>
-	<div class="section group-set" data-group="patient.personaddress">
-			<h3>Endereço</h3>
-			<div class="form-group">
-				<label for="address1">Avenida/Rua/Casa: </label>
-				<input class="form-control" id="address1" name="address1" type="text" readonly="readonly">
-			</div>
-			<div class="form-group">
-				<label for="address6">Localidade: </label>
-				<input class="form-control" id="address6" name="address6" type="text" readonly="readonly">
-			</div>
-			<div class="form-group">
-				<label for="address3">Quarteirão: </label>
-				<input class="form-control" id="address3" name="address3" type="text" readonly="readonly">
-			</div>
-			<div class="form-group">
-				<label for="address5">Bairro: </label>
-				<input class="form-control" id="address5" name="address5" type="text" readonly="readonly">
-			</div>			
-            <div class="form-group">
-            <label for="tmp.update_address">
-                <input id="tmp.update_address" name="tmp.update_address"
-                   type="checkbox">
-                   Vai atualizar o endereço? (se sim, permitir editar)
-            </label>
+	<div class="section group-set" data-group="patient.personaddress"  id="patient_address">
+        <h3>
+            <a data-toggle="collapse" data-parent="#accordion" href="#patient_address" aria-expanded="false" aria-controls="patient_address" id="patient_address.section">
+				4. Endereço
+			</a>
+			<a data-toggle="collapse" data-parent="#accordion" aria-expanded="false" href="#patient_address" id="patient_address.section">
+				<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrows-collapse" viewBox="0 0 16 16">
+					<path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13A.5.5 0 0 1 1 8zm7-8a.5.5 0 0 1 .5.5v3.793l1.146-1.147a.5.5 0 0 1 .708.708l-2 2a.5.5 0 0 1-.708 0l-2-2a.5.5 0 1 1 .708-.708L7.5 4.293V.5A.5.5 0 0 1 8 0zm-.5 11.707-1.146 1.147a.5.5 0 0 1-.708-.708l2-2a.5.5 0 0 1 .708 0l2 2a.5.5 0 0 1-.708.708L8.5 11.707V15.5a.5.5 0 0 1-1 0v-3.793z"/>
+				</svg>
+			</a>
+        </h3>
+        <div id="patient_address" class="panel-collapse collapse in">
+            <div class="form-group" id="patient_address.section_div">
+                <div class="form-group">
+                    <label for="address1">Avenida/Rua/Casa: </label>
+                    <input class="form-control" id="address1" name="address1" type="text" readonly="readonly">
+                </div>
+                <div class="form-group">
+                    <label for="address6">Localidade: </label>
+                    <input class="form-control" id="address6" name="address6" type="text" readonly="readonly">
+                </div>
+                <div class="form-group">
+                    <label for="address3">Quarteirão: </label>
+                    <input class="form-control" id="address3" name="address3" type="text" readonly="readonly">
+                </div>
+                <div class="form-group">
+                    <label for="address5">Bairro: </label>
+                    <input class="form-control" id="address5" name="address5" type="text" readonly="readonly">
+                </div>
+                <div class="form-group">
+                    <label for="patient.address_reference">Ponto de referência: </label>
+                    <input class="form-control" id="patient.address_reference" name="patient.address_reference" type="text" readonly="readonly">
+                </div>
+                <div class="form-group">
+                <label for="tmp.update_address">
+                    <input id="tmp.update_address" name="tmp.update_address"
+                       type="checkbox">
+                       Vai atualizar o endereço? (se sim, permitir editar)
+                </label>
+            </div>
+            </div>
         </div>
 	</div>
     <div class="section" id="update_address">
@@ -210,30 +279,53 @@
 				<label for="address5">Novo Bairro: </label>
 				<input class="form-control" id="address5" name="address5" type="text">
 			</div>
+
+				<input class="form-control" id="preferred" name="preferred" type="hidden" value="true">
+
 		</div>
+        <div class="form-group group-set" data-group="demographicsupdate.personattribute">
+            <label for="address_reference">Novo Ponto de referência: </label>
+            <input class="form-control" id="attribute_value" name="attribute_value" type="text">
+            <input data-metadata-for="attribute_value" type="hidden" id="attribute_type_uuid" name="attribute_type_uuid" value="e944813c-11b1-49f3-b9a5-9fbbd10beec2">
+            <input type="hidden" data-metadata-for="attribute_value" id="attribute_type_name" name="attribute_type_name" value="Ponto de Referência">
+        </div>
     </div>
-    <div class="section"> 
+    <div class="section" id="patient_contact">
         <div class="form-group">
-          <h3>Contacto Telemóvel do Paciente</h3>
-          <input class="form-control" id="patient.phone_number" name="patient.phone_number" type="tel" disabled="disabled">
-        </div>
-        <div class="form-group">
-            <label for="tmp.update_patient_contact">
-                <input id="tmp.update_patient_contact" name="tmp.update_patient_contact"
-                   type="checkbox">
-                   Vai atualizar o contacto? (se sim, permitir editar)
-            </label>
-        </div>
+            <h3>
+                <a data-toggle="collapse" data-parent="#accordion" href="#patient_contact" aria-expanded="false" aria-controls="patient_contact" id="patient_contact.section">
+                    5. Contacto Telemóvel do Paciente
+                </a>
+                <a data-toggle="collapse" data-parent="#accordion" aria-expanded="false" href="#patient_contact" id="patient_contact.section">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrows-collapse" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13A.5.5 0 0 1 1 8zm7-8a.5.5 0 0 1 .5.5v3.793l1.146-1.147a.5.5 0 0 1 .708.708l-2 2a.5.5 0 0 1-.708 0l-2-2a.5.5 0 1 1 .708-.708L7.5 4.293V.5A.5.5 0 0 1 8 0zm-.5 11.707-1.146 1.147a.5.5 0 0 1-.708-.708l2-2a.5.5 0 0 1 .708 0l2 2a.5.5 0 0 1-.708.708L8.5 11.707V15.5a.5.5 0 0 1-1 0v-3.793z"/>
+                    </svg>
+                </a>
+            </h3>
+            <div id="patient_contact" class="panel-collapse collapse in">
+                <div class="form-group" id="patient_contact.section_div">
+                    <input class="form-control" id="patient.phone_number" name="patient.phone_number" type="tel" disabled="disabled">
+
+                    <div class="form-group">
+                        <label for="tmp.update_patient_contact">
+                            <input id="tmp.update_patient_contact" name="tmp.update_patient_contact"
+                            type="checkbox">
+                            Vai atualizar o contacto? (se sim, permitir editar)
+                        </label>
+                    </div>
+                    </div>
+                </div>
+            </div>
      </div>
-    <div class="section" id="update_patient_contact"> 
-        <div class="form-group">
+    <div class="section" id="update_patient_contact">
+        <div class="form-group group-set"  data-group="demographicsupdate.personattribute">
             <label for="phone_number">Novo Contacto do Paciente: </label>
-            <input class="form-control" id="attribute_value"
-                       name="attribute_value" type="text" required="required">			
-                <input data-metadata-for="attribute_value" type="hidden" id="attribute_type_uuid" name="attribute_type_uuid" value="e2e3fd64-1d5f-11e0-b929-000c29ad1d07">
+            <input class="form-control" id="attribute_value" name="attribute_value" type="text" required="required">
+            <input data-metadata-for="attribute_value" type="hidden" id="attribute_type_uuid" name="attribute_type_uuid" value="e2e3fd64-1d5f-11e0-b929-000c29ad1d07">
+            <input type="hidden" data-metadata-for="attribute_value" id="attribute_type_name" name="attribute_type_name" value="Numero de Telefone">
         </div>
    </div>
-   <div class="section">
+   <div class="section" id="form_details_section">
       <h3>Detalhes do encontro</h3>
         <div class="form-group">
               <label for="encounter.encounter_datetime">Data do encontro<span class="required">*</span></label>
@@ -263,6 +355,10 @@
                type="hidden" value="false">
             <input class="form-control" id="tmp.custom_discriminator" name="tmp.custom_discriminator"
                value="mastercard-record-mapper" type="hidden" required="required">
+
+
+
+            <input class="form-control" id="encounter.process_as_individual_obs" name="encounter.process_as_individual_obs" type="hidden" value="true">
         </div>
     </div>
 </form>
@@ -276,6 +372,7 @@
         if ($(encounterDatetime).val() == "") {
             $(encounterDatetime).val(currentDate);
         }
+        $('#form_details_section').hide();
 
         var currentYear = new Date().getFullYear();
         var birthdate_start_year = currentYear - 140;
@@ -358,6 +455,7 @@
             }
         });
 
+
         $('.update_address_confirm_new').change(function(){
             var $parent = $(this).closest('.group-set');
             var $addressUpdateParent = $('#demographicsupdate\\.personAddress');
@@ -411,10 +509,8 @@
         $('#tmp\\.update_address').change(function(){
             if($(this).is(':checked')){
                 $('#update_address').show();
-                $('#update_patient_contact').show();
             } else {
                 $('#update_address').hide();
-                $('#update_patient_contact').hide();
             }
         });
         $('#tmp\\.update_address').trigger('change');
@@ -487,14 +583,31 @@
             }
         });
         dobType.trigger('change');
-		
+
     var patientUuid = $('#patient\\.uuid').val();
         var phoneNumberPersonAttributeType = "e2e3fd64-1d5f-11e0-b929-000c29ad1d07";
         var phoneNumber = htmlDataStore.getPersonAttribute(patientUuid,phoneNumberPersonAttributeType);
         phoneNumber = JSON.parse(phoneNumber);
         if('attribute_value' in phoneNumber){
-            $('attribute_type_uuid').val(phoneNumber.attribute_value);
+            $('attribute_type_uuid').val(phoneNumber.attribute_type_uuid);
             $('#patient\\.phone_number').val(phoneNumber.attribute_value);
+        }
+
+    var addressReferencePersonAttributeType = "e944813c-11b1-49f3-b9a5-9fbbd10beec2";
+    var reference = htmlDataStore.getPersonAttribute(patientUuid,addressReferencePersonAttributeType);
+    var addressReference = JSON.parse(reference);
+    if('attribute_value' in addressReference){
+        addressReference = addressReference.attribute_value;
+        $('attribute_type_uuid').val(addressReference.attribute_type_uuid);
+        $('#patient\\.address_reference').val(addressReference);
+    }
+
+
+    var nicNameObs = htmlDataStore.getObsByConceptId(patientUuid, 23924);
+        nicNameObs = JSON.parse(nicNameObs);
+        var nicNameObsSize = nicNameObs.length;
+        if(parseInt(nicNameObsSize)>-1){
+            $('#patient\\.nick_name').val(nicNameObs[0].valueText);
         }
 
     var medicalRecordNumber = htmlDataStore.getPatientIdentifier(patientUuid, "e2b966d0-1d5f-11e0-b929-000c29ad1d07");
@@ -503,7 +616,8 @@
             $("#identifier_value").val(medicalRecordNumber.identifier_value);
             $("#tmp\\.medical_record_number").val(medicalRecordNumber.identifier_value);
         }
-	
+
+
     document.setupAutoCompleteData('encounter\\.location_id');
 
     document.setupAutoCompleteDataForProvider('encounter\\.provider_id_select');
@@ -513,7 +627,57 @@
     document.setupValidationForProvider("$('#encounter\\.provider_id_select').val()","encounter\\.provider_id");
 
     document.setupValidationForLocation("$('#encounter\\.location_id').val()","encounter\\.location_id");
-		
+
+    $("#patient_contact\\.section").click(function() {
+        if($("#patient_contact\\.section_div").attr('hidden')==='hidden')
+        {
+            $("#patient_contact\\.section_div").removeAttr('hidden');
+        }
+        else{
+            $("#patient_contact\\.section_div").attr('hidden', 'true');
+        }
+    });
+
+    $("#patient_address\\.section").click(function() {
+        if($("#patient_address\\.section_div").attr('hidden')==='hidden')
+        {
+            $("#patient_address\\.section_div").removeAttr('hidden');
+        }
+        else{
+            $("#patient_address\\.section_div").attr('hidden', 'true');
+        }
+    });
+
+    $("#patient_age\\.section").click(function() {
+        if($("#patient_age\\.section_div").attr('hidden')==='hidden')
+        {
+            $("#patient_age\\.section_div").removeAttr('hidden');
+        }
+        else{
+            $("#patient_age\\.section_div").attr('hidden', 'true');
+        }
+    });
+
+    $("#patient_gender\\.section").click(function() {
+        if($("#patient_gender\\.section_div").attr('hidden')==='hidden')
+        {
+            $("#patient_gender\\.section_div").removeAttr('hidden');
+        }
+        else{
+            $("#patient_gender\\.section_div").attr('hidden', 'true');
+        }
+    });
+
+    $("#patient_names\\.section").click(function() {
+        if($("#patient_names\\.section_div").attr('hidden')==='hidden')
+        {
+            $("#patient_names\\.section_div").removeAttr('hidden');
+        }
+        else{
+            $("#patient_names\\.section_div").attr('hidden', 'true');
+        }
+    });
+
 });
 </script>
 </html>
