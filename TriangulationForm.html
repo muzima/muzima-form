@@ -21,330 +21,94 @@
 </div>
 <form id="triangulation_form" name="triangulation_form">
     <h2 class="text-center">Formulário de Triangulação</h2>
-    <div class="section" hidden="true">
-        <h3>Demografia</h3>
+    <div class="section">
         <div class="form-group">
             <input class="form-control" id="patient.uuid" name="patient.uuid" type="hidden" readonly="readonly">
 			<input class="form-control" id="patient.tagName" name="patient.tagName" type="hidden">
 			<input class="form-control" id="patient.tagUuid" name="patient.tagUuid" type="hidden">
         </div>
-        <div class="form-group">
-            <label for="patient.names">Nome do Paciente:</label>
-            <input class="form-control" id="patient.names"
-                   name="patient.names" type="text" readonly="readonly">
-        </div>
-		<div class="form-group">
-            <label for="patient.birth_date">Data de nascimento:</label>
-            <input class="form-control" id="patient.birth_date"
-                   name="patient.birth_date" type="text" readonly="readonly">
-        </div>
-		<div class="form-group">
-            <label for="patient.birth_date">Idade:</label>
-            <input class="form-control" id="patient.age"
-                   name="patient.age" type="text" readonly="readonly">
-        </div>
-        <div class="form-group">
-            <label for="patient.sex">Sexo:</label>
-            <input type="text" class="form-control" id="patient.sex" name="patient.sex" readonly="readonly">
-        </div>
 		<div class="form-group">
             <label for="patient.medical_record_number">NID </label>
             <input class="form-control" id="patient.medical_record_number" name="patient.medical_record_number" type="text" readonly="readonly">
-        </div> 
-	</div>
+        </div>
+        <div class="form-group">
+			<label for="patient.names">Nome</label>
+            <input class="form-control" id="patient.names"
+                   name="patient.names" type="text" readonly="readonly">
+		</div>
+		<div class="form-group">
+             <label for="elegibility.category">Categoria de Elegibilidade:</label>
+			 <select class="form-control input-section" id="derived-obs-by-intervention-type" required
+				readonly="readonly" disabled >
+				<option value="derived-obs-default">...</option>
+				<option value="derived-obs-faltoso">Faltoso</option>
+				<option value="derived-obs-elegivel-carga-viral">Elegivel Carga Viral</option>
+				<option value="derived-obs-carga-viral-alta">Carga Viral Alta</option>
+				<option value="derived-obs-abandono">Abandono</option>
+				<option value="derived-obs-preventiva">Preventiva</option>
+		     </select>
+        </div>
+    </div>
 
-		<div class="section section-div">
-		  <div class="panel-heading collapse-icons">
-		   <div>
-			<h4 class="panel-title">
-				<a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" id="address.section">
-					ENDEREÇO
-				</a>
-			 </h4>
-		   </div>
-		   <div>
-			<a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" id="address.section">
+<div class="section section-div form-group" id="visit_book_call">
+	<div class="panel-heading">
+		<h3 class="panel-title">
+			<a data-toggle="collapse" data-parent="#accordion" href="#visit_book_call" aria-expanded="false" aria-controls="visit_book_call_collapse" id="visit_book_call.section">
+				REGISTO NO LIVRO
+			</a>
+			<a data-toggle="collapse" data-parent="#accordion" aria-expanded="false" href="#visit_book_call" id="visit_book_call.section">
 				<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrows-collapse" viewBox="0 0 16 16">
 					<path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13A.5.5 0 0 1 1 8zm7-8a.5.5 0 0 1 .5.5v3.793l1.146-1.147a.5.5 0 0 1 .708.708l-2 2a.5.5 0 0 1-.708 0l-2-2a.5.5 0 1 1 .708-.708L7.5 4.293V.5A.5.5 0 0 1 8 0zm-.5 11.707-1.146 1.147a.5.5 0 0 1-.708-.708l2-2a.5.5 0 0 1 .708 0l2 2a.5.5 0 0 1-.708.708L8.5 11.707V15.5a.5.5 0 0 1-1 0v-3.793z"/>
 				</svg>
 			</a>
-		   </div>
-		  </div>
-						<div id="collapseOne" class="panel-collapse collapse in">
-								<div class="section section-div" hidden id="address.section_div">
-									<div class="section group-set" data-group="patient.personaddress">
-										<div class="form-group">
-											<label for="address5">Bairro: </label>
-											<input class="form-control" id="address5" name="address5" type="text" readonly="readonly">
-										</div>
-										<div class="form-group">
-											<label for="address1">Avenida/Rua: </label>
-											<input class="form-control" id="address1" name="address1" type="text" readonly="readonly">
-										</div>
-										<div class="form-group">
-											<label for="address6">Unidade Comunal: </label>
-											<input class="form-control" id="address6" name="address6" type="text" readonly="readonly">
-										</div>
-										<div class="form-group">
-											<label for="address3">Quarteirão: </label>
-											<input class="form-control" id="address3" name="address3" type="text" readonly="readonly">
-										</div>
-										<div class="form-group">
-											<label for="address2">Casa Nº: </label>
-											<input class="form-control" id="address2" name="address2" type="text" readonly="readonly">
-										</div>				
-									</div>
-								</div>
-							</div>
-        </div>
-
-    <!-- Sumario -->
-    <div class="section" hidden="true">
-				<h3>Sumário</h3>
-				<div class="form-group">
-					<label for="gaac">Gaac: </label>
-					<input class="form-control" id="gaac" name="gaac" type="text" readonly="readonly">
-				</div>
-				<div class="form-group">
-					<label for="familyApproach">Abordagem Familiar: </label>
-					<input class="form-control" id="familyApproach" name="familyApproach" type="text" readonly="readonly">
-				</div>
-				<div class="form-group">
-					<label for="tb">TB: </label>
-					<input class="form-control" id="tb" name="tb" type="text" readonly="readonly">
-				</div>
-				<div class="form-group">
-					<label for="lastVisit">Última Consulta: </label>
-					<input class="form-control" id="lastVisit" name="lastVisit" type="text" readonly="readonly">
-				</div>
-				<div class="form-group">
-					<label for="nextVisit">Próxima Consulta: </label>
-					<input class="form-control" id="nextVisit" name="nextVisit" type="text" readonly="readonly">
-				</div>
-				<div class="form-group">
-					<label for="lastWithdrawal">Último Levantamento: </label>
-					<input class="form-control" id="lastWithdrawal" name="lastWithdrawal" type="text" readonly="readonly">
-				</div>
-				<div class="form-group">
-					<label for="nextWithdrawal">Próximo Levantamento: </label>
-					<input class="form-control" id="nextWithdrawal" name="nextWithdrawal" type="text" readonly="readonly">
-				</div>				
+		</h3>
 	</div>
-    
-<div class="section section-div">
-					<div class="panel-heading">
-						<h4 class="panel-title">
-							<a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" id="triangulation.section">
-								TRIANGULAÇÃO
-							</a>
-							<a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" id="triangulation.section">
-								<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrows-collapse" viewBox="0 0 16 16">
-									<path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13A.5.5 0 0 1 1 8zm7-8a.5.5 0 0 1 .5.5v3.793l1.146-1.147a.5.5 0 0 1 .708.708l-2 2a.5.5 0 0 1-.708 0l-2-2a.5.5 0 1 1 .708-.708L7.5 4.293V.5A.5.5 0 0 1 8 0zm-.5 11.707-1.146 1.147a.5.5 0 0 1-.708-.708l2-2a.5.5 0 0 1 .708 0l2 2a.5.5 0 0 1-.708.708L8.5 11.707V15.5a.5.5 0 0 1-1 0v-3.793z"/>
-								</svg>
-							</a>
-						</h4>
-					</div>
-<div id="collapseOne" class="panel-collapse collapse in">
-    <div class="section section-div" id="triangulation.section_div">
+ <div id="visit_book_call" class="panel-collapse collapse in">
+    <div class="form-group" id="visit_book_call.section_div">
+        <div class="form-group">
+            <label for="patient.names">Nº do Livro de Chamadas e Visitas:</label>
+            <input class="form-control" id="bookNumber" name="bookNumber" type="number" data-concept="23948^Call and Visit Book Number^99DCT">
+        </div>
+		<div class="form-group">
+            <label for="patient.birth_date">Nº da Página:</label>
+            <input class="form-control" id="pageNumber" name="pageNumber" type="number" data-concept="23949^Call and Visit book Page^99DCT">
+        </div>
+		<div class="form-group">
+            <label for="patient.birth_date">Nº da Linha:</label>
+            <input class="form-control" id="lineNumber" name="lineNumber" type="number" data-concept="23950^Call and Visit Book Page row^99DCT">
+        </div>
+    </div>
+ </div>
+</div>
+
+<div class="section section-div form-group" id="triangulation">
+	<div class="panel-heading">
+		<h3 class="panel-title">
+			<a data-toggle="collapse" data-parent="#accordion" href="#triangulation" aria-expanded="false" aria-controls="triangulation" id="triangulation.section">
+				TRIANGULAÇÃO
+			</a>
+			<a data-toggle="collapse" data-parent="#accordion" aria-expanded="false" href="#triangulation" id="triangulation.section">
+				<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrows-collapse" viewBox="0 0 16 16">
+					<path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13A.5.5 0 0 1 1 8zm7-8a.5.5 0 0 1 .5.5v3.793l1.146-1.147a.5.5 0 0 1 .708.708l-2 2a.5.5 0 0 1-.708 0l-2-2a.5.5 0 1 1 .708-.708L7.5 4.293V.5A.5.5 0 0 1 8 0zm-.5 11.707-1.146 1.147a.5.5 0 0 1-.708-.708l2-2a.5.5 0 0 1 .708 0l2 2a.5.5 0 0 1-.708.708L8.5 11.707V15.5a.5.5 0 0 1-1 0v-3.793z"/>
+				</svg>
+			</a>
+		</h3>
+	</div>
+ <div id="tringulation" class="panel-collapse collapse in">
+  <div class="form-group" id="triangulation.section_div">
+	 <div class="section section-div">
 		<div class="form-group">
 			<label for="obs.type_of_visit">
-			TIPO DE VISITA<span class="required">*</span>
+			Tipo de Visita<span class="required">*</span>
 			</label>
 			<select class="form-control input-section" id="obs.type_of_visit" required
 				name="obs.type_of_visit" data-concept="1981^TIPO DE ATENDIMENTO FAMILIAR^99DCT" readonly="readonly" disabled >
 				<option value="">...</option>
 				<option value="2161^VISITA DE APOIO^99DCT">Visita preventiva</option>
 				<option value="2160^VISITA DE BUSCA^99DCT">Visita de Reintegração</option>
-				<option value="23914^VISITA AOS CASOS ESPECIAIS/CM^99DCT">Clínica Móvel</option>
-				<option value="23914^VISITA AOS CASOS ESPECIAIS/AMA^99DCT">Aconselhamento para Melhoria de Adesão (AMA)</option>
-				<option value="2160^VISITA DE BUSCA/DCP^99DCT">Dispensa Comunitária via Provedor</option>
+				<option value="23914^VISITA AOS CASOS ESPECIAIS^99DCT">Visita aos casos especiais</option>
 			</select>
-			<input class="form-control" name="obs_comment.type_of_visit"
-                   data-obscommentfor="obs.type_of_visit"  id="obs_comment.type_of_visit" type="hidden">
-        </div> 
-		<div class="form-group">
-			<label for="obs.patient_triangulation_status">
-			Estado de Triangulação do Paciente<span class="required">*</span>
-			</label>
-			<select class="form-control input-section" id="obs.patient_triangulation_status" required
-				name="obs.patient_triangulation_status" data-concept="23848^ESTADO DA TRIANGULACAO DO PACIENTE^99DCT" disabled >
-				<option value="">...</option>
-				<option value="23846^PRECISA RASTREAMENTO^99DCT">Sim, precisa de visita</option>
-				<option value="23847^NAO PRECISA RASTREAMENTO^99DCT">Não há necessidade de visita</option>
-			</select>
-        </div> 		
-		<div class="form-group" id="no_tracking_needed">
-			<div class="form-group concept-set">
-				<div class="form-group">
-					<label for="obs.reason_for_not_tracing_patient">
-						Razão para não realizar a visita domiciliária
-					</label>
-					<div class="form-group">
-						<label class="font-normal">
-							<input id="obs.reason_for_not_tracing_patient.clin" type="checkbox" name="obs.reason_for_not_tracing_patient"
-							data-concept="23852^RAZAO DE NAO RASTREAR O PACIENTE^99DCT" value="23849^VISITA CLINICA REGISTADA^99DCT">
-							Visita clínica registada
-						</label>
-					</div>	
-					<div class="form-group">
-						<label class="font-normal">
-							<input id="obs.reason_for_not_tracing_patient.drug" type="checkbox" name="obs.reason_for_not_tracing_patient"
-							data-concept="23852^RAZAO DE NAO RASTREAR O PACIENTE^99DCT" value="23850^FILA REGISTADO^99DCT">
-							FILA registado
-						</label>
-					</div>	
-					<div class="form-group">
-						<label class="font-normal">
-							<input id="obs.reason_for_not_tracing_patient.drug" type="checkbox" name="obs.reason_for_not_tracing_patient"
-							data-concept="23852^RAZAO DE NAO RASTREAR O PACIENTE^99DCT" value="6307^CONTACTO TELEFONICO^99DCT">
-							Chamadas telefónicas
-						</label>
-					</div>
-					<div class="form-group">
-						<label class="font-normal">
-							<input id="obs.reason_for_not_tracing_patient.other" type="checkbox" name="obs.reason_for_not_tracing_patient"
-							data-concept="23852^RAZAO DE NAO RASTREAR O PACIENTE^99DCT" value="23851^OUTRA RAZAO DE NAO RASTREAR^99DCT">
-							Outra razão de não rastrear
-						</label>
-					</div>	
-				</div>
-				<div class="form-group sub-section" id="other_reason_for_not_tracing_patient">
-					<label class="font-normal" for="obs.other_reason_for_not_tracing_patient">
-						Outro:<span class="required"></span>
-					</label>
-						<input class="form-control" id="obs.other_reason_for_not_tracing_patient" type="text" required="required"
-						name="obs.other_reason_for_not_tracing_patient" data-concept="23851^OUTRA RAZAO DE NAO RASTREAR^99DCT">
-				</div>
-			</div>
-		</div>
-		<div class="form-group" id="tracking_needed">
-			<div class="form-group">
-				<label for="obs.reason_for_visit">
-				Motivo da Visita<span class="required">*</span>
-					<input type="checkbox" name="obs.reason_for_visit" required="required" readonly="readonly" style="opacity:0; position:absolute; left:9999px;">
-				</label>
-				
-				<div class="form-group">
-					<label class="font-normal">
-						<input id="obs.reason_for_visit.exposta" type="checkbox" name="obs.reason_for_visit"
-						data-concept="2172^MOTIVO DE VISITA/BUSCA DO PACIENTE^99DCT" value="2170^CRIANÇA EXPOSTA^99DCT">
-						Criança exposta
-					</label>
-				</div>
-				<div class="form-group">
-					<label class="font-normal">
-						<input id="obs.reason_for_visit.tratamento" type="checkbox" name="obs.reason_for_visit"
-						data-concept="2172^MOTIVO DE VISITA/BUSCA DO PACIENTE^99DCT" value="2169^BACILOSCOPIA POSITIVA SEM TRATAMENTO^99DCT">
-						BK+ sem tratamento
-					</label>
-				</div>
-				<div class="form-group">
-					<label class="font-normal">
-						<input id="obs.reason_for_visit.sem_tratamen" type="checkbox" name="obs.reason_for_visit"
-						data-concept="2172^MOTIVO DE VISITA/BUSCA DO PACIENTE^99DCT" value="23909^TB SEM TRATAMENTO^99DCT">
-						TB sem tratamento
-					</label>
-				</div>
-				<div class="form-group">
-					<label class="font-normal">
-						<input id="obs.reason_for_visit.exposita" type="checkbox" name="obs.reason_for_visit"
-						data-concept="2172^MOTIVO DE VISITA/BUSCA DO PACIENTE^99DCT" value="23910^SEM CARGA VIRAL^99DCT">
-						Sem carga viral 
-					</label>
-				</div>
-				<div class="form-group">
-					<label class="font-normal">
-						<input id="obs.reason_for_visit.exposita" type="checkbox" name="obs.reason_for_visit"
-						data-concept="2172^MOTIVO DE VISITA/BUSCA DO PACIENTE^99DCT" value="1790^FALENCIA TERAPEUTICA^99DCT">
-						Falência terapêutica
-					</label>
-				</div>
-				<div class="form-group">
-					<label class="font-normal">
-						<input id="obs.reason_for_visit.para" type="checkbox" name="obs.reason_for_visit"
-						data-concept="2172^MOTIVO DE VISITA/BUSCA DO PACIENTE^99DCT" value="1359^ELEGÍVEL^99DCT">
-						Elegível para TARV
-					</label>
-				</div>
-				<div class="form-group">
-					<label class="font-normal">
-						<input id="obs.reason_for_visit.levantamento" type="checkbox" name="obs.reason_for_visit"
-						data-concept="2172^MOTIVO DE VISITA/BUSCA DO PACIENTE^99DCT" value="2168^AUSENTE AO LEVANTAMENTO DE MEDICAMENTOS ARV^99DCT">
-						 Faltoso na farmácia
-					</label>
-				</div>
-				<div class="form-group">
-					<label class="font-normal">
-						<input id="obs.reason_for_visit.exposita" type="checkbox" name="obs.reason_for_visit"
-						data-concept="2172^MOTIVO DE VISITA/BUSCA DO PACIENTE^99DCT" value="23911^FALTOSO AS CONSULTAS^99DCT">
-						Faltoso as consultas
-					</label>
-				</div>
-				<div class="form-group">
-					<label class="font-normal">
-						<input id="obs.reason_for_visit.exposita" type="checkbox" name="obs.reason_for_visit"
-						data-concept="2172^MOTIVO DE VISITA/BUSCA DO PACIENTE^99DCT" value="23912^CARGA VIRAL ELEVADA^99DCT">
-						Carga viral elevada
-					</label>
-				</div>			
-				<div class="form-group">
-					<label class="font-normal">
-						<input id="obs.reason_for_visit.aconselhamento" type="checkbox" name="obs.reason_for_visit"
-						data-concept="2172^MOTIVO DE VISITA/BUSCA DO PACIENTE^99DCT" value="6253^TRATAMENTO SEGUIMENTO SERVICO QUE PROVIDENCIA^99DCT" >
-						Seguimento preventivo
-					</label>
-				</div>				
-				<div class="form-group">
-					<label class="font-normal">
-						<input id="obs.reason_for_visit.outros" type="checkbox" name="obs.reason_for_visit"
-						data-concept="2172^MOTIVO DE VISITA/BUSCA DO PACIENTE^99DCT" value="2171^OUTRO MOTIVO DE VISITA AO PACIENTE^99DCT">
-						Outros
-					</label>
-				</div>				
-			</div> 
-			<div class="form-group sub-section" id="other_reason_for_visit">
-				<label class="font-normal" for="obs.other_reason_for_visit">
-					Outro:<span class="required"></span>
-				</label>
-					<input class="form-control" id="obs.other_reason_for_visit" type="text" required="required"
-					name="obs.other_reason_for_visit" data-concept="2171^OUTRO MOTIVO DE VISITA AO PACIENTE^99DCT">
-			</div>
-			<div class="form-group">
-				<label for="obs.home_visit_service">
-				Serviço que refere<span class="required">*</span>
-				</label>
-				<select class="form-control" id="obs.home_visit_service" required
-					name="obs.home_visit_service" data-concept="2176^SERVIÇO QUE REFERE A VISITA DOMICILIARIA^99DCT">
-					<option value="">...</option>
-					<option value="2175^SERVIÇO TARV ADULTO^99DCT">TARV (Clínica/APSS e PP)</option>
-					<option value="1872^CCR^99DCT">CCR</option>
-					<option value="1598^PREVENTION MOTHER CHILD TRANSMISSION^99DCT">CPN</option>
-					<option value="1414^PLANO NACIONAL PARA COMBATE TUBERCULOSE^99DCT">PNCT</option>
-					<option value="1987^GATV/SAAJ^99DCT">SAAJ</option>	
-					<option value="23913^OUTRO^99DCT">Outro</option>
-				</select>
-			</div> 
-			<div class="form-group" id="professional_referral_name">
-				<label for="obs.professional_referral_name">
-					Provedor que refere:<span class="required"></span>
-				</label>
-					<input class="form-control" id="obs.professional_referral_name" type="text" required="required"
-					name="obs.professional_referral_name" data-concept="23853^NOME DO PROFISSIONAL QUE REFERIU^99DCT" readonly="readonly">
-			</div>
-			<div class="form-group sub-section">
-				<label for="obs.health_worker">Nome do Voluntário:<span class="required"></span></label>
-					<input class="form-control" id="temp.health_worker" name="temp.health_worker" type="text" required="required" placeholder="Comece a escrever...">
-				    <input class="form-control" id="obs.health_worker_id" name="obs.health_worker_id" type="text" required="required" data-concept="1912^TRABALHADOR DE SAÚDE^99DCT" readonly>
-			</div>
-			<div class="form-group" id="home_visit_date">
-				<label for="obs.home_visit_date">
-					Data da entrega ao Voluntário:<span class="required">*</span>
-				</label>
-				 <input class="form-control datePicker validDeliveryDateOnly validateDeliveryDate" id="obs.home_visit_date"
-					   name="obs.home_visit_date" data-concept="2173^DATA DE ENTREGA AO VOLUNTARIO DO CARTÃO DE VISITA^99DCT" type="text" readonly="readonly"
-					   required="required">
-			</div>
-		</div>
+        </div>
 		<div id="missed_consultation_div">
 			<div class="form-group" id="missed_consultation">
 				<label for="temp.missed_consultation">
@@ -360,7 +124,268 @@
 			</div>
 	    </div>
 		<div class="form-group">
-            <label for="encounter.encounter_datetime">Data de preenchimento do Formulário:<span class="required">*</span>
+			<label for="obs.patient_triangulation_status">
+			Estado de Triangulação do Paciente<span class="required">*</span>
+			</label>
+			<select class="form-control input-section" id="obs.patient_triangulation_status" required
+				name="obs.patient_triangulation_status" data-concept="23848^ESTADO DA TRIANGULACAO DO PACIENTE^99DCT" readonly="readonly" >
+				<option value="">...</option>
+				<option value="23846^PRECISA RASTREAMENTO^99DCT">Sim, precisa de visita</option>
+				<option value="23847^NAO PRECISA RASTREAMENTO^99DCT">Não há necessidade de visita</option>
+			</select>
+        </div>
+
+		<div class="section section-div form-group" id="tracking_needed">
+			<a data-toggle="collapse" data-parent="#accordion" href="#traking_need" aria-expanded="false" aria-controls="traking_need_collapse" id="traking_need.section">
+				<label for="obs.reason_for_visit">
+				    Motivo da Visita<span class="required">*</span>
+					<input type="checkbox" name="obs.reason_for_visit" required="required" readonly="readonly" style="opacity:0; position:absolute; left:9999px;">
+				</label>
+			</a>
+			<a data-toggle="collapse" data-parent="#accordion" aria-expanded="false" href="#traking_need" id="traking_need.section">
+				<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrows-collapse" viewBox="0 0 16 16">
+					<path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13A.5.5 0 0 1 1 8zm7-8a.5.5 0 0 1 .5.5v3.793l1.146-1.147a.5.5 0 0 1 .708.708l-2 2a.5.5 0 0 1-.708 0l-2-2a.5.5 0 1 1 .708-.708L7.5 4.293V.5A.5.5 0 0 1 8 0zm-.5 11.707-1.146 1.147a.5.5 0 0 1-.708-.708l2-2a.5.5 0 0 1 .708 0l2 2a.5.5 0 0 1-.708.708L8.5 11.707V15.5a.5.5 0 0 1-1 0v-3.793z"/>
+				</svg>
+			</a>
+			<div id="traking_need" class="panel-collapse collapse in">
+			<div class="form-group" id="traking_need.section_div">
+			<div class="form-group">
+				<div class="form-group">
+					<label class="font-normal">
+						<input id="obs.reason_for_visit.exposta" type="checkbox" name="obs.reason_for_visit"
+						data-concept="2172^MOTIVO DE VISITA/BUSCA DO PACIENTE^99DCT" value="2170^CRIANÇA EXPOSTA^99DCT">
+						Criança exposta
+					</label>
+				</div>
+				<div class="form-group">
+					<label class="font-normal">
+						<input id="obs.reason_for_visit.pcr" type="checkbox" name="obs.reason_for_visit"
+						data-concept="2172^MOTIVO DE VISITA/BUSCA DO PACIENTE^99DCT" value="165352^CRIANÇA COM PCR +^99DCT">
+						Criança com PCR +
+					</label>
+				</div>
+				<div class="form-group">
+					<label class="font-normal">
+						<input id="obs.reason_for_visit.diagnostico_tb" type="checkbox" name="obs.reason_for_visit"
+						data-concept="2172^MOTIVO DE VISITA/BUSCA DO PACIENTE^99DCT" value="23761^TUBERCULOSE ACTIVO^99DCT">
+						Diagnóstico da TB
+					</label>
+				</div>
+				<div class="form-group">
+					<label class="font-normal">
+						<input id="obs.reason_for_visit.perda_segmento_tb" type="checkbox" name="obs.reason_for_visit"
+						data-concept="2172^MOTIVO DE VISITA/BUSCA DO PACIENTE^99DCT" value="5240^PERDA DE SEGUIMENTO^99DCT">
+						Perda de seguimento da TB
+					</label>
+				</div>
+				<div class="form-group">
+					<label class="font-normal">
+						<input id="obs.reason_for_visit.carga_viral_elevada" type="checkbox" name="obs.reason_for_visit"
+						data-concept="2172^MOTIVO DE VISITA/BUSCA DO PACIENTE^99DCT" value="23912^CARGA VIRAL ELEVADA^99DCT">
+						Carga viral elevada
+					</label>
+				</div>
+				<div class="form-group">
+					<label class="font-normal">
+						<input id="obs.reason_for_visit.falencia_terapeutica" type="checkbox" name="obs.reason_for_visit"
+						data-concept="2172^MOTIVO DE VISITA/BUSCA DO PACIENTE^99DCT" value="1790^FALENCIA TERAPEUTICA^99DCT">
+						Falência terapêutica
+					</label>
+				</div>
+				<div class="form-group">
+					<label class="font-normal">
+						<input id="obs.reason_for_visit.faltoso" type="checkbox" name="obs.reason_for_visit"
+						data-concept="2172^MOTIVO DE VISITA/BUSCA DO PACIENTE^99DCT" value="165353^FALTOSO^99DCT">
+						Faltoso
+					</label>
+				</div>
+				<div class="form-group">
+					<label class="font-normal">
+						<input id="obs.reason_for_visit.abandono" type="checkbox" name="obs.reason_for_visit"
+						data-concept="2172^MOTIVO DE VISITA/BUSCA DO PACIENTE^99DCT" value="1707^ABANDONO^99DCT">
+						Abandono
+					</label>
+				</div>
+				<div class="form-group">
+					<label class="font-normal">
+						<input id="obs.reason_for_visit.aconselhamento" type="checkbox" name="obs.reason_for_visit"
+						data-concept="2172^MOTIVO DE VISITA/BUSCA DO PACIENTE^99DCT" value="6253^TRATAMENTO SEGUIMENTO SERVICO QUE PROVIDENCIA^99DCT" >
+						Seguimento preventivo
+					</label>
+				</div>
+				<div class="form-group">
+					<label class="font-normal">
+						<input id="obs.reason_for_visit.outros" type="checkbox" name="obs.reason_for_visit"
+						data-concept="2172^MOTIVO DE VISITA/BUSCA DO PACIENTE^99DCT" value="2171^OUTRO MOTIVO DE VISITA AO PACIENTE^99DCT">
+						Outros
+					</label>
+				</div>
+			<div class="form-group sub-section" id="other_reason_for_visit">
+				<label class="font-normal" for="obs.other_reason_for_visit">
+					Outro motivo de visita ao paciente:<span class="required"></span>
+				</label>
+					<input class="form-control" id="obs.other_reason_for_visit" type="text" required="required"
+					name="obs.other_reason_for_visit" data-concept="2171^OUTRO MOTIVO DE VISITA AO PACIENTE^99DCT">
+			</div>
+		  </div>
+		 </div>
+		</div>
+	</div>
+
+		<div class="section section-div form-group" id="no_tracking_needed">
+			<a data-toggle="collapse" data-parent="#accordion" href="#no_tracking_needed" aria-expanded="false" aria-controls="no_tracking_needed_collapse" id="no_tracking_needed.section">
+				<label for="obs.reason_for_not_tracing_patient">
+					Razão para não realizar a visita domiciliária
+				</label>
+			</a>
+			<a data-toggle="collapse" data-parent="#accordion" aria-expanded="false" href="#no_tracking_needed" id="no_tracking_needed.section">
+				<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrows-collapse" viewBox="0 0 16 16">
+					<path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13A.5.5 0 0 1 1 8zm7-8a.5.5 0 0 1 .5.5v3.793l1.146-1.147a.5.5 0 0 1 .708.708l-2 2a.5.5 0 0 1-.708 0l-2-2a.5.5 0 1 1 .708-.708L7.5 4.293V.5A.5.5 0 0 1 8 0zm-.5 11.707-1.146 1.147a.5.5 0 0 1-.708-.708l2-2a.5.5 0 0 1 .708 0l2 2a.5.5 0 0 1-.708.708L8.5 11.707V15.5a.5.5 0 0 1-1 0v-3.793z"/>
+				</svg>
+			</a>
+		  <div id="no_tracking_needed" class="panel-collapse collapse in">
+		    <div class="form-group" id="no_tracking_needed.section_div">
+				<div class="form-group concept-set">
+					<div class="form-group">
+						<div class="form-group">
+							<label class="font-normal">
+								<input id="obs.reason_for_not_tracing_patient.clin" type="checkbox" name="obs.reason_for_not_tracing_patient"
+								data-concept="23852^RAZAO DE NAO RASTREAR O PACIENTE^99DCT" value="23849^VISITA CLINICA REGISTADA^99DCT">
+								Visita clínica registada
+							</label>
+						</div>
+						<div class="form-group">
+							<label class="font-normal">
+								<input id="obs.reason_for_not_tracing_patient.drug" type="checkbox" name="obs.reason_for_not_tracing_patient"
+								data-concept="23852^RAZAO DE NAO RASTREAR O PACIENTE^99DCT" value="23850^FILA REGISTADO^99DCT">
+								FILA registado
+							</label>
+						</div>
+						<div class="form-group">
+							<label class="font-normal">
+								<input id="obs.reason_for_not_tracing_patient.drug" type="checkbox" name="obs.reason_for_not_tracing_patient"
+								 data-concept="23852^RAZAO DE NAO RASTREAR O PACIENTE^99DCT" value="6307^CONTACTO TELEFONICO^99DCT">
+								Chamadas telefónicas
+							</label>
+						</div>
+						<div class="form-group">
+							<label class="font-normal">
+								<input id="obs.reason_for_not_tracing_patient.transferred" type="checkbox" name="obs.reason_for_not_tracing_patient"
+								data-concept="23852^RAZAO DE NAO RASTREAR O PACIENTE^99DCT" value="1706^TRANSFERIDO PARA^99DCT">
+								Transferido
+							</label>
+						</div>
+						<div class="form-group">
+							<label class="font-normal">
+								<input id="obs.reason_for_not_tracing_patient.other" type="checkbox" name="obs.reason_for_not_tracing_patient"
+								data-concept="23852^RAZAO DE NAO RASTREAR O PACIENTE^99DCT" value="23851^OUTRA RAZAO DE NAO RASTREAR^99DCT">
+								Outra razão de não rastrear
+							</label>
+						</div>
+					</div>
+					<div class="form-group sub-section" id="other_reason_for_not_tracing_patient">
+						<label class="font-normal" for="obs.other_reason_for_not_tracing_patient">
+							Outro:<span class="required"></span>
+						</label>
+							<input class="form-control" id="obs.other_reason_for_not_tracing_patient" type="text" required="required"
+							name="obs.other_reason_for_not_tracing_patient" data-concept="23851^OUTRA RAZAO DE NAO RASTREAR^99DCT">
+					</div>
+				</div>
+		  </div>
+		 </div>
+		</div>
+
+		        <div class="form-group">
+					<label for="obs.patient_call_made">
+					Foi feita a chamada?<span class="required">*</span>
+					</label>
+					<select class="form-control input-section" id="obs.patient_call_made" required
+						name="obs.patient_call_made" data-concept="23993^REINTEGRACAO^99DCT" >
+						<option value="">...</option>
+						<option value="1065^SIM^99DCT">Sim</option>
+						<option value="1066^NAO^99DCT">Não</option>
+						<option value="21233^N/A^99DCT">N/A</option>
+					</select>
+				</div>
+				<div class="form-group" id="professional_referral_name">
+				    <label for="obs.professional_referral_name">
+					 Provedor que refere:<span class="required"></span>
+				    </label>
+					<input class="form-control" id="obs.professional_referral_name" type="text" required="required"
+					name="obs.professional_referral_name" data-concept="23853^NOME DO PROFISSIONAL QUE REFERIU^99DCT" readonly="readonly">
+			    </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<div class="section section-div form-group" id="allocation">
+	<div class="panel-heading">
+		 <h3 class="panel-title">
+			<a data-toggle="collapse" data-parent="#accordion" href="#allocation" aria-expanded="false" aria-controls="allocation_collapse" id="allocation.section">
+				ALOCAÇÃO
+			</a>
+			<a data-toggle="collapse" data-parent="#accordion" aria-expanded="false" href="#allocation" id="allocation.section">
+				<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrows-collapse" viewBox="0 0 16 16">
+					<path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13A.5.5 0 0 1 1 8zm7-8a.5.5 0 0 1 .5.5v3.793l1.146-1.147a.5.5 0 0 1 .708.708l-2 2a.5.5 0 0 1-.708 0l-2-2a.5.5 0 1 1 .708-.708L7.5 4.293V.5A.5.5 0 0 1 8 0zm-.5 11.707-1.146 1.147a.5.5 0 0 1-.708-.708l2-2a.5.5 0 0 1 .708 0l2 2a.5.5 0 0 1-.708.708L8.5 11.707V15.5a.5.5 0 0 1-1 0v-3.793z"/>
+				</svg>
+			</a>
+		</h3>
+	</div>
+   <div id="allocation" class="panel-collapse collapse in">
+	  <div class="form-group" id="allocation.section_div">
+			<div class="form-group">
+				<label for="obs.home_visit_service">
+				Serviço que refere<span class="required">*</span>
+				</label>
+				<select class="form-control" id="obs.home_visit_service" required
+					name="obs.home_visit_service" data-concept="2176^SERVIÇO QUE REFERE A VISITA DOMICILIARIA^99DCT">
+					<option value="">...</option>
+					<option value="2175^SERVIÇO TARV ADULTO^99DCT">TARV (Clínica/APSS e PP)</option>
+					<option value="1872^CCR^99DCT">CCR</option>
+					<option value="1598^PREVENTION MOTHER CHILD TRANSMISSION^99DCT">CPN</option>
+					<option value="1414^PLANO NACIONAL PARA COMBATE TUBERCULOSE^99DCT">PNCT</option>
+					<option value="1987^GATV/SAAJ^99DCT">SAAJ</option>
+					<option value="23913^OUTRO^99DCT">Outro</option>
+				</select>
+			</div>
+			<div class="form-group">
+				<label for="obs.selected_provider">
+				Actor Comunitario<span class="required">*</span>
+				</label>
+				<select class="form-control" id="obs.selected_provider" required
+					name="obs.selected_provider" data-concept="165238^PROVEDOR COMUNITARIO^99DCT">
+					<option value="">...</option>
+					<option value="165324^YOUTH AND TEENAGE MENTHOR^99DCT">AJM</option>
+					<option value="165325^CHAMPION MAN^99DCT">HC</option>
+					<option value="24031^Mentoring Mother^99DCT">MM</option>
+					<option value="165279^PAR EDUCATOR^99DCT">Educador de Par</option>
+					<option value="1912^HEALTH WORKER^99DCT">Activista</option>
+					<option value="5622^OUTRO^99DCT">Outro</option>
+				</select>
+			</div>
+			<div class="form-group sub-section">
+				<label for="obs.health_worker">Nome do Voluntário:<span class="required"></span></label>
+					<input class="form-control" id="temp.health_worker" name="temp.health_worker" type="text" required="required" placeholder="Comece a escrever...">
+				    <input class="form-control" id="obs.health_worker_id" name="obs.health_worker_id" type="text" required="required" data-concept="1912^TRABALHADOR DE SAÚDE^99DCT" readonly>
+			</div>
+			<div class="form-group" id="home_visit_date">
+				<label for="obs.home_visit_date">
+					Data da entrega ao Voluntário:<span class="required">*</span>
+				</label>
+				 <input class="form-control datePicker validDeliveryDateOnly validateDeliveryDate" id="obs.home_visit_date"
+					   name="obs.home_visit_date" data-concept="2173^DATA DE ENTREGA AO VOLUNTARIO DO CARTÃO DE VISITA^99DCT" type="text" readonly="readonly"
+					   required="required">
+			</div>
+		</div>
+	  </div>
+   </div>
+</div>
+
+<div class="section" hidden="true">
+	<h3>Detalhes do formulario</h3>
+		<div class="form-group">
+            <label for="encounter.encounter_datetime">Data de actualizacao:<span class="required">*</span>
             </label>
             <input class="form-control datetimepicker nonFutureDate past-date input-section-2" id="encounter.encounter_datetime"
                    name="encounter.encounter_datetime" type="text" readonly="readonly" disabled
@@ -378,24 +403,25 @@
 		<div class="form-group">
             <label for="encounter.location_id">Local de Encontro:<span class="required">*</span></label>
             <input class="form-control valid-location-only input-section-2" id="encounter.location_id" type="text" required="required" readonly="readonly">
-            <input class="form-control" name="encounter.location_id" type="hidden">						
+            <input class="form-control" name="encounter.location_id" type="hidden">
 			<input class="form-control" id="encounter.form_uuid" name="encounter.form_uuid" type="hidden" required="required">
+			<input class="form-control" id="encounter.group_obs" name="encounter.group_obs" type="hidden" required="required" value="true">
+			<input class="form-control" id="encounter.group_obs_concept_id" name="encounter.group_obs_concept_id" type="hidden" required="required" value="1912">
 			<!-- <input class="form-control" id="encounter.form_uuid_to_add_obs" name="encounter.form_uuid_to_add_obs"
-                   type="hidden" value="b1ecb071-6471-4d87-89f4-d9e1b0c80630"> 
+                   type="hidden" value="b1ecb071-6471-4d87-89f4-d9e1b0c80630">
 			<input class="form-control" id="encounter.should_not_edit_existing_encounters" name="encounter.should_not_edit_existing_encounters"
                    type="hidden" value="true"> -->
-			<input class="form-control initialFormOpeningTimestamp serializable"  id="obs.initialFormOpeningTimestamp"  name="obs.initialFormOpeningTimestamp"  data-concept="23844^Outreach Form Start Datetime Stamp^99DCT" type="hidden">			
-			<input class="form-control dataEntryCompletionTimeStamp serializable"  id="obs.dataEntryCompletionTimeStamp"  name="obs.dataEntryCompletionTimeStamp"  data-concept="23845^Outreach Form End Datetime Stamp^99DCT" type="hidden">
+			<input class="form-control initialFormOpeningTimestamp serializable"  id="obs.initialFormOpeningTimestamp"  name="obs.initialFormOpeningTimestamp"  data-concept="23844^Outreach Form Start Datetime Stamp^99DCT" type="hidden">
+			<!--<input class="form-control dataEntryCompletionTimeStamp serializable"  id="obs.dataEntryCompletionTimeStamp"  name="obs.dataEntryCompletionTimeStamp"  data-concept="23845^Outreach Form End Datetime Stamp^99DCT" type="hidden">-->
 			<input class="form-control cummulativeFormOpeningGPSData serializable"  id="obs.cummulativeFormOpeningGPSData"  name="obs.cummulativeFormOpeningGPSData"  data-concept="23843^Outreach GPS Coordinates^99DCT" type="hidden">
 		</div>
     </div>
-</div>
 </div>
 </form>
 </body>
 <script type="text/javascript">
    $(document).ready(function () {
-	        
+
         $('#save_draft').click(function () {
             $(this).prop('disabled', true);
             document.saveDraft();
@@ -407,50 +433,52 @@
             document.submit();
             $(this).prop('disabled', false);
         });
-	    
+
 	$('#obs\\.reason_for_not_tracing_patient\\.other').change(function(){
         if($(this).prop( "checked" )){
             $('#other_reason_for_not_tracing_patient').show();
         } else{
 			$('#other_reason_for_not_tracing_patient').hide();
 		}
-    });    
+    });
     $('#obs\\.reason_for_not_tracing_patient\\.other').trigger('change');
-	   
+
 	$('#obs\\.reason_for_visit\\.outros').change(function(){
         if($(this).prop( "checked" )){
             $('#other_reason_for_visit').show();
         } else{
 			$('#other_reason_for_visit').hide();
 		}
-    });    
+    });
     $('#obs\\.reason_for_visit\\.outros').trigger('change');
-	   
+
 	$('#obs\\.patient_triangulation_status').change(function(){
         if($(this).val() == "23846^PRECISA RASTREAMENTO^99DCT"){
             $('#tracking_needed').show();
 			$('#no_tracking_needed').hide();
 			$('#patient\\.tagUuid').val('e7e26b4e-b3fd-11eb-8374-d0577bb73cd4');
-			$('#patient\\.tagName').val('AL');			         
+			$('#patient\\.tagName').val('AL');
+			$('#allocation').show();
         } else if($(this).val() == "23847^NAO PRECISA RASTREAMENTO^99DCT"){
 			$('#tracking_needed').hide();
 			$('#no_tracking_needed').show();
 			$('#patient\\.tagUuid').val(' f1b7a01c-b3fd-11eb-8374-d0577bb73cd4');
-			$('#patient\\.tagName').val('NA');		
+			$('#patient\\.tagName').val('NA');
+			$('#allocation').hide();
 		} else{
 			$('#tracking_needed').hide();
 			$('#no_tracking_needed').hide();
 		}
-    });    
-    $('#obs\\.patient_triangulation_status').trigger('change');  
-	  
+    });
+    $('#obs\\.patient_triangulation_status').trigger('change');
+
     document.setupAutoCompleteData('encounter\\.location_id');
     document.setupAutoCompleteDataForProvider('encounter\\.provider_id_select');
     document.setupValidationForLocation("$('#encounter\\.location_id').val()","encounter\\.location_id");
     document.setupValidationForProvider("$('#encounter\\.provider_id_select').val()","encounter\\.provider_id");
-		   
+
 	document.setupAutoCompleteDataForFieldWorker('temp\\.health_worker');
-	   	   
+
 /* Start - Toggle validateDeliveryDate date validation */
 $('.validateDeliveryDate').change(function () {
 	if ($(this).is(':visible') && $(this).val() != '') {
@@ -477,7 +505,7 @@ $.validator.addMethod("validDeliveryDateOnly", function (value, element) {
 	var s = $('#encounter\\.encounter_datetime').val();
 	var bits = s.split(/\D/);
 	var encounterDate = new Date(bits[2], bits[1] - 1, bits[0]);
-	return enteredDate >= encounterDate; 
+	return enteredDate >= encounterDate;
 }, "A data de entrega ao voluntário não pode ser anterior à data da visita."
 );
 
@@ -485,8 +513,9 @@ $.validator.addMethod("validDeliveryDateOnly", function (value, element) {
 jQuery.validator.addClassRules({
 	validDeliveryDateOnly: { validDeliveryDateOnly: true }
 });
-	   	   
+
 var prePopulateData = $.trim($('#pre_populate_data').html());
+if(prePopulateData!==''){
 var prePopulateJSON = JSON.parse(prePopulateData);
 $.each(prePopulateJSON, function(key, value) {
 	if (key === 'patient') {
@@ -507,16 +536,16 @@ $.each(prePopulateJSON, function(key, value) {
 		});
 		$('#patient\\.names').val(names);
 	}
-});
-	   
+});}
+
 $('#obs\\.professional_referral_name').val($('#encounter\\.provider_id_select').val());
 
 var patientuuid = $('#patient\\.uuid').val();
-var historyByData = htmlDataStore.getObsByEncounterType(patientuuid,"e278f956-1d5f-11e0-b929-000c29ad1d07"); 
+var historyByData = htmlDataStore.getObsByEncounterType(patientuuid,"e278f956-1d5f-11e0-b929-000c29ad1d07");
 historyByData = JSON.parse(historyByData);
 var historyByDataSize = historyByData.length-1;
 if(historyByDataSize==-1){
-  $("#missed_consultation_div").hide(); 
+  $("#missed_consultation_div").hide();
 } else {
   if(historyByData[0].valueDatetime==null){
 	$("#missed_consultation_div").hide();
@@ -539,73 +568,62 @@ if(historyByDataSize==-1){
 	$("#missed_consultation_div").hide();
   }
   else if(days>0){
-	  $("#missed_consultation_div").show(); 
+	  $("#missed_consultation_div").show();
 	  $("#temp\\.missed_consultation_days").val(Math.floor(days));
 	  $("#temp\\.missed_consultation").val(historyByData[0].valueDatetime);
   }else{
 	  $("#missed_consultation_div").hide();
   }
  }
-} 
-
-var cohortMembership = htmlDataStore.getCohortMembershipByPatientUuid(patientuuid);
-var cohortMembershipJson =  JSON.parse(cohortMembership);
-if(parseInt(cohortMembershipJson.length)==1){
-	$.each(cohortMembershipJson, function (i,obj) {
-		if(obj.cohortName.includes("_AMA")){
-			$("#obs\\.type_of_visit").val("23914^VISITA AOS CASOS ESPECIAIS/AMA^99DCT");
-			$('#obs\\.type_of_visit').prop('disabled', 'disabled');
-			$('#obs\\.patient_triangulation_status').removeAttr("disabled");
-		}else if(obj.cohortName.includes("_CM")){
-			$("#obs\\.type_of_visit").val("23914^VISITA AOS CASOS ESPECIAIS/CM^99DCT");
-			$('#obs\\.type_of_visit').prop('disabled', 'disabled');
-			$('#obs\\.patient_triangulation_status').removeAttr("disabled");
-		}else if(obj.cohortName.includes("_DCP_LTFU")){
-			$("#obs\\.type_of_visit").val("2160^VISITA DE BUSCA/DCP^99DCT");
-			$('#obs\\.type_of_visit').prop('disabled', 'disabled');
-			$('#obs\\.patient_triangulation_status').removeAttr("disabled");
-		}else if(obj.cohortName.includes("_SV")){
-			$("#obs\\.type_of_visit").val("2161^VISITA DE APOIO^99DCT");
-			$('#obs\\.type_of_visit').prop('disabled', 'disabled');
-			$('#obs\\.patient_triangulation_status').removeAttr("disabled");
-		} else if(obj.cohortName.includes("_LTFU")){
-			$("#obs\\.type_of_visit").val("2160^VISITA DE BUSCA^99DCT");
-			$('#obs\\.type_of_visit').prop('disabled', 'disabled');
-			$('#obs\\.patient_triangulation_status').removeAttr("disabled");
-		} else {
-			$('#obs\\.patient_triangulation_status').prop('disabled', true);
-		}	
-	});
 }
 
-var visitTypeValue = $('#obs\\.type_of_visit').val();
-if(visitTypeValue == "23914^VISITA AOS CASOS ESPECIAIS/AMA^99DCT"){
-		$("#obs_comment\\.type_of_visit").val("AMA");
-        } else if(visitTypeValue == "23914^VISITA AOS CASOS ESPECIAIS/CM^99DCT"){
-			$("#obs_comment\\.type_of_visit").val("CM");
-		} else if(visitTypeValue == "2160^VISITA DE BUSCA^99DCT"){
-			$("#obs_comment\\.type_of_visit").val("LTFU");
-        } else if(visitTypeValue == "2160^VISITA DE BUSCA/DCP^99DCT"){
-			$("#obs_comment\\.type_of_visit").val("DCP");
-        } else if(visitTypeValue == "2161^VISITA DE APOIO^99DCT"){
-			$("#obs_comment\\.type_of_visit").val("SV");
-        } 
+var derivedObs = htmlDataStore.getInterventionsDerivedObservationByPatientUuid(patientuuid);
+var derivedObs =  JSON.parse(derivedObs);
+var derivedObsSize = derivedObs.length-1;
+if(parseInt(derivedObsSize)>-1){
+	if(derivedObs[0].derivedConceptName==="Faltoso"){
+    $("#derived-obs-by-intervention-type").val("derived-obs-faltoso");
+	$("#obs\\.type_of_visit").val("2160^VISITA DE BUSCA^99DCT");
+	}
+	else if(derivedObs[0].derivedConceptName==="Abandono"){
+    $("#derived-obs-by-intervention-type").val("derived-obs-abandono");
+	$("#obs\\.type_of_visit").val("2160^VISITA DE BUSCA^99DCT");
+	}
+	else if(derivedObs[0].derivedConceptName==="Elegível Carga Viral"){
+    $("#derived-obs-by-intervention-type").val("derived-obs-elegivel-carga-viral");
+	$("#obs\\.type_of_visit").val("23914^VISITA AOS CASOS ESPECIAIS^99DCT");
+	}
+	else if(derivedObs[0].derivedConceptName==="Carga Viral Alta"){
+    $("#derived-obs-by-intervention-type").val("derived-obs-carga-viral-alta");
+	$("#obs\\.type_of_visit").val("23914^VISITA AOS CASOS ESPECIAIS^99DCT");
+	}
+	else if(derivedObs[0].derivedConceptName==="Preventiva"){
+    $("#derived-obs-by-intervention-type").val("derived-obs-preventiva");
+	$("#obs\\.type_of_visit").val("2161^VISITA DE APOIO^99DCT");
+	}
+	else {
+   $("#derived-obs-by-intervention-type").val("...");
+   $("#obs\\.type_of_visit").val("...");
+	}
+   $('#obs\\.type_of_visit').prop('disabled', 'disabled');
+   $("#derived-obs-by-intervention-type").prop('disabled', 'disabled');
+}
 
-var gaac = htmlDataStore.getObsByConceptId(patientuuid,23724);  
+var gaac = htmlDataStore.getObsByConceptId(patientuuid,23724);
 gaac = JSON.parse(gaac);
 var gaacSize = gaac.length-1;
 if(parseInt(gaacSize)>-1){
     $("#gaac").val(gaac[0].valueCoded.name);
 }
 
-var familyApproach = htmlDataStore.getObsByConceptId(patientuuid,23725);  
+var familyApproach = htmlDataStore.getObsByConceptId(patientuuid,23725);
 familyApproach = JSON.parse(familyApproach);
 var familyApproachSize = familyApproach.length-1;
 if(parseInt(familyApproachSize)>-1){
     $("#familyApproach").val(familyApproach[0].valueCoded.name);
 }
 
-var tb = htmlDataStore.getObsByConceptId(patientuuid,23761);  
+var tb = htmlDataStore.getObsByConceptId(patientuuid,23761);
 tb = JSON.parse(tb);
 var tbSize = tb.length-1;
 if(parseInt(tbSize)>-1){
@@ -613,28 +631,28 @@ if(parseInt(tbSize)>-1){
 }
 
 /* Encounter visit date or historical Date ??? */
-var lastVisit = htmlDataStore.getObsByConceptId(patientuuid,1410);  
+var lastVisit = htmlDataStore.getObsByConceptId(patientuuid,1410);
 lastVisit = JSON.parse(lastVisit);
 var lastVisitSize = lastVisit.length-1;
 if(parseInt(lastVisitSize)>-1){
     $("#lastVisit").val(lastVisit[0].valueDatetime);
 }
 
-var nextVisit = htmlDataStore.getObsByConceptId(patientuuid,1410);  
+var nextVisit = htmlDataStore.getObsByConceptId(patientuuid,1410);
 nextVisit = JSON.parse(nextVisit);
 var nextVisitSize = nextVisit.length-1;
 if(parseInt(nextVisitSize)>-1){
     $("#nextVisit").val(nextVisit[0].valueDatetime);
 }
 
-var lastWithdrawal = htmlDataStore.getObsByConceptId(patientuuid,23866);  
+var lastWithdrawal = htmlDataStore.getObsByConceptId(patientuuid,23866);
 lastWithdrawal = JSON.parse(lastWithdrawal);
 var lastWithdrawalSize = lastWithdrawal.length-1;
 if(parseInt(lastWithdrawalSize)>-1){
     $("#lastWithdrawal").val(lastWithdrawal[0].valueDatetime);
 }
 
-var nextWithdrawal = htmlDataStore.getObsByConceptId(patientuuid,5096);  
+var nextWithdrawal = htmlDataStore.getObsByConceptId(patientuuid,5096);
 nextWithdrawal = JSON.parse(nextWithdrawal);
 var nextWithdrawalSize = nextWithdrawal.length-1;
 if(parseInt(nextWithdrawalSize)>-1){
@@ -653,7 +671,7 @@ document.setupAutoCompleteDataForFieldWorker = function(elementName) {
 	document.setupAutoCompleteForFieldWorker(elementName, providersDictionary);
 };
 
-	
+
 //Set up auto complete for the provider element.
 document.setupAutoCompleteForFieldWorker = function(elementName, providers) {
 	$("#" + elementName).autocomplete({
@@ -675,29 +693,62 @@ document.setupAutoCompleteForFieldWorker = function(elementName, providers) {
 	});
 }
 
-// Hides and shows the address section
-$("#address\\.section").click(function() {
-	if($("#address\\.section_div").attr('hidden')==='hidden')
+// Hides and shows the REGISTO NO LIVRO section
+$("#visit_book_call\\.section").click(function() {
+	if($("#visit_book_call\\.section_div").attr('hidden')==='hidden')
 	{
-		$("#address\\.section_div").removeAttr('hidden');
-		$("#triangulation\\.section_div").attr('hidden', 'true');
+		$("#visit_book_call\\.section_div").removeAttr('hidden');
 	}
 	else{
-		$("#address\\.section_div").attr('hidden', 'true');
+		$("#visit_book_call\\.section_div").attr('hidden', 'true');
 	}
 });
 
-// Hides and shows the tringulation section
+// Hides and shows the TRIANGULACAO section
 $("#triangulation\\.section").click(function() {
 	if($("#triangulation\\.section_div").attr('hidden')==='hidden')
 	{
 		$("#triangulation\\.section_div").removeAttr('hidden');
-		$("#address\\.section_div").attr('hidden', 'true');
 	}
 	else{
 		$("#triangulation\\.section_div").attr('hidden', 'true');
 	}
 });
+
+// Hides and shows the motivo de visita section
+$("#traking_need\\.section").click(function() {
+	if($("#traking_need\\.section_div").attr('hidden')==='hidden')
+	{
+		$("#traking_need\\.section_div").removeAttr('hidden');
+	}
+	else{
+		$("#traking_need\\.section_div").attr('hidden', 'true');
+	}
+});
+
+// Hides and shows the Razao para nao realizar a visita section
+$("#no_tracking_needed\\.section").click(function() {
+	if($("#no_tracking_needed\\.section_div").attr('hidden')==='hidden')
+	{
+		$("#no_tracking_needed\\.section_div").removeAttr('hidden');
+	}
+	else{
+		$("#no_tracking_needed\\.section_div").attr('hidden', 'true');
+	}
+});
+
+// Hides and shows the Razao para nao realizar a visita section
+$("#allocation\\.section").click(function() {
+	if($("#allocation\\.section_div").attr('hidden')==='hidden')
+	{
+		$("#allocation\\.section_div").removeAttr('hidden');
+	}
+	else{
+		$("#allocation\\.section_div").attr('hidden', 'true');
+	}
+});
+
+
 
 </script>
 </html>
