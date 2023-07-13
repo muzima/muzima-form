@@ -21,9 +21,8 @@
         <div id="pre_populate_data">
         </div>
         <h2 class="text-center">Formulário ATS e Adicionar Contacto</h2>
- 
         <div class="section">
-            <h3>Nome do Contacto</h3>
+            <h3>Nome do Contacto</h3> 
             <div class="form-group">
                 <input class="form-control" id="patient.uuid" name="patient.uuid" type="hidden">
             </div>
@@ -44,8 +43,15 @@
             <h3>Outros Dados Demográficos</h3>
             <div class="form-group">
                 <label>Parentesco: <span class="required">*</span></label>
-                <input id="patient.relationshipType" name="patient.relationshipType" type="hidden">
-                <input class="form-control" disabled id="tmp.patient.relationshipType" name="tmp.patient.relationshipType" type="text">
+                <select class="form-control person.relationshipType" name="person.relationshipType" id="relationshipType">
+                <option value="">...</option>
+                <option value='8d91a210-c2cc-11de-8d13-0010c6dffd0f' class="AIsToB">Mae/Pai</option>
+                <option value='8d91a210-c2cc-11de-8d13-0010c6dffd0f' class="BIsToA">Filho/Filha</option>
+                <option value='2f7d5778-0c80-11eb-b335-9f16b42e3b00'>Parceiro</option>
+                </select>
+                <input class="form-control personA.uuid" name="personA.uuid" type="hidden">
+                <input class="form-control personB.uuid" name="personB.uuid" type="hidden">
+                <input class="form-control relationship.uuid" name="relationship.uuid" type="hidden">
             </div>
             <div class="form-group">
                 <label for="patient.sex">Sexo: <span class="required">*</span></label>
@@ -207,6 +213,39 @@
             $('#patient\\.birth_date').trigger('change');
         });
         $("#tmp\\.age_in_years").trigger('change');
+
+        var prePopulateData = $.trim($('#pre_populate_data').html());
+        var indexCaseUuid = 'aa';
+        if(prePopulateData !=="" ){
+            var prePopulateJSON = JSON.parse(prePopulateData);
+            $.each(prePopulateJSON, function(key, value) {
+                if (key === 'index_patient') {
+                    $.each(value, function(subKey, subValue) {
+                        if(subKey === 'index_patient.uuid') {
+                            indexCaseUuid = subValue;
+                        }
+                    });
+                }
+            });
+        }
+
+        $('#relationshipTypeOptions').find('.person\\.relationshipType').change(function () {
+            var relationshipType = $(this).val();
+            if(relationshipType == '8d91a210-c2cc-11de-8d13-0010c6dffd0f' && $(this).find(':selected').hasClass('AIsToB')) {
+                 $('#relationshipTypeOptions').find('.personA\\.uuid').val(patientUuid);
+                 $('#relationshipTypeOptions').find('.personB\\.uuid').val(indexCaseUuid);
+            } else if(relationshipType == '8d91a210-c2cc-11de-8d13-0010c6dffd0f' && $(this).find(':selected').hasClass('BIsToA')) {
+                 $('#relationshipTypeOptions').find('.personA\\.uuid').val(indexCaseUuid);
+                 $('#relationshipTypeOptions').find('.personB\\.uuid').val(patientUuid);
+            } else if(relationshipType == '2f7d5778-0c80-11eb-b335-9f16b42e3b00') {
+                 $('#relationshipTypeOptions').find('.personA\\.uuid').val(patientUuid);
+                 $('#relationshipTypeOptions').find('.personB\\.uuid').val(indexCaseUuid);
+            } else {
+                 $('#relationshipTypeOptions').find('.personA\\.uuid').val('');
+                 $('#relationshipTypeOptions').find('.personB\\.uuid').val('');
+            }
+        });
+         $('#relationshipTypeOptions').find('.person\\.relationshipType').trigger('change');
 
         var dobType = $('#tmp\\.birthdate_type');
         dobType.change(function () {
