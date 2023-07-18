@@ -21,30 +21,30 @@
     <form id="mini_registration_form" name="mini_registration_form">
         <div id="pre_populate_data">
         </div>
-        <h2 class="text-center">Formulario de ATS</h2>
+        <h5 class="text-center">Formulario de ATS</h5>
 
         <div class="section">
-            <h3>Nome do Contacto</h3>
+            <h6>Nome do Contacto</h6>
             <div class="form-group">
                 <input class="form-control" id="patient.uuid"
                        name="patient.uuid" type="hidden" readonly="readonly">
             </div>
-            <div class="form-group">
+            <div class="input-label">
                 <label for="patient.family_name">Apelido: </label>
                 <input class="form-control" id="patient.family_name" name="patient.family_name" type="text"
                        readonly="readonly">
             </div>
-            <div class="form-group">
+            <div class="input-label">
                 <label for="patient.given_name">Nome:</label>
                 <input class="form-control" id="patient.given_name" name="patient.given_name" type="text"
                        readonly="readonly">
             </div>
-            <div class="form-group">
+            <div class="input-label">
                 <label for="patient.middle_name">Nome do meio:</label>
                 <input class="form-control" id="patient.middle_name" name="patient.middle_name" type="text"
                        readonly="readonly">
             </div>
-            <div class="form-group">
+            <div class="input-label">
                 <label for="tmp.update_names">
                     <input id="tmp.update_names" name="tmp.update_names"
                            type="checkbox">
@@ -53,27 +53,27 @@
             </div>
         </div>
         <div class="section" id="update_names">
-            <h3>Adicionar Nomes</h3>
-            <div class="form-group">
+            <h6>Adicionar Nomes</h6>
+            <div class="input-label">
                 <label for="demographicsupdate.family_name">Novo Apelido: <span class="required">*</span> </label>
                 <input class="form-control" id="demographicsupdate.family_name" name="demographicsupdate.family_name" type="text"
                        required="required">
             </div>
-            <div class="form-group">
+            <div class="input-label">
                 <label for="demographicsupdate.given_name">Novo Nome: <span class="required">*</span></label>
                 <input class="form-control" id="demographicsupdate.given_name" name="demographicsupdate.given_name" type="text"
                        required="required">
             </div>
-            <div class="form-group">
+            <div class="input-label">
                 <label for="demographicsupdate.middle_name">Novo nome do meio:</label>
                 <input class="form-control" id="demographicsupdate.middle_name" name="demographicsupdate.middle_name" type="text">
             </div>
         </div>
 
         <div class="section">
-            <h3>Outros Dados Demográficos</h3>
+            <h6>Outros Dados Demográficos</h6>
             <div id="relationshipStub">
-                <div class="form-group">
+                <div class="input-label">
                     <label>Parentesco: <span class="required">*</span></label>
                     <input class="form-control tmp.person.relationshipTypeName"
                            name="tmp.person.relationshipTypeName" type="text" readonly="readonly">
@@ -83,7 +83,7 @@
                     <input class="form-control tmp.personB.uuid" name="tmp.personB.uuid" type="hidden">
                     <input class="form-control tmp.relationship.uuid" name="tmp.relationship.uuid" type="hidden">
                 </div>
-                <div class="form-group">
+                <div class="input-label">
                     <label for="tmp.update_relationshipType">
                         <input id="tmp.update_relationshipType" name="tmp.update_relationshipType"
                                type="checkbox">
@@ -91,12 +91,12 @@
                     </label>
                 </div>
                 <div class="form-group group-set" data-group="demographicsupdate.relationships" id="updateRelationshipType">
-                    <label>Novo parentesco: <span class="required"></span></label>
+                    <label class="input-label" >Novo parentesco: <span class="required"></span></label>
                     <select class="form-control person.relationshipType" name="person.relationshipType">
                         <option value="">...</option>
-                        <option value='8d91a210-c2cc-11de-8d13-0010c6dffd0f' class="AIsToB">Mae/Pai</option>
-                        <option value='8d91a210-c2cc-11de-8d13-0010c6dffd0f' class="BIsToA">Filho/Filha</option>
-                        <option value='2f7d5778-0c80-11eb-b335-9f16b42e3b00'>Parceiro</option>
+                        <option class="input-label" value='8d91a210-c2cc-11de-8d13-0010c6dffd0f' class="AIsToB">Mae/Pai</option>
+                        <option class="input-label" value='8d91a210-c2cc-11de-8d13-0010c6dffd0f' class="BIsToA">Filho/Filha</option>
+                        <option class="input-label" value='2f7d5778-0c80-11eb-b335-9f16b42e3b00'>Parceiro</option>
                     </select>
                     <input class="form-control personA.uuid" name="personA.uuid" type="hidden">
                     <input class="form-control personB.uuid" name="personB.uuid" type="hidden">
@@ -106,12 +106,12 @@
             </div>
 
 
-            <div class="form-group">
+            <div class="input-label">
                 <label for="patient.sex">Sexo:</label>
                 <input id="patient.sex" name="patient.sex" type="hidden">
                 <input class="form-control" disabled id="tmp.patient.sex" name="tmp.patient.sex" type="text">
             </div>
-            <div class="form-group">
+            <div class="input-label">
                 <label for="tmp.update_sex">
                     <input id="tmp.update_sex" name="tmp.update_sex"
                            type="checkbox">
@@ -119,28 +119,28 @@
                 </label>
             </div>
             <div class="form-group sub-section" id="update_sex">
-                <label for="demographicsupdate.sex">Novo Sexo: <span class="required">*</span></label>
+                <label class="input-label" for="demographicsupdate.sex">Novo Sexo: <span class="required">*</span></label>
                 <select class="form-control" id="demographicsupdate.sex" name="demographicsupdate.sex" required="required">
                     <option value="">...</option>
-                    <option value="M">Masculino</option>
-                    <option value="F">Feminino</option>
+                    <option class="input-label" value="M">Masculino</option>
+                    <option class="input-label" value="F">Feminino</option>
                 </select>
             </div>
             <div class="form-group birthdate">
-                <label for="patient.birth_date">Data de nascimento  <span class="required">*</span></label>
+                <label class="input-label" for="patient.birth_date">Data de nascimento  <span class="required">*</span></label>
                 <input class="form-control" id="patient.birth_date" name="patient.birth_date" value=""
                        type="text" disabled="disabled" readonly="readonly">
             </div>
             <div class="form-group birthdate">
-                <label for="patient.birthdate_estimated">Esta data de nascimento é uma estimativa?  <span class="required">*</span></label>
+                <label class="input-label" for="patient.birthdate_estimated">Esta data de nascimento é uma estimativa?  <span class="required">*</span></label>
                 <select class="form-control" id="patient.birthdate_estimated" name="patient.birthdate_estimated"
                         disabled="disabled" readonly="readonly">
                     <option value="">...</option>
-                    <option value="true">Sim</option>
-                    <option value="false">Nao</option>
+                    <option class="input-label" value="true">Sim</option>
+                    <option class="input-label" value="false">Nao</option>
                 </select>
             </div>
-            <div class="form-group">
+            <div class="input-label">
                 <label for="tmp.update_birthdate">
                     <input id="tmp.update_birthdate" name="tmp.update_birthdate"
                            type="checkbox">
@@ -148,32 +148,32 @@
                 </label>
             </div>
             <div id="update_birthdate" class="sub-section">
-                <div class="form-group">
+                <div class="input-label">
                     <label for="tmp.birthdate_type">Registar a data de nascimento... <span class="required">*</span></label>
                     <select class="form-control" name="tmp.birthdate_type" id="tmp.birthdate_type" required="required">
                         <option value="">...</option>
-                        <option value="birthdate">Incluir a data de nascimento</option>
-                        <option value="age">Incluir a idade</option>
+                        <option class="input-label" value="birthdate">Incluir a data de nascimento</option>
+                        <option class="input-label" value="age">Incluir a idade</option>
                     </select>
                 </div>
                 <div class="form-group show_birthdate">
-                    <label for="demographicsupdate.birth_date">Selecione Nova Data de Nascimento<span class="required">*</span></label>
+                    <label class="input-label" for="demographicsupdate.birth_date">Selecione Nova Data de Nascimento<span class="required">*</span></label>
                     <input class="form-control birth_date_picker nonFutureDate" id="demographicsupdate.birth_date"
                            name="demographicsupdate.birth_date"
                            type="text" required="required" readonly="readonly">
                 </div>
                 <div class="form-group show_birthdate">
-                    <label for="demographicsupdate.birthdate_estimated">Esta data de nascimento é uma estimativa? <span
+                    <label class="input-label" for="demographicsupdate.birthdate_estimated">Esta data de nascimento é uma estimativa? <span
                             class="required">*</span></label>
                     <select class="form-control" id="demographicsupdate.birthdate_estimated" name="demographicsupdate.birthdate_estimated"
                             required="required">
-                        <option value="">...</option>
-                        <option value="true">SIM</option>
-                        <option value="false">NÃO</option>
+                        <option class="input-label" value="">...</option>
+                        <option class="input-label" value="true">SIM</option>
+                        <option class="input-label" value="false">NÃO</option>
                     </select>
                 </div>
                 <div class="form-group show_age">
-                    <label for="tmp.age_in_years">Quantos anos você tem em anos?<span class="required">*</span></label>
+                    <label class="input-label" for="tmp.age_in_years">Quantos anos você tem em anos?<span class="required">*</span></label>
                     <input class="form-control" id="tmp.age_in_years" name="tmp.age_in_years" type="number" required="required">
 
                 </div>
@@ -181,39 +181,39 @@
         </div>
 
         <div class="section" hidden>
-            <h3>Situação familiar</h3>
-            <div class="form-group">
+            <h6>Situação familiar</h6>
+            <div class="input-label">
                 <label for="tmp.hiv_test">Teste de HIV:</label>
                 <input class="form-control" id="tmp.hiv_test"
                         name="tmp.hiv_test" readonly="readonly" />
                 <div id="obs_hiv_test"></div>
             </div>
-            <div class="form-group">
+            <div class="input-label">
                 <label for="tmp.hiv_care">Cuidados de HIV:</label>
                 <input class="form-control" id="tmp.hiv_care" readonly="readonly"
                         name="tmp.hiv_care" />
             </div>
-            <div class="form-group">
+            <div class="input-label">
                 <label for="tmp.htc_offered">O serviço ATS foi oferecido?</label>
                 <input class="form-control" id="tmp.htc_offered" readonly
                         name="tmp.htc_offered" data-concept="165266^Oferecido serviço ATS?^99DCT" />
             </div>
             <div class="form-group tmp_htc_accepted">
-                <label for="tmp.htc_accepted">O serviço ATS foi aceito?</label>
+                <label class="input-label" for="tmp.htc_accepted">O serviço ATS foi aceito?</label>
                 <input class="form-control" id="tmp.htc_accepted" readonly
                         name="tmp.htc_accepted" />
             </div>
-            <div class="form-group">
+            <div class="input-label">
                 <label for="tmp.child_at_risk_treatment">EM CCR:</label>
                 <input class="form-control" id="tmp.child_at_risk_treatment" readonly="readonly"
                         name="tmp.child_at_risk_treatment" />
             </div>
-            <div class="form-group">
+            <div class="input-label">
                 <label for="tmp.relative_nid">NID:</label>
                 <input class="form-control" id="tmp.relative_nid"
                        name="tmp.relative_nid" type="text" readonly="readonly">
             </div>
-            <div class="form-group">
+            <div class="input-label">
                 <label for="tmp.update_hiv_details">
                     <input id="tmp.update_hiv_details" name="tmp.update_hiv_details"
                            type="checkbox">
@@ -223,16 +223,16 @@
         </div>
 <!--        data-concept="23782^SITUACAO FAMILIAR CONJUNTO^99DCT"-->
         <div id="update_hiv_details" class="sub-section" >
-            <h3>Dados de Testagem</h3>
-            <div class="form-group">
+            <h6>Dados de Testagem</h6>
+            <div class="input-label">
                 <label for="demographicsupdate.htc_offered">
                     O serviço ATS foi oferecido?
                 </label>
                 <select class="form-control" id="demographicsupdate.htc_offered"
                         name="demographicsupdate.htc_offered" data-concept="165266^Oferecido serviço ATS?^99DCT">
                     <option value="">...</option>
-                    <option value="1065^SIM^99DCT">Sim</option>
-                    <option value="1066^NAO^99DCT">Nao</option>
+                    <option class="input-label" value="1065^SIM^99DCT">Sim</option>
+                    <option class="input-label" value="1066^NAO^99DCT">Nao</option>
                 </select>
             </div>
             <div class="form-group demographicsupdate_htc_accepted">
@@ -241,55 +241,55 @@
                 </label>
                 <select class="form-control" id="demographicsupdate.htc_accepted"
                         name="demographicsupdate.htc_accepted" data-concept="165267^Aceita serviço ATS?^99DCT">
-                    <option value="">...</option>
-                    <option value="1065^SIM^99DCT">Sim</option>
-                    <option value="1066^NAO^99DCT">Nao</option>
+                    <option class="input-label" value="">...</option>
+                    <option class="input-label" value="1065^SIM^99DCT">Sim</option>
+                    <option class="input-label" value="1066^NAO^99DCT">Nao</option>
                 </select>
             </div>
-            <div class="form-group">
+            <div class="input-label">
                 <label for="demographicsupdate.hiv_test">Resultado da Testagem de HIV:</label>
                 <select class="form-control" id="demographicsupdate.hiv_test"
                         name="demographicsupdate.hiv_test" data-concept="23779^Teste de HIV^99DCT">
                     <option value="">...</option>
-                    <option value="703^Positivo^99DCT">Positivo</option>
-                    <option value="664^Negativo^99DCT">Negativo</option>
-                    <option value="1067^Desconhecido^99DCT">Desconhecido</option>
+                    <option class="input-label" value="703^Positivo^99DCT">Positivo</option>
+                    <option class="input-label" value="664^Negativo^99DCT">Negativo</option>
+                    <option class="input-label" value="1067^Desconhecido^99DCT">Desconhecido</option>
                 </select>
             </div>
-            <div class="form-group">
+            <div class="input-label">
                 <label for="demographicsupdate.hiv_care">Em Cuidados de HIV?</label>
                 <select class="form-control" id="demographicsupdate.hiv_care"
                         name="demographicsupdate.hiv_care" data-concept="23780^Cuidados HIV^99DCT">
-                    <option value="">...</option>
-                    <option value="1065^Sim^99DCT">Sim</option>
-                    <option value="1066^Nao^99DCT">Nao</option>
+                    <option class="input-label" value="">...</option>
+                    <option class="input-label" value="1065^Sim^99DCT">Sim</option>
+                    <option class="input-label" value="1066^Nao^99DCT">Nao</option>
                 </select>
             </div>
 
-            <div class="form-group">
+            <div class="input-label">
                 <label for="demographicsupdate.child_at_risk_treatment">Em CCR?</label>
                 <select class="form-control" id="demographicsupdate.child_at_risk_treatment"
                         name="demographicsupdate.child_at_risk_treatment" data-concept="1885^TRATEMENTO (CCR)^99DCT">
-                    <option value="">...</option>
-                    <option value="1065^Sim^99DCT">Sim</option>
-                    <option value="1066^Nao^99DCT">Nao</option>
-                    <option value="23892^Alta^99DCT">Alta</option>
+                    <option class="input-label" value="">...</option>
+                    <option class="input-label" value="1065^Sim^99DCT">Sim</option>
+                    <option class="input-label" value="1066^Nao^99DCT">Nao</option>
+                    <option class="input-label" value="23892^Alta^99DCT">Alta</option>
                 </select>
             </div>
-            <div class="form-group">
+            <div class="input-label">
                 <label for="demographicsupdate.relative_nid">NID:</label>
                 <input class="form-control" id="demographicsupdate.relative_nid" data-concept="23781^Relative NID^99DCT"
                        name="demographicsupdate.relative_nid" type="text">
             </div>
         </div>
         <div class="section">
-            <h3>Detalhes do encontro</h3>
-            <div class="form-group">
+            <h6>Detalhes do encontro</h6>
+            <div class="input-label">
                 <label for="encounter.encounter_datetime">Data de Encontro <span class="required">*</span></label>
                 <input class="form-control nonFutureDate past-date datetimepicker" readonly="readonly" id="encounter.encounter_datetime"
                        name="encounter.encounter_datetime" type="text" required="required">
             </div>
-            <div class="form-group">
+            <div class="input-label">
                 <label for="encounter.provider_id_select">Nome do conselheiro/provedor:<span class="required">*</span></label>
                 <input class="form-control valid-provider-only" id="encounter.provider_id_select" type="text"
                        placeholder="Comece a digitar algo ..." required="required">
@@ -299,18 +299,18 @@
                 <select id="select_providers"></select>
             </div>
             <div class="form-group show_provider_id_text">
-                <label for="encounter.provider_id">Nº de Identificação do conselheiro/provedor no sistema:<span class="required">*</span></label>
+                <label class="input-label" for="encounter.provider_id">Nº de Identificação do conselheiro/provedor no sistema:<span class="required">*</span></label>
                 <input class="form-control checkDigit" id="encounter.provider_id" name="encounter.provider_id"
                        type="text" required="required" disabled="disabled">
             </div>
 
-            <div class="form-group">
+            <div class="input-label">
                 <label for="encounter.location_id">Local de Encontro:<span class="required">*</span></label>
                 <input class="form-control valid-location-only" id="encounter.location_id" type="text" placeholder="Comece a digitar algo ..." required="required">
                 <input class="form-control" name="encounter.location_id" type="hidden">
             </div>
             <div class="form-group hidden">
-                <label for="encounter.location_id_select">Local de Encontro <span class="required">*</span></label>
+                <label class="input-label" for="encounter.location_id_select">Local de Encontro <span class="required">*</span></label>
                 <select class="form-control" id="encounter.location_id_select" required="required">
                     <option>...</option>
                 </select>

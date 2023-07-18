@@ -20,23 +20,23 @@
 
 </div>
 <form id="triangulation_form" name="triangulation_form">
-    <h2 class="text-center">Formulário de Triangulação</h2>
+    <h5 class="text-center">Formulário de Triangulação</h5>
     <div class="section">
         <div class="form-group">
             <input class="form-control" id="patient.uuid" name="patient.uuid" type="hidden" readonly="readonly">
 			<input class="form-control" id="patient.tagName" name="patient.tagName" type="hidden">
 			<input class="form-control" id="patient.tagUuid" name="patient.tagUuid" type="hidden">
         </div>
-		<div class="form-group">
+		<div class="input-label">
             <label for="patient.medical_record_number">NID </label>
             <input class="form-control" id="patient.medical_record_number" name="patient.medical_record_number" type="text" readonly="readonly">
         </div>
-        <div class="form-group">
+        <div class="input-label">
 			<label for="patient.names">Nome</label>
             <input class="form-control" id="patient.names"
                    name="patient.names" type="text" readonly="readonly">
 		</div>
-		<div class="form-group">
+		<div class="input-label">
              <label for="elegibility.category">Categoria de Elegibilidade:</label>
 			 <select class="form-control input-section" id="derived-obs-by-intervention-type" required
 				readonly="readonly" disabled >
@@ -52,28 +52,28 @@
 
 <div class="section section-div form-group" id="visit_book_call">
 	<div class="panel-heading">
-		<h3 class="panel-title">
+		<h6 class="panel-title">
 			<a data-toggle="collapse" data-parent="#accordion" href="#visit_book_call" aria-expanded="false" aria-controls="visit_book_call_collapse" id="visit_book_call.section">
-				REGISTO NO LIVRO
+			<h6>	REGISTO NO LIVRO </h6>
 			</a>
 			<a data-toggle="collapse" data-parent="#accordion" aria-expanded="false" href="#visit_book_call" id="visit_book_call.section">
 				<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrows-collapse" viewBox="0 0 16 16">
 					<path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13A.5.5 0 0 1 1 8zm7-8a.5.5 0 0 1 .5.5v3.793l1.146-1.147a.5.5 0 0 1 .708.708l-2 2a.5.5 0 0 1-.708 0l-2-2a.5.5 0 1 1 .708-.708L7.5 4.293V.5A.5.5 0 0 1 8 0zm-.5 11.707-1.146 1.147a.5.5 0 0 1-.708-.708l2-2a.5.5 0 0 1 .708 0l2 2a.5.5 0 0 1-.708.708L8.5 11.707V15.5a.5.5 0 0 1-1 0v-3.793z"/>
 				</svg>
 			</a>
-		</h3>
+		</h6>
 	</div>
  <div id="visit_book_call" class="panel-collapse collapse in">
     <div class="form-group" id="visit_book_call.section_div">
-        <div class="form-group">
+        <div class="input-label">
             <label for="patient.names">Nº do Livro de Chamadas e Visitas:</label>
             <input class="form-control" id="bookNumber" name="bookNumber" type="number" data-concept="23948^Call and Visit Book Number^99DCT">
         </div>
-		<div class="form-group">
+		<div class="input-label">
             <label for="patient.birth_date">Nº da Página:</label>
             <input class="form-control" id="pageNumber" name="pageNumber" type="number" data-concept="23949^Call and Visit book Page^99DCT">
         </div>
-		<div class="form-group">
+		<div class="input-label">
             <label for="patient.birth_date">Nº da Linha:</label>
             <input class="form-control" id="lineNumber" name="lineNumber" type="number" data-concept="23950^Call and Visit Book Page row^99DCT">
         </div>
@@ -83,21 +83,21 @@
 
 <div class="section section-div form-group" id="triangulation">
 	<div class="panel-heading">
-		<h3 class="panel-title">
+		<h6 class="panel-title">
 			<a data-toggle="collapse" data-parent="#accordion" href="#triangulation" aria-expanded="false" aria-controls="triangulation" id="triangulation.section">
-				TRIANGULAÇÃO
+			<h6> TRIANGULAÇÃO </h6>
 			</a>
 			<a data-toggle="collapse" data-parent="#accordion" aria-expanded="false" href="#triangulation" id="triangulation.section">
 				<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrows-collapse" viewBox="0 0 16 16">
 					<path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13A.5.5 0 0 1 1 8zm7-8a.5.5 0 0 1 .5.5v3.793l1.146-1.147a.5.5 0 0 1 .708.708l-2 2a.5.5 0 0 1-.708 0l-2-2a.5.5 0 1 1 .708-.708L7.5 4.293V.5A.5.5 0 0 1 8 0zm-.5 11.707-1.146 1.147a.5.5 0 0 1-.708-.708l2-2a.5.5 0 0 1 .708 0l2 2a.5.5 0 0 1-.708.708L8.5 11.707V15.5a.5.5 0 0 1-1 0v-3.793z"/>
 				</svg>
 			</a>
-		</h3>
+		</h6>
 	</div>
  <div id="tringulation" class="panel-collapse collapse in">
   <div class="form-group" id="triangulation.section_div">
 	 <div class="section section-div">
-		<div class="form-group">
+		<div class="input-label">
 			<label for="obs.type_of_visit">
 			Tipo de Visita<span class="required">*</span>
 			</label>
@@ -110,34 +110,34 @@
 			</select>
         </div>
 		<div id="missed_consultation_div">
-			<div class="form-group" id="missed_consultation">
+			<div class="input-label" id="missed_consultation">
 				<label for="temp.missed_consultation">
 					Data da consulta perdida:<span class="required"></span>
 				</label>
 				 <input class="form-control input-section-2" id="temp.missed_consultation" name="temp.missed_consultation" type="text" readonly="readonly">
 			</div>
-			<div class="form-group" id="missed_consultation_days">
+			<div class="input-label" id="missed_consultation_days">
 				<label for="temp.missed_consultation_days">
 					Diferença dias:<span class="required"></span>
 				</label>
 				 <input class="form-control input-section-2" id="temp.missed_consultation_days" name="temp.missed_consultation_days" type="text" readonly="readonly">
 			</div>
 	    </div>
-		<div class="form-group">
+		<div class="input-label">
 			<label for="obs.patient_triangulation_status">
 			Estado de Triangulação do Paciente<span class="required">*</span>
 			</label>
 			<select class="form-control input-section" id="obs.patient_triangulation_status" required
 				name="obs.patient_triangulation_status" data-concept="23848^ESTADO DA TRIANGULACAO DO PACIENTE^99DCT" readonly="readonly" >
 				<option value="">...</option>
-				<option value="23846^PRECISA RASTREAMENTO^99DCT">Sim, precisa de visita</option>
-				<option value="23847^NAO PRECISA RASTREAMENTO^99DCT">Não há necessidade de visita</option>
+				<option class="input-label" value="23846^PRECISA RASTREAMENTO^99DCT">Sim, precisa de visita</option>
+				<option class="input-label" value="23847^NAO PRECISA RASTREAMENTO^99DCT">Não há necessidade de visita</option>
 			</select>
         </div>
 
 		<div class="section section-div form-group" id="tracking_needed">
 			<a data-toggle="collapse" data-parent="#accordion" href="#traking_need" aria-expanded="false" aria-controls="traking_need_collapse" id="traking_need.section">
-				<label for="obs.reason_for_visit">
+				<label class="input-label" for="obs.reason_for_visit">
 				    Motivo da Visita<span class="required">*</span>
 					<input type="checkbox" name="obs.reason_for_visit" required="required" readonly="readonly" style="opacity:0; position:absolute; left:9999px;">
 				</label>
@@ -151,77 +151,77 @@
 			<div class="form-group" id="traking_need.section_div">
 			<div class="form-group">
 				<div class="form-group">
-					<label class="font-normal">
+					<label class="input-label">
 						<input id="obs.reason_for_visit.exposta" type="checkbox" name="obs.reason_for_visit"
 						data-concept="2172^MOTIVO DE VISITA/BUSCA DO PACIENTE^99DCT" value="2170^CRIANÇA EXPOSTA^99DCT">
 						Criança exposta
 					</label>
 				</div>
 				<div class="form-group">
-					<label class="font-normal">
+					<label class="input-label">
 						<input id="obs.reason_for_visit.pcr" type="checkbox" name="obs.reason_for_visit"
 						data-concept="2172^MOTIVO DE VISITA/BUSCA DO PACIENTE^99DCT" value="165352^CRIANÇA COM PCR +^99DCT">
 						Criança com PCR +
 					</label>
 				</div>
 				<div class="form-group">
-					<label class="font-normal">
+					<label class="input-label">
 						<input id="obs.reason_for_visit.diagnostico_tb" type="checkbox" name="obs.reason_for_visit"
 						data-concept="2172^MOTIVO DE VISITA/BUSCA DO PACIENTE^99DCT" value="23761^TUBERCULOSE ACTIVO^99DCT">
 						Diagnóstico da TB
 					</label>
 				</div>
 				<div class="form-group">
-					<label class="font-normal">
+					<label class="input-label">
 						<input id="obs.reason_for_visit.perda_segmento_tb" type="checkbox" name="obs.reason_for_visit"
 						data-concept="2172^MOTIVO DE VISITA/BUSCA DO PACIENTE^99DCT" value="5240^PERDA DE SEGUIMENTO^99DCT">
 						Perda de seguimento da TB
 					</label>
 				</div>
 				<div class="form-group">
-					<label class="font-normal">
+					<label class="input-label">
 						<input id="obs.reason_for_visit.carga_viral_elevada" type="checkbox" name="obs.reason_for_visit"
 						data-concept="2172^MOTIVO DE VISITA/BUSCA DO PACIENTE^99DCT" value="23912^CARGA VIRAL ELEVADA^99DCT">
 						Carga viral elevada
 					</label>
 				</div>
 				<div class="form-group">
-					<label class="font-normal">
+					<label class="input-label">
 						<input id="obs.reason_for_visit.falencia_terapeutica" type="checkbox" name="obs.reason_for_visit"
 						data-concept="2172^MOTIVO DE VISITA/BUSCA DO PACIENTE^99DCT" value="1790^FALENCIA TERAPEUTICA^99DCT">
 						Falência terapêutica
 					</label>
 				</div>
 				<div class="form-group">
-					<label class="font-normal">
+					<label class="input-label">
 						<input id="obs.reason_for_visit.faltoso" type="checkbox" name="obs.reason_for_visit"
 						data-concept="2172^MOTIVO DE VISITA/BUSCA DO PACIENTE^99DCT" value="165353^FALTOSO^99DCT">
 						Faltoso
 					</label>
 				</div>
 				<div class="form-group">
-					<label class="font-normal">
+					<label class="input-label">
 						<input id="obs.reason_for_visit.abandono" type="checkbox" name="obs.reason_for_visit"
 						data-concept="2172^MOTIVO DE VISITA/BUSCA DO PACIENTE^99DCT" value="1707^ABANDONO^99DCT">
 						Abandono
 					</label>
 				</div>
 				<div class="form-group">
-					<label class="font-normal">
+					<label class="input-label">
 						<input id="obs.reason_for_visit.aconselhamento" type="checkbox" name="obs.reason_for_visit"
 						data-concept="2172^MOTIVO DE VISITA/BUSCA DO PACIENTE^99DCT" value="6253^TRATAMENTO SEGUIMENTO SERVICO QUE PROVIDENCIA^99DCT" >
 						Seguimento preventivo
 					</label>
 				</div>
 				<div class="form-group">
-					<label class="font-normal">
+					<label class="input-label">
 						<input id="obs.reason_for_visit.outros" type="checkbox" name="obs.reason_for_visit"
 						data-concept="2172^MOTIVO DE VISITA/BUSCA DO PACIENTE^99DCT" value="2171^OUTRO MOTIVO DE VISITA AO PACIENTE^99DCT">
 						Outros
 					</label>
 				</div>
 			<div class="form-group sub-section" id="other_reason_for_visit">
-				<label class="font-normal" for="obs.other_reason_for_visit">
+				<label class="input-label" for="obs.other_reason_for_visit">
 					Outro motivo de visita ao paciente:<span class="required"></span>
 				</label>
 					<input class="form-control" id="obs.other_reason_for_visit" type="text" required="required"
@@ -234,7 +234,7 @@
 
 		<div class="section section-div form-group" id="no_tracking_needed">
 			<a data-toggle="collapse" data-parent="#accordion" href="#no_tracking_needed" aria-expanded="false" aria-controls="no_tracking_needed_collapse" id="no_tracking_needed.section">
-				<label for="obs.reason_for_not_tracing_patient">
+				<label class="input-label" for="obs.reason_for_not_tracing_patient">
 					Razão para não realizar a visita domiciliária
 				</label>
 			</a>
@@ -248,35 +248,35 @@
 				<div class="form-group concept-set">
 					<div class="form-group">
 						<div class="form-group">
-							<label class="font-normal">
+							<label class="input-label">
 								<input id="obs.reason_for_not_tracing_patient.clin" type="checkbox" name="obs.reason_for_not_tracing_patient"
 								data-concept="23852^RAZAO DE NAO RASTREAR O PACIENTE^99DCT" value="23849^VISITA CLINICA REGISTADA^99DCT">
 								Visita clínica registada
 							</label>
 						</div>
 						<div class="form-group">
-							<label class="font-normal">
+							<label class="input-label">
 								<input id="obs.reason_for_not_tracing_patient.drug" type="checkbox" name="obs.reason_for_not_tracing_patient"
 								data-concept="23852^RAZAO DE NAO RASTREAR O PACIENTE^99DCT" value="23850^FILA REGISTADO^99DCT">
 								FILA registado
 							</label>
 						</div>
 						<div class="form-group">
-							<label class="font-normal">
+							<label class="input-label">
 								<input id="obs.reason_for_not_tracing_patient.drug" type="checkbox" name="obs.reason_for_not_tracing_patient"
 								 data-concept="23852^RAZAO DE NAO RASTREAR O PACIENTE^99DCT" value="6307^CONTACTO TELEFONICO^99DCT">
 								Chamadas telefónicas
 							</label>
 						</div>
 						<div class="form-group">
-							<label class="font-normal">
+							<label class="input-label">
 								<input id="obs.reason_for_not_tracing_patient.transferred" type="checkbox" name="obs.reason_for_not_tracing_patient"
 								data-concept="23852^RAZAO DE NAO RASTREAR O PACIENTE^99DCT" value="1706^TRANSFERIDO PARA^99DCT">
 								Transferido
 							</label>
 						</div>
 						<div class="form-group">
-							<label class="font-normal">
+							<label class="input-label">
 								<input id="obs.reason_for_not_tracing_patient.other" type="checkbox" name="obs.reason_for_not_tracing_patient"
 								data-concept="23852^RAZAO DE NAO RASTREAR O PACIENTE^99DCT" value="23851^OUTRA RAZAO DE NAO RASTREAR^99DCT">
 								Outra razão de não rastrear
@@ -284,7 +284,7 @@
 						</div>
 					</div>
 					<div class="form-group sub-section" id="other_reason_for_not_tracing_patient">
-						<label class="font-normal" for="obs.other_reason_for_not_tracing_patient">
+						<label class="input-label" for="obs.other_reason_for_not_tracing_patient">
 							Outro:<span class="required"></span>
 						</label>
 							<input class="form-control" id="obs.other_reason_for_not_tracing_patient" type="text" required="required"
@@ -295,19 +295,21 @@
 		 </div>
 		</div>
 
-		        <div class="form-group">
+		        <div class="input-label">
 					<label for="obs.patient_call_made">
 					Foi feita a chamada?<span class="required">*</span>
 					</label>
+
 					<select class="form-control input-section" id="obs.patient_call_made" required
 						name="obs.patient_call_made" data-concept="23993^REINTEGRACAO^99DCT" >
 						<option value="">...</option>
-						<option value="1065^SIM^99DCT">Sim</option>
-						<option value="1066^NAO^99DCT">Não</option>
-						<option value="21233^N/A^99DCT">N/A</option>
+						<option class="input-label" value="1065^SIM^99DCT">Sim</option>
+						<option class="input-label" value="1066^NAO^99DCT">Não</option>
+						<option class="input-label" value="21233^N/A^99DCT">N/A</option>
 					</select>
+
 				</div>
-				<div class="form-group" id="professional_referral_name">
+				<div class="input-label" id="professional_referral_name">
 				    <label for="obs.professional_referral_name">
 					 Provedor que refere:<span class="required"></span>
 				    </label>
@@ -321,55 +323,55 @@
 
 <div class="section section-div form-group" id="allocation">
 	<div class="panel-heading">
-		 <h3 class="panel-title">
+		 <h6 class="panel-title">
 			<a data-toggle="collapse" data-parent="#accordion" href="#allocation" aria-expanded="false" aria-controls="allocation_collapse" id="allocation.section">
-				ALOCAÇÃO
+			<h6> ALOCAÇÃO </h6>
 			</a>
 			<a data-toggle="collapse" data-parent="#accordion" aria-expanded="false" href="#allocation" id="allocation.section">
 				<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrows-collapse" viewBox="0 0 16 16">
 					<path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13A.5.5 0 0 1 1 8zm7-8a.5.5 0 0 1 .5.5v3.793l1.146-1.147a.5.5 0 0 1 .708.708l-2 2a.5.5 0 0 1-.708 0l-2-2a.5.5 0 1 1 .708-.708L7.5 4.293V.5A.5.5 0 0 1 8 0zm-.5 11.707-1.146 1.147a.5.5 0 0 1-.708-.708l2-2a.5.5 0 0 1 .708 0l2 2a.5.5 0 0 1-.708.708L8.5 11.707V15.5a.5.5 0 0 1-1 0v-3.793z"/>
 				</svg>
 			</a>
-		</h3>
+		</h6>
 	</div>
    <div id="allocation" class="panel-collapse collapse in">
 	  <div class="form-group" id="allocation.section_div">
-			<div class="form-group">
+			<div class="input-label">
 				<label for="obs.home_visit_service">
 				Serviço que refere<span class="required">*</span>
 				</label>
 				<select class="form-control" id="obs.home_visit_service" required
 					name="obs.home_visit_service" data-concept="2176^SERVIÇO QUE REFERE A VISITA DOMICILIARIA^99DCT">
 					<option value="">...</option>
-					<option value="2175^SERVIÇO TARV ADULTO^99DCT">TARV (Clínica/APSS e PP)</option>
-					<option value="1872^CCR^99DCT">CCR</option>
-					<option value="1598^PREVENTION MOTHER CHILD TRANSMISSION^99DCT">CPN</option>
-					<option value="1414^PLANO NACIONAL PARA COMBATE TUBERCULOSE^99DCT">PNCT</option>
-					<option value="1987^GATV/SAAJ^99DCT">SAAJ</option>
-					<option value="23913^OUTRO^99DCT">Outro</option>
+					<option class="input-label" value="2175^SERVIÇO TARV ADULTO^99DCT">TARV (Clínica/APSS e PP)</option>
+					<option class="input-label" value="1872^CCR^99DCT">CCR</option>
+					<option class="input-label" value="1598^PREVENTION MOTHER CHILD TRANSMISSION^99DCT">CPN</option>
+					<option class="input-label" value="1414^PLANO NACIONAL PARA COMBATE TUBERCULOSE^99DCT">PNCT</option>
+					<option class="input-label" value="1987^GATV/SAAJ^99DCT">SAAJ</option>
+					<option class="input-label" value="23913^OUTRO^99DCT">Outro</option>
 				</select>
 			</div>
-			<div class="form-group">
+			<div class="input-label">
 				<label for="obs.selected_provider">
 				Actor Comunitario<span class="required">*</span>
 				</label>
 				<select class="form-control" id="obs.selected_provider" required
 					name="obs.selected_provider" data-concept="165238^PROVEDOR COMUNITARIO^99DCT">
 					<option value="">...</option>
-					<option value="165324^YOUTH AND TEENAGE MENTHOR^99DCT">AJM</option>
-					<option value="165325^CHAMPION MAN^99DCT">HC</option>
-					<option value="24031^Mentoring Mother^99DCT">MM</option>
-					<option value="165279^PAR EDUCATOR^99DCT">Educador de Par</option>
-					<option value="1912^HEALTH WORKER^99DCT">Activista</option>
-					<option value="5622^OUTRO^99DCT">Outro</option>
+					<option class="input-label" value="165324^YOUTH AND TEENAGE MENTHOR^99DCT">AJM</option>
+					<option class="input-label" value="165325^CHAMPION MAN^99DCT">HC</option>
+					<option class="input-label" value="24031^Mentoring Mother^99DCT">MM</option>
+					<option class="input-label" value="165279^PAR EDUCATOR^99DCT">Educador de Par</option>
+					<option class="input-label" value="1912^HEALTH WORKER^99DCT">Activista</option>
+					<option class="input-label" value="5622^OUTRO^99DCT">Outro</option>
 				</select>
 			</div>
-			<div class="form-group sub-section">
+			<div class="input-label">
 				<label for="obs.health_worker">Nome do Voluntário:<span class="required"></span></label>
 					<input class="form-control" id="temp.health_worker" name="temp.health_worker" type="text" required="required" placeholder="Comece a escrever...">
 				    <input class="form-control" id="obs.health_worker_id" name="obs.health_worker_id" type="text" required="required" data-concept="1912^TRABALHADOR DE SAÚDE^99DCT" readonly>
 			</div>
-			<div class="form-group" id="home_visit_date">
+			<div class="input-label" id="home_visit_date">
 				<label for="obs.home_visit_date">
 					Data da entrega ao Voluntário:<span class="required">*</span>
 				</label>
@@ -383,24 +385,24 @@
 </div>
 
 <div class="section" hidden="true">
-	<h3>Detalhes do formulario</h3>
-		<div class="form-group">
+	<h6>Detalhes do formulario</h6>
+		<div class="input-label">
             <label for="encounter.encounter_datetime">Data de actualizacao:<span class="required">*</span>
             </label>
             <input class="form-control datetimepicker nonFutureDate past-date input-section-2" id="encounter.encounter_datetime"
                    name="encounter.encounter_datetime" type="text" readonly="readonly" disabled
                    required="required">
         </div>
-		<div class="form-group">
+		<div class="input-label">
 			<label for="encounter.provider_id_select">Nome do provedor que fez a alocação:<span class="required">*</span></label>
 			<input class="form-control valid-provider-only input-section-2" id="encounter.provider_id_select" type="text" readonly="readonly">
 			<input class="form-control" name="encounter.provider_id_select" type="hidden">
 		</div>
-		<div class="form-group show_provider_id_text">
+		<div class="input-label">
 			<label for="encounter.provider_id">ID do sistema do provedor:<span class="required">*</span></label>
 			<input class="form-control input-section-2" id="encounter.provider_id" disabled name="encounter.provider_id" type="text" required="required"  placeholder="Provider Id">
 		</div>
-		<div class="form-group">
+		<div class="input-label">
             <label for="encounter.location_id">Local de Encontro:<span class="required">*</span></label>
             <input class="form-control valid-location-only input-section-2" id="encounter.location_id" type="text" required="required" readonly="readonly">
             <input class="form-control" name="encounter.location_id" type="hidden">

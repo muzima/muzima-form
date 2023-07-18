@@ -19,7 +19,7 @@
 <div id="pre_populate_data">
 </div>
 <form id="tracing_main_form" name="tracing_main_form">
-    <h2 class="text-center">Formulário de Visita Domiciliária v1.2</h2>
+    <h5 class="text-center">Formulário de Visita Domiciliária v1.2</h5>
 
 	<div class="section">
         <div class="form-group">
@@ -27,53 +27,53 @@
 			<input class="form-control" id="patient.tagName" name="patient.tagName" type="hidden">
 			<input class="form-control" id="patient.tagUuid" name="patient.tagUuid" type="hidden">
         </div>
-		<div class="form-group">
+		<div class="input-label">
             <label for="patient.medical_record_number">NID</label>
             <input class="form-control" id="patient.medical_record_number" name="patient.medical_record_number" type="text" readonly="readonly">
         </div>
-        <div class="form-group">
+        <div class="input-label">
 			<label for="patient.names">Nome</label>
             <input class="form-control" id="patient.names"
                    name="patient.names" type="text" readonly="readonly">
 		</div>
-		<div class="form-group">
+		<div class="input-label">
              <label for="elegibility.category">Categoria de Elegibilidade:</label>
 			 <select class="form-control input-section" id="derived-obs-by-intervention-type" required
 				readonly="readonly" disabled>
 				<option value="derived-obs-default">...</option>
-				<option value="derived-obs-faltoso">Faltoso</option>
-				<option value="derived-obs-elegivel-carga-viral">Elegivel Carga Viral</option>
-				<option value="derived-obs-carga-viral-alta">Carga Viral Alta</option>
-				<option value="derived-obs-abandono">Abandono</option>
-				<option value="derived-obs-preventiva">Preventiva</option>
+				<option class="input-label" value="derived-obs-faltoso">Faltoso</option>
+				<option class="input-label" value="derived-obs-elegivel-carga-viral">Elegivel Carga Viral</option>
+				<option class="input-label" value="derived-obs-carga-viral-alta">Carga Viral Alta</option>
+				<option class="input-label" value="derived-obs-abandono">Abandono</option>
+				<option class="input-label" value="derived-obs-preventiva">Preventiva</option>
 		     </select>
         </div>
     </div>
 
 <div class="section section-div form-group" id="visit_book_call">
 	<div class="panel-heading">
-		<h3 class="panel-title">
+		<h6 class="panel-title">
 			<a data-toggle="collapse" data-parent="#accordion" href="#visit_book_call" aria-expanded="false" aria-controls="visit_book_call_collapse" id="visit_book_call.section">
-				REGISTO NO LIVRO
+				<h6> REGISTO NO LIVRO </h6>
 			</a>
 			<a data-toggle="collapse" data-parent="#accordion" aria-expanded="false" href="#visit_book_call" id="visit_book_call.section">
 				<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrows-collapse" viewBox="0 0 16 16">
 					<path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13A.5.5 0 0 1 1 8zm7-8a.5.5 0 0 1 .5.5v3.793l1.146-1.147a.5.5 0 0 1 .708.708l-2 2a.5.5 0 0 1-.708 0l-2-2a.5.5 0 1 1 .708-.708L7.5 4.293V.5A.5.5 0 0 1 8 0zm-.5 11.707-1.146 1.147a.5.5 0 0 1-.708-.708l2-2a.5.5 0 0 1 .708 0l2 2a.5.5 0 0 1-.708.708L8.5 11.707V15.5a.5.5 0 0 1-1 0v-3.793z"/>
 				</svg>
 			</a>
-		</h3>
+		</h6>
 	</div>
  <div id="visit_book_call" class="panel-collapse collapse in">
     <div class="form-group" id="visit_book_call.section_div">
-        <div class="form-group">
+        <div class="input-label">
             <label for="patient.names">Nº do Livro de Chamadas e Visitas:</label>
             <input class="form-control" id="bookNumber" type="text" readonly="readonly">
         </div>
-		<div class="form-group">
+		<div class="input-label">
             <label for="patient.birth_date">Nº da Página:</label>
             <input class="form-control" id="pageNumber" type="text" readonly="readonly">
         </div>
-		<div class="form-group">
+		<div class="input-label">
             <label for="patient.birth_date">Nº da Linha:</label>
             <input class="form-control" id="lineNumber" type="text" readonly="readonly">
         </div>
@@ -83,32 +83,32 @@
 
 <div class="section section-div form-group" id="visit_section">
 	<div class="panel-heading">
-		<h3 class="panel-title">
+		<h6 class="panel-title">
 			<a data-toggle="collapse" data-parent="#accordion" href="#visit_section" aria-expanded="false" aria-controls="visit_section" id="visit_section.section">
-				VISITA
+				<h6> VISITA </h6>
 			</a>
 			<a data-toggle="collapse" data-parent="#accordion" aria-expanded="false" href="#visit_section" id="visit_section.section">
 				<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrows-collapse" viewBox="0 0 16 16">
 					<path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13A.5.5 0 0 1 1 8zm7-8a.5.5 0 0 1 .5.5v3.793l1.146-1.147a.5.5 0 0 1 .708.708l-2 2a.5.5 0 0 1-.708 0l-2-2a.5.5 0 1 1 .708-.708L7.5 4.293V.5A.5.5 0 0 1 8 0zm-.5 11.707-1.146 1.147a.5.5 0 0 1-.708-.708l2-2a.5.5 0 0 1 .708 0l2 2a.5.5 0 0 1-.708.708L8.5 11.707V15.5a.5.5 0 0 1-1 0v-3.793z"/>
 				</svg>
 			</a>
-		</h3>
+		</h6>
 	</div>
   <div id="visit_section" class="panel-collapse collapse in">
    <div class="form-group" id="visit_section.section_div">
-		<div class="form-group">
+		<div class="input-label">
 			<label for="obs.type_of_visit">
 			Tipo de Visita<span class="required">*</span>
 			</label>
 			<select class="form-control input-section" id="obs.type_of_visit" required
 				name="obs.type_of_visit" data-concept="1981^TIPO DE ATENDIMENTO FAMILIAR^99DCT" readonly="readonly" >
 				<option value="">...</option>
-				<option value="2161^VISITA DE APOIO^99DCT">Visita preventiva</option>
-				<option value="2160^VISITA DE BUSCA^99DCT">Visita de Reintegração</option>
-				<option value="23914^VISITA AOS CASOS ESPECIAIS^99DCT">Visita aos casos especiais</option>
+				<option class="input-label" value="2161^VISITA DE APOIO^99DCT">Visita preventiva</option>
+				<option class="input-label" value="2160^VISITA DE BUSCA^99DCT">Visita de Reintegração</option>
+				<option class="input-label" value="23914^VISITA AOS CASOS ESPECIAIS^99DCT">Visita aos casos especiais</option>
 			</select>
         </div>
-		<div class="form-group">
+		<div class="input-label">
 				<label for="encounter.encounter_datetime">Data da visita:<span class="required">*</span>
 				</label>
 				<input class="form-control datetimepicker nonFutureDate past-date" id="encounter.encounter_datetime"
@@ -116,7 +116,7 @@
 					   required="required"/>
 				<input class="form-control" id="obs.encounter_datetime" type="text" readonly="readonly"/>
 		</div>
-		<div class="form-group">
+		<div class="input-label">
 			<label for="obs.attempt_number">
 				Número de Tentativa
 			<span class="required">*</span>
@@ -124,23 +124,23 @@
 			<select class="form-control" id="obs.attempt_number" required 
 				name="obs.attempt_number" data-concept="23842^Number of outreach attempts^99DCT">
 				<option value="">...</option>
-				<option value="6440^DATA DA PRIMEIRA TENTATIVA DE BUSCA^99DCT">PRIMEIRA</option>
-				<option value="6254^DATA DA SEGUNDA TENTATIVA DE BUSCA^99DCT">SEGUNDA</option>
-				<option value="6255^DATA DA TERCEIRA TENTATIVA DE BUSCA^99DCT">TERCEIRA</option>
+				<option class="input-label" value="6440^DATA DA PRIMEIRA TENTATIVA DE BUSCA^99DCT">PRIMEIRA</option>
+				<option class="input-label" value="6254^DATA DA SEGUNDA TENTATIVA DE BUSCA^99DCT">SEGUNDA</option>
+				<option class="input-label" value="6255^DATA DA TERCEIRA TENTATIVA DE BUSCA^99DCT">TERCEIRA</option>
 		    </select>
 			<input class="form-control serializable" id="obs.patient_attemp_found_response"
 			 type="hidden" data-concept="24008^PATIENT FOUND IN THE FIRST ATTEMPT^99DCT" readonly="readonly">
         </div>
 
-		<div class="form-group">
+		<div class="input-label">
 			<label for="obs.patient_found">
 			Encontrou o Paciente<span class="required">*</span>
 			</label>
 			<select class="form-control" id="obs.patient_found" required
 				name="obs.patient_found" data-concept="2003^ACTIVISTA ENCONTROU A PESSOA^99DCT">
 				<option value="">...</option>
-				<option value="1065^SIM^99DCT">SIM</option>
-				<option value="1066^NAO^99DCT">NÃO</option>
+				<option class="input-label" value="1065^SIM^99DCT">SIM</option>
+				<option class="input-label" value="1066^NAO^99DCT">NÃO</option>
 			</select>
         </div>
 	</div>
@@ -150,42 +150,42 @@
 <div class="section section-div form-group" id="visit_report_div">
  <div class="section">
 	<div class="panel-heading">
-		<h3 class="panel-title">
+		<h6 class="panel-title">
 			<a data-toggle="collapse" data-parent="#accordion" href="#visit_report_div" aria-expanded="false" aria-controls="visit_report_div" id="visit_report_div.section">
-				RELATÓRIO DE VISITA
+			<h6> RELATÓRIO DE VISITA </h6>
 			</a>
 			<a data-toggle="collapse" data-parent="#accordion" aria-expanded="false" href="#visit_report_div" id="visit_report_div.section">
 				<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrows-collapse" viewBox="0 0 16 16">
 					<path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13A.5.5 0 0 1 1 8zm7-8a.5.5 0 0 1 .5.5v3.793l1.146-1.147a.5.5 0 0 1 .708.708l-2 2a.5.5 0 0 1-.708 0l-2-2a.5.5 0 1 1 .708-.708L7.5 4.293V.5A.5.5 0 0 1 8 0zm-.5 11.707-1.146 1.147a.5.5 0 0 1-.708-.708l2-2a.5.5 0 0 1 .708 0l2 2a.5.5 0 0 1-.708.708L8.5 11.707V15.5a.5.5 0 0 1-1 0v-3.793z"/>
 				</svg>
 			</a>
-		</h3>
+		</h6>
 	</div>
 
   <div id="visit_report_div" class="panel-collapse collapse in">
     <div class="form-group" id="visit_report_div.section_div" hidden="true">
 		<div class="form-group section patient_found_div_2160" id="patient_found_div_2160">
 			<div class="form-group concept-set">
-				<div class="form-group">
+				<div class="input-label">
 					<label for="obs.reason_for_failure">
 						Visita de reintegração – Motivos de falta:<span class="required">*</span>
 					</label>
-					<div class="form-group">
-						<label class="font-normal">
+					<div class="input-label">
+						<label class="input-label">
 							<input id="obs.reason_for_failure.esqueceu" type="checkbox" name="obs.reason_for_failure"
 							data-concept="2016^MOTIVO DE FALTA^99DCT" value="2005^ESQUECEU A DATA^99DCT" required="required"/>
 							Esqueceu a data
 						</label>
 					</div>
-					<div class="form-group">
-						<label class="font-normal">
+					<div class="input-label">
+						<label class="input-label">
 							<input id="obs.reason_for_failure.esta" type="checkbox" name="obs.reason_for_failure"
 							data-concept="2016^MOTIVO DE FALTA^99DCT" value="2006^ESTÁ ACAMADO EM CASA^99DCT" required="required"/>
 							Está doente
 						</label>
 					</div>
 					<div class="form-group">
-						<label class="font-normal">
+						<label class="input-label">
 							<input id="obs.reason_for_failure.distancia" type="checkbox" name="obs.reason_for_failure"
 							data-concept="2016^MOTIVO DE FALTA^99DCT" value="2007^DISTANCIA OU DINHEIRO TRANSPORTE^99DCT" required="required"/>
 							Problemas de transporte
@@ -193,105 +193,105 @@
 						</label>
 					</div>
 					<div class="form-group">
-						<label class="font-normal">
+						<label class="input-label">
 							<input id="obs.reason_for_failure.insatisfaccao" type="checkbox" name="obs.reason_for_failure"
 							data-concept="2016^MOTIVO DE FALTA^99DCT" value="2010^INSATISFACÇAO SERVIÇO NO HDD^99DCT" required="required"/>
 							 Mau atendimento na US
 						</label>
 					</div>
 					<div class="form-group">
-						<label class="font-normal">
+						<label class="input-label">
 							<input id="obs.reason_for_failure.insatisfaccao" type="checkbox" name="obs.reason_for_failure"
 							data-concept="2016^MOTIVO DE FALTA^99DCT" value="23915^MEDO DO PROVEDOR^99DCT" required="required"/>
 							Medo do Provedor de Saúde da US
 						</label>
 					</div>
 					<div class="form-group">
-						<label class="font-normal">
+						<label class="input-label">
 							<input id="obs.reason_for_failure.Ausencia" type="checkbox" name="obs.reason_for_failure"
 							data-concept="2016^MOTIVO DE FALTA^99DCT" value="23946^AUSENCIA DO PROVEDOR DE SAUDE NA UNIDADE SANITARIA^99DCT" required="required"/>
 							Ausência do Provedor na US
 						</label>
 					</div>
 					<div class="form-group">
-						<label class="font-normal">
+						<label class="input-label">
 							<input id="obs.reason_for_failure.efeitos" type="checkbox" name="obs.reason_for_failure"
 							data-concept="2016^MOTIVO DE FALTA^99DCT" value="2015^EFEITOS SECUNDARIOS ARV^99DCT" required="required"/>
 							Efeitos secundários
 						</label>
 					</div>
 					<div class="form-group">
-						<label class="font-normal">
+						<label class="input-label">
 							<input id="obs.reason_for_failure.tratamento_tradicional" type="checkbox" name="obs.reason_for_failure"
 							data-concept="2016^MOTIVO DE FALTA^99DCT" value="2013^TRATAMENTO TRADICIONAL^99DCT" required="required"/>
 							Tratamento tradicional
 						</label>
 					</div>
 					<div class="form-group">
-						<label class="font-normal">
+						<label class="input-label">
 							<input id="obs.reason_for_failure.tratamento_religioso" type="checkbox" name="obs.reason_for_failure"
 							data-concept="2016^MOTIVO DE FALTA^99DCT" value="1898^TRATAMENTO RELIGIOSO^99DCT" required="required"/>
 							Tratamento religioso
 						</label>
 					</div>
 					<div class="form-group">
-						<label class="font-normal">
+						<label class="input-label">
 							<input id="obs.reason_for_failure.transferido" type="checkbox" name="obs.reason_for_failure"
 							data-concept="2016^MOTIVO DE FALTA^99DCT" value="1706^TRANSFERIDO PARA^99DCT" required="required"/>
 							Transferido para outra US
 						</label>
 					</div>
 					<div class="form-group">
-						<label class="font-normal">
+						<label class="input-label">
 							<input id="obs.reason_for_failure.auto_transferência" type="checkbox" name="obs.reason_for_failure"
 							data-concept="2016^MOTIVO DE FALTA^99DCT" value="23863^AUTO TRANSFERÊNCIA^99DCT" required="required"/>
 							Auto transferência
 						</label>
 					</div>
 					<div class="form-group">
-						<label class="font-normal">
+						<label class="input-label">
 							<input id="obs.reason_for_failure.desmotivacao" type="checkbox" name="obs.reason_for_failure"
 							data-concept="2016^MOTIVO DE FALTA^99DCT" value="165355^DESISTIU DO TARV^99DCT" required="required"/>
 							 Desistiu do TARV
 						</label>
 					</div>
 					<div class="form-group">
-						<label class="font-normal">
+						<label class="input-label">
 							<input id="obs.reason_for_failure.vbg" type="checkbox" name="obs.reason_for_failure"
 							data-concept="2016^MOTIVO DE FALTA^99DCT" value="6303^VIOLENCIA BASEADA NO GENERO^99DCT" required="required"/>
 							 VBG
 						</label>
 					</div>
 					<div class="form-group">
-						<label class="font-normal">
+						<label class="input-label">
 							<input id="obs.reason_for_failure.diagnostico_negacao" type="checkbox" name="obs.reason_for_failure"
 							data-concept="2016^MOTIVO DE FALTA^99DCT" value="1956^NÃO ACREDITO NO REULTADO^99DCT" required="required"/>
 							 Negação ao diagnóstico
 						</label>
 					</div>
 					<div class="form-group">
-						<label class="font-normal">
+						<label class="input-label">
 							<input id="obs.reason_for_failure.diagnostico_dificuldades" type="checkbox" name="obs.reason_for_failure"
 							data-concept="2016^MOTIVO DE FALTA^99DCT" value="2155^NÃO REVELOU SEU DIAGNOSTICO^99DCT" required="required"/>
 							 Dificuldades em revelação de diagnóstico
 						</label>
 					</div>
 					<div class="form-group">
-						<label class="font-normal">
+						<label class="input-label">
 							<input id="obs.reason_for_failure.sente_se_melhor" type="checkbox" name="obs.reason_for_failure"
 							data-concept="2016^MOTIVO DE FALTA^99DCT" value="23767^SENTE-SE MELHOR (E)^99DCT" required="required"/>
 							 Sente-se melhor
 						</label>
 					</div>
 					<div class="form-group">
-						<label class="font-normal">
+						<label class="input-label">
 							<input id="obs.reason_for_failure.other" type="checkbox" name="obs.reason_for_failure"
 							data-concept="2016^MOTIVO DE FALTA^99DCT" value="2017^OUTRO MOTIVO DE FALTA^99DCT" required="required"/>
 							Outro
 						</label>
 					</div>
 					<div class="form-group sub-section" id="other_reason_for_failure">
-						<label class="font-normal" for="obs.other_reason_for_failure">
+						<label class="input-label" for="obs.other_reason_for_failure">
 							Outro:<span class="required"></span>
 						</label>
 							<input class="form-control" id="obs.other_reason_for_failure" type="text" required="required"
@@ -303,7 +303,7 @@
 
 <div class="form-group" id="preventive_visit_section">
 		<div class="form-group section patient_found_div_2161" id="patient_found_div_2161">
-				<div class="form-group">
+				<div class="input-label">
 					<label for="obs.visit_report">
 					Visita preventiva - Relatório da visita<span class="required">*</span>
 					</label>
@@ -311,20 +311,20 @@
 					<select class="form-control" id="obs.visit_report" required
 						name="obs.visit_report" data-concept="2158^RELATORIO DA VISITA DE APOIO^99DCT">
 						<option value="">...</option>
-						<option value="1383^BOM^99DCT">O paciente está bem</option>
-						<option value="2157^O PACIENTE APRESENTOU DIFICULDADES^99DCT">O paciente apresentou dificuldades</option>
+						<option class="input-label" value="1383^BOM^99DCT">O paciente está bem</option>
+						<option class="input-label" value="2157^O PACIENTE APRESENTOU DIFICULDADES^99DCT">O paciente apresentou dificuldades</option>
 					</select>
 				   </div>
 		       </div>
 			   <div class="form-group sub-section" id="patient_had_difficulties">
 						<div class="form-group concept-set">
-							<div class="form-group">
+							<div class="input-label">
 								<label for="obs.patient_had_difficulties">
 									MOTIVOS DA FALTA:<span class="required">*</span>
 								</label>
 							 <div class="concept-set" id="convset_group_section" data-concept="165356^CONVSET VISIT REPORT - FIRST VISIT^99DCT 1" >
 								<div class="form-group">
-									<label class="font-normal">
+									<label class="input-label">
 										<input id="obs.patient_had_difficulties.preocupacoes" type="checkbox" name="obs.patient_had_difficulties"
 										data-concept="2157^O PACIENTE APRESENTOU DIFICULDADES^99DCT" value="2156^PREOCUPAÇÕES COM A FAMILIA^99DCT" 											required="required"/>
 										 Preocupações com a família
@@ -333,7 +333,7 @@
 							 </div>
 							 <div class="concept-set" id="convset_group_section" data-concept="165356^CONVSET VISIT REPORT - FIRST VISIT^99DCT 2"  >
 								<div class="form-group">
-									<label class="font-normal">
+									<label class="input-label">
 										<input id="obs.patient_had_difficulties.efeitos" type="checkbox" name="obs.patient_had_difficulties"
 										data-concept="2157^O PACIENTE APRESENTOU DIFICULDADES^99DCT" value="2015^EFEITOS SECUNDARIOS ARV^99DCT"
 										required="required"/>
@@ -343,7 +343,7 @@
 							 </div>
 							 <div class="concept-set" id="convset_group_section" data-concept="165356^CONVSET VISIT REPORT - FIRST VISIT^99DCT 3">
 								<div class="form-group">
-									<label class="font-normal">
+									<label class="input-label">
 										<input id="obs.patient_had_difficulties.sente_se_triste" type="checkbox" name="obs.patient_had_difficulties"
 										data-concept="2157^O PACIENTE APRESENTOU DIFICULDADES^99DCT" value="14579^TRISTEZA^99DCT"
 										required="required"/>
@@ -353,7 +353,7 @@
 							 </div>
 							 <div class="concept-set" id="convset_group_section" data-concept="165356^CONVSET VISIT REPORT - FIRST VISIT^99DCT 4">
 								<div class="form-group">
-									<label class="font-normal">
+									<label class="input-label">
 										<input id="obs.patient_had_difficulties.falta_apoio_familiar" type="checkbox" name="obs.patient_had_difficulties"
 										data-concept="2157^O PACIENTE APRESENTOU DIFICULDADES^99DCT" value="2153^FALTA DE APOIO^99DCT" required="required"/>
 										 Falta de apoio familiar
@@ -362,7 +362,7 @@
 							 </div>
 							 <div class="concept-set" id="convset_group_section" data-concept="165356^CONVSET VISIT REPORT - FIRST VISIT^99DCT 5">
 								<div class="form-group">
-									<label class="font-normal">
+									<label class="input-label">
 										<input id="obs.patient_had_difficulties.tarv" type="checkbox" name="obs.patient_had_difficulties"
 										data-concept="2157^O PACIENTE APRESENTOU DIFICULDADES^99DCT" value="6186^NAO ACREDITA NO TRATAMENTO^99DCT 6" required="required"/>
 										 Não acredita no TARV
@@ -371,7 +371,7 @@
 							 </div>
 							 <div class="concept-set" id="convset_group_section" data-concept="165356^CONVSET VISIT REPORT - FIRST VISIT^99DCT 7">
 								<div class="form-group">
-									<label class="font-normal">
+									<label class="input-label">
 										<input id="obs.patient_had_difficulties.falta_medicamentos" type="checkbox" name="obs.patient_had_difficulties"
 										data-concept="2157^O PACIENTE APRESENTOU DIFICULDADES^99DCT" value="165354^FALTA DE PREPARACAO PARA DAR OU TOMAR OS MEDICAMENTOS^99DCT" required="required"/>
 										 Falta de preparação para dar ou tomar os medicamentos
@@ -380,7 +380,7 @@
 							 </div>
 							 <div class="concept-set" id="convset_group_section" data-concept="165356^CONVSET VISIT REPORT - FIRST VISIT^99DCT 8">
 								<div class="form-group">
-									<label class="font-normal">
+									<label class="input-label">
 										<input id="obs.patient_had_difficulties.problemas" type="checkbox" name="obs.patient_had_difficulties"
 										data-concept="2157^O PACIENTE APRESENTOU DIFICULDADES^99DCT" value="2007^DISTANCIA OU DINHEIRO TRANSPORTE^99DCT" 										required="required"/>
 										Problemas de transporte
@@ -389,7 +389,7 @@
 							 </div>
 							 <div class="concept-set" id="convset_group_section" data-concept="165356^CONVSET VISIT REPORT - FIRST VISIT^99DCT 9">
 								<div class="form-group">
-									<label class="font-normal">
+									<label class="input-label">
 										<input id="obs.patient_had_difficulties.acamado" type="checkbox" name="obs.patient_had_difficulties"
 										data-concept="2157^O PACIENTE APRESENTOU DIFICULDADES^99DCT" value="2006^ESTÁ ACAMADO EM CASA^99DCT" required="required"/>
 										 Está doente ou acamado
@@ -398,7 +398,7 @@
 							 </div>
 							 <div class="concept-set" id="convset_group_section" data-concept="165356^CONVSET VISIT REPORT - FIRST VISIT^99DCT 10">
 								<div class="form-group">
-									<label class="font-normal">
+									<label class="input-label">
 										<input id="obs.patient_had_difficulties.descriminition" type="checkbox" name="obs.patient_had_difficulties"
 										data-concept="2157^O PACIENTE APRESENTOU DIFICULDADES^99DCT" value="6436^ESTIGMA^99DCT" 											required="required"/>
 										 Estigma/descriminação o diagnóstico
@@ -407,7 +407,7 @@
 							 </div>
 							 <div class="concept-set" id="convset_group_section" data-concept="165356^CONVSET VISIT REPORT - FIRST VISIT^99DCT 11">
 								<div class="form-group">
-									<label class="font-normal">
+									<label class="input-label">
 										<input id="obs.patient_had_difficulties.other" type="checkbox" name="obs.patient_had_difficulties.other"
 										data-concept="2157^O PACIENTE APRESENTOU DIFICULDADES^99DCT" value="1748^OUTROS PROBLEMAS^99DCT" />
 										 Outro
@@ -416,7 +416,7 @@
 							 </div>
 						</div>
 							<div class="form-group" id="other_patient_had_difficulties">
-								  <label class="font-normal" for="obs.other_patient_had_difficulties">
+								  <label class="input-label" for="obs.other_patient_had_difficulties">
 									Outro:<span class="required"></span>
 								  </label>
 								  <input class="form-control" id="obs.other_referencias" type="text" required="required"
@@ -427,19 +427,19 @@
 	  </div>
 	</div>
         <div class="form-group section" id="patient_fallowup_div" hidden="true">
-			<label for="obs.patient_followup">
+			<label class="input-label" for="obs.patient_followup">
 			Paciente ou cuidador encaminhado para US<span class="required">*</span>
 			</label>
 			<select class="form-control" id="obs.patient_followup" required="required"
 				name="obs.patient_followup" data-concept="23947^FAMILIAR OU CUIDADOR DA CRIANÇA FOI REFERIDO PARA A US^99DCT">
 				<option value="">...</option>
-				<option value="1065^SIM^99DCT">SIM</option>
-				<option value="1066^NAO^99DCT">NÃO</option>
-				<option value="21233^N/A^99DCT">N/A</option>
+				<option class="input-label" value="1065^SIM^99DCT">SIM</option>
+				<option class="input-label" value="1066^NAO^99DCT">NÃO</option>
+				<option class="input-label" value="21233^N/A^99DCT">N/A</option>
 			</select>
         </div>
 	    <div class="form-group sub-section patient_found_div home_visit_result_div" id="data_combinada_div" hidden="true">
-			<label for="obs.data_combinada">Data combinada para retorno a US:
+			<label class="input-label" for="obs.data_combinada">Data combinada para retorno a US:
 			</label>
 			<input class="form-control datepicker" id="obs.data_combinada" type="text" readonly="readonly"
 					name="obs.data_combinada" data-concept="23933^Data combinada na primeira visita para retorno a US^99DCT" />
@@ -447,55 +447,55 @@
 
 <div class="section section-div form-group patient_not_found_div" id="patient_not_found_div_section">
 	<div class="panel-heading">
-		<h3 class="panel-title">
+		<h6 class="panel-title">
 			<a data-toggle="collapse" data-parent="#accordion" href="#patient_not_found_div_section" aria-expanded="false" aria-controls="patient_not_found_div_section" id="patient_not_found_div_section.section">
-				PACIENTE NÃO ENCONTRADO
+			<h6> PACIENTE NÃO ENCONTRADO </h6>
 			</a>
 			<a data-toggle="collapse" data-parent="#accordion" aria-expanded="false" href="#patient_not_found_div_section" id="patient_not_found_div_section.section">
 				<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrows-collapse" viewBox="0 0 16 16">
 					<path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13A.5.5 0 0 1 1 8zm7-8a.5.5 0 0 1 .5.5v3.793l1.146-1.147a.5.5 0 0 1 .708.708l-2 2a.5.5 0 0 1-.708 0l-2-2a.5.5 0 1 1 .708-.708L7.5 4.293V.5A.5.5 0 0 1 8 0zm-.5 11.707-1.146 1.147a.5.5 0 0 1-.708-.708l2-2a.5.5 0 0 1 .708 0l2 2a.5.5 0 0 1-.708.708L8.5 11.707V15.5a.5.5 0 0 1-1 0v-3.793z"/>
 				</svg>
 			</a>
-		</h3>
+		</h6>
 	</div>
   <div id="patient_not_found_div_section" class="panel-collapse collapse in">
      <div class="form-group" id="patient_not_found_div_section.section_div" hidden="true">
 		<div class="form-group section patient_not_found_div" id="patient_not_found_div">
 			<div class="form-group concept-set">
-				<div class="form-group">
+				<div class="input-label">
 					<label for="obs.patient_not_found_reason">
 						Motivo de não encontrar<span class="required">*</span>
 					</label>
 					<div class="form-group">
-						<label class="font-normal">
+						<label class="input-label">
 							<input id="obs.patient_not_found_reason.obito" type="checkbox" name="obs.patient_not_found_reason"
 							data-concept="2031^REASON PATIENT NOT FOUND BY ACTIVIST^99DCT" value="1366^Obitou^99DCT" required="required"/>
 							 Óbito
 						</label>
 					</div>
 					<div class="form-group">
-						<label class="font-normal">
+						<label class="input-label">
 							<input id="obs.patient_not_found_reason.endereco" type="checkbox" name="obs.patient_not_found_reason"
 							data-concept="2031^REASON PATIENT NOT FOUND BY ACTIVIST^99DCT" value="2024^ENDEREÇO ERRADO^99DCT" required="required"/>
 							 Endereço errado
 						</label>
 					</div>
 					<div class="form-group">
-						<label class="font-normal">
+						<label class="input-label">
 							<input id="obs.patient_not_found_reason.mudou" type="checkbox" name="obs.patient_not_found_reason"
 							data-concept="2031^REASON PATIENT NOT FOUND BY ACTIVIST^99DCT" value="2026^MUDOU DE CASA^99DCT" required="required"/>
 							  Mudou de endereço
 						</label>
 					</div>
 					<div class="form-group">
-						<label class="font-normal">
+						<label class="input-label">
 							<input id="obs.patient_not_found_reason.viajou" type="checkbox" name="obs.patient_not_found_reason"
 							data-concept="2031^REASON PATIENT NOT FOUND BY ACTIVIST^99DCT" value="2011^VIAJOU^99DCT" required="required"/>
 							  Viajou
 						</label>
 					</div>
 					<div class="form-group">
-						<label class="font-normal">
+						<label class="input-label">
 							<input id="obs.patient_not_found_reason.outros" type="checkbox" name="obs.patient_not_found_reason"
 							data-concept="2031^REASON PATIENT NOT FOUND BY ACTIVIST^99DCT" value="2032^OUTROS MOTIVOS^99DCT" required="required"/>
 							  Outro
@@ -504,7 +504,7 @@
 				</div>
 			</div>
 			<div class="form-group sub-section" id="patient_not_found_reason_other">
-				<label class="font-normal" for="obs.patient_not_found_reason_other">
+				<label class="input-label" for="obs.patient_not_found_reason_other">
 					Outro:<span class="required"></span>
 				</label>
 					<input class="form-control" id="obs.patient_not_found_reason_other" type="text" required="required"
@@ -516,47 +516,47 @@
     </div>
 <div class="section section-div form-group" id="information_given_by_div">
 	<div class="panel-heading">
-		<h3 class="panel-title">
+		<h6 class="panel-title">
 			<a data-toggle="collapse" data-parent="#accordion" href="#information_given_by_div" aria-expanded="false" aria-controls="information_given_by_div" id="information_given_by_div.section">
-				DADOS DO INFORMANTE
+			<h6> DADOS DO INFORMANTE </h6>
 			</a>
 			<a data-toggle="collapse" data-parent="#accordion" aria-expanded="false" href="#information_given_by_div" id="information_given_by_div.section">
 				<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrows-collapse" viewBox="0 0 16 16">
 					<path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13A.5.5 0 0 1 1 8zm7-8a.5.5 0 0 1 .5.5v3.793l1.146-1.147a.5.5 0 0 1 .708.708l-2 2a.5.5 0 0 1-.708 0l-2-2a.5.5 0 1 1 .708-.708L7.5 4.293V.5A.5.5 0 0 1 8 0zm-.5 11.707-1.146 1.147a.5.5 0 0 1-.708-.708l2-2a.5.5 0 0 1 .708 0l2 2a.5.5 0 0 1-.708.708L8.5 11.707V15.5a.5.5 0 0 1-1 0v-3.793z"/>
 				</svg>
 			</a>
-		</h3>
+		</h6>
 	</div>
   <div id="information_given_by_div" class="panel-collapse collapse in">
      <div class="form-group" id="information_given_by_div.section_div" hidden="true">
 				<div class="section form-group">
 					<div class="form-group">
-						<label class="font-normal">
+						<label class="input-label">
 							<input id="obs.information_given_by.vizinho" type="checkbox" name="obs.information_given_by"
 							data-concept="2037^INFORMAÇAO DADA POR^99DCT" value="2034^VIZINHO^99DCT"/>
 							   Vizinho
 						</label>
 					</div>
 					<div class="form-group">
-						<label class="font-normal">
+						<label class="input-label">
 							<input id="obs.information_given_by.confidante" type="checkbox" name="obs.information_given_by"
 							data-concept="2037^INFORMAÇAO DADA POR^99DCT" value="2033^CONFIDENTE^99DCT"/>
 							   Confidente
 						</label>
 					</div>
 					<div class="form-group">
-						<label class="font-normal">
+						<label class="input-label">
 							<input id="obs.information_given_by.familiar" type="checkbox" name="obs.information_given_by"
 							data-concept="2037^INFORMAÇAO DADA POR^99DCT" value="2035^FAMILIAR^99DCT"/>
 							    Familiar
 						</label>
-						  <label class="font-normal" for="obs.familiar_parentesco">
+						  <label class="input-label" for="obs.familiar_parentesco">
 							       (Parentesco:<span class="required">*</span>)
 							<input id="obs.familiar_parentesco" class="font-normal" type="hidden" data-concept="2038^OUTROS INFORMAÇÃO DADA POR^99DCT" required="required">
 						  </label>
 					</div>
 					<div class="form-group">
-						<label class="font-normal">
+						<label class="input-label">
 							<input id="obs.information_given_by.lider" type="checkbox" name="obs.information_given_by"
 							data-concept="2037^INFORMAÇAO DADA POR^99DCT" value="2036^CHEFE DE BAIRRO^99DCT"/>
 							 Lider Comunitário
@@ -564,12 +564,12 @@
 					</div>
 				</div>
 			<div class="form-group sub-section">
-				<label class="font-normal" for="obs.referenced_person_name">
+				<label class="input-label" class="font-normal" for="obs.referenced_person_name">
 					Nome
 				</label>
 					<input class="form-control" id="obs.referenced_person_name" type="text"
 					name="obs.referenced_person_name" data-concept="1441^PESSOA DE REFERENCIA - NOME^99DCT"/>
-				<label class="font-normal" for="obs.referenced_person_contact">
+				<label class="input-label" for="obs.referenced_person_contact">
 					Contacto
 				</label>
 					<input class="form-control" id="obs.referenced_person_contact" type="text"
@@ -586,22 +586,22 @@
 
         <!-- Visible if pacient was found -->
 	<div class="section section-div" hidden="true">
-			<h3>Detalhes do Encontro</h3>
-		<div class="form-group">
-				<label for="encounter.encounter_datetime">Data do encontro:<span class="required">*</span>
+			<h6>Detalhes do Encontro</h6>
+		<div class="input-label">
+				<label class="input-label" for="encounter.encounter_datetime">Data do encontro:<span class="required">*</span>
 				</label>
 				<input class="form-control datetimepicker nonFutureDate past-date" id="encounter.encounter_datetime"
 					   name="encounter.encounter_datetime" type="text" readonly="readonly" disabled
 					   required="required"/>
 				<input class="form-control" id="obs.encounter_datetime" name="obs.encounter_datetime" type="text" readonly="readonly"/>
 		</div>
-		<div class="form-group">
+		<div class="input-label">
 			<label for="encounter.provider_id_select">Nome do voluntário:<span class="required">*</span></label>
 			<input class="form-control valid-provider-only" id="encounter.provider_id_select" type="text" placeholder="Start typing something..." readonly="readonly"/>
 			<input class="form-control" name="encounter.provider_id_select" type="hidden"/>
 		</div>
 		<div class="form-group show_provider_id_text">
-			<label for="encounter.provider_id">ID do sistema do provedor:<span class="required">*</span></label>
+			<label class="input-label" for="encounter.provider_id">ID do sistema do provedor:<span class="required">*</span></label>
 			<input class="form-control" id="encounter.provider_id" disabled name="encounter.provider_id" type="text" required="required"  placeholder="Provider Id"/>
 		</div>
         <div class="form-group">
@@ -613,7 +613,7 @@
 			<!-- <input class="form-control" id="encounter.form_uuid_to_add_obs" name="encounter.form_uuid_to_add_obs" type="hidden" value="b1ecb071-6471-4d87-89f4-d9e1b0c80630">
             <input class="form-control" id="encounter.should_not_edit_existing_encounters" name="encounter.should_not_edit_existing_encounters" type="hidden" value="true"> -->
 		</div>
-		<div class="form-group">
+		<div class="input-label">
             <label for="encounter.location_id">Unidade Sanitaria:<span class="required">*</span></label>
             <input class="form-control valid-location-only" id="encounter.location_id" type="text" placeholder="Start typing something..." required="required" readonly="readonly"/>
             <input class="form-control" name="encounter.location_id" type="hidden"/>
