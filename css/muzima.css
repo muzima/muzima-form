@@ -29,6 +29,10 @@ input.error {
     border-radius: 4px;
     background: #ffffff url("../images/barcode_icon.png") no-repeat center;
 }
+.input-label {
+    font-size: 10px;
+
+}
 
 .barcode_text {
     display: inline-block;
