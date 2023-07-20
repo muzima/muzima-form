@@ -27,50 +27,50 @@
 
     <div class="section">
         <h6>Nome do Paciente</h6>
-        <div class="input-label">
+        <div class="form-group">
             <input class="form-control" id="patient.uuid"
                    name="patient.uuid" type="hidden" readonly="readonly">
             <input class="form-control" id="patient.person_conversion" name="patient.person_conversion"
                    type="hidden" readonly="readonly">
         </div>
-        <div class="input-label">
-            <label for="patient.family_name">Apelido: <span class="required">*</span> </label>
+        <div class="form-group">
+            <label class="input-label" for="patient.family_name">Apelido: <span class="required">*</span> </label>
             <input class="form-control" id="patient.family_name" name="patient.family_name" type="text"
                    required="required">
         </div>
-        <div class="input-label">
-            <label for="patient.given_name">Nome: <span class="required">*</span></label>
+        <div class="form-group">
+            <label class="input-label" for="patient.given_name">Nome: <span class="required">*</span></label>
             <input class="form-control" id="patient.given_name" name="patient.given_name" type="text"
                    required="required">
         </div>
-        <div class="input-label">
-            <label for="patient.middle_name">Nome do meio:</label>
+        <div class="form-group">
+            <label class="input-label" for="patient.middle_name">Nome do meio:</label>
             <input class="form-control" id="patient.middle_name" name="patient.middle_name" type="text">
         </div>
     </div>
     <div class="section">
         <div class="section group-set" data-group="patient.personaddress">
             <h6>Endereço</h6>
-            <div class="input-label">
-                <label for="address1">Avenida/Rua/Casa: </label>
+            <div class="form-group">
+                <label class="input-label" for="address1">Avenida/Rua/Casa: </label>
                 <input class="form-control" id="address1" name="address1" type="text">
             </div>
-            <div class="input-label">
-                <label for="address6">Comunidade: </label>
+            <div class="form-group">
+                <label class="input-label" for="address6">Comunidade: </label>
                 <input class="form-control" id="address6" name="address6" type="text">
             </div>
-            <div class="input-label">
-                <label for="address3">Quarteirão: </label>
+            <div class="form-group">
+                <label class="input-label" for="address3">Quarteirão: </label>
                 <input class="form-control" id="address3" name="address3" type="text">
             </div>
-            <div class="input-label">
-                <label for="address5">Bairro: </label>
+            <div class="form-group">
+                <label class="input-label" for="address5">Bairro: </label>
                 <input class="form-control" id="address5" name="address5" type="text">
             </div>
         </div>
         <div class="group-set" data-group="patient.personattribute">
-            <div class="input-label">
-                <label for="attribute_value">Contacto Telemóvel do Paciente: </label>
+            <div class="form-group">
+                <label class="input-label" for="attribute_value">Contacto Telemóvel do Paciente: </label>
                 <input class="form-control" id="attribute_value"
                        name="attribute_value" type="text">
                 <input data-metadata-for="attribute_value" type="hidden" id="attribute_type_uuid"
@@ -81,8 +81,8 @@
 
     <div class="section">
         <h6>Identificadores</h6>
-        <div class="input-label">
-            <label for="patient.medical_record_number">NID : <span class="required require_medical_record_number_hint">*</span></label>
+        <div class="form-group">
+            <label class="input-label" for="patient.medical_record_number">NID : <span class="required require_medical_record_number_hint">*</span></label>
             <div class="form-horizontal">
                 <div class="group-set" data-group="patient.medical_record_number">
                     <input type="button" class='btn barcode_btn form-control'>
@@ -95,8 +95,8 @@
         </div>
     </div>
     <div class="section">
-        <div class="input-label">
-            <label for="patient.sex">Sexo: <span class="required">*</span></label>
+        <div class="form-group">
+            <label class="input-label" for="patient.sex">Sexo: <span class="required">*</span></label>
             <select class="form-control" id="patient.sex" name="patient.sex" required="required">
                 <option value="">...</option>
                 <option class="input-label" value="M">Masculino</option>
@@ -104,16 +104,16 @@
             </select>
         </div>
 
-        <div class="input-label">
-            <label for="tmp.birthdate_type">Registar a data de nascimento... <span class="required">*</span></label>
+        <div class="form-group">
+            <label class="input-label" for="tmp.birthdate_type">Registar a data de nascimento... <span class="required">*</span></label>
             <select class="form-control" name="tmp.birthdate_type" id="tmp.birthdate_type" required="required">
                 <option value="">...</option>
                 <option class="input-label" value="birthdate">Incluir a data de nascimento (seleccionar a …)</option>
                 <option class="input-label" value="age">Incluir a idade (seleccionar a …)</option>
             </select>
         </div>
-        <div class="input-label">
-            <label for="patient.birth_date">Selecione Nova Data de Nascimento<span class="required">*</span></label>
+        <div class="form-group">
+            <label class="input-label" for="patient.birth_date">Selecione Nova Data de Nascimento<span class="required">*</span></label>
             <input class="form-control birth_date_picker nonFutureDate" id="patient.birth_date"
                    name="patient.birth_date"
                    type="text"
@@ -139,8 +139,8 @@
 
     <div class="section">
         <h6>TESTE DO CASO DO INDICE DO PACIENTE</h6>
-        <div class="input-label">
-            <label for="obs.index_patient_source">Origem CI:<span class="required">*</span></label>
+        <div class="form-group">
+            <label class="input-label" for="obs.index_patient_source">Origem CI:<span class="required">*</span></label>
             <select class="form-control" id="obs.index_patient_source" required="required"
                     name="obs.index_patient_source" data-concept="23877^Origem CI^99DCT">
                 <option value="">...</option>
@@ -168,8 +168,8 @@
                 <option class="input-label" value="6142^APSS-PP^99DCT">APSS-PP</option>
             </select>
         </div>
-        <div class="input-label">
-            <label for="obs.contact_testing_consent">Paciente consente testagem dos contactos:
+        <div class="form-group">
+            <label class="input-label" for="obs.contact_testing_consent">Paciente consente testagem dos contactos:
                 <span class="required">*</span></label>
             <select class="form-control" id="obs.contact_testing_consent" required="required"
                     name="obs.contact_testing_consent" data-concept="21155^Paciente consente testagem dos contactos^99DCT">
@@ -186,8 +186,8 @@
                    data-obsformuuidtoaddobsfor="obs.contact_testing_consent"  id="obs_formuuidtoaddobs.contact_testing_consent" required="required">
 
         </div>
-        <div class="input-label">
-            <label for="obs.expected_testing_date">Data Prevista para Testagem:
+        <div class="form-group">
+            <label class="input-label" for="obs.expected_testing_date">Data Prevista para Testagem:
                 <span class="required">*</span></label>
             <input class="form-control datepicker nonPastEncounterDate" readonly="readonly"
                    id="obs.expected_testing_date" data-concept="23879^Data Prevista para Testagem^99DCT"
@@ -201,7 +201,7 @@
         <div style="background-color:#f0ffff;" class="section group-set repeat person_relationships" data-group="person.relationships" data-name="person.relationships"
              id="person_relationships">
             <h6>Pessoa de contato</h6>
-            <div class="input-label">
+            <div class="form-group">
                 <label>Parentesco: <span class="required"></span></label>
                 <select class="form-control person.relationshipType" name="person.relationshipType">
                     <option value="">...</option>
@@ -235,8 +235,8 @@
                     <input class="obs.contact_name" name="obs.contact_name" type="hidden">
                     <input class="obs.contact_relationship" name="obs.contact_relationship" type="hidden">
                 </div>
-                <div class="input-label">
-                    <label for="tmp.person_search_sex">Sexo:</label>
+                <div class="form-group">
+                    <label class="input-label" for="tmp.person_search_sex">Sexo:</label>
                     <select class="form-control tmp.person_search_sex" id="tmp.person_search_sex" name="tmp.person_search_sex"
                             readonly="readonly" disabled="disabled">
                         <option value="">...</option>
@@ -244,18 +244,18 @@
                         <option class="input-label" value="F">Feminino</option>
                     </select>
                 </div>
-                <div class="input-label">
-                    <label for="tmp.person_search_birth_date">Data de nascimento:</label>
+                <div class="form-group">
+                    <label class="input-label" for="tmp.person_search_birth_date">Data de nascimento:</label>
                     <input class="form-control tmp.person_search_birth_date tmp.person_search_birth_date" name="tmp.person_search_birth_date"
                            type="text" readonly="readonly" disabled="disabled">
                 </div>
-                <div class="input-label">
-                    <label for="obs.contact_age">Idade:</label>
+                <div class="form-group">
+                    <label class="input-label" for="obs.contact_age">Idade:</label>
                     <input class="form-control obs.contact_age"
                            name="obs.contact_age" type="number" readonly="readonly">
                 </div>
-                <div class="input-label">
-                    <label for="obs.hiv_test">Teste de HIV:</label>
+                <div class="form-group">
+                    <label class="input-label" for="obs.hiv_test">Teste de HIV:</label>
                     <select class="form-control obs.hiv_test" readonly="readonly" disabled="disabled"
                             name="obs.hiv_test">
                         <option value="">...</option>
@@ -264,8 +264,8 @@
                         <option class="input-label" value="1067^Desconhecido^99DCT">Desconhecido</option>
                     </select>
                 </div>
-                <div class="input-label">
-                    <label for="obs.hiv_care">Cuidados de HIV:</label>
+                <div class="form-group">
+                    <label class="input-label" for="obs.hiv_care">Cuidados de HIV:</label>
                     <select class="form-control obs.hiv_care" readonly="readonly" disabled="disabled"
                             name="obs.hiv_care">
                         <option value="">...</option>
@@ -273,8 +273,8 @@
                         <option class="input-label" value="1066^Nao^99DCT">Nao</option>
                     </select>
                 </div>
-                <div class="input-label">
-                    <label for="obs.child_at_risk_treatment">EM CCR:</label>
+                <div class="form-group">
+                    <label class="input-label" for="obs.child_at_risk_treatment">EM CCR:</label>
                     <select class="form-control obs.child_at_risk_treatment" readonly="readonly" disabled="disabled"
                             name="obs.child_at_risk_treatment">
                         <option value="">...</option>
@@ -283,12 +283,12 @@
                         <option class="input-label" value="23892^Alta^99DCT">Alta</option>
                     </select>
                 </div>
-                <div class="input-label">
-                    <label for="obs.relative_nid">NID:</label>
+                <div class="form-group">
+                    <label class="input-label" for="obs.relative_nid">NID:</label>
                     <input class="form-control obs.relative_nid"
                            name="obs.relative_nid" type="text" readonly="readonly">
                 </div>
-                <div class="input-label">
+                <div class="form-group">
                     <label class="update-relationship-person" data-result-field="">
                         <input class="tmp.update_person_details" data-result-field=""
                                data-personUuid="" name="tmp.update_person_details" type="checkbox">
@@ -306,8 +306,8 @@
 
     <div class="section">
         <h6>Detalhes do encontro</h6>
-        <div class="input-label">
-            <label for="encounter.provider_id_select">Nome do conselheiro/provedor:<span class="required">*</span></label>
+        <div class="form-group">
+            <label class="input-label" for="encounter.provider_id_select">Nome do conselheiro/provedor:<span class="required">*</span></label>
             <input class="form-control valid-provider-only" id="encounter.provider_id_select" type="text"
                    placeholder="Comece a digitar algo ..." required="required">
             <input class="form-control" name="encounter.provider_id_select" type="hidden">
@@ -321,8 +321,8 @@
                    type="text" required="required" disabled="disabled">
         </div>
 
-        <div class="input-label">
-            <label for="encounter.location_id">Local de Encontro:<span class="required">*</span></label>
+        <div class="form-group">
+            <label class="input-label" for="encounter.location_id">Local de Encontro:<span class="required">*</span></label>
             <input class="form-control valid-location-only" id="encounter.location_id" type="text" placeholder="Comece a digitar algo ..." required="required">
             <input class="form-control" name="encounter.location_id" type="hidden">
         </div>
@@ -333,8 +333,8 @@
             </select>
         </div>
 
-        <div class="input-label">
-            <label for="encounter.encounter_datetime">Data de Encontro <span class="required">*</span></label>
+        <div class="form-group">
+            <label class="input-label" for="encounter.encounter_datetime">Data de Encontro <span class="required">*</span></label>
             <input class="form-control nonFutureDate past-date datetimepicker" readonly="readonly" id="encounter.encounter_datetime"
                    name="encounter.encounter_datetime" type="text" required="required">
         </div>
