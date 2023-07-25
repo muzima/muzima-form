@@ -26,7 +26,7 @@
 
 </div>
 <form id="demographics_update_form" name="demographics_update_form">
-    <h5 class="text-center">Formulário de Dados Demográficos do Paciente</h5>
+    <h4 class="text-center">Formulário de Dados Demográficos do Paciente</h4>
 
     <div class="section">
         <h6>Identificadores</h6>
@@ -331,55 +331,9 @@
 
                 </div>
             </fieldset>
-            <label class="input-label" for="tmp.update_confident_auth">
-                <input id="tmp.update_confident_auth" name="tmp.update_confident_auth"
-                type="checkbox">
-                Vai atualizar autorização de contacto? (se sim, permitir editar)
-            </label>
         </div>
 
         </div>
-        </div>
-    <div class="section group-set" data-group="updated_patient.confident_auth" id="confident_auth">
-        <h6>Actualização da autorização de contacto</h6>
-        <div class="form-group">
-            <fieldset name="2177^AUTHORIZED CONTACT WITH PATIENT^99DCT">
-                <div class="form-group">
-                    <label class="input-label" class="font-normal">
-                        <input id="updated_confident_auth.proprio" type="checkbox"
-                               data-concept="2177^AUTHORIZED CONTACT WITH PATIENT^99DCT"
-                               value="5325^PATIENT ID^99DCT"/>
-                               Próprio
-                    </label>
-                </div>
-                <div class="form-group">
-                    <label class="input-label" class="font-normal">
-                        <input id="updated_confident_auth.confidente" type="checkbox"
-                               data-concept="2177^AUTHORIZED CONTACT WITH PATIENT^99DCT"
-                               value="1740^CONFIDANT NAME^99DCT"/>
-                               Confidente
-                    </label>
-
-                </div>
-                <div class="form-group">
-                    <label class="input-label" class="font-normal">
-                        <input id="updated_confident_auth.outro" type="checkbox"
-                               data-concept="2177^AUTHORIZED CONTACT WITH PATIENT^99DCT"
-                               value="23932^Another person the patient has authorized contact^99DCT"/>
-                               Outro 
-                    </label>
-                    <label class="input-label" for="updated_confident_auth_other_name">
-                        (Nome:<span class="required">*</span>)
-                        
-                    </label>
-                    <input class="form-control" id="updated_confident_auth_other_name" name="updated_confident_auth_other_name" required="required" 
-                            type="text" data-concept="23932^Another person the patient has authorized contact^99DCT">
-
-                </div>
-            </fieldset>
-        </div>
-    </div>
-    <div class="section" id="patient_confident">
         <h6>
             <a data-toggle="collapse" data-parent="#accordion" href="#patient_confident" aria-expanded="false" aria-controls="patient_confident" id="patient_confident.section">
                 6. Confidente
@@ -409,22 +363,65 @@
             <input class="form-control" id="patient_confident.reference" name="patient_confident.reference" type="text" readonly="readonly">
         </div>
         <div class="form-group">
-        <label class="input-label" for="tmp.update_confident">
-            <input id="tmp.update_confident" name="tmp.update_confident"
-            type="checkbox">
-            Vai atualizar dados do confidente? (se sim, permitir editar)
-        </label>
+            <label class="input-label" for="tmp.update_confident_auth">
+                <input id="tmp.update_confident_auth" name="tmp.update_confident_auth"
+                type="checkbox">
+                Vai atualizar dados do confidente? (se sim, permitir editar)
+            </label>
         </div>
         </div>
 
         </div>
         </div>
-    <div class="section" id="update_confident">
-        <h6>Novos dados do Confidente</h6>
+        
+
+
+        <div class="section group-set" data-group="updated_patient.confident_auth" id="confident_auth">
+            <div class="concept-set" id="convset_group_section" data-concept="165470^CONFIDENTE CONVSET^99DCT"> 
+            <h6>Actualização de dados do confidente</h6>
+            <div class="form-group">
+                <fieldset name="2177^AUTHORIZED CONTACT WITH PATIENT^99DCT">
+                    <div class="form-group">
+                        <label class="input-label" class="font-normal">
+                            <input id="updated_confident_auth.proprio" type="checkbox"
+                                   data-concept="2177^AUTHORIZED CONTACT WITH PATIENT^99DCT"
+                                   value="5325^PATIENT ID^99DCT"/>
+                                   Próprio
+                        </label>
+                    </div>
+                    <div class="form-group">
+                        <label class="input-label" class="font-normal">
+                            <input id="updated_confident_auth.confidente" type="checkbox"
+                                   data-concept="2177^AUTHORIZED CONTACT WITH PATIENT^99DCT"
+                                   value="1740^CONFIDANT NAME^99DCT"/>
+                                   Confidente
+                        </label>
+    
+                    </div>
+                    <div class="form-group">
+                        <label class="input-label" class="font-normal">
+                            <input id="updated_confident_auth.outro" type="checkbox"
+                                   data-concept="2177^AUTHORIZED CONTACT WITH PATIENT^99DCT"
+                                   value="23932^Another person the patient has authorized contact^99DCT"/>
+                                   Outro 
+                        </label>
+                        <label class="input-label" for="updated_confident_auth_other_name">
+                            (Nome:<span class="required">*</span>)
+                            
+                        </label>
+                        <input class="form-control" id="updated_confident_auth_other_name" name="updated_confident_auth_other_name" required="required" 
+                                type="text" data-concept="23932^Another person the patient has authorized contact^99DCT">
+    
+                    </div>
+                </fieldset>
+            </div>
+        
+        
         <div class="form-group">
             <label class="input-label" for="updated_confident.name">Novo Nome do confidente: </label>
             <input class="form-control" id="updated_confident.name" name="updated_confident.name" type="text" data-concept="1740^NOME DO CONFIDENTE^99DCT">
         </div>
+       
         <div class="form-group">
             <label class="input-label" for="updated_confident.nick_name">Nova Alcunha do confidente: </label>
             <input class="form-control" id="updated_confident.nick_name" name="updated_confident.nick_name" type="text" data-concept="23930^ALCUNHA DO CONFIDENTE^99DCT">
@@ -436,6 +433,7 @@
         <div class="form-group">
             <label class="input-label" for="updated_confident.reference">Novo Ponto de referência: </label>
             <input class="form-control" id="updated_confident.reference" name="updated_confident.reference" type="text" data-concept="165351^PONTO DE REFERÊNCIA DO CONFIDENTE^99DCT">
+        </div>
         </div>
     </div>
     <div class="section" id="patient_contact">
@@ -499,6 +497,8 @@
         </div>
         <div class="form-group">
             <input class="form-control" id="encounter.form_uuid" name="encounter.form_uuid" type="hidden" required="required">
+            <input class="form-control" id="encounter.group_demographic_confident_obs" name="encounter.group_demographic_confident_obs" type="hidden" value="true" required="required">
+            <input class="form-control" id="encounter.group_obs_concept_id" name="encounter.group_obs_concept_id" type="hidden" value="165470" required="required">
             <input class="form-control" id="demographicsupdate.is_updated_name_preferred" name="demographicsupdate.is_updated_name_preferred"
                type="hidden" value="false">
             <input class="form-control" id="tmp.custom_discriminator" name="tmp.custom_discriminator"
