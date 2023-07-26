@@ -681,6 +681,26 @@
 
         $('#tmp\\.update_confident_auth').change(function(){
             if($(this).is(':checked')){
+                if ($('#confident_auth\\.proprio').is(":checked")) {
+                    $('#updated_confident_auth\\.proprio').prop("checked", true);
+                }
+                if ($('#confident_auth\\.confidente').is(":checked")) {
+                    $('#updated_confident_auth\\.confidente').prop("checked", true);
+                }
+                if ($('#confident_auth\\.outro').is(":checked")) {
+                    $('#updated_confident_auth\\.outro').prop("checked", true);
+                    $('#updated_confident_auth_other_name').val($('#confident_auth_other_name').val());
+                    $('#updated_confident_auth_other_name').show();
+                }
+                $('#updated_confident\\.name').val($('#patient_confident\\.name').val());
+
+                $('#updated_confident\\.nick_name').val($('#patient_confident\\.nick_name').val());
+
+                $('#updated_confident\\.contact').val($('#patient_confident\\.contact').val());
+
+                $('#updated_confident\\.reference').val($('#patient_confident\\.reference').val());
+
+
                 $('#confident_auth').show();
             } else {
                 $('#confident_auth').hide();
@@ -797,14 +817,31 @@
             $('#patient_confident\\.name').val(confidentName[0].valueText);
         }
 
-        var confidentName = htmlDataStore.getObsByConceptId(patientUuid, 1740);
-        confidentName = JSON.parse(confidentName);
-        var confidentNameObsSize = confidentName.length;
-        if(parseInt(confidentNameObsSize)>0){
-            $('#patient_confident\\.name').val(confidentName[0].valueText);
+
+        var confidentContactAuth = htmlDataStore.getObsByConceptId(patientUuid, 2177);
+        confidentContactAuth = JSON.parse(confidentContactAuth);
+        var confidentContactAuthSize = confidentContactAuth.length;
+        if(parseInt(confidentContactAuthSize)>0){
+            confidentContactAuth.forEach(obs => {
+                if (obs.valueCoded.id === 5325) {
+                    $('#confident_auth\\.proprio').prop("checked", true);
+                } else if (obs.valueCoded.id === 1740) {
+                    $('#confident_auth\\.confidente').prop("checked", true);
+                } else if (obs.valueCoded.id === 23932) {
+                    $('#confident_auth\\.outro').prop("checked", true);
+
+                    var confidentOtherName = htmlDataStore.getObsByConceptId(patientUuid, 23932);
+                    confidentOtherName = JSON.parse(confidentOtherName);
+                    var confidentOtherNameObsSize = confidentOtherName.length;
+                    if(parseInt(confidentOtherNameObsSize)>0){
+                        $('#confident_auth_other_name').val(confidentOtherName[0].valueText);
+                        $('#confident_auth_other_name').show();
+                    }
+                }
+            });
         }
 
-        confident_auth.proprio
+        
         
 
     var confidentnick_name = htmlDataStore.getObsByConceptId(patientUuid, 23930);
@@ -830,12 +867,6 @@
             $('#patient_confident\\.reference').val(confidentreference[0].valueText);
         }
     
-    var other_name = htmlDataStore.getObsByConceptId(patientUuid, 23932);
-        other_name = JSON.parse(other_name);
-        var other_nameObsSize = other_name.length;
-        if(parseInt(other_nameObsSize)>0){
-            $('#updated_confident_auth_other_name').val(other_name[0].valueText);
-        }
 
 
     document.setupAutoCompleteData('encounter\\.location_id');
