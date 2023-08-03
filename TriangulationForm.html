@@ -340,7 +340,7 @@
 				<label class="input-label" for="obs.home_visit_service">
 				Serviço que refere<span class="required">*</span>
 				</label>
-				<select class="form-control" id="obs.home_visit_service" required
+				<select class="form-control specifyOther usual_visit_service_location" id="obs.home_visit_service" required
 					name="obs.home_visit_service" data-concept="2176^SERVIÇO QUE REFERE A VISITA DOMICILIARIA^99DCT">
 					<option value="">...</option>
 					<option class="input-label" value="2175^SERVIÇO TARV ADULTO^99DCT">TARV (Clínica/APSS e PP)</option>
@@ -350,6 +350,12 @@
 					<option class="input-label" value="1987^GATV/SAAJ^99DCT">SAAJ</option>
 					<option class="input-label" value="23913^OUTRO^99DCT">Outro</option>
 				</select>
+			</div>
+			<div class="form-group" id="obs.other_service_description" hidden="true">
+				<label class="input-label" for="obs.other_service_desc">Outro Serviço <span class="required">*</span></label>
+				<input class="form-control" id="obs.other_service_desc"
+					   name="obs.other_service_desc" type="text" required="required"
+					   data-concept="23913^OUTRO^99DCT">
 			</div>
 			<div class="form-group">
 				<label class="input-label" for="obs.selected_provider">
@@ -455,6 +461,18 @@
     });
     $('#obs\\.reason_for_visit\\.outros').trigger('change');
 
+
+	$('#obs\\.home_visit_service').change(function(){
+        if($(this).val() == "23913^OUTRO^99DCT"){
+            $('#obs\\.other_service_description').show();
+		} else{
+			$('#obs\\.other_service_description').hide();
+		}
+    });
+    $('#obs\\.patient_triangulation_status').trigger('change');
+
+
+
 	$('#obs\\.patient_triangulation_status').change(function(){
         if($(this).val() == "23846^PRECISA RASTREAMENTO^99DCT"){
             $('#tracking_needed').show();
@@ -544,7 +562,7 @@ $.each(prePopulateJSON, function(key, value) {
 $('#obs\\.professional_referral_name').val($('#encounter\\.provider_id_select').val());
 
 var patientuuid = $('#patient\\.uuid').val();
-var historyByData = htmlDataStore.getObsByEncounterType(patientuuid,"e278f956-1d5f-11e0-b929-000c29ad1d07");
+/*var historyByData =  htmlDataStore.getObsByEncounterType(patientuuid,"e278f956-1d5f-11e0-b929-000c29ad1d07");
 historyByData = JSON.parse(historyByData);
 var historyByDataSize = historyByData.length-1;
 if(historyByDataSize==-1){
@@ -611,7 +629,7 @@ if(parseInt(derivedObsSize)>-1){
    $('#obs\\.type_of_visit').prop('disabled', 'disabled');
    $("#derived-obs-by-intervention-type").prop('disabled', 'disabled');
 }
-
+*/
 var gaac = htmlDataStore.getObsByConceptId(patientuuid,23724);
 gaac = JSON.parse(gaac);
 var gaacSize = gaac.length-1;
@@ -639,6 +657,13 @@ lastVisit = JSON.parse(lastVisit);
 var lastVisitSize = lastVisit.length-1;
 if(parseInt(lastVisitSize)>-1){
     $("#lastVisit").val(lastVisit[0].valueDatetime);
+}
+
+var otherServico = htmlDataStore.getObsByConceptId(patientuuid,23913);
+otherServico = JSON.parse(otherServico);
+var otherServicoSize = lastVisit.length-1;
+if(parseInt(otherServicoSize)>-1){
+    $("#obs\\.other_service_description").val(otherServico[0].valueText);
 }
 
 var nextVisit = htmlDataStore.getObsByConceptId(patientuuid,1410);
@@ -749,9 +774,8 @@ $("#allocation\\.section").click(function() {
 	else{
 		$("#allocation\\.section_div").attr('hidden', 'true');
 	}
+	
 });
-
-
 
 </script>
 </html>
