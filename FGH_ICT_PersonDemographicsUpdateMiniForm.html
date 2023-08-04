@@ -221,8 +221,71 @@
                 </label>
             </div>
         </div>
+
+        <div class="section">
+            <h6>Paciente Encontrado</h6>
+
+        <div class="form-group">
+                <label class="input-label" for="obs.patient_found">
+                Encontrou o Paciente?<span class="required">*</span>
+                </label>
+                <select class="form-control" id="obs.patient_found" required
+                    name="obs.patient_found" data-concept="2003^ACTIVISTA ENCONTROU A PESSOA^99DCT">
+                    <option value="">...</option>
+                    <option value="1065^SIM^99DCT">SIM</option>
+                    <option value="1066^NAO^99DCT">NÃO</option>
+                </select>
+        </div>
+        
+        <div class="form-group section patient_not_found_div" id="patient_not_found_div" hidden="true">
+                               <label for="obs.patient_not_found_reason">
+                                <h6>Motivo de não encontrar<span class="required">*</span></h6>
+                               </label>
+                               <div class="form-group">
+                                   <label class="input-label">
+                                       <input id="obs.patient_not_found_reason.obito" type="checkbox" name="obs.patient_not_found_reason"
+                                       data-concept="2031^REASON PATIENT NOT FOUND BY ACTIVIST^99DCT" value="1366^Obitou^99DCT" required="required"/>
+                                        Óbito
+                                   </label>
+                               </div>
+                               <div class="form-group">
+                                   <label class="input-label">
+                                       <input id="obs.patient_not_found_reason.endereco" type="checkbox" name="obs.patient_not_found_reason"
+                                       data-concept="2031^REASON PATIENT NOT FOUND BY ACTIVIST^99DCT" value="2024^ENDEREÇO ERRADO^99DCT" required="required"/>
+                                        Endereço errado
+                                   </label>
+                               </div>
+                               <div class="form-group">
+                                   <label class="input-label">
+                                       <input id="obs.patient_not_found_reason.mudou" type="checkbox" name="obs.patient_not_found_reason"
+                                       data-concept="2031^REASON PATIENT NOT FOUND BY ACTIVIST^99DCT" value="2026^MUDOU DE CASA^99DCT" required="required"/>
+                                         Mudou de endereço
+                                   </label>
+                               </div>
+                               <div class="form-group">
+                                   <label class="input-label">
+                                       <input id="obs.patient_not_found_reason.viajou" type="checkbox" name="obs.patient_not_found_reason"
+                                       data-concept="2031^REASON PATIENT NOT FOUND BY ACTIVIST^99DCT" value="2011^VIAJOU^99DCT" required="required"/>
+                                         Viajou
+                                   </label>
+                               </div>
+                               <div class="form-group">
+                                   <label class="input-label">
+                                       <input id="obs.patient_not_found_reason.outros" type="checkbox" name="obs.patient_not_found_reason"
+                                       data-concept="2031^REASON PATIENT NOT FOUND BY ACTIVIST^99DCT" value="2032^OUTROS MOTIVOS^99DCT" required="required"/>
+                                         Outro
+                                   </label>
+                               </div>
+                           </div>
+                           <div class="form-group sub-section" id="patient_not_found_reason_other">
+                            <label class="input-label" for="obs.patient_not_found_reason_other">
+                                Outro:<span class="required"></span>
+                            </label>
+                                <input class="form-control" id="obs.patient_not_found_reason_other" type="text" required="required"
+                                name="obs.patient_not_found_reason.outros" data-obscommentfor="obs.patient_not_found_reason.outros"/>
+        </div>                       
 <!--        data-concept="23782^SITUACAO FAMILIAR CONJUNTO^99DCT"-->
-        <div id="update_hiv_details" class="sub-section" >
+    <div id="update_hiv_details" class="sub-section" hidden="true" >
             <h6>Dados de Testagem</h6>
             <div class="form-group">
                 <label class="input-label" for="demographicsupdate.htc_offered">
@@ -231,8 +294,8 @@
                 <select class="form-control" id="demographicsupdate.htc_offered"
                         name="demographicsupdate.htc_offered" data-concept="165266^Oferecido serviço ATS?^99DCT">
                     <option value="">...</option>
-                    <option class="input-label" value="1065^SIM^99DCT">Sim</option>
-                    <option class="input-label" value="1066^NAO^99DCT">Nao</option>
+                    <option value="1065^SIM^99DCT">Sim</option>
+                    <option value="1066^NAO^99DCT">Nao</option>
                 </select>
             </div>
             <div class="form-group demographicsupdate_htc_accepted">
@@ -241,9 +304,9 @@
                 </label>
                 <select class="form-control" id="demographicsupdate.htc_accepted"
                         name="demographicsupdate.htc_accepted" data-concept="165267^Aceita serviço ATS?^99DCT">
-                    <option class="input-label" value="">...</option>
-                    <option class="input-label" value="1065^SIM^99DCT">Sim</option>
-                    <option class="input-label" value="1066^NAO^99DCT">Nao</option>
+                    <option value="">...</option>
+                    <option value="1065^SIM^99DCT">Sim</option>
+                    <option value="1066^NAO^99DCT">Nao</option>
                 </select>
             </div>
             <div class="form-group">
@@ -251,29 +314,30 @@
                 <select class="form-control" id="demographicsupdate.hiv_test"
                         name="demographicsupdate.hiv_test" data-concept="23779^Teste de HIV^99DCT">
                     <option value="">...</option>
-                    <option class="input-label" value="703^Positivo^99DCT">Positivo</option>
-                    <option class="input-label" value="664^Negativo^99DCT">Negativo</option>
-                    <option class="input-label" value="1067^Desconhecido^99DCT">Desconhecido</option>
+                    <option value="703^Positivo^99DCT">Positivo</option>
+                    <option value="664^Negativo^99DCT">Negativo</option>
+                    <option value="1067^Desconhecido^99DCT">Desconhecido</option>
                 </select>
             </div>
             <div class="form-group">
                 <label class="input-label" for="demographicsupdate.hiv_care">Em Cuidados de HIV?</label>
                 <select class="form-control" id="demographicsupdate.hiv_care"
                         name="demographicsupdate.hiv_care" data-concept="23780^Cuidados HIV^99DCT">
-                    <option class="input-label" value="">...</option>
-                    <option class="input-label" value="1065^Sim^99DCT">Sim</option>
-                    <option class="input-label" value="1066^Nao^99DCT">Nao</option>
+                    <option value="">...</option>
+                    <option value="1065^Sim^99DCT">Sim</option>
+                    <option value="1066^Nao^99DCT">Nao</option>
                 </select>
             </div>
-
+           
             <div class="form-group">
+                <label class="input-label" for="demographicsupdate.child_at_risk_treatment">Em CCR?</label>
                 <label class="input-label" for="demographicsupdate.child_at_risk_treatment">Em CCR?</label>
                 <select class="form-control" id="demographicsupdate.child_at_risk_treatment"
                         name="demographicsupdate.child_at_risk_treatment" data-concept="1885^TRATEMENTO (CCR)^99DCT">
-                    <option class="input-label" value="">...</option>
-                    <option class="input-label" value="1065^Sim^99DCT">Sim</option>
-                    <option class="input-label" value="1066^Nao^99DCT">Nao</option>
-                    <option class="input-label" value="23892^Alta^99DCT">Alta</option>
+                    <option value="">...</option>
+                    <option value="1065^Sim^99DCT">Sim</option>
+                    <option value="1066^Nao^99DCT">Nao</option>
+                    <option value="23892^Alta^99DCT">Alta</option>
                 </select>
             </div>
             <div class="form-group">
@@ -282,6 +346,9 @@
                        name="demographicsupdate.relative_nid" type="text">
             </div>
         </div>
+
+    </div>
+ 
         <div class="section">
             <h6>Detalhes do encontro</h6>
             <div class="form-group">
@@ -489,6 +556,30 @@
             }
         });
         $('#patient\\.sex').trigger('change');
+
+        $('#obs\\.patient_found').change(function(){
+		if($(this).val() == "1065^SIM^99DCT"){
+            $('#update_hiv_details').show();
+            $('#patient_not_found_div').hide();
+        }
+        else if($(this).val() == "1066^NAO^99DCT"){
+            $('#update_hiv_details').hide();
+            $('#patient_not_found_div').show();
+        } else {
+            $('#update_hiv_details').hide();
+            $('#patient_not_found_div').hide();
+        }
+        });
+        $('#obs\\.patient_found').trigger('change');
+
+        $('#obs\\.patient_not_found_reason\\.outros').change(function(){
+		if($(this).prop("checked")){
+			$('#patient_not_found_reason_other').show();
+		} else{
+			$('#patient_not_found_reason_other').hide();
+		}
+	       });
+	    $('#obs\\.patient_not_found_reason\\.outros').trigger('change');
 
         var currentYear = new Date().getFullYear();
         var birthdate_start_year = currentYear - 140;
