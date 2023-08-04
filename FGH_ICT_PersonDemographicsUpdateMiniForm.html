@@ -14,14 +14,14 @@
         <script src="js/muzima.js"></script>
         <meta charset="utf-8">
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-        <title>Formulário ATS e Adicionar Contacto</title>
+        <title>Formulario de ATS</title>
     </head>
 <body class="col-md-8 col-md-offset-2">
     <div id="result"></div>
     <form id="mini_registration_form" name="mini_registration_form">
         <div id="pre_populate_data">
         </div>
-        <h2 class="text-center">Formulário ATS e Adicionar Contacto</h2>
+        <h2 class="text-center">Formulario de ATS</h2>
 
         <div class="section">
             <h3>Nome do Contacto</h3>
@@ -69,7 +69,7 @@
                 <input class="form-control" id="demographicsupdate.middle_name" name="demographicsupdate.middle_name" type="text">
             </div>
         </div>
-        
+
         <div class="section">
             <h3>Outros Dados Demográficos</h3>
             <div id="relationshipStub">
@@ -152,8 +152,8 @@
                     <label for="tmp.birthdate_type">Registar a data de nascimento... <span class="required">*</span></label>
                     <select class="form-control" name="tmp.birthdate_type" id="tmp.birthdate_type" required="required">
                         <option value="">...</option>
-                        <option value="birthdate">Incluir a data de nascimento (seleccionar a …)</option>
-                        <option value="age">Incluir a idade (seleccionar a …)</option>
+                        <option value="birthdate">Incluir a data de nascimento</option>
+                        <option value="age">Incluir a idade</option>
                     </select>
                 </div>
                 <div class="form-group show_birthdate">
@@ -177,6 +177,48 @@
                     <input class="form-control" id="tmp.age_in_years" name="tmp.age_in_years" type="number" required="required">
 
                 </div>
+            </div>
+        </div>
+
+        <div class="section" hidden>
+            <h3>Situação familiar</h3>
+            <div class="form-group">
+                <label for="tmp.hiv_test">Teste de HIV:</label>
+                <input class="form-control" id="tmp.hiv_test"
+                        name="tmp.hiv_test" readonly="readonly" />
+                <div id="obs_hiv_test"></div>
+            </div>
+            <div class="form-group">
+                <label for="tmp.hiv_care">Cuidados de HIV:</label>
+                <input class="form-control" id="tmp.hiv_care" readonly="readonly"
+                        name="tmp.hiv_care" />
+            </div>
+            <div class="form-group">
+                <label for="tmp.htc_offered">O serviço ATS foi oferecido?</label>
+                <input class="form-control" id="tmp.htc_offered" readonly
+                        name="tmp.htc_offered" data-concept="165266^Oferecido serviço ATS?^99DCT" />
+            </div>
+            <div class="form-group tmp_htc_accepted">
+                <label for="tmp.htc_accepted">O serviço ATS foi aceito?</label>
+                <input class="form-control" id="tmp.htc_accepted" readonly
+                        name="tmp.htc_accepted" />
+            </div>
+            <div class="form-group">
+                <label for="tmp.child_at_risk_treatment">EM CCR:</label>
+                <input class="form-control" id="tmp.child_at_risk_treatment" readonly="readonly"
+                        name="tmp.child_at_risk_treatment" />
+            </div>
+            <div class="form-group">
+                <label for="tmp.relative_nid">NID:</label>
+                <input class="form-control" id="tmp.relative_nid"
+                       name="tmp.relative_nid" type="text" readonly="readonly">
+            </div>
+            <div class="form-group">
+                <label for="tmp.update_hiv_details">
+                    <input id="tmp.update_hiv_details" name="tmp.update_hiv_details"
+                           type="checkbox">
+                    Situação familiar atualizada? (se sim, permitir editar)
+                </label>
             </div>
         </div>
 
@@ -235,18 +277,15 @@
                                    </label>
                                </div>
                            </div>
-                       </div>
-                       <div class="form-group sub-section" id="patient_not_found_reason_other">
-                           <label class="font-normal" for="obs.patient_not_found_reason_other">
-                               Outro:<span class="required"></span>
-                           </label>
-                               <input class="form-control" id="obs.patient_not_found_reason_other" type="text" required="required"
-                               name="obs.patient_not_found_reason.outros" data-obscommentfor="obs.patient_not_found_reason.outros"/>
-                       </div>
-        </div>
-
+                           <div class="form-group sub-section" id="patient_not_found_reason_other">
+                            <label class="font-normal" for="obs.patient_not_found_reason_other">
+                                Outro:<span class="required"></span>
+                            </label>
+                                <input class="form-control" id="obs.patient_not_found_reason_other" type="text" required="required"
+                                name="obs.patient_not_found_reason.outros" data-obscommentfor="obs.patient_not_found_reason.outros"/>
+        </div>                       
 <!--        data-concept="23782^SITUACAO FAMILIAR CONJUNTO^99DCT"-->
-        <div id="update_hiv_details" class="sub-section" hidden="true" >
+    <div id="update_hiv_details" class="sub-section" hidden="true" >
             <h3>Dados de Testagem</h3>
             <div class="form-group">
                 <label for="demographicsupdate.htc_offered">
@@ -309,6 +348,7 @@
         </div>
 
     </div>
+
         <div class="section">
             <h3>Detalhes do encontro</h3>
             <div class="form-group">
@@ -522,9 +562,12 @@
             $('#update_hiv_details').show();
             $('#patient_not_found_div').hide();
         }
-        else if($(this).val() == "1065^SIM^99DCT"){
+        else if($(this).val() == "1066^NAO^99DCT"){
             $('#update_hiv_details').hide();
             $('#patient_not_found_div').show();
+        } else {
+            $('#update_hiv_details').hide();
+            $('#patient_not_found_div').hide();
         }
         });
         $('#obs\\.patient_found').trigger('change');
