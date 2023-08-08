@@ -1093,10 +1093,15 @@ $(document).ready(function () {
         $.each(jsonResult, function (k, v) {
             var key = defaultKey;
             var dotIndex = k.indexOf(".");
+            var caretIndex = k.indexOf("^");
             if (dotIndex >= 0) {
                 key = k.substr(0, k.indexOf("."));
                 if(key == 'index_obs'){
                     k = k.substr(k.indexOf(".")+1, k.length-1);
+                }
+            }else if(k.split("^").length === 3){
+                if(k.split("^")[2] === "MDC"){
+                    key = "derivedObs";
                 }
             }
             var objects = completeObject[key];
@@ -1124,6 +1129,9 @@ $(document).ready(function () {
             }
           }
         });
+
+
+
         return object;
     };
 
