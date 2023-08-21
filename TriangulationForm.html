@@ -678,20 +678,23 @@
       var derivedObsSize = derivedObs.length - 1;
       if (parseInt(derivedObsSize) > -1) {
          derivedObs.forEach(element => {
-            $("#obs\\.elegibility_categories").val(element.derivedConceptName + ", " + $("#obs\\.elegibility_categories").val());
+               $("#obs\\.elegibility_categories").val($("#obs\\.elegibility_categories").val()!==""?$("#obs\\.elegibility_categories").val()+", "+element.derivedConceptName : element.derivedConceptName);
          });
       } else {
          $("#obs\\.elegibility_categories").prop('disabled', 'disabled');
       }
 
-      if ($("#obs\\.elegibility_categories").val() === 'Abandono') {
+      if ($("#obs\\.elegibility_categories").val() === 'Abandono' 
+      || $("#obs\\.elegibility_categories").val() === 'Abandono, Elegível Carga Viral' 
+      || $("#obs\\.elegibility_categories").val() === 'Elegível Carga Viral, Abandono' 
+      || $("#obs\\.elegibility_categories").val() === 'Faltoso'
+      || $("#obs\\.elegibility_categories").val() === 'Carga Viral Alta, Faltoso' 
+      || $("#obs\\.elegibility_categories").val() === 'Faltoso, Carga Viral Alta'
+      || $("#obs\\.elegibility_categories").val() === 'Elegível Carga Viral, Faltoso' 
+      || $("#obs\\.elegibility_categories").val() === 'Faltoso, Elegível Carga Viral') {
          $('#obs\\.type_of_visit').val("2160^VISITA DE BUSCA^99DCT");
-      } else if ($("#obs\\.elegibility_categories").val() === 'Elegivel Carga Viral' || $("#obs\\.elegibility_categories").val() === 'Carga Viral Alta') {
+      } else if ($("#obs\\.elegibility_categories").val() === 'Elegível Carga Viral' || $("#obs\\.elegibility_categories").val() === 'Carga Viral Alta') {
          $('#obs\\.type_of_visit').val("23914^VISITA AOS CASOS ESPECIAIS^99DCT");
-      } else if ($("#obs\\.elegibility_categories").val() === 'Carga Viral Alta, Faltoso' || $("#obs\\.elegibility_categories").val() === 'Faltoso, Carga Viral Alta') {
-         $('#obs\\.type_of_visit').val("2160^VISITA DE BUSCA^99DCT");
-      } else if ($("#obs\\.elegibility_categories").val() === 'Elegivel Carga Viral, Faltoso' || $("#obs\\.elegibility_categories").val() === 'Faltoso, Elegivel Carga Viral') {
-         $('#obs\\.type_of_visit').val("2160^VISITA DE BUSCA^99DCT");
       } else if ($("#obs\\.elegibility_categories").val() === 'Preventiva') {
          $('#obs\\.type_of_visit').val("2161^VISITA DE APOIO^99DCT");
       }
