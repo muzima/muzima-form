@@ -40,9 +40,9 @@
 			</div>
 			<div class="form-group">
 				<label class="input-label" for="elegibility.category">Categoria de Elegibilidade:</label>
-				<input class="form-control" id="obs.elegibility_categories" name="obs.elegibility_categories"
-					type="text" readonly="readonly">
-			</div>
+				<input class="form-control" id="obs.elegibility_categories" name="obs.elegibility_categories" type="text"
+				   readonly="readonly">
+			 </div>
 		</div>
 
 		<div class="section section-div form-group" id="visit_book_call" hidden="true">
@@ -1089,15 +1089,11 @@
 		}
 
 		var patientuuid = $('#patient\\.uuid').val();
-		var derivedObs = htmlDataStore.getInterventionsDerivedObservationByPatientUuid(patientuuid);
-		var derivedObs = JSON.parse(derivedObs);
-		var derivedObsSize = derivedObs.length - 1;
-		if (parseInt(derivedObsSize) > -1) {
-			derivedObs.forEach(element => {
-				$("#obs\\.elegibility_categories").val($("#obs\\.elegibility_categories").val() !== "" ? $("#obs\\.elegibility_categories").val() + ", " + element.derivedConceptName : element.derivedConceptName);
-			});
-		} else {
-			$("#obs\\.elegibility_categories").prop('disabled', 'disabled');
+		var triangulationStatusObs = htmlDataStore.getObsByConceptId(patientuuid, 23848);
+		triangulationStatusObs = JSON.parse(triangulationStatusObs);
+		var triangulationStatusObsSize = allocationObs.length - 1;
+		if (parseInt(triangulationStatusObsSize) > -1) {
+			$("#obs\\.elegibility_categories").val(triangulationStatusObs[0].obs_comment);
 		}
 
 		if ($("#obs\\.elegibility_categories").val() === 'Abandono'

@@ -141,6 +141,11 @@
                         <option class="input-label" value="23847^NAO PRECISA RASTREAMENTO^99DCT">Não há necessidade de
                            visita</option>
                      </select>
+                     <div class="form-group">
+                        <input class="form-control" id="obs_comment.patient_triangulation_status"
+                           name="obs.patient_triangulation_status" data-obscommentfor="obs.patient_triangulation_status"
+                           type="hidden">
+                     </div>
                   </div>
 
                   <div class="section section-div form-group" id="tracking_needed">
@@ -554,6 +559,9 @@
             $('#patient\\.tagUuid').val('e7e26b4e-b3fd-11eb-8374-d0577bb73cd4');
             $('#patient\\.tagName').val('AL');
             $('#allocation').show();
+            $("#obs_comment\\.patient_triangulation_status").prop('type', 'text');
+            $("#obs_comment\\.patient_triangulation_status").val($("#obs\\.elegibility_categories").val());
+            $("#obs_comment\\.patient_triangulation_status").prop('type', 'hidden');
          } else if ($(this).val() == "23847^NAO PRECISA RASTREAMENTO^99DCT") {
             $('#tracking_needed').hide();
             $('#no_tracking_needed').show();
@@ -678,20 +686,20 @@
       var derivedObsSize = derivedObs.length - 1;
       if (parseInt(derivedObsSize) > -1) {
          derivedObs.forEach(element => {
-               $("#obs\\.elegibility_categories").val($("#obs\\.elegibility_categories").val()!==""?$("#obs\\.elegibility_categories").val()+", "+element.derivedConceptName : element.derivedConceptName);
+            $("#obs\\.elegibility_categories").val($("#obs\\.elegibility_categories").val() !== "" ? $("#obs\\.elegibility_categories").val() + ", " + element.derivedConceptName : element.derivedConceptName);
          });
       } else {
          $("#obs\\.elegibility_categories").prop('disabled', 'disabled');
       }
 
-      if ($("#obs\\.elegibility_categories").val() === 'Abandono' 
-      || $("#obs\\.elegibility_categories").val() === 'Abandono, Elegível Carga Viral' 
-      || $("#obs\\.elegibility_categories").val() === 'Elegível Carga Viral, Abandono' 
-      || $("#obs\\.elegibility_categories").val() === 'Faltoso'
-      || $("#obs\\.elegibility_categories").val() === 'Carga Viral Alta, Faltoso' 
-      || $("#obs\\.elegibility_categories").val() === 'Faltoso, Carga Viral Alta'
-      || $("#obs\\.elegibility_categories").val() === 'Elegível Carga Viral, Faltoso' 
-      || $("#obs\\.elegibility_categories").val() === 'Faltoso, Elegível Carga Viral') {
+      if ($("#obs\\.elegibility_categories").val() === 'Abandono'
+         || $("#obs\\.elegibility_categories").val() === 'Abandono, Elegível Carga Viral'
+         || $("#obs\\.elegibility_categories").val() === 'Elegível Carga Viral, Abandono'
+         || $("#obs\\.elegibility_categories").val() === 'Faltoso'
+         || $("#obs\\.elegibility_categories").val() === 'Carga Viral Alta, Faltoso'
+         || $("#obs\\.elegibility_categories").val() === 'Faltoso, Carga Viral Alta'
+         || $("#obs\\.elegibility_categories").val() === 'Elegível Carga Viral, Faltoso'
+         || $("#obs\\.elegibility_categories").val() === 'Faltoso, Elegível Carga Viral') {
          $('#obs\\.type_of_visit').val("2160^VISITA DE BUSCA^99DCT");
       } else if ($("#obs\\.elegibility_categories").val() === 'Elegível Carga Viral' || $("#obs\\.elegibility_categories").val() === 'Carga Viral Alta') {
          $('#obs\\.type_of_visit').val("23914^VISITA AOS CASOS ESPECIAIS^99DCT");
