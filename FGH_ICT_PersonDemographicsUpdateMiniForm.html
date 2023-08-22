@@ -316,6 +316,16 @@
                     <option value="1067^Desconhecido^99DCT">Desconhecido</option>
                 </select>
             </div>
+            <div id="patient_refered_section" class="sub-section" hidden="true" >
+                <h6>Referência para US</h6>
+                <div class="form-group">
+                    <label class="input-label" for="obs.patient_refered">
+                        Nome da US para qual referiu:<span class="required"></span>
+                    </label>
+                        <input class="form-control" id="obs.patient_refered" type="text" required="required"
+                        name="obs.patient_refered" data-concept="1460^REFERRED TO HOSPITAL^99DCT"/>
+                </div>
+            </div>
             <div class="form-group">
                 <label class="input-label" for="demographicsupdate.hiv_care">Em Cuidados de HIV?</label>
                 <select class="form-control" id="demographicsupdate.hiv_care"
