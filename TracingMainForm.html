@@ -136,6 +136,7 @@
 							<option class="input-label" value="6255^DATA DA TERCEIRA TENTATIVA DE BUSCA^99DCT">TERCEIRA
 							</option>
 						</select>
+						<input class="form-control" id="obs.attempt_number_validator" type="hidden" readonly="readonly" />
 						<input class="form-control serializable" id="obs.patient_attemp_found_response" type="hidden"
 							data-concept="24008^PATIENT FOUND IN THE FIRST ATTEMPT^99DCT" readonly="readonly">
 					</div>
@@ -1093,7 +1094,15 @@
 		triangulationStatusObs = JSON.parse(triangulationStatusObs);
 		var triangulationStatusObsSize = allocationObs.length - 1;
 		if (parseInt(triangulationStatusObsSize) > -1) {
-			$("#obs\\.elegibility_categories").val(triangulationStatusObs[0].obs_comment);
+			i = 0;
+			do {
+				var triangulationObs = triangulationStatusObs[i];
+				if (triangulationObs.obs_comment !== "") {
+					$("#obs\\.elegibility_categories").val(triangulationObs.obs_comment);
+					break;
+				}
+				i++;
+			} while (i <= triangulationStatusObsSize);
 		}
 
 		if ($("#obs\\.elegibility_categories").val() === 'Abandono'
