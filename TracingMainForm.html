@@ -910,40 +910,49 @@
 
 			if ($(this).val() == "1065^SIM^99DCT" && ($('#obs\\.type_of_visit').val() == "2160^VISITA DE BUSCA^99DCT" || $('#obs\\.type_of_visit').val() == "23914^VISITA AOS CASOS ESPECIAIS^99DCT")) {
 				$('#patient_found_div_2160').show();
+				$('#preventive_visit_section').show();
+				$('#home_visit_result_div').hide();
+				$('#patient_found_div_2161').hide();
+			} else if ($(this).val() == "1065^SIM^99DCT" && $('#obs\\.type_of_visit').val() == "2161^VISITA DE APOIO^99DCT") {
+				$('#patient_found_div_2160').hide();
 				$('#preventive_visit_section').hide();
 				$('#home_visit_result_div').show();
+				$('#patient_found_div_2161').show();
+			} else if ($('#obs\\.patient_found').val() == "1065^SIM^99DCT" && $(this).val() == "2160^VISITA DE BUSCA^99DCT") {
+				$('#patient_found_div_2160').show();
+				$('#preventive_visit_section').show();
+				$('#home_visit_result_div').hide();
+				$('#patient_found_div_2161').hide();
 			} else {
 				$('#patient_found_div_2160').hide();
 				$('#preventive_visit_section').hide();
 				$('#home_visit_result_div').hide();
-			}
-
-			if ($(this).val() == "1065^SIM^99DCT" && $('#obs\\.type_of_visit').val() == "2161^VISITA DE APOIO^99DCT") {
-				$('#patient_found_div_2161').show();
-				$('#preventive_visit_section').show();
-			} else {
 				$('#patient_found_div_2161').hide();
-				$('#preventive_visit_section').hide();
 			}
 		});
 		$('#obs\\.patient_found').trigger('change');
 
 		$('#obs\\.type_of_visit').change(function () {
-			if ($('#obs\\.patient_found').val() == "1065^SIM^99DCT" && $(this).val() == "2160^VISITA DE BUSCA^99DCT") {
+			if ($(this).val() == "1065^SIM^99DCT" && ($('#obs\\.type_of_visit').val() == "2160^VISITA DE BUSCA^99DCT" || $('#obs\\.type_of_visit').val() == "23914^VISITA AOS CASOS ESPECIAIS^99DCT")) {
 				$('#patient_found_div_2160').show();
+				$('#preventive_visit_section').show();
+				$('#home_visit_result_div').hide();
+				$('#patient_found_div_2161').hide();
+			} else if ($(this).val() == "1065^SIM^99DCT" && $('#obs\\.type_of_visit').val() == "2161^VISITA DE APOIO^99DCT") {
+				$('#patient_found_div_2160').hide();
+				$('#preventive_visit_section').hide();
 				$('#home_visit_result_div').show();
+				$('#patient_found_div_2161').show();
+			} else if ($('#obs\\.patient_found').val() == "1065^SIM^99DCT" && $(this).val() == "2160^VISITA DE BUSCA^99DCT") {
+				$('#patient_found_div_2160').show();
+				$('#preventive_visit_section').show();
+				$('#home_visit_result_div').hide();
+				$('#patient_found_div_2161').hide();
 			} else {
 				$('#patient_found_div_2160').hide();
+				$('#preventive_visit_section').hide();
 				$('#home_visit_result_div').hide();
-			}
-
-			if ($('#obs\\.patient_found').val() == "1065^SIM^99DCT" && $(this).val() == "2161^VISITA DE APOIO^99DCT") {
-				$('#patient_found_div_2161').show();
-				$('#home_visit_result_div').hide();
-			} else {
 				$('#patient_found_div_2161').hide();
-				$('#home_visit_result_div').removeAttr('required');
-				$('#home_visit_result_div').hide();
 			}
 		});
 
