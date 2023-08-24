@@ -297,7 +297,7 @@
             </div>
             <div class="form-group demographicsupdate_htc_accepted">
                 <label class="input-label" for="demographicsupdate.htc_accepted">
-                    O serviço ATS foi aceito?
+                    O serviço ATS foi aceite?
                 </label>
                 <select class="form-control" id="demographicsupdate.htc_accepted"
                         name="demographicsupdate.htc_accepted" data-concept="165267^Aceita serviço ATS?^99DCT">
@@ -557,6 +557,15 @@
             }
         });
         $('#tmp\\.update_birthdate').trigger('change');
+
+        $('#demographicsupdate\\.hiv_test').change(function(){
+            if($(this).val() == "703^Positivo^99DCT"){
+                $('#patient_refered_section').show();
+        } else{
+            $('#patient_refered_section').hide();
+        }
+        });
+        $('#demographicsupdate\\.hiv_test').trigger('change');
 
         $('#patient\\.sex').change(function(){
             if($(this).val() == 'M'){
