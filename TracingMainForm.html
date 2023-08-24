@@ -175,7 +175,7 @@
 
 				<div id="visit_report_div" class="panel-collapse collapse in">
 					<div class="form-group" id="visit_report_div.section_div" hidden="true">
-						<div class="form-group section patient_found_div_2160" id="patient_found_div_2160">
+						<div class="form-group section" id="special_cases_reintegration_visit_section">
 							<div class="form-group concept-set">
 								<div class="form-group">
 									<label class="input-label" for="obs.reason_for_failure">
@@ -332,8 +332,7 @@
 							</div>
 						</div>
 
-						<div class="form-group" id="preventive_visit_section">
-							<div class="form-group section patient_found_div_2161" id="patient_found_div_2161">
+						<div class="form-group section" id="preventive_visit_section">
 								<div class="form-group">
 									<label class="input-label" for="obs.visit_report">
 										Relatório da visita<span class="required">*</span>
@@ -494,9 +493,8 @@
 												data-obscommentfor="obs.patient_had_difficulties.other" />
 										</div>
 									</div>
-								</div>
-							</div>
-						</div>
+							    </div>
+						    </div>
 						<div class="section section-div form-group patient_not_found_div"
 							id="patient_fallowup_div_section">
 							<div class="form-group" id="patient_fallowup_div">
@@ -860,12 +858,9 @@
 				$('#patient_found_div').show();
 				$('#patient_not_found_div').hide();
 				$('#patient_not_found_div_section').hide();
-				$('#patient_found_div_2160').hide();
 				$('#information_given_by_div').hide();
 				$('#data_combinada_div').show();
 				$('#patient_fallowup_div_section').show();
-				$('#visit_report_div').show();
-				$('#home_visit_result_div').show();
 
 				if (attemptcount === -1) {
 					$('#obs\\.patient_attemp_found_response').attr('data-concept', '24008^PATIENT FOUND IN THE FIRST ATTEMPT^99DCT');
@@ -881,13 +876,9 @@
 				$('#patient_not_found_div').show();
 				$('#patient_not_found_div_section').show();
 				$('#patient_found_div').hide();
-				$('#patient_found_div_2160').show();
 				$('#information_given_by_div').show();
 				$('#data_combinada_div').hide();
 				$('#patient_fallowup_div_section').hide();
-				$('#visit_report_div').show();
-				$('#obs\\.home_visit_result\\.refused').removeAttr('required');
-				$('#home_visit_result_div').hide();
 
 				if (attemptcount === -1) {
 					$('#obs\\.patient_attemp_found_response').attr('data-concept', '24008^PATIENT FOUND IN THE FIRST ATTEMPT^99DCT');
@@ -901,63 +892,23 @@
 				$('#patient_not_found_div').hide();
 				$('#patient_not_found_div_section').hide();
 				$('#patient_found_div').hide();
-				$('#home_visit_result_div').hide();
-				$('#patient_found_div_2160').hide();
 				$('#information_given_by_div').hide();
 				$('#data_combinada_div').hide();
 				$('#patient_fallowup_div_section').hide();
-				$('#visit_report_div').hide();
 			}
 
-			if ($(this).val() == "1065^SIM^99DCT" && ($('#obs\\.type_of_visit').val() == "2160^VISITA DE BUSCA^99DCT" || $('#obs\\.type_of_visit').val() == "23914^VISITA AOS CASOS ESPECIAIS^99DCT")) {
-				$('#patient_found_div_2160').show();
+			if ($(this).val() == "1065^SIM^99DCT" && ($('#obs\\.type_of_visit').val() == "2161^VISITA DE APOIO^99DCT" || $('#obs\\.type_of_visit').val() == "23914^VISITA AOS CASOS ESPECIAIS^99DCT")) {
 				$('#preventive_visit_section').show();
-				$('#home_visit_result_div').hide();
-				$('#patient_found_div_2161').hide();
-			} else if ($(this).val() == "1065^SIM^99DCT" && $('#obs\\.type_of_visit').val() == "2161^VISITA DE APOIO^99DCT") {
-				$('#patient_found_div_2160').hide();
+				$('#special_cases_reintegration_visit_section').hide();
+			} else if ($('#obs\\.patient_found').val() == "1065^SIM^99DCT" && $('#obs\\.type_of_visit').val() == "2160^VISITA DE BUSCA^99DCT") {
 				$('#preventive_visit_section').hide();
-				$('#home_visit_result_div').show();
-				$('#patient_found_div_2161').show();
-			} else if ($('#obs\\.patient_found').val() == "1065^SIM^99DCT" && $(this).val() == "2160^VISITA DE BUSCA^99DCT") {
-				$('#patient_found_div_2160').show();
-				$('#preventive_visit_section').show();
-				$('#home_visit_result_div').hide();
-				$('#patient_found_div_2161').hide();
+				$('#special_cases_reintegration_visit_section').show();
 			} else {
-				$('#patient_found_div_2160').hide();
 				$('#preventive_visit_section').hide();
-				$('#home_visit_result_div').hide();
-				$('#patient_found_div_2161').hide();
+				$('#special_cases_reintegration_visit_section').hide();
 			}
 		});
 		$('#obs\\.patient_found').trigger('change');
-
-		$('#obs\\.type_of_visit').change(function () {
-			if ($(this).val() == "1065^SIM^99DCT" && ($('#obs\\.type_of_visit').val() == "2160^VISITA DE BUSCA^99DCT" || $('#obs\\.type_of_visit').val() == "23914^VISITA AOS CASOS ESPECIAIS^99DCT")) {
-				$('#patient_found_div_2160').show();
-				$('#preventive_visit_section').show();
-				$('#home_visit_result_div').hide();
-				$('#patient_found_div_2161').hide();
-			} else if ($(this).val() == "1065^SIM^99DCT" && $('#obs\\.type_of_visit').val() == "2161^VISITA DE APOIO^99DCT") {
-				$('#patient_found_div_2160').hide();
-				$('#preventive_visit_section').hide();
-				$('#home_visit_result_div').show();
-				$('#patient_found_div_2161').show();
-			} else if ($('#obs\\.patient_found').val() == "1065^SIM^99DCT" && $(this).val() == "2160^VISITA DE BUSCA^99DCT") {
-				$('#patient_found_div_2160').show();
-				$('#preventive_visit_section').show();
-				$('#home_visit_result_div').hide();
-				$('#patient_found_div_2161').hide();
-			} else {
-				$('#patient_found_div_2160').hide();
-				$('#preventive_visit_section').hide();
-				$('#home_visit_result_div').hide();
-				$('#patient_found_div_2161').hide();
-			}
-		});
-
-		$('#obs\\.type_of_visit').trigger('change');
 
 		$('#obs\\.visit_report').change(function () {
 			if ($(this).val() == "2157^O PACIENTE APRESENTOU DIFICULDADES^99DCT") {
