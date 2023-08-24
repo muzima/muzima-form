@@ -513,16 +513,17 @@
 								</select>
 							</div>
 							<div class="form-group" id="patient_refused_to_return_div" hidden="true">
-								<label class="input-label" for="obs.patient_refused_to_return">
-									Recusou voltar<span class="required">*</span>
+
+								<label class="input-label">
+									<input id="obs.patient_refused_to_return"
+										type="checkbox" name="obs.patient_refused_to_return"
+										data-concept="165268^	OUTCOME OF HOME VISIT^99DCT"
+										value="165269^RECUSOU VOLTAR^99DCT"
+										required="required" />
+										Recusou voltar
 								</label>
-								<select class="form-control" id="obs.patient_refused_to_return" required
-									name="obs.patient_refused_to_return" data-concept="165269^RECUSOU VOLTAR^99DCT">
-									<option value="">...</option>
-									<option class="input-label" value="1065^SIM^99DCT">SIM</option>
-									<option class="input-label" value="1066^NAO^99DCT">NÃO</option>
-								</select>
-							</div>
+
+						</div>
 							<div class="form-group patient_found_div home_visit_result_div" id="data_combinada_div"
 								hidden="true">
 								<label class="input-label" for="obs.data_combinada">Data combinada para retorno a US:
@@ -1090,7 +1091,7 @@
 			i = 0;
 			do {
 				var allObs = allocationObs[i];
-				if (allObs.obs_comment === "ALLOCATION_PARENT_OBS") {
+				if (allObs.obs_comment === "ALLOCATION_PARENT_OBS_V3.3") {
 					$('#encounter\\.obs_group_uuid').val(allocationObs[i].uuid);
 					break;
 				}
@@ -1106,7 +1107,7 @@
 			i = 0;
 			do {
 				var triangulationObs = triangulationStatusObs[i];
-				if (triangulationObs.obs_comment !== "") {
+				if (triangulationObs.obs_comment) {
 					$("#obs\\.elegibility_categories").val(triangulationObs.obs_comment);
 					break;
 				}
