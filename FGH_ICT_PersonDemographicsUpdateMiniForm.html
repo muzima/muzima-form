@@ -91,7 +91,7 @@
                     </label>
                 </div>
                 <div class="form-group group-set" data-group="demographicsupdate.relationships" id="updateRelationshipType">
-                    <label class="input-label" >Novo parentesco: <span class="required"></span></label>
+                    <label class="input-label" >Novo parentesco: <span class="required">*</span></label>
                     <select class="form-control person.relationshipType" name="person.relationshipType">
                         <option value="">...</option>
                         <option class="input-label" value='8d91a210-c2cc-11de-8d13-0010c6dffd0f' class="AIsToB">Mae/Pai</option>
@@ -223,7 +223,7 @@
         </div>
 
         <div class="section">
-            <h6>Contacto Encontrado</h6>
+            <h6>Contacto Encontrado<span class="required">*</span></h6>
 
         <div class="form-group">
                 <select class="form-control" id="obs.patient_found" required
@@ -297,7 +297,7 @@
             </div>
             <div class="form-group demographicsupdate_htc_accepted">
                 <label class="input-label" for="demographicsupdate.htc_accepted">
-                    O serviço ATS foi aceito?
+                    O serviço ATS foi aceite?
                 </label>
                 <select class="form-control" id="demographicsupdate.htc_accepted"
                         name="demographicsupdate.htc_accepted" data-concept="165267^Aceita serviço ATS?^99DCT">
@@ -315,6 +315,16 @@
                     <option value="664^Negativo^99DCT">Negativo</option>
                     <option value="1067^Desconhecido^99DCT">Desconhecido</option>
                 </select>
+            </div>
+            <div id="patient_refered_section" class="sub-section" hidden="true" >
+                <h6>Referência para US</h6>
+                <div class="form-group">
+                    <label class="input-label" for="obs.patient_refered">
+                        Nome da US para qual referiu:<span class="required"></span>
+                    </label>
+                        <input class="form-control" id="obs.patient_refered" type="text" required="required"
+                        name="obs.patient_refered" data-concept="1460^REFERRED TO HOSPITAL^99DCT"/>
+                </div>
             </div>
             <div class="form-group">
                 <label class="input-label" for="demographicsupdate.hiv_care">Em Cuidados de HIV?</label>
@@ -547,6 +557,15 @@
             }
         });
         $('#tmp\\.update_birthdate').trigger('change');
+
+        $('#demographicsupdate\\.hiv_test').change(function(){
+            if($(this).val() == "703^Positivo^99DCT"){
+                $('#patient_refered_section').show();
+        } else{
+            $('#patient_refered_section').hide();
+        }
+        });
+        $('#demographicsupdate\\.hiv_test').trigger('change');
 
         $('#patient\\.sex').change(function(){
             if($(this).val() == 'M'){
