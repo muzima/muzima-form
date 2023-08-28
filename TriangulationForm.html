@@ -692,16 +692,8 @@
          $("#obs\\.elegibility_categories").prop('disabled', 'disabled');
       }
 
-      if ($("#obs\\.elegibility_categories").val() === 'Abandono'
-         || $("#obs\\.elegibility_categories").val() === 'Abandono, Elegível Carga Viral'
-         || $("#obs\\.elegibility_categories").val() === 'Elegível Carga Viral, Abandono'
-         || $("#obs\\.elegibility_categories").val() === 'Faltoso'
-         || $("#obs\\.elegibility_categories").val() === 'Carga Viral Alta, Faltoso'
-         || $("#obs\\.elegibility_categories").val() === 'Faltoso, Carga Viral Alta'
-         || $("#obs\\.elegibility_categories").val() === 'Elegível Carga Viral, Faltoso'
-         || $("#obs\\.elegibility_categories").val() === 'Faltoso, Elegível Carga Viral'
-         || $("#obs\\.elegibility_categories").val() === 'Abandono, Carga Viral Alta'
-			|| $("#obs\\.elegibility_categories").val() === 'Carga Viral Alta, Abandono') {
+      if ($("#obs\\.elegibility_categories").val().includes('Abandono')
+         || $("#obs\\.elegibility_categories").val().includes('Faltoso')) {
          $('#obs\\.type_of_visit').val("2160^VISITA DE BUSCA^99DCT");
       } else if ($("#obs\\.elegibility_categories").val() === 'Elegível Carga Viral' || $("#obs\\.elegibility_categories").val() === 'Carga Viral Alta') {
          $('#obs\\.type_of_visit').val("23914^VISITA AOS CASOS ESPECIAIS^99DCT");
