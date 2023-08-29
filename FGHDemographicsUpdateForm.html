@@ -23,7 +23,6 @@
 
 </div>
 <div id="pre_populate_data">
-
 </div>
 <form id="demographics_update_form" name="demographics_update_form">
     <h4 class="text-center">Formulário de Dados Demográficos do Paciente</h4>
@@ -218,7 +217,7 @@
                 </div>
             </div>
     </div>
-    <div class="section group-set" data-group="patient.personaddress"  id="patient_address">
+    <div class="section group-set patient_address_section" data-group="patient.personaddress"  id="patient_address">
         <h6>
             <a data-toggle="collapse" data-parent="#accordion" href="#patient_address" aria-expanded="false" aria-controls="patient_address" id="patient_address.section">
                 4. Endereço
@@ -234,6 +233,7 @@
                 <div class="form-group">
                     <label class="input-label" for="address1">Avenida/Rua/Casa: </label>
                     <input class="form-control" id="address1" name="address1" type="text" readonly="readonly">
+                    <input class="form-control addressPreferredField" id="preferred" name="preferred" type="hidden">
                 </div>
                 <div class="form-group">
                     <label class="input-label" for="address6">Localidade: </label>
@@ -946,6 +946,12 @@
         }
         else{
             $("#patient_confident\\.section_div").attr('hidden', 'true');
+        }
+    });
+
+    $.each($('.addressPreferredField'), function(k,element){
+        if($(element).val() != 'true'){
+            $(element).closest('.patient_address_section').hide();
         }
     });
 
