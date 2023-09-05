@@ -174,7 +174,7 @@
 				</div>
 
 				<div id="visit_report_div" class="panel-collapse collapse in">
-					<div class="form-group" id="visit_report_div.section_div" hidden="true">
+					<div class="form-group" id="visit_report_div.section_div" hidden="false">
 						<div class="form-group section" id="special_cases_reintegration_visit_section" style="margin: 0px 5px;">
 							<div class="form-group concept-set">
 								<div class="form-group">
@@ -1165,25 +1165,8 @@
 		}
 	});
 
-	// Hides and shows the REGISTO NO LIVRO section
-	$("#visit_report_div\\.section").click(function () {
-		if ($("#visit_report_div\\.section_div").attr('hidden') === 'hidden') {
-			$("#visit_report_div\\.section_div").removeAttr('hidden');
-		}
-		else {
-			$("#visit_report_div\\.section_div").attr('hidden', 'true');
-		}
-	});
-
-	// Hides and shows the REGISTO NO LIVRO section
-	$("#patient_not_found_div_section\\.section").click(function () {
-		if ($("#patient_not_found_div_section\\.section_div").attr('hidden') === 'hidden') {
-			$("#patient_not_found_div_section\\.section_div").removeAttr('hidden');
-		}
-		else {
-			$("#patient_not_found_div_section\\.section_div").attr('hidden', 'true');
-		}
-	});
+$("#visit_report_div\\.section_div").removeAttr('hidden');
+$("#patient_not_found_div_section\\.section_div").removeAttr('hidden');
 
 	// Hides and shows the REGISTO NO LIVRO section
 	$("#information_given_by_div\\.section").click(function () {

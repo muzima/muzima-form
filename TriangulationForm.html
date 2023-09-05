@@ -47,7 +47,7 @@
 
       <div class="section section-div form-group" id="visit_book_call" hidden="true">
          <div class="panel-heading">
-            <h6 class="panel-title">
+            <h6 class="panel-title">c
                <a data-toggle="collapse" data-parent="#accordion" href="#visit_book_call" aria-expanded="false"
                   aria-controls="visit_book_call_collapse" id="visit_book_call.section">
                   <h6> REGISTO NO LIVRO
@@ -806,25 +806,11 @@
       }
    });
 
-   // Hides and shows the TRIANGULACAO section
-   $("#triangulation\\.section").click(function () {
-      if ($("#triangulation\\.section_div").attr('hidden') === 'hidden') {
-         $("#triangulation\\.section_div").removeAttr('hidden');
-      }
-      else {
-         $("#triangulation\\.section_div").attr('hidden', 'true');
-      }
-   });
+   //  Shows the TRIANGULACAO section
+   $("#triangulation\\.section_div").removeAttr('hidden');
 
-   // Hides and shows the motivo de visita section
-   $("#traking_need\\.section").click(function () {
-      if ($("#traking_need\\.section_div").attr('hidden') === 'hidden') {
-         $("#traking_need\\.section_div").removeAttr('hidden');
-      }
-      else {
-         $("#traking_need\\.section_div").attr('hidden', 'true');
-      }
-   });
+   // Shows the motivo de visita section
+   $("#traking_need\\.section_div").removeAttr('hidden');
 
    // Hides and shows the Razao para nao realizar a visita section
    $("#no_tracking_needed\\.section").click(function () {
@@ -836,16 +822,8 @@
       }
    });
 
-   // Hides and shows the Razao para nao realizar a visita section
-   $("#allocation\\.section").click(function () {
-      if ($("#allocation\\.section_div").attr('hidden') === 'hidden') {
-         $("#allocation\\.section_div").removeAttr('hidden');
-      }
-      else {
-         $("#allocation\\.section_div").attr('hidden', 'true');
-      }
-
-   });
+   // Shows the Razao para nao realizar a visita section
+   $("#allocation\\.section_div").removeAttr('hidden');
 
 </script>
 
