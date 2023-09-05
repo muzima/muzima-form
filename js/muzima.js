@@ -95,7 +95,14 @@ var htmlDataStore = {
     },
     getLastVisitAttemptNumberAfterLastTriangulation:function(patientuuid, conceptId){
         return JSON.stringify([]);
-    }
+    },
+    getObsByEncounterType:function(patientuuid, uuid){
+        return '[]';
+    },
+    getInterventionsDerivedObservationByPatientUuid:function(patientuuid, uuid){
+        return '[]';
+    },
+
 };
 
 /* Start - Minimal one element selected
