@@ -92,7 +92,17 @@ var htmlDataStore = {
         "identifier_type_uuid":"identifier_type_uuid",
         }
         return JSON.stringify(medicalRecordNumber);
-    }
+    },
+    getLastVisitAttemptNumberAfterLastTriangulation:function(patientuuid, conceptId){
+        return JSON.stringify([]);
+    },
+    getObsByEncounterType:function(patientuuid, uuid){
+        return '[]';
+    },
+    getInterventionsDerivedObservationByPatientUuid:function(patientuuid, uuid){
+        return '[]';
+    },
+
 };
 
 /* Start - Minimal one element selected

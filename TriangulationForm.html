@@ -86,14 +86,7 @@
             <h6 class="panel-title">
                <a data-toggle="collapse" data-parent="#accordion" href="#triangulation" aria-expanded="false"
                   aria-controls="triangulation" id="triangulation.section">
-                  <h6> TRIANGULAÇÃO
-                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                        class="bi bi-arrows-collapse" viewBox="0 0 16 16">
-                        <path fill-rule="evenodd"
-                           d="M1 8a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13A.5.5 0 0 1 1 8zm7-8a.5.5 0 0 1 .5.5v3.793l1.146-1.147a.5.5 0 0 1 .708.708l-2 2a.5.5 0 0 1-.708 0l-2-2a.5.5 0 1 1 .708-.708L7.5 4.293V.5A.5.5 0 0 1 8 0zm-.5 11.707-1.146 1.147a.5.5 0 0 1-.708-.708l2-2a.5.5 0 0 1 .708 0l2 2a.5.5 0 0 1-.708.708L8.5 11.707V15.5a.5.5 0 0 1-1 0v-3.793z" />
-                     </svg>
-
-                  </h6>
+                  <h6> TRIANGULAÇÃO</h6>
                </a>
             </h6>
          </div>
@@ -381,13 +374,7 @@
             <h6 class="panel-title">
                <a data-toggle="collapse" data-parent="#accordion" href="#allocation" aria-expanded="false"
                   aria-controls="allocation_collapse" id="allocation.section">
-                  <h6> ALOCAÇÃO
-                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                        class="bi bi-arrows-collapse" viewBox="0 0 16 16">
-                        <path fill-rule="evenodd"
-                           d="M1 8a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13A.5.5 0 0 1 1 8zm7-8a.5.5 0 0 1 .5.5v3.793l1.146-1.147a.5.5 0 0 1 .708.708l-2 2a.5.5 0 0 1-.708 0l-2-2a.5.5 0 1 1 .708-.708L7.5 4.293V.5A.5.5 0 0 1 8 0zm-.5 11.707-1.146 1.147a.5.5 0 0 1-.708-.708l2-2a.5.5 0 0 1 .708 0l2 2a.5.5 0 0 1-.708.708L8.5 11.707V15.5a.5.5 0 0 1-1 0v-3.793z" />
-                     </svg>
-                  </h6>
+                  <h6> ALOCAÇÃO</h6>
                </a>
             </h6>
          </div>
@@ -806,25 +793,11 @@
       }
    });
 
-   // Hides and shows the TRIANGULACAO section
-   $("#triangulation\\.section").click(function () {
-      if ($("#triangulation\\.section_div").attr('hidden') === 'hidden') {
-         $("#triangulation\\.section_div").removeAttr('hidden');
-      }
-      else {
-         $("#triangulation\\.section_div").attr('hidden', 'true');
-      }
-   });
+   //  Shows the TRIANGULACAO section
+   $("#triangulation\\.section_div").removeAttr('hidden');
 
-   // Hides and shows the motivo de visita section
-   $("#traking_need\\.section").click(function () {
-      if ($("#traking_need\\.section_div").attr('hidden') === 'hidden') {
-         $("#traking_need\\.section_div").removeAttr('hidden');
-      }
-      else {
-         $("#traking_need\\.section_div").attr('hidden', 'true');
-      }
-   });
+   // Shows the motivo de visita section
+   $("#traking_need\\.section_div").removeAttr('hidden');
 
    // Hides and shows the Razao para nao realizar a visita section
    $("#no_tracking_needed\\.section").click(function () {
@@ -836,16 +809,8 @@
       }
    });
 
-   // Hides and shows the Razao para nao realizar a visita section
-   $("#allocation\\.section").click(function () {
-      if ($("#allocation\\.section_div").attr('hidden') === 'hidden') {
-         $("#allocation\\.section_div").removeAttr('hidden');
-      }
-      else {
-         $("#allocation\\.section_div").attr('hidden', 'true');
-      }
-
-   });
+   // Shows the Razao para nao realizar a visita section
+   $("#allocation\\.section_div").removeAttr('hidden');
 
 </script>
 

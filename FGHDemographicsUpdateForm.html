@@ -47,11 +47,6 @@
             <a data-toggle="collapse" data-parent="#accordion" href="#patient_names" aria-expanded="false" aria-controls="patient_names" id="patient_names.section">
                 1. Nome do Paciente
             </a>
-            <a data-toggle="collapse" data-parent="#accordion" aria-expanded="false" href="#patient_names" id="patient_names.section">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrows-collapse" viewBox="0 0 16 16">
-                    <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13A.5.5 0 0 1 1 8zm7-8a.5.5 0 0 1 .5.5v3.793l1.146-1.147a.5.5 0 0 1 .708.708l-2 2a.5.5 0 0 1-.708 0l-2-2a.5.5 0 1 1 .708-.708L7.5 4.293V.5A.5.5 0 0 1 8 0zm-.5 11.707-1.146 1.147a.5.5 0 0 1-.708-.708l2-2a.5.5 0 0 1 .708 0l2 2a.5.5 0 0 1-.708.708L8.5 11.707V15.5a.5.5 0 0 1-1 0v-3.793z"/>
-                </svg>
-            </a>
         </h6>
         <div id="patient_names" class="panel-collapse collapse in">
             <div id="patient_names.section_div">
@@ -115,11 +110,7 @@
             <a data-toggle="collapse" data-parent="#accordion" href="#patient_gender" aria-expanded="false" aria-controls="patient_gender" id="patient_gender.section">
                 2. Gênero
             </a>
-            <a data-toggle="collapse" data-parent="#accordion" aria-expanded="false" href="#patient_gender" id="patient_gender.section">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrows-collapse" viewBox="0 0 16 16">
-                    <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13A.5.5 0 0 1 1 8zm7-8a.5.5 0 0 1 .5.5v3.793l1.146-1.147a.5.5 0 0 1 .708.708l-2 2a.5.5 0 0 1-.708 0l-2-2a.5.5 0 1 1 .708-.708L7.5 4.293V.5A.5.5 0 0 1 8 0zm-.5 11.707-1.146 1.147a.5.5 0 0 1-.708-.708l2-2a.5.5 0 0 1 .708 0l2 2a.5.5 0 0 1-.708.708L8.5 11.707V15.5a.5.5 0 0 1-1 0v-3.793z"/>
-                </svg>
-            </a>
+
         </h6>
         <div id="patient_gender" class="panel-collapse collapse in">
             <div class="form-group" id="patient_gender.section_div">
@@ -152,11 +143,7 @@
                 <a data-toggle="collapse" data-parent="#accordion" href="#patient_age" aria-expanded="false" aria-controls="patient_age" id="patient_age.section">
                     3. Idade
                 </a>
-                <a data-toggle="collapse" data-parent="#accordion" aria-expanded="false" href="#patient_age" id="patient_age.section">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrows-collapse" viewBox="0 0 16 16">
-                        <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13A.5.5 0 0 1 1 8zm7-8a.5.5 0 0 1 .5.5v3.793l1.146-1.147a.5.5 0 0 1 .708.708l-2 2a.5.5 0 0 1-.708 0l-2-2a.5.5 0 1 1 .708-.708L7.5 4.293V.5A.5.5 0 0 1 8 0zm-.5 11.707-1.146 1.147a.5.5 0 0 1-.708-.708l2-2a.5.5 0 0 1 .708 0l2 2a.5.5 0 0 1-.708.708L8.5 11.707V15.5a.5.5 0 0 1-1 0v-3.793z"/>
-                    </svg>
-                </a>
+
             </h6>
             <div id="patient_age" class="panel-collapse collapse in">
                 <div class="form-group" id="patient_age.section_div">
@@ -899,35 +886,11 @@
         }
     });
 
-    $("#patient_age\\.section").click(function() {
-        if($("#patient_age\\.section_div").attr('hidden')==='hidden')
-        {
-            $("#patient_age\\.section_div").removeAttr('hidden');
-        }
-        else{
-            $("#patient_age\\.section_div").attr('hidden', 'true');
-        }
-    });
+    $("#patient_age\\.section_div").removeAttr('hidden');
 
-    $("#patient_gender\\.section").click(function() {
-        if($("#patient_gender\\.section_div").attr('hidden')==='hidden')
-        {
-            $("#patient_gender\\.section_div").removeAttr('hidden');
-        }
-        else{
-            $("#patient_gender\\.section_div").attr('hidden', 'true');
-        }
-    });
+    $("#patient_gender\\.section_div").removeAttr('hidden');
 
-    $("#patient_names\\.section").click(function() {
-        if($("#patient_names\\.section_div").attr('hidden')==='hidden')
-        {
-            $("#patient_names\\.section_div").removeAttr('hidden');
-        }
-        else{
-            $("#patient_names\\.section_div").attr('hidden', 'true');
-        }
-    });
+    $("#patient_names\\.section_div").removeAttr('hidden');
 
     $("#patient_confident_info\\.section").click(function() {
         if($("#patient_confident_info\\.section_div").attr('hidden')==='hidden')
