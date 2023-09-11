@@ -84,7 +84,7 @@
             </div>
             <div class="form-group show_age">
                 <label class="input-label" for="tmp.age_in_years">Quantos anos tem? <span class="required">*</span></label>
-                <input class="form-control" id="tmp.age_in_years" name="tmp.age_in_years" type="number" required="required">
+                <input class="form-control validateAge validAgeOnly" id="tmp.age_in_years" name="tmp.age_in_years" type="number" required="required">
             </div>
         </div>
 
@@ -193,7 +193,7 @@
         }
 
         var currentYear = new Date().getFullYear();
-        var birthdate_start_year = currentYear - 140;
+        var birthdate_start_year = currentYear - 100;
         $('.birth_date_picker').datepicker({
             dateFormat: dateFormat,
             changeMonth: true,
@@ -285,6 +285,27 @@
 
         document.setupAutoCompleteData('encounter\\.location_id');
         document.setupValidationForLocation("$('#encounter\\.location_id').val()","encounter\\.location_id");
+
+        $('.validateAge').change(function () {
+             if ($(this).is(':visible') && $(this).val() != '') {
+                var errors = {};
+                var age = $(this).val()
+                if (age > 100) {
+                   errors[$(this).attr('name')] = "A idade deve ser inferior a 100 anos.";
+                }
+                toggleValidationMessages(errors);
+             }
+        });
+
+        $.validator.addMethod("validAgeOnly", function (value, element) {
+             if ($.fn.isNotRequiredAndEmpty(value, element)) return true;
+             return age < value;
+          }, "A idade deve ser inferior a 100 anos."
+        );
+
+        jQuery.validator.addClassRules({
+            validAgeOnly: { validAgeOnly: true }
+        });
 
         $('#save_draft').click(function () {
             // pre process the medications
