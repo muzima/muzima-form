@@ -299,7 +299,7 @@
 
         $.validator.addMethod("validAgeOnly", function (value, element) {
              if ($.fn.isNotRequiredAndEmpty(value, element)) return true;
-             return age < value;
+             return value <= 100;
           }, "A idade deve ser inferior a 100 anos."
         );
 
