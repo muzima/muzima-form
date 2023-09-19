@@ -342,9 +342,6 @@
 								<div class="form-group sub-section" id="patient_had_difficulties" style="border: 0px; margin: 0px 0px; padding: 0px;">
 									<div class="form-group concept-set">
 										<div class="form-group">
-											<label class="input-label" for="obs.patient_had_difficulties">
-												Relatório da visita:
-											</label>
 											<div class="concept-set" id="convset_group_section"
 												data-concept="165356^CONVSET VISIT REPORT - FIRST VISIT^99DCT 1">
 												<div class="form-group">
@@ -486,7 +483,7 @@
 						<div class="section section-div form-group patient_not_found_div" id="patient_fallowup_div_section">
 							<div class="form-group" id="patient_fallowup_div">
 								<label class="input-label" for="obs.patient_followup">
-									Paciente ou cuidador encaminhado para US<span>*</span>
+									Paciente ou cuidador encaminhado para US<span class="required">*</span>
 								</label>
 								<select class="form-control" id="obs.patient_followup" required="required"
 									name="obs.patient_followup"
@@ -603,14 +600,7 @@
 									<a data-toggle="collapse" data-parent="#accordion" href="#information_given_by_div"
 										aria-expanded="false" aria-controls="information_given_by_div"
 										id="information_given_by_div.section">
-										<h6> DADOS DO INFORMANTE
-											<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-												fill="currentColor" class="bi bi-arrows-collapse" viewBox="0 0 16 16">
-												<path fill-rule="evenodd"
-													d="M1 8a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13A.5.5 0 0 1 1 8zm7-8a.5.5 0 0 1 .5.5v3.793l1.146-1.147a.5.5 0 0 1 .708.708l-2 2a.5.5 0 0 1-.708 0l-2-2a.5.5 0 1 1 .708-.708L7.5 4.293V.5A.5.5 0 0 1 8 0zm-.5 11.707-1.146 1.147a.5.5 0 0 1-.708-.708l2-2a.5.5 0 0 1 .708 0l2 2a.5.5 0 0 1-.708.708L8.5 11.707V15.5a.5.5 0 0 1-1 0v-3.793z" />
-											</svg>
-
-										</h6>
+										<h6> DADOS DO INFORMANTE</h6>
 									</a>
 								</h6>
 							</div>
@@ -1149,6 +1139,7 @@
 
 $("#visit_report_div\\.section_div").removeAttr('hidden');
 $("#patient_not_found_div_section\\.section_div").removeAttr('hidden');
+$("#information_given_by_div\\.section_div").removeAttr('hidden');
 
 	// Hides and shows the REGISTO NO LIVRO section
 	$("#information_given_by_div\\.section").click(function () {
