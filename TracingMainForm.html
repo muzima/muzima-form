@@ -325,7 +325,7 @@
 									<label class="input-label" for="obs.visit_report">
 										Relatório da visita<span class="required">*</span>
 									</label>
-									<div class="concept-set" id="convset_group_section"
+									<div class="concept-set set0" id="convset_group_section"
 										data-concept="165356^CONVSET VISIT REPORT - FIRST VISIT^99DCT 0">
 										<select class="form-control" id="obs.visit_report" required
 											name="obs.visit_report"
@@ -342,7 +342,7 @@
 								<div class="form-group sub-section" id="patient_had_difficulties" style="border: 0px; margin: 0px 0px; padding: 0px;">
 									<div class="form-group concept-set">
 										<div class="form-group">
-											<div class="concept-set" id="convset_group_section"
+											<div class="concept-set set1" id="convset_group_section"
 												data-concept="165356^CONVSET VISIT REPORT - FIRST VISIT^99DCT 1">
 												<div class="form-group">
 													<label class="input-label">
@@ -355,7 +355,7 @@
 													</label>
 												</div>
 											</div>
-											<div class="concept-set" id="convset_group_section"
+											<div class="concept-set set2" id="convset_group_section"
 												data-concept="165356^CONVSET VISIT REPORT - FIRST VISIT^99DCT 2">
 												<div class="form-group">
 													<label class="input-label">
@@ -368,7 +368,7 @@
 													</label>
 												</div>
 											</div>
-											<div class="concept-set" id="convset_group_section"
+											<div class="concept-set set3" id="convset_group_section"
 												data-concept="165356^CONVSET VISIT REPORT - FIRST VISIT^99DCT 3">
 												<div class="form-group">
 													<label class="input-label">
@@ -380,7 +380,7 @@
 													</label>
 												</div>
 											</div>
-											<div class="concept-set" id="convset_group_section"
+											<div class="concept-set set4" id="convset_group_section"
 												data-concept="165356^CONVSET VISIT REPORT - FIRST VISIT^99DCT 4">
 												<div class="form-group">
 													<label class="input-label">
@@ -392,7 +392,7 @@
 													</label>
 												</div>
 											</div>
-											<div class="concept-set" id="convset_group_section"
+											<div class="concept-set set5" id="convset_group_section"
 												data-concept="165356^CONVSET VISIT REPORT - FIRST VISIT^99DCT 5">
 												<div class="form-group">
 													<label class="input-label">
@@ -405,7 +405,7 @@
 													</label>
 												</div>
 											</div>
-											<div class="concept-set" id="convset_group_section"
+											<div class="concept-set set7" id="convset_group_section"
 												data-concept="165356^CONVSET VISIT REPORT - FIRST VISIT^99DCT 7">
 												<div class="form-group">
 													<label class="input-label">
@@ -418,7 +418,7 @@
 													</label>
 												</div>
 											</div>
-											<div class="concept-set" id="convset_group_section"
+											<div class="concept-set set8" id="convset_group_section"
 												data-concept="165356^CONVSET VISIT REPORT - FIRST VISIT^99DCT 8">
 												<div class="form-group">
 													<label class="input-label">
@@ -431,7 +431,7 @@
 													</label>
 												</div>
 											</div>
-											<div class="concept-set" id="convset_group_section"
+											<div class="concept-set set9" id="convset_group_section"
 												data-concept="165356^CONVSET VISIT REPORT - FIRST VISIT^99DCT 9">
 												<div class="form-group">
 													<label class="input-label">
@@ -444,7 +444,7 @@
 													</label>
 												</div>
 											</div>
-											<div class="concept-set" id="convset_group_section"
+											<div class="concept-set set10" id="convset_group_section"
 												data-concept="165356^CONVSET VISIT REPORT - FIRST VISIT^99DCT 10">
 												<div class="form-group">
 													<label class="input-label">
@@ -456,7 +456,7 @@
 													</label>
 												</div>
 											</div>
-											<div class="concept-set" id="convset_group_section"
+											<div class="concept-set set11" id="convset_group_section"
 												data-concept="165356^CONVSET VISIT REPORT - FIRST VISIT^99DCT 11">
 												<div class="form-group">
 													<label class="input-label">
@@ -474,8 +474,8 @@
 												Outro:<span class="required"></span>
 											</label>
 											<input class="form-control" id="obs.other_referencias" type="text"
-												required="required" name="obs.patient_had_difficulties.other"
-												data-obscommentfor="obs.patient_had_difficulties.other" />
+												required="required" name="obs.patient_had_difficulties"
+												data-obscommentfor="obs.patient_had_difficulties" />
 										</div>
 									</div>
 							    </div>
@@ -747,6 +747,17 @@
 			$('#obs\\.encounter_datetime').hide();
 			$("#obs\\.attempt_number").val("6440^DATA DA PRIMEIRA TENTATIVA DE BUSCA^99DCT");
 			$('#obs\\.attempt_number').prop('disabled', 'disabled');
+			$('.set0').attr('data-concept', '165356^CONVSET VISIT REPORT - FIRST VISIT^99DCT 0');
+			$('.set1').attr('data-concept', '165356^CONVSET VISIT REPORT - FIRST VISIT^99DCT 1');
+			$('.set2').attr('data-concept', '165356^CONVSET VISIT REPORT - FIRST VISIT^99DCT 2');
+			$('.set3').attr('data-concept', '165356^CONVSET VISIT REPORT - FIRST VISIT^99DCT 3');
+			$('.set4').attr('data-concept', '165356^CONVSET VISIT REPORT - FIRST VISIT^99DCT 4');
+			$('.set5').attr('data-concept', '165356^CONVSET VISIT REPORT - FIRST VISIT^99DCT 5');
+			$('.set7').attr('data-concept', '165356^CONVSET VISIT REPORT - FIRST VISIT^99DCT 7');
+			$('.set8').attr('data-concept', '165356^CONVSET VISIT REPORT - FIRST VISIT^99DCT 8');
+			$('.set9').attr('data-concept', '165356^CONVSET VISIT REPORT - FIRST VISIT^99DCT 9');
+			$('.set10').attr('data-concept', '165356^CONVSET VISIT REPORT - FIRST VISIT^99DCT 10');
+			$('.set11').attr('data-concept', '165356^CONVSET VISIT REPORT - FIRST VISIT^99DCT 11');
 		} else if (parseInt(attemptNumber[0].valueCoded.id) === 6440) {
 			var patiendFound = htmlDataStore.getObsByConceptId(patientuuid, 2003);
 			patiendFound = JSON.parse(patiendFound);
@@ -767,6 +778,17 @@
 			} else {
 				setSecondAttempt();
 			}
+			$('.set0').attr('data-concept', '165357^CONVSET RELATÓRIO DE VISITA - SEGUNDA VISITA^99DCT 0');
+			$('.set1').attr('data-concept', '165357^CONVSET RELATÓRIO DE VISITA - SEGUNDA VISITA^99DCT 1');
+			$('.set2').attr('data-concept', '165357^CONVSET RELATÓRIO DE VISITA - SEGUNDA VISITA^99DCT 2');
+			$('.set3').attr('data-concept', '165357^CONVSET RELATÓRIO DE VISITA - SEGUNDA VISITA^99DCT 3');
+			$('.set4').attr('data-concept', '165357^CONVSET RELATÓRIO DE VISITA - SEGUNDA VISITA^99DCT 4');
+			$('.set5').attr('data-concept', '165357^CONVSET RELATÓRIO DE VISITA - SEGUNDA VISITA^99DCT 5');
+			$('.set7').attr('data-concept', '165357^CONVSET RELATÓRIO DE VISITA - SEGUNDA VISITA^99DCT 7');
+			$('.set8').attr('data-concept', '165357^CONVSET RELATÓRIO DE VISITA - SEGUNDA VISITA^99DCT 8');
+			$('.set9').attr('data-concept', '165357^CONVSET RELATÓRIO DE VISITA - SEGUNDA VISITA^99DCT 9');
+			$('.set10').attr('data-concept', '165357^CONVSET RELATÓRIO DE VISITA - SEGUNDA VISITA^99DCT 10');
+			$('.set11').attr('data-concept', '165357^CONVSET RELATÓRIO DE VISITA - SEGUNDA VISITA^99DCT 11');
 		} else if (parseInt(attemptNumber[0].valueCoded.id) === 6254) {
 			var patiendFound = htmlDataStore.getObsByConceptId(patientuuid, 2003);
 			patiendFound = JSON.parse(patiendFound);
@@ -787,6 +809,17 @@
 			} else {
 				setThirdAttempt();
 			}
+			$('.set0').attr('data-concept', '165358^CONVSET VISIT REPORT - THIRD VISIT^99DCT 0');
+			$('.set1').attr('data-concept', '165358^CONVSET VISIT REPORT - THIRD VISIT^99DCT 1');
+			$('.set2').attr('data-concept', '165358^CONVSET VISIT REPORT - THIRD VISIT^99DCT 2');
+			$('.set3').attr('data-concept', '165358^CONVSET VISIT REPORT - THIRD VISIT^99DCT 3');
+			$('.set4').attr('data-concept', '165358^CONVSET VISIT REPORT - THIRD VISIT^99DCT 4');
+			$('.set5').attr('data-concept', '165358^CONVSET VISIT REPORT - THIRD VISIT^99DCT 5');
+			$('.set7').attr('data-concept', '165358^CONVSET VISIT REPORT - THIRD VISIT^99DCT 7');
+			$('.set8').attr('data-concept', '165358^CONVSET VISIT REPORT - THIRD VISIT^99DCT 8');
+			$('.set9').attr('data-concept', '165358^CONVSET VISIT REPORT - THIRD VISIT^99DCT 9');
+			$('.set10').attr('data-concept', '165358^CONVSET VISIT REPORT - THIRD VISIT^99DCT 10');
+			$('.set11').attr('data-concept', '165358^CONVSET VISIT REPORT - THIRD VISIT^99DCT 11');
 		} else if (parseInt(attemptNumber[0].valueCoded.id) === 6255) {
 			$('#obs\\.attempt_number').attr('required', 'required');
 			removeAll();
@@ -886,14 +919,6 @@
 			} else {
 				$('#patient_had_difficulties').hide();
 			}
-			if (attemptcount === -1) {
-				$('#convset_group_section').attr('data-concept', '165356^CONVSET VISIT REPORT - FIRST VISIT^99DCT');
-			} else if (parseInt(attemptNumber[0].valueCoded.id) === 6440) {
-				$('#convset_group_section').attr('data-concept', '165357^CONVSET RELATÓRIO DE VISITA - SEGUNDA VISITA^99DCT');
-			} else if (parseInt(attemptNumber[0].valueCoded.id) === 6254) {
-				$('#convset_group_section').attr('data-concept', '165358^CONVSET VISIT REPORT - THIRD VISIT^99DCT');
-			}
-
 		});
 
 		$('#obs\\.visit_report').trigger('change');
