@@ -28,17 +28,17 @@
         </div>
         <div class="form-group">
             <label for="patient.family_name">Family Name: <span class="required">*</span> </label>
-            <input class="form-control" id="patient.family_name" name="patient.family_name" type="text"
+            <input class="form-control alphaOnly" id="patient.family_name" name="patient.family_name" type="text"
                    required="required">
         </div>
         <div class="form-group">
             <label for="patient.given_name">Given Name: <span class="required">*</span></label>
-            <input class="form-control" id="patient.given_name" name="patient.given_name" type="text"
+            <input class="form-control alphaOnly" id="patient.given_name" name="patient.given_name" type="text"
                    required="required">
         </div>
         <div class="form-group">
             <label for="patient.middle_name">Middle Name:</label>
-            <input class="form-control" id="patient.middle_name" name="patient.middle_name" type="text">
+            <input class="form-control alphaOnly" id="patient.middle_name" name="patient.middle_name" type="text">
         </div>
     </div>
     <div class="section">
@@ -323,6 +323,10 @@
                 range: [0, 120]
             }
         }
+    });
+
+    $('.alphaOnly').bind('keypress',function(event){
+          return /[a-zA-Z]/i.test(event.key)
     });
 
    	document.setupValidationForProvider("$('#encounter\\.provider_id_select').val()","encounter\\.provider_id");
