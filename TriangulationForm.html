@@ -679,6 +679,45 @@
          $("#obs\\.elegibility_categories").prop('disabled', 'disabled');
       }
 
+      var eligibilityCategories = $("#obs\\.elegibility_categories").val().split(", ");
+		var ecvIndex = -1;
+		var cvaIndex = -1;
+		var abandonoIndex = -1;
+		var faltosoIndex = -1;
+		var preventivaIndex = -1;
+
+		$.each(eligibilityCategories, (k,category)=>{
+			if(category.includes('Elegível Carga Viral')){
+				ecvIndex = k;
+			} else if (category.includes('Carga Viral Alta')){
+				cvaIndex = k;
+			} else if (category.includes('Abandono')){
+				abandonoIndex = k;
+			} else if (category.includes('Faltoso')){
+				faltosoIndex = k;
+			} else if (category.includes('Preventiva')){
+				preventivaIndex = k;
+			}
+		});
+
+		if(ecvIndex >= 0 && cvaIndex >= 0){
+			eligibilityCategories.splice(ecvIndex,1);
+		}
+
+		if(faltosoIndex >= 0 && abandonoIndex >= 0){
+			eligibilityCategories.splice(eligibilityCategories.indexOf('Faltoso'),1);
+		}
+
+		if(preventivaIndex >= 0 && (faltosoIndex >= 0 || abandonoIndex >= 0)){
+			eligibilityCategories.splice(eligibilityCategories.indexOf('Preventiva'),1);
+		}
+
+		var combinedEligibilityCategories = "";
+		$.each(eligibilityCategories, (k,category)=>{
+            combinedEligibilityCategories = (combinedEligibilityCategories !== "" ? combinedEligibilityCategories + ", " + category : category);
+        });
+        $("#obs\\.elegibility_categories").val(combinedEligibilityCategories);
+
       if ($("#obs\\.elegibility_categories").val().includes('Abandono')
          || $("#obs\\.elegibility_categories").val().includes('Faltoso')) {
          $('#obs\\.type_of_visit').val("2160^VISITA DE BUSCA^99DCT");
