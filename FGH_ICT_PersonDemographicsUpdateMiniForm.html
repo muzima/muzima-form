@@ -208,9 +208,9 @@
                 <input class="form-control" id="tmp.child_at_risk_treatment" readonly="readonly"
                         name="tmp.child_at_risk_treatment" />
             </div>
-            <div class="form-group">
-                <label class="input-label" for="tmp.relative_nid">NID:</label>
-                <input class="form-control" id="tmp.relative_nid"
+            <div class="form-group" id="tmp.relative_nid">
+                <label class="input-label" for="obs.tmp.relative_nid">NID:</label>
+                <input class="form-control" id="obs.tmp.relative_nid"
                        name="tmp.relative_nid" type="text" readonly="readonly">
             </div>
             <div class="form-group">
@@ -282,6 +282,8 @@
                                 name="obs.patient_not_found_reason.outros" data-obscommentfor="obs.patient_not_found_reason.outros"/>
         </div>                       
 <!--        data-concept="23782^SITUACAO FAMILIAR CONJUNTO^99DCT"-->
+
+            <!--   ******************** INICIO ************************************** --->
     <div id="update_hiv_details" class="sub-section" hidden="true" >
             <h6>Dados de Testagem</h6>
             <div class="form-group">
@@ -306,7 +308,92 @@
                     <option value="1066^NAO^99DCT">Nao</option>
                 </select>
             </div>
+        <!-- NAO FOI ACEITE O SERVICO  -->
+
+        <div class="form-group section demographicsupdate_htc_not_accepted" id="demographicsupdate_htc_not_accepted" hidden="true">
+            <label for="obs.demographicsupdate_htc_not_accepted">
+                <h6>Motivo: <span class="required">*</span></h6>
+            </label>
             <div class="form-group">
+                <label class="input-label">
+                    <input id="obs.demographicsupdate_htc_not_accepted.positivo" type="checkbox" name="obs.demographicsupdate_htc_not_accepted"
+                           data-concept="2031^REASON PATIENT NOT FOUND BY ACTIVIST^99DCT" value="1366^PositivoNoPassado^99DCT" required="required"/>
+                    Positivo no Passado
+                </label>
+            </div>
+
+            <div class="form-group">
+                <label class="input-label">
+                    <input id="obs.demographicsupdate_htc_not_accepted.recusa" type="checkbox" name="obs.demographicsupdate_htc_not_accepted"
+                           data-concept="2031^REASON PATIENT NOT FOUND BY ACTIVIST^99DCT" value="165336^RECUSA^99DCT" required="required"/>
+                    Recusa
+                </label>
+            </div>
+            <div class="form-group">
+                <label class="input-label">
+                    <input id="obs.demographicsupdate_htc_not_accepted.mudou" type="checkbox" name="obs.demographicsupdate_htc_not_accepted"
+                           data-concept="2031^REASON PATIENT NOT FOUND BY ACTIVIST^99DCT" value="6436^STIGMA^99DCT" required="required"/>
+                    Falta de Privacidade
+                </label>
+            </div>
+            <div class="form-group">
+                <label class="input-label">
+                    <input id="obs.demographicsupdate_htc_not_accepted.drogas" type="checkbox" name="obs.demographicsupdate_htc_not_accepted"
+                           data-concept="2031^REASON PATIENT NOT FOUND BY ACTIVIST^99DCT" value="15954^Efeito tóxico do álcool^99DCT" required="required"/>
+                    Sob o Efeito de Alcool/outras Subistancias
+                </label>
+            </div>
+            <div class="form-group">
+                <label class="input-label">
+                    <input id="obs.demographicsupdate_htc_not_accepted.localtestagem" type="checkbox" name="obs.demographicsupdate_htc_not_accepted"
+                           data-concept="2031^REASON PATIENT NOT FOUND BY ACTIVIST^99DCT" value="2011^VIAJOU^99DCT" required="required"/>
+                    Mudanca de Local de Testagem
+                </label>
+            </div>
+            <div class="form-group">
+                <label class="input-label">
+                    <input id="obs.demographicsupdate_htc_not_accepted.outros" type="checkbox" name="obs.patient_not_found_reason"
+                           data-concept="2031^REASON PATIENT NOT FOUND BY ACTIVIST^99DCT" value="2032^OUTROS MOTIVOS^99DCT" required="required"/>
+                    Outro
+                </label>
+            </div>
+
+        </div>
+        <div class="form-group sub-section" id="demographicsupdate_htc_not_accepted_other" hidden="true">
+            <label class="input-label" for="obs.demographicsupdate_htc_not_accepted_other">
+                Outro:<span class="required"></span>
+            </label>
+            <input class="form-control" id="obs.demographicsupdate_htc_not_accepted_other" type="text" required="required"
+                   name="obs.demographicsupdate_htc_not_accepted_other.outros" data-obscommentfor="obs.demographicsupdate_htc_not_accepted_other.outros"/>
+        </div>
+        <div class="form-group" id="demographicsupdate_child_at_risk_treatment" hidden="true" >
+            <label class="input-label" for="demographicsupdate.child_at_risk_treatment">Em CCR?</label>
+            <select class="form-control" id="demographicsupdate.child_at_risk_treatment"
+                    name="demographicsupdate.child_at_risk_treatment" data-concept="1885^TRATEMENTO (CCR)^99DCT">
+                <option value="">...</option>
+                <option value="1065^Sim^99DCT">Sim</option>
+                <option value="1066^Nao^99DCT">Nao</option>
+                <option value="23892^Alta^99DCT">Alta</option>
+            </select>
+        </div>
+        <div class="form-group sub-section" id="demographicsupdate_relative_nid" hidden="true">
+            <label class="input-label" for="obs.demographicsupdate_relative_nid">NID:</label>
+            <input class="form-control" id="obs.demographicsupdate_relative_nid" data-concept="23781^Relative NID^99DCT"
+                   name="demographicsupdate.relative_nid" type="text">
+        </div>
+
+        <div class="form-group sub-section" id="demographicsupdate_hiv_care" hidden = "true">
+            <label class="input-label" for="obs.demographicsupdate_hiv_care">Em Cuidados de HIV?</label>
+            <select class="form-control" id="obs.demographicsupdate_hiv_care"
+                    name="demographicsupdate.hiv_care" data-concept="23780^Cuidados HIV^99DCT">
+                <option value="">...</option>
+                <option value="1065^Sim^99DCT">Sim</option>
+                <option value="1066^Nao^99DCT">Nao</option>
+            </select>
+        </div>
+        <!-- FIM DO NAO FOI ACEITE -->
+
+            <div class="form-group" id="demographicsupdate_hiv_test" >
                 <label class="input-label" for="demographicsupdate.hiv_test">Resultado da Testagem de HIV:</label>
                 <select class="form-control" id="demographicsupdate.hiv_test"
                         name="demographicsupdate.hiv_test" data-concept="23779^Teste de HIV^99DCT">
@@ -314,6 +401,7 @@
                     <option value="703^Positivo^99DCT">Positivo</option>
                     <option value="664^Negativo^99DCT">Negativo</option>
                     <option value="1067^Desconhecido^99DCT">Desconhecido</option>
+                    <option value="1953^Indeterminado^99DCT">Indeterminado</option>
                 </select>
             </div>
             <div id="patient_refered_section" class="sub-section" hidden="true" >
@@ -326,35 +414,11 @@
                         name="obs.patient_refered" data-concept="1460^REFERRED TO HOSPITAL^99DCT"/>
                 </div>
             </div>
-            <div class="form-group">
-                <label class="input-label" for="demographicsupdate.hiv_care">Em Cuidados de HIV?</label>
-                <select class="form-control" id="demographicsupdate.hiv_care"
-                        name="demographicsupdate.hiv_care" data-concept="23780^Cuidados HIV^99DCT">
-                    <option value="">...</option>
-                    <option value="1065^Sim^99DCT">Sim</option>
-                    <option value="1066^Nao^99DCT">Nao</option>
-                </select>
-            </div>
-           
-            <div class="form-group">
-                <label class="input-label" for="demographicsupdate.child_at_risk_treatment">Em CCR?</label>
-                <select class="form-control" id="demographicsupdate.child_at_risk_treatment"
-                        name="demographicsupdate.child_at_risk_treatment" data-concept="1885^TRATEMENTO (CCR)^99DCT">
-                    <option value="">...</option>
-                    <option value="1065^Sim^99DCT">Sim</option>
-                    <option value="1066^Nao^99DCT">Nao</option>
-                    <option value="23892^Alta^99DCT">Alta</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label class="input-label" for="demographicsupdate.relative_nid">NID:</label>
-                <input class="form-control" id="demographicsupdate.relative_nid" data-concept="23781^Relative NID^99DCT"
-                       name="demographicsupdate.relative_nid" type="text">
-            </div>
+
         </div>
 
     </div>
- 
+ <!--                ***************       Fim do item    *********************                                      -->
         <div class="section">
             <h6>Detalhes do encontro</h6>
             <div class="form-group">
@@ -813,6 +877,43 @@
             validDOBOnly: { validDOBOnly: true }
         });
     });
+
+        $('#demographicsupdate\\.htc_accepted').change(function () {
+            if($(this).val() == '1066^NAO^99DCT'){
+                $('.demographicsupdate_htc_not_accepted').show();
+                 $('#demographicsupdate_child_at_risk_treatment').hide();
+            }else{
+            $('.demographicsupdate_htc_not_accepted').hide();
+            $('#demographicsupdate_child_at_risk_treatment').show();
+            }
+        });
+
+       $('#obs\\.demographicsupdate_htc_not_accepted\\.outros').change(function(){
+		if($(this).prop("checked")){
+			$('#demographicsupdate_htc_not_accepted_other').show();
+		} else{
+			$('#demographicsupdate_htc_not_accepted_other').hide();
+		}
+	       });
+
+	  $('#obs\\.demographicsupdate_htc_not_accepted\\.positivo').change(function(){
+		if($(this).prop("checked")){
+			$('#demographicsupdate_relative_nid').show();
+			$('#demographicsupdate_hiv_care').show();
+		} else{
+			$('#demographicsupdate_relative_nid').hide();
+			$('#demographicsupdate_hiv_care').hide();
+		}
+	       });
+
+      $('#demographicsupdate\\.child_at_risk_treatment').change(function () {
+            if($(this).val() == '1065^Sim^99DCT'){
+                $('#demographicsupdate_relative_nid').show();
+            }else{
+                $('#demographicsupdate_relative_nid').hide();
+            }
+        });
+
 </script>
 
 </html>
