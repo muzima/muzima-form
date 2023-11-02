@@ -606,64 +606,60 @@
 							</div>
 							<div id="information_given_by_div" class="panel-collapse collapse in">
 								<div class="form-group" id="information_given_by_div.section_div" hidden="true">
-									<div class="section form-group">
-										<div class="form-group">
-											<label class="input-label">
-												<input id="obs.information_given_by.vizinho" type="checkbox"
-													name="obs.information_given_by"
-													data-concept="2037^INFORMAÇAO DADA POR^99DCT"
-													value="2034^VIZINHO^99DCT" />
-												Vizinho
-											</label>
-										</div>
-										<div class="form-group">
-											<label class="input-label">
-												<input id="obs.information_given_by.confidante" type="checkbox"
-													name="obs.information_given_by"
-													data-concept="2037^INFORMAÇAO DADA POR^99DCT"
-													value="2033^CONFIDENTE^99DCT" />
-												Confidente
-											</label>
-										</div>
-										<div class="form-group">
-											<label class="input-label">
-												<input id="obs.information_given_by.familiar" type="checkbox"
-													name="obs.information_given_by"
-													data-concept="2037^INFORMAÇAO DADA POR^99DCT"
-													value="2035^FAMILIAR^99DCT" />
-												Familiar
-											</label>
-											<label class="input-label" for="obs.familiar_parentesco">
-												(Parentesco:<span class="required">*</span>)
-												<input id="obs.familiar_parentesco" class="font-normal" type="hidden"
-													data-concept="2038^OUTROS INFORMAÇÃO DADA POR^99DCT"
-													required="required">
-											</label>
-										</div>
-										<div class="form-group">
-											<label class="input-label">
-												<input id="obs.information_given_by.lider" type="checkbox"
-													name="obs.information_given_by"
-													data-concept="2037^INFORMAÇAO DADA POR^99DCT"
-													value="2036^CHEFE DE BAIRRO^99DCT" />
-												Lider Comunitário
-											</label>
-										</div>
-									</div>
-									<div class="form-group sub-section">
-										<label class="input-label" class="font-normal" for="obs.referenced_person_name">
-											Nome
+									<div class="form-group">
+										<label class="input-label">
+											<input id="obs.information_given_by.vizinho" type="checkbox"
+												name="obs.information_given_by"
+												data-concept="2037^INFORMAÇAO DADA POR^99DCT"
+												value="2034^VIZINHO^99DCT" />
+											Vizinho
 										</label>
-										<input class="form-control" id="obs.referenced_person_name" type="text"
-											name="obs.referenced_person_name"
-											data-concept="1441^PESSOA DE REFERENCIA - NOME^99DCT" />
-										<label class="input-label" for="obs.referenced_person_contact">
-											Contacto
-										</label>
-										<input class="form-control" id="obs.referenced_person_contact" type="text"
-											name="obs.referenced_person_contact"
-											data-concept="23923^CONTACTO DO INFORMANTE^99DCT" />
 									</div>
+									<div class="form-group">
+										<label class="input-label">
+											<input id="obs.information_given_by.confidante" type="checkbox"
+												name="obs.information_given_by"
+												data-concept="2037^INFORMAÇAO DADA POR^99DCT"
+												value="2033^CONFIDENTE^99DCT" />
+											Confidente
+										</label>
+									</div>
+									<div class="form-group">
+										<label class="input-label">
+											<input id="obs.information_given_by.familiar" type="checkbox"
+												name="obs.information_given_by"
+												data-concept="2037^INFORMAÇAO DADA POR^99DCT"
+												value="2035^FAMILIAR^99DCT" />
+											Familiar
+										</label>
+										<label class="input-label" for="obs.familiar_parentesco">
+											(Parentesco:<span class="required">*</span>)
+											<input id="obs.familiar_parentesco" class="font-normal" type="hidden"
+												data-concept="2038^OUTROS INFORMAÇÃO DADA POR^99DCT"
+												required="required">
+										</label>
+									</div>
+									<div class="form-group">
+										<label class="input-label">
+											<input id="obs.information_given_by.lider" type="checkbox"
+												name="obs.information_given_by"
+												data-concept="2037^INFORMAÇAO DADA POR^99DCT"
+												value="2036^CHEFE DE BAIRRO^99DCT" />
+											Lider Comunitário
+										</label>
+									</div>
+									<label class="input-label" for="obs.referenced_person_name">
+										Nome
+									</label>
+									<input class="form-control" id="obs.referenced_person_name" type="text"
+										name="obs.referenced_person_name"
+										data-concept="1441^PESSOA DE REFERENCIA - NOME^99DCT" />
+									<label class="input-label" for="obs.referenced_person_contact">
+										Contacto
+									</label>
+									<input class="form-control" id="obs.referenced_person_contact" type="text"
+										name="obs.referenced_person_contact"
+										data-concept="23923^CONTACTO DO INFORMANTE^99DCT" />
 								</div>
 							</div>
 						</div>
@@ -1058,6 +1054,46 @@
 				i++;
 			} while (i <= triangulationStatusObsSize);
 		}
+
+		var eligibilityCategories = $("#obs\\.elegibility_categories").val().split(", ");
+		var ecvIndex = -1;
+		var cvaIndex = -1;
+		var abandonoIndex = -1;
+		var faltosoIndex = -1;
+		var preventivaIndex = -1;
+
+		$.each(eligibilityCategories, (k,category)=>{
+			if(category.includes('Elegível Carga Viral')){
+				ecvIndex = k;
+			} else if (category.includes('Carga Viral Alta')){
+				cvaIndex = k;
+			} else if (category.includes('Abandono')){
+				abandonoIndex = k;
+			} else if (category.includes('Faltoso')){
+				faltosoIndex = k;
+			} else if (category.includes('Preventiva')){
+				preventivaIndex = k;
+			}
+		});
+
+		if(ecvIndex >= 0 && cvaIndex >= 0){
+			eligibilityCategories.splice(ecvIndex,1);
+		}
+
+		if(faltosoIndex >= 0 && abandonoIndex >= 0){
+			eligibilityCategories.splice(eligibilityCategories.indexOf('Faltoso'),1);
+		}
+
+		if(preventivaIndex >= 0 && (faltosoIndex >= 0 || abandonoIndex >= 0)){
+			eligibilityCategories.splice(eligibilityCategories.indexOf('Preventiva'),1);
+		}
+
+		var combinedEligibilityCategories = "";
+		$.each(eligibilityCategories, (k,category)=>{
+            combinedEligibilityCategories = (combinedEligibilityCategories !== "" ? combinedEligibilityCategories + ", " + category : category);
+        });
+        $("#obs\\.elegibility_categories").val(combinedEligibilityCategories);
+
 
 		if ($("#obs\\.elegibility_categories").val().includes('Abandono')
 			|| $("#obs\\.elegibility_categories").val().includes('Faltoso')) {

@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<head>
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/muzima.css" rel="stylesheet">
+  <link href="css/ui-darkness/jquery-ui-1.10.4.custom.min.css" rel="stylesheet">
+  <style>
+    .table,
+    .table tr,
+    .table td {
+        background-color: white;
+    }
+  </style>
+  <script type="text/javascript" src="./js/jquery.min.js"></script>
+</head>
+<body>
+<div class="container">
+  <h3>Relatório de Desempenho Testagem Caso Índice</h3>
+  <table class="table table-bordered table-striped ">
+    <tr>
+      <td>Data Início Coortes: </td><td id="startDate">--</td>
+    </tr>
+    <tr>
+      <td>Data Alocação: </td><td id="allocationDate">--</td>
+    </tr>
+    <tr>
+      <td>Data Monitoria: </td><td id="monitoringDate">--</td>
+    </tr>
+  </table>
+  <h3>Sumario</h3>
+  <div class="section ">
+    <h5 class="alert alert-info">Contactos eligiveis no periodo de coorte: Testagem e ligacao aos cuidados ate a data de monitoria</h5>
+    <table class="table table-bordered table-striped table-responsive" id="summaryReportStub">
+      <tr>
+        <th>Relatorio</th>
+        <th>Numero Total</th>
+        <th>%</th>
+        <th>Parceiros sexuais e espos@s</th>
+        <th>Pais</th>
+        <th>Filhos < 15 anos</th>
+      </tr>
+      <tr>
+        <td>CASOINDICE 1 (Contactos eligiveis no periodo de coorte):
+        </td>
+        <td class="casoIndice1NumeroTotal">--</td>
+        <td></td>
+        <td class="casoIndice1ParceirosEsposos">--</td>
+        <td class="casoIndice1PaiMae">--</td>
+        <td class="casoIndice1FilhaFilho">--</td>
+      </tr>
+      <tr>
+        <td>CASOINDICE 2 (Contactos alocados aos conselheiros ATS): </td>
+        <td class="casoIndice2NumeroTotal">--</td>
+        <td></td>
+        <td class="casoIndice2ParceirosEsposos">--</td>
+        <td class="casoIndice2PaiMae">--</td>
+        <td class="casoIndice2FilhaFilho">--</td>
+      </tr>
+      <tr>
+        <td>CASOINDICE 3 (Contactos que foram oferecidos ATS): </td>
+        <td class="casoIndice3NumeroTotal">--</td>
+        <td></td>
+        <td class="casoIndice3ParceirosEsposos">--</td>
+        <td class="casoIndice3PaiMae">--</td>
+        <td class="casoIndice3FilhaFilho">--</td>
+      </tr>
+      <tr>
+        <td>CASOINDICE 4 (Contactos que aceitaram ATS): </td>
+        <td class="casoIndice4NumeroTotal">--</td>
+        <td></td>
+        <td class="casoIndice4ParceirosEsposos">--</td>
+        <td class="casoIndice4PaiMae">--</td>
+        <td class="casoIndice4FilhaFilho">--</td>
+      </tr>
+      <tr>
+        <td>CASOINDICE 5 (All contacts who accepted HTC): </td>
+        <td class="casoIndice5NumeroTotal">--</td>
+        <td></td>
+        <td class="casoIndice5ParceirosEsposos">--</td>
+        <td class="casoIndice5PaiMae">--</td>
+        <td class="casoIndice5FilhaFilho">--</td>
+      </tr>
+      <tr>
+        <td>CASOINDICE 6 (Contactos testados positivos): </td>
+        <td class="casoIndice6NumeroTotal">--</td>
+        <td></td>
+        <td class="casoIndice6ParceirosEsposos">--</td>
+        <td class="casoIndice6PaiMae">--</td>
+        <td class="casoIndice6FilhaFilho">--</td>
+      </tr>
+      <tr>
+        <td>CASOINDICE 7 (Contactos referidos a US): </td>
+        <td class="casoIndice7NumeroTotal">--</td>
+        <td></td>
+        <td class="casoIndice17ParceirosEsposos">--</td>
+        <td class="casoIndice7PaiMae">--</td>
+        <td class="casoIndice7FilhaFilho">--</td>
+      </tr>
+      <tr>
+        <td>CASOINDICE 8 (Contactos HIV positivos ligados aos cuidados HIV (tem NID)): </td>
+        <td class="casoIndice8NumeroTotal">--</td>
+        <td></td>
+        <td class="casoIndice8ParceirosEsposos">--</td>
+        <td class="casoIndice8PaiMae">--</td>
+        <td class="casoIndice8FilhaFilho">--</td>
+      </tr>
+    </table>
+  </div>
+
+  <h3>Desempenho individual do conselheiro ATS</h3>
+  <div class="section" id="individualCounselorSummarySection">
+    <div class="section individualCounselordetails"id="individualCounselorSummaryStub">
+      <h5 class="alert alert-info">Contactos eligiveis no periodo de coorte: Testagem e ligacao aos cuidados ate a data de monitoria</h5>
+      <table class=" table alert-success table-bordered table-responsive" >
+        <tr>
+          <td><h5>Counselor Name:</h5></td>
+          <td colspan="5"><h5 class="allocatedToPersonName"></h5></td>
+        </tr>
+      </table>
+      <table class="table table-bordered table-striped table-responsive" >
+        <tr>
+          <th>Relatorio</th>
+          <th>Numero Total</th>
+          <th>%</th>
+          <th>Parceiros sexuais e espos@s</th>
+          <th>Pais</th>
+          <th>Filhos < 15 anos</th>
+        </tr>
+        <tr>
+          <td>CASOINDICE 2 (Contactos alocados aos conselheiros ATS): </td>
+          <td class="casoIndice2NumeroTotal">--</td>
+          <td></td>
+          <td class="casoIndice2ParceirosEsposos">--</td>
+          <td class="casoIndice2PaiMae">--</td>
+          <td class="casoIndice2FilhaFilho">--</td>
+        </tr>
+        <tr>
+          <td>CASOINDICE 3 (Contactos que foram oferecidos ATS): </td>
+          <td class="casoIndice3NumeroTotal">--</td>
+          <td></td>
+          <td class="casoIndice3ParceirosEsposos">--</td>
+          <td class="casoIndice3PaiMae">--</td>
+          <td class="casoIndice3FilhaFilho">--</td>
+        </tr>
+        <tr>
+          <td>CASOINDICE 4 (Contactos que aceitaram ATS): </td>
+          <td class="casoIndice4NumeroTotal">--</td>
+          <td></td>
+          <td class="casoIndice4ParceirosEsposos">--</td>
+          <td class="casoIndice4PaiMae">--</td>
+          <td class="casoIndice4FilhaFilho">--</td>
+        </tr>
+        <tr>
+          <td>CASOINDICE 5 (All contacts who accepted HTC): </td>
+          <td class="casoIndice5NumeroTotal">--</td>
+          <td></td>
+          <td class="casoIndice5ParceirosEsposos">--</td>
+          <td class="casoIndice5PaiMae">--</td>
+          <td class="casoIndice5FilhaFilho">--</td>
+        </tr>
+        <tr>
+          <td>CASOINDICE 6 (Contactos testados positivos): </td>
+          <td class="casoIndice6NumeroTotal">--</td>
+          <td></td>
+          <td class="casoIndice6ParceirosEsposos">--</td>
+          <td class="casoIndice6PaiMae">--</td>
+          <td class="casoIndice6FilhaFilho">--</td>
+        </tr>
+        <tr>
+          <td>CASOINDICE 7 (Contactos referidos a US): </td>
+          <td class="casoIndice7NumeroTotal">--</td>
+          <td></td>
+          <td class="casoIndice17ParceirosEsposos">--</td>
+          <td class="casoIndice7PaiMae">--</td>
+          <td class="casoIndice7FilhaFilho">--</td>
+        </tr>
+        <tr>
+          <td>CASOINDICE 8 (Contactos HIV positivos ligados aos cuidados HIV (tem NID)): </td>
+          <td class="casoIndice8NumeroTotal">--</td>
+          <td></td>
+          <td class="casoIndice8ParceirosEsposos">--</td>
+          <td class="casoIndice8PaiMae">--</td>
+          <td class="casoIndice8FilhaFilho">--</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <div id="dataset"></div>
+</div>
+</body>
+<script>
+    $(document).ready(function () {
+
+        var populatedReport = function(dataset){
+            $individualReportParent = $('#individualCounselorSummaryStub');
+            summaryReportData = {};
+            var sectionIndex = 0;
+
+            var globalSummaryFields = ['startDate','allocationDate','monitoringDate'];
+            var globalDataset = {};
+
+            $.each(dataset, function(k, counselorDataset){
+                if(sectionIndex > 0){
+                  sectionIndex++;
+                  $individualReportParent = $individualReportParent.clone(true).insertAfter($individualReportParent);
+                  console.log('CLONED SEC: ',$individualReportParent);
+                } else {
+                  sectionIndex = 1;
+                }
+
+                var individualCounselorSummaryStub = $individualReportParent;//.find('#individualCounselorSummaryStub');
+                Object.keys(counselorDataset).forEach(key => {
+                console.log(key);
+                  if(key in summaryReportData){
+                    summaryReportData[key] += counselorDataset[key];
+                  } else if (globalSummaryFields.includes(key)){
+                    globalDataset[key] = counselorDataset[key];
+                  } else {
+                    summaryReportData[key] = counselorDataset[key];
+                  }
+                  individualCounselorSummaryStub.find('.'+key).html(counselorDataset[key]);
+                });
+            });
+
+            $summaryParent = $('#summaryReportStub');
+            Object.keys(summaryReportData).forEach(key => {
+                $summaryParent.find('.'+key).html(summaryReportData[key]);
+            });
+
+            //overall report details
+            Object.keys(globalDataset).forEach(key => {
+                $('#'+key).html(globalDataset[key]);
+            });
+        }
+
+        // var indexCaseReportDatasetId = 1
+        var dataset1 = providerReportInterface.getReportDatasetByDatasetDefinitionId(indexCaseReportDatasetId);
+        dataset1 = JSON.parse(dataset1);
+        dataset1 = JSON.parse(dataset1.dataSet);
+        populatedReport(dataset1);
+    });
+</script>
+</html>
