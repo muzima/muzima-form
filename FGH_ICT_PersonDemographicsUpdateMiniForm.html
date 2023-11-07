@@ -28,6 +28,8 @@
             <div class="form-group">
                 <input class="form-control" id="patient.uuid"
                        name="patient.uuid" type="hidden" readonly="readonly">
+                <input class="form-control" id="patient.tagName" name="patient.tagName" type="hidden">
+                <input class="form-control" id="patient.tagUuid" name="patient.tagUuid" type="hidden">
             </div>
             <div class="form-group">
                 <label class="input-label" for="patient.family_name">Apelido: </label>
@@ -578,17 +580,21 @@
         $('#patient\\.sex').trigger('change');
 
         $('#obs\\.patient_found').change(function(){
-		if($(this).val() == "1065^SIM^99DCT"){
-            $('#update_hiv_details').show();
-            $('#patient_not_found_div').hide();
-        }
-        else if($(this).val() == "1066^NAO^99DCT"){
-            $('#update_hiv_details').hide();
-            $('#patient_not_found_div').show();
-        } else {
-            $('#update_hiv_details').hide();
-            $('#patient_not_found_div').hide();
-        }
+            if($(this).val() == "1065^SIM^99DCT"){
+                $("#patient\\.tagName").val("SIM");
+				$("#patient\\.tagUuid").val("32809438-e45b-11e9-b737-c8d3ffd477a6f");
+                $('#update_hiv_details').show();
+                $('#patient_not_found_div').hide();
+            }
+            else if($(this).val() == "1066^NAO^99DCT"){
+                $("#patient\\.tagName").val("NÃO");
+				$("#patient\\.tagUuid").val("d7ae6ff6-0531-11ea-a2b4-c8d3ffd477a6");
+                $('#update_hiv_details').hide();
+                $('#patient_not_found_div').show();
+            } else {
+                $('#update_hiv_details').hide();
+                $('#patient_not_found_div').hide();
+            }
         });
         $('#obs\\.patient_found').trigger('change');
 
