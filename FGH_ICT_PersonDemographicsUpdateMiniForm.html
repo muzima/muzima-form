@@ -241,9 +241,9 @@
                                 <h6>Motivo de não encontrar<span class="required">*</span></h6>
                                </label>
                                <div class="form-group">
-                                   <label class="input-label">
+                                   <label class="input-label" for="obs.patient_not_found_reason.obito">
                                        <input id="obs.patient_not_found_reason.obito" type="checkbox" name="obs.patient_not_found_reason"
-                                       data-concept="2031^REASON PATIENT NOT FOUND BY ACTIVIST^99DCT" value="1366^Obitou^99DCT" required="required"/>
+                                       data-concept="2031^REASON PATIENT NOT FOUND BY ACTIVIST^99DCT" value="1366^Obitou^99DCT" required="required"  />
                                         Óbito
                                    </label>
                                </div>
@@ -911,16 +911,28 @@
 			$('#demographicsupdate_relative_nid').show();
 			$('#demographicsupdate_hiv_care').show();
 		} else{
-			$('#demographicsupdate_relative_nid').hide();
+
 			$('#demographicsupdate_hiv_care').hide();
-		}
-	       });
+
+			if($('#demographicsupdate\\.child_at_risk_treatment').val() == '1065^Sim^99DCT'){
+                $('#demographicsupdate_relative_nid').show();
+            }else{
+                $('#demographicsupdate_relative_nid').hide();
+            }
+		   }
+	      });
 
       $('#demographicsupdate\\.child_at_risk_treatment').change(function () {
             if($(this).val() == '1065^Sim^99DCT'){
                 $('#demographicsupdate_relative_nid').show();
             }else{
+
+            if($('#obs\\.demographicsupdate_htc_not_accepted\\.positivo').prop("checked") ){
+             $('#demographicsupdate_relative_nid').show();
+            }else{
                 $('#demographicsupdate_relative_nid').hide();
+                }
+
             }
         });
 
