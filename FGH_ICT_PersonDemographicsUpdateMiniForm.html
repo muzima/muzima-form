@@ -236,55 +236,56 @@
                 </select>
         </div>
         
-        <div class="form-group section patient_not_found_div" id="patient_not_found_div" hidden="true" required="required" >
-                               <label for="obs.patient_not_found_reason">
-                                    <h6>Motivo de não encontrar<span class="required">*</span></h6>
-                               </label>
-                               <div class="form-group">
-                                   <label class="input-label" for="obs.patient_not_found_reason.obito">
-                                       <input id="obs.patient_not_found_reason.obito" type="checkbox" name="obs.patient_not_found_reason"
-                                       data-concept="2031^REASON PATIENT NOT FOUND BY ACTIVIST^99DCT" value="1366^Obitou^99DCT" required="required"  />
-                                        Óbito
-                                   </label>
-                               </div>
-                               <div class="form-group">
-                                   <label class="input-label">
-                                       <input id="obs.patient_not_found_reason.endereco" type="checkbox" name="obs.patient_not_found_reason"
-                                       data-concept="2031^REASON PATIENT NOT FOUND BY ACTIVIST^99DCT" value="2024^ENDEREÇO ERRADO^99DCT" required="required"/>
-                                        Endereço errado
-                                   </label>
-                               </div>
-                               <div class="form-group">
-                                   <label class="input-label">
-                                       <input id="obs.patient_not_found_reason.mudou" type="checkbox" name="obs.patient_not_found_reason"
-                                       data-concept="2031^REASON PATIENT NOT FOUND BY ACTIVIST^99DCT" value="2026^MUDOU DE CASA^99DCT" required="required"/>
-                                         Mudou de endereço
-                                   </label>
-                               </div>
-                               <div class="form-group">
-                                   <label class="input-label">
-                                       <input id="obs.patient_not_found_reason.viajou" type="checkbox" name="obs.patient_not_found_reason"
-                                       data-concept="2031^REASON PATIENT NOT FOUND BY ACTIVIST^99DCT" value="2011^VIAJOU^99DCT" required="required"/>
-                                         Viajou
-                                   </label>
-                               </div>
-                               <div class="form-group">
-                                   <label class="input-label">
-                                       <input id="obs.patient_not_found_reason.outros" type="checkbox" name="obs.patient_not_found_reason"
-                                       data-concept="2031^REASON PATIENT NOT FOUND BY ACTIVIST^99DCT" value="2032^OUTROS MOTIVOS^99DCT" required="required"/>
-                                         Outro
-                                   </label>
-                               </div>
-                           <div class="form-group sub-section" id="patient_not_found_reason_other">
-                            <label class="input-label" for="obs.patient_not_found_reason_other" >
-                                Outro:<span class="required"></span>
-                            </label>
-                            
-                                <input class="form-control" id="obs.patient_not_found_reason_other" type="text" required="required"
-                                name="obs.patient_not_found_reason" data-obscommentfor="obs.patient_not_found_reason"/>
-                            </div>   
-                            
-                           </div>                    
+        <div class="form-group section patient_not_found_div" id="patient_not_found_div" hidden="true" >
+            <label for="obs.patient_not_found_reason">
+                 <h6>Motivo de não encontrar<span class="required">*</span></h6>
+                 <input type="checkbox" name="obs.patient_not_found_reason" required="required" readonly="readonly" style="opacity:0; position:absolute; left:9999px;">
+            </label>
+            <div class="form-group">
+                <label class="input-label" for="obs.patient_not_found_reason.obito">
+                    <input id="obs.patient_not_found_reason.obito" type="checkbox" name="obs.patient_not_found_reason"
+                    data-concept="2031^REASON PATIENT NOT FOUND BY ACTIVIST^99DCT" value="1366^Obitou^99DCT"   />
+                     Óbito
+                </label>
+            </div>
+            <div class="form-group">
+                <label class="input-label">
+                    <input id="obs.patient_not_found_reason.endereco" type="checkbox" name="obs.patient_not_found_reason"
+                    data-concept="2031^REASON PATIENT NOT FOUND BY ACTIVIST^99DCT" value="2024^ENDEREÇO ERRADO^99DCT" />
+                     Endereço errado
+                </label>
+            </div>
+            <div class="form-group">
+                <label class="input-label">
+                    <input id="obs.patient_not_found_reason.mudou" type="checkbox" name="obs.patient_not_found_reason"
+                    data-concept="2031^REASON PATIENT NOT FOUND BY ACTIVIST^99DCT" value="2026^MUDOU DE CASA^99DCT" />
+                      Mudou de endereço
+                </label>
+            </div>
+            <div class="form-group">
+                <label class="input-label">
+                    <input id="obs.patient_not_found_reason.viajou" type="checkbox" name="obs.patient_not_found_reason"
+                    data-concept="2031^REASON PATIENT NOT FOUND BY ACTIVIST^99DCT" value="2011^VIAJOU^99DCT" />
+                      Viajou
+                </label>
+            </div>
+            <div class="form-group">
+                <label class="input-label">
+                    <input id="obs.patient_not_found_reason.outros" type="checkbox" name="obs.patient_not_found_reason"
+                    data-concept="2031^REASON PATIENT NOT FOUND BY ACTIVIST^99DCT" value="2032^OUTROS MOTIVOS^99DCT" />
+                      Outro
+                </label>
+            </div>
+        <div class="form-group sub-section" id="patient_not_found_reason_other">
+         <label class="input-label" for="obs.patient_not_found_reason_other" >
+             Outro:<span class="required"></span>
+         </label>
+         
+             <input class="form-control" id="obs.patient_not_found_reason_other" type="text" required="required"
+             name="obs.patient_not_found_reason" data-obscommentfor="obs.patient_not_found_reason"/>
+         </div>   
+         
+        </div>             
 <!--        data-concept="23782^SITUACAO FAMILIAR CONJUNTO^99DCT"-->
 
             <!--   ******************** INICIO ************************************** --->
@@ -314,12 +315,12 @@
             </div>
         <!-- NAO FOI ACEITE O SERVICO  -->
 
-        <div class="form-group section demographicsupdate_htc_not_accepted" id="demographicsupdate_htc_not_accepted" hidden="true">
+        <div class="form-group demographicsupdate_htc_not_accepted" id="demographicsupdate_htc_not_accepted" hidden="true">
             <label for="obs.demographicsupdate_htc_not_accepted">
-                <h6>Motivo: <span class="required">*</span></h6>
+                <h6>Motivos para não aceitar: <span class="required">*</span></h6>
             </label>
 
-            <select class="form-control" name="demographicsupdate_htc_not_accepted" id="obs.demographicsupdate_htc_not_accepted" data-concept="165493^MOTIVO PARA NAO ACEITAR O SERVIÇO DE HTC^99DCT">
+            <select class="form-control" name="demographicsupdate_htc_not_accepted" id="obs.demographicsupdate_htc_not_accepted" data-concept="165493^MOTIVO PARA NAO ACEITAR O SERVIÇO DE HTC^99DCT" required>
                 <option value="">...</option>
                 <option class="input-label" id="obs.demographicsupdate_htc_not_accepted.positivo"  value="165494^POSITIVO NO PASSADO^99DCT"> Positivo no Passado</option>
                 <option class="input-label" id="obs.demographicsupdate_htc_not_accepted.recusa"  value="165336^RECUSA^99DCT" >Recusa</option>
@@ -348,13 +349,13 @@
                 <option value="23892^Alta^99DCT">Alta</option>
             </select>
         </div>
-        <div class="form-group sub-section" id="demographicsupdate_relative_nid" hidden="true">
+        <div class="form-group " id="demographicsupdate_relative_nid" hidden="true">
             <label class="input-label" for="obs.demographicsupdate_relative_nid">NID:</label>
             <input class="form-control" id="obs.demographicsupdate_relative_nid" data-concept="23781^Relative NID^99DCT"
                    name="demographicsupdate.relative_nid" type="text">
         </div>
 
-        <div class="form-group sub-section" id="demographicsupdate_hiv_care" hidden = "true">
+        <div class="form-group " id="demographicsupdate_hiv_care" hidden = "true">
             <label class="input-label" for="obs.demographicsupdate_hiv_care">Em Cuidados de HIV?</label>
             <select class="form-control" id="obs.demographicsupdate_hiv_care"
                     name="demographicsupdate.hiv_care" data-concept="23780^Cuidados HIV^99DCT">
@@ -653,13 +654,6 @@
             yearRange: birthdate_start_year + ':' + currentYear
         });
         $('.birth_date_picker').change(function () {
-            $(this).valid();
-        });
-
-        $('#obs\\.patient_not_found_reason\\.obito').change(function () {
-            $(this).valid();
-        });
-        $('#patient_not_found_div').change(function () {
             $(this).valid();
         });
 
