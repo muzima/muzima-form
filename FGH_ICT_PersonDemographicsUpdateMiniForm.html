@@ -236,7 +236,7 @@
                 </select>
         </div>
         
-        <div class="form-group section patient_not_found_div" id="patient_not_found_div" hidden="true">
+        <div class="form-group section patient_not_found_div" id="patient_not_found_div" hidden="true" required="required" >
                                <label for="obs.patient_not_found_reason">
                                 <h6>Motivo de não encontrar<span class="required">*</span></h6>
                                </label>
@@ -318,50 +318,17 @@
             <label for="obs.demographicsupdate_htc_not_accepted">
                 <h6>Motivo: <span class="required">*</span></h6>
             </label>
-            <div class="form-group">
-                <label class="input-label">
-                    <input id="obs.demographicsupdate_htc_not_accepted.positivo" type="checkbox" name="obs.demographicsupdate_htc_not_accepted"
-                           data-concept="165493^MOTIVO PARA NAO ACEITAR O SERVIÇO DE HTC^99DCT" value="165494^POSITIVO NO PASSADO^99DCT" required="required"/>
-                    Positivo no Passado
-                </label>
-            </div>
 
-            <div class="form-group">
-                <label class="input-label">
-                    <input id="obs.demographicsupdate_htc_not_accepted.recusa" type="checkbox" name="obs.demographicsupdate_htc_not_accepted"
-                           data-concept="165493^MOTIVO PARA NAO ACEITAR O SERVIÇO DE HTC^99DCT" value="165336^RECUSA^99DCT" required="required"/>
-                    Recusa
-                </label>
-            </div>
-            <div class="form-group">
-                <label class="input-label">
-                    <input id="obs.demographicsupdate_htc_not_accepted.mudou" type="checkbox" name="obs.demographicsupdate_htc_not_accepted"
-                           data-concept="165493^MOTIVO PARA NAO ACEITAR O SERVIÇO DE HTC^99DCT" value="6436^STIGMA^99DCT" required="required"/>
-                    Falta de Privacidade
-                </label>
-            </div>
-            <div class="form-group">
-                <label class="input-label">
-                    <input id="obs.demographicsupdate_htc_not_accepted.drogas" type="checkbox" name="obs.demographicsupdate_htc_not_accepted"
-                           data-concept="165493^MOTIVO PARA NAO ACEITAR O SERVIÇO DE HTC^99DCT" value="15954^Efeito tóxico do álcool^99DCT" required="required"/>
-                    Sob o Efeito de Alcool/outras Subistancias
-                </label>
-            </div>
-            <div class="form-group">
-                <label class="input-label">
-                    <input id="obs.demographicsupdate_htc_not_accepted.localtestagem" type="checkbox" name="obs.demographicsupdate_htc_not_accepted"
-                           data-concept="165493^MOTIVO PARA NAO ACEITAR O SERVIÇO DE HTC^99DCT" value="165495^CHANGE OF TESTING LOCATION^99DCT" required="required"/>
-                    Mudanca de Local de Testagem
-                </label>
-            </div>
-            <div class="form-group">
-                <label class="input-label">
-                    <input id="obs.demographicsupdate_htc_not_accepted.outros" type="checkbox" name="obs.demographicsupdate_htc_not_accepted.outros"
-                           data-concept="165493^MOTIVO PARA NAO ACEITAR O SERVIÇO DE HTC^99DCT" value="2032^OUTROS MOTIVOS^99DCT" required="required"/>
-                    Outro
+            <select class="form-control" name="demographicsupdate_htc_not_accepted" id="obs.demographicsupdate_htc_not_accepted" data-concept="165493^MOTIVO PARA NAO ACEITAR O SERVIÇO DE HTC^99DCT">
+                <option value="">...</option>
+                <option class="input-label" id="obs.demographicsupdate_htc_not_accepted.positivo"  value="165494^POSITIVO NO PASSADO^99DCT"> Positivo no Passado</option>
+                <option class="input-label" id="obs.demographicsupdate_htc_not_accepted.recusa"  value="165336^RECUSA^99DCT" >Recusa</option>
+                <option class="input-label" id="obs.demographicsupdate_htc_not_accepted.falta"  value="6436^STIGMA^99DCT">Falta de Privacidade</option>
+                <option class="input-label" id="obs.demographicsupdate_htc_not_accepted.drogas"  value="15954^Efeito tóxico do álcool^99DCT" >Sob o Efeito de Alcool/outras Subistancias</option>
+                <option class="input-label" id="obs.demographicsupdate_htc_not_accepted.localtestagem"  value="165495^CHANGE OF TESTING LOCATION^99DCT" >Mudanca de Local de Testagem</option>
+                <option class="input-label" id="obs.demographicsupdate_htc_not_accepted.outros"  value="2032^OUTROS MOTIVOS^99DCT"> Outro </option>
 
-                </label>
-            </div>
+            </select>
 
         </div>
         <div class="form-group sub-section" id="demographicsupdate_htc_not_accepted_other" hidden="true">
@@ -658,6 +625,9 @@
 				$("#patient\\.tagUuid").val("d7ae6ff6-0531-11ea-a2b4-c8d3ffd477a6");
                 $('#update_hiv_details').hide();
                 $('#patient_not_found_div').show();
+                $('#obs\\.patient_not_found_reason\\.obito').trigger('change');
+                $('#patient_not_found_div').trigger('change');
+
             } else {
                 $('#update_hiv_details').hide();
                 $('#patient_not_found_div').hide();
@@ -683,6 +653,13 @@
             yearRange: birthdate_start_year + ':' + currentYear
         });
         $('.birth_date_picker').change(function () {
+            $(this).valid();
+        });
+
+        $('#obs\\.patient_not_found_reason\\.obito').change(function () {
+            $(this).valid();
+        });
+        $('#patient_not_found_div').change(function () {
             $(this).valid();
         });
 
@@ -898,16 +875,16 @@
             }
         });
 
-       $('#obs\\.demographicsupdate_htc_not_accepted\\.outros').change(function(){
-		if($(this).prop("checked")){
+       $('#obs\\.demographicsupdate_htc_not_accepted').change(function(){
+		if($(this).val() == '2032^OUTROS MOTIVOS^99DCT' ){
 			$('#demographicsupdate_htc_not_accepted_other').show();
 		} else{
 			$('#demographicsupdate_htc_not_accepted_other').hide();
 		}
 	       });
 
-	  $('#obs\\.demographicsupdate_htc_not_accepted\\.positivo').change(function(){
-		if($(this).prop("checked")){
+	  $('#obs\\.demographicsupdate_htc_not_accepted').change(function(){
+		if($(this).val() == '165494^POSITIVO NO PASSADO^99DCT'){
 			$('#demographicsupdate_relative_nid').show();
 			$('#demographicsupdate_hiv_care').show();
 		} else{
@@ -927,7 +904,7 @@
                 $('#demographicsupdate_relative_nid').show();
             }else{
 
-            if($('#obs\\.demographicsupdate_htc_not_accepted\\.positivo').prop("checked") ){
+            if($('#obs\\.demographicsupdate_htc_not_accepted').val() == '165494^POSITIVO NO PASSADO^99DCT' ){
              $('#demographicsupdate_relative_nid').show();
             }else{
                 $('#demographicsupdate_relative_nid').hide();
