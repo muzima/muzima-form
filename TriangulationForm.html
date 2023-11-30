@@ -363,6 +363,9 @@
                      <input class="form-control" id="obs.professional_referral_name" type="text" required="required"
                         name="obs.professional_referral_name"
                         data-concept="23853^NOME DO PROFISSIONAL QUE REFERIU^99DCT" readonly="readonly">
+                     <input class="form-control" id="obs_comment.provider_id_select"
+                        name="obs_comment.provider_id_select" data-obscommentfor="obs.professional_referral_name"
+                        type="hidden">
                   </div>
                </div>
             </div>
@@ -455,14 +458,14 @@
             <label class="input-label" for="encounter.provider_id_select">Nome do provedor que fez a alocação:<span
                   class="required">*</span></label>
             <input class="form-control valid-provider-only input-section-2" id="encounter.provider_id_select"
-               type="text" readonly="readonly">
+               type="text" readonly="readonly" value="Manuel de Araujo QL">
             <input class="form-control" name="encounter.provider_id_select" type="hidden">
          </div>
          <div class="form-group">
             <label class="input-label" for="encounter.provider_id">ID do sistema do provedor:<span
                   class="required">*</span></label>
             <input class="form-control input-section-2" id="encounter.provider_id" disabled name="encounter.provider_id"
-               type="text" required="required" placeholder="Provider Id">
+               type="text" required="required" placeholder="Provider Id" value="1524-P">
          </div>
          <div class="form-group">
             <label class="input-label" for="encounter.location_id">Local de Encontro:<span
@@ -566,6 +569,9 @@
       document.setupAutoCompleteDataForProvider('encounter\\.provider_id_select');
       document.setupValidationForLocation("$('#encounter\\.location_id').val()", "encounter\\.location_id");
       document.setupValidationForProvider("$('#encounter\\.provider_id_select').val()", "encounter\\.provider_id");
+      $("#obs_comment\\.provider_id_select").prop('type', 'text');
+      $("#obs_comment\\.provider_id_select").val($('#encounter\\.provider_id').val());
+      $("#obs_comment\\.provider_id_select").prop('type', 'hidden');
 
       document.setupAutoCompleteDataForFieldWorker('temp\\.health_worker');
 
