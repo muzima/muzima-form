@@ -342,23 +342,23 @@
         var patientUuid = $('#patient\\.uuid').val();
 
         $('#relationshipTypeOptions').change(function () {
-            var relationshipType = $(this).val();
-            if(relationshipType == '8d91a210-c2cc-11de-8d13-0010c6dffd0f' && $(this).find(':selected').hasClass('AIsToB')) {
-                 $('#relationshipTypeOptions').find('.personA\\.uuid').val(patientUuid);
-                 $('#relationshipTypeOptions').find('.personB\\.uuid').val(indexCaseUuid);
-            console.log('AIsToB');
-            } else if(relationshipType == '8d91a210-c2cc-11de-8d13-0010c6dffd0f' && $(this).find(':selected').hasClass('BIsToA')) {
-                 $('#relationshipTypeOptions').find('.personA\\.uuid').val(indexCaseUuid);
-                 $('#relationshipTypeOptions').find('.personB\\.uuid').val(patientUuid);
-            } else if(relationshipType == '2f7d5778-0c80-11eb-b335-9f16b42e3b00') {
-                 $('#relationshipTypeOptions').find('.personA\\.uuid').val(patientUuid);
-                 $('#relationshipTypeOptions').find('.personB\\.uuid').val(indexCaseUuid);
-            } else {
-                 $('#relationshipTypeOptions').find('.personA\\.uuid').val('');
-                 $('#relationshipTypeOptions').find('.personB\\.uuid').val('');
-            }
+        
+        var relationshipType = $(this).val();
+        if(relationshipType == '8d91a210-c2cc-11de-8d13-0010c6dffd0f' && $(this).find(':selected').hasClass('AIsToB')) {
+             $('#tmp\\.personA\\.uuid').val(patientUuid);
+             $('#tmp\\.personB\\.uuid').val(indexCaseUuid);
+        } else if(relationshipType == '8d91a210-c2cc-11de-8d13-0010c6dffd0f' && $(this).find(':selected').hasClass('BIsToA')) {
+             $('#tmp\\.personA\\.uuid').val(indexCaseUuid);
+             $('#tmp\\.personB\\.uuid').val(patientUuid);
+        } else if(relationshipType == '2f7d5778-0c80-11eb-b335-9f16b42e3b00') {
+             $('#tmp\\.personA\\.uuid').val(patientUuid);
+             $('#tmp\\.personB\\.uuid').val(indexCaseUuid);
+        } else {
+              $('#tmp\\.personA\\.uuid').val('');
+              $('#tmp\\.personB\\.uuid').val('');
+        }
         });
-         $('#relationshipTypeOptions').find('.person\\.relationshipType').trigger('change');
+        $('#relationshipTypeOptions').trigger('change');
 
          $('#obs\\.patient_found').change(function(){
             if($(this).val() == "1065^SIM^99DCT"){
