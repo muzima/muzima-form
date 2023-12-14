@@ -96,8 +96,8 @@
                     <label class="input-label" >Novo parentesco: <span class="required">*</span></label>
                     <select class="form-control person.relationshipType" name="person.relationshipType">
                         <option value="">...</option>
-                        <option class="input-label" value='8d91a210-c2cc-11de-8d13-0010c6dffd0f' class="AIsToB">Mae/Pai</option>
-                        <option class="input-label" value='8d91a210-c2cc-11de-8d13-0010c6dffd0f' class="BIsToA">Filho/Filha</option>
+                        <option class="input-label AIsToB" value='8d91a210-c2cc-11de-8d13-0010c6dffd0f' >Mae/Pai</option>
+                        <option class="input-label BIsToA" value='8d91a210-c2cc-11de-8d13-0010c6dffd0f' >Filho/Filha</option>
                         <option class="input-label" value='2f7d5778-0c80-11eb-b335-9f16b42e3b00'>Parceiro</option>
                     </select>
                     <input class="form-control personA.uuid" name="personA.uuid" type="hidden">
@@ -210,9 +210,9 @@
                 <input class="form-control" id="tmp.child_at_risk_treatment" readonly="readonly"
                         name="tmp.child_at_risk_treatment" />
             </div>
-            <div class="form-group">
-                <label class="input-label" for="tmp.relative_nid">NID:</label>
-                <input class="form-control" id="tmp.relative_nid"
+            <div class="form-group" id="tmp.relative_nid">
+                <label class="input-label" for="obs.tmp.relative_nid">NID:</label>
+                <input class="form-control" id="obs.tmp.relative_nid"
                        name="tmp.relative_nid" type="text" readonly="readonly">
             </div>
             <div class="form-group">
@@ -236,54 +236,59 @@
                 </select>
         </div>
         
-        <div class="form-group section patient_not_found_div" id="patient_not_found_div" hidden="true">
-                               <label for="obs.patient_not_found_reason">
-                                <h6>Motivo de não encontrar<span class="required">*</span></h6>
-                               </label>
-                               <div class="form-group">
-                                   <label class="input-label">
-                                       <input id="obs.patient_not_found_reason.obito" type="checkbox" name="obs.patient_not_found_reason"
-                                       data-concept="2031^REASON PATIENT NOT FOUND BY ACTIVIST^99DCT" value="1366^Obitou^99DCT" required="required"/>
-                                        Óbito
-                                   </label>
-                               </div>
-                               <div class="form-group">
-                                   <label class="input-label">
-                                       <input id="obs.patient_not_found_reason.endereco" type="checkbox" name="obs.patient_not_found_reason"
-                                       data-concept="2031^REASON PATIENT NOT FOUND BY ACTIVIST^99DCT" value="2024^ENDEREÇO ERRADO^99DCT" required="required"/>
-                                        Endereço errado
-                                   </label>
-                               </div>
-                               <div class="form-group">
-                                   <label class="input-label">
-                                       <input id="obs.patient_not_found_reason.mudou" type="checkbox" name="obs.patient_not_found_reason"
-                                       data-concept="2031^REASON PATIENT NOT FOUND BY ACTIVIST^99DCT" value="2026^MUDOU DE CASA^99DCT" required="required"/>
-                                         Mudou de endereço
-                                   </label>
-                               </div>
-                               <div class="form-group">
-                                   <label class="input-label">
-                                       <input id="obs.patient_not_found_reason.viajou" type="checkbox" name="obs.patient_not_found_reason"
-                                       data-concept="2031^REASON PATIENT NOT FOUND BY ACTIVIST^99DCT" value="2011^VIAJOU^99DCT" required="required"/>
-                                         Viajou
-                                   </label>
-                               </div>
-                               <div class="form-group">
-                                   <label class="input-label">
-                                       <input id="obs.patient_not_found_reason.outros" type="checkbox" name="obs.patient_not_found_reason"
-                                       data-concept="2031^REASON PATIENT NOT FOUND BY ACTIVIST^99DCT" value="2032^OUTROS MOTIVOS^99DCT" required="required"/>
-                                         Outro
-                                   </label>
-                               </div>
-                           </div>
-                           <div class="form-group sub-section" id="patient_not_found_reason_other">
-                            <label class="input-label" for="obs.patient_not_found_reason_other">
-                                Outro:<span class="required"></span>
-                            </label>
-                                <input class="form-control" id="obs.patient_not_found_reason_other" type="text" required="required"
-                                name="obs.patient_not_found_reason.outros" data-obscommentfor="obs.patient_not_found_reason.outros"/>
-        </div>                       
+        <div class="form-group section patient_not_found_div" id="patient_not_found_div" hidden="true" >
+            <label for="obs.patient_not_found_reason">
+                 <h6>Motivo de não encontrar<span class="required">*</span></h6>
+                 <input type="checkbox" name="obs.patient_not_found_reason" required="required" readonly="readonly" style="opacity:0; position:absolute; left:9999px;">
+            </label>
+            <div class="form-group">
+                <label class="input-label" for="obs.patient_not_found_reason.obito">
+                    <input id="obs.patient_not_found_reason.obito" type="checkbox" name="obs.patient_not_found_reason"
+                    data-concept="2031^REASON PATIENT NOT FOUND BY ACTIVIST^99DCT" value="1366^Obitou^99DCT"   />
+                     Óbito
+                </label>
+            </div>
+            <div class="form-group">
+                <label class="input-label">
+                    <input id="obs.patient_not_found_reason.endereco" type="checkbox" name="obs.patient_not_found_reason"
+                    data-concept="2031^REASON PATIENT NOT FOUND BY ACTIVIST^99DCT" value="2024^ENDEREÇO ERRADO^99DCT" />
+                     Endereço errado
+                </label>
+            </div>
+            <div class="form-group">
+                <label class="input-label">
+                    <input id="obs.patient_not_found_reason.mudou" type="checkbox" name="obs.patient_not_found_reason"
+                    data-concept="2031^REASON PATIENT NOT FOUND BY ACTIVIST^99DCT" value="2026^MUDOU DE CASA^99DCT" />
+                      Mudou de endereço
+                </label>
+            </div>
+            <div class="form-group">
+                <label class="input-label">
+                    <input id="obs.patient_not_found_reason.viajou" type="checkbox" name="obs.patient_not_found_reason"
+                    data-concept="2031^REASON PATIENT NOT FOUND BY ACTIVIST^99DCT" value="2011^VIAJOU^99DCT" />
+                      Viajou
+                </label>
+            </div>
+            <div class="form-group">
+                <label class="input-label">
+                    <input id="obs.patient_not_found_reason.outros" type="checkbox" name="obs.patient_not_found_reason"
+                    data-concept="2031^REASON PATIENT NOT FOUND BY ACTIVIST^99DCT" value="2032^OUTROS MOTIVOS^99DCT" />
+                      Outro
+                </label>
+            </div>
+        <div class="form-group sub-section" id="patient_not_found_reason_other">
+         <label class="input-label" for="obs.patient_not_found_reason_other" >
+             Outro:<span class="required"></span>
+         </label>
+         
+             <input class="form-control" id="obs.patient_not_found_reason_other" type="text" required="required"
+             name="obs.patient_not_found_reason" data-obscommentfor="obs.patient_not_found_reason"/>
+         </div>   
+         
+        </div>             
 <!--        data-concept="23782^SITUACAO FAMILIAR CONJUNTO^99DCT"-->
+
+            <!--   ******************** INICIO ************************************** --->
     <div id="update_hiv_details" class="sub-section" hidden="true" >
             <h6>Dados de Testagem</h6>
             <div class="form-group">
@@ -308,7 +313,60 @@
                     <option value="1066^NAO^99DCT">Nao</option>
                 </select>
             </div>
-            <div class="form-group">
+        <!-- NAO FOI ACEITE O SERVICO  -->
+
+        <div class="form-group demographicsupdate_htc_not_accepted" id="demographicsupdate_htc_not_accepted" hidden="true">
+            <label for="obs.demographicsupdate_htc_not_accepted">
+                <h6>Motivos para não aceitar: <span class="required">*</span></h6>
+            </label>
+
+            <select class="form-control" name="demographicsupdate_htc_not_accepted" id="obs.demographicsupdate_htc_not_accepted" data-concept="165493^MOTIVO PARA NAO ACEITAR O SERVIÇO DE HTC^99DCT" required>
+                <option value="">...</option>
+                <option class="input-label" id="obs.demographicsupdate_htc_not_accepted.positivo"  value="165494^POSITIVO NO PASSADO^99DCT"> Positivo no Passado</option>
+                <option class="input-label" id="obs.demographicsupdate_htc_not_accepted.recusa"  value="165336^RECUSA^99DCT" >Recusa</option>
+                <option class="input-label" id="obs.demographicsupdate_htc_not_accepted.falta"  value="6436^STIGMA^99DCT">Falta de Privacidade</option>
+                <option class="input-label" id="obs.demographicsupdate_htc_not_accepted.drogas"  value="15954^Efeito tóxico do álcool^99DCT" >Sob o Efeito de Alcool/outras Subistancias</option>
+                <option class="input-label" id="obs.demographicsupdate_htc_not_accepted.localtestagem"  value="165495^CHANGE OF TESTING LOCATION^99DCT" >Mudanca de Local de Testagem</option>
+                <option class="input-label" id="obs.demographicsupdate_htc_not_accepted.outros"  value="2032^OUTROS MOTIVOS^99DCT"> Outro </option>
+
+            </select>
+
+        </div>
+        <div class="form-group sub-section" id="demographicsupdate_htc_not_accepted_other" hidden="true">
+            <label class="input-label" for="obs.demographicsupdate_htc_not_accepted_other">
+                Outro:<span class="required"></span>
+            </label>
+            <input class="form-control" id="obs.demographicsupdate_htc_not_accepted_other" type="text" required="required"
+                   name="obs.demographicsupdate_htc_not_accepted" data-obscommentfor="obs.demographicsupdate_htc_not_accepted"/>
+        </div>
+        <div class="form-group" id="demographicsupdate_child_at_risk_treatment" >
+            <label class="input-label" for="demographicsupdate.child_at_risk_treatment">Em CCR?</label>
+            <select class="form-control" id="demographicsupdate.child_at_risk_treatment"
+                    name="demographicsupdate.child_at_risk_treatment" data-concept="1885^TRATEMENTO (CCR)^99DCT">
+                <option value="">...</option>
+                <option value="1065^Sim^99DCT">Sim</option>
+                <option value="1066^Nao^99DCT">Nao</option>
+                <option value="23892^Alta^99DCT">Alta</option>
+            </select>
+        </div>
+        <div class="form-group " id="demographicsupdate_relative_nid" hidden="true">
+            <label class="input-label" for="obs.demographicsupdate_relative_nid">NID:</label>
+            <input class="form-control" id="obs.demographicsupdate_relative_nid" data-concept="23781^Relative NID^99DCT"
+                   name="demographicsupdate.relative_nid" type="text">
+        </div>
+
+        <div class="form-group " id="demographicsupdate_hiv_care" hidden = "true">
+            <label class="input-label" for="obs.demographicsupdate_hiv_care">Em Cuidados de HIV?</label>
+            <select class="form-control" id="obs.demographicsupdate_hiv_care"
+                    name="demographicsupdate.hiv_care" data-concept="23780^Cuidados HIV^99DCT">
+                <option value="">...</option>
+                <option value="1065^Sim^99DCT">Sim</option>
+                <option value="1066^Nao^99DCT">Nao</option>
+            </select>
+        </div>
+        <!-- FIM DO NAO FOI ACEITE -->
+
+            <div class="form-group" id="demographicsupdate_hiv_test" >
                 <label class="input-label" for="demographicsupdate.hiv_test">Resultado da Testagem de HIV:</label>
                 <select class="form-control" id="demographicsupdate.hiv_test"
                         name="demographicsupdate.hiv_test" data-concept="23779^Teste de HIV^99DCT">
@@ -316,6 +374,7 @@
                     <option value="703^Positivo^99DCT">Positivo</option>
                     <option value="664^Negativo^99DCT">Negativo</option>
                     <option value="1067^Desconhecido^99DCT">Desconhecido</option>
+                    <option value="1138^INDETERMINATE^99DCT">Indeterminado</option>
                 </select>
             </div>
             <div id="patient_refered_section" class="sub-section" hidden="true" >
@@ -328,40 +387,16 @@
                         name="obs.patient_refered" data-concept="1460^REFERRED TO HOSPITAL^99DCT"/>
                 </div>
             </div>
-            <div class="form-group">
-                <label class="input-label" for="demographicsupdate.hiv_care">Em Cuidados de HIV?</label>
-                <select class="form-control" id="demographicsupdate.hiv_care"
-                        name="demographicsupdate.hiv_care" data-concept="23780^Cuidados HIV^99DCT">
-                    <option value="">...</option>
-                    <option value="1065^Sim^99DCT">Sim</option>
-                    <option value="1066^Nao^99DCT">Nao</option>
-                </select>
-            </div>
-           
-            <div class="form-group">
-                <label class="input-label" for="demographicsupdate.child_at_risk_treatment">Em CCR?</label>
-                <select class="form-control" id="demographicsupdate.child_at_risk_treatment"
-                        name="demographicsupdate.child_at_risk_treatment" data-concept="1885^TRATEMENTO (CCR)^99DCT">
-                    <option value="">...</option>
-                    <option value="1065^Sim^99DCT">Sim</option>
-                    <option value="1066^Nao^99DCT">Nao</option>
-                    <option value="23892^Alta^99DCT">Alta</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label class="input-label" for="demographicsupdate.relative_nid">NID:</label>
-                <input class="form-control" id="demographicsupdate.relative_nid" data-concept="23781^Relative NID^99DCT"
-                       name="demographicsupdate.relative_nid" type="text">
-            </div>
+
         </div>
 
     </div>
- 
+ <!--                ***************       Fim do item    *********************                                      -->
         <div class="section">
             <h6>Detalhes do encontro</h6>
             <div class="form-group">
                 <label class="input-label" for="encounter.encounter_datetime">Data de Encontro <span class="required">*</span></label>
-                <input class="form-control nonFutureDate past-date datetimepicker" readonly="readonly" id="encounter.encounter_datetime"
+                <input class="form-control datepicker nonFutureDate past-date" id="encounter.encounter_datetime"
                        name="encounter.encounter_datetime" type="text" required="required">
             </div>
             <div class="form-group">
@@ -593,6 +628,9 @@
 				$("#patient\\.tagUuid").val("d7ae6ff6-0531-11ea-a2b4-c8d3ffd477a6");
                 $('#update_hiv_details').hide();
                 $('#patient_not_found_div').show();
+                $('#obs\\.patient_not_found_reason\\.obito').trigger('change');
+                $('#patient_not_found_div').trigger('change');
+
             } else {
                 $('#update_hiv_details').hide();
                 $('#patient_not_found_div').hide();
@@ -844,6 +882,55 @@
         
         $("#obs\\.cummulativeFormOpeningGPSData").val(value);
     });
+
+        $('#demographicsupdate\\.htc_accepted').change(function () {
+            if($(this).val() == '1066^NAO^99DCT'){
+                $('.demographicsupdate_htc_not_accepted').show();
+                 //$('#demographicsupdate_child_at_risk_treatment').hide();
+            }else{
+            $('.demographicsupdate_htc_not_accepted').hide();
+            //$('#demographicsupdate_child_at_risk_treatment').show();
+            }
+        });
+
+       $('#obs\\.demographicsupdate_htc_not_accepted').change(function(){
+		if($(this).val() == '2032^OUTROS MOTIVOS^99DCT' ){
+			$('#demographicsupdate_htc_not_accepted_other').show();
+		} else{
+			$('#demographicsupdate_htc_not_accepted_other').hide();
+		}
+	       });
+
+	  $('#obs\\.demographicsupdate_htc_not_accepted').change(function(){
+		if($(this).val() == '165494^POSITIVO NO PASSADO^99DCT'){
+			$('#demographicsupdate_relative_nid').show();
+			$('#demographicsupdate_hiv_care').show();
+		} else{
+
+			$('#demographicsupdate_hiv_care').hide();
+
+			if($('#demographicsupdate\\.child_at_risk_treatment').val() == '1065^Sim^99DCT'){
+                $('#demographicsupdate_relative_nid').show();
+            }else{
+                $('#demographicsupdate_relative_nid').hide();
+            }
+		   }
+	      });
+
+      $('#demographicsupdate\\.child_at_risk_treatment').change(function () {
+            if($(this).val() == '1065^Sim^99DCT'){
+                $('#demographicsupdate_relative_nid').show();
+            }else{
+
+            if($('#obs\\.demographicsupdate_htc_not_accepted').val() == '165494^POSITIVO NO PASSADO^99DCT' ){
+             $('#demographicsupdate_relative_nid').show();
+            }else{
+                $('#demographicsupdate_relative_nid').hide();
+                }
+
+            }
+        });
+
 </script>
 
 </html>

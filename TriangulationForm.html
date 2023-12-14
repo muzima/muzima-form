@@ -354,7 +354,6 @@
                         <option class="input-label" value="1066^NAO^99DCT">Não</option>
                         <option class="input-label" value="21233^N/A^99DCT">N/A</option>
                      </select>
-
                   </div>
                   <div class="form-group" id="professional_referral_name">
                      <label class="input-label" for="obs.professional_referral_name">
@@ -363,6 +362,9 @@
                      <input class="form-control" id="obs.professional_referral_name" type="text" required="required"
                         name="obs.professional_referral_name"
                         data-concept="23853^NOME DO PROFISSIONAL QUE REFERIU^99DCT" readonly="readonly">
+                     <input class="form-control" id="obs.professional_referral_id" type="text"
+                        name="obs.professional_referral_name" data-obscommentfor="obs.professional_referral_name" 
+                        readonly="readonly">
                   </div>
                </div>
             </div>
@@ -630,6 +632,7 @@
       }
 
       $('#obs\\.professional_referral_name').val($('#encounter\\.provider_id_select').val());
+      $("#obs\\.professional_referral_id").val($('#encounter\\.provider_id').val());
 
       var patientuuid = $('#patient\\.uuid').val();
       var historyByData = htmlDataStore.getObsByEncounterType(patientuuid, "e278f956-1d5f-11e0-b929-000c29ad1d07");
