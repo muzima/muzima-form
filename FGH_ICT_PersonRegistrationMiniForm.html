@@ -25,6 +25,8 @@
             <h6>Nome do Contacto</h6>
             <div class="form-group">
                 <input class="form-control" id="patient.uuid" name="patient.uuid" type="hidden">
+                <input class="form-control" id="patient.tagName" name="patient.tagName" type="hidden">
+                <input class="form-control" id="patient.tagUuid" name="patient.tagUuid" type="hidden">
             </div>
             <div class="form-group">
                 <label class="input-label" for="patient.family_name">Apelido: <span class="required">*</span> </label>
@@ -428,10 +430,8 @@
         $('#demographicsupdate\\.htc_accepted').change(function () {
             if($(this).val() == '1066^NAO^99DCT'){
                 $('.demographicsupdate_htc_not_accepted').show();
-                 //$('#demographicsupdate_child_at_risk_treatment').hide();
             }else{
-            $('.demographicsupdate_htc_not_accepted').hide();
-            //$('#demographicsupdate_child_at_risk_treatment').show();
+                $('.demographicsupdate_htc_not_accepted').hide();
             }
         });
 
