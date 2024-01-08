@@ -294,7 +294,7 @@
                                  </div>
                                  <div class="form-group">
                                     <label class="input-label">
-                                       <input id="obs.reason_for_not_tracing_patient.drug" type="checkbox"
+                                       <input id="obs.reason_for_not_tracing_patient.tel" type="checkbox"
                                           name="obs.reason_for_not_tracing_patient"
                                           data-concept="23852^RAZAO DE NAO RASTREAR O PACIENTE^99DCT"
                                           value="6307^CONTACTO TELEFONICO^99DCT">
@@ -792,6 +792,18 @@
          $("#nextWithdrawal").val(nextWithdrawal[0].valueDatetime);
       }
 
+      $('#obs\\.reason_for_not_tracing_patient\\.tel').change(function () {
+      if($(this).prop("checked")){
+         $('#obs\\.patient_call_made').val('1065^SIM^99DCT');
+         $('#obs\\.patient_call_made').attr('readonly', 'true');
+         $('#obs\\.patient_call_made').attr('disabled', 'true');
+      } else {
+         $('#obs\\.patient_call_made').val('');
+         $('#obs\\.patient_call_made').removeAttr('readonly');
+         $('#obs\\.patient_call_made').removeAttr('disabled');
+      }
+   });
+   $('#obs\\.reason_for_not_tracing_patient\\.tel').trigger('change');
    });
 
    document.setupAutoCompleteDataForFieldWorker = function (elementName) {
@@ -854,7 +866,6 @@
 
    // Shows the Razao para nao realizar a visita section
    $("#allocation\\.section_div").removeAttr('hidden');
-
 </script>
 
 </html>
